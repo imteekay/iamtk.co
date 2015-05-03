@@ -1,9 +1,19 @@
 html, body {
 	height: 100%;
 	margin: 0px;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 .home {
 	background-image: url('../images/pattern.png');
 	height: 100%;
+}
+
+.home-content {
+	text-align: center;
+}
+
+.home-title {
+	margin: 0;
+	font-size: 70px;
 }
