@@ -18,6 +18,22 @@ body {
 }
 
 .home-title {
-	margin: 0;
+	margin: 0 0 30px 0;
 	font-size: 70px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.description {
+	display: inline-block;
+	padding: 0 30px;
+	width: 155px;
+}
+
+.tk-description {
+	display: inline;
+	font-size: 19px;
+	font-weight: bold;
+	line-height: 25px;
+	letter-spacing: 0.5px;
 }
