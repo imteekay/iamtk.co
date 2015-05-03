@@ -8,6 +8,14 @@ body {
 	height: 100%;
 }
 
+hr {
+	width: 70px;
+	margin-bottom: 50px;
+	height: 1px;
+	background-color: white;
+	border: 1px solid;
+}
+
 .home {
 
 }
@@ -26,8 +34,12 @@ body {
 
 .description {
 	display: inline-block;
-	padding: 0 30px;
+	padding: 0 45px;
 	width: 155px;
+}
+
+.description:not(:last-child) {
+	border-right: 1px solid white;
 }
 
 .tk-description {
