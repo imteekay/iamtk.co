@@ -42,8 +42,12 @@ hr {
 
 .description {
 	display: inline-block;
-	padding: 0 45px;
-	width: 155px;
+	padding: 20px 45px 15px;
+	width: 215px;
+}
+
+.description:nth-of-type(1) {
+	padding-left: 0;
 }
 
 .description:not(:last-child) {
