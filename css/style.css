@@ -51,7 +51,7 @@ hr {
 }
 
 .description:not(:last-child) {
-	border-right: 1px solid white;
+	border-right: 1px solid rgb(97, 97, 97);
 }
 
 .tk-description {
