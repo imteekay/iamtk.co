@@ -61,3 +61,45 @@ hr {
 	line-height: 25px;
 	letter-spacing: 0.5px;
 }
+
+.push-down {
+	overflow: hidden;
+  text-align: center;
+  margin: 60px auto 0;
+  border: 1px solid rgb(97, 97, 97);
+  border-radius: 49px;
+  width: 40px;
+  font-size: 36px;
+  padding: 20px;
+  color: white;
+  background-color: rgb(40, 40, 40);
+  position: relative;
+}
+
+.oculus-image-out {
+	width: 82px;
+  height: 82px;
+  top: 83px;
+  left: 0;
+  border-radius: 45px;
+  position: absolute;
+  -webkit-transition: all 0.8s ease;
+  -moz-transition: all 0.8s ease;
+  -o-transition: all 0.8s ease;
+  -ms-transition: all 0.8s ease;
+  transition: all 0.8s ease;
+}
+
+.oculus-image-in {
+	width: 82px;
+  height: 82px;
+  top: 0;
+  left: 0;
+  border-radius: 45px;
+  position: absolute;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
