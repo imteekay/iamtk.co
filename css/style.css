@@ -29,10 +29,13 @@ hr {
 	border: 1px solid;
 }
 
+.hide {
+	visibility: hidden;
+}
+
 .home-content {
 	text-align: center;
 	margin-top: 140px;
-
 }
 
 .home-title, .my-name {

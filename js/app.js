@@ -8,6 +8,11 @@ $('.push-down').mouseleave(function() {
 	$('.js-oculus-image').addClass('oculus-image-out');
 });
 
+$(document).ready(setTimeout(function() {
+	$('.description-box').removeClass('hide');
+	$('.description-box').addClass('animated fadeInUp');
+}, 500));
+
 $('.push-down').on('click', function() {
 	// Descer para a próxima pagina
 });
