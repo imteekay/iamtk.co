@@ -13,8 +13,8 @@ body {
 	height: 85px;
 	background-color: white;
 	-webkit-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
--moz-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
+	-moz-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
+	box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
 }
 
 ul {
@@ -32,14 +32,20 @@ hr {
 .home-content {
 	text-align: center;
 	margin-top: 140px;
+
 }
 
-.home-title {
-	margin: 0 0 30px 0;
+.home-title, .my-name {
+	margin: 0 10px 30px 0;
 	font-size: 70px;
 	color: white;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	display: inline-block;
+}
+
+.my-name {
+	color: black;
+	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82)
 }
 
 .icon-for-home-title {
