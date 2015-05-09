@@ -30,7 +30,7 @@ body {
 
 ul {
 	margin: 0;
-	padding: 0px 255px;
+	padding: 0px 185px;
 }
 
 li {
@@ -38,8 +38,16 @@ li {
 }
 
 .menu-item {
-	margin: 25px 30px 0;
+	margin: 25px 80px 0 0;
 	padding-top: 8px;
+}
+
+.menu-item:first-child {
+	margin-left: 55px;
+}
+
+.menu-item:last-child {
+	margin-right: 0;
 }
 
 .navigation-bar li a {
