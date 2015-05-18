@@ -9,7 +9,7 @@ $('.push-down').mouseleave(function() {
 });
 
 $(document).ready(setTimeout(function() {
-	$('.description-box').removeClass('hide');
+	$('.description-box').removeClass('not-visible');
 	$('.description-box').addClass('animated fadeInUp');
 }, 500));
 

@@ -20,7 +20,7 @@ body {
 .logo-image {
 	width: 110px;
 	height: 45px;
-	margin: 22px;
+	margin: 35px 22px 10px;
 	background-image: url("../images/logo-image.jpg");
 	background-repeat: no-repeat;
 	background-size: 110px;
@@ -39,7 +39,6 @@ li {
 
 .menu-item {
 	margin: 25px 80px 0 0;
-	padding-top: 8px;
 }
 
 .menu-item:first-child {
@@ -56,6 +55,8 @@ li {
 	text-decoration: none;
 }
 
+/* HOME */
+
 hr {
 	width: 70px;
 	margin-bottom: 50px;
@@ -64,7 +65,7 @@ hr {
 	border: 1px solid;
 }
 
-.hide {
+.not-visible {
 	visibility: hidden;
 }
 
@@ -79,6 +80,7 @@ hr {
 	color: white;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	display: inline-block;
+	font-weight: bold;
 }
 
 .my-name {
@@ -96,7 +98,7 @@ hr {
 .description {
 	display: inline-block;
 	padding: 20px 45px 15px;
-	width: 215px;
+	width: 260px;
 }
 
 .description:nth-of-type(1) {
@@ -113,12 +115,13 @@ hr {
 	font-weight: bold;
 	line-height: 25px;
 	letter-spacing: 0.5px;
+	color: black;
 }
 
 .push-down {
 	overflow: hidden;
   text-align: center;
-  margin: 50px auto 0;
+  margin: 50px auto 100px;
   border: 1px solid rgb(97, 97, 97);
   border-radius: 49px;
   width: 10px;
@@ -131,15 +134,15 @@ hr {
 }
 
 .icon-arrow-down {
-	font-size: 23px;
-	position: relative;
-	top: -13px;
-	right: 6px;
+	font-size: 20px;
+  position: relative;
+  top: -26px;
+  right: 10px;
 }
 
 .oculus-image-out {
-	width: 52px;
-  height: 52px;
+	width: 40px;
+  height: 45px;
   top: 83px;
   left: 0;
   border-radius: 45px;
@@ -152,8 +155,8 @@ hr {
 }
 
 .oculus-image-in {
-	width: 52px;
-  height: 52px;
+	width: 40px;
+  height: 45px;
   top: 0;
   left: 0;
   border-radius: 45px;
@@ -163,4 +166,29 @@ hr {
   -o-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+/* ABOUT ME */
+
+.about-me {
+	margin: 0 100px;
+	border-top: 1px solid rgb(131, 131, 131);
+	border-bottom: 1px solid rgb(131, 131, 131);
+	padding: 40px 0;
+}
+
+.about-me-title, .about-me-description {
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.about-me-title {
+	font-size: 45px;
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
+.about-me-description {
+	font-size: 20px;
+	letter-spacing: 0.5px
 }
