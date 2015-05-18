@@ -172,8 +172,8 @@ hr {
 
 .about-me {
 	margin: 0 100px;
-	border-top: 1px solid rgb(131, 131, 131);
-	border-bottom: 1px solid rgb(131, 131, 131);
+	border-top: 1px solid rgb(97, 97, 97);
+	border-bottom: 1px solid rgb(97, 97, 97);
 	padding: 80px 0;
 }
 
@@ -209,4 +209,16 @@ hr {
 	letter-spacing: 0.5px;
 	color: white;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.resume {
+	margin-top: 50px;
+}
+
+.resume-title {
+	color: black;
+	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
+	font-weight: bold;
+	font-size: 50px;
+	text-align: center;
 }
