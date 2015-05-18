@@ -174,21 +174,39 @@ hr {
 	margin: 0 100px;
 	border-top: 1px solid rgb(131, 131, 131);
 	border-bottom: 1px solid rgb(131, 131, 131);
-	padding: 40px 0;
-}
-
-.about-me-title, .about-me-description {
-	color: white;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	padding: 80px 0;
 }
 
 .about-me-title {
 	font-size: 45px;
 	margin-top: 0;
 	margin-bottom: 20px;
+	color: black;
+	font-weight: bold;
+	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82)
 }
 
 .about-me-description {
 	font-size: 20px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 	letter-spacing: 0.5px
+}
+
+.in-my-freetime-title, .in-my-freetime-description {
+	margin: 10px 0 10px 30px;
+}
+
+.in-my-freetime-title {
+	margin-bottom: 25px;
+	color: black;
+	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
+	font-weight: bold;
+}
+
+.in-my-freetime-description {
+	font-size: 20px;
+	letter-spacing: 0.5px;
+	color: white;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
