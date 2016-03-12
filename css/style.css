@@ -38,11 +38,11 @@ li {
 }
 
 .menu-item {
-	margin: 25px 80px 0 0;
+	margin: 25px 100px 0 0;
 }
 
 .menu-item:first-child {
-	margin-left: 55px;
+	margin-left: 50px;
 }
 
 .menu-item:last-child {
