@@ -98,8 +98,12 @@ hr {
 
 .description {
 	display: inline-block;
-	padding: 20px 45px 15px;
+	padding: 35px 45px 30px;
 	width: 260px;
+}
+
+.middle-description {
+	width: 22%;
 }
 
 .description:nth-of-type(1) {
@@ -111,12 +115,12 @@ hr {
 }
 
 .tk-description {
-	display: inline;
 	font-size: 19px;
 	font-weight: bold;
 	line-height: 25px;
 	letter-spacing: 0.5px;
 	color: black;
+	margin-bottom: 5px;
 }
 
 .push-down {
