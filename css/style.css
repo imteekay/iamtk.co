@@ -8,220 +8,48 @@ body {
 	height: 100%;
 }
 
-.navigation-bar {
-	width: 100%;
-	height: 85px;
-	background-color: white;
-	-webkit-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
-	-moz-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
-	box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
-}
-
-.logo-image {
-	width: 110px;
-	height: 45px;
-	margin: 35px 22px 10px;
-	background-image: url("../images/logo-image.jpg");
-	background-repeat: no-repeat;
-	background-size: 110px;
-	text-indent: -9999px;
-	display: inline-block;
-}
-
-ul {
-	margin: 0;
-	padding: 0px 185px;
-}
-
-li {
-	display: inline-block;
-}
-
-.menu-item {
-	margin: 25px 100px 0 0;
-}
-
-.menu-item:first-child {
-	margin-left: 50px;
-}
-
-.menu-item:last-child {
-	margin-right: 0;
-}
-
-.navigation-bar li a {
-	font-size: 23px;
-	color: black;
-	text-decoration: none;
-}
-
-/* HOME */
-
-hr {
-	width: 70px;
-	margin-bottom: 50px;
-	height: 1px;
-	background-color: white;
-	border: 1px solid;
-}
-
-.not-visible {
-	visibility: hidden;
-}
-
-.home-content {
+.home {
 	text-align: center;
-	margin-top: 140px;
 }
 
-.home-title, .my-name {
-	margin: 0 10px 30px 0;
-	font-size: 70px;
+h1 {
 	color: white;
 	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	display: inline-block;
-	font-weight: bold;
-}
-
-.my-name {
-	color: black;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82)
-}
-
-.icon-for-home-title {
-	font-size: 50px;
-	color: white;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	margin-right: 25px;
-}
-
-.description {
-	display: inline-block;
-	padding: 20px 45px 15px;
-	width: 260px;
-}
-
-.description:nth-of-type(1) {
-	padding-left: 0;
-}
-
-.description:not(:last-child) {
-	border-right: 1px solid rgb(97, 97, 97);
-}
-
-.tk-description {
-	display: inline;
-	font-size: 19px;
-	font-weight: bold;
-	line-height: 25px;
-	letter-spacing: 0.5px;
-	color: black;
-}
-
-.push-down {
-	overflow: hidden;
-  text-align: center;
-  margin: 50px auto 100px;
-  border: 1px solid rgb(97, 97, 97);
-  border-radius: 49px;
-  width: 10px;
-  height: 10px;
-  font-size: 36px;
-  padding: 20px;
-  color: white;
-  background-color: rgb(40, 40, 40);
-  position: relative;
-}
-
-.icon-arrow-down {
-	font-size: 20px;
-  position: relative;
-  top: -26px;
-  right: 10px;
-}
-
-.oculus-image-out {
-	width: 40px;
-  height: 45px;
-  top: 83px;
-  left: 0;
-  border-radius: 45px;
-  position: absolute;
-  -webkit-transition: all 0.8s ease;
-  -moz-transition: all 0.8s ease;
-  -o-transition: all 0.8s ease;
-  -ms-transition: all 0.8s ease;
-  transition: all 0.8s ease;
-}
-
-.oculus-image-in {
-	width: 40px;
-  height: 45px;
-  top: 0;
-  left: 0;
-  border-radius: 45px;
-  position: absolute;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  -ms-transition: all 0.5s ease;
-  transition: all 0.5s ease;
-}
-
-/* ABOUT ME */
-
-.about-me {
-	margin: 0 100px;
-	border-top: 1px solid rgb(74, 74, 74);
-	padding: 80px 0;
-}
-
-.free-time {
-	padding-left: 100px;
-}
-
-.about-me-title {
-	font-size: 45px;
-	margin-top: 0;
-	margin-bottom: 20px;
-	color: black;
-	font-weight: bold;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82)
-}
-
-.about-me-description {
-	font-size: 20px;
-	color: white;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	letter-spacing: 0.5px
-}
-
-.in-my-freetime-title, .in-my-freetime-description {
-	margin: 10px 0 10px 30px;
-}
-
-.in-my-freetime-title {
-	margin-bottom: 25px;
-	color: black;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
-	font-weight: bold;
-}
-
-.in-my-freetime-description {
-	font-size: 20px;
-	letter-spacing: 0.5px;
-	color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.resume {
 	margin-top: 50px;
 }
 
-.resume-title {
+.social-networks {
+	margin: 20px;
+}
+
+.social-networks a {
+	margin: 15px;
+}
+
+.social-networks a i {
+	font-size: 23px;
+}
+
+.social-networks .fa-facebook {
+	color: #3a5795;
+}
+
+.social-networks .fa-linkedin {
+	color: #1E88BD;
+}
+
+.social-networks .fa-instagram {
+	color: #5E130F;
+}
+
+.social-networks .fa-twitter {
+	color: #1DA1F2;
+}
+
+.social-networks .fa-github {
 	color: black;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
-	font-weight: bold;
-	font-size: 50px;
-	text-align: center;
+}
+
+.social-networks .fa-medium {
+	color: #0BE370;
 }
