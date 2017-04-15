@@ -15,6 +15,7 @@ body {
 	-webkit-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
 	-moz-box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
 	box-shadow: 0px 4px 18px -4px rgba(163,163,163,1);
+  text-align: center;
 }
 
 .logo-image {
@@ -28,21 +29,23 @@ body {
 	display: inline-block;
 }
 
-ul {
-	margin: 0;
-	padding: 0px 185px;
+ul.menu-items {
+	padding: 0;
+	margin: 0px 10%;
 }
 
 li {
 	display: inline-block;
 }
 
-.menu-item {
-	margin: 25px 100px 0 0;
+.menu-image {
+	position: relative;
+	top: -10px;
+	margin-right: 10%;
 }
 
-.menu-item:first-child {
-	margin-left: 50px;
+.menu-item {
+	margin: 25px 10% 0 0;
 }
 
 .menu-item:last-child {
@@ -54,8 +57,6 @@ li {
 	color: black;
 	text-decoration: none;
 }
-
-/* HOME */
 
 hr {
 	width: 70px;
@@ -166,62 +167,4 @@ hr {
   -o-transition: all 0.5s ease;
   -ms-transition: all 0.5s ease;
   transition: all 0.5s ease;
-}
-
-/* ABOUT ME */
-
-.about-me {
-	margin: 0 100px;
-	border-top: 1px solid rgb(74, 74, 74);
-	padding: 80px 0;
-}
-
-.free-time {
-	padding-left: 100px;
-}
-
-.about-me-title {
-	font-size: 45px;
-	margin-top: 0;
-	margin-bottom: 20px;
-	color: black;
-	font-weight: bold;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82)
-}
-
-.about-me-description {
-	font-size: 20px;
-	color: white;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	letter-spacing: 0.5px
-}
-
-.in-my-freetime-title, .in-my-freetime-description {
-	margin: 10px 0 10px 30px;
-}
-
-.in-my-freetime-title {
-	margin-bottom: 25px;
-	color: black;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
-	font-weight: bold;
-}
-
-.in-my-freetime-description {
-	font-size: 20px;
-	letter-spacing: 0.5px;
-	color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.resume {
-	margin-top: 50px;
-}
-
-.resume-title {
-	color: black;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
-	font-weight: bold;
-	font-size: 50px;
-	text-align: center;
 }
