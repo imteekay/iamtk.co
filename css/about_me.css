@@ -42,14 +42,57 @@
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.resume {
-	margin-top: 50px;
+.link-icon {
+	text-decoration: none;
 }
 
-.resume-title {
+.link-icon:link,
+.link-icon:visited,
+.link-icon:hover,
+.link-icon:active {
+	text-decoration: none;
+}
+
+.medium-icon {
+	color: #02b875;
+}
+
+.medium-icon:link,
+.medium-icon:visited,
+.medium-icon:hover,
+.medium-icon:active {
+	color: #02b875;
+}
+
+.quora-icon {
+	color: #731414;
+}
+
+.quora-icon:link,
+.quora-icon:visited,
+.quora-icon:hover,
+.quora-icon:active {
+	color: #731414;
+}
+
+.github-icon {
+	color: white;
+}
+
+.github-icon:link,
+.github-icon:visited,
+.github-icon:hover,
+.github-icon:active {
+	color: white;
+}
+
+.instagram-icon {
 	color: black;
-	text-shadow: -1px 0 rgb(82, 82, 82), 0 1px rgb(82, 82, 82), 1px 0 rgb(82, 82, 82), 0 -1px rgb(82, 82, 82);
-	font-weight: bold;
-	font-size: 50px;
-	text-align: center;
+}
+
+.instagram-icon:link,
+.instagram-icon:visited,
+.instagram-icon:hover,
+.instagram-icon:active {
+	color: black;
 }
