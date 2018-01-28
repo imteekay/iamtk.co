@@ -1,0 +1,13 @@
+@media(max-width: 1100px) {
+  ul.menu-items {
+    margin: 0 0%;
+  }
+
+  .menu-item {
+  	margin: 25px 7% 0 0;
+  }
+
+  .menu-image {
+  	margin-right: 7%;
+  }
+}
