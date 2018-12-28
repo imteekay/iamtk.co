@@ -27,83 +27,6 @@
 </head>
 
 <body>
-  <div id="header-post">
-    <a id="menu-icon" href="#"><i class="fab fa-bars fa-lg"></i></a>
-    <a id="menu-icon-tablet" href="#"><i class="fab fa-bars fa-lg"></i></a>
-    <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i
-        class="fab fa-chevron-up fa-lg"></i></a>
-    <span id="menu">
-      <span id="nav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/archives/">Writing</a></li>
-          <li><a href="https://github.com/leandrotk">Projects</a></li>
-        </ul>
-      </span>
-      <br />
-      <span id="actions">
-        <ul>
-          <li><a class="icon" href="/2017/08/27/elixir-built-in-documentation-and-testing-tools/"><i class=b
-                fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
-
-          <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fab fa-chevron-up"
-                aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
-          <li><a class="icon" href="#"><i class="fab fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();"
-                onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
-        </ul>
-        <span id="i-prev" class="info" style="display:none;">Previous post</span>
-        <span id="i-next" class="info" style="display:none;">Next post</span>
-        <span id="i-top" class="info" style="display:none;">Back to top</span>
-        <span id="i-share" class="info" style="display:none;">Share post</span>
-      </span>
-      <br />
-      <div id="toc">
-        <ol class="toc">
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#Briefing"><span class="toc-number">1.</span>
-              <span class="toc-text">Briefing</span></a></li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#Project-Setup"><span class="toc-number">2.</span>
-              <span class="toc-text">Project Setup</span></a>
-            <ol class="toc-child">
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Create-the-project"><span class="toc-number">2.1.</span>
-                  <span class="toc-text">Create the project</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Tests"><span class="toc-number">2.2.</span>
-                  <span class="toc-text">Tests</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Automatic-recompile"><span class="toc-number">2.3.</span>
-                  <span class="toc-text">Automatic recompile</span></a></li>
-            </ol>
-          </li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#CSV-files"><span class="toc-number">3.</span>
-              <span class="toc-text">CSV files</span></a></li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#Reading-the-CSV-files"><span class="toc-number">4.</span>
-              <span class="toc-text">Reading the CSV files</span></a>
-            <ol class="toc-child">
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Module-attributes-and-Environment-variables"><span
-                    class="toc-number">4.1.</span> <span class="toc-text">Module attributes and Environment variables</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Building-the-Path"><span class="toc-number">4.2.</span>
-                  <span class="toc-text">Building the Path</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#File-stream"><span class="toc-number">4.3.</span>
-                  <span class="toc-text">File.stream!</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Data-structures"><span class="toc-number">4.4.</span>
-                  <span class="toc-text">Data structures</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Defining-Structs"><span class="toc-number">4.5.</span>
-                  <span class="toc-text">Defining Structs</span></a></li>
-              <li class="toc-item toc-level-3"><a class="toc-link" href="#Data-transformation"><span class="toc-number">4.6.</span>
-                  <span class="toc-text">Data transformation</span></a></li>
-            </ol>
-          </li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#Interacting-with-the-program-using-iex"><span
-                class="toc-number">5.</span> <span class="toc-text">Interacting with the program using iex</span></a></li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#Writing-doctests"><span class="toc-number">6.</span>
-              <span class="toc-text">Writing doctests</span></a></li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">7.</span> <span
-                class="toc-text">Summary</span></a></li>
-          <li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">8.</span>
-              <span class="toc-text">References</span></a></li>
-        </ol>
-      </div>
-    </span>
-  </div>
-
   <div class="content index width mx-auto px2 my4">
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
       <header>
@@ -121,7 +44,7 @@
 
           <div class="article-tag">
             <i class=b fa-tag"></i>
-            <a class="tag-link" href="/tags/elixir/">elixir</a>
+            <a class="tag-link" href="../../../tags/learning.html">learning</a>
           </div>
         </div>
       </header>
