@@ -464,6 +464,13 @@ body {
   -webkit-hyphens: auto;
   hyphens: auto;
 }
+
+.content pre {
+  padding: 10px 15px;
+  background-color: #292929e8;
+  border: 0;
+}
+
 .content pre,
 .content code {
   -moz-hyphens: manual;
@@ -1053,6 +1060,11 @@ article header .author {
 article header .postdate {
   display: inline;
 }
+
+article img {
+  width: 100%;
+}
+
 article .content img,
 article .content video {
   max-width: 100%;
