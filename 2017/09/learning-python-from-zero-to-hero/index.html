@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="high-level programming language, and its core design philosophy is all about code readability and a syntax which allows programmers to express concepts in a few lines of code.">
+  <meta name="keywords" content="elixir">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Learning Python: From Zero to Hero">
+  <meta property="og:description" content="high-level programming language, and its core design philosophy is all about code readability and a syntax which allows programmers to express concepts in a few lines of code.">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/1000/1*ueWmI48uuShON-hX7LwI0w.png">
+  <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Learning Python: From Zero to Hero">
+  <meta name="twitter:description" content="high-level programming language, and its core design philosophy is all about code readability and a syntax which allows programmers to express concepts in a few lines of code.">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1000/1*ueWmI48uuShON-hX7LwI0w.png">
+
+  <title>Learning Python: From Zero to Hero</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Learning Python: From Zero to Hero</h1>
+
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2017-09-30T00:00:00.000Z" itemprop="datePublished">2017-09-30</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/python.html">python</a>
+          </div>
+        </div>
+      </header>
+
+      <p><img src="https://cdn-images-1.medium.com/max/1000/1*ueWmI48uuShON-hX7LwI0w.png" alt=""></p>
+      <p>First of all, what is Python? According to its creator, Guido van Rossum, Python is a:</p>
+      <blockquote>
+        <p>“high-level programming language, and its core design philosophy is all about code readability and a syntax
+          which allows programmers to express concepts in a few lines of code.”</p>
+      </blockquote>
+      <p>For me, the first reason to learn Python was that it is, in fact, a beautiful programming language. It was
+        really natural to code in it and express my thoughts.</p>
+      <p>Another reason was that we can use coding in Python in multiple ways: data science, web development, and
+        machine learning all shine here. Quora, Pinterest and Spotify all use Python for their backend web development.
+        So let’s learn a bit about it.</p>
+      <h2><a id="The_Basics_12"></a>The Basics</h2>
+      <h3><a id="1_Variables_14"></a>1. Variables</h3>
+      <p>You can think about variables as words that store a value. Simple as that.</p>
+      <p>In Python, it is really easy to define a variable and set a value to it. Imagine you want to store number 1 in
+        a variable called “one.” Let’s do it:</p>
+      <pre><code class="python">one = <span class="hljs-number">1</span>
+</code></pre>
+      <p>How simple was that? You just assigned the value 1 to the variable “one.”</p>
+      <pre><code class="python">two = <span class="hljs-number">2</span>
+some_number = <span class="hljs-number">10000</span>
+</code></pre>
+      <p>And you can assign any other <strong>value</strong> to whatever other <strong>variables</strong> you want. As
+        you see in the table above, the variable “<strong>two</strong>” stores the integer <strong>2</strong>, and “<strong>some_number</strong>”
+        stores <strong>10,000</strong>.</p>
+      <p>Besides integers, we can also use booleans (True / False), strings, float, and so many other data types.</p>
+      <pre><code class="python"><span class="hljs-comment"># booleans</span>
+true_boolean = <span class="hljs-keyword">True</span>
+false_boolean = <span class="hljs-keyword">False</span>
+
+<span class="hljs-comment"># string</span>
+my_name = <span class="hljs-string">"Leandro Tk"</span>
+
+<span class="hljs-comment"># float</span>
+book_price = <span class="hljs-number">15.80</span>
+</code></pre>
+      <h3><a id="2_Control_Flow_conditional_statements_47"></a>2. Control Flow: conditional statements</h3>
+      <p>“<strong>If</strong>” uses an expression to evaluate whether a statement is True or False. If it is True, it
+        executes what is inside the “if” statement. For example:</p>
+      <pre><code class="python"><span class="hljs-keyword">if</span> <span class="hljs-keyword">True</span>:
+  print(<span class="hljs-string">"Hello Python If"</span>)
+
+<span class="hljs-keyword">if</span> <span class="hljs-number">2</span> &gt; <span class="hljs-number">1</span>:
+  print(<span class="hljs-string">"2 is greater than 1"</span>)
+</code></pre>
+      <p><strong>2</strong> is greater than <strong>1</strong>, so the “<strong>print</strong>” code is executed.</p>
+      <p>The “<strong>else</strong>” statement will be executed if the “<strong>if</strong>” expression is <strong>false</strong>.</p>
+      <pre><code class="python"><span class="hljs-keyword">if</span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>:
+  print(<span class="hljs-string">"1 is greater than 2"</span>)
+<span class="hljs-keyword">else</span>:
+  print(<span class="hljs-string">"1 is not greater than 2"</span>)
+</code></pre>
+      <p><strong>1</strong> is not greater than <strong>2</strong>, so the code inside the “<strong>else</strong>”
+        statement will be executed.</p>
+      <p>You can also use an “<strong>elif</strong>” statement:</p>
+      <pre><code class="python"><span class="hljs-keyword">if</span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>:
+  print(<span class="hljs-string">"1 is greater than 2"</span>)
+<span class="hljs-keyword">elif</span> <span class="hljs-number">2</span> &gt; <span class="hljs-number">1</span>:
+  print(<span class="hljs-string">"1 is not greater than 2"</span>)
+<span class="hljs-keyword">else</span>:
+  print(<span class="hljs-string">"1 is equal to 2"</span>)
+</code></pre>
+      <h3><a id="3_Looping_ Iterator_83"></a>3. Looping / Iterator</h3>
+      <p>In Python, we can iterate in different forms. I’ll talk about two: <strong>while</strong> and <strong>for</strong>.</p>
+      <p><strong>While</strong> Looping: while the statement is True, the code inside the block will be executed. So,
+        this code will print the number from <strong>1</strong> to <strong>10</strong>.</p>
+      <pre><code class="python">num = <span class="hljs-number">1</span>
+
+<span class="hljs-keyword">while</span> num &lt;= <span class="hljs-number">10</span>:
+    print(num)
+    num += <span class="hljs-number">1</span>
+</code></pre>
+      <p>The <strong>while</strong> loop needs a “<strong>loop condition.</strong>” If it stays True, it continues
+        iterating. In this example, when <code>num</code> is <code>11</code> the <strong>loop condition</strong> equals
+        <code>False</code>.</p>
+      <p>Another basic bit of code to better understand it:</p>
+      <pre><code class="python">loop_condition = <span class="hljs-keyword">True</span>
+
+<span class="hljs-keyword">while</span> loop_condition:
+    print(<span class="hljs-string">"Loop Condition keeps: %s"</span> %(loop_condition))
+    loop_condition = <span class="hljs-keyword">False</span>
+</code></pre>
+      <p>The <strong>loop condition</strong> is <code>True</code> so it keeps iterating — until we set it to <code>False</code>.</p>
+      <p><strong>For Looping</strong>: you apply the variable “<strong>num</strong>” to the block, and the “<strong>for</strong>”
+        statement will iterate it for you. This code will print the same as <strong>while</strong> code: from <strong>1</strong>
+        to <strong>10</strong>.</p>
+      <pre><code class="python"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">1</span>, <span class="hljs-number">11</span>):
+  print(i)
+</code></pre>
+      <p>See? It is so simple. The range starts with <code>1</code> and goes until the <code>11</code>th element (<code>10</code>
+        is the <code>10</code>th element).</p>
+      <h2><a id="List_Collection__Array__Data_Structure_120"></a>List: Collection | Array | Data Structure</h2>
+      <p>Imagine you want to store the integer 1 in a variable. But maybe now you want to store 2. And 3, 4, 5 …</p>
+      <p>Do I have another way to store all the integers that I want, but not in <strong>millions of variables</strong>?
+        You guessed it — there is indeed another way to store them.</p>
+      <p><code>List</code> is a collection that can be used to store a list of values (like these integers that you
+        want). So let’s use it:</p>
+      <pre><code class="python">my_integers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+</code></pre>
+      <p>It is really simple. We created an array and stored it on <strong>my_integer</strong>.</p>
+      <p>But maybe you are asking: “How can I get a value from this array?”</p>
+      <p>Great question. <code>List</code> has a concept called <strong>index</strong>. The first element gets the
+        index 0 (zero). The second gets 1, and so on. You get the idea.</p>
+      <p>To make it clearer, we can represent the array and each element with its index. I can draw it:</p>
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*ReMk6NgghLII20vPD6uNEA.jpeg" alt=""></p>
+      <p>Using the Python syntax, it’s also simple to understand:</p>
+      <pre><code class="python">my_integers = [<span class="hljs-number">5</span>, <span class="hljs-number">7</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>]
+print(my_integers[<span class="hljs-number">0</span>]) <span class="hljs-comment"># 5</span>
+print(my_integers[<span class="hljs-number">1</span>]) <span class="hljs-comment"># 7</span>
+print(my_integers[<span class="hljs-number">4</span>]) <span class="hljs-comment"># 4</span>
+</code></pre>
+      <p>Imagine that you don’t want to store integers. You just want to store strings, like a list of your relatives’
+        names. Mine would look something like this:</p>
+      <pre><code class="python">relatives_names = [
+  <span class="hljs-string">"Toshiaki"</span>,
+  <span class="hljs-string">"Juliana"</span>,
+  <span class="hljs-string">"Yuji"</span>,
+  <span class="hljs-string">"Bruno"</span>,
+  <span class="hljs-string">"Kaio"</span>
+]
+
+print(relatives_names[<span class="hljs-number">4</span>]) <span class="hljs-comment"># Kaio</span>
+</code></pre>
+      <p>It works the same way as integers. Nice.</p>
+      <p>We just learned how <code>Lists</code> indices work. But I still need to show you how we can add an element to
+        the <code>List</code> data structure (an item to a list).</p>
+      <p>The most common method to add a new value to a <code>List</code> is <code>append</code>. Let’s see how it
+        works:</p>
+      <pre><code class="python">bookshelf = []
+bookshelf.append(<span class="hljs-string">"The Effective Engineer"</span>)
+bookshelf.append(<span class="hljs-string">"The 4 Hour Work Week"</span>)
+print(bookshelf[<span class="hljs-number">0</span>]) <span class="hljs-comment"># The Effective Engineer</span>
+print(bookshelf[<span class="hljs-number">1</span>]) <span class="hljs-comment"># The 4 Hour Work Week</span>
+</code></pre>
+      <p><code>append</code> is super simple. You just need to apply the element (eg. “<strong>The Effective Engineer</strong>”)
+        as the <code>append</code> parameter.</p>
+      <p>Well, enough about <code>Lists</code><strong>.</strong> Let’s talk about another data structure.</p>
+      <h2><a id="Dictionary_KeyValue_Data_Structure_183"></a>Dictionary: Key-Value Data Structure</h2>
+      <p>Now we know that <code>Lists</code> are indexed with integer numbers. But what if we don’t want to use integer
+        numbers as indices? Some data structures that we can use are numeric, string, or other types of indices.</p>
+      <p>Let’s learn about the <code>Dictionary</code> data structure. <code>Dictionary</code> is a collection of
+        key-value pairs. Here’s what it looks like:</p>
+      <pre><code class="python">dictionary_example = {
+  <span class="hljs-string">"key1"</span>: <span class="hljs-string">"value1"</span>,
+  <span class="hljs-string">"key2"</span>: <span class="hljs-string">"value2"</span>,
+  <span class="hljs-string">"key3"</span>: <span class="hljs-string">"value3"</span>
+}
+</code></pre>
+      <p>The <strong>key</strong> is the index pointing to the <strong>value</strong>. How do we access the <code>Dictionary</code>
+        <strong>value</strong>? You guessed it — using the <strong>key</strong>. Let’s try it:</p>
+      <pre><code class="python">dictionary_tk = {
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"Leandro"</span>,
+  <span class="hljs-string">"nickname"</span>: <span class="hljs-string">"Tk"</span>,
+  <span class="hljs-string">"nationality"</span>: <span class="hljs-string">"Brazilian"</span>
+}
+
+print(<span class="hljs-string">"My name is %s"</span> %(dictionary_tk[<span class="hljs-string">"name"</span>])) <span class="hljs-comment"># My name is Leandro</span>
+print(<span class="hljs-string">"But you can call me %s"</span> %(dictionary_tk[<span class="hljs-string">"nickname"</span>])) <span class="hljs-comment"># But you can call me Tk</span>
+print(<span class="hljs-string">"And by the way I'm %s"</span> %(dictionary_tk[<span class="hljs-string">"nationality"</span>])) <span class="hljs-comment"># And by the way I'm Brazilian</span>
+</code></pre>
+      <p>I created a <code>Dictionary</code> about me. My name, nickname, and nationality. Those attributes are the
+        <code>Dictionary</code> <strong>keys</strong>.</p>
+      <p>As we learned how to access the <code>List</code> using index, we also use indices (<strong>keys</strong> in
+        the <code>Dictionary</code> context) to access the <strong>value</strong> stored in the <code>Dictionary</code>.</p>
+      <p>In the example, I printed a phrase about me using all the values stored in the <code>Dictionary</code>. Pretty
+        simple, right?</p>
+      <p>Another cool thing about <code>Dictionary</code> is that we can use anything as the value. In the <code>Dictionary</code>
+        I created, I want to add the <strong>key</strong> “age” and my real integer age in it:</p>
+      <pre><code class="python">dictionary_tk = {
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"Leandro"</span>,
+  <span class="hljs-string">"nickname"</span>: <span class="hljs-string">"Tk"</span>,
+  <span class="hljs-string">"nationality"</span>: <span class="hljs-string">"Brazilian"</span>,
+  <span class="hljs-string">"age"</span>: <span class="hljs-number">24</span>
+}
+
+print(<span class="hljs-string">"My name is %s"</span> %(dictionary_tk[<span class="hljs-string">"name"</span>])) <span class="hljs-comment"># My name is Leandro</span>
+print(<span class="hljs-string">"But you can call me %s"</span> %(dictionary_tk[<span class="hljs-string">"nickname"</span>])) <span class="hljs-comment"># But you can call me Tk</span>
+print(<span class="hljs-string">"And by the way I'm %i and %s"</span> %(dictionary_tk[<span class="hljs-string">"age"</span>], dictionary_tk[<span class="hljs-string">"nationality"</span>])) <span class="hljs-comment"># And by the way I'm Brazilian</span>
+</code></pre>
+      <p>Here we have a <strong>key</strong> (age) <strong>value</strong> (24) pair using string as the <strong>key</strong>
+        and integer as the <strong>value</strong>.</p>
+      <p>As we did with <code>Lists</code>, let’s learn how to add elements to a <code>Dictionary</code>. The <strong>key
+          <strong>pointing to a</strong> value</strong> is a big part of what <code>Dictionary</code> is. This is also
+        true when we are talking about adding elements to it:</p>
+      <pre><code class="python">dictionary_tk = {
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"Leandro"</span>,
+  <span class="hljs-string">"nickname"</span>: <span class="hljs-string">"Tk"</span>,
+  <span class="hljs-string">"nationality"</span>: <span class="hljs-string">"Brazilian"</span>
+}
+
+dictionary_tk[<span class="hljs-string">'age'</span>] = <span class="hljs-number">24</span>
+
+print(dictionary_tk) <span class="hljs-comment"># {'nationality': 'Brazilian', 'age': 24, 'nickname': 'Tk', 'name': 'Leandro'}</span>
+</code></pre>
+      <p>We just need to assign a <strong>value</strong> to a <code>Dictionary</code> <strong>key</strong>. Nothing
+        complicated here, right?</p>
+      <h2><a id="Iteration_Looping_Through_Data_Structures_250"></a>Iteration: Looping Through Data Structures</h2>
+      <p>As we learned in the <a href="https://medium.com/the-renaissance-developer/python-101-the-basics-441136fb7cc3">Python
+          Basics</a>, the <code>List</code> iteration is very simple. We <code>Python</code> developers commonly use
+        <code>For</code> looping. Let’s do it:</p>
+      <pre><code class="python">bookshelf = [
+  <span class="hljs-string">"The Effective Engineer"</span>,
+  <span class="hljs-string">"The 4 hours work week"</span>,
+  <span class="hljs-string">"Zero to One"</span>,
+  <span class="hljs-string">"Lean Startup"</span>,
+  <span class="hljs-string">"Hooked"</span>
+]
+
+<span class="hljs-keyword">for</span> book <span class="hljs-keyword">in</span> bookshelf:
+    print(book)
+</code></pre>
+      <p>So for each book in the bookshelf, we (<strong>can do everything with it</strong>) print it. Pretty simple and
+        intuitive. That’s Python.</p>
+      <p>For a hash data structure, we can also use the <code>for</code> loop, but we apply the <code>key</code> :</p>
+      <pre><code class="python">dictionary = { <span class="hljs-string">"some_key"</span>: <span class="hljs-string">"some_value"</span> }
+
+<span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> dictionary:
+    print(<span class="hljs-string">"%s --&gt; %s"</span> %(key, dictionary[key]))
+
+<span class="hljs-comment"># some_key --&gt; some_value</span>
+</code></pre>
+      <p>This is an example how to use it. For each <code>key</code> in the <code>dictionary</code> , we <code>print</code>
+        the <code>key</code> and its corresponding <code>value</code>.</p>
+      <p>Another way to do it is to use the <code>iteritems</code> method.</p>
+      <pre><code class="python">dictionary = { <span class="hljs-string">"some_key"</span>: <span class="hljs-string">"some_value"</span> }
+
+<span class="hljs-keyword">for</span> key, value <span class="hljs-keyword">in</span> dictionary.items():
+    print(<span class="hljs-string">"%s --&gt; %s"</span> %(key, value))
+
+<span class="hljs-comment"># some_key --&gt; some_value</span>
+</code></pre>
+      <p>We did name the two parameters as <code>key</code> and <code>value</code>, but it is not necessary. We can
+        name them anything. Let’s see it:</p>
+      <pre><code class="python">dictionary_tk = {
+  <span class="hljs-string">"name"</span>: <span class="hljs-string">"Leandro"</span>,
+  <span class="hljs-string">"nickname"</span>: <span class="hljs-string">"Tk"</span>,
+  <span class="hljs-string">"nationality"</span>: <span class="hljs-string">"Brazilian"</span>,
+  <span class="hljs-string">"age"</span>: <span class="hljs-number">24</span>
+}
+
+<span class="hljs-keyword">for</span> attribute, value <span class="hljs-keyword">in</span> dictionary_tk.items():
+    print(<span class="hljs-string">"My %s is %s"</span> %(attribute, value))
+
+<span class="hljs-comment"># My name is Leandro</span>
+<span class="hljs-comment"># My nickname is Tk</span>
+<span class="hljs-comment"># My nationality is Brazilian</span>
+<span class="hljs-comment"># My age is 24</span>
+</code></pre>
+      <p>We can see we used attribute as a parameter for the <code>Dictionary</code> <code>key</code>, and it works
+        properly. Great!</p>
+      <h2><a id="Classes_ Objects_314"></a>Classes &amp; Objects</h2>
+      <h3><a id="A_little_bit_of theory_316"></a>A little bit of theory:</h3>
+      <p><strong>Objects</strong> are a representation of real world objects like cars, dogs, or bikes. The objects
+        share two main characteristics: <strong>data</strong> and <strong>behavior</strong>.</p>
+      <p>Cars have <strong>data,</strong> like number of wheels, number of doors, and seating capacity They also
+        exhibit <strong>behavior</strong>: they can accelerate, stop, show how much fuel is left, and so many other
+        things.</p>
+      <p>We identify <strong>data</strong> as <strong>attributes</strong> and <strong>behavior</strong> as <strong>methods</strong>
+        in object-oriented programming. Again:</p>
+      <p>Data → Attributes and Behavior → Methods</p>
+      <p>And a <strong>Class</strong> is the blueprint from which individual objects are created. In the real world, we
+        often find many objects with the same type. Like cars. All the same make and model (and all have an engine,
+        wheels, doors, and so on). Each car was built from the same set of blueprints and has the same components.</p>
+      <h3><a id="Python_ObjectOriented_Programming_mode ON_328"></a>Python Object-Oriented Programming mode: ON</h3>
+      <p>Python, as an Object-Oriented programming language, has these concepts: <strong>class</strong> and <strong>object</strong>.</p>
+      <p>A class is a blueprint, a model for its objects.</p>
+      <p>So again, a class it is just a model, or a way to define <strong>attributes</strong> and <strong>behavior</strong>
+        (as we talked about in the theory section). As an example, a vehicle <strong>class</strong> has its own <strong>attributes</strong>
+        that define what <strong>objects</strong> are vehicles. The number of wheels, type of tank, seating capacity,
+        and maximum velocity are all attributes of a vehicle.</p>
+      <p>With this in mind, let’s look at Python syntax for <strong>classes</strong>:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vehicle</span>:</span>
+    <span class="hljs-keyword">pass</span>
+</code></pre>
+      <p>We define classes with a class statement — and that’s it. Easy, isn’t it?</p>
+      <p><strong>Objects</strong> are instances of a <strong>class</strong>. We create an instance by naming the class.</p>
+      <pre><code class="python">car = Vehicle()
+print(car) <span class="hljs-comment"># &lt;__main__.Vehicle instance at 0x7fb1de6c2638&gt;</span>
+</code></pre>
+      <p>Here <code>car</code> is an <strong>object</strong> (or instance) of the <strong>class</strong> <code>Vehicle</code>.</p>
+      <p>Remember that our vehicle <strong>class</strong> has four <strong>attributes</strong>: number of wheels, type
+        of tank, seating capacity, and maximum velocity. We set all these <strong>attributes</strong> when creating a
+        vehicle <strong>object</strong>. So here, we define our <strong>class</strong> to receive data when it
+        initiates it:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vehicle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, number_of_wheels, type_of_tank, seating_capacity, maximum_velocity)</span>:</span>
+        self.number_of_wheels = number_of_wheels
+        self.type_of_tank = type_of_tank
+        self.seating_capacity = seating_capacity
+        self.maximum_velocity = maximum_velocity
+</code></pre>
+      <p>We use the <code>init</code> <strong>method</strong>. We call it a constructor method. So when we create the
+        vehicle <strong>object</strong>, we can define these <strong>attributes</strong>. Imagine that we love the
+        <strong>Tesla Model S,</strong> and we want to create this kind of <strong>object</strong>. It has four wheels,
+        runs on electric energy, has space for five seats, and the maximum velocity is 250km/hour (155 mph). Let’s
+        create this <strong>object:</strong></p>
+      <pre><code class="python">tesla_model_s = Vehicle(<span class="hljs-number">4</span>, <span class="hljs-string">'electric'</span>, <span class="hljs-number">5</span>, <span class="hljs-number">250</span>)
+</code></pre>
+      <p>Four wheels + electric “tank type” + five seats + 250km/hour maximum speed.</p>
+      <p>All attributes are set. But how can we access these attributes’ values? We <strong>send a message to the
+          object asking about them</strong>. We call it a <strong>method</strong>. It’s the <strong>object’s behavior</strong>.
+        Let’s implement it:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vehicle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, number_of_wheels, type_of_tank, seating_capacity, maximum_velocity)</span>:</span>
+        self.number_of_wheels = number_of_wheels
+        self.type_of_tank = type_of_tank
+        self.seating_capacity = seating_capacity
+        self.maximum_velocity = maximum_velocity
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">number_of_wheels</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.number_of_wheels
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_number_of_wheels</span><span class="hljs-params">(self, number)</span>:</span>
+        self.number_of_wheels = number
+</code></pre>
+      <p>This is an implementation of two methods: <strong>number_of_wheels</strong> and <strong>set_number_of_wheels</strong>.
+        We call it <code>getter</code> &amp; <code>setter</code>. Because the first gets the attribute value, and the
+        second sets a new value for the attribute.</p>
+      <p>In Python, we can do that using <code>@property</code> (<code>decorators</code>) to define <code>getters</code>
+        and <code>setters</code>. Let’s see it with code:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vehicle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, number_of_wheels, type_of_tank, seating_capacity, maximum_velocity)</span>:</span>
+        self.number_of_wheels = number_of_wheels
+        self.type_of_tank = type_of_tank
+        self.seating_capacity = seating_capacity
+        self.maximum_velocity = maximum_velocity
+
+<span class="hljs-decorator">    @property</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">number_of_wheels</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self.number_of_wheels
+
+<span class="hljs-decorator">    @number_of_wheels.setter</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">number_of_wheels</span><span class="hljs-params">(self, number)</span>:</span>
+        self.number_of_wheels = number
+</code></pre>
+      <p>And we can use these methods as attributes:</p>
+      <pre><code class="python">tesla_model_s = Vehicle(<span class="hljs-number">4</span>, <span class="hljs-string">'electric'</span>, <span class="hljs-number">5</span>, <span class="hljs-number">250</span>)
+print(tesla_model_s.number_of_wheels) <span class="hljs-comment"># 4</span>
+tesla_model_s.number_of_wheels = <span class="hljs-number">2</span> <span class="hljs-comment"># setting number of wheels to 2</span>
+print(tesla_model_s.number_of_wheels) <span class="hljs-comment"># 2</span>
+</code></pre>
+      <p>This is slightly different than defining methods. The methods work as attributes. For example, when we set the
+        new number of wheels, we don’t apply two as a parameter, but set the value 2 to <code>number_of_wheels</code>.
+        This is one way to write <code>pythonic</code> <code>getter</code> and <code>setter</code> code.</p>
+      <p>But we can also use methods for other things, like the “<strong>make_noise</strong>” method. Let’s see it:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Vehicle</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, number_of_wheels, type_of_tank, seating_capacity, maximum_velocity)</span>:</span>
+        self.number_of_wheels = number_of_wheels
+        self.type_of_tank = type_of_tank
+        self.seating_capacity = seating_capacity
+        self.maximum_velocity = maximum_velocity
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">make_noise</span><span class="hljs-params">(self)</span>:</span>
+        print(<span class="hljs-string">'VRUUUUUUUM'</span>)
+</code></pre>
+      <p>When we call this method, it just returns a string <strong>“VRRRRUUUUM.”</strong></p>
+      <pre><code class="python">tesla_model_s = Vehicle(<span class="hljs-number">4</span>, <span class="hljs-string">'electric'</span>, <span class="hljs-number">5</span>, <span class="hljs-number">250</span>)
+tesla_model_s.make_noise() <span class="hljs-comment"># VRUUUUUUUM</span>
+</code></pre>
+      <h2><a id="Encapsulation_Hiding_Information_443"></a>Encapsulation: Hiding Information</h2>
+      <p>Encapsulation is a mechanism that restricts direct access to objects’ data and methods. But at the same time,
+        it facilitates operation on that data (objects’ methods).</p>
+      <blockquote>
+        <p>“Encapsulation can be used to hide data members and members function. Under this definition, encapsulation
+          means that the internal representation of an object is generally hidden from view outside of the object’s
+          definition.” — Wikipedia</p>
+      </blockquote>
+      <p>All internal representation of an object is hidden from the outside. Only the object can interact with its
+        internal data.</p>
+      <p>First, we need to understand how <code>public</code> and <code>non-public</code> instance variables and
+        methods work.</p>
+      <h3><a id="Public_Instance_Variables_453"></a>Public Instance Variables</h3>
+      <p>For a Python class, we can initialize a <code>public instance variable</code> within our constructor method.
+        Let’s see this:</p>
+      <p>Within the constructor method:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, first_name)</span>:</span>
+        self.first_name = first_name
+</code></pre>
+      <p>Here we apply the <code>first_name</code> value as an argument to the <code>public instance variable</code>.</p>
+      <pre><code class="python">tk = Person(<span class="hljs-string">'TK'</span>)
+print(tk.first_name) <span class="hljs-comment"># =&gt; TK</span>
+</code></pre>
+      <p>Within the class:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    first_name = <span class="hljs-string">'TK'</span>
+</code></pre>
+      <p>Here, we do not need to apply the <code>first_name</code> as an argument, and all instance objects will have a
+        <code>class attribute</code> initialized with <code>TK</code>.</p>
+      <pre><code class="python">tk = Person()
+print(tk.first_name) <span class="hljs-comment"># =&gt; TK</span>
+</code></pre>
+      <p>Cool. We have now learned that we can use <code>public instance variables</code> and <code>class attributes</code>.
+        Another interesting thing about the <code>public</code> part is that we can manage the variable value. What do
+        I mean by that? Our <code>object</code> can manage its variable value: <code>Get</code> and <code>Set</code>
+        variable values.</p>
+      <p>Keeping the <code>Person</code> class in mind, we want to set another value to its <code>first_name</code>
+        variable:</p>
+      <pre><code class="python">tk = Person(<span class="hljs-string">'TK'</span>)
+tk.first_name = <span class="hljs-string">'Kaio'</span>
+print(tk.first_name) <span class="hljs-comment"># =&gt; Kaio</span>
+</code></pre>
+      <p>There we go. We just set another value (<code>kaio</code>) to the <code>first_name</code> instance variable
+        and it updated the value. Simple as that. Since it’s a <code>public</code> variable, we can do that.</p>
+      <h3><a id="Nonpublic_Instance Variable_498"></a>Non-public Instance Variable</h3>
+      <blockquote>
+        <p>We don’t use the term “private” here, since no attribute is really private in Python (without a generally
+          unnecessary amount of work). — PEP 8</p>
+      </blockquote>
+      <p>As the <code>public instance variable</code> , we can define the <code>non-public instance variable</code>
+        both within the constructor method or within the class. The syntax difference is: for <code>non-public instance variables</code>
+        , use an underscore (<code>_</code>) before the <code>variable</code> name.</p>
+      <blockquote>
+        <p>“‘Private’ instance variables that cannot be accessed except from inside an object don’t exist in Python.
+          However, there is a convention that is followed by most Python code: a name prefixed with an underscore (e.g.
+          _spam) should be treated as a non-public part of the API (whether it is a function, a method or a data
+          member)” — Python Software Foundation</p>
+      </blockquote>
+      <p>Here’s an example:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, first_name, email)</span>:</span>
+        self.first_name = first_name
+        self._email = email
+</code></pre>
+      <p>Did you see the <code>email</code> variable? This is how we define a <code>non-public variable</code> :</p>
+      <pre><code class="python">tk = Person(<span class="hljs-string">'TK'</span>, <span class="hljs-string">'tk@mail.com'</span>)
+print(tk._email) <span class="hljs-comment"># tk@mail.com</span>
+</code></pre>
+      <blockquote>
+        <p>We can access and update it. Non-public variables are just a convention and should be treated as a
+          non-public part of the API.</p>
+      </blockquote>
+      <p>So we use a method that allows us to do it inside our class definition. Let’s implement two methods (<code>email</code>
+        and <code>update_email</code>) to understand it:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, first_name, email)</span>:</span>
+        self.first_name = first_name
+        self._email = email
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update_email</span><span class="hljs-params">(self, new_email)</span>:</span>
+        self._email = new_email
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">email</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self._email
+</code></pre>
+      <p>Now we can update and access <code>non-public variables</code> using those methods. Let’s see:</p>
+      <pre><code class="python">tk = Person(<span class="hljs-string">'TK'</span>, <span class="hljs-string">'tk@mail.com'</span>)
+print(tk.email()) <span class="hljs-comment"># =&gt; tk@mail.com</span>
+tk._email = <span class="hljs-string">'new_tk@mail.com'</span>
+print(tk.email()) <span class="hljs-comment"># =&gt; tk@mail.com</span>
+tk.update_email(<span class="hljs-string">'new_tk@mail.com'</span>)
+print(tk.email()) <span class="hljs-comment"># =&gt; new_tk@mail.com</span>
+</code></pre>
+      <h3><a id="Public_Method_552"></a>Public Method</h3>
+      <p>With <code>public methods</code>, we can also use them out of our class:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, first_name, age)</span>:</span>
+        self.first_name = first_name
+        self._age = age
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_age</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self._age
+</code></pre>
+      <p>Let’s test it:</p>
+      <pre><code class="python">tk = Person(<span class="hljs-string">'TK'</span>, <span class="hljs-number">25</span>)
+print(tk.show_age()) <span class="hljs-comment"># =&gt; 25</span>
+</code></pre>
+      <p>Great — we can use it without any problem.</p>
+      <h3><a id="Nonpublic_Method_575"></a>Non-public Method</h3>
+      <p>But with <code>non-public methods</code> we aren’t able to do it. Let’s implement the same <code>Person</code>
+        class, but now with a <code>show_age</code> <code>non-public method</code> using an underscore (<code>_</code>).</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, first_name, age)</span>:</span>
+        self.first_name = first_name
+        self._age = age
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_show_age</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self._age
+</code></pre>
+      <p>And now, we’ll try to call this <code>non-public method</code> with our object:</p>
+      <pre><code class="python">tk = Person(<span class="hljs-string">'TK'</span>, <span class="hljs-number">25</span>)
+print(tk._show_age()) <span class="hljs-comment"># =&gt; 25</span>
+</code></pre>
+      <blockquote>
+        <p>We can access and update it. Non-public methods are just a convention and should be treated as a non-public
+          part of the API.</p>
+      </blockquote>
+      <p>Here’s an example for how we can use it:</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, first_name, age)</span>:</span>
+        self.first_name = first_name
+        self._age = age
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">show_age</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self._get_age()
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_get_age</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> self._age
+
+tk = Person(<span class="hljs-string">'TK'</span>, <span class="hljs-number">25</span>)
+print(tk.show_age()) <span class="hljs-comment"># =&gt; 25</span>
+</code></pre>
+      <p>Here we have a <code>_get_age</code> <code>non-public method</code> and a <code>show_age</code> <code>public method</code>.
+        The <code>show_age</code> can be used by our object (out of our class) and the <code>_get_age</code> only used
+        inside our class definition (inside <code>show_age</code> method). But again: as a matter of convention.</p>
+      <h3><a id="Encapsulation_Summary_618"></a>Encapsulation Summary</h3>
+      <p>With encapsulation we can ensure that the internal representation of the object is hidden from the outside.</p>
+      <h2><a id="Inheritance_behaviors_and_characteristics_622"></a>Inheritance: behaviors and characteristics</h2>
+      <p>Certain objects have some things in common: their behavior and characteristics.</p>
+      <p>For example, I inherited some characteristics and behaviors from my father. I inherited his eyes and hair as
+        characteristics, and his impatience and introversion as behaviors.</p>
+      <p>In object-oriented programming, classes can inherit common characteristics (data) and behavior (methods) from
+        another class.</p>
+      <p>Let’s see another example and implement it in Python.</p>
+      <p><strong>ElectricCar</strong> class inherits these same attributes from the regular <strong>Car</strong> class.</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Car</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, number_of_wheels, seating_capacity, maximum_velocity)</span>:</span>
+        self.number_of_wheels = number_of_wheels
+        self.seating_capacity = seating_capacity
+        self.maximum_velocity = maximum_velocity
+</code></pre>
+      <p>Our <strong>Car</strong> class implemented:</p>
+      <pre><code class="python">my_car = Car(<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">250</span>)
+print(my_car.number_of_wheels)
+print(my_car.seating_capacity)
+print(my_car.maximum_velocity)
+</code></pre>
+      <p>Once initiated, we can use all <code>instance variables</code> created. Nice.</p>
+      <p>In Python, we apply a <code>parent class</code> to the <code>child class</code> as a parameter. An <strong>ElectricCar</strong>
+        class can inherit from our <strong>Car</strong> class.</p>
+      <pre><code class="python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ElectricCar</span><span class="hljs-params">(Car)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, number_of_wheels, seating_capacity, maximum_velocity)</span>:</span>
+        Car.__init__(self, number_of_wheels, seating_capacity, maximum_velocity)
+</code></pre>
+      <p>Simple as that. We don’t need to implement any other method, because this class already has it (inherited from
+        <strong>Car</strong> class). Let’s prove it:</p>
+      <pre><code class="python">my_electric_car = ElectricCar(<span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">250</span>)
+print(my_electric_car.number_of_wheels) <span class="hljs-comment"># =&gt; 4</span>
+print(my_electric_car.seating_capacity) <span class="hljs-comment"># =&gt; 5</span>
+print(my_electric_car.maximum_velocity) <span class="hljs-comment"># =&gt; 250</span>
+</code></pre>
+      <p>Beautiful.</p>
+      <h2><a id="Thats_it_672"></a>That’s it!</h2>
+      <p>We learned a lot of things about Python basics:</p>
+      <ul>
+        <li>
+          <p>How Python variables work</p>
+        </li>
+        <li>
+          <p>How Python conditional statements work</p>
+        </li>
+        <li>
+          <p>How Python looping (while &amp; for) works</p>
+        </li>
+        <li>
+          <p>How to use Lists: Collection | Array</p>
+        </li>
+        <li>
+          <p>Dictionary Key-Value Collection</p>
+        </li>
+        <li>
+          <p>How we can iterate through these data structures</p>
+        </li>
+        <li>
+          <p>Objects and Classes</p>
+        </li>
+        <li>
+          <p>Attributes as objects’ data</p>
+        </li>
+        <li>
+          <p>Methods as objects’ behavior</p>
+        </li>
+        <li>
+          <p>Using Python getters and setters &amp; property decorator</p>
+        </li>
+        <li>
+          <p>Encapsulation: hiding information</p>
+        </li>
+        <li>
+          <p>Inheritance: behaviors and characteristics</p>
+        </li>
+      </ul>
+      <p>Congrats! You completed this dense piece of content about Python.</p>
+      <p>If you want a complete Python course, learn more real-world coding skills and build projects, try <a href="https://onemonth.com/courses/python?campaignid=33447&amp;discount_code=TKPython1&amp;mbsy=lG6tv&amp;mbsy_source=7d89eeb0-0031-478c-a60c-6a96d762712a">One
+          Month Python Bootcamp</a>. See you there ☺</p>
+      <p>For more stories and posts about my journey learning &amp; mastering programming, follow my publication <a
+          href="https://medium.com/the-renaissance-developer">The Renaissance Developer</a>.</p>
+      <p>Have fun, keep learning, and always keep coding.</p>
+      <p>My <a href="https://medium.com/@leandrotk_">Medium</a>, <a href="https://twitter.com/LeandroTk_">Twitter</a>
+        &amp; <a href="https://github.com/LeandroTk">Github</a>. ☺</p>
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/python.html">python</a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div id="footer-post">
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fab fa-list fa-lg"
+              aria-hidden="true"></i> TOC</a></li>
+        <li id="share">
+          <a class="twitter-share-button" onclick="window.open('https://twitter.com/intent/tweet?text=%22Actionable%20advice%20to%20start%20learning%20to%20code%22%20by%20%40leandrotk_')">
+            Tweet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  -->
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2018 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+</body>
+
+</html>

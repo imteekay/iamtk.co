@@ -1093,7 +1093,7 @@ article .content .video-container embed {
   margin-top: 0;
 }
 
-article .content blockquote {
+article blockquote {
   margin: 1rem 10px;
   padding: 0.5em 10px;
   font-size: 1.1em;
@@ -1110,7 +1110,65 @@ article .content blockquote {
 }
 
 @media(min-width: 1024px) {
-  article .content blockquote {
+  article blockquote {
+    font-size: 1.5em;
+  }
+}
+
+article blockquote p {
+  margin: 0;
+}
+
+article blockquote:before {
+  color: #eee;
+  content: "\201C";
+  font-size: 2em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  position: absolute;
+  left: -15px;
+}
+
+article blockquote footer {
+  color: #666;
+  font-size: 11px;
+  margin: line-height 0;
+}
+
+article blockquote footer a {
+  color: #666;
+  background-image: linear-gradient(transparent, transparent 5px, #666 5px, #666);
+}
+
+article blockquote footer a:hover {
+  color: #999;
+  background-image: linear-gradient(transparent, transparent 4px, #999 4px, #999);
+}
+
+article blockquote footer cite:before {
+  content: "—";
+  padding: 0 0.5em;
+}
+
+article blockquote {
+  margin: 1rem 10px;
+  padding: 0.5em 10px;
+  font-size: 1.1em;
+  color: #666;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  text-align: center;
+  line-height: 1.25;
+  color: #eee;
+  word-spacing: -4px;
+  letter-spacing: -1px;
+  position: relative;
+  line-height: 30px;
+}
+
+@media(min-width: 1024px) {
+  article blockquote {
     font-size: 1.5em;
   }
 }
