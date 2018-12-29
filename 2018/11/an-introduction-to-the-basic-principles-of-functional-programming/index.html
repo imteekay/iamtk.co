@@ -48,688 +48,716 @@
         </div>
       </header>
 
-      <p><img src="https://cdn-images-1.medium.com/max/1600/1*OtbWm_2OFtg7suie4zEtqA.png" alt=""></p>
-      <p>After a long time learning and working with object-oriented programming, I took a step back to think about
-        system complexity.</p>
-      <blockquote>
-        <p>&quot;<code>Complexity is anything that makes software hard to understand or to modify.</code>&quot;
-          — John Outerhout</p>
-      </blockquote>
-      <p>Doing some research, I found functional programming concepts like immutability and pure function. Those
-        concepts are big advantages to build side-effect-free functions, so it is easier to maintain systems — with
-        some other
-        <a href="https://hackernoon.com/why-functional-programming-matters-c647f56a7691">benefits</a>.</p>
-      <p>In this post, I will tell you more about functional programming, and some
-        important concepts, with a lot of code examples.</p>
-      <h2 id="what-is-functional-programming-">What is functional programming?</h2>
-      <blockquote>
-        <p><strong>Functional programming</strong> is a programming paradigm — a style of building the &gt; structure
-          and elements of computer programs — that treats computation as the evaluation of mathematical functions and
-          avoids changing-state and mutable data
-          — <a href="https://en.wikipedia.org/wiki/Functional_programming">Wikipedia</a></p>
-      </blockquote>
-      <h2 id="pure-functions">Pure functions</h2>
-      <p>The first fundamental concept we learn when we want to understand functional programming is <strong>pure
-          functions</strong>. But what does that really mean? What makes a function pure?</p>
-      <p>So how do we know if a function is <code>pure</code> or not? Here is a very strict definition of purity:</p>
-      <ul>
-        <li>
-          <p>It returns the same result if given the same arguments (it is also referred as
-            <code>deterministic</code>)</p>
-        </li>
-        <li>
-          <p>It does not cause any observable side effects</p>
-        </li>
-      </ul>
-      <h3 id="it-returns-the-same-result-if-given-the-same-arguments">It returns the same result if given the same
-        arguments</h3>
-      <p>Imagine we want to implement a function that calculates the area of a circle. An impure function would receive
-        <code>radius</code> as the parameter, and then calculate <code>radius * radius * PI</code>. In Clojure, the
-        operator comes first, so <code>radius * radius * PI</code> becomes <code>(* radius radius PI)</code>:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> PI <span class="hljs-number">3.14</span>)
+      <div class="content" itemprop="articleBody">
+        <p><img src="https://cdn-images-1.medium.com/max/1600/1*OtbWm_2OFtg7suie4zEtqA.png" alt=""></p>
+        <p>After a long time learning and working with object-oriented programming, I took a step back to think about
+          system complexity.</p>
+        <blockquote>
+          <p>&quot;<code>Complexity is anything that makes software hard to understand or to modify.</code>&quot;
+            — John Outerhout</p>
+        </blockquote>
+        <p>Doing some research, I found functional programming concepts like immutability and pure function. Those
+          concepts are big advantages to build side-effect-free functions, so it is easier to maintain systems — with
+          some other
+          <a href="https://hackernoon.com/why-functional-programming-matters-c647f56a7691">benefits</a>.</p>
+        <p>In this post, I will tell you more about functional programming, and some
+          important concepts, with a lot of code examples.</p>
+        <h2 id="what-is-functional-programming-">What is functional programming?</h2>
+        <blockquote>
+          <p><strong>Functional programming</strong> is a programming paradigm — a style of building the &gt; structure
+            and elements of computer programs — that treats computation as the evaluation of mathematical functions and
+            avoids changing-state and mutable data
+            — <a href="https://en.wikipedia.org/wiki/Functional_programming">Wikipedia</a></p>
+        </blockquote>
+        <h2 id="pure-functions">Pure functions</h2>
+        <p>The first fundamental concept we learn when we want to understand functional programming is <strong>pure
+            functions</strong>. But what does that really mean? What makes a function pure?</p>
+        <p>So how do we know if a function is <code>pure</code> or not? Here is a very strict definition of purity:</p>
+        <ul>
+          <li>
+            <p>It returns the same result if given the same arguments (it is also referred as
+              <code>deterministic</code>)</p>
+          </li>
+          <li>
+            <p>It does not cause any observable side effects</p>
+          </li>
+        </ul>
+        <h3 id="it-returns-the-same-result-if-given-the-same-arguments">It returns the same result if given the same
+          arguments</h3>
+        <p>Imagine we want to implement a function that calculates the area of a circle. An impure function would
+          receive
+          <code>radius</code> as the parameter, and then calculate <code>radius * radius * PI</code>. In Clojure, the
+          operator comes first, so <code>radius * radius * PI</code> becomes <code>(* radius radius PI)</code>:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> PI <span class="hljs-number">3.14</span>)
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> calculate-area
-  [radius]
-  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> radius radius PI))
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> calculate-area
+    [radius]
+    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> radius radius PI))
 
-(<span class="hljs-name">calculate-area</span> <span class="hljs-number">10</span>) <span class="hljs-comment">;; returns 314.0</span>
-</code></pre>
-      <p>Why is this an impure function? Simply because it uses a global object that was not passed as a parameter to
-        the function.</p>
-      <p>Now imagine some mathematicians argue that the <code>PI</code> value is actually <code>42</code> and change
-        the value of the global object.</p>
-      <p>Our impure function will now result in <code>10 * 10 * 42</code> = <code>4200</code>. For the same parameter (<code>radius = 10</code>),
-        we have a different result. Let&#39;s fix it!</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> PI <span class="hljs-number">3.14</span>)
+  (<span class="hljs-name">calculate-area</span> <span class="hljs-number">10</span>) <span class="hljs-comment">;; returns 314.0</span>
+  </code></pre>
+        <p>Why is this an impure function? Simply because it uses a global object that was not passed as a parameter to
+          the function.</p>
+        <p>Now imagine some mathematicians argue that the <code>PI</code> value is actually <code>42</code> and change
+          the value of the global object.</p>
+        <p>Our impure function will now result in <code>10 * 10 * 42</code> = <code>4200</code>. For the same parameter
+          (<code>radius = 10</code>),
+          we have a different result. Let&#39;s fix it!</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> PI <span class="hljs-number">3.14</span>)
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> calculate-area
-  [radius, PI]
-  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> radius radius PI))
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> calculate-area
+    [radius, PI]
+    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> radius radius PI))
 
-(<span class="hljs-name">calculate-area</span> <span class="hljs-number">10</span> PI) <span class="hljs-comment">;; returns 314.0</span>
-</code></pre>
-      <p>TA-DA 🎉! Now we’ll always pass the<code>PI</code> value as a parameter to the function. So now we are just
-        accessing parameters passed to the function. No <code>external object</code>.</p>
-      <ul>
-        <li>
-          <p>For the parameters <code>radius = 10</code> &amp; <code>PI = 3.14</code>, we will always have the same the
-            result: <code>314.0</code></p>
-        </li>
-        <li>
-          <p>For the parameters <code>radius = 10</code> &amp; <code>PI = 42</code>, we will always have the same the
-            result: <code>4200</code></p>
-        </li>
-      </ul>
-      <h3 id="reading-files">Reading Files</h3>
-      <p>If our function reads external files, it’s not a pure function — the file’s contents can change.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> characters-counter
-  [text]
-  (<span class="hljs-name"><span class="hljs-builtin-name">str</span></span> <span class="hljs-string">"Character count: "</span> (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> text)))
+  (<span class="hljs-name">calculate-area</span> <span class="hljs-number">10</span> PI) <span class="hljs-comment">;; returns 314.0</span>
+  </code></pre>
+        <p>TA-DA 🎉! Now we’ll always pass the<code>PI</code> value as a parameter to the function. So now we are just
+          accessing parameters passed to the function. No <code>external object</code>.</p>
+        <ul>
+          <li>
+            <p>For the parameters <code>radius = 10</code> &amp; <code>PI = 3.14</code>, we will always have the same
+              the
+              result: <code>314.0</code></p>
+          </li>
+          <li>
+            <p>For the parameters <code>radius = 10</code> &amp; <code>PI = 42</code>, we will always have the same the
+              result: <code>4200</code></p>
+          </li>
+        </ul>
+        <h3 id="reading-files">Reading Files</h3>
+        <p>If our function reads external files, it’s not a pure function — the file’s contents can change.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> characters-counter
+    [text]
+    (<span class="hljs-name"><span class="hljs-builtin-name">str</span></span> <span class="hljs-string">"Character count: "</span> (<span class="hljs-name"><span class="hljs-builtin-name">count</span></span> text)))
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> analyze-file
-  [filename]
-  (<span class="hljs-name">characters-counter</span> (<span class="hljs-name"><span class="hljs-builtin-name">slurp</span></span> filename)))
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> analyze-file
+    [filename]
+    (<span class="hljs-name">characters-counter</span> (<span class="hljs-name"><span class="hljs-builtin-name">slurp</span></span> filename)))
 
-(<span class="hljs-name">analyze-file</span> <span class="hljs-string">"test.txt"</span>)
-</code></pre>
-      <h3 id="random-number-generation">Random number generation</h3>
-      <p>Any function that relies on a random number generator cannot be pure.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> year-end-evaluation
-  []
-  (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rand</span></span>) <span class="hljs-number">0.5</span>)
-    <span class="hljs-string">"You get a raise!"</span>
-    <span class="hljs-string">"Better luck next year!"</span>))
-</code></pre>
-      <h3 id="it-does-not-cause-any-observable-side-effects">It does not cause any observable side effects</h3>
-      <p>Examples of observable side effects include modifying a global object or a parameter passed by reference.</p>
-      <p>Now we want to implement a function to receive an integer value and return the value increased by 1.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name">def</span> counter <span class="hljs-number">1</span>)
+  (<span class="hljs-name">analyze-file</span> <span class="hljs-string">"test.txt"</span>)
+  </code></pre>
+        <h3 id="random-number-generation">Random number generation</h3>
+        <p>Any function that relies on a random number generator cannot be pure.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> year-end-evaluation
+    []
+    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">&gt;</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rand</span></span>) <span class="hljs-number">0.5</span>)
+      <span class="hljs-string">"You get a raise!"</span>
+      <span class="hljs-string">"Better luck next year!"</span>))
+  </code></pre>
+        <h3 id="it-does-not-cause-any-observable-side-effects">It does not cause any observable side effects</h3>
+        <p>Examples of observable side effects include modifying a global object or a parameter passed by reference.</p>
+        <p>Now we want to implement a function to receive an integer value and return the value increased by 1.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name">def</span> counter <span class="hljs-number">1</span>)
 
-(<span class="hljs-name">defn</span> increase-counter
-  [value]
-  (<span class="hljs-name">def</span> counter (<span class="hljs-name">inc</span> value))) <span class="hljs-comment">;; please don't do this</span>
+  (<span class="hljs-name">defn</span> increase-counter
+    [value]
+    (<span class="hljs-name">def</span> counter (<span class="hljs-name">inc</span> value))) <span class="hljs-comment">;; please don't do this</span>
 
-(<span class="hljs-name">increase-counter</span> counter) <span class="hljs-comment">;; 2</span>
-counter <span class="hljs-comment">;; 2</span>
-</code></pre>
-      <p>We have the <code>counter</code> value. Our impure function receives that value and re-assigns the counter
-        with the value increased by 1.</p>
-      <p><strong>Observation</strong>: mutability is discouraged in functional programming.</p>
-      <p>We are modifying the global object. But how would we make it <code>pure</code>? Just return the value
-        increased by 1. Simple as that.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name">def</span> counter <span class="hljs-number">1</span>)
+  (<span class="hljs-name">increase-counter</span> counter) <span class="hljs-comment">;; 2</span>
+  counter <span class="hljs-comment">;; 2</span>
+  </code></pre>
+        <p>We have the <code>counter</code> value. Our impure function receives that value and re-assigns the counter
+          with the value increased by 1.</p>
+        <p><strong>Observation</strong>: mutability is discouraged in functional programming.</p>
+        <p>We are modifying the global object. But how would we make it <code>pure</code>? Just return the value
+          increased by 1. Simple as that.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name">def</span> counter <span class="hljs-number">1</span>)
 
-(<span class="hljs-name">defn</span> increase-counter
-  [value]
-  (<span class="hljs-name">inc</span> value))
+  (<span class="hljs-name">defn</span> increase-counter
+    [value]
+    (<span class="hljs-name">inc</span> value))
 
-(<span class="hljs-name">increase-counter</span> counter) <span class="hljs-comment">;; 2</span>
-counter <span class="hljs-comment">;; 1</span>
-</code></pre>
-      <p>See that our pure function <code>increase-counter</code> returns 2, but the <code>counter</code> value is
-        still the same. The function returns the incremented value without altering the value of the variable.</p>
-      <p>If we follow these two simple rules, it gets easier to understand our programs. Now every function is isolated
-        and unable to impact other parts of our system.</p>
-      <p>Pure functions are stable, consistent, and predictable. Given the same parameters, pure functions will always
-        return the same result. We don’t need to think of situations when the same parameter has different results —
-        because it will never happen.</p>
-      <h3 id="pure-functions-benefits">Pure functions benefits</h3>
-      <p>The code’s definitely easier to test. We don’t need to mock anything. So we can
-        unit test pure functions with different contexts:</p>
-      <ul>
-        <li>
-          <p>Given a parameter <code>A</code> → expect the function to return value <code>B</code></p>
-        </li>
-        <li>
-          <p>Given a parameter <code>C</code> → expect the function to return value <code>D</code></p>
-        </li>
-      </ul>
-      <p>A simple example would be a function to receive a collection of numbers and expect it to increment each
-        element of this collection.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> increment-numbers
-  [numbers]
-  (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> inc numbers))
-</code></pre>
-      <p>We receive the <code>numbers</code> collection, use <code>map</code> with the <code>inc</code> function to
-        increment each number, and return a new list of incremented numbers.</p>
-      <pre><code class="lang-clojure">(= [<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>] (increment-numbers [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>])) ;; true
-</code></pre>
-      <p>For the <code>input</code> <code>[1 2 3 4 5]</code>, the expected <code>output</code> would be <code>[2 3 4 5 6]</code>.</p>
-      <h2 id="immutability">Immutability</h2>
-      <blockquote>
-        <p><em>Unchanging over time or unable to be changed.</em></p>
-      </blockquote>
-      <p>When data is immutable, its <strong>state cannot change</strong> after it’s created. <strong>If you want to
-          change an immutable object, you can’t. Instead,</strong> you create a new
-        object with the new value.</p>
-      <p>In Javascript we commonly use the <code>for</code> loop. This next <code>for</code> statement has some mutable
-        variables.</p>
-      <pre><code class="lang-javascript">var values = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
-var sumOfValues = <span class="hljs-number">0</span>;
+  (<span class="hljs-name">increase-counter</span> counter) <span class="hljs-comment">;; 2</span>
+  counter <span class="hljs-comment">;; 1</span>
+  </code></pre>
+        <p>See that our pure function <code>increase-counter</code> returns 2, but the <code>counter</code> value is
+          still the same. The function returns the incremented value without altering the value of the variable.</p>
+        <p>If we follow these two simple rules, it gets easier to understand our programs. Now every function is
+          isolated
+          and unable to impact other parts of our system.</p>
+        <p>Pure functions are stable, consistent, and predictable. Given the same parameters, pure functions will
+          always
+          return the same result. We don’t need to think of situations when the same parameter has different results —
+          because it will never happen.</p>
+        <h3 id="pure-functions-benefits">Pure functions benefits</h3>
+        <p>The code’s definitely easier to test. We don’t need to mock anything. So we can
+          unit test pure functions with different contexts:</p>
+        <ul>
+          <li>
+            <p>Given a parameter <code>A</code> → expect the function to return value <code>B</code></p>
+          </li>
+          <li>
+            <p>Given a parameter <code>C</code> → expect the function to return value <code>D</code></p>
+          </li>
+        </ul>
+        <p>A simple example would be a function to receive a collection of numbers and expect it to increment each
+          element of this collection.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> increment-numbers
+    [numbers]
+    (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span> inc numbers))
+  </code></pre>
+        <p>We receive the <code>numbers</code> collection, use <code>map</code> with the <code>inc</code> function to
+          increment each number, and return a new list of incremented numbers.</p>
+        <pre><code class="lang-clojure">(= [<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>] (increment-numbers [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>])) ;; true
+  </code></pre>
+        <p>For the <code>input</code> <code>[1 2 3 4 5]</code>, the expected <code>output</code> would be <code>[2 3 4 5 6]</code>.</p>
+        <h2 id="immutability">Immutability</h2>
+        <blockquote>
+          <p><em>Unchanging over time or unable to be changed.</em></p>
+        </blockquote>
+        <p>When data is immutable, its <strong>state cannot change</strong> after it’s created. <strong>If you want to
+            change an immutable object, you can’t. Instead,</strong> you create a new
+          object with the new value.</p>
+        <p>In Javascript we commonly use the <code>for</code> loop. This next <code>for</code> statement has some
+          mutable
+          variables.</p>
+        <pre><code class="lang-javascript">var values = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+  var sumOfValues = <span class="hljs-number">0</span>;
 
-for (var i = <span class="hljs-number">0</span>; i &lt; values.length; i++) {
-  sumOfValues += values[i];
-}
-
-sumOfValues <span class="hljs-comment">// 15</span>
-</code></pre>
-      <p>For each iteration, we are changing the <code>i</code> and the <code>sumOfValue</code> <strong>state</strong>.
-        But how do we handle mutability in iteration? Recursion! Back to Clojure!</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sum
-  [values]
-  (<span class="hljs-name"><span class="hljs-builtin-name">loop</span></span> [vals values
-         total <span class="hljs-number">0</span>]
-    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">empty?</span></span> vals)
-      total
-      (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rest</span></span> vals) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> vals) total)))))
-
-(<span class="hljs-name">sum</span> [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>]) <span class="hljs-comment">;; 15</span>
-</code></pre>
-      <p>So here we have the <code>sum</code> function that receives a vector of numerical values. The <code>recur</code>
-        jumps back into the <code>loop</code> until we get the vector empty (<a href="https://en.wikipedia.org/wiki/Recursion">our
-          recursion</a> <code>base case</code>). For each &quot;iteration&quot; we will add the value to the <code>total</code>
-        accumulator.</p>
-      <p>With recursion, we keep our <strong>variables</strong> immutable.</p>
-      <p><strong>Observation</strong>: Yes! We can use <code>reduce</code> to implement this function. We will see this
-        in the <code>Higher Order Functions</code> topic.</p>
-      <p>It is also very common to build up the final <strong>state</strong> of an object. Imagine we have a string,
-        and we want to transform this string into a <code>url slug</code>.</p>
-      <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UrlSlugify</span></span>
-  <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:text</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(text)</span></span>
-    @text = text
-  <span class="hljs-keyword">end</span>
-
-  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">slugify!</span></span>
-    text.downcase!
-    text.strip!
-    text.gsub!(<span class="hljs-string">' '</span>, <span class="hljs-string">'-'</span>)
-  <span class="hljs-keyword">end</span>
-<span class="hljs-keyword">end</span>
-
-UrlSlugify.new(<span class="hljs-string">' I will be a url slug   '</span>).slugify! <span class="hljs-comment"># "i-will-be-a-url-slug"</span>
-</code></pre>
-      <p>In OOP in Ruby, we would create a class, let’s say, <code>UrlSlugify</code>. And this class will have a <code>slugify!</code>
-        method to transform the string input into a <code>url slug</code>.</p>
-      <p>Beautiful! It’s implemented! Here we have imperative programming saying exactly what we want to do in each
-        <code>slugify</code> process — first lower case, then remove useless white spaces and, finally, replace
-        remaining white spaces with hyphens.</p>
-      <p>But we are mutating the input state in this process.</p>
-      <p>We can handle this mutation by doing function composition, or function chaining. In other words, the result of
-        a function will be used as an input for the next function, without modifying the original input string.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> slugify
-  [string]
-  (<span class="hljs-name">clojure.string/replace</span>
-    (<span class="hljs-name">clojure.string/lower-case</span>
-      (<span class="hljs-name">clojure.string/trim</span> string)) #<span class="hljs-string">" "</span> <span class="hljs-string">"-"</span>))
-
-(<span class="hljs-name">slugify</span> <span class="hljs-string">" I will be a url slug   "</span>)
-</code></pre>
-      <p>Here we have:</p>
-      <ul>
-        <li>
-          <p><code>trim</code>: removes whitespace from both ends of a string</p>
-        </li>
-        <li>
-          <p><code>lower-case</code>: converts the string to all lower-case</p>
-        </li>
-        <li>
-          <p><code>replace</code>: replaces all instances of match with replacement in a given string</p>
-        </li>
-      </ul>
-      <p>We combine all three functions and we can <code>&quot;slugify&quot;</code> our string.</p>
-      <p>Speaking of <strong>combining functions</strong>, we can use the <code>comp</code> function to compose all
-        three functions. Let&#39;s take a look:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> slugify
-  [string]
-  ((<span class="hljs-name"><span class="hljs-builtin-name">comp</span></span> #(<span class="hljs-name">clojure.string/replace</span> % #<span class="hljs-string">" "</span> <span class="hljs-string">"-"</span>)
-         clojure.string/lower-case
-         clojure.string/trim)
-    string))
-
-(<span class="hljs-name">slugify</span> <span class="hljs-string">" I will be a url slug   "</span>) <span class="hljs-comment">;; "i-will-be-a-url-slug"</span>
-</code></pre>
-      <h2 id="referential-transparency">Referential transparency</h2>
-      <p>Let’s implement a <code>square function</code>:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> square
-  [n]
-  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n n))
-</code></pre>
-      <p>This (pure) function will always have the same output, given the same input.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name">square</span> <span class="hljs-number">2</span>) <span class="hljs-comment">;; 4</span>
-(<span class="hljs-name">square</span> <span class="hljs-number">2</span>) <span class="hljs-comment">;; 4</span>
-(<span class="hljs-name">square</span> <span class="hljs-number">2</span>) <span class="hljs-comment">;; 4</span>
-<span class="hljs-comment">;; ...</span>
-</code></pre>
-      <p>Passing “2” as a parameter of the <code>square function</code>will always returns 4. So now we can replace the
-        <code>(square 2)</code> with 4. That&#39;s it! Our function is <code>referentially transparent</code>.</p>
-      <p>Basically, if a function consistently yields the same result for the same input, it is referentially
-        transparent.</p>
-      <p><strong>pure functions + immutable data = referential transparency</strong></p>
-      <p>With this concept, a cool thing we can do is to memoize the function. Imagine we have this function:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">3</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">5</span> <span class="hljs-number">8</span>))
-</code></pre>
-      <p>The <code>(+ 5 8)</code> equals <code>13</code>. This function will always result in <code>13</code>. So we
-        can do this:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">3</span> <span class="hljs-number">13</span>)
-</code></pre>
-      <p>And this expression will always result in <code>16</code>. We can replace the entire expression with a
-        numerical constant and <a href="https://en.wikipedia.org/wiki/Memoization">memoize</a> it.</p>
-      <h2 id="functions-as-first-class-entities">Functions as first-class entities</h2>
-      <p>The idea of functions as first-class entities is that functions are <strong>also</strong> treated as values
-        <strong>and</strong> used as data.</p>
-      <p>In Clojure it’s common to use <code>defn</code> to define functions, but this is just syntactic sugar for
-        <code>(def foo (fn ...))</code>. <code>fn</code> returns the function itself. <code>defn</code> returns a <code>var</code>
-        which points to a function object.</p>
-      <p>Functions as first-class entities can:</p>
-      <ul>
-        <li>
-          <p>refer to it from constants and variables</p>
-        </li>
-        <li>
-          <p>pass it as a parameter to other functions</p>
-        </li>
-        <li>
-          <p>return it as result from other functions</p>
-        </li>
-      </ul>
-      <p>The idea is to treat functions as values and pass functions like data. This way we can combine different
-        functions to create new functions with new behavior.</p>
-      <p>Imagine we have a function that sums two values and then doubles the value. Something like this:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> double-sum
-  [a b]
-  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> a b)))
-</code></pre>
-      <p>Now a function that subtracts values and the returns the double:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> double-subtraction
-  [a b]
-  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> a b)))
-</code></pre>
-      <p>These functions have similar logic, but the difference is the operators functions. If we can treat functions
-        as values and pass these as arguments, we can build a function that receives the operator function and use it
-        inside our function. Let’s build it!</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> double-operator
-  [f a b]
-  (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> (<span class="hljs-name">f</span> a b)))
-
-(<span class="hljs-name">double-operator</span> + <span class="hljs-number">3</span> <span class="hljs-number">1</span>) <span class="hljs-comment">;; 8</span>
-(<span class="hljs-name">double-operator</span> - <span class="hljs-number">3</span> <span class="hljs-number">1</span>) <span class="hljs-comment">;; 4</span>
-</code></pre>
-      <p>Done! Now we have an <code>f</code> argument, and use it to process <code>a</code> and <code>b</code>. We
-        passed the <code>+</code> and <code>-</code> functions to compose with the <code>double-operator</code>
-        function and create a new behavior.</p>
-      <h2 id="higher-order-functions">Higher-order functions</h2>
-      <p>When we talk about higher-order functions, we mean a function that either:</p>
-      <ul>
-        <li>
-          <p>takes one or more functions as arguments, or</p>
-        </li>
-        <li>
-          <p>returns a function as its result</p>
-        </li>
-      </ul>
-      <p>The <code>double-operator</code> function we implemented above is a higher-order function because it takes an
-        operator function as an argument and uses it.</p>
-      <p>You’ve probably already heard about <code>filter</code>, <code>map</code>, and <code>reduce</code>. Let&#39;s
-        take a look at these.</p>
-      <h3 id="filter">Filter</h3>
-      <p>Given a collection, we want to filter by an attribute. The filter function expects a <code>true</code> or
-        <code>false</code> value to determine if the element <strong>should or should not</strong> be included in the
-        result collection. Basically,if the callback expression is <code>true</code>, the filter function will include
-        the element in the result collection. Otherwise, it will not.</p>
-      <p>A simple example is when we have a collection of integers and we want only the even numbers.</p>
-      <p><strong>Imperative approach</strong></p>
-      <p>An imperative way to do it with Javascript is to:</p>
-      <ul>
-        <li>
-          <p>create an empty vector <code>evenNumbers</code></p>
-        </li>
-        <li>
-          <p>iterate over the <code>numbers</code> vector</p>
-        </li>
-        <li>
-          <p>push the even numbers to the <code>evenNumbers</code> vector</p>
-        </li>
-      </ul>
-      <pre><code class="lang-javascript">var numbers = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];
-var evenNumbers = [];
-
-for (var i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
-  if (numbers[i] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
-    evenNumbers.push(numbers[i]);
+  for (var i = <span class="hljs-number">0</span>; i &lt; values.length; i++) {
+    sumOfValues += values[i];
   }
-}
 
-console.log(evenNumbers); <span class="hljs-comment">// (6) [0, 2, 4, 6, 8, 10]</span>
-</code></pre>
-      <p>We can use the <code>filter</code> higher order function to receive the <code>even?</code> function, and
-        return a list of even numbers:</p>
-      <pre><code class="lang-clojure">(defn even-numbers
-  [coll]
-  (filter even? coll))
+  sumOfValues <span class="hljs-comment">// 15</span>
+  </code></pre>
+        <p>For each iteration, we are changing the <code>i</code> and the <code>sumOfValue</code> <strong>state</strong>.
+          But how do we handle mutability in iteration? Recursion! Back to Clojure!</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sum
+    [values]
+    (<span class="hljs-name"><span class="hljs-builtin-name">loop</span></span> [vals values
+          total <span class="hljs-number">0</span>]
+      (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">empty?</span></span> vals)
+        total
+        (<span class="hljs-name"><span class="hljs-builtin-name">recur</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">rest</span></span> vals) (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">first</span></span> vals) total)))))
 
-(even-numbers [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span> <span class="hljs-number">10</span>]) ;; (<span class="hljs-number">0</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">8</span> <span class="hljs-number">10</span>)
-</code></pre>
-      <p>One interesting problem I solved on <a href="https://www.hackerrank.com/domains/fp">Hacker Rank FP</a> Path
-        was the <a href="https://www.hackerrank.com/challenges/fp-filter-array/problem">Filter Array problem</a>. The
-        problem idea is to filter a given array of integers and output only those values that are less than a specified
-        value <code>X</code>.</p>
-      <p>An imperative Javascript solution to this problem is something like:</p>
-      <pre><code class="lang-javascript">var filterArray = function(x, coll) {
-  var resultArray = [];
+  (<span class="hljs-name">sum</span> [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>]) <span class="hljs-comment">;; 15</span>
+  </code></pre>
+        <p>So here we have the <code>sum</code> function that receives a vector of numerical values. The <code>recur</code>
+          jumps back into the <code>loop</code> until we get the vector empty (<a href="https://en.wikipedia.org/wiki/Recursion">our
+            recursion</a> <code>base case</code>). For each &quot;iteration&quot; we will add the value to the <code>total</code>
+          accumulator.</p>
+        <p>With recursion, we keep our <strong>variables</strong> immutable.</p>
+        <p><strong>Observation</strong>: Yes! We can use <code>reduce</code> to implement this function. We will see
+          this
+          in the <code>Higher Order Functions</code> topic.</p>
+        <p>It is also very common to build up the final <strong>state</strong> of an object. Imagine we have a string,
+          and we want to transform this string into a <code>url slug</code>.</p>
+        <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UrlSlugify</span></span>
+    <span class="hljs-keyword">attr_reader</span> <span class="hljs-symbol">:text</span>
 
-  for (var i = <span class="hljs-number">0</span>; i &lt; coll.length; i++) {
-    if (coll[i] &lt; x) {
-      resultArray.push(coll[i]);
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(text)</span></span>
+      @text = text
+    <span class="hljs-keyword">end</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">slugify!</span></span>
+      text.downcase!
+      text.strip!
+      text.gsub!(<span class="hljs-string">' '</span>, <span class="hljs-string">'-'</span>)
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  UrlSlugify.new(<span class="hljs-string">' I will be a url slug   '</span>).slugify! <span class="hljs-comment"># "i-will-be-a-url-slug"</span>
+  </code></pre>
+        <p>In OOP in Ruby, we would create a class, let’s say, <code>UrlSlugify</code>. And this class will have a
+          <code>slugify!</code>
+          method to transform the string input into a <code>url slug</code>.</p>
+        <p>Beautiful! It’s implemented! Here we have imperative programming saying exactly what we want to do in each
+          <code>slugify</code> process — first lower case, then remove useless white spaces and, finally, replace
+          remaining white spaces with hyphens.</p>
+        <p>But we are mutating the input state in this process.</p>
+        <p>We can handle this mutation by doing function composition, or function chaining. In other words, the result
+          of
+          a function will be used as an input for the next function, without modifying the original input string.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> slugify
+    [string]
+    (<span class="hljs-name">clojure.string/replace</span>
+      (<span class="hljs-name">clojure.string/lower-case</span>
+        (<span class="hljs-name">clojure.string/trim</span> string)) #<span class="hljs-string">" "</span> <span class="hljs-string">"-"</span>))
+
+  (<span class="hljs-name">slugify</span> <span class="hljs-string">" I will be a url slug   "</span>)
+  </code></pre>
+        <p>Here we have:</p>
+        <ul>
+          <li>
+            <p><code>trim</code>: removes whitespace from both ends of a string</p>
+          </li>
+          <li>
+            <p><code>lower-case</code>: converts the string to all lower-case</p>
+          </li>
+          <li>
+            <p><code>replace</code>: replaces all instances of match with replacement in a given string</p>
+          </li>
+        </ul>
+        <p>We combine all three functions and we can <code>&quot;slugify&quot;</code> our string.</p>
+        <p>Speaking of <strong>combining functions</strong>, we can use the <code>comp</code> function to compose all
+          three functions. Let&#39;s take a look:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> slugify
+    [string]
+    ((<span class="hljs-name"><span class="hljs-builtin-name">comp</span></span> #(<span class="hljs-name">clojure.string/replace</span> % #<span class="hljs-string">" "</span> <span class="hljs-string">"-"</span>)
+          clojure.string/lower-case
+          clojure.string/trim)
+      string))
+
+  (<span class="hljs-name">slugify</span> <span class="hljs-string">" I will be a url slug   "</span>) <span class="hljs-comment">;; "i-will-be-a-url-slug"</span>
+  </code></pre>
+        <h2 id="referential-transparency">Referential transparency</h2>
+        <p>Let’s implement a <code>square function</code>:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> square
+    [n]
+    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n n))
+  </code></pre>
+        <p>This (pure) function will always have the same output, given the same input.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name">square</span> <span class="hljs-number">2</span>) <span class="hljs-comment">;; 4</span>
+  (<span class="hljs-name">square</span> <span class="hljs-number">2</span>) <span class="hljs-comment">;; 4</span>
+  (<span class="hljs-name">square</span> <span class="hljs-number">2</span>) <span class="hljs-comment">;; 4</span>
+  <span class="hljs-comment">;; ...</span>
+  </code></pre>
+        <p>Passing “2” as a parameter of the <code>square function</code>will always returns 4. So now we can replace
+          the
+          <code>(square 2)</code> with 4. That&#39;s it! Our function is <code>referentially transparent</code>.</p>
+        <p>Basically, if a function consistently yields the same result for the same input, it is referentially
+          transparent.</p>
+        <p><strong>pure functions + immutable data = referential transparency</strong></p>
+        <p>With this concept, a cool thing we can do is to memoize the function. Imagine we have this function:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">3</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">5</span> <span class="hljs-number">8</span>))
+  </code></pre>
+        <p>The <code>(+ 5 8)</code> equals <code>13</code>. This function will always result in <code>13</code>. So we
+          can do this:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> <span class="hljs-number">3</span> <span class="hljs-number">13</span>)
+  </code></pre>
+        <p>And this expression will always result in <code>16</code>. We can replace the entire expression with a
+          numerical constant and <a href="https://en.wikipedia.org/wiki/Memoization">memoize</a> it.</p>
+        <h2 id="functions-as-first-class-entities">Functions as first-class entities</h2>
+        <p>The idea of functions as first-class entities is that functions are <strong>also</strong> treated as values
+          <strong>and</strong> used as data.</p>
+        <p>In Clojure it’s common to use <code>defn</code> to define functions, but this is just syntactic sugar for
+          <code>(def foo (fn ...))</code>. <code>fn</code> returns the function itself. <code>defn</code> returns a
+          <code>var</code>
+          which points to a function object.</p>
+        <p>Functions as first-class entities can:</p>
+        <ul>
+          <li>
+            <p>refer to it from constants and variables</p>
+          </li>
+          <li>
+            <p>pass it as a parameter to other functions</p>
+          </li>
+          <li>
+            <p>return it as result from other functions</p>
+          </li>
+        </ul>
+        <p>The idea is to treat functions as values and pass functions like data. This way we can combine different
+          functions to create new functions with new behavior.</p>
+        <p>Imagine we have a function that sums two values and then doubles the value. Something like this:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> double-sum
+    [a b]
+    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> a b)))
+  </code></pre>
+        <p>Now a function that subtracts values and the returns the double:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> double-subtraction
+    [a b]
+    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> (<span class="hljs-name"><span class="hljs-builtin-name">-</span></span> a b)))
+  </code></pre>
+        <p>These functions have similar logic, but the difference is the operators functions. If we can treat functions
+          as values and pass these as arguments, we can build a function that receives the operator function and use it
+          inside our function. Let’s build it!</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> double-operator
+    [f a b]
+    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> <span class="hljs-number">2</span> (<span class="hljs-name">f</span> a b)))
+
+  (<span class="hljs-name">double-operator</span> + <span class="hljs-number">3</span> <span class="hljs-number">1</span>) <span class="hljs-comment">;; 8</span>
+  (<span class="hljs-name">double-operator</span> - <span class="hljs-number">3</span> <span class="hljs-number">1</span>) <span class="hljs-comment">;; 4</span>
+  </code></pre>
+        <p>Done! Now we have an <code>f</code> argument, and use it to process <code>a</code> and <code>b</code>. We
+          passed the <code>+</code> and <code>-</code> functions to compose with the <code>double-operator</code>
+          function and create a new behavior.</p>
+        <h2 id="higher-order-functions">Higher-order functions</h2>
+        <p>When we talk about higher-order functions, we mean a function that either:</p>
+        <ul>
+          <li>
+            <p>takes one or more functions as arguments, or</p>
+          </li>
+          <li>
+            <p>returns a function as its result</p>
+          </li>
+        </ul>
+        <p>The <code>double-operator</code> function we implemented above is a higher-order function because it takes
+          an
+          operator function as an argument and uses it.</p>
+        <p>You’ve probably already heard about <code>filter</code>, <code>map</code>, and <code>reduce</code>.
+          Let&#39;s
+          take a look at these.</p>
+        <h3 id="filter">Filter</h3>
+        <p>Given a collection, we want to filter by an attribute. The filter function expects a <code>true</code> or
+          <code>false</code> value to determine if the element <strong>should or should not</strong> be included in the
+          result collection. Basically,if the callback expression is <code>true</code>, the filter function will
+          include
+          the element in the result collection. Otherwise, it will not.</p>
+        <p>A simple example is when we have a collection of integers and we want only the even numbers.</p>
+        <p><strong>Imperative approach</strong></p>
+        <p>An imperative way to do it with Javascript is to:</p>
+        <ul>
+          <li>
+            <p>create an empty vector <code>evenNumbers</code></p>
+          </li>
+          <li>
+            <p>iterate over the <code>numbers</code> vector</p>
+          </li>
+          <li>
+            <p>push the even numbers to the <code>evenNumbers</code> vector</p>
+          </li>
+        </ul>
+        <pre><code class="lang-javascript">var numbers = [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];
+  var evenNumbers = [];
+
+  for (var i = <span class="hljs-number">0</span>; i &lt; numbers.length; i++) {
+    if (numbers[i] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) {
+      evenNumbers.push(numbers[i]);
     }
   }
 
-  return resultArray;
-}
+  console.log(evenNumbers); <span class="hljs-comment">// (6) [0, 2, 4, 6, 8, 10]</span>
+  </code></pre>
+        <p>We can use the <code>filter</code> higher order function to receive the <code>even?</code> function, and
+          return a list of even numbers:</p>
+        <pre><code class="lang-clojure">(defn even-numbers
+    [coll]
+    (filter even? coll))
 
-console.log(filterArray(<span class="hljs-number">3</span>, [<span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>])); <span class="hljs-comment">// (3) [2, 1, 0]</span>
-</code></pre>
-      <p>We say exactly what our function needs to do — iterate over the collection, compare the collection current
-        item with <code>x</code>, and push this element to the <code>resultArray</code> if it pass the condition.</p>
-      <p><strong>Declarative approach</strong></p>
-      <p>But we want a more declarative way to solve this problem, and using the <code>filter</code> higher order
-        function as well.</p>
-      <p>A declarative Clojure solution would be something like this:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> filter-array
-  [x coll]
-  (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">&gt;</span></span> x %) coll))
+  (even-numbers [<span class="hljs-number">0</span> <span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span> <span class="hljs-number">7</span> <span class="hljs-number">8</span> <span class="hljs-number">9</span> <span class="hljs-number">10</span>]) ;; (<span class="hljs-number">0</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">6</span> <span class="hljs-number">8</span> <span class="hljs-number">10</span>)
+  </code></pre>
+        <p>One interesting problem I solved on <a href="https://www.hackerrank.com/domains/fp">Hacker Rank FP</a> Path
+          was the <a href="https://www.hackerrank.com/challenges/fp-filter-array/problem">Filter Array problem</a>. The
+          problem idea is to filter a given array of integers and output only those values that are less than a
+          specified
+          value <code>X</code>.</p>
+        <p>An imperative Javascript solution to this problem is something like:</p>
+        <pre><code class="lang-javascript">var filterArray = function(x, coll) {
+    var resultArray = [];
 
-(<span class="hljs-name">filter-array</span> <span class="hljs-number">3</span> [<span class="hljs-number">10</span> <span class="hljs-number">9</span> <span class="hljs-number">8</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">0</span>]) <span class="hljs-comment">;; (2 1 0)</span>
-</code></pre>
-      <p>This syntax seems a bit strange in the first place, but is easy to understand.</p>
-      <p><code>#(&gt; x %)</code> is just a anonymous function that receives <code>x</code> and compares it with each
-        element in the collection. <code>%</code> represents the parameter of the anonymous function — in this case the
-        current element inside the <code>filter</code>.</p>
-      <p>We can also do this with maps. Imagine we have a map of people with their <code>name</code> and <code>age</code>.
-        And we want to filter only people over a specified value of age, in this example people who are more than 21
-        years old.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> people [{<span class="hljs-symbol">:name</span> <span class="hljs-string">"TK"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">26</span>}
-             {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kaio"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">10</span>}
-             {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kazumi"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">30</span>}])
+    for (var i = <span class="hljs-number">0</span>; i &lt; coll.length; i++) {
+      if (coll[i] &lt; x) {
+        resultArray.push(coll[i]);
+      }
+    }
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> over-age
-  [people]
-  (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span>
-    #(<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> <span class="hljs-number">21</span> (<span class="hljs-symbol">:age</span> %))
-    people))
+    return resultArray;
+  }
 
-(<span class="hljs-name">over-age</span> people) <span class="hljs-comment">;; ({:name "TK", :age 26} {:name "Kazumi", :age 30})</span>
-</code></pre>
-      <p>Summary of code:</p>
-      <ul>
-        <li>
-          <p>we have a list of people (with <code>name</code> and <code>age</code>).</p>
-        </li>
-        <li>
-          <p>we have the anonymous function <code>#(&lt; 21 (:age %))</code>. Remember that the <code>%</code>
-            represents the current element from the collection? Well, the element of the collection is a people map. If
-            we do <code>(:age {:name &quot;TK&quot; :age 26})</code>, it returns the age value, <code>26</code> in this
-            case.</p>
-        </li>
-        <li>
-          <p>we filter all people based on this anonymous function.</p>
-        </li>
-      </ul>
-      <h3 id="map">Map</h3>
-      <p>The idea of map is to transform a collection.</p>
-      <blockquote>
-        <p>The <code>map</code> method transforms a collection by applying a function to all of its &gt; elements and
-          building a new collection from the returned values.</p>
-      </blockquote>
-      <p>Let’s get the same <code>people</code> collection above. We don&#39;t want to filter by “over age” now. We
-        just want a list of strings, something like <code>TK is 26 years old</code>. So the final string might be <code>:name is :age years old</code>
-        where <code>:name</code> and <code>:age</code> are attributes from each element in the <code>people</code>
-        collection.</p>
-      <p>In a imperative Javascript way, it would be:</p>
-      <pre><code class="lang-javascript"><span class="hljs-built_in">var</span> people = [
-  { name: <span class="hljs-string">"TK"</span>, age: <span class="hljs-number">26</span> },
-  { name: <span class="hljs-string">"Kaio"</span>, age: <span class="hljs-number">10</span> },
-  { name: <span class="hljs-string">"Kazumi"</span>, age: <span class="hljs-number">30</span> }
-];
+  console.log(filterArray(<span class="hljs-number">3</span>, [<span class="hljs-number">10</span>, <span class="hljs-number">9</span>, <span class="hljs-number">8</span>, <span class="hljs-number">2</span>, <span class="hljs-number">7</span>, <span class="hljs-number">5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">0</span>])); <span class="hljs-comment">// (3) [2, 1, 0]</span>
+  </code></pre>
+        <p>We say exactly what our function needs to do — iterate over the collection, compare the collection current
+          item with <code>x</code>, and push this element to the <code>resultArray</code> if it pass the condition.</p>
+        <p><strong>Declarative approach</strong></p>
+        <p>But we want a more declarative way to solve this problem, and using the <code>filter</code> higher order
+          function as well.</p>
+        <p>A declarative Clojure solution would be something like this:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> filter-array
+    [x coll]
+    (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span> #(<span class="hljs-name"><span class="hljs-builtin-name">&gt;</span></span> x %) coll))
 
-<span class="hljs-built_in">var</span> peopleSentences = [];
+  (<span class="hljs-name">filter-array</span> <span class="hljs-number">3</span> [<span class="hljs-number">10</span> <span class="hljs-number">9</span> <span class="hljs-number">8</span> <span class="hljs-number">2</span> <span class="hljs-number">7</span> <span class="hljs-number">5</span> <span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">0</span>]) <span class="hljs-comment">;; (2 1 0)</span>
+  </code></pre>
+        <p>This syntax seems a bit strange in the first place, but is easy to understand.</p>
+        <p><code>#(&gt; x %)</code> is just a anonymous function that receives <code>x</code> and compares it with each
+          element in the collection. <code>%</code> represents the parameter of the anonymous function — in this case
+          the
+          current element inside the <code>filter</code>.</p>
+        <p>We can also do this with maps. Imagine we have a map of people with their <code>name</code> and <code>age</code>.
+          And we want to filter only people over a specified value of age, in this example people who are more than 21
+          years old.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> people [{<span class="hljs-symbol">:name</span> <span class="hljs-string">"TK"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">26</span>}
+              {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kaio"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">10</span>}
+              {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kazumi"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">30</span>}])
 
-<span class="hljs-keyword">for</span> (<span class="hljs-built_in">var</span> i = <span class="hljs-number">0</span>; i &lt; people.<span class="hljs-built_in">length</span>; i++) {
-  <span class="hljs-built_in">var</span> sentence = people[i].name + <span class="hljs-string">" is "</span> + people[i].age + <span class="hljs-string">" years old"</span>;
-  peopleSentences.<span class="hljs-built_in">push</span>(sentence);
-}
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> over-age
+    [people]
+    (<span class="hljs-name"><span class="hljs-builtin-name">filter</span></span>
+      #(<span class="hljs-name"><span class="hljs-builtin-name">&lt;</span></span> <span class="hljs-number">21</span> (<span class="hljs-symbol">:age</span> %))
+      people))
 
-console.<span class="hljs-built_in">log</span>(peopleSentences); // ['TK <span class="hljs-built_in">is</span> <span class="hljs-number">26</span> years old', 'Kaio <span class="hljs-built_in">is</span> <span class="hljs-number">10</span> years old', 'Kazumi <span class="hljs-built_in">is</span> <span class="hljs-number">30</span> years old']
-</code></pre>
-      <p>In a declarative Clojure way, it would be:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> people [{<span class="hljs-symbol">:name</span> <span class="hljs-string">"TK"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">26</span>}
-             {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kaio"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">10</span>}
-             {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kazumi"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">30</span>}])
+  (<span class="hljs-name">over-age</span> people) <span class="hljs-comment">;; ({:name "TK", :age 26} {:name "Kazumi", :age 30})</span>
+  </code></pre>
+        <p>Summary of code:</p>
+        <ul>
+          <li>
+            <p>we have a list of people (with <code>name</code> and <code>age</code>).</p>
+          </li>
+          <li>
+            <p>we have the anonymous function <code>#(&lt; 21 (:age %))</code>. Remember that the <code>%</code>
+              represents the current element from the collection? Well, the element of the collection is a people map.
+              If
+              we do <code>(:age {:name &quot;TK&quot; :age 26})</code>, it returns the age value, <code>26</code> in
+              this
+              case.</p>
+          </li>
+          <li>
+            <p>we filter all people based on this anonymous function.</p>
+          </li>
+        </ul>
+        <h3 id="map">Map</h3>
+        <p>The idea of map is to transform a collection.</p>
+        <blockquote>
+          <p>The <code>map</code> method transforms a collection by applying a function to all of its &gt; elements and
+            building a new collection from the returned values.</p>
+        </blockquote>
+        <p>Let’s get the same <code>people</code> collection above. We don&#39;t want to filter by “over age” now. We
+          just want a list of strings, something like <code>TK is 26 years old</code>. So the final string might be
+          <code>:name is :age years old</code>
+          where <code>:name</code> and <code>:age</code> are attributes from each element in the <code>people</code>
+          collection.</p>
+        <p>In a imperative Javascript way, it would be:</p>
+        <pre><code class="lang-javascript"><span class="hljs-built_in">var</span> people = [
+    { name: <span class="hljs-string">"TK"</span>, age: <span class="hljs-number">26</span> },
+    { name: <span class="hljs-string">"Kaio"</span>, age: <span class="hljs-number">10</span> },
+    { name: <span class="hljs-string">"Kazumi"</span>, age: <span class="hljs-number">30</span> }
+  ];
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> people-sentences
-  [people]
-  (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span>
-    #(<span class="hljs-name"><span class="hljs-builtin-name">str</span></span> (<span class="hljs-symbol">:name</span> %) <span class="hljs-string">" is "</span> (<span class="hljs-symbol">:age</span> %) <span class="hljs-string">" years old"</span>)
-    people))
+  <span class="hljs-built_in">var</span> peopleSentences = [];
 
-(<span class="hljs-name">people-sentences</span> people) <span class="hljs-comment">;; ("TK is 26 years old" "Kaio is 10 years old" "Kazumi is 30 years old")</span>
-</code></pre>
-      <p>The whole idea is to transform a given collection into a new collection.</p>
-      <p>Another interesting Hacker Rank problem was the <a href="https://www.hackerrank.com/challenges/fp-update-list/problem">update
-          list problem</a>. We just want to update the values of a given collection with their absolute values.</p>
-      <p>For example, the input <code>[1 2 3 -4 5]</code>needs the output to be <code>[1 2 3 4 5]</code>. The absolute
-        value of <code>-4</code> is <code>4</code>.</p>
-      <p>A simple solution would be an in-place update for each collection value.</p>
-      <pre><code class="lang-javascript"><span class="hljs-built_in">var</span> <span class="hljs-built_in">values</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
+  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">var</span> i = <span class="hljs-number">0</span>; i &lt; people.<span class="hljs-built_in">length</span>; i++) {
+    <span class="hljs-built_in">var</span> sentence = people[i].name + <span class="hljs-string">" is "</span> + people[i].age + <span class="hljs-string">" years old"</span>;
+    peopleSentences.<span class="hljs-built_in">push</span>(sentence);
+  }
 
-<span class="hljs-keyword">for</span> (<span class="hljs-built_in">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">values</span>.<span class="hljs-built_in">length</span>; i++) {
-  <span class="hljs-built_in">values</span>[i] = Math.<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">values</span>[i]);
-}
+  console.<span class="hljs-built_in">log</span>(peopleSentences); // ['TK <span class="hljs-built_in">is</span> <span class="hljs-number">26</span> years old', 'Kaio <span class="hljs-built_in">is</span> <span class="hljs-number">10</span> years old', 'Kazumi <span class="hljs-built_in">is</span> <span class="hljs-number">30</span> years old']
+  </code></pre>
+        <p>In a declarative Clojure way, it would be:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> people [{<span class="hljs-symbol">:name</span> <span class="hljs-string">"TK"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">26</span>}
+              {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kaio"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">10</span>}
+              {<span class="hljs-symbol">:name</span> <span class="hljs-string">"Kazumi"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">30</span>}])
 
-console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">values</span>); // [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
-</code></pre>
-      <p>We use the <code>Math.abs</code> function to transform the value into its absolute value, and do the in-place
-        update.</p>
-      <p>This is <strong>not</strong> a functional way to implement this solution.</p>
-      <p>First, we learned about immutability. We know how immutability is important to make our functions more
-        consistent and predictable. The idea is to build a new collection with all absolute values.</p>
-      <p>Second, why not use <code>map</code> here to &quot;transform&quot; all data?</p>
-      <p>My first idea was to build a <code>to-absolute</code> function to handle only one value.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> to-absolute
-  [n]
-  (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">neg?</span></span> n)
-    (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n <span class="hljs-number">-1</span>)
-    n))
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> people-sentences
+    [people]
+    (<span class="hljs-name"><span class="hljs-builtin-name">map</span></span>
+      #(<span class="hljs-name"><span class="hljs-builtin-name">str</span></span> (<span class="hljs-symbol">:name</span> %) <span class="hljs-string">" is "</span> (<span class="hljs-symbol">:age</span> %) <span class="hljs-string">" years old"</span>)
+      people))
 
-(<span class="hljs-name">to-absolute</span> <span class="hljs-number">-1</span>) <span class="hljs-comment">;; 1</span>
-(<span class="hljs-name">to-absolute</span> <span class="hljs-number">1</span>)  <span class="hljs-comment">;; 1</span>
-(<span class="hljs-name">to-absolute</span> <span class="hljs-number">-2</span>) <span class="hljs-comment">;; 2</span>
-(<span class="hljs-name">to-absolute</span> <span class="hljs-number">0</span>)  <span class="hljs-comment">;; 0</span>
-</code></pre>
-      <p>If it is negative, we want to transform it in a positive value (the absolute value). Otherwise, we don’t need
-        to transform it.</p>
-      <p>Now that we know how to do <code>absolute</code> for one value, we can use this function to pass as an
-        argument to the <code>map</code> function. Do you remember that a <code>higher order function</code> can
-        receive a function as an argument and use it? Yes, map can do it!</p>
-      <pre><code class="lang-clojure">(defn update-<span class="hljs-type">list</span>-map
-  [coll]
-  (map to-absolute coll))
+  (<span class="hljs-name">people-sentences</span> people) <span class="hljs-comment">;; ("TK is 26 years old" "Kaio is 10 years old" "Kazumi is 30 years old")</span>
+  </code></pre>
+        <p>The whole idea is to transform a given collection into a new collection.</p>
+        <p>Another interesting Hacker Rank problem was the <a href="https://www.hackerrank.com/challenges/fp-update-list/problem">update
+            list problem</a>. We just want to update the values of a given collection with their absolute values.</p>
+        <p>For example, the input <code>[1 2 3 -4 5]</code>needs the output to be <code>[1 2 3 4 5]</code>. The
+          absolute
+          value of <code>-4</code> is <code>4</code>.</p>
+        <p>A simple solution would be an in-place update for each collection value.</p>
+        <pre><code class="lang-javascript"><span class="hljs-built_in">var</span> <span class="hljs-built_in">values</span> = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, -<span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
 
-(update-<span class="hljs-type">list</span>-map [])               ;; ()
-(update-<span class="hljs-type">list</span>-map [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>])      ;; (<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)
-(update-<span class="hljs-type">list</span>-map [<span class="hljs-number">-1</span> <span class="hljs-number">-2</span> <span class="hljs-number">-3</span> <span class="hljs-number">-4</span> <span class="hljs-number">-5</span>]) ;; (<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)
-(update-<span class="hljs-type">list</span>-map [<span class="hljs-number">1</span> <span class="hljs-number">-2</span> <span class="hljs-number">3</span> <span class="hljs-number">-4</span> <span class="hljs-number">5</span>])    ;; (<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)
-</code></pre>
-      <p>Wow. So beautiful! 😍</p>
-      <h3 id="reduce">Reduce</h3>
-      <p>The idea of reduce is to receive a function and a collection, and return a value created by combining the
-        items.</p>
-      <p>A common example people talk about is to get the total amount of an order. Imagine you were at a shopping
-        website. You’ve added <code>Product 1</code>, <code>Product 2</code>, <code>Product 3</code>, and <code>Product 4</code>
-        to your shopping cart (order). Now we want to calculate the total amount of the shopping cart.</p>
-      <p>In imperative way, we would iterate the order list and sum each product amount to the total amount.</p>
-      <pre><code class="lang-javascript">var orders = [
-  { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 1"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">10</span> },
-  { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 2"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">30</span> },
-  { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 3"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">20</span> },
-  { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 4"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">60</span> }
-];
+  <span class="hljs-keyword">for</span> (<span class="hljs-built_in">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">values</span>.<span class="hljs-built_in">length</span>; i++) {
+    <span class="hljs-built_in">values</span>[i] = Math.<span class="hljs-built_in">abs</span>(<span class="hljs-built_in">values</span>[i]);
+  }
 
-var totalAmount = <span class="hljs-number">0</span>;
+  console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">values</span>); // [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+  </code></pre>
+        <p>We use the <code>Math.abs</code> function to transform the value into its absolute value, and do the
+          in-place
+          update.</p>
+        <p>This is <strong>not</strong> a functional way to implement this solution.</p>
+        <p>First, we learned about immutability. We know how immutability is important to make our functions more
+          consistent and predictable. The idea is to build a new collection with all absolute values.</p>
+        <p>Second, why not use <code>map</code> here to &quot;transform&quot; all data?</p>
+        <p>My first idea was to build a <code>to-absolute</code> function to handle only one value.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> to-absolute
+    [n]
+    (<span class="hljs-name"><span class="hljs-builtin-name">if</span></span> (<span class="hljs-name"><span class="hljs-builtin-name">neg?</span></span> n)
+      (<span class="hljs-name"><span class="hljs-builtin-name">*</span></span> n <span class="hljs-number">-1</span>)
+      n))
 
-<span class="hljs-keyword">for</span> (var i = <span class="hljs-number">0</span>; i &lt; orders.length; i++) {
-  totalAmount += orders[i].amount;
-}
+  (<span class="hljs-name">to-absolute</span> <span class="hljs-number">-1</span>) <span class="hljs-comment">;; 1</span>
+  (<span class="hljs-name">to-absolute</span> <span class="hljs-number">1</span>)  <span class="hljs-comment">;; 1</span>
+  (<span class="hljs-name">to-absolute</span> <span class="hljs-number">-2</span>) <span class="hljs-comment">;; 2</span>
+  (<span class="hljs-name">to-absolute</span> <span class="hljs-number">0</span>)  <span class="hljs-comment">;; 0</span>
+  </code></pre>
+        <p>If it is negative, we want to transform it in a positive value (the absolute value). Otherwise, we don’t
+          need
+          to transform it.</p>
+        <p>Now that we know how to do <code>absolute</code> for one value, we can use this function to pass as an
+          argument to the <code>map</code> function. Do you remember that a <code>higher order function</code> can
+          receive a function as an argument and use it? Yes, map can do it!</p>
+        <pre><code class="lang-clojure">(defn update-<span class="hljs-type">list</span>-map
+    [coll]
+    (map to-absolute coll))
 
-console.log(totalAmount); <span class="hljs-comment">// 120</span>
-</code></pre>
-      <p>Using <code>reduce</code>, we can build a function to handle the <code>amount sum</code> and pass it as an
-        argument to the <code>reduce</code> function.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> shopping-cart
-  [{ <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 1"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">10</span> },
-   { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 2"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">30</span> },
-   { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 3"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">20</span> },
-   { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 4"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">60</span> }])
+  (update-<span class="hljs-type">list</span>-map [])               ;; ()
+  (update-<span class="hljs-type">list</span>-map [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>])      ;; (<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)
+  (update-<span class="hljs-type">list</span>-map [<span class="hljs-number">-1</span> <span class="hljs-number">-2</span> <span class="hljs-number">-3</span> <span class="hljs-number">-4</span> <span class="hljs-number">-5</span>]) ;; (<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)
+  (update-<span class="hljs-type">list</span>-map [<span class="hljs-number">1</span> <span class="hljs-number">-2</span> <span class="hljs-number">3</span> <span class="hljs-number">-4</span> <span class="hljs-number">5</span>])    ;; (<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>)
+  </code></pre>
+        <p>Wow. So beautiful! 😍</p>
+        <h3 id="reduce">Reduce</h3>
+        <p>The idea of reduce is to receive a function and a collection, and return a value created by combining the
+          items.</p>
+        <p>A common example people talk about is to get the total amount of an order. Imagine you were at a shopping
+          website. You’ve added <code>Product 1</code>, <code>Product 2</code>, <code>Product 3</code>, and <code>Product 4</code>
+          to your shopping cart (order). Now we want to calculate the total amount of the shopping cart.</p>
+        <p>In imperative way, we would iterate the order list and sum each product amount to the total amount.</p>
+        <pre><code class="lang-javascript">var orders = [
+    { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 1"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">10</span> },
+    { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 2"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">30</span> },
+    { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 3"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">20</span> },
+    { <span class="hljs-string">productTitle:</span> <span class="hljs-string">"Product 4"</span>, <span class="hljs-string">amount:</span> <span class="hljs-number">60</span> }
+  ];
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sum-amount
-  [total-amount current-product]
-  (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-symbol">:amount</span> current-product) total-amount))
+  var totalAmount = <span class="hljs-number">0</span>;
 
-(<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> get-total-amount
-  [shopping-cart]
-  (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> sum-amount <span class="hljs-number">0</span> shopping-cart))
+  <span class="hljs-keyword">for</span> (var i = <span class="hljs-number">0</span>; i &lt; orders.length; i++) {
+    totalAmount += orders[i].amount;
+  }
 
-(<span class="hljs-name">get-total-amount</span> shopping-cart) <span class="hljs-comment">;; 120</span>
-</code></pre>
-      <p>Here we have <code>shopping-cart</code>, the function <code>sum-amount</code> that receives the current <code>total-amount</code>
-        , and the <code>current-product</code> object to <code>sum</code> them.</p>
-      <p>The <code>get-total-amount</code> function is used to <code>reduce</code> the <code>shopping-cart</code> by
-        using the <code>sum-amount</code> and starting from <code>0</code>.</p>
-      <p>Another way to get the total amount is to compose <code>map</code> and <code>reduce</code>. What do I mean by
-        that? We can use <code>map</code> to transform the <code>shopping-cart</code> into a collection of <code>amount</code>
-        values, and then just use the <code>reduce</code> function with <code>+</code> function.</p>
-      <pre><code class="lang-clojure">(<span class="hljs-string">def </span><span class="hljs-string">shopping-cart
-</span>  [{ :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 1"</span> :<span class="hljs-string">amount </span><span class="hljs-string">10 </span>},
-   { :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 2"</span> :<span class="hljs-string">amount </span><span class="hljs-string">30 </span>},
-   { :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 3"</span> :<span class="hljs-string">amount </span><span class="hljs-string">20 </span>},
-   { :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 4"</span> :<span class="hljs-string">amount </span><span class="hljs-string">60 </span>}])
+  console.log(totalAmount); <span class="hljs-comment">// 120</span>
+  </code></pre>
+        <p>Using <code>reduce</code>, we can build a function to handle the <code>amount sum</code> and pass it as an
+          argument to the <code>reduce</code> function.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> shopping-cart
+    [{ <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 1"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">10</span> },
+    { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 2"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">30</span> },
+    { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 3"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">20</span> },
+    { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Product 4"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">60</span> }])
 
-(<span class="hljs-string">defn </span><span class="hljs-built_in">get-amount</span>
-  [<span class="hljs-string">product]</span>
-  (:<span class="hljs-string">amount </span><span class="hljs-string">product)</span>)
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> sum-amount
+    [total-amount current-product]
+    (<span class="hljs-name"><span class="hljs-builtin-name">+</span></span> (<span class="hljs-symbol">:amount</span> current-product) total-amount))
 
-(<span class="hljs-string">defn </span><span class="hljs-built_in">get-total-amount</span>
-  [<span class="hljs-string">shopping-cart]</span>
-  (<span class="hljs-string">reduce </span>+ (<span class="hljs-string">map </span><span class="hljs-built_in">get-amount</span> <span class="hljs-string">shopping-cart)</span>))
+  (<span class="hljs-name"><span class="hljs-builtin-name">defn</span></span> get-total-amount
+    [shopping-cart]
+    (<span class="hljs-name"><span class="hljs-builtin-name">reduce</span></span> sum-amount <span class="hljs-number">0</span> shopping-cart))
 
-(<span class="hljs-built_in">get-total-amount</span> <span class="hljs-string">shopping-cart)</span> ;; <span class="hljs-string">120</span>
-</code></pre>
-      <p>The <code>get-amount</code> receives the product object and returns only the <code>amount</code> value. So
-        what we have here is <code>[10 30 20 60]</code>. And then the <code>reduce</code> combines all items by adding
-        up. Beautiful!</p>
-      <p>We took a look at how each higher-order function works. I want to show you an example of how we can compose
-        all three functions in a simple example.</p>
-      <p>Talking about <code>shopping cart</code>, imagine we have this list of products in our order:</p>
-      <pre><code class="lang-clojure">(<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shopping</span></span>-cart
-  [{ <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Functional Programming"</span> <span class="hljs-symbol">:type</span> <span class="hljs-string">"books"</span>      <span class="hljs-symbol">:amount</span> <span class="hljs-number">10</span> },
-   { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Kindle"</span>                 <span class="hljs-symbol">:type</span> <span class="hljs-string">"eletronics"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">30</span> },
-   { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Shoes"</span>                  <span class="hljs-symbol">:type</span> <span class="hljs-string">"fashion"</span>    <span class="hljs-symbol">:amount</span> <span class="hljs-number">20</span> },
-   { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Clean Code"</span>             <span class="hljs-symbol">:type</span> <span class="hljs-string">"books"</span>      <span class="hljs-symbol">:amount</span> <span class="hljs-number">60</span> }])
-</code></pre>
-      <p>We want the total amount of all books in our shopping cart. Simple as that. The algorithm?</p>
-      <ul>
-        <li>
-          <p><strong>filter</strong> by book type</p>
-        </li>
-        <li>
-          <p>transform the shopping cart into a collection of amount using <strong>map</strong></p>
-        </li>
-        <li>
-          <p>combine all items by adding them up with <strong>reduce</strong></p>
-        </li>
-      </ul>
-      <p>Done! 🎉</p>
-      <h2 id="resources">Resources</h2>
-      <p>I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For
-        more resources, visit my <a href="https://github.com/LeandroTk/learning-functional-programming">Functional
-          Programming Github repository</a>.</p>
-      <ul>
-        <li><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/ruby">Ruby specific
-            resources</a></li>
-        <li><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/javascript">Javascript
-            specific resources</a></li>
-        <li><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/clojure">Clojure specific
-            resources</a></li>
-      </ul>
-      <h3 id="intros">Intros</h3>
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=e-5obm1G_FY">Learning FP in JS</a></li>
-        <li><a href="https://codewords.recurse.com/issues/one/an-introduction-to-functional-programming">Intro do FP
-            with Python</a></li>
-        <li><a href="https://blog.codeship.com/overview-of-functional-programming">Overview of FP</a></li>
-        <li><a href="https://hackernoon.com/a-quick-introduction-to-functional-javascript-7e6fe520e7fa">A quick intro
-            to functional JS</a></li>
-        <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0">What
-            is FP?</a></li>
-        <li><a href="https://github.com/hemanth/functional-programming-jargon">Functional Programming Jargon</a></li>
-      </ul>
-      <h3 id="pure-functions">Pure functions</h3>
-      <ul>
-        <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976">What
-            is a pure function?</a></li>
-        <li><a href="https://www.fpcomplete.com/blog/2017/04/pure-functional-programming">Pure Functional Programming 1</a></li>
-        <li><a href="https://www.fpcomplete.com/blog/2017/05/pure-functional-programming-part-2">Pure Functional
-            Programming 2</a></li>
-      </ul>
-      <h3 id="immutable-data">Immutable data</h3>
-      <ul>
-        <li><a href="https://www.youtube.com/watch?v=Wo0qiGPSV-s">Immutable DS for functional programming</a></li>
-        <li><a href="http://henrikeichenhardt.blogspot.com/2013/06/why-shared-mutable-state-is-root-of-all.html">Why
-            shared mutable state is the root of all evil</a></li>
-        <li><a href="http://hypirion.com/musings/understanding-persistent-vector-pt-1">Structural Sharing in Clojure:
-            Part 1</a></li>
-        <li><a href="http://hypirion.com/musings/understanding-persistent-vector-pt-2">Structural Sharing in Clojure:
-            Part 2</a></li>
-        <li><a href="http://hypirion.com/musings/understanding-persistent-vector-pt-3">Structural Sharing in Clojure:
-            Part 3</a></li>
-        <li><a href="http://hypirion.com/musings/persistent-vector-performance-summarised">Structural Sharing in
-            Clojure: Final part</a></li>
-      </ul>
-      <h3 id="higher-order-functions">Higher-order functions</h3>
-      <ul>
-        <li><a href="https://eloquentjavascript.net/05_higher_order.html">Eloquent JS: Higher Order Functions</a></li>
-        <li><a href="https://www.youtube.com/watch?v=BMUiFMZr7vk&amp;t=0s&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=2&amp;ab_channel=FunFunFunction">Fun
-            fun function Filter</a></li>
-        <li><a href="https://www.youtube.com/watch?v=bCqtb-Z5YGQ&amp;index=2&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;ab_channel=FunFunFunction">Fun
-            fun function Map</a></li>
-        <li><a href="https://www.youtube.com/watch?v=Wl98eZpkp-c&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=3&amp;frags=wn&amp;ab_channel=FunFunFunction">Fun
-            fun function Basic Reduce</a></li>
-        <li><a href="https://www.youtube.com/watch?v=1DMolJ2FrNY&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=4&amp;ab_channel=FunFunFunction">Fun
-            fun function Advanced Reduce</a></li>
-        <li><a href="https://clojure.org/guides/higher_order_functions">Clojure Higher Order Functions</a></li>
-        <li><a href="https://purelyfunctional.tv/lesson/filter/">Purely Function Filter</a></li>
-        <li><a href="https://purelyfunctional.tv/lesson/map/">Purely Functional Map</a></li>
-        <li><a href="https://purelyfunctional.tv/lesson/reduce/">Purely Functional Reduce</a></li>
-      </ul>
-      <h3 id="declarative-programming">Declarative Programming</h3>
-      <ul>
-        <li><a href="https://tylermcginnis.com/imperative-vs-declarative-programming/">Declarative Programming vs
-            Imperative</a></li>
-      </ul>
+  (<span class="hljs-name">get-total-amount</span> shopping-cart) <span class="hljs-comment">;; 120</span>
+  </code></pre>
+        <p>Here we have <code>shopping-cart</code>, the function <code>sum-amount</code> that receives the current
+          <code>total-amount</code>
+          , and the <code>current-product</code> object to <code>sum</code> them.</p>
+        <p>The <code>get-total-amount</code> function is used to <code>reduce</code> the <code>shopping-cart</code> by
+          using the <code>sum-amount</code> and starting from <code>0</code>.</p>
+        <p>Another way to get the total amount is to compose <code>map</code> and <code>reduce</code>. What do I mean
+          by
+          that? We can use <code>map</code> to transform the <code>shopping-cart</code> into a collection of <code>amount</code>
+          values, and then just use the <code>reduce</code> function with <code>+</code> function.</p>
+        <pre><code class="lang-clojure">(<span class="hljs-string">def </span><span class="hljs-string">shopping-cart
+  </span>  [{ :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 1"</span> :<span class="hljs-string">amount </span><span class="hljs-string">10 </span>},
+    { :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 2"</span> :<span class="hljs-string">amount </span><span class="hljs-string">30 </span>},
+    { :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 3"</span> :<span class="hljs-string">amount </span><span class="hljs-string">20 </span>},
+    { :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 4"</span> :<span class="hljs-string">amount </span><span class="hljs-string">60 </span>}])
 
-      <h2 id="that-s-it-">That’s it!</h2>
-      <p>Hey people, I hope you had fun reading this post, and I hope you learned a lot here! This was my attempt to
-        share what I’m learning.</p>
-      <p><a href="https://github.com/LeandroTk/functional-programming-article-source-code">Here is the repository with
-          all codes</a> from this article.</p>
-      <p>Come learn with me. I’m sharing resources and my code in this <a href="https://github.com/LeandroTk/learning-functional-programming">Learning
-          Functional Programming repository</a>.</p>
-      <p>I hope you saw something useful to you here. And see you next time! :)</p>
-      <p>My <a href="https://twitter.com/LeandroTk_">Twitter</a> &amp; <a href="https://github.com/LeandroTk">Github</a>.
-        ☺</p>
-      <p>TK.</p>
+  (<span class="hljs-string">defn </span><span class="hljs-built_in">get-amount</span>
+    [<span class="hljs-string">product]</span>
+    (:<span class="hljs-string">amount </span><span class="hljs-string">product)</span>)
 
+  (<span class="hljs-string">defn </span><span class="hljs-built_in">get-total-amount</span>
+    [<span class="hljs-string">shopping-cart]</span>
+    (<span class="hljs-string">reduce </span>+ (<span class="hljs-string">map </span><span class="hljs-built_in">get-amount</span> <span class="hljs-string">shopping-cart)</span>))
+
+  (<span class="hljs-built_in">get-total-amount</span> <span class="hljs-string">shopping-cart)</span> ;; <span class="hljs-string">120</span>
+  </code></pre>
+        <p>The <code>get-amount</code> receives the product object and returns only the <code>amount</code> value. So
+          what we have here is <code>[10 30 20 60]</code>. And then the <code>reduce</code> combines all items by
+          adding
+          up. Beautiful!</p>
+        <p>We took a look at how each higher-order function works. I want to show you an example of how we can compose
+          all three functions in a simple example.</p>
+        <p>Talking about <code>shopping cart</code>, imagine we have this list of products in our order:</p>
+        <pre><code class="lang-clojure">(<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">shopping</span></span>-cart
+    [{ <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Functional Programming"</span> <span class="hljs-symbol">:type</span> <span class="hljs-string">"books"</span>      <span class="hljs-symbol">:amount</span> <span class="hljs-number">10</span> },
+    { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Kindle"</span>                 <span class="hljs-symbol">:type</span> <span class="hljs-string">"eletronics"</span> <span class="hljs-symbol">:amount</span> <span class="hljs-number">30</span> },
+    { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Shoes"</span>                  <span class="hljs-symbol">:type</span> <span class="hljs-string">"fashion"</span>    <span class="hljs-symbol">:amount</span> <span class="hljs-number">20</span> },
+    { <span class="hljs-symbol">:product-title</span> <span class="hljs-string">"Clean Code"</span>             <span class="hljs-symbol">:type</span> <span class="hljs-string">"books"</span>      <span class="hljs-symbol">:amount</span> <span class="hljs-number">60</span> }])
+  </code></pre>
+        <p>We want the total amount of all books in our shopping cart. Simple as that. The algorithm?</p>
+        <ul>
+          <li>
+            <p><strong>filter</strong> by book type</p>
+          </li>
+          <li>
+            <p>transform the shopping cart into a collection of amount using <strong>map</strong></p>
+          </li>
+          <li>
+            <p>combine all items by adding them up with <strong>reduce</strong></p>
+          </li>
+        </ul>
+        <p>Done! 🎉</p>
+        <h2 id="resources">Resources</h2>
+        <p>I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For
+          more resources, visit my <a href="https://github.com/LeandroTk/learning-functional-programming">Functional
+            Programming Github repository</a>.</p>
+        <ul>
+          <li><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/ruby">Ruby specific
+              resources</a></li>
+          <li><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/javascript">Javascript
+              specific resources</a></li>
+          <li><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/clojure">Clojure
+              specific
+              resources</a></li>
+        </ul>
+        <h3 id="intros">Intros</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=e-5obm1G_FY">Learning FP in JS</a></li>
+          <li><a href="https://codewords.recurse.com/issues/one/an-introduction-to-functional-programming">Intro do FP
+              with Python</a></li>
+          <li><a href="https://blog.codeship.com/overview-of-functional-programming">Overview of FP</a></li>
+          <li><a href="https://hackernoon.com/a-quick-introduction-to-functional-javascript-7e6fe520e7fa">A quick intro
+              to functional JS</a></li>
+          <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0">What
+              is FP?</a></li>
+          <li><a href="https://github.com/hemanth/functional-programming-jargon">Functional Programming Jargon</a></li>
+        </ul>
+        <h3 id="pure-functions">Pure functions</h3>
+        <ul>
+          <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976">What
+              is a pure function?</a></li>
+          <li><a href="https://www.fpcomplete.com/blog/2017/04/pure-functional-programming">Pure Functional Programming
+              1</a></li>
+          <li><a href="https://www.fpcomplete.com/blog/2017/05/pure-functional-programming-part-2">Pure Functional
+              Programming 2</a></li>
+        </ul>
+        <h3 id="immutable-data">Immutable data</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=Wo0qiGPSV-s">Immutable DS for functional programming</a></li>
+          <li><a href="http://henrikeichenhardt.blogspot.com/2013/06/why-shared-mutable-state-is-root-of-all.html">Why
+              shared mutable state is the root of all evil</a></li>
+          <li><a href="http://hypirion.com/musings/understanding-persistent-vector-pt-1">Structural Sharing in Clojure:
+              Part 1</a></li>
+          <li><a href="http://hypirion.com/musings/understanding-persistent-vector-pt-2">Structural Sharing in Clojure:
+              Part 2</a></li>
+          <li><a href="http://hypirion.com/musings/understanding-persistent-vector-pt-3">Structural Sharing in Clojure:
+              Part 3</a></li>
+          <li><a href="http://hypirion.com/musings/persistent-vector-performance-summarised">Structural Sharing in
+              Clojure: Final part</a></li>
+        </ul>
+        <h3 id="higher-order-functions">Higher-order functions</h3>
+        <ul>
+          <li><a href="https://eloquentjavascript.net/05_higher_order.html">Eloquent JS: Higher Order Functions</a></li>
+          <li><a href="https://www.youtube.com/watch?v=BMUiFMZr7vk&amp;t=0s&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=2&amp;ab_channel=FunFunFunction">Fun
+              fun function Filter</a></li>
+          <li><a href="https://www.youtube.com/watch?v=bCqtb-Z5YGQ&amp;index=2&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;ab_channel=FunFunFunction">Fun
+              fun function Map</a></li>
+          <li><a href="https://www.youtube.com/watch?v=Wl98eZpkp-c&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=3&amp;frags=wn&amp;ab_channel=FunFunFunction">Fun
+              fun function Basic Reduce</a></li>
+          <li><a href="https://www.youtube.com/watch?v=1DMolJ2FrNY&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=4&amp;ab_channel=FunFunFunction">Fun
+              fun function Advanced Reduce</a></li>
+          <li><a href="https://clojure.org/guides/higher_order_functions">Clojure Higher Order Functions</a></li>
+          <li><a href="https://purelyfunctional.tv/lesson/filter/">Purely Function Filter</a></li>
+          <li><a href="https://purelyfunctional.tv/lesson/map/">Purely Functional Map</a></li>
+          <li><a href="https://purelyfunctional.tv/lesson/reduce/">Purely Functional Reduce</a></li>
+        </ul>
+        <h3 id="declarative-programming">Declarative Programming</h3>
+        <ul>
+          <li><a href="https://tylermcginnis.com/imperative-vs-declarative-programming/">Declarative Programming vs
+              Imperative</a></li>
+        </ul>
+
+        <h2 id="that-s-it-">That’s it!</h2>
+        <p>Hey people, I hope you had fun reading this post, and I hope you learned a lot here! This was my attempt to
+          share what I’m learning.</p>
+        <p><a href="https://github.com/LeandroTk/functional-programming-article-source-code">Here is the repository
+            with
+            all codes</a> from this article.</p>
+        <p>Come learn with me. I’m sharing resources and my code in this <a href="https://github.com/LeandroTk/learning-functional-programming">Learning
+            Functional Programming repository</a>.</p>
+        <p>I hope you saw something useful to you here. And see you next time! :)</p>
+        <p>My <a href="https://twitter.com/LeandroTk_">Twitter</a> &amp; <a href="https://github.com/LeandroTk">Github</a>.
+          ☺</p>
+      </div>
     </article>
 
     <div class="meta meta-footer">
