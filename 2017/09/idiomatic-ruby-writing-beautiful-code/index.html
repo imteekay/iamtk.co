@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
+  <meta name="keywords" content="elixir">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Idiomatic Ruby: writing beautiful code">
+  <meta property="og:description" content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*9hd_8qR0CMZ8L0pVbFLjDw.png">
+  <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Idiomatic Ruby: writing beautiful code">
+  <meta name="twitter:description" content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*9hd_8qR0CMZ8L0pVbFLjDw.png">
+
+  <title>Idiomatic Ruby: writing beautiful code</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Idiomatic Ruby: writing beautiful code</h1>
+
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2017-09-28T00:00:00.000Z" itemprop="datePublished">2017-09-28</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/ruby.html">ruby</a>
+          </div>
+        </div>
+      </header>
+
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*9hd_8qR0CMZ8L0pVbFLjDw.png" alt=""></p>
+      <p>Ruby is a beautiful programming language.</p>
+      <p>According to <a href="http://www.ruby-lang.org/en/">Ruby</a>’s official web page, Ruby is a:</p>
+      <blockquote>
+        <p>“dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant
+          syntax that is natural to read and easy to write.”</p>
+      </blockquote>
+      <p>Ruby was created by <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto</a>, a Japanese software
+        engineer. Since 2011, he has been the chief designer &amp; software engineer for Ruby at <a href="https://www.heroku.com/">Heroku</a>.</p>
+      <p>Matsumoto has often said that he tries<strong> to make Ruby natural, not simple</strong>, in a way that
+        mirrors life.</p>
+      <blockquote>
+        <p>“Ruby is simple in appearance, but is very complex inside, just like our human body” — Yukihiro Matsumoto</p>
+      </blockquote>
+      <p>I feel the same way about Ruby. It is a complex but very natural programming language, with a beautiful and
+        intuitive syntax.</p>
+      <p>With more intuitive and faster code, we are able to build better software. In this post, I will show you how I
+        express my thoughts (aka code) with Ruby, by using snippets of code.</p>
+      <h2 id="expressing-my-thoughts-with-array-methods">Expressing my thoughts with array methods</h2>
+      <h3 id="map">Map</h3>
+      <p>Use the <strong>map</strong> method to simplify your code and get what you want.</p>
+      <p>The method<strong> map</strong> returns a new array with the results of running a block once for every element
+        in enum.</p>
+      <p>Let’s try it:</p>
+      <pre><code class="ruby">an_array.map { |<span class="hljs-type">element</span>| <span class="hljs-type">element</span> * element }
+</code></pre>
+      <p>Simple as that.</p>
+      <p>But when you begin coding with Ruby, it is easy to always use the <strong>each</strong> iterator.</p>
+      <p>The <strong>each</strong> iterator as shown below</p>
+      <pre><code class="ruby">user_ids = []
+users.each { |<span class="hljs-type">user</span>| <span class="hljs-type">user_ids</span> &lt;&lt; user.id }
+</code></pre>
+      <p>Can be simplified with <strong>map</strong> in a single beautiful line of code:</p>
+      <pre><code class="ruby">user_ids = users.map { |<span class="hljs-type">user</span>| <span class="hljs-type">user</span>.id }
+</code></pre>
+      <p>Or even better (and faster):</p>
+      <pre><code class="ruby"><span class="hljs-attr">user_ids</span> = users.map(&amp;:id)
+</code></pre>
+      <h3 id="select">Select</h3>
+      <p>And when you’re used to coding with <strong>map</strong>, sometimes your code can be like this:</p>
+      <pre><code class="ruby">even_numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>].map { |element| element if element.even? } # [ni, <span class="hljs-number">2</span>, nil, <span class="hljs-number">4</span>, nil]
+even_numbers = even_numbers.compact # [<span class="hljs-number">2</span>, <span class="hljs-number">4</span>]
+</code></pre>
+      <p><strong>nil</strong> object as well. Use the <strong>compact</strong> method to remove all <strong>nil</strong>
+        objects.</p>
+      <p>And ta-da, you’ve selected all the even numbers.</p>
+      <p>Mission accomplished.</p>
+      <p>Come on, we can do better than this! Did you hear about the <strong>select</strong> method from enumerable
+        module?</p>
+      <pre><code class="ruby">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>].select { |element| element.even? }
+</code></pre>
+      <p>Just one line. Simple code. Easy to understand.</p>
+      <h3 id="bonus">Bonus</h3>
+      <pre><code class="ruby"><span class="hljs-selector-attr">[1, 2, 3, 4, 5]</span><span class="hljs-selector-class">.select</span>(&amp;<span class="hljs-selector-pseudo">:even</span>?)
+</code></pre>
+      <h3 id="sample">Sample</h3>
+      <p>Imagine that you need to get a random element from an array. You just started learning Ruby, so your first
+        thought will be, “Let’s use the <strong>random</strong> method,” and that’s what happens:</p>
+      <pre><code class="ruby">[<span class="hljs-string">1, 2, 3</span>][<span class="hljs-symbol">rand(3)</span>]
+</code></pre>
+      <p>Well, we can understand the code, but I’m not sure if it is good enough. And what if we use the <strong>shuffle</strong>
+        method?</p>
+      <pre><code class="ruby"><span class="hljs-selector-attr">[1, 2, 3]</span><span class="hljs-selector-class">.shuffle</span><span class="hljs-selector-class">.first</span>
+</code></pre>
+      <p>Hmm. I actually prefer to use <strong>shuffle</strong> over <strong>rand</strong>. But when I discovered the
+        <strong>sample</strong> method, it made so much more sense:</p>
+      <pre><code class="ruby">[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].sample
+</code></pre>
+      <p>Really, really simple.</p>
+      <p>Pretty natural and intuitive. We ask a <strong>sample</strong> from an array and the method returns it. Now
+        I’m happy.</p>
+      <p>What about you?</p>
+      <h2 id="expressing-my-thoughts-with-ruby-syntax">Expressing my thoughts with Ruby syntax</h2>
+      <p>As I mentioned before, I love the way Ruby lets me code. It’s really natural for me. I’ll show parts of the
+        beautiful Ruby syntax.</p>
+      <h3 id="implicit-return">Implicit return</h3>
+      <p>Any statement in Ruby returns the value of the last evaluated expression. A simple example is the <strong>getter
+        </strong>method. We call a method and expect some value in return.</p>
+      <p>Let’s see:</p>
+      <pre><code class="ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_user_ids</span><span class="hljs-params">(users)</span></span>
+  <span class="hljs-keyword">return</span> users.map(&amp;<span class="hljs-symbol">:id</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>But as we know, Ruby always returns the last evaluated expression. Why use the <strong>return</strong>
+        statement?</p>
+      <pre><code class="ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_user_ids</span><span class="hljs-params">(users)</span></span>
+  users.map(&amp;<span class="hljs-symbol">:id</span>)
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>After using Ruby for 3 years, I feel great using almost every method without the <strong>return</strong>
+        statement.</p>
+      <h3 id="multiple-assignments">Multiple assignments</h3>
+      <p>Ruby allows me to assign multiple variables at the same time. When you begin, you may be coding like this:</p>
+      <pre><code class="ruby">def values
+  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+end
+
+one   = values[<span class="hljs-number">0</span>]
+two   = values[<span class="hljs-number">1</span>]
+three = values[<span class="hljs-number">2</span>]
+</code></pre>
+      <p>But why not assign multiple variables at the same time?</p>
+      <pre><code class="ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">values</span></span>
+  [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-keyword">end</span>
+
+one, two, three = values
+</code></pre>
+      <p>Pretty awesome.</p>
+      <h3 id="methods-that-ask-questions-also-called-predicates-">Methods that ask questions (also called predicates)</h3>
+      <p>One feature that caught my attention when I was learning Ruby was the <strong>question mark (?)</strong>
+        method, also called the <strong>predicates </strong>methods. It was weird to see at first, but now it makes so
+        much sense. You can write code like this:</p>
+      <pre><code class="ruby">movie.awesome # =&gt; <span class="hljs-keyword">true</span>
+</code></pre>
+      <p>Ok… nothing wrong with that. But let’s use the question mark:</p>
+      <pre><code class="ruby">movie.awesome? # =&gt; <span class="hljs-keyword">true</span>
+</code></pre>
+      <p>This code is much more expressive, and I expect the method’s answer to return either a <strong>true</strong>
+        or <strong>false</strong> value.</p>
+      <p>A method that I commonly use is <strong>any?</strong> It’s like asking an array if it has <strong>any</strong>thing
+        inside it.</p>
+      <pre><code class="ruby">[].any? # =&gt; <span class="hljs-keyword">false</span>
+[<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].any? # =&gt; <span class="hljs-keyword">true</span>
+</code></pre>
+      <h3 id="interpolation">Interpolation</h3>
+      <p>For me string interpolation is more intuitive than string concatenation. Period. Let’s see it in action.</p>
+      <p>An example of a string concatenation:</p>
+      <pre><code class="ruby"><span class="hljs-attribute">programming_language</span> = <span class="hljs-string">"Ruby"</span>
+programming_language + <span class="hljs-string">" is a beautiful programming_language"</span> <span class="hljs-comment"># =&gt; "Ruby is a beautiful programming_language"</span>
+</code></pre>
+      <p>An example of a string interpolation:</p>
+      <pre><code class="ruby">programming_language = <span class="hljs-string">"Ruby"</span>
+<span class="hljs-string">"<span class="hljs-subst">#{programming_language}</span> is a beautiful programming_language"</span> <span class="hljs-comment"># =&gt; "Ruby is a beautiful programming_language"</span>
+</code></pre>
+      <p>I prefer string interpolation.</p>
+      <p>What do you think?</p>
+      <h3 id="the-if-statement">The if statement</h3>
+      <p>I like to use the <strong>if</strong> statement:</p>
+      <pre><code class="ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hey_ho?</span></span>
+  <span class="hljs-literal">true</span>
+<span class="hljs-keyword">end</span>
+
+puts <span class="hljs-string">"let’s go"</span> <span class="hljs-keyword">if</span> hey_ho?
+</code></pre>
+      <p>Pretty nice to code like that.</p>
+      <p>Feels really natural.</p>
+      <h3 id="the-try-method-with-rails-mode-on-">The try method (with Rails mode on)</h3>
+      <p>The <strong>try</strong> method invokes the method identified by the symbol, passing it any arguments and/or
+        the block specified. This is similar to Ruby’s <strong>Object#send.</strong> Unlike that method, <strong>nil</strong>
+        will be returned if the receiving object is a <strong>nil</strong> object or <strong>NilClass.</strong></p>
+      <p>Using <strong>if and unless</strong> condition statement:</p>
+      <pre><code class="ruby"><span class="hljs-selector-tag">user</span><span class="hljs-selector-class">.id</span> <span class="hljs-selector-tag">unless</span> <span class="hljs-selector-tag">user</span><span class="hljs-selector-class">.nil</span>?
+</code></pre>
+      <p>Using the <strong>try </strong>method:</p>
+      <pre><code class="ruby">user.<span class="hljs-keyword">try</span>(:<span class="hljs-built_in">id</span>)
+</code></pre>
+      <p>Since Ruby 2.3, we can use Ruby’s safe navigation operator<strong> (&amp;.)</strong> instead of Rails <strong>try
+        </strong>method.</p>
+      <pre><code class="ruby">user&amp;.<span class="hljs-built_in">id</span>
+</code></pre>
+      <h3 id="double-pipe-equals-memoization">Double pipe equals (||=) / memoization</h3>
+      <p>This feature is so C-O-O-L. It’s like caching a value in a variable.</p>
+      <pre><code class="ruby">some_variable <span class="hljs-string">||= 10</span>
+puts some_variable <span class="hljs-meta"># =&gt; 10</span>
+
+some_variable <span class="hljs-string">||= 99</span>
+puts some_variable <span class="hljs-meta"># =&gt; 10</span>
+</code></pre>
+      <p>You don’t need to use the <strong>if</strong> statement ever. Just use double pipe equals <strong>(||=)</strong>
+        and it’s done.</p>
+      <p>Simple and easy.</p>
+      <h3 id="class-static-method">Class static method</h3>
+      <p>One way I like to write Ruby classes is to define a <strong>static </strong>method (class method).</p>
+      <pre><code class="ruby">GetSearchResult.<span class="hljs-built_in">call</span>(<span class="hljs-built_in">params</span>)
+</code></pre>
+      <p>Simple. Beautiful. Intuitive.</p>
+      <p>What happens in the background?</p>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetSearchResult</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">call</span><span class="hljs-params">(params)</span></span>
+    new(params).call
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(params)</span></span>
+    @params = params
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">call</span></span>
+    <span class="hljs-comment"># ... your code here ...</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>The <strong>self.call</strong> method initializes an instance, and this object calls the <strong>call </strong>method.
+        <a href="https://github.com/collectiveidea/interactor">Interactor design pattern</a> uses it.</p>
+      <h3 id="getters-and-setters">Getters and setters</h3>
+      <p>For the same <strong>GetSearchResult</strong> class, if we want to use the params, we can use the @params</p>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetSearchResult</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">call</span><span class="hljs-params">(params)</span></span>
+    new(params).call
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(params)</span></span>
+    @params = params
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">call</span></span>
+    <span class="hljs-comment"># ... your code here ...</span>
+    @params <span class="hljs-comment"># do something with <span class="hljs-doctag">@params</span></span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>We define a <strong>setter </strong>and <strong>getter:</strong></p>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GetSearchResult</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">self</span>.<span class="hljs-title">call</span><span class="hljs-params">(params)</span></span>
+    new(params).call
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initialize</span><span class="hljs-params">(params)</span></span>
+    @params = params
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">call</span></span>
+    <span class="hljs-comment"># ... your code here ...</span>
+    params <span class="hljs-comment"># do something with params method here</span>
+  <span class="hljs-keyword">end</span>
+
+  private
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">params</span></span>
+    @params
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">params=</span><span class="hljs-params">(parameters)</span></span>
+    @params = parameters
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>Or we can define <strong>attr_reader</strong>, <strong>attr_writer,</strong> or <strong>attr_accessor</strong></p>
+      <pre><code class="ruby"><span class="hljs-keyword">class</span> GetSearchResult
+  attr_reader :param
+
+  def <span class="hljs-keyword">self</span>.call(<span class="hljs-keyword">params</span>)
+    <span class="hljs-keyword">new</span>(<span class="hljs-keyword">params</span>).call
+  <span class="hljs-keyword">end</span>
+
+  def initialize(<span class="hljs-keyword">params</span>)
+    @<span class="hljs-keyword">params</span> = <span class="hljs-keyword">params</span>
+  <span class="hljs-keyword">end</span>
+
+  def call
+    # ... your code here ...
+    <span class="hljs-keyword">params</span> # <span class="hljs-keyword">do</span> something <span class="hljs-keyword">with</span> <span class="hljs-keyword">params</span> <span class="hljs-function"><span class="hljs-keyword">method</span> <span class="hljs-title">here</span>
+  <span class="hljs-title">end</span>
+<span class="hljs-title">end</span></span>
+</code></pre>
+      <p>Nice.</p>
+      <p>We don’t need to define the <strong>getter</strong> and <strong>setter</strong> methods. The code just became
+        simpler, just what we want.</p>
+      <h3 id="tap">Tap</h3>
+      <p>Imagine you want to define a <strong>create_user</strong> method. This method will instantiate, set the
+        parameters, and save and return the user.</p>
+      <p>Let’s do it.</p>
+      <pre><code class="ruby">def create_user(<span class="hljs-keyword">params</span>)
+  <span class="hljs-keyword">user</span>       <span class="hljs-title">= User</span>.new
+  user.id    = <span class="hljs-keyword">params</span>[:id]
+  user.name  = <span class="hljs-keyword">params</span>[:name]
+  user.email = <span class="hljs-keyword">params</span>[:email]
+  <span class="hljs-comment"># ...</span>
+  user.save
+  <span class="hljs-keyword">user</span>
+<span class="hljs-title">end</span>
+</code></pre>
+      <p>Simple. Nothing wrong here.</p>
+      <p>So now let’s implement it with the <strong>tap</strong> method</p>
+      <pre><code class="ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_user</span><span class="hljs-params">(params)</span></span>
+  User.new.tap <span class="hljs-keyword">do</span> <span class="hljs-params">|user|</span>
+    user.id    = params[<span class="hljs-symbol">:id</span>]
+    user.name  = params[<span class="hljs-symbol">:name</span>]
+    user.email = params[<span class="hljs-symbol">:email</span>]
+    <span class="hljs-comment"># ...</span>
+    user.save
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>You just need to worry about the user parameters, and the <strong>tap</strong> method will return the user
+        object for you.</p>
+      <h2 id="that-s-it">That’s it</h2>
+      <p>We learned I write idiomatic Ruby by coding with</p>
+      <ul>
+        <li>
+          <p>array methods</p>
+        </li>
+        <li>
+          <p>syntax</p>
+        </li>
+      </ul>
+      <p>We also learned how Ruby is beautiful and intuitive, and runs even faster.</p>
+      <p>And that’s it, guys! I will be updating and including more details to my <a href="https://medium.com/@leandrotk_/">blog</a>.
+        The idea is to share great content, and the community helps to improve this post! ☺</p>
+      <p>I hope you guys appreciate the content and learned how to program beautiful code (and better software).</p>
+      <p>If you want a complete Ruby course, learn real-world coding skills and build projects, try <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
+          Month Ruby Bootcamp</a>. See you there ☺</p>
+      <p>This post appeared first <a href="https://medium.com/the-renaissance-developer/idiomatic-ruby-1b5fa1445098">here</a>
+        on my <a href="https://medium.com/the-renaissance-developer">Renaissance Developer publication</a>.</p>
+      <p>Have fun, keep learning, and always keep coding!</p>
+      <p>My <a href="https://www.medium.com/@leandrotk_">Medium</a>, <a href="https://twitter.com/LeandroTk_">Twitter</a>
+        &
+        <a href="https://github.com/LeandroTk">Github</a>.
+        ☺</p>
+
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/ruby.html">ruby</a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div id="footer-post">
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fab fa-list fa-lg"
+              aria-hidden="true"></i> TOC</a></li>
+        <li id="share">
+          <a class="twitter-share-button" onclick="window.open('https://twitter.com/intent/tweet?text=%22Actionable%20advice%20to%20start%20learning%20to%20code%22%20by%20%40leandrotk_')">
+            Tweet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  -->
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2018 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+</body>
+
+</html>
