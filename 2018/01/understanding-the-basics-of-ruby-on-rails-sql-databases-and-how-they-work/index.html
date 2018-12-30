@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Learn about databases and how they connect with Ruby on Rails.">
+  <meta name="keywords" content="elixir">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Understanding the basics of Ruby on Rails: SQL Databases and how they work">
+  <meta property="og:description" content="Learn about databases and how they connect with Ruby on Rails.">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg">
+  <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding the basics of Ruby on Rails: SQL Databases and how they work">
+  <meta name="twitter:description" content="Learn about databases and how they connect with Ruby on Rails.">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg">
+
+  <title>Understanding the basics of Ruby on Rails: SQL Databases and how they work</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Understanding the basics of Ruby on Rails: SQL Databases and how they work</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2018-01-05T00:00:00.000Z" itemprop="datePublished">2018-01-05</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/ruby.html">ruby</a>
+          </div>
+        </div>
+      </header>
+
+      <p><img src="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg" alt=""></p>
+      <p>After <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">learning about
+          Ruby</a>, the first step we took was to understand how the <a href="https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84">web
+          and the Ruby on Rails request-response cycle</a> work.</p>
+      <p>Now it’s time to learn about databases and how they connect with Ruby on Rails. Basically, the answer is the
+        Model: the <code>M</code> from <code>MVC</code> , as we learned <a href="https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84">here</a>.</p>
+      <p>Before learning web development with Rails, I really recommend learning about <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">Ruby
+          first</a>.</p>
+      <p>Let’s begin!</p>
+      <h2 id="what-is-a-database-">What is a database?</h2>
+      <p>Hmmm… The first thought that comes to my mind is something that stores data.</p>
+      <p>But this definition is quite imprecise! An array, a hash, a linked list, or any data structure can be
+        something that is able to store data.</p>
+      <p>When you turn off the computer, you lose all data values that were stored in that array (the same as all data
+        structures). So it’s not a good idea to store all my <code>precious data</code>.</p>
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*p1Yw2imC4HhUPaEfssliXw.gif" alt=""></p>
+      <p>We need to solve two problems here:</p>
+      <ol>
+        <li>
+          <p>Store data and get it anytime we want.</p>
+        </li>
+        <li>
+          <p>Store data in an organized and structured way, so we can get it easily.</p>
+        </li>
+      </ol>
+      <p>Should I store all the data in a notepad? Just put all the information inside it separated by commas, save the
+        <code>txt file</code>, and done. Now I can open it and get all the data I want. We can store data and get it
+        anytime… problem solved!</p>
+      <p>We solved this problem, but we missed the other. Now all the data is stored and we won’t lose it. But it’s not
+        well-structured in the file. We need the rule to store and get data in an organized and well-structured form.</p>
+      <p>Let’s think about how can we organize the data in a well-structured way.</p>
+      <p><strong>What about organizing all the data in tables?</strong></p>
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*QzMTJf39jdsi_alIWlGxig.jpeg" alt=""></p>
+      <p>So, here’s we have: the table’s header (columns name: First Name, Last Name, Address, etc) containing values
+        that we’ll store. For example, if we want to store the <strong>string “Mickey”</strong> (the value), it’ll be
+        stored in the <strong>“First Name”</strong> column.</p>
+      <ul>
+        <li>
+          <p><strong>Table</strong>: let’s say <strong>People</strong></p>
+        </li>
+        <li>
+          <p><strong>Columns</strong>: <strong>First name</strong>, <strong>Last Name</strong>, <strong>Address</strong>,
+            etc</p>
+        </li>
+        <li>
+          <p><strong>Rows</strong>: in this case, we can say that a row can be a <strong>person</strong> with, for
+            example, first name “Mickey” and last name “Mouse,” address “123 Fantasy Way,” etc.</p>
+        </li>
+        <li>
+          <p><strong>Fields</strong>: all data stored in the database.</p>
+        </li>
+      </ul>
+      <p>And now we have a well-structured way to store data<strong>: in a Table!</strong></p>
+      <h2 id="how-about-get-delete-insert-and-update-data-">How about get, delete, insert, and update data?</h2>
+      <p>We’ll use SQL language (I’ll not mention NoSQL world!) to manipulate the data. Let’s get the basics.</p>
+      <ol>
+        <li><strong>GET:</strong> if we want to get all data (<strong>person</strong>) from <strong>People</strong>
+          table, we need to select it from that table.</li>
+      </ol>
+      <pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> People;
+</code></pre>
+      <p>The (<strong>*)</strong> symbol means that it will select all columns from <strong>People</strong> table. If
+        we can get all columns, we can specify which columns we need for this select.</p>
+      <pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> firstname, lastname, age <span class="hljs-keyword">FROM</span> People;
+</code></pre>
+      <ol>
+        <li><strong>DELETE:</strong> we want to delete all data from our <strong>People</strong> table.</li>
+      </ol>
+      <pre><code class="lang-sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> People;
+</code></pre>
+      <p>But it’s not common to delete all data from a table. We usually use a condition to delete, like “I want to
+        delete all people under 21 years old.” We will learn how later in this post!</p>
+      <ol>
+        <li><strong>INSERT:</strong> we will insert/store data into the table.</li>
+      </ol>
+      <pre><code class="lang-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> People <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'Leandro'</span>, <span class="hljs-string">'Tk'</span>, <span class="hljs-string">'My Address 123'</span>, <span class="hljs-string">'São Paulo'</span>, <span class="hljs-number">23</span>);
+</code></pre>
+      <p>or we can specify into which columns we want to insert data.</p>
+      <pre><code class="lang-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> People (firstname, lastname, age) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">'Leandro'</span>, <span class="hljs-string">'Tk'</span>, <span class="hljs-number">23</span>);
+</code></pre>
+      <ol>
+        <li><strong>UPDATE:</strong> we have stored the data, but we want to update it.</li>
+      </ol>
+      <pre><code class="lang-sql"><span class="hljs-keyword">UPDATE</span> People <span class="hljs-keyword">SET</span> firstname=<span class="hljs-string">'Gennady'</span>, lastname=<span class="hljs-string">'korotkevich'</span>;
+</code></pre>
+      <h2 id="using-conditions-in-our-queries">Using conditions in our queries</h2>
+      <p>Now we can use SQL language to query (select, delete, insert, update) data.</p>
+      <ul>
+        <li>
+          <p>But what if we want to delete just records with the last name <strong>Kinoshita</strong>?</p>
+        </li>
+        <li>
+          <p>Or if we want to update a specific person with first name <strong>Leandro</strong>and last name <strong>Kinoshita</strong>?</p>
+        </li>
+        <li>
+          <p>Or just select all data from the people table and sort it by age from younger to older?</p>
+        </li>
+      </ul>
+      <p>Yeah, we use conditions like <strong>where</strong>and <strong>order by,</strong>and operators like <strong>or</strong>and
+        <strong>and</strong>. Let’s see some examples:</p>
+      <ul>
+        <li>Deleting all records from the people table with last name <strong>Kinoshita</strong>.</li>
+      </ul>
+      <pre><code class="lang-sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">From</span> People <span class="hljs-keyword">WHERE</span> lastname=<span class="hljs-string">"Kinoshita"</span>;
+</code></pre>
+      <ul>
+        <li>Updating all records from the people table with first name <strong>Leandro</strong> and last name <strong>Kinoshita</strong>.</li>
+      </ul>
+      <pre><code class="lang-sql"><span class="hljs-keyword">UPDATE</span> People <span class="hljs-keyword">SET</span> firstname=<span class="hljs-string">"Gennady"</span> <span class="hljs-keyword">WHERE</span> firstname=<span class="hljs-string">"Leandro"</span> <span class="hljs-keyword">AND</span> lastname=<span class="hljs-string">"Kinoshita"</span>;
+</code></pre>
+      <ul>
+        <li>Selecting all records from the people table but ordering them by age (in ascending order → ASC).</li>
+      </ul>
+      <pre><code class="lang-sql"><span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> People <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> age;
+</code></pre>
+      <h3 id="relationship-between-tables">Relationship between tables</h3>
+      <p>We know how to execute queries (with or without conditions). Let’s understand how the tables’ relationships
+        work.</p>
+      <ul>
+        <li>
+          <p><strong>One to One (1–1)</strong>: it’s about a relationship between two tables in which one can only
+            belong with the other. <strong>e.g.</strong> A person has one passport and that passport belongs to that
+            specific person. So in this example, we have table People, table Passports and a 1–1 relationship.</p>
+        </li>
+        <li>
+          <p><strong>One to Many (1-n)</strong>: it’s about a relationship between two tables in which a record from
+            one table can reference many records from another. <strong>e.g.</strong> Imagine an e-commerce platform:
+            users, orders, products, payments, etc. A user can have many orders, and each order belongs to that
+            specific user. So in this example, we have table Users, table Orders, and a 1-n relationship.</p>
+        </li>
+        <li>
+          <p><strong>Many to Many (n-n)</strong>: it’s about a relationship between two tables in which a record from
+            one table can reference many records from another. And a record from another can also reference many
+            records from the one. <strong>e.g.</strong> We have again the e-commerce platform: we divide products into
+            categories. A category has many products (category Technology has many products like cell phones,
+            notebooks, etc) and a product can belong to many categories (product Cellphone belongs to the Technology
+            and Electronics Categories). So in this example, we have table Products, table Categories, and an n-n
+            relationship.</p>
+        </li>
+      </ul>
+      <h2 id="rails-mode-on">Rails Mode ON</h2>
+      <p>We now understand the meaning of databases, we’ve tried some basic queries, and have talked about the
+        relationship between tables. But how can we use that knowledge in the <strong>Ruby on Rails and web development
+          World</strong>?</p>
+      <p>First of all: <strong>Rails</strong> is <strong>Rails</strong>. The <strong>Database</strong> is <strong>Database</strong>.
+        Is it obvious? But people usually get confused about that.</p>
+      <p>A User model <strong>can</strong> represent a Users table. But the model isn’t the table.</p>
+      <ul>
+        <li>
+          <p>In the <strong>database</strong>, we have tables and rows.</p>
+        </li>
+        <li>
+          <p>On <strong>rails</strong>, we have models (classes) and objects.</p>
+        </li>
+      </ul>
+      <p>Imagine a blog site. The blog needs an author for each post. So we create an <strong>Authors</strong> table
+        with some columns (first_name, last_name, etc):</p>
+      <pre><code><span class="hljs-attribute">rails g migration CreateAuthors</span>
+</code></pre>
+      <p>In the migration, we add columns <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>birthday</code>,
+        <code>created_at</code>, and <code>updated_at</code>. (<code>created_at</code> and <code>updated_at</code> are
+        created by the <code>t.timestamps</code> code).</p>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateAuthors</span> &lt; ActiveRecord::Migration[5.0]</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">change</span></span>
+    create_table <span class="hljs-symbol">:authors</span> <span class="hljs-keyword">do</span> <span class="hljs-params">|t|</span>
+      t.string <span class="hljs-symbol">:first_name</span>
+      t.string <span class="hljs-symbol">:last_name</span>
+      t.string <span class="hljs-symbol">:email</span>
+      t.date <span class="hljs-symbol">:birthday</span>
+      t.timestamps
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>So we create a migration (Ruby code), run the <code>rake db:migrate</code> command in the terminal, and it
+        generates a table <code>Authors</code> with <code>first_name</code>, <code>last_name</code>, <code>email</code>,
+        <code>birthday</code>, <code>created_at</code>, and <code>updated_at</code> columns.</p>
+      <p>Back to Rails — we can create an <code>Author</code> model:</p>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> &lt; ActiveRecord::Base</span>
+
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>So now we have an <code>Authors</code> table with some columns and an <code>Author</code> model.</p>
+      <h3 id="using-the-rails-console">Using the Rails Console</h3>
+      <p>Open the terminal and type <code>bundle exec rails c</code>. Remember, we are in the <strong>RAILS</strong>
+        console, so we have classes, objects, attributes, etc.</p>
+      <pre><code class="ruby">author = Author.new
+=&gt; #&lt;Author <span class="hljs-symbol">id:</span> nil, first_na<span class="hljs-symbol">me:</span> nil, last_na<span class="hljs-symbol">me:</span> nil&gt;
+author.first_name = <span class="hljs-string">"Leandro"</span>
+=&gt; <span class="hljs-string">"Leandro"</span>
+author.last_name = <span class="hljs-string">"Tk"</span>
+=&gt; <span class="hljs-string">"Tk"</span>
+author.save
+=&gt; #&lt;Author <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, first_na<span class="hljs-symbol">me:</span> <span class="hljs-string">"Leandro"</span>, last_na<span class="hljs-symbol">me:</span> <span class="hljs-string">"Tk"</span>&gt;
+</code></pre>
+      <h2 id="relationships-on-rails">Relationships on Rails</h2>
+      <p>We created an <code>Authors</code> table/model. What we need now is a <code>Posts</code> table/model. An
+        author has many posts and a post belongs to a specific author. The relationship here is <strong>one to many</strong>
+        (<strong>1-n</strong>). Remember?</p>
+      <p>So when we create a <code>Posts</code> table, we need to store a reference to the post’s author (column
+        <strong>author_id</strong> in the <strong>Posts</strong> table). It’s known as the <code>Foreign Key</code>.</p>
+      <p>And how do we relate the models?</p>
+      <h3 id="author-has_many-posts">author has_many posts</h3>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Author</span> &lt; ActiveRecord::Base</span>
+
+  has_many <span class="hljs-symbol">:posts</span>
+
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <h3 id="post-belongs_to-an-author">post belongs_to an author</h3>
+      <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> &lt; ActiveRecord::Base</span>
+
+  belongs_to <span class="hljs-symbol">:author</span>
+
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <h3 id="using-the-rails-console">Using the Rails Console</h3>
+      <pre><code class="ruby">author = Author.new
+=&gt; #&lt;Author <span class="hljs-symbol">id:</span> nil, first_na<span class="hljs-symbol">me:</span> nil, last_na<span class="hljs-symbol">me:</span> nil&gt;
+author.first_name = <span class="hljs-string">"Leandro"</span>
+=&gt; <span class="hljs-string">"Leandro"</span>
+author.last_name = <span class="hljs-string">"Tk"</span>
+=&gt; <span class="hljs-string">"Tk"</span>
+author.save
+=&gt; #&lt;Author <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, first_na<span class="hljs-symbol">me:</span> <span class="hljs-string">"Leandro"</span>, last_na<span class="hljs-symbol">me:</span> <span class="hljs-string">"Tk"</span>&gt;
+
+post = Post.new(tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>)
+=&gt; #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> nil&gt;
+post.author
+=&gt; nil
+post.author = author
+=&gt; #&lt;Author <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, first_na<span class="hljs-symbol">me:</span> <span class="hljs-string">"Leandro"</span>, last_na<span class="hljs-symbol">me:</span> <span class="hljs-string">"Tk"</span>&gt;
+post
+=&gt; #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;
+post.save
+=&gt; #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;
+</code></pre>
+      <ul>
+        <li>Quick explanation about <code>has_many</code> and <code>belongs_to</code>. Both <code>codes</code> are
+          methods defined on <code>ActiveRecord</code> class. You can see that we create our models inheriting from
+          <code>ActiveRecord::Base</code>.</li>
+      </ul>
+      <p>Remember in my <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">Ruby
+          Foundation</a> article that we learned about Object Oriented Programming, the Inheritance part? This is why
+        we can use <code>has_many</code> and <code>belongs_to</code> methods without defining it anywhere on our
+        application. Rails handles it for us.</p>
+      <p>If you want to understand this concept deeply, clone the <a href="https://github.com/rails/rails">Rails repo</a>
+        or check out the <a href="http://callahan.io/blog/2014/10/08/behind-the-scenes-of-the-has-many-active-record-association/">Behind
+          the Scenes of the ‘Has Many’ Active Record Association</a>.</p>
+      <h2 id="queries-on-rails">Queries on Rails</h2>
+      <p>We can query using ActiveRecord methods:</p>
+      <ul>
+        <li><strong>all</strong>: Get all objects from a specific model.</li>
+      </ul>
+      <pre><code class="ruby">Post.all
+=&gt; [#&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;]
+</code></pre>
+      <p>Behind the scenes, it is executing the <code>SELECT * FROM posts</code> query.</p>
+      <ul>
+        <li><strong>find</strong>: Using find we can get the object by the id (primary key).</li>
+      </ul>
+      <pre><code class="ruby">Post.find(<span class="hljs-number">1</span>)
+=&gt; #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;
+</code></pre>
+      <p>Behind the scenes, it is executing <code>SELECT * FROM posts WHERE id = 1</code> query.</p>
+      <ul>
+        <li><strong>where</strong>: Get the objects that pass the conditions.</li>
+      </ul>
+      <pre><code class="ruby">Post.where(tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>)
+=&gt; [#&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;]
+Post.where(tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>).first
+=&gt; #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;
+</code></pre>
+      <p>Behind the scenes, it is executing <code>SELECT * FROM posts WHERE title = &#39;Database &amp; Rails&#39;</code>query.</p>
+      <ul>
+        <li><strong>order</strong>: Sort all objects based on a column.</li>
+      </ul>
+      <pre><code class="ruby">Post.all
+=&gt; [#&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, created_<span class="hljs-symbol">at:</span> <span class="hljs-string">"2015-10-13 20:00:00"</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;, #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">2</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Ruby on Rails: HTTP, MVC and Routes"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum2..."</span>, created_<span class="hljs-symbol">at:</span> <span class="hljs-string">"2015-10-13 21:00:00"</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;]
+Post.order(<span class="hljs-string">"created_at DESC"</span>)
+=&gt; [#&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">2</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Ruby on Rails: HTTP, MVC and Routes"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum2..."</span>, created_<span class="hljs-symbol">at:</span> <span class="hljs-string">"2015-10-13 20:00:00"</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;, #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, created_<span class="hljs-symbol">at:</span> <span class="hljs-string">"2015-10-13 21:00:00"</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;]
+</code></pre>
+      <p>Behind the scenes, it is executing <code>SELECT * FROM posts ORDER BY created_at DESC</code> query.</p>
+      <h2 id="that-s-all-">That’s all!</h2>
+      <p>We learned a lot here. I hope you guys appreciate the content and learn more about how the Databases and Rails
+        models work.</p>
+      <p>This is one more step forward in my journey to learning and mastering Rails and web development. You can see
+        the documentation of my complete journey here on my <a href="https://medium.com/the-renaissance-developer">Renaissance
+          Developer publication</a>.</p>
+      <p>If you want a complete <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">Ruby</a>
+        and <a href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails</a>
+        course, learn real-world coding skills and build projects, try <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
+          Month Ruby Bootcamp</a> and <a href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails
+          Bootcamp</a>. See you there ☺</p>
+      <p>Have fun, and keep learning and coding.</p>
+      <p>My <a href="https://medium.com/@leandrotk_/">Medium</a>, <a href="https://twitter.com/LeandroTk_">Twitter</a>
+        &amp; <a href="https://github.com/LeandroTk">Github</a>. ☺</p>
+
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/ruby.html">ruby</a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div id="footer-post">
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fab fa-list fa-lg"
+              aria-hidden="true"></i> TOC</a></li>
+        <li id="share">
+          <a class="twitter-share-button" onclick="window.open('https://twitter.com/intent/tweet?text=%22Actionable%20advice%20to%20start%20learning%20to%20code%22%20by%20%40leandrotk_')">
+            Tweet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  -->
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2018 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+</body>
+
+</html>

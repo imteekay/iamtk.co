@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="we’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on Rails web framework">
+  <meta name="keywords" content="elixir">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes">
+  <meta property="og:description" content="we’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on Rails web framework">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg">
+  <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes">
+  <meta name="twitter:description" content="we’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on Rails web framework">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg">
+
+  <title>Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2018-01-02T00:00:00.000Z" itemprop="datePublished">2018-01-02</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/ruby.html">ruby</a>
+          </div>
+        </div>
+      </header>
+
+      <p><img src="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg" alt=""></p>
+      <p>After learning your <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">first
+          programming language</a>, you may ask what can you do with programming: AI/Machine Learning? Hardware
+        development? Mobile apps? Or maybe you want to start developing web applications! :)</p>
+      <p>Here we’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on
+        Rails web framework. Let’s dive into the web world.</p>
+      <p>Before learning web development with Rails, I really recommend learning about <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">Ruby
+          first</a>.</p>
+      <h2 id="how-does-the-web-work-">How does the web work?</h2>
+      <p>The web has a bunch of layers (<a href="https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm">Application,
+          TCP, Internet, Hardware layers</a>) that are all connected. But basically, it works through <strong>HTTP</strong>
+        (Hypertext Transfer Protocol).</p>
+      <blockquote>
+        <p>The Hypertext Transfer Protocol (HTTP) is an application protocol for distributed, collaborative, hypermedia
+          information systems. — Wikipedia</p>
+      </blockquote>
+      <p>The <strong>HTTP</strong> works like a request — response cycle in the client — server model.</p>
+      <p>We have a web browser (Google Chrome, for example). So we type the <code>www.google.com</code> URL, and the
+        client submits the HTTP request (request message) to the server. The server returns the HTTP response (response
+        message — in that case, the response is the HTML from Google’s website).</p>
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*0HsqvxES_m9Serhg8xW2Xg.png" alt=""></p>
+      <p>The client does the request and receives the response from the server. The client handles the UI and user
+        interactions. On the server, we can store and retrieve data (on databases), process logic on the background
+        (workers/jobs), and a lot of other things.</p>
+      <p>If you want to deeply understand it, I’ll suggest some resources. I am a big fan of <a href="https://medium.com/@preethikasireddy">Preethi</a>’s
+        posts. Here a series of <strong>3 parts</strong>:</p>
+      <ul>
+        <li>
+          <p><a href="https://medium.freecodecamp.org/how-the-web-works-a-primer-for-newcomers-to-web-development-or-anyone-really-b4584e63585c">A
+              Primer for Newcomers to Web Development</a></p>
+        </li>
+        <li>
+          <p><a href="https://medium.freecodecamp.org/how-the-web-works-part-ii-client-server-model-the-structure-of-a-web-application-735b4b6d76e3">Client-Server
+              Model &amp; the Structure of a Web Application</a></p>
+        </li>
+        <li>
+          <p><a href="https://medium.freecodecamp.org/how-the-web-works-part-iii-http-rest-e61bc50fa0a">HTTP &amp; REST</a></p>
+        </li>
+      </ul>
+      <h2 id="the-mvc-architecture-and-rails-routes">The MVC architecture and Rails Routes</h2>
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*eDPWR3lYGm1ogbef2beyHA.png" alt=""></p>
+      <p>Now that we understand how the Web works, we’ll study the MVC architecture and Rails Routes.</p>
+      <p>MVC stands for Model, View, and Controller.</p>
+      <p>On this architecture, we have the “separation of the concerns” among Models, Views and, Controllers. Each part
+        has its own responsibility. Let’s dive into each part.</p>
+      <h3 id="model">Model</h3>
+      <blockquote>
+        <p>“Maintains the relationship between Object and Database and handles validation, association, transactions”</p>
+      </blockquote>
+      <p>This means that the model will maintain an extreme relation with the Database. Each model (can) represent a
+        database table (in case of SQL databases). This model object gains capabilities (inherited from
+        ActiveRecord — Rails class) to retrieve, save, edit, and delete data from database table. We use model objects
+        as a layer between our application and the database.</p>
+      <p>Besides that relation with the database, the model can create <strong>validations</strong>and <strong>associations</strong>
+        between models.</p>
+      <h3 id="view">View</h3>
+      <blockquote>
+        <p>“A presentation of data in a particular format, triggered by a controller’s decision to present the data.”</p>
+      </blockquote>
+      <p>This is the presentation of the request’s response. This presentation can be in a bunch of format types: PDF,
+        HTML, JSON, etc. The final result of a view will likely be the user interface (UI) — Part of the “Client.”</p>
+      <p>For most pages on the web, the views will be an HTML styled with CSS and JS. But we can implement PDFs of user
+        behavior on a <a href="https://www.worldpackers.com/">Travel digital product</a> to show all employees how
+        people use their website, too.</p>
+      <h3 id="controller">Controller</h3>
+      <blockquote>
+        <p>“The facility within the application that directs traffic, on the one hand querying the models for specific
+          data, and on the other hand organizing that data (searching, sorting) into a form that fits the needs of a
+          given view.”</p>
+      </blockquote>
+      <p>The controller is the “Maestro.” It takes care of the flow: uses models to do queries, parses data, and make
+        decisions about in which format you’ll present the data.</p>
+      <p><img src="https://cdn-images-1.medium.com/max/1600/1*KK61kGXrkaFBDfY7uWukyQ.png" alt=""></p>
+      <h2 id="mvc-routes-cycle-on-a-rails-application">MVC &amp; Routes cycle on a Rails application</h2>
+      <p>So imagine that we work at a <a href="https://www.worldpackers.com">Travel Startup</a>. Part of the product is
+        to present a <a href="https://www.worldpackers.com/articles">list of great articles about travel stories and
+          tips</a> to travelers.</p>
+      <p>Just think from the traveler’s perspective. You go to <code>www.worldpackers.com/articles</code> and you see a
+        beautiful page listing a bunch of great articles.</p>
+      <p>When you type this URL in the browser, it makes a request to the server. In the server, we have the Rails web
+        application. The Rails Router verifies if there is an entry matching the requested URL.</p>
+      <p>We just need to configure the routes for this line:</p>
+      <pre><code class="lang-ruby"><span class="hljs-selector-tag">resources</span> <span class="hljs-selector-pseudo">:articles</span>
+</code></pre>
+      <p>This will create RESTful routes for articles. If we run <code>bundle exec rake routes</code>, it will show the
+        list of paths created.</p>
+      <pre><code class="lang-shell">HTTP VERB   PATH                          Controller<span class="hljs-comment">#Action</span>
+GET         /articles(.<span class="hljs-symbol">:format</span>)           articles<span class="hljs-comment">#index</span>
+POST        /articles(.<span class="hljs-symbol">:format</span>)           articles<span class="hljs-comment">#create</span>
+GET         /articles/new(.<span class="hljs-symbol">:format</span>)       articles<span class="hljs-comment">#new</span>
+GET         /articles/<span class="hljs-symbol">:id/edit</span>(.<span class="hljs-symbol">:format</span>)  articles<span class="hljs-comment">#edit</span>
+GET         /articles/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)       articles<span class="hljs-comment">#show</span>
+PATCH       /articles/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)       articles<span class="hljs-comment">#update</span>
+PUT         /articles/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)       articles<span class="hljs-comment">#update</span>
+DELETE      /articles/<span class="hljs-symbol">:id</span>(.<span class="hljs-symbol">:format</span>)       articles<span class="hljs-comment">#destroy</span>
+</code></pre>
+      <p>The HTTP verb can be <code>GET</code>, <code>POST</code>, <code>PATCH</code>, <code>PUT</code>, or <code>DELETE</code>.
+        And we know how Rails maps each <code>PATH</code> to the right <code>controller</code> and <code>action</code>.
+        Read more <a href="http://guides.rubyonrails.org/routing.html">here</a>.</p>
+      <p>In our case, the server will receive <code>/articles</code> path and <code>GET</code> as the HTTP verb. It
+        will map to <code>ArticlesController</code> and <code>index</code> action.</p>
+      <p>In the <strong>controller</strong><code>ArticlesController</code> we use the <strong>model</strong> <code>Article</code>
+        to get all articles in the database and render the <strong>view</strong> <code>index.html.erb</code> as the
+        server response (the UI).</p>
+      <pre><code class="lang-ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ArticlesController</span> &lt; ApplicationController</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">index</span></span>
+    @articles = Article.all
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+</code></pre>
+      <p>By convention, this controller will render the view in <code>views/articles/index.html.erb</code>. Basically,
+        it’s a plain HTML file powered by Ruby.</p>
+      <p>The Rails request-response cycle is one of the first concepts you need to understand when you start learning
+        web development.</p>
+      <p>The user does stuff (request to the server), the the Rails application has the router to map the URL path to
+        the right controller. In the controller, we can do all things with a model (or more than one model) — meaning
+        getting, saving, editing, deleting data — and render a view to the user.</p>
+      <h2 id="that-s-all-">That’s all!</h2>
+      <p>We learned a lot here. I hope you guys appreciate the content and learn more about how the MVC architecture
+        and routing work on Rails.</p>
+      <p>This is one more step forward in my journey to learning and mastering Rails and web development. You can see
+        the documentation of my complete journey here on my <a href="https://medium.com/the-renaissance-developer">Renaissance
+          Developer publication</a>.</p>
+      <p>If you want a complete <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">Ruby</a>
+        and <a href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails</a>
+        course, learn real-world coding skills and build projects, try <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
+          Month Ruby Bootcamp</a> and <a href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails
+          Bootcamp</a>. See you there ☺</p>
+      <p>Have fun, and keep learning and coding.</p>
+      <p>My <a href="https://twitter.com/LeandroTk_">Twitter</a>, <a href="https://medium.com/@leandrotk_/">Medium</a>
+        &amp; <a href="https://github.com/LeandroTk">Github</a>. ☺</p>
+
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/ruby.html">ruby</a>
+      </div>
+    </div>
+  </div>
+
+  <!--
+  <div id="footer-post">
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fab fa-list fa-lg"
+              aria-hidden="true"></i> TOC</a></li>
+        <li id="share">
+          <a class="twitter-share-button" onclick="window.open('https://twitter.com/intent/tweet?text=%22Actionable%20advice%20to%20start%20learning%20to%20code%22%20by%20%40leandrotk_')">
+            Tweet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  -->
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2018 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+</body>
+
+</html>
