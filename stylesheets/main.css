@@ -455,9 +455,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
+
 .content {
   flex: 1;
 }
+
 .content p {
   -moz-hyphens: auto;
   -ms-hyphens: auto;
@@ -550,6 +552,20 @@ body {
     text-align: justify;
   }
 }
+
+.content .quotes blockquote {
+  border-left: 1px solid;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+.content .quotes blockquote strong {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 5px;
+  line-height: 26px;
+}
+
 #header {
   max-width: 710px;
   width: 100%;
