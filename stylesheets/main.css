@@ -1077,8 +1077,18 @@ article header .postdate {
   display: inline;
 }
 
+article .figure {
+  text-align: center;
+  margin-bottom: 2em;
+  margin-top: 2em;
+}
+
 article img {
   width: 100%;
+}
+
+article .figcaption {
+  font-size: 12px;
 }
 
 article .content img,
