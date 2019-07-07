@@ -21,8 +21,8 @@
 
   <title>Understanding the basics of Ruby on Rails: SQL Databases and how they work</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
 </head>
 
@@ -49,11 +49,15 @@
 
       <p><img src="https://cdn-images-1.medium.com/max/2000/1*iIiiKaJKg8k9aRU8iWxCxA.jpeg" alt=""></p>
       <p>After <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">learning about
-          Ruby</a>, the first step we took was to understand how the <a href="https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84">web
+          Ruby</a>, the first step we took was to understand how the <a
+          href="https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84">web
           and the Ruby on Rails request-response cycle</a> work.</p>
       <p>Now it’s time to learn about databases and how they connect with Ruby on Rails. Basically, the answer is the
-        Model: the <code>M</code> from <code>MVC</code> , as we learned <a href="https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84">here</a>.</p>
-      <p>Before learning web development with Rails, I really recommend learning about <a href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">Ruby
+        Model: the <code>M</code> from <code>MVC</code> , as we learned <a
+          href="https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84">here</a>.
+      </p>
+      <p>Before learning web development with Rails, I really recommend learning about <a
+          href="https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d">Ruby
           first</a>.</p>
       <p>Let’s begin!</p>
       <h2 id="what-is-a-database-">What is a database?</h2>
@@ -76,7 +80,8 @@
         <code>txt file</code>, and done. Now I can open it and get all the data I want. We can store data and get it
         anytime… problem solved!</p>
       <p>We solved this problem, but we missed the other. Now all the data is stored and we won’t lose it. But it’s not
-        well-structured in the file. We need the rule to store and get data in an organized and well-structured form.</p>
+        well-structured in the file. We need the rule to store and get data in an organized and well-structured form.
+      </p>
       <p>Let’s think about how can we organize the data in a well-structured way.</p>
       <p><strong>What about organizing all the data in tables?</strong></p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*QzMTJf39jdsi_alIWlGxig.jpeg" alt=""></p>
@@ -88,7 +93,8 @@
           <p><strong>Table</strong>: let’s say <strong>People</strong></p>
         </li>
         <li>
-          <p><strong>Columns</strong>: <strong>First name</strong>, <strong>Last Name</strong>, <strong>Address</strong>,
+          <p><strong>Columns</strong>: <strong>First name</strong>, <strong>Last Name</strong>,
+            <strong>Address</strong>,
             etc</p>
         </li>
         <li>
@@ -139,13 +145,15 @@
           <p>But what if we want to delete just records with the last name <strong>Kinoshita</strong>?</p>
         </li>
         <li>
-          <p>Or if we want to update a specific person with first name <strong>Leandro</strong>and last name <strong>Kinoshita</strong>?</p>
+          <p>Or if we want to update a specific person with first name <strong>Leandro</strong>and last name
+            <strong>Kinoshita</strong>?</p>
         </li>
         <li>
           <p>Or just select all data from the people table and sort it by age from younger to older?</p>
         </li>
       </ul>
-      <p>Yeah, we use conditions like <strong>where</strong>and <strong>order by,</strong>and operators like <strong>or</strong>and
+      <p>Yeah, we use conditions like <strong>where</strong>and <strong>order by,</strong>and operators like
+        <strong>or</strong>and
         <strong>and</strong>. Let’s see some examples:</p>
       <ul>
         <li>Deleting all records from the people table with last name <strong>Kinoshita</strong>.</li>
@@ -153,7 +161,8 @@
       <pre><code class="lang-sql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">From</span> People <span class="hljs-keyword">WHERE</span> lastname=<span class="hljs-string">"Kinoshita"</span>;
 </code></pre>
       <ul>
-        <li>Updating all records from the people table with first name <strong>Leandro</strong> and last name <strong>Kinoshita</strong>.</li>
+        <li>Updating all records from the people table with first name <strong>Leandro</strong> and last name
+          <strong>Kinoshita</strong>.</li>
       </ul>
       <pre><code class="lang-sql"><span class="hljs-keyword">UPDATE</span> People <span class="hljs-keyword">SET</span> firstname=<span class="hljs-string">"Gennady"</span> <span class="hljs-keyword">WHERE</span> firstname=<span class="hljs-string">"Leandro"</span> <span class="hljs-keyword">AND</span> lastname=<span class="hljs-string">"Kinoshita"</span>;
 </code></pre>
@@ -191,7 +200,8 @@
       <p>We now understand the meaning of databases, we’ve tried some basic queries, and have talked about the
         relationship between tables. But how can we use that knowledge in the <strong>Ruby on Rails and web development
           World</strong>?</p>
-      <p>First of all: <strong>Rails</strong> is <strong>Rails</strong>. The <strong>Database</strong> is <strong>Database</strong>.
+      <p>First of all: <strong>Rails</strong> is <strong>Rails</strong>. The <strong>Database</strong> is
+        <strong>Database</strong>.
         Is it obvious? But people usually get confused about that.</p>
       <p>A User model <strong>can</strong> represent a Users table. But the model isn’t the table.</p>
       <ul>
@@ -206,7 +216,8 @@
         with some columns (first_name, last_name, etc):</p>
       <pre><code><span class="hljs-attribute">rails g migration CreateAuthors</span>
 </code></pre>
-      <p>In the migration, we add columns <code>first_name</code>, <code>last_name</code>, <code>email</code>, <code>birthday</code>,
+      <p>In the migration, we add columns <code>first_name</code>, <code>last_name</code>, <code>email</code>,
+        <code>birthday</code>,
         <code>created_at</code>, and <code>updated_at</code>. (<code>created_at</code> and <code>updated_at</code> are
         created by the <code>t.timestamps</code> code).</p>
       <pre><code class="ruby"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CreateAuthors</span> &lt; ActiveRecord::Migration[5.0]</span>
@@ -244,7 +255,8 @@ author.save
 </code></pre>
       <h2 id="relationships-on-rails">Relationships on Rails</h2>
       <p>We created an <code>Authors</code> table/model. What we need now is a <code>Posts</code> table/model. An
-        author has many posts and a post belongs to a specific author. The relationship here is <strong>one to many</strong>
+        author has many posts and a post belongs to a specific author. The relationship here is <strong>one to
+          many</strong>
         (<strong>1-n</strong>). Remember?</p>
       <p>So when we create a <code>Posts</code> table, we need to store a reference to the post’s author (column
         <strong>author_id</strong> in the <strong>Posts</strong> table). It’s known as the <code>Foreign Key</code>.</p>
@@ -293,8 +305,10 @@ post.save
           Foundation</a> article that we learned about Object Oriented Programming, the Inheritance part? This is why
         we can use <code>has_many</code> and <code>belongs_to</code> methods without defining it anywhere on our
         application. Rails handles it for us.</p>
-      <p>If you want to understand this concept deeply, clone the <a href="https://github.com/rails/rails">Rails repo</a>
-        or check out the <a href="http://callahan.io/blog/2014/10/08/behind-the-scenes-of-the-has-many-active-record-association/">Behind
+      <p>If you want to understand this concept deeply, clone the <a href="https://github.com/rails/rails">Rails
+          repo</a>
+        or check out the <a
+          href="http://callahan.io/blog/2014/10/08/behind-the-scenes-of-the-has-many-active-record-association/">Behind
           the Scenes of the ‘Has Many’ Active Record Association</a>.</p>
       <h2 id="queries-on-rails">Queries on Rails</h2>
       <p>We can query using ActiveRecord methods:</p>
@@ -320,7 +334,8 @@ post.save
 Post.where(tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>).first
 =&gt; #&lt;Post <span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>, tit<span class="hljs-symbol">le:</span> <span class="hljs-string">"Database &amp; Rails"</span>, te<span class="hljs-symbol">xt:</span> <span class="hljs-string">"Lorem Ipsum..."</span>, author_<span class="hljs-symbol">id:</span> <span class="hljs-number">1</span>&gt;
 </code></pre>
-      <p>Behind the scenes, it is executing <code>SELECT * FROM posts WHERE title = &#39;Database &amp; Rails&#39;</code>query.</p>
+      <p>Behind the scenes, it is executing
+        <code>SELECT * FROM posts WHERE title = &#39;Database &amp; Rails&#39;</code>query.</p>
       <ul>
         <li><strong>order</strong>: Sort all objects based on a column.</li>
       </ul>
@@ -334,12 +349,17 @@ Post.order(<span class="hljs-string">"created_at DESC"</span>)
       <p>We learned a lot here. I hope you guys appreciate the content and learn more about how the Databases and Rails
         models work.</p>
       <p>This is one more step forward in my journey to learning and mastering Rails and web development. You can see
-        the documentation of my complete journey here on my <a href="https://medium.com/the-renaissance-developer">Renaissance
+        the documentation of my complete journey here on my <a
+          href="https://medium.com/the-renaissance-developer">Renaissance
           Developer publication</a>.</p>
-      <p>If you want a complete <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">Ruby</a>
-        and <a href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails</a>
-        course, learn real-world coding skills and build projects, try <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
-          Month Ruby Bootcamp</a> and <a href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails
+      <p>If you want a complete <a
+          href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">Ruby</a>
+        and <a
+          href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails</a>
+        course, learn real-world coding skills and build projects, try <a
+          href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
+          Month Ruby Bootcamp</a> and <a
+          href="https://onemonth.com/courses/rails?mbsy=lG6tz&amp;mbsy_source=d2442db6-e764-401a-a394-a9c081468830&amp;discount_code=TKRuby1&amp;campaignid=33448">Rails
           Bootcamp</a>. See you there ☺</p>
       <p>Have fun, and keep learning and coding.</p>
       <p>My <a href="https://medium.com/@leandrotk_/">Medium</a>, <a href="https://twitter.com/LeandroTk_">Twitter</a>
@@ -372,7 +392,7 @@ Post.order(<span class="hljs-string">"created_at DESC"</span>)
 
   <footer id="footer" class="article-footer">
     <div class="footer-left">
-      Copyright &copy; 2018 TK
+      Copyright &copy; 2019 TK
     </div>
     <div class="footer-right">
       <nav>

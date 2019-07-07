@@ -366,7 +366,7 @@
   margin-bottom: 0.5rem;
 }
 .content hr {
-  border: 1px dashed #ccc;
+  border: 0.5px solid #ccc;
 }
 .content strong {
   font-weight: bold;

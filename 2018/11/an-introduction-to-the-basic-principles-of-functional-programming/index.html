@@ -6,23 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="description" content="In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.">
+  <meta name="description"
+    content="In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.">
   <meta name="keywords" content="elixir">
   <meta property="og:type" content="article">
   <meta property="og:title" content="An introduction to the basic principles of Functional Programming">
-  <meta property="og:description" content="In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.">
+  <meta property="og:description"
+    content="In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.">
   <meta property="og:locale" content="en">
   <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*XthWUtD_NU-VJ7ESA2qX3A.jpeg">
   <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="An introduction to the basic principles of Functional Programming">
-  <meta name="twitter:description" content="In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.">
+  <meta name="twitter:description"
+    content="In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.">
   <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*XthWUtD_NU-VJ7ESA2qX3A.jpeg">
 
   <title>An introduction to the basic principles of Functional Programming</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
 </head>
 
@@ -199,7 +202,8 @@ counter <span class="hljs-comment">;; 1</span>
         increment each number, and return a new list of incremented numbers.</p>
       <pre><code class="lang-clojure">(= [<span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>] (increment-numbers [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>])) ;; true
 </code></pre>
-      <p>For the <code>input</code> <code>[1 2 3 4 5]</code>, the expected <code>output</code> would be <code>[2 3 4 5 6]</code>.</p>
+      <p>For the <code>input</code> <code>[1 2 3 4 5]</code>, the expected <code>output</code> would be
+        <code>[2 3 4 5 6]</code>.</p>
       <h2 id="immutability">Immutability</h2>
       <blockquote>
         <p><em>Unchanging over time or unable to be changed.</em></p>
@@ -231,9 +235,12 @@ sumOfValues <span class="hljs-comment">// 15</span>
 
 (<span class="hljs-name">sum</span> [<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>]) <span class="hljs-comment">;; 15</span>
 </code></pre>
-      <p>So here we have the <code>sum</code> function that receives a vector of numerical values. The <code>recur</code>
-        jumps back into the <code>loop</code> until we get the vector empty (<a href="https://en.wikipedia.org/wiki/Recursion">our
-          recursion</a> <code>base case</code>). For each &quot;iteration&quot; we will add the value to the <code>total</code>
+      <p>So here we have the <code>sum</code> function that receives a vector of numerical values. The
+        <code>recur</code>
+        jumps back into the <code>loop</code> until we get the vector empty (<a
+          href="https://en.wikipedia.org/wiki/Recursion">our
+          recursion</a> <code>base case</code>). For each &quot;iteration&quot; we will add the value to the
+        <code>total</code>
         accumulator.</p>
       <p>With recursion, we keep our <strong>variables</strong> immutable.</p>
       <p><strong>Observation</strong>: Yes! We can use <code>reduce</code> to implement this function. We will see
@@ -462,7 +469,8 @@ console.log(filterArray(<span class="hljs-number">3</span>, [<span class="hljs-n
         element in the collection. <code>%</code> represents the parameter of the anonymous function — in this case
         the
         current element inside the <code>filter</code>.</p>
-      <p>We can also do this with maps. Imagine we have a map of people with their <code>name</code> and <code>age</code>.
+      <p>We can also do this with maps. Imagine we have a map of people with their <code>name</code> and
+        <code>age</code>.
         And we want to filter only people over a specified value of age, in this example people who are more than 21
         years old.</p>
       <pre><code class="lang-clojure">(<span class="hljs-name"><span class="hljs-builtin-name">def</span></span> people [{<span class="hljs-symbol">:name</span> <span class="hljs-string">"TK"</span> <span class="hljs-symbol">:age</span> <span class="hljs-number">26</span>}
@@ -535,7 +543,8 @@ console.<span class="hljs-built_in">log</span>(peopleSentences); // ['TK <span c
 (<span class="hljs-name">people-sentences</span> people) <span class="hljs-comment">;; ("TK is 26 years old" "Kaio is 10 years old" "Kazumi is 30 years old")</span>
 </code></pre>
       <p>The whole idea is to transform a given collection into a new collection.</p>
-      <p>Another interesting Hacker Rank problem was the <a href="https://www.hackerrank.com/challenges/fp-update-list/problem">update
+      <p>Another interesting Hacker Rank problem was the <a
+          href="https://www.hackerrank.com/challenges/fp-update-list/problem">update
           list problem</a>. We just want to update the values of a given collection with their absolute values.</p>
       <p>For example, the input <code>[1 2 3 -4 5]</code>needs the output to be <code>[1 2 3 4 5]</code>. The
         absolute
@@ -588,7 +597,8 @@ console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">value
       <p>The idea of reduce is to receive a function and a collection, and return a value created by combining the
         items.</p>
       <p>A common example people talk about is to get the total amount of an order. Imagine you were at a shopping
-        website. You’ve added <code>Product 1</code>, <code>Product 2</code>, <code>Product 3</code>, and <code>Product 4</code>
+        website. You’ve added <code>Product 1</code>, <code>Product 2</code>, <code>Product 3</code>, and
+        <code>Product 4</code>
         to your shopping cart (order). Now we want to calculate the total amount of the shopping cart.</p>
       <p>In imperative way, we would iterate the order list and sum each product amount to the total amount.</p>
       <pre><code class="lang-javascript">var orders = [
@@ -631,7 +641,8 @@ console.log(totalAmount); <span class="hljs-comment">// 120</span>
         using the <code>sum-amount</code> and starting from <code>0</code>.</p>
       <p>Another way to get the total amount is to compose <code>map</code> and <code>reduce</code>. What do I mean
         by
-        that? We can use <code>map</code> to transform the <code>shopping-cart</code> into a collection of <code>amount</code>
+        that? We can use <code>map</code> to transform the <code>shopping-cart</code> into a collection of
+        <code>amount</code>
         values, and then just use the <code>reduce</code> function with <code>+</code> function.</p>
       <pre><code class="lang-clojure">(<span class="hljs-string">def </span><span class="hljs-string">shopping-cart
 </span>  [{ :<span class="hljs-string">product-title </span><span class="hljs-string">"Product 1"</span> :<span class="hljs-string">amount </span><span class="hljs-string">10 </span>},
@@ -696,13 +707,15 @@ console.log(totalAmount); <span class="hljs-comment">// 120</span>
         <li><a href="https://blog.codeship.com/overview-of-functional-programming">Overview of FP</a></li>
         <li><a href="https://hackernoon.com/a-quick-introduction-to-functional-javascript-7e6fe520e7fa">A quick intro
             to functional JS</a></li>
-        <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0">What
+        <li><a
+            href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0">What
             is FP?</a></li>
         <li><a href="https://github.com/hemanth/functional-programming-jargon">Functional Programming Jargon</a></li>
       </ul>
       <h3 id="pure-functions">Pure functions</h3>
       <ul>
-        <li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976">What
+        <li><a
+            href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976">What
             is a pure function?</a></li>
         <li><a href="https://www.fpcomplete.com/blog/2017/04/pure-functional-programming">Pure Functional Programming
             1</a></li>
@@ -726,13 +739,17 @@ console.log(totalAmount); <span class="hljs-comment">// 120</span>
       <h3 id="higher-order-functions">Higher-order functions</h3>
       <ul>
         <li><a href="https://eloquentjavascript.net/05_higher_order.html">Eloquent JS: Higher Order Functions</a></li>
-        <li><a href="https://www.youtube.com/watch?v=BMUiFMZr7vk&amp;t=0s&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=2&amp;ab_channel=FunFunFunction">Fun
+        <li><a
+            href="https://www.youtube.com/watch?v=BMUiFMZr7vk&amp;t=0s&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=2&amp;ab_channel=FunFunFunction">Fun
             fun function Filter</a></li>
-        <li><a href="https://www.youtube.com/watch?v=bCqtb-Z5YGQ&amp;index=2&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;ab_channel=FunFunFunction">Fun
+        <li><a
+            href="https://www.youtube.com/watch?v=bCqtb-Z5YGQ&amp;index=2&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;ab_channel=FunFunFunction">Fun
             fun function Map</a></li>
-        <li><a href="https://www.youtube.com/watch?v=Wl98eZpkp-c&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=3&amp;frags=wn&amp;ab_channel=FunFunFunction">Fun
+        <li><a
+            href="https://www.youtube.com/watch?v=Wl98eZpkp-c&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=3&amp;frags=wn&amp;ab_channel=FunFunFunction">Fun
             fun function Basic Reduce</a></li>
-        <li><a href="https://www.youtube.com/watch?v=1DMolJ2FrNY&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=4&amp;ab_channel=FunFunFunction">Fun
+        <li><a
+            href="https://www.youtube.com/watch?v=1DMolJ2FrNY&amp;list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&amp;index=4&amp;ab_channel=FunFunFunction">Fun
             fun function Advanced Reduce</a></li>
         <li><a href="https://clojure.org/guides/higher_order_functions">Clojure Higher Order Functions</a></li>
         <li><a href="https://purelyfunctional.tv/lesson/filter/">Purely Function Filter</a></li>
@@ -751,10 +768,12 @@ console.log(totalAmount); <span class="hljs-comment">// 120</span>
       <p><a href="https://github.com/LeandroTk/functional-programming-article-source-code">Here is the repository
           with
           all codes</a> from this article.</p>
-      <p>Come learn with me. I’m sharing resources and my code in this <a href="https://github.com/LeandroTk/learning-functional-programming">Learning
+      <p>Come learn with me. I’m sharing resources and my code in this <a
+          href="https://github.com/LeandroTk/learning-functional-programming">Learning
           Functional Programming repository</a>.</p>
       <p>I hope you saw something useful to you here. And see you next time! :)</p>
-      <p>My <a href="https://twitter.com/LeandroTk_">Twitter</a> &amp; <a href="https://github.com/LeandroTk">Github</a>.
+      <p>My <a href="https://twitter.com/LeandroTk_">Twitter</a> &amp; <a
+          href="https://github.com/LeandroTk">Github</a>.
         ☺</p>
     </article>
 
@@ -784,7 +803,7 @@ console.log(totalAmount); <span class="hljs-comment">// 120</span>
 
   <footer id="footer" class="article-footer">
     <div class="footer-left">
-      Copyright &copy; 2018 TK
+      Copyright &copy; 2019 TK
     </div>
     <div class="footer-right">
       <nav>

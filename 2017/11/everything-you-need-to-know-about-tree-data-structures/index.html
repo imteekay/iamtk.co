@@ -6,23 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="description" content="This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..">
+  <meta name="description"
+    content="This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..">
   <meta name="keywords" content="elixir">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Everything you need to know about tree data structures">
-  <meta property="og:description" content="This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..">
+  <meta property="og:description"
+    content="This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..">
   <meta property="og:locale" content="en">
   <meta property="og:image" content="https://cdn-images-1.medium.com/max/1000/1*WeWOBZy6N7cXkq4inS7FVA.jpeg">
   <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Everything you need to know about tree data structures">
-  <meta name="twitter:description" content="This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..">
+  <meta name="twitter:description"
+    content="This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..">
   <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1000/1*WeWOBZy6N7cXkq4inS7FVA.jpeg">
 
   <title>Everything you need to know about tree data structures</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
 </head>
 
@@ -43,7 +46,8 @@
 
           <div class="article-tag">
             <i class=b fa-tag"></i>
-            <a class="tag-link" href="../../../tags/algorithms_and_data_structures.html">algorithms_and_data_structures</a>
+            <a class="tag-link"
+              href="../../../tags/algorithms_and_data_structures.html">algorithms_and_data_structures</a>
             <a class="tag-link" href="../../../tags/python.html">python</a>
           </div>
         </div>
@@ -52,7 +56,8 @@
       <p><img src="https://cdn-images-1.medium.com/max/1000/1*WeWOBZy6N7cXkq4inS7FVA.jpeg" alt=""></p>
       <p>When you first learn to code, it’s common to learn arrays as the “main data structure.”</p>
       <p>Eventually, you will learn about <code>hash tables</code> too. If you are pursuing a Computer Science degree,
-        you have to take a class on data structure. You will also learn about <code>linked lists</code>, <code>queues</code>,
+        you have to take a class on data structure. You will also learn about <code>linked lists</code>,
+        <code>queues</code>,
         and <code>stacks</code>. Those data structures are called “linear” data structures because they all have a
         logical start and a logical end.</p>
       <p>When we start learning about <code>trees</code> and <code>graphs</code>, it can get really confusing. We don’t
@@ -98,15 +103,19 @@
         tags. The <code>body</code> tag has elements that show in the user interface, for example, <code>h1</code>,
         <code>a</code>, <code>li</code>, etc.</p>
       <h2><a id="A_technical_definition_54"></a>A technical definition</h2>
-      <p>A <code>tree</code> is a collection of entities called <code>nodes</code>. Nodes are connected by <code>edges</code>.
-        Each <code>node</code> contains a <code>value</code> or <code>data</code>, and it may or may not have a <code>child node</code>
+      <p>A <code>tree</code> is a collection of entities called <code>nodes</code>. Nodes are connected by
+        <code>edges</code>.
+        Each <code>node</code> contains a <code>value</code> or <code>data</code>, and it may or may not have a
+        <code>child node</code>
         .</p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*3WN7tIQ-kNBQmY9MgvTuOA.jpeg" alt=""></p>
-      <p>The <code>first node</code> of the <code>tree</code> is called the <code>root</code>. If this <code>root node</code>
+      <p>The <code>first node</code> of the <code>tree</code> is called the <code>root</code>. If this
+        <code>root node</code>
         is connected by another <code>node</code>, the <code>root</code> is then a <code>parent node</code> and the
         connected <code>node</code> is a <code>child</code>.</p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*9AtR3bhhlMJxQlaUVEQgrw.jpeg" alt=""></p>
-      <p>All<code>Tree nodes</code> are connected by links called <code>edges</code>. It’s an important part of <code>trees</code>,
+      <p>All<code>Tree nodes</code> are connected by links called <code>edges</code>. It’s an important part of
+        <code>trees</code>,
         because it’s manages the relationship between <code>nodes</code>.</p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*j5qKwIxKcEjoxy88EOc1Rg.jpeg" alt=""></p>
       <p><code>Leaves</code> are the last <code>nodes</code> on a <code>tree.</code> They are nodes without children.
@@ -149,7 +158,8 @@
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*ofbwuz4inpf2OlB-l9gtHw.jpeg" alt=""></p>
       <h2><a id="Lets_code_a_binary tree_104"></a>Let’s code a binary tree</h2>
       <p>The first thing we need to keep in mind when we implement a <code>binary tree</code> is that it is a
-        collection of <code>nodes</code>. Each <code>node</code> has three attributes: <code>value</code>, <code>left_child</code>,
+        collection of <code>nodes</code>. Each <code>node</code> has three attributes: <code>value</code>,
+        <code>left_child</code>,
         and <code>right_child</code>.</p>
       <p>How do we implement a simple <code>binary tree</code> that initializes with these three properties?</p>
       <p>Let’s take a look.</p>
@@ -163,7 +173,8 @@
       <p>When we instantiate an object, we pass the <code>value</code> (the data of the node) as a parameter. Look at
         the <code>left_child</code> and the <code>right_child</code>. Both are set to <code>None</code>.</p>
       <p>Why?</p>
-      <p>Because when we create our <code>node</code>, it doesn’t have any children. We just have the <code>node data</code>.</p>
+      <p>Because when we create our <code>node</code>, it doesn’t have any children. We just have the
+        <code>node data</code>.</p>
       <p>Let’s test it:</p>
       <pre><code class="language-python">tree = BinaryTree(<span class="hljs-string">'a'</span>)
 print(tree.value) <span class="hljs-comment"># a</span>
@@ -171,19 +182,23 @@ print(tree.left_child) <span class="hljs-comment"># None</span>
 print(tree.right_child) <span class="hljs-comment"># None</span>
 </code></pre>
       <p>That’s it.</p>
-      <p>We can pass the <code>string</code> ‘<code>a</code>’ as the <code>value</code> to our <code>Binary Tree node</code>.
+      <p>We can pass the <code>string</code> ‘<code>a</code>’ as the <code>value</code> to our
+        <code>Binary Tree node</code>.
         If we print the <code>value</code>, <code>left_child</code>, and <code>right_child</code>, we can see the
         values.</p>
       <p>Let’s go to the insertion part. What do we need to do here?</p>
-      <p>We will implement a method to insert a new <code>node</code> to the <code>right</code> and to the <code>left</code>.</p>
+      <p>We will implement a method to insert a new <code>node</code> to the <code>right</code> and to the
+        <code>left</code>.</p>
       <p>Here are the rules:</p>
       <ul>
         <li>
-          <p>If the current <code>node</code> doesn’t have a <code>left child</code>, we just create a new <code>node</code>and
+          <p>If the current <code>node</code> doesn’t have a <code>left child</code>, we just create a new
+            <code>node</code>and
             set it to the current node’s <code>left_child</code>.</p>
         </li>
         <li>
-          <p>If it does have the <code>left child</code>, we create a new node and put it in the current <code>left child</code>’s
+          <p>If it does have the <code>left child</code>, we create a new node and put it in the current
+            <code>left child</code>’s
             place. Allocate this <code>left child node</code> to the new node’s <code>left child</code>.</p>
         </li>
       </ul>
@@ -199,7 +214,8 @@ print(tree.right_child) <span class="hljs-comment"># None</span>
         self.left_child = new_node
 </code></pre>
       <p>Again, if the current node doesn’t have a <code>left child</code>, we just create a new node and set it to the
-        current node’s <code>left_child</code>. Or else we create a new node and put it in the current <code>left child</code>’s
+        current node’s <code>left_child</code>. Or else we create a new node and put it in the current
+        <code>left child</code>’s
         place. Allocate this <code>left child node</code> to the new node’s <code>left child</code>.</p>
       <p>And we do the same thing to insert a <code>right child node</code>.</p>
       <pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">insert_right</span><span class="hljs-params">(self, value)</span>:</span>
@@ -226,7 +242,8 @@ print(tree.right_child) <span class="hljs-comment"># None</span>
           <p><code>a</code> <code>right child</code> is <code>c</code> <code>node</code></p>
         </li>
         <li>
-          <p><code>b</code> <code>right child</code> is <code>d</code> <code>node</code> (<code>b</code> <code>node</code>
+          <p><code>b</code> <code>right child</code> is <code>d</code> <code>node</code> (<code>b</code>
+            <code>node</code>
             doesn’t have a <code>left child</code>)</p>
         </li>
         <li>
@@ -287,14 +304,16 @@ print(f_node.value) <span class="hljs-comment"># f</span>
           <p>Go to the <code>left child</code> (2). Print it.</p>
         </li>
         <li>
-          <p>Then go to the <code>left child</code> (3). Print it. (This <code>node</code> doesn’t have any children)</p>
+          <p>Then go to the <code>left child</code> (3). Print it. (This <code>node</code> doesn’t have any children)
+          </p>
         </li>
         <li>
           <p>Backtrack and go the <code>right child</code> (4). Print it. (This <code>node</code> doesn’t have any
             children)</p>
         </li>
         <li>
-          <p>Backtrack to the <code>root</code> <code>node</code> and go to the <code>right child</code> (5). Print it.</p>
+          <p>Backtrack to the <code>root</code> <code>node</code> and go to the <code>right child</code> (5). Print it.
+          </p>
         </li>
         <li>
           <p>Go to the <code>left child</code> (6). Print it. (This <code>node</code> doesn’t have any children)</p>
@@ -308,7 +327,8 @@ print(f_node.value) <span class="hljs-comment"># f</span>
         </li>
       </ol>
       <p>When we go deep to the leaf and backtrack, this is called <strong>DFS</strong> algorithm.</p>
-      <p>Now that we are familiar with this traversal algorithm, we will discuss types of <strong>DFS</strong>: <code>pre-order</code>,
+      <p>Now that we are familiar with this traversal algorithm, we will discuss types of <strong>DFS</strong>:
+        <code>pre-order</code>,
         <code>in-order</code>, and <code>post-order</code>.</p>
       <h3><a id="Preorder_275"></a>Pre-order</h3>
       <p>This is exactly what we did in the above example.</p>
@@ -390,14 +410,16 @@ print(f_node.value) <span class="hljs-comment"># f</span>
         <p>“A Binary Search Tree is sometimes called ordered or sorted binary trees, and it keeps its values in sorted
           order, so that lookup and other operations can use the principle of binary search” — Wikipedia</p>
       </blockquote>
-      <p>An important property of a <code>Binary Search Tree</code> is that the value of a <code>Binary Search Tree</code>
+      <p>An important property of a <code>Binary Search Tree</code> is that the value of a
+        <code>Binary Search Tree</code>
         <code>node</code>is larger than the value of the offspring of its <code>left child</code>, but smaller than the
         value of the offspring of its <code>right child.</code>”</p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*mslH9VtVUN9Hs983XxUN5A.jpeg" alt=""></p>
       <p>Here is a breakdown of the above illustration:</p>
       <ul>
         <li>
-          <p>**A **is inverted. The <code>subtree</code> 7–5–8–6 needs to be on the right side, and the <code>subtree</code>
+          <p>**A **is inverted. The <code>subtree</code> 7–5–8–6 needs to be on the right side, and the
+            <code>subtree</code>
             2–1–3 needs to be on the left.</p>
         </li>
         <li>
@@ -470,14 +492,17 @@ print(f_node.value) <span class="hljs-comment"># f</span>
 </code></pre>
       <p>It seems very simple.</p>
       <p>The powerful part of this algorithm is the recursion part, which is on line 9 and line 13. Both lines of code
-        call the <code>insert_node</code> method, and use it for its <code>left</code> and <code>right</code> <code>children</code>,
-        respectively. Lines <code>11</code> and <code>15</code> are the ones that do the insertion for each <code>child</code>.</p>
+        call the <code>insert_node</code> method, and use it for its <code>left</code> and <code>right</code>
+        <code>children</code>,
+        respectively. Lines <code>11</code> and <code>15</code> are the ones that do the insertion for each
+        <code>child</code>.</p>
       <h3><a id="Lets_search_for_the_node_value_Or not_464"></a>Let’s search for the node value… Or not…</h3>
       <p>The algorithm that we will build now is about doing searches. For a given value (integer number), we will say
         if our <code>Binary Search Tree</code> does or does not have that value.</p>
       <p>An important item to note is how we defined the tree <strong>insertion algorithm</strong>. First we have our
         <code>root</code> <code>node</code>. All the left <code>subtree</code> <code>nodes</code>will have smaller
-        values than the <code>root</code> <code>node</code>. And all the right <code>subtree</code> <code>nodes</code>will
+        values than the <code>root</code> <code>node</code>. And all the right <code>subtree</code>
+        <code>nodes</code>will
         have values greater than the <code>root</code> <code>node</code>.</p>
       <p>Let’s take a look at an example.</p>
       <p>Imagine that we have this <code>tree</code>.</p>
@@ -536,7 +561,8 @@ print(bst.find_node(<span class="hljs-number">17</span>)) <span class="hljs-comm
 print(bst.find_node(<span class="hljs-number">25</span>)) <span class="hljs-comment"># True</span>
 print(bst.find_node(<span class="hljs-number">19</span>)) <span class="hljs-comment"># True</span>
 </code></pre>
-      <p>Yeah, it works for these given values! Let’s test for a value that doesn’t exist in our <code>Binary Search Tree</code>.</p>
+      <p>Yeah, it works for these given values! Let’s test for a value that doesn’t exist in our
+        <code>Binary Search Tree</code>.</p>
       <pre><code class="language-python">print(bst.find_node(<span class="hljs-number">0</span>)) <span class="hljs-comment"># False</span>
 </code></pre>
       <p>Oh yeah.</p>
@@ -546,7 +572,8 @@ print(bst.find_node(<span class="hljs-number">19</span>)) <span class="hljs-comm
         remove the <code>node</code> with this value. Imagine the following scenarios for this <code>node</code> : it
         has no <code>children</code>, has a single <code>child</code>, or has two <code>children</code>.</p>
       <ul>
-        <li><strong>Scenario #1</strong>: A <code>node</code> with no <code>children</code> (<code>leaf</code> <code>node</code>).</li>
+        <li><strong>Scenario #1</strong>: A <code>node</code> with no <code>children</code> (<code>leaf</code>
+          <code>node</code>).</li>
       </ul>
       <pre><code class="language-python"><span class="hljs-comment">#        |50|                              |50|</span>
 <span class="hljs-comment">#      /      \                           /    \</span>
@@ -557,7 +584,8 @@ print(bst.find_node(<span class="hljs-number">19</span>)) <span class="hljs-comm
       <p>If the <code>node</code> we want to delete has no children, we simply delete it. The algorithm doesn’t need to
         reorganize the <code>tree</code>.</p>
       <ul>
-        <li><strong>Scenario #2</strong>: A <code>node</code> with just one child (<code>left</code> or <code>right</code>
+        <li><strong>Scenario #2</strong>: A <code>node</code> with just one child (<code>left</code> or
+          <code>right</code>
           child).</li>
       </ul>
       <pre><code class="language-python"><span class="hljs-comment">#        |50|                              |50|</span>
@@ -618,7 +646,8 @@ print(bst.find_node(<span class="hljs-number">19</span>)) <span class="hljs-comm
         <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>
 </code></pre>
       <ul>
-        <li>To use the <code>clear_node</code> method: set the <code>None</code> value to all three attributes — (<code>value</code>,
+        <li>To use the <code>clear_node</code> method: set the <code>None</code> value to all three
+          attributes — (<code>value</code>,
           <code>left_child</code>, and <code>right_child</code>)</li>
       </ul>
       <pre><code class="language-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">clear_node</span><span class="hljs-params">(self)</span>:</span>
@@ -669,7 +698,8 @@ bst.pre_order_traversal()
 <span class="hljs-comment">#       \    /    \</span>
 <span class="hljs-comment">#      |12| |19| |25|</span>
 </code></pre>
-      <p>Finally, we will remove a <code>node</code> with two children. This is the <code>root</code> of our <code>tree</code>.</p>
+      <p>Finally, we will remove a <code>node</code> with two children. This is the <code>root</code> of our
+        <code>tree</code>.</p>
       <pre><code class="language-python">print(bst.remove_node(<span class="hljs-number">15</span>, <span class="hljs-keyword">None</span>)) <span class="hljs-comment"># True</span>
 bst.pre_order_traversal()
 
@@ -685,15 +715,18 @@ bst.pre_order_traversal()
       <p>Congrats on finishing this dense content. It’s really tough to understand a concept that we do not know. But
         you did it. :)</p>
       <p>This is one more step forward in my journey to learning and mastering algorithms and data structures. You can
-        see the documentation of my complete journey here on my <a href="https://medium.com/the-renaissance-developer">Renaissance
+        see the documentation of my complete journey here on my <a
+          href="https://medium.com/the-renaissance-developer">Renaissance
           Developer publication</a>.</p>
       <p>Have fun, keep learning and coding.</p>
-      <p>Here are my <a href="https://www.medium.com/@leandrotk_">Medium</a>, <a href="https://twitter.com/LeandroTk_">Twitter</a>
+      <p>Here are my <a href="https://www.medium.com/@leandrotk_">Medium</a>, <a
+          href="https://twitter.com/LeandroTk_">Twitter</a>
         &amp; <a href="https://github.com/LeandroTk">GitHub</a> accounts.☺</p>
       <h2><a id="Additional_resources_721"></a>Additional resources</h2>
       <ul>
         <li>
-          <p><a href="https://www.youtube.com/watch?v=qH6yxkw0u78&amp;index=25&amp;list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P">Introduction
+          <p><a
+              href="https://www.youtube.com/watch?v=qH6yxkw0u78&amp;index=25&amp;list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P">Introduction
               to Tree Data Structure by mycodeschool</a></p>
         </li>
         <li>
@@ -719,8 +752,10 @@ bst.pre_order_traversal()
           <p><a href="https://www.youtube.com/watch?v=oSWTXtMglKE">Trees with Gayle Laakmann McDowell</a></p>
         </li>
         <li>
-          <p><a href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_tree/binary_tree.py">Binary
-              Tree Implementation</a> and <a href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_tree/test_binary_tree.py">Tests</a>
+          <p><a
+              href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_tree/binary_tree.py">Binary
+              Tree Implementation</a> and <a
+              href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_tree/test_binary_tree.py">Tests</a>
             by <a href="https://medium.com/@leandrotk_">TK</a></p>
         </li>
         <li>
@@ -736,8 +771,10 @@ bst.pre_order_traversal()
               concepts and Implementation by Paul Programming</a></p>
         </li>
         <li>
-          <p><a href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_search_tree_without_node/binary_search_tree.py">Binary
-              Search Tree Implementation</a> and <a href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_search_tree_without_node/test_binary_search_tree.py">Tests</a>
+          <p><a
+              href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_search_tree_without_node/binary_search_tree.py">Binary
+              Search Tree Implementation</a> and <a
+              href="https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_search_tree_without_node/test_binary_search_tree.py">Tests</a>
             by <a href="https://medium.com/@leandrotk_">TK</a></p>
         </li>
         <li>
@@ -749,9 +786,12 @@ bst.pre_order_traversal()
         </li>
         <li>
           <p><a href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">Binary Search Tree </a><a
-              href="http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/">R</a><a href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">emove
-            </a><a href="http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/">N</a><a href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">ode
-            </a><a href="http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/">A</a><a href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">lgorithm
+              href="http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/">R</a><a
+              href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">emove
+            </a><a href="http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/">N</a><a
+              href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">ode
+            </a><a href="http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/">A</a><a
+              href="http://www.algolist.net/Data_structures/Binary_search_tree/Removal">lgorithm
               by Algolist</a></p>
         </li>
         <li>
@@ -787,7 +827,7 @@ bst.pre_order_traversal()
 
   <footer id="footer" class="article-footer">
     <div class="footer-left">
-      Copyright &copy; 2018 TK
+      Copyright &copy; 2019 TK
     </div>
     <div class="footer-right">
       <nav>

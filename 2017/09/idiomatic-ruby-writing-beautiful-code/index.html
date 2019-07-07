@@ -6,23 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="description" content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
+  <meta name="description"
+    content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
   <meta name="keywords" content="elixir">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Idiomatic Ruby: writing beautiful code">
-  <meta property="og:description" content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
+  <meta property="og:description"
+    content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
   <meta property="og:locale" content="en">
   <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/1*9hd_8qR0CMZ8L0pVbFLjDw.png">
   <meta property="og:updated_time" content="2017-09-06T11:24:49.793Z">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Idiomatic Ruby: writing beautiful code">
-  <meta name="twitter:description" content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
+  <meta name="twitter:description"
+    content="A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.">
   <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/1*9hd_8qR0CMZ8L0pVbFLjDw.png">
 
   <title>Idiomatic Ruby: writing beautiful code</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
 </head>
 
@@ -56,7 +59,8 @@
           syntax that is natural to read and easy to write.”</p>
       </blockquote>
       <p>Ruby was created by <a href="https://twitter.com/yukihiro_matz">Yukihiro Matsumoto</a>, a Japanese software
-        engineer. Since 2011, he has been the chief designer &amp; software engineer for Ruby at <a href="https://www.heroku.com/">Heroku</a>.</p>
+        engineer. Since 2011, he has been the chief designer &amp; software engineer for Ruby at <a
+          href="https://www.heroku.com/">Heroku</a>.</p>
       <p>Matsumoto has often said that he tries<strong> to make Ruby natural, not simple</strong>, in a way that
         mirrors life.</p>
       <blockquote>
@@ -108,7 +112,8 @@ even_numbers = even_numbers.compact # [<span class="hljs-number">2</span>, <span
         thought will be, “Let’s use the <strong>random</strong> method,” and that’s what happens:</p>
       <pre><code class="ruby">[<span class="hljs-string">1, 2, 3</span>][<span class="hljs-symbol">rand(3)</span>]
 </code></pre>
-      <p>Well, we can understand the code, but I’m not sure if it is good enough. And what if we use the <strong>shuffle</strong>
+      <p>Well, we can understand the code, but I’m not sure if it is good enough. And what if we use the
+        <strong>shuffle</strong>
         method?</p>
       <pre><code class="ruby"><span class="hljs-selector-attr">[1, 2, 3]</span><span class="hljs-selector-class">.shuffle</span><span class="hljs-selector-class">.first</span>
 </code></pre>
@@ -124,7 +129,8 @@ even_numbers = even_numbers.compact # [<span class="hljs-number">2</span>, <span
       <p>As I mentioned before, I love the way Ruby lets me code. It’s really natural for me. I’ll show parts of the
         beautiful Ruby syntax.</p>
       <h3 id="implicit-return">Implicit return</h3>
-      <p>Any statement in Ruby returns the value of the last evaluated expression. A simple example is the <strong>getter
+      <p>Any statement in Ruby returns the value of the last evaluated expression. A simple example is the
+        <strong>getter
         </strong>method. We call a method and expect some value in return.</p>
       <p>Let’s see:</p>
       <pre><code class="ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_user_ids</span><span class="hljs-params">(users)</span></span>
@@ -157,7 +163,8 @@ three = values[<span class="hljs-number">2</span>]
 one, two, three = values
 </code></pre>
       <p>Pretty awesome.</p>
-      <h3 id="methods-that-ask-questions-also-called-predicates-">Methods that ask questions (also called predicates)</h3>
+      <h3 id="methods-that-ask-questions-also-called-predicates-">Methods that ask questions (also called predicates)
+      </h3>
       <p>One feature that caught my attention when I was learning Ruby was the <strong>question mark (?)</strong>
         method, also called the <strong>predicates </strong>methods. It was weird to see at first, but now it makes so
         much sense. You can write code like this:</p>
@@ -168,7 +175,8 @@ one, two, three = values
 </code></pre>
       <p>This code is much more expressive, and I expect the method’s answer to return either a <strong>true</strong>
         or <strong>false</strong> value.</p>
-      <p>A method that I commonly use is <strong>any?</strong> It’s like asking an array if it has <strong>any</strong>thing
+      <p>A method that I commonly use is <strong>any?</strong> It’s like asking an array if it has
+        <strong>any</strong>thing
         inside it.</p>
       <pre><code class="ruby">[].any? # =&gt; <span class="hljs-keyword">false</span>
 [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].any? # =&gt; <span class="hljs-keyword">true</span>
@@ -197,7 +205,8 @@ puts <span class="hljs-string">"let’s go"</span> <span class="hljs-keyword">if
       <p>Feels really natural.</p>
       <h3 id="the-try-method-with-rails-mode-on-">The try method (with Rails mode on)</h3>
       <p>The <strong>try</strong> method invokes the method identified by the symbol, passing it any arguments and/or
-        the block specified. This is similar to Ruby’s <strong>Object#send.</strong> Unlike that method, <strong>nil</strong>
+        the block specified. This is similar to Ruby’s <strong>Object#send.</strong> Unlike that method,
+        <strong>nil</strong>
         will be returned if the receiving object is a <strong>nil</strong> object or <strong>NilClass.</strong></p>
       <p>Using <strong>if and unless</strong> condition statement:</p>
       <pre><code class="ruby"><span class="hljs-selector-tag">user</span><span class="hljs-selector-class">.id</span> <span class="hljs-selector-tag">unless</span> <span class="hljs-selector-tag">user</span><span class="hljs-selector-class">.nil</span>?
@@ -205,7 +214,8 @@ puts <span class="hljs-string">"let’s go"</span> <span class="hljs-keyword">if
       <p>Using the <strong>try </strong>method:</p>
       <pre><code class="ruby">user.<span class="hljs-keyword">try</span>(:<span class="hljs-built_in">id</span>)
 </code></pre>
-      <p>Since Ruby 2.3, we can use Ruby’s safe navigation operator<strong> (&amp;.)</strong> instead of Rails <strong>try
+      <p>Since Ruby 2.3, we can use Ruby’s safe navigation operator<strong> (&amp;.)</strong> instead of Rails
+        <strong>try
         </strong>method.</p>
       <pre><code class="ruby">user&amp;.<span class="hljs-built_in">id</span>
 </code></pre>
@@ -217,7 +227,8 @@ puts some_variable <span class="hljs-meta"># =&gt; 10</span>
 some_variable <span class="hljs-string">||= 99</span>
 puts some_variable <span class="hljs-meta"># =&gt; 10</span>
 </code></pre>
-      <p>You don’t need to use the <strong>if</strong> statement ever. Just use double pipe equals <strong>(||=)</strong>
+      <p>You don’t need to use the <strong>if</strong> statement ever. Just use double pipe equals
+        <strong>(||=)</strong>
         and it’s done.</p>
       <p>Simple and easy.</p>
       <h3 id="class-static-method">Class static method</h3>
@@ -240,7 +251,8 @@ puts some_variable <span class="hljs-meta"># =&gt; 10</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-      <p>The <strong>self.call</strong> method initializes an instance, and this object calls the <strong>call </strong>method.
+      <p>The <strong>self.call</strong> method initializes an instance, and this object calls the <strong>call
+        </strong>method.
         <a href="https://github.com/collectiveidea/interactor">Interactor design pattern</a> uses it.</p>
       <h3 id="getters-and-setters">Getters and setters</h3>
       <p>For the same <strong>GetSearchResult</strong> class, if we want to use the params, we can use the @params</p>
@@ -285,7 +297,8 @@ puts some_variable <span class="hljs-meta"># =&gt; 10</span>
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span>
 </code></pre>
-      <p>Or we can define <strong>attr_reader</strong>, <strong>attr_writer,</strong> or <strong>attr_accessor</strong></p>
+      <p>Or we can define <strong>attr_reader</strong>, <strong>attr_writer,</strong> or <strong>attr_accessor</strong>
+      </p>
       <pre><code class="ruby"><span class="hljs-keyword">class</span> GetSearchResult
   attr_reader :param
 
@@ -345,15 +358,19 @@ puts some_variable <span class="hljs-meta"># =&gt; 10</span>
         </li>
       </ul>
       <p>We also learned how Ruby is beautiful and intuitive, and runs even faster.</p>
-      <p>And that’s it, guys! I will be updating and including more details to my <a href="https://medium.com/@leandrotk_/">blog</a>.
+      <p>And that’s it, guys! I will be updating and including more details to my <a
+          href="https://medium.com/@leandrotk_/">blog</a>.
         The idea is to share great content, and the community helps to improve this post! ☺</p>
       <p>I hope you guys appreciate the content and learned how to program beautiful code (and better software).</p>
-      <p>If you want a complete Ruby course, learn real-world coding skills and build projects, try <a href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
+      <p>If you want a complete Ruby course, learn real-world coding skills and build projects, try <a
+          href="https://onemonth.com/courses/ruby?mbsy=lG6tt&amp;mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&amp;campaignid=33446&amp;discount_code=TKRuby1">One
           Month Ruby Bootcamp</a>. See you there ☺</p>
-      <p>This post appeared first <a href="https://medium.com/the-renaissance-developer/idiomatic-ruby-1b5fa1445098">here</a>
+      <p>This post appeared first <a
+          href="https://medium.com/the-renaissance-developer/idiomatic-ruby-1b5fa1445098">here</a>
         on my <a href="https://medium.com/the-renaissance-developer">Renaissance Developer publication</a>.</p>
       <p>Have fun, keep learning, and always keep coding!</p>
-      <p>My <a href="https://www.medium.com/@leandrotk_">Medium</a>, <a href="https://twitter.com/LeandroTk_">Twitter</a>
+      <p>My <a href="https://www.medium.com/@leandrotk_">Medium</a>, <a
+          href="https://twitter.com/LeandroTk_">Twitter</a>
         &
         <a href="https://github.com/LeandroTk">Github</a>.
         ☺</p>
@@ -385,7 +402,7 @@ puts some_variable <span class="hljs-meta"># =&gt; 10</span>
 
   <footer id="footer" class="article-footer">
     <div class="footer-left">
-      Copyright &copy; 2018 TK
+      Copyright &copy; 2019 TK
     </div>
     <div class="footer-right">
       <nav>
