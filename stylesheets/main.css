@@ -1499,3 +1499,7 @@ pre code {
   background-color: white;
   color: #1b1b1b;
 }
+
+.btn-container {
+  margin-top: 40px;
+}
