@@ -1503,3 +1503,7 @@ pre code {
 .btn-container {
   margin-top: 40px;
 }
+
+a.kofi-button {
+  box-shadow: none;
+}
