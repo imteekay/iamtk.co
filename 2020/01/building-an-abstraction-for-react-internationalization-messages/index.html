@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="I came across a feature I wanted to build and...">
+  <meta name="keywords" content="elixir">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Building an abstraction for React internationalization messages">
+  <meta property="og:description" content="I came across a feature I wanted to build and...">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*1HGcv1bdGq0hYxal">
+  <meta property="og:updated_time" content="2020-01-01T00:00:00.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Building an abstraction for React internationalization messages">
+  <meta name="twitter:description" content="I came across a feature I wanted to build and...">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/0*1HGcv1bdGq0hYxal">
+
+  <title>Building an abstraction for React internationalization messages</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Building an abstraction for React intl messages</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2020-01-01T00:00:00.000Z" itemprop="datePublished">2020-01-01</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/javascript.html">javascript</a>
+            <a class="tag-link" href="../../../tags/web_development.html">web_development</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="figure">
+        <img src="https://cdn-images-1.medium.com/max/1600/0*1HGcv1bdGq0hYxal">
+        <span class="figcaption">
+          Photo by <a href="https://unsplash.com/@sonereker" target="_blank">Soner Eker</a>
+        </span>
+      </div>
+
+      <hr />
+
+      <p>I came across a feature I wanted to build and it included rendering an internationalized text based on a data
+        type from the API. This API can return three types: <code>common</code>, <code>password</code>, or
+        <code>biometry</code>. And use it to build our <code>EntryInfo</code> component.</p>
+
+      <p>For the <code>common</code> type, it looks like this:</p>
+
+      <pre><code class="javascript">{
+    type: 'common',
+    ownerName: 'TK',
+    password: null
+}
+</code></pre>
+
+      <p>The type is <code>common</code>, the <code>password</code> is <code>null</code>, and the <code>ownerName</code>
+        is present as a string.</p>
+
+      <p>For the <code>password</code> type:</p>
+
+      <pre><code class="javascript">{
+    type: 'password',
+    ownerName: null,
+    password: 'lololol'
+}
+</code></pre>
+
+      <p>The type is <code>password</code>, the <code>ownerName</code> is <code>null</code>, but <code>password</code>
+        is present as a string.</p>
+
+      <p>And for the <code>biometry</code> type:</p>
+
+      <pre><code class="javascript">{
+    type: 'biometry',
+    ownerName: null,
+    password: null
+}
+</code></pre>
+
+      <p>The type if <code>biometry</code>, without a <code>ownerName</code> and the <code>password</code>.</p>
+
+      <p>These are the three possible payloads we receive from the API. And I needed to render an internationalized text
+        based on this data.</p>
+
+      <p>The logic to build the message text based on the type and the other values is:</p>
+
+      <ul>
+        <li>when <code>type</code> is <code>'Common'</code>, it renders <code>'Owner {ownerName} will be there'</code>
+        </li>
+
+        <li>when <code>type</code> is <code>'Password'</code>, it renders <code>'Password: {password}'</code></li>
+
+        <li>when <code>type</code> is <code>'Biometry'</code>, it renders <code>'Type: biometry'</code></li>
+
+        <li>when <code>type</code> is <code>null</code>, it renders <code>'Call the owner'</code></li>
+      </ul>
+
+      <p>So the first thing I did was to build the message definitions:</p>
+
+      <pre><code class="javascript">import { defineMessages } from 'react-intl';
+
+export const messages = defineMessages({
+  common: {
+    id: 'app.containers.entryInfo.owner',
+    defaultMessage: 'Owner {ownerName} will be there',
+  },
+    password: {
+    id: 'app.containers.entryInfo.password',
+    defaultMessage: 'Password: {password}',
+  },
+  biometry: {
+    id: 'app.containers.entryInfo.biometry',
+    defaultMessage: 'Type: biometry',
+  },
+    defaultMessage: {
+    id: 'app.containers.entryInfo.defaultMessage',
+    defaultMessage: 'Call the owner',
+  },
+}
+</code></pre>
+
+      <p>The <code>EntryInfo</code> component would be like:</p>
+
+      <pre><code class="javascript">const EntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  let entryInfo;
+
+  if (type === 'common') {
+    entryInfo = intl.format(messages.common, { ownerName });
+  } else if (type === 'password') {
+    entryInfo = intl.format(messages.password, { password });
+  } else if (type === 'biometry') {
+    entryInfo = intl.format(messages.biometry);
+  } else {
+    entryInfo = intl.format(messages.defaultMessage);
+  }
+
+  return &lt;p&gt;{entryInfo}&lt;/p&gt;
+}
+
+export default injectIntl(EntryInfo);
+</code></pre>
+
+      <p>To follow the defined logic, I just added an <code>if-elseif-else</code> to render the appropriate message
+        using the <code>intl.format</code> function. It's straightforward, the <code>intl.format</code> function
+        receives the appropriate message and returns the entry info text and pass it to the component to render.</p>
+
+      <p>But I could separate it in a helper function <code>getEntryInfo</code> to separate the logic from the UI
+        component. I could also export it to unit test it without too much complication.</p>
+
+      <p>I also pass the <code>intl</code> object to this new function to return the correct string.</p>
+
+      <pre><code class="javascript">const getEntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  if (type === 'common') {
+    return intl.format(messages.common, { ownerName });
+  } else if (type === 'password') {
+    return intl.format(messages.password, { password });
+  } else if (type === 'biometry') {
+    return intl.format(messages.biometry);
+  } else {
+    return intl.format(messages.defaultMessage);
+  }
+};
+
+const EntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  const entryInfo = getEntryInfo({ type, password, ownerName, intl });
+
+  return &lt;p&gt;{entryInfo}&lt;/p&gt;
+}
+
+export default injectIntl(EntryInfo);
+</code></pre>
+
+      <p>This logic looks more like a switch case comparing just the <code>type</code> value. So just a minor refactor
+        in the <code>getEntryInfo</code>:</p>
+
+      <pre><code class="javascript">const getEntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  switch (type) {
+    case 'Common':
+      return intl.format(messages.common, { ownerName });
+    case 'Password':
+      return intl.format(messages.password, { password });
+    case 'Biometry':
+      return intl.format(messages.biometry);
+    default:
+      return intl.format(messages.defaultMessage);
+  }
+};
+</code></pre>
+
+      <p>The type is hardcoded, so we could also refactor these constants using an enum:</p>
+
+      <pre><code class="javascript">const ENTRY_INFO_TYPES = Object.freeze({
+  COMMON: 'Common',
+  PASSWORD: 'Password',
+  BIOMETRY: 'Biometry',
+});
+
+const getEntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return intl.format(messages.common, { ownerName });
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return intl.format(messages.password, { password });
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return intl.format(messages.biometry);
+    default:
+      return intl.format(messages.defaultMessage);
+  }
+};
+</code></pre>
+
+      <p>Now we are good to go.</p>
+
+      <p>Thinking about <code>cohesion</code>, I thought the <code>getEntryInfo</code> function did know too much about
+        how the component renders the message text (by using <code>intl</code>).</p>
+
+      <p>One idea is to think about the single responsibility of each function.</p>
+
+      <p>So, for the <code>getEntryInfo</code> function, we can remove the <code>intl</code> parameter as a dependency
+        and build the message object, instead of returning a string.</p>
+
+      <pre><code class="javascript">const getEntryInfoMessage = ({ type, password, ownerName }) =&gt; {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return { message: messages.common, values: { ownerName } };
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return { message: messages.password, values: { password } };
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return { message: messages.biometry, values: {} };
+    default:
+      return { message: messages.defaultMessage, values: {} };
+  }
+};
+</code></pre>
+
+      <p>And use like this in the component:</p>
+
+      <pre><code class="javascript">const EntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  const entryInfoMessage = getEntryInfoMessage({ type, password, ownerName });
+
+  return &lt;p&gt;
+    {intl.format(
+      entryInfoMessage.message,
+      entryInfoMessage.values
+    )}
+  &lt;/p&gt;
+}
+</code></pre>
+
+      <p>As a component refactor, we can destructure the message object:</p>
+
+      <pre><code class="javascript">const EntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  const { message, values } = getEntryInfoMessage({ type, password, ownerName });
+
+  return &lt;p&gt;{intl.format(message, values)}&lt;/p&gt;;
+}
+</code></pre>
+
+      <p>It is more readable and less verbose.</p>
+
+      <p>For the message object, we can build a simple function to handle the message object creation:</p>
+
+      <pre><code class="javascript">const buildMessageObject = (message, values = {}) =&gt; ({
+  message,
+  values,
+});
+
+const getEntryInfoMessage = ({ type, password, ownerName }) =&gt; {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return buildMessageObject(messages.common, { ownerName });
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return buildMessageObject(messages.password, { password });
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return buildMessageObject(messages.biometry);
+    default:
+      return buildMessageObject(messages.defaultMessage);
+  }
+};
+</code></pre>
+
+      <p>Take a look at the <code>values = {}</code> argument. We add this empty object as the default value to not need
+        to pass anything in the <code>biometry</code> and <code>default</code> cases.</p>
+
+      <p>Without the <code>intl</code> dependency, it's easier to use and test the function. It relies only upon the
+        data, not on the dependencies anymore.</p>
+
+      <hr />
+
+      <h2 id="thefinalcomponent">The final component</h2>
+
+      <pre><code class="javascript">const messages = defineMessages({
+  common: {
+    id: 'app.containers.entryInfo.owner',
+    defaultMessage: 'Owner {ownerName} will be there',
+  },
+    password: {
+    id: 'app.containers.entryInfo.password',
+    defaultMessage: 'Password: {password}',
+  },
+  biometry: {
+    id: 'app.containers.entryInfo.biometry',
+    defaultMessage: 'Type: biometry',
+  },
+    defaultMessage: {
+    id: 'app.containers.entryInfo.default',
+    defaultMessage: 'Call the owner',
+  },
+}
+
+const ENTRY_INFO_TYPES = Object.freeze({
+  COMMON: 'Common',
+  PASSWORD: 'Password',
+  BIOMETRY: 'Biometry',
+});
+
+const buildMessageObject = (message, values = {}) =&gt; ({
+  message,
+  values,
+});
+
+const getEntryInfoMessage = ({ type, password, ownerName }) =&gt; {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return buildMessageObject(messages.common, { ownerName });
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return buildMessageObject(messages.password, { password });
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return buildMessageObject(messages.biometry);
+    default:
+      return buildMessageObject(messages.defaultMessage);
+  }
+};
+
+const EntryInfo = ({ type, password, ownerName, intl }) =&gt; {
+  const { message, values } = getEntryInfoMessage({ type, password, ownerName });
+
+  return &lt;p&gt;{intl.format(message, values)}&lt;/p&gt;;
+}
+
+export default injectIntl(EntryInfo);
+</code></pre>
+
+      <h2 id="resources">Resources</h2>
+
+      <ul>
+        <li><a href="https://BeginnerJavaScript.com/friend/LEANDRO">Beginner JavaScript</a></li>
+
+        <li><a href="https://ES6.io/friend/LEANDRO">Learn ES6 - JavaScript</a></li>
+
+        <li><a href="https://BeginnerJavaScript.com/friend/LEANDRO">Beginner React</a></li>
+
+        <li><a href="https://AdvancedReact.com/friend/LEANDRO">Full Stack Advanced React</a></li>
+
+        <li><a href="https://stackoverflow.com/a/3085419/3159162">High cohesion and low coupling</a></li>
+      </ul>
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/javascript.html">javascript</a>
+        <a class="tag-link" href="../../../tags/web_development.html">web_development</a>
+      </div>
+    </div>
+
+    <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+    <script type='text/javascript'>
+      kofiwidget2.init('Buy me a Coffee', '#4b798d', 'O4O5YO9J');
+      kofiwidget2.draw();
+    </script>
+  </div>
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2020 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+          <li><a href="../../../quotes.html">Quotes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
