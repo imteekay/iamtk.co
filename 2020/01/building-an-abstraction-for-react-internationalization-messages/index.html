@@ -59,9 +59,9 @@
 
       <p>I came across a feature I wanted to build and it included rendering an internationalized text based on a data
         type from the API. This API can return three types: <code>common</code>, <code>password</code>, or
-        <code>biometry</code>. And use it to build our <code>EntryInfo</code> component.</p>
+        <code>biometry</code>. And we use it to build our <code>EntryInfo</code> component.</p>
 
-      <p>For the <code>common</code> type, it looks like this:</p>
+      <p>For the <code>common</code> type, the API response looks like this:</p>
 
       <pre><code class="javascript">{
     type: 'common',
@@ -94,7 +94,7 @@
 }
 </code></pre>
 
-      <p>The type if <code>biometry</code>, without a <code>ownerName</code> and the <code>password</code>.</p>
+      <p>The type is <code>biometry</code>, without a <code>ownerName</code> and the <code>password</code>.</p>
 
       <p>These are the three possible payloads we receive from the API. And I needed to render an internationalized text
         based on this data.</p>
@@ -129,7 +129,7 @@ export const messages = defineMessages({
     id: 'app.containers.entryInfo.biometry',
     defaultMessage: 'Type: biometry',
   },
-    defaultMessage: {
+  defaultMessage: {
     id: 'app.containers.entryInfo.defaultMessage',
     defaultMessage: 'Call the owner',
   },
@@ -304,7 +304,10 @@ const getEntryInfoMessage = ({ type, password, ownerName }) =&gt; {
 
       <hr />
 
-      <h2 id="thefinalcomponent">The final component</h2>
+      <h2>The final component</h2>
+
+      <p>The complete component with all the separated logic is more cohesive. Each part has its own responsibility and
+        it helps to reduce the coupling.</p>
 
       <pre><code class="javascript">const messages = defineMessages({
   common: {
