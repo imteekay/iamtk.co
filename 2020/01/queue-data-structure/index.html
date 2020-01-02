@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Notes on what is a queue, how it works, and a Python implementation">
+  <meta name="keywords" content="python,algorithms,data structure">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Queue Data Structure">
+  <meta property="og:description" content="Notes on what is a queue, how it works, and a Python implementation">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*6WFWhcE3vwoc6k1A">
+  <meta property="og:updated_time" content="2020-01-13T00:00:00.793Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Queue Data Structure">
+  <meta name="twitter:description" content="Notes on what is a queue, how it works, and a Python implementation">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/0*6WFWhcE3vwoc6k1A">
+
+  <title>Queue Data Structure</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Queue Data Structure</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2020-01-13T00:00:00.000Z" itemprop="datePublished">2020-01-13</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link"
+              href="../../../tags/algorithms_and_data_structures.html">algorithms_and_data_structures</a>
+            <a class="tag-link" href="../../../tags/python.html">python</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="figure">
+        <img src="https://cdn-images-1.medium.com/max/1600/0*6WFWhcE3vwoc6k1A" alt="">
+        <span class="figcaption">
+          Photo by <a href="https://unsplash.com/@ethanhjy" target="_blank">Ethan Hu</a>
+        </span>
+      </div>
+
+      <p>The queue data structure is a collection of items that follow the <code>first-in, first out</code> principle.
+        The first added element will be the first element to be removed from the queue. So, elements are added in the
+        back and removed from the front.</p>
+
+      <p>An analogy would be a simple line of people waiting for the next train. In the software engineering context, an
+        example is a web server receiving and responding requests.</p>
+
+      <p>The main API methods are <code>enqueue</code> (add) and <code>dequeue</code> (remove). But we can also add
+        other methods as part of the API implementation: <code>size</code>, <code>front</code>, <code>back</code>, and
+        <code>is_empty</code>.</p>
+
+      <hr />
+
+      <p>We can create a <code>Queue</code> class as a wrapper and use the Python list to store the queue data. This
+        class will have the implementation of the <code>enqueue</code>, <code>dequeue</code>, <code>size</code>,
+        <code>front</code>, <code>back</code>, and <code>is_empty</code> methods.</p>
+
+      <p>The first step is to create a class definition and how we are gone store our items.</p>
+
+      <pre><code>class Queue:
+    def __init__(self):
+        self.items = []
+</code></pre>
+
+      <p>This is basically what we need for now. Just a class and its constructor. When the instance is created, it will
+        have the <code>items</code> list to store the queue items.</p>
+
+      <p>For the <code>enqueue</code> method, we just need to use the list <code>append</code> method to add new items.
+        The new items will be placed in the last index of this <code>items</code> list. So the front item from the queue
+        will always be the first item.</p>
+
+      <pre><code class="python language-python">def enqueue(self, item):
+    self.items.append(item)
+</code></pre>
+
+      <p>It receives the new item and appends it to the list.</p>
+
+      <p>The <code>size</code> method only counts the number of the queue items by using the <code>len</code> function.
+      </p>
+
+      <pre><code class="python language-python">def size(self):
+    return len(self.items)
+</code></pre>
+
+      <p>The idea of the <code>is_empty</code> method is to verify if the list has or not items in it. If it has,
+        returns <code>False</code>. Otherwise, <code>True</code>. To count the number of items in the queue, we can
+        simply use the <code>size</code> method already implemented.</p>
+
+      <pre><code class="python language-python">def is_empty(self):
+    return self.size() == 0
+</code></pre>
+
+      <p>The <code>pop</code> method from the list data structure can also be used to dequeue the item from the queue.
+        It dequeues the first element as it is expected for the queue. The first added item.</p>
+
+      <pre><code class="python language-python">def dequeue(self):
+    return self.items.pop(0)
+</code></pre>
+
+      <p>But we need to handle the queue emptiness. For an empty list, the <code>pop</code> method raises an exception
+        <code>IndexError: poop from empty list</code>. So we can create an exception class to handle this issue.</p>
+
+      <pre><code class="python language-python">class Emptiness(Exception):
+    pass
+</code></pre>
+
+      <p>And uses it when the list is empty:</p>
+
+      <pre><code class="python language-python">def dequeue(self):
+    if self.is_empty():
+        raise Emptiness('The Queue is empty')
+
+    return self.items.dequeue()
+</code></pre>
+
+      <p>If it is empty, we raise this exception. Otherwise, we can dequeue the front item from the queue.</p>
+
+      <p>We use this same emptiness strategy for the <code>front</code> method:</p>
+
+      <pre><code class="python language-python">def front(self):
+    if self.is_empty():
+        raise Emptiness('The Queue is empty')
+
+    return self.items[0]
+</code></pre>
+
+      <p>If it has at least one item, we get the front, the first added item in the queue.</p>
+
+      <p>Also the same emptiness strategy for the <code>back</code> method:</p>
+
+      <pre><code class="python language-python">def back(self):
+    if self.is_empty():
+        raise Emptiness('The Queue is empty')
+
+    return self.items[-1]
+</code></pre>
+
+      <p>If it has at least one item, we get the back item, the last added item in the queue.</p>
+
+      <h2 id="queueusage">Queue usage</h2>
+
+      <p>I created some helper functions to help test the queue usage.</p>
+
+      <pre><code class="python language-python">def test_enqueue(queue, item):
+    queue.enqueue(item)
+    print(queue.items)
+
+
+def test_dequeue(queue):
+    queue.dequeue()
+    print(queue.items)
+
+
+def test_emptiness(queue):
+    is_empty = queue.is_empty()
+    print(is_empty)
+
+
+def test_size(queue):
+    size = queue.size()
+    print(size)
+
+
+def test_front(queue):
+    front = queue.front()
+    print(front)
+
+
+def test_back(queue):
+    back = queue.back()
+    print(back)
+</code></pre>
+
+      <p>They basically call a queue method and print the expected result from the method call.</p>
+
+      <p>The usage will be something like:</p>
+
+      <pre><code class="python language-python">queue = Queue()
+
+test_emptiness(queue)  # True
+test_size(queue)  # 0
+
+test_enqueue(queue, 1)  # [1]
+test_enqueue(queue, 2)  # [1, 2]
+test_enqueue(queue, 3)  # [1, 2, 3]
+test_enqueue(queue, 4)  # [1, 2, 3, 4]
+test_enqueue(queue, 5)  # [1, 2, 3, 4, 5]
+
+test_emptiness(queue)  # False
+test_size(queue)  # 5
+test_front(queue)  # 1
+test_back(queue)  # 5
+
+test_dequeue(queue)  # [2, 3, 4, 5]
+test_dequeue(queue)  # [3, 4, 5]
+test_dequeue(queue)  # [4, 5]
+test_dequeue(queue)  # [5]
+
+test_emptiness(queue)  # False
+test_size(queue)  # 1
+test_front(queue)  # 5
+test_back(queue)  # 5
+
+test_dequeue(queue)  # []
+
+test_emptiness(queue)  # True
+test_size(queue)  # 0
+</code></pre>
+
+      <p>We first instantiate a new queue from the <code>Queue</code> class.</p>
+
+      <ul>
+        <li>So now we can verify its emptiness: yes, it is!</li>
+
+        <li>Verify size: 0.</li>
+
+        <li>Enqueue 5 new items to the queue: <code>[1, 2, 3, 4, 5]</code>.</li>
+
+        <li>Verify emptiness again: not anymore!</li>
+
+        <li>Verify size: 5.</li>
+
+        <li>Get the front element: 1 because it was the first added item.</li>
+
+        <li>Get the back element: 5 because it was the last added item.</li>
+
+        <li>Dequeue 4 items: 1, 2, 3, and 4.</li>
+
+        <li>Verify emptiness: it is not empty yet!</li>
+
+        <li>The size is 1 and the back and front are the same number: 5</li>
+
+        <li>Dequeue the remaining item.</li>
+
+        <li>Verify emptiness: it is empty now!</li>
+
+        <li>Size is back to 0.</li>
+      </ul>
+
+      <hr />
+
+      <h2 id="anotherwayoftestingit">Another way of testing it</h2>
+
+      <p>Enqueue 5 new items:</p>
+
+      <pre><code class="python language-python">queue = Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.enqueue(4)
+queue.enqueue(5)
+</code></pre>
+
+      <p>Loop through the items and print each one.</p>
+
+      <pre><code class="python language-python">for item in queue.items:
+    print(item)
+</code></pre>
+
+      <p>Test front and back.</p>
+
+      <pre><code class="python language-python">test_front(queue) # 1
+test_back(queue) # 5
+</code></pre>
+
+      <p>Dequeue all.</p>
+
+      <pre><code class="python language-python">while not queue.is_empty():
+    queue.dequeue()
+</code></pre>
+
+      <p>Test size.</p>
+
+      <pre><code class="python language-python">test_size(queue) # 0
+</code></pre>
+
+      <hr />
+
+      <h2 id="runtimeandspacecomplexities">Runtime and Space complexities</h2>
+
+      <p>Now about space and runtime complexities for each method implemented.</p>
+
+      <p>The space is pretty simple. It's a list, so it's <code>O(n)</code> where <code>n</code> is the current number
+        of items in the stack.</p>
+
+      <p>The runtime for each method is <code>O(1)</code>, constant time.</p>
+
+      <hr />
+
+      <h2 id="resources">Resources</h2>
+
+      <ul>
+        <li><a href="http://leandrotk.github.io/tk/2017/09/learning-python-from-zero-to-hero/index.html">Learning
+            Python: From Zero to Hero</a></li>
+
+        <li><a href="https://mbsy.co/lG6tv">One Month - Learn Python</a></li>
+
+        <li><a href="https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275">Data Structures
+            and Algorithms in Python</a></li>
+
+        <li><a href="https://www.youtube.com/watch?v=wjI1WNcIntg&amp;feature=youtu.be">Data Structures: Stacks and
+            Queues</a></li>
+      </ul>
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/algorithms_and_data_structures.html">algorithms_and_data_structures</a>
+        <a class="tag-link" href="../../../tags/python.html">python</a>
+      </div>
+    </div>
+
+    <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+    <script type='text/javascript'>
+      kofiwidget2.init('Buy me a Coffee', '#4b798d', 'O4O5YO9J');
+      kofiwidget2.draw();
+    </script>
+  </div>
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2020 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+          <li><a href="../../../quotes.html">Quotes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
