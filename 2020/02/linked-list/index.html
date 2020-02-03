@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="Notes on what is a linked list, how it works, and a Python implementation">
+  <meta name="keywords" content="python,algorithms,data structure">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Linked List">
+  <meta property="og:description" content="Notes on what is a linked list, how it works, and a Python implementation">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*lsnn_Wn6-D0j7GMU">
+  <meta property="og:updated_time" content="2020-02-02T00:00:00.793Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Linked List">
+  <meta name="twitter:description" content="Notes on what is a linked list, how it works, and a Python implementation">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/0*lsnn_Wn6-D0j7GMU">
+
+  <title>Linked List</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Linked List</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2020-02-02T00:00:00.000Z" itemprop="datePublished">2020-02-02</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link"
+              href="../../../tags/algorithms_and_data_structures.html">algorithms_and_data_structures</a>
+            <a class="tag-link" href="../../../tags/python.html">python</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="figure">
+        <img src="https://cdn-images-1.medium.com/max/1600/0*lsnn_Wn6-D0j7GMU" alt="">
+        <span class="figcaption">
+          Photo by <a href="https://unsplash.com/@sandym10" target="_blank">Sandy Millar</a>
+        </span>
+      </div>
+
+      <h2>Introduction</h2>
+
+      <p>A linked list is a collection of nodes that form a linear
+        sequence. The difference between an array and a linked list is that the array has indexed elements, so we can
+        get an element by constant time by just searching by its index. In the linked list, we need to go through the
+        nodes to get the searched element and that takes linear time.</p>
+      <p>The advantages is that the linked lists can insert and
+        remove items in constant time.</p>
+
+      <h2>Concepts and Implementations</h2>
+      <h3>The Node</h3>
+      <p>A Linked List is a sequence of nodes and each node has two
+        <code>attributes</code>: the value it stores and the reference to the next node of the sequence.</p>
+      <p>The first and last nodes are called <code>head</code> and
+        <code>tail</code> of the list, respectively. So to get to the tail of the last, we traverse the linked list by
+        moving from one node to another using the each node&#x27;s next reference.</p>
+      <p>The Linked List having the <code>head</code> and the
+        <code>tail</code> as attributes helps adding new nodes to the start and the end of the list. But we can
+        implement it with or without the <code>tail</code> attribute. We will dive in into the this implementation.</p>
+      <p>We can separate the linked list from its elements. Each
+        element is a node and we can implement this representation with a <code>Node</code> class.</p>
+      <pre class="code python"><code>class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next</code></pre>
+      <p>Basically it has a value and the reference to the next node.
+        We add a default value (<code>None</code>) to the <code>next</code> parameter to make it more flexible to use
+        when creating new nodes.</p>
+      <p>The simplest way to use it is:</p>
+      <pre class="code python"><code>new_node = Node(1)
+new_node.value  # 1
+new_node.next  # None</code></pre>
+      <ul class="bulleted-list">
+        <li>Instantiate the new node.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>We can access the <code>value</code> and the <code>next</code> attributes.</li>
+      </ul>
+      <p>But with the flexibility of the <code>next</code> parameter,
+        we can also use it by passing the next node reference.</p>
+      <pre class="code python"><code>next_node = Node(2)
+
+new_node = Node(1, next_node)
+new_node.value  # 1
+new_node.next.value  # 2</code></pre>
+      <ul class="bulleted-list">
+        <li>Have a next node.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>Instantiate the new node by passing the value and the reference to the next node (<code>next_node</code> in
+          our case).</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>We can access the <code>value</code> and the <code>next</code> value.</li>
+      </ul>
+
+      <h3>Creating a base for the Linked List</h3>
+      <p>For the linked list, the first step is to create a class
+        representing it. For now we just want a <code>head</code> attribute when creating an empty list.</p>
+      <pre class="code python"><code>class LinkedList:
+    def __init__(self):
+        self.head = None</code></pre>
+      <p>Simple as that. Just a class and initialize the
+        <code>head</code> attribute with <code>None</code> for an empty list.</p>
+
+      <h3>is_empty method</h3>
+      <p>Let&#x27;s implement the easier method:
+        <code>is_empty</code>. How do we know when a list is empty? If the <code>head</code> is <code>None</code>, we
+        didn&#x27;t add any node to this list. This is the logic behind the <code>is_empty</code> method.</p>
+      <pre class="code python"><code>def is_empty(self):
+    return self.head is None</code></pre>
+      <p>Pretty simple, huh?</p>
+      <h3>prepend method</h3>
+      <p>Now the <code>prepend</code> method. We basically need to
+        create a new node, points the <code>next</code> attribute from this new node to the <code>head</code> and assign
+        this new node to be the new linked list <code>head</code>.</p>
+      <p>Remember we have a <code>next</code> parameter when creating
+        a new node? We can use it to assign the previous <code>head</code> when creating the new node. Something like
+        this:</p>
+      <pre class="code python"><code>Node(value, previous_head)</code></pre>
+      <p>In the context of the linked list, we will have the
+        <code>self.head</code>. So:</p>
+      <pre class="code python"><code>Node(value, self.head)</code></pre>
+      <p>The last step is to assign this new node to the
+        <code>head</code> and we will prepend it.</p>
+      <pre class="code python"><code>self.head = Node(value, self.head)</code></pre>
+      <ul class="bulleted-list">
+        <li>Create new node</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>Assign the <code>next</code> attribute to the previous <code>head</code></li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>And assign the new node to the <code>head</code></li>
+      </ul>
+      <p>The complete method will be like:</p>
+      <pre class="code python"><code>def prepend(self, value):
+    self.head = Node(value, self.head)</code></pre>
+      <p>Just one line. Pretty good!</p>
+
+      <h3>append method</h3>
+      <p>For the <code>append</code>, it&#x27;s a bit different,
+        because, instead of add a new node to the head of the list, we need to add to the tail. So basically we need to
+        iterate through the list to be in the last node and point it&#x27;s <code>next</code> attribute to the new
+        created node.</p>
+      <p>The question is: How do we iterate through the list?</p>
+      <p>The difference between the tail node and the rest is the
+        <code>next</code> attribute. The tail has no <code>next</code>. It points to <code>None</code>. The rest always
+        point to a different node.</p>
+      <p>To iterate through the list to get the last node, we get the
+        next node until the node has no <code>next</code> attribute. Start with the first node: the head.</p>
+      <pre class="code python"><code>current_node = self.head</code></pre>
+      <p>And the iterate.</p>
+      <pre class="code python"><code>while current_node.next is not None:
+    current_node = current_node.next</code></pre>
+      <p>We divide this code in two parts:</p>
+      <ul class="bulleted-list">
+        <li>looping while the node&#x27;s <code>next</code> attribute is not <code>None</code></li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>update the current node by assigning the next node</li>
+      </ul>
+      <p>When the <code>while</code> loop breaks, we have the last
+        node, so we just need to update the last node <code>next</code> attribute.</p>
+      <pre class="code python"><code>current_node.next = Node(value)</code></pre>
+      <p>The complete code:</p>
+      <pre class="code python"><code>current_node = self.head
+
+while current_node.next is not None:
+    current_node = current_node.next
+
+current_node.next = Node(value)</code></pre>
+      <p>But this code will break if the linked list is empty,
+        because the <code>head</code> is <code>None</code>, it can&#x27;t have a <code>next</code> attribute.</p>
+      <p>In this case we just make a condition for emptiness. If it
+        is empty, we just assign the new node to the <code>head</code>.</p>
+      <pre class="code python"><code>def append(self, value):
+    if self.is_empty():
+        self.head = Node(value)
+        return
+
+    current_node = self.head
+
+    while current_node.next is not None:
+        current_node = current_node.next
+
+    current_node.next = Node(value)</code></pre>
+
+      <h3>size method</h3>
+      <p>For the <code>size</code> method is straightforward. We
+        basically need to iterate through the whole list and count each node.</p>
+      <p>To iterate is pretty simple. We just need to loop while the
+        current node is not <code>None</code>.</p>
+      <pre class="code python"><code>while current_node is not None:
+    current_node = current_node.next</code></pre>
+      <p>And for each iteration, we need to increase our counter.</p>
+      <pre class="code python"><code>def size(self):
+    list_length = 0
+    current_node = self.head
+
+    while current_node is not None:
+        list_length += 1
+        current_node = current_node.next
+
+    return list_length</code></pre>
+      <ul class="bulleted-list">
+        <li>Initialize the <code>list_length</code> with <code>0</code>.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>Get the current node: the <code>head</code>.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>Iterate through the list.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>For each iteration, increase the counter.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>Returns the <code>list_length</code>.</li>
+      </ul>
+      <h3>search method</h3>
+      <p>For the <code>search</code> algorithm, we need to receive a
+        value and return <code>True</code> or <code>False</code> if the this value is in the linked list.</p>
+      <p>So we basically need to iterate through the linked list
+        searching for this value.</p>
+      <p>The iteration is simple:</p>
+      <pre class="code python"><code>while current_node is not None:
+    current_node = current_node.next</code></pre>
+      <p>Now, for each node, we see if the current node value is the
+        same as the searched value.</p>
+      <pre class="code python"><code>while current_node is not None:
+    if current_node.value == value:
+        return True
+
+    current_node = current_node.next</code></pre>
+      <p>We can do this way to return <code>True</code> if the
+        searched value is found. Or we can defined a <code>found</code> variable and use it to set it to
+        <code>True</code> when find it and get out of the loop.</p>
+      <pre class="code python"><code>while not found and current_node is not None:
+    found = current_node.value == value
+    current_node = current_node.next</code></pre>
+      <ul class="bulleted-list">
+        <li>We will iterate while we didn&#x27;t find a the value and it is not the last node</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>Basically the loop will stop when find the searched value or finish the entire linked list</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>The <code>current_node.value == value</code> logic will store a <code>True</code> or <code>False</code>
+          value for each current node value</li>
+      </ul>
+      <p>We define the <code>found</code> and
+        <code>current_node</code> before iterating and return if we found the searched value or not.</p>
+      <pre class="code python"><code>def search(self, value):
+    found = False
+    current_node = self.head
+
+    while not found and current_node is not None:
+        found = current_node.value == value
+        current_node = current_node.next
+
+    return found</code></pre>
+
+      <h3>remove method</h3>
+      <p>The last method to be implemented is the <code>remove</code>
+        method. We can think about this method in separated cases:</p>
+      <ul class="bulleted-list">
+        <li>when the list is empty.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>when we want to remove the head node.</li>
+      </ul>
+      <ul class="bulleted-list">
+        <li>when we want to remove a node from the middle or the last one.</li>
+      </ul>
+      <p>For the empty case is pretty simple. We just check the list
+        with our <code>is_empty</code> method.</p>
+      <pre class="code python"><code>if self.is_empty():
+    return</code></pre>
+      <p>We can also throw an error exception or just print &quot;The
+        list is empty&quot;, for example.</p>
+      <p>For the case when we want to remove the head node, we check
+        it first and them remove it.</p>
+      <pre class="code python"><code>if self.head.value == value:
+    self.head = self.head.next
+    return</code></pre>
+      <p>To remove it, we just need to point the head to the its next
+        node.</p>
+      <p>The last case is when we want to remove a node in the middle
+        or the last one. Let&#x27;s draw it!</p>
+      <img src="https://cdn-images-1.medium.com/max/1600/1*Zk0UPQ4Tb9Av_ebaFrHOuw.jpeg" />
+      <p>For this algorithm, what we want is to get the previous node
+        of the node to be removed and point to the next node of the node to be removed. So we need to have the previous
+        node in each iteration. This is the fundamental part of our algorithm.</p>
+      <pre class="code python"><code>while current_node.next is not None:
+    if current_node.next.value == value:
+        current_node.next = current_node.next.next
+        return
+
+    current_node = current_node.next</code></pre>
+      <p>This is the algorithm.</p>
+      <p>We will iterate through the list while the current
+        node&#x27;s next is not a <code>None</code> value. Why? Because we want to compare the next node value. Not the
+        current one.</p>
+      <pre class="code python"><code>if current_node.next.value == value:</code></pre>
+      <p>This the logic we are searching for. Does the current
+        node&#x27;s next value is the value we want to remove?</p>
+      <p>If it is <code>True</code>, we basically remove the current
+        node&#x27;s next node by point the <code>next</code> to the <code>next.next</code>, and return the function.</p>
+      <p>If it is <code>False</code>, we keep iterating until we find
+        the value we want or when we finish the entire list.</p>
+      <p>Joining all the parts, we have:</p>
+      <pre class="code python"><code>def remove(self, value):
+    if self.is_empty():
+        return
+
+    if self.head.value == value:
+        self.head = self.head.next
+        return
+
+    current_node = self.head
+
+    while current_node.next is not None:
+        if current_node.next.value == value:
+            current_node.next = current_node.next.next
+            return
+
+        current_node = current_node.next</code></pre>
+      <h2>The Linked List class</h2>
+      <p>Joining all the parts we talked and implemented, we have:
+      </p>
+      <pre class="code python"><code>class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, value):
+        if self.is_empty():
+            self.head = Node(value)
+            return
+
+        current_node = self.head
+
+        while current_node.next is not None:
+            current_node = current_node.next
+
+        current_node.next = Node(value)
+
+    def prepend(self, value):
+        self.head = Node(value, self.head)
+
+    def remove(self, value):
+        if self.is_empty():
+            return
+
+        if self.head.value == value:
+            self.head = self.head.next
+            return
+
+        current_node = self.head
+
+        while current_node.next is not None:
+            if current_node.next.value == value:
+                current_node.next = current_node.next.next
+                return
+
+            current_node = current_node.next
+
+    def search(self, value):
+        found = False
+        current_node = self.head
+
+        while not found and current_node is not None:
+            found = current_node.value == value
+            current_node = current_node.next
+
+        return found
+
+    def is_empty(self):
+        return self.head is None
+
+    def size(self):
+        list_length = 0
+        current_node = self.head
+
+        while current_node is not None:
+            list_length += 1
+            current_node = current_node.next
+
+        return list_length</code></pre>
+      <h2>Let&#x27;s test it!</h2>
+      <p>I basically created three helper functions to help us to
+        test our linked list.</p>
+      <pre class="code python"><code>def print_all(linked_list):
+    print(&#x27;All values:&#x27;, end=&#x27; &#x27;)
+    current_node = linked_list.head
+
+    while current_node is not None:
+        print(current_node.value, end=&#x27; &#x27;)
+        current_node = current_node.next
+
+    print()
+
+
+def print_found(linked_list, value):
+    found = linked_list.search(value)
+    print(&#x27;For value:&#x27;, value, &#x27;--&gt;&#x27;, &#x27;Found:&#x27;, found, )
+
+
+def print_size(linked_list):
+    list_length = linked_list.size()
+    print(&#x27;Size:&#x27;, list_length)</code></pre>
+      <p>They will print all the value, the found value, and the size
+        of the list. So first we instantiate our list:</p>
+      <pre class="code python"><code>linked_list = LinkedList()</code></pre>
+      <p>Let&#x27;s see what we get when we try to print all the
+        values and its size:</p>
+      <pre class="code python"><code>print_all(linked_list)
+print_size(linked_list)  # 0</code></pre>
+      <p>Yes, no values and <code>0</code> elements.</p>
+      <p>We can append a node with value <code>1</code>, print the
+        values, and see its size.</p>
+      <pre class="code python"><code>linked_list.append(1)
+print_all(linked_list)  # 1
+print_size(linked_list)  # 1</code></pre>
+      <p>If we try to remove <code>0</code>, the <code>1</code> is
+        still there. But if we remove <code>1</code>, we have no nodes anymore. The first line is cool: it doesn&#x27;t
+        break if we try to remove an element that doesn&#x27;t exist in the linked list.</p>
+      <pre class="code python"><code>linked_list.remove(0)
+print_all(linked_list)  # 1
+linked_list.remove(1)
+print_all(linked_list)</code></pre>
+      <p>Adding new nodes and printing them:</p>
+      <pre class="code python"><code>linked_list.append(2)
+linked_list.append(3)
+print_all(linked_list)  # 2 3
+print_size(linked_list)  # 2</code></pre>
+      <p>Let&#x27;s try out <code>found</code> method:</p>
+      <pre class="code python"><code>print_found(linked_list, 1)  # False
+print_found(linked_list, 2)  # True
+print_found(linked_list, 3)  # True</code></pre>
+      <p>That&#x27;s cool! We really don&#x27;t have the
+        <code>1</code> node, but we have the <code>2</code> and the <code>3</code>.</p>
+      <p>Now printing after removing each node:</p>
+      <pre class="code python"><code>linked_list.remove(1)
+print_all(linked_list)  # 2 3
+linked_list.remove(2)
+print_all(linked_list)  # 3
+linked_list.remove(3)
+print_all(linked_list)</code></pre>
+      <p>Let&#x27;s try out <code>prepend</code> method:</p>
+      <pre class="code python"><code>linked_list.prepend(4)
+linked_list.prepend(3)
+linked_list.prepend(2)
+linked_list.prepend(1)
+print_all(linked_list)  # 1 2 3 4</code></pre>
+      <p>And remove the <code>3</code>.</p>
+      <pre class="code python"><code>linked_list.remove(3)
+print_all(linked_list)  # 1 2 4</code></pre>
+      <p>Works fine!</p>
+      <hr>
+      <h2>Resources</h2>
+      <ul>
+        <li>
+          <a href="http://leandrotk.github.io/tk/2017/09/learning-python-from-zero-to-hero/index.html">Learning Python:
+            From Zero to Hero</a>
+        </li>
+        <li>
+          <a href="https://mbsy.co/lG6tv">One Month - Learn Python</a>
+        </li>
+        <li>
+          <a href="https://www.educative.io/courses/big-o-notation-for-interviews-and-beyond?aff=x8bV">Big-O Notation
+            For Coding Interviews and Beyond</a>
+        </li>
+        <li>
+          <a href="https://www.educative.io/courses/learn-python-from-scratch?aff=x8bV">Learn Python from Scratch</a>
+        </li>
+        <li>
+          <a href="https://www.educative.io/courses/learn-object-oriented-programming-in-python?aff=x8bV">Learn
+            Object-Oriented Programming in Python</a>
+        </li>
+        <li>
+          <a href="https://www.educative.io/courses/data-structures-in-python-an-interview-refresher?aff=x8bV">Data
+            Structures in Python: An Interview Refresher</a>
+        </li>
+        <li>
+          <a href="https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275)">Data Structures
+            and Algorithms in Python</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be">HackerRank Linked List</a>
+        </li>
+        <li>
+          <a href="https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d">Linked List Part 1</a>
+        </li>
+        <li>
+          <a href="https://medium.com/basecs/whats-a-linked-list-anyway-part-2-131d96f71996">Linked List Part 2</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=op42w-5o3nE">Data Structures in Python: Circular Linked Lists -
+            Rem</a>
+        </li>
+        <li>
+          <a href="https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be">Data Structures: Linked Lists</a>
+        </li>
+      </ul>
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/algorithms_and_data_structures.html">algorithms_and_data_structures</a>
+        <a class="tag-link" href="../../../tags/python.html">python</a>
+      </div>
+    </div>
+
+    <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+    <script type='text/javascript'>
+      kofiwidget2.init('Buy me a Coffee', '#4b798d', 'O4O5YO9J');
+      kofiwidget2.draw();
+    </script>
+  </div>
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2020 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+          <li><a href="../../../quotes.html">Quotes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
