@@ -228,9 +228,9 @@ print(tree.right_child) <span class="hljs-comment"># None</span>
         new_node.right_child = self.right_child
         self.right_child = new_node
 </code></pre>
-      <p>Done. :)</p>
+      <p>Done! :)</p>
       <p>But not entirely. We still need to test it.</p>
-      <p>Let’s build the following<code>tree</code>:</p>
+      <p>Let’s build the following <code>tree</code>:</p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*V_EUgNXVc8Wy9H1-JoqT3g.jpeg" alt=""></p>
       <p>To summarize the illustration of this tree:</p>
       <ul>
@@ -301,7 +301,10 @@ print(f_node.value) <span class="hljs-comment"># f</span>
       <p>The result for this algorithm will be 1–2–3–4–5–6–7.</p>
       <p>Why?</p>
       <p>Let’s break it down.</p>
-      <ol start="2">
+      <ol>
+        <li>
+          <p>Print the root value.</p>
+        </li>
         <li>
           <p>Go to the <code>left child</code> (2). Print it.</p>
         </li>
@@ -329,7 +332,8 @@ print(f_node.value) <span class="hljs-comment"># f</span>
         </li>
       </ol>
       <p>When we go deep to the leaf and backtrack, this is called <strong>DFS</strong> algorithm.</p>
-      <p>Now that we are familiar with this traversal algorithm, we will discuss types of <strong>DFS</strong>:
+      <p>Now that we are familiar with this traversal algorithm, we will discuss the three types of
+        <strong>DFS</strong>:
         <code>pre-order</code>,
         <code>in-order</code>, and <code>post-order</code>.</p>
       <h3><a id="Preorder_275"></a>Pre-order</h3>
@@ -343,6 +347,11 @@ print(f_node.value) <span class="hljs-comment"># f</span>
     <span class="hljs-keyword">if</span> self.right_child:
         self.right_child.pre_order()
 </code></pre>
+
+      <p>Print the current node, go to the left until it didn't have a left child, and then go to the right.</p>
+
+      <p>The result is exactly as the above algorithm: 1–2–3–4–5–6–7.</p>
+
       <h3><a id="Inorder_292"></a>In-order</h3>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg" alt=""></p>
       <p>The result of the in-order algorithm for this <code>tree</code> example is 3–2–4–1–6–5–7.</p>
@@ -371,12 +380,18 @@ print(f_node.value) <span class="hljs-comment"># f</span>
 
     print(self.value)
 </code></pre>
+
+      <p>These algorithms go deeply in the tree.</p>
+
       <h3><a id="BreadthFirst_Search BFS_338"></a>Breadth-First Search (BFS)</h3>
       <p><strong>BFS</strong> algorithm traverses the <code>tree</code> level by level and depth by depth.</p>
-      <p><img src="https://cdn-images-1.medium.com/max/1600/1*ZNxp_NkRZLCeak85rreebA.jpeg" alt=""></p>
+      <img src="https://cdn-images-1.medium.com/max/1600/1*ZNxp_NkRZLCeak85rreebA.jpeg" alt="">
+
+      <p>The level 0 is only the root node. Level 1 is for children. Level 2 grandchildren. And so on.</p>
+
       <p>Here is an example that helps to better explain this algorithm:</p>
-      <p><img src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg" alt=""></p>
-      <p>So we traverse level by level. In this example, the result is 1–2–5–3–4–6–7.</p>
+      <img src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg" alt="">
+      <p>So we traverse level by level. In this example, the result is 1–2–5–3–4–6–7. Why?</p>
       <ul>
         <li>
           <p>Level/Depth 0: only <code>node</code> with value 1</p>
@@ -406,7 +421,35 @@ print(f_node.value) <span class="hljs-comment"># f</span>
       <p>To implement a <strong>BFS</strong> algorithm, we use the <code>queue</code> data structure to help.</p>
       <p>How does it work?</p>
       <p>Here’s the explanation.</p>
-      <p><img src="https://cdn-images-1.medium.com/max/1600/1*A4yGfEoiqcZ-COvAfr2CWQ.jpeg" alt=""></p>
+      <img src="https://cdn-images-1.medium.com/max/1600/1*A4yGfEoiqcZ-COvAfr2CWQ.jpeg" alt="">
+
+      <ul>
+        <li>
+          <p>Add the root node to the queue</p>
+        </li>
+        <li>
+          <p>We run the algorithm until the queue doesn't anything</p>
+        </li>
+        <li>
+          <p>Get the first element in queue</p>
+        </li>
+        <li>
+          <p>Print its value</p>
+        </li>
+        <li>
+          <p>Add its children in the queue (if it has)</p>
+        </li>
+        <li>
+          <p>Run this algorithm again if we have any node in the queue</p>
+        </li>
+      </ul>
+
+      <p>The illustration: we get 1 first (root node), print its value, and add its children to the queue: left first,
+        right last. Our queue has nodes inside it, so run it again. Get the first node in the queue (2) and print it.
+        Add its children. And we do this algorithm for each node in the queue.</p>
+
+      <p>As we use the queue to add and get elements, we pop when get the next node.</p>
+
       <h2><a id="Binary_Search tree_384"></a>Binary Search tree</h2>
       <blockquote>
         <p>“A Binary Search Tree is sometimes called ordered or sorted binary trees, and it keeps its values in sorted
@@ -414,21 +457,23 @@ print(f_node.value) <span class="hljs-comment"># f</span>
       </blockquote>
       <p>An important property of a <code>Binary Search Tree</code> is that the value of a
         <code>Binary Search Tree</code>
-        <code>node</code>is larger than the value of the offspring of its <code>left child</code>, but smaller than the
+        <code>node</code> is larger than the value of the offspring of its <code>left child</code>, but smaller than the
         value of the offspring of its <code>right child.</code>”</p>
       <p><img src="https://cdn-images-1.medium.com/max/1600/1*mslH9VtVUN9Hs983XxUN5A.jpeg" alt=""></p>
       <p>Here is a breakdown of the above illustration:</p>
       <ul>
         <li>
-          <p>**A **is inverted. The <code>subtree</code> 7–5–8–6 needs to be on the right side, and the
+          <p><strong>A</strong> is inverted. The <code>subtree</code> 7–5–8–6 needs to be on the right side, and the
             <code>subtree</code>
             2–1–3 needs to be on the left.</p>
         </li>
         <li>
-          <p>**B **is the only correct option. It satisfies the <code>Binary Search Tree</code> property.</p>
+          <p><strong>B</strong> is the only correct option. It satisfies the <code>Binary Search Tree</code> property.
+          </p>
         </li>
         <li>
-          <p>**C **has one problem: the <code>node</code> with the value 4. It needs to be on the left side of the
+          <p><strong>C</strong> has one problem: the <code>node</code> with the value 4. It needs to be on the left side
+            of the
             <code>root</code> because it is smaller than 5.</p>
         </li>
       </ul>
@@ -498,13 +543,13 @@ print(f_node.value) <span class="hljs-comment"># f</span>
         <code>children</code>,
         respectively. Lines <code>11</code> and <code>15</code> are the ones that do the insertion for each
         <code>child</code>.</p>
-      <h3><a id="Lets_search_for_the_node_value_Or not_464"></a>Let’s search for the node value… Or not…</h3>
+      <h3><a id="Lets_search_for_the_node_value_Or not_464"></a>Let’s search for the node value... Or not...</h3>
       <p>The algorithm that we will build now is about doing searches. For a given value (integer number), we will say
         if our <code>Binary Search Tree</code> does or does not have that value.</p>
       <p>An important item to note is how we defined the tree <strong>insertion algorithm</strong>. First we have our
-        <code>root</code> <code>node</code>. All the left <code>subtree</code> <code>nodes</code>will have smaller
+        <code>root</code> <code>node</code>. All the left <code>subtree</code> <code>nodes</code> will have smaller
         values than the <code>root</code> <code>node</code>. And all the right <code>subtree</code>
-        <code>nodes</code>will
+        <code>nodes</code> will
         have values greater than the <code>root</code> <code>node</code>.</p>
       <p>Let’s take a look at an example.</p>
       <p>Imagine that we have this <code>tree</code>.</p>
@@ -527,7 +572,7 @@ print(f_node.value) <span class="hljs-comment"># f</span>
 
         <span class="hljs-keyword">return</span> value == self.value
 </code></pre>
-      <p>Let’s beak down the code:</p>
+      <p>Let’s break down the code:</p>
       <ul>
         <li>
           <p>Lines 8 and 9 fall under rule #1.</p>
@@ -540,7 +585,7 @@ print(f_node.value) <span class="hljs-comment"># f</span>
         </li>
       </ul>
       <p>How do we test it?</p>
-      <p>Let’s create our <code>Binary Search Tree</code>by initializing the <code>root</code> <code>node</code> with
+      <p>Let’s create our <code>Binary Search Tree</code> by initializing the <code>root</code> <code>node</code> with
         the value 15.</p>
       <pre><code class="language-python">bst = BinarySearchTree(<span class="hljs-number">15</span>)
 </code></pre>
@@ -553,7 +598,7 @@ bst.insert_node(<span class="hljs-number">17</span>)
 bst.insert_node(<span class="hljs-number">25</span>)
 bst.insert_node(<span class="hljs-number">19</span>)
 </code></pre>
-      <p>For each inserted <code>node</code> , we will test if our <code>find_node</code> method really works.</p>
+      <p>For each inserted <code>node</code>, we will test if our <code>find_node</code> method really works.</p>
       <pre><code class="language-python">print(bst.find_node(<span class="hljs-number">15</span>)) <span class="hljs-comment"># True</span>
 print(bst.find_node(<span class="hljs-number">10</span>)) <span class="hljs-comment"># True</span>
 print(bst.find_node(<span class="hljs-number">8</span>)) <span class="hljs-comment"># True</span>
