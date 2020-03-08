@@ -71,7 +71,8 @@
           surrounding state (the lexical environment).&quot;</p>
       </blockquote>
       <p>Basically, every time a function is created, a closure is also created and it gives access to all state
-        (variables, constants, functions, etc). It is known as the <code>lexical environment</code>.</p>
+        (variables, constants, functions, etc). The surrounding state is known as the <code>lexical environment</code>.
+      </p>
       <p>Let&#39;s show a simple example:</p>
       <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeFunction</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">const</span> name = <span class="hljs-string">'TK'</span>;
@@ -99,7 +100,7 @@ myFunction()<span class="hljs-comment">; // TK</span>
 </code></pre>
       <p>Great! It works as expected! The return of the <code>makeFunction</code> is a function that we store it in the
         <code>myFunction</code> constant, call it later, and displays <code>TK</code>.</p>
-      <p>We can also make it work as a arrow function:</p>
+      <p>We can also make it work as an arrow function:</p>
       <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> makeFunction = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
   <span class="hljs-keyword">const</span> name = <span class="hljs-string">'TK'</span>;
   <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(name);
@@ -120,7 +121,9 @@ myFunction(); <span class="hljs-comment">// TK</span>
 <span class="hljs-keyword">const</span> myFunction = makeFunction(<span class="hljs-string">'Dan'</span>);
 myFunction(); <span class="hljs-comment">// Dan</span>
 </code></pre>
-      <p>The function created is not only aware of constants/variables, but also other functions.</p>
+      <p>Our <code>myFunction</code> is aware of the arguments passed: default or dynamic value.</p>
+      <p>The closure does make the created function not only aware of constants/variables, but also other functions
+        within the function.</p>
       <p>So this also works:</p>
       <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> makeFunction = <span class="hljs-function">(<span class="hljs-params">name = <span class="hljs-string">'TK'</span></span>) =&gt;</span> {
   <span class="hljs-keyword">const</span> display = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(name);
@@ -130,7 +133,7 @@ myFunction(); <span class="hljs-comment">// Dan</span>
 <span class="hljs-keyword">const</span> myFunction = makeFunction();
 myFunction(); <span class="hljs-comment">// TK</span>
 </code></pre>
-      <p>The returned function knows about the <code>display</code> function and is able to call it.</p>
+      <p>The returned function knows about the <code>display</code> function and it is able to call it.</p>
       <p>One powerful technique is to use closures to build &quot;private&quot; functions and variables.</p>
       <p>Months ago I was learning data structures (again!) and wanted to implement each one. But I was always using the
         object oriented approach. As a functional programming enthusiast, I wanted to build all the data structures
@@ -202,7 +205,7 @@ myFunction(); <span class="hljs-comment">// TK</span>
           functions each with only a single argument.&quot; - Wikipedia</p>
       </blockquote>
       <p>So imagine you have a function with multiple arguments: <code>f(a, b, c)</code>. Using currying, we achieve a
-        function <code>f(a)</code> that returns a function <code>g(b)</code> the returns a function <code>h(c)</code>.
+        function <code>f(a)</code> that returns a function <code>g(b)</code> that returns a function <code>h(c)</code>.
       </p>
       <p>Basically: <code>f(a, b, c)</code> —&gt; <code>f(a) =&gt; g(b) =&gt; h(c)</code></p>
       <p>Let&#39;s build a simple example: add two numbers. But first, without currying!</p>
@@ -233,18 +236,18 @@ myFunction(); <span class="hljs-comment">// TK</span>
       <p>These three different curried functions have the same behavior: build a sequence of functions with only one
         argument.</p>
       <p>How we use it?</p>
-      <pre><code class="lang-javascript">add<span class="hljs-comment">(10)</span><span class="hljs-comment">(20)</span>; <span class="hljs-comment">// 30</span>
-</code></pre>
+      <pre><code class="lang-javascript">add(10)(20); <span class="hljs-comment">// 30</span></code></pre>
       <p>At first, it can look a bit strange, but it has a logic behind it. <code>add(10)</code> returns a function. And
         we call this function with the <code>20</code> value.</p>
       <p>This is the same as:</p>
-      <pre><code class="lang-javascript"><span class="hljs-symbol">const</span> <span class="hljs-keyword">addTen </span>= <span class="hljs-keyword">add(10);
-</span><span class="hljs-keyword">addTen(20); </span>// <span class="hljs-number">30</span>
+      <pre><code class="lang-javascript"><span class="hljs-symbol">const</span> addTen = add(10);
+addTen(20); // <span class="hljs-number">30</span>
 </code></pre>
-      <p>And this is interesting. We can generate specialized functions by calling the first function. Imagine we want a
+      <p>And this is interesting. We can generate specialized functions by calling the first function. Imagine we want
+        an
         <code>increment</code> function. We can generate it from our <code>add</code> function by passing the
-        <code>1</code> as the value.</p>
-      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> increment = <span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>);
+        <code>1</code> as the argument value.</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> increment = add(<span class="hljs-number">1</span>);
 increment(<span class="hljs-number">9</span>); <span class="hljs-comment">// 10</span>
 </code></pre>
       <hr>
@@ -287,15 +290,15 @@ buildSelector(<span class="hljs-string">'input'</span>, <span class="hljs-string
       <pre><code class="lang-javascript">const get = <span class="hljs-function"><span class="hljs-params">(element)</span> =&gt;</span> ({
   withAttribute: <span class="hljs-function"><span class="hljs-params">(attribute)</span> =&gt;</span> ({
     andValue: <span class="hljs-function"><span class="hljs-params">(value)</span> =&gt;</span> `<span class="javascript">${element}[${attribute}=<span class="hljs-string">"${value}"</span>]</span>`,
-  }),
+  })
 });
 </code></pre>
       <p>I think it looks prettier. And we use it like:</p>
-      <pre><code class="lang-javascript"><span class="hljs-symbol">const</span> <span class="hljs-keyword">selector </span>= <span class="hljs-meta">get</span>(<span class="hljs-string">'input'</span>)
+      <pre><code class="lang-javascript"><span class="hljs-symbol">const</span> selector = get(<span class="hljs-string">'input'</span>)
   .withAttribute(<span class="hljs-string">'data-testid'</span>)
-  .<span class="hljs-keyword">andValue(123);
+  .andValue(123);
 </span>
-<span class="hljs-keyword">selector; </span>// input[<span class="hljs-meta">data</span>-testid=<span class="hljs-string">"123"</span>]
+selector; // <span class="hljs-comment">input[<span class="hljs-meta">data</span>-testid="123"]</span>
 </code></pre>
       <p>The <code>andValue</code> function knows about the <code>element</code> and <code>attribute</code> values
         because it is aware of the lexical environment as we talked about closures before.</p>
@@ -362,12 +365,12 @@ const where = (json, <span class="hljs-keyword">attributes</span>) =&gt; (<span 
 const from = (json, <span class="hljs-keyword">attributes</span>) =&gt; (<span class="hljs-keyword">node</span><span class="hljs-title">) =&gt; ({ where</span>: where(json[<span class="hljs-keyword">node</span><span class="hljs-title">], attributes</span>) });
 </code></pre>
       <p>With this implementation, we can start the engine with the JSON data:</p>
-      <pre><code class="lang-javascript">const <span class="hljs-keyword">select</span> = startEngine(<span class="hljs-keyword">json</span>);
+      <pre><code class="lang-javascript">const select = startEngine(<span class="hljs-keyword">json</span>);
 </code></pre>
       <p>And use it as a SQL query:</p>
-      <pre><code class="lang-javascript"><span class="hljs-keyword">select</span>([<span class="hljs-string">'id'</span>, <span class="hljs-string">'name'</span>])
-  .<span class="hljs-keyword">from</span>(<span class="hljs-string">'users'</span>)
-  .<span class="hljs-keyword">where</span>(<span class="hljs-string">'id'</span>, <span class="hljs-number">1</span>);
+      <pre><code class="lang-javascript">select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'name'</span>])
+  .from(<span class="hljs-string">'users'</span>)
+  .where(<span class="hljs-string">'id'</span>, <span class="hljs-number">1</span>);
 
 result; <span class="hljs-comment">// [{ id: 1, name: 'TK' }]</span>
 </code></pre>
