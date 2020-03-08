@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description"
+    content="In this article, we will talk about closures, curried functions, and play around with these concepts to build cool abstractions.">
+  <meta name="keywords" content="javascript,react,web">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Closures, Currying, and Cool Abstractions">
+  <meta property="og:description"
+    content="In this article, we will talk about closures, curried functions, and play around with these concepts to build cool abstractions.">
+  <meta property="og:locale" content="en">
+  <meta property="og:image"
+    content="https://images.japancentre.com/recipes/pics/6/main/6-pork-katsu-curry.jpg?1469572800">
+  <meta property="og:updated_time" content="2020-03-08T00:00:00.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Closures, Currying, and Cool Abstractions">
+  <meta name="twitter:description"
+    content="In this article, we will talk about closures, curried functions, and play around with these concepts to build cool abstractions.">
+  <meta name="twitter:image"
+    content="https://images.japancentre.com/recipes/pics/6/main/6-pork-katsu-curry.jpg?1469572800">
+
+  <title>Closures, Currying, and Cool Abstractions</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">Closures, Currying, and Cool Abstractions</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2020-03-08T00:00:00.000Z" itemprop="datePublished">2020-03-08</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/javascript.html">javascript</a>
+            <a class="tag-link" href="../../../tags/web_development.html">web_development</a>
+            <a class="tag-link" href="../../../tags/functional_programming.html">functional_programming</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="figure">
+        <img src="https://images.japancentre.com/recipes/pics/6/main/6-pork-katsu-curry.jpg?1469572800">
+        <span class="figcaption">
+          Photo by <a href="https://www.japancentre.com/en/recipes/6-japanese-pork-katsu-curry" target="_blank">Japan
+            Centre</a>
+        </span>
+      </div>
+
+      <hr />
+
+      <p>In this article, we will talk about closures, curried functions, and play around with these concepts to build
+        cool abstractions. I want to show the idea behind each concept, but also make it very practical with examples
+        and refactor code to make it more fun.</p>
+      <h2 id="closures">Closures</h2>
+      <p>So closure is a common topic in JavaScript and we will start with it. As MDN web docs defines:</p>
+      <blockquote>
+        <p>&quot;A closure is the combination of a function bundled together (enclosed) with references to its
+          surrounding state (the lexical environment).&quot;</p>
+      </blockquote>
+      <p>Basically, every time a function is created, a closure is also created and it gives access to all state
+        (variables, constants, functions, etc). The surrounding state is known as the <code>lexical environment</code>.
+      </p>
+      <p>Let&#39;s show a simple example:</p>
+      <pre><code class="lang-javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">makeFunction</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">const</span> name = <span class="hljs-string">'TK'</span>;
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">displayName</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(name);
+  }
+  <span class="hljs-keyword">return</span> displayName;
+};
+</code></pre>
+      <p>What do we have here?</p>
+      <ul>
+        <li>Our main function called <code>makeFunction</code></li>
+        <li>A constant named <code>name</code> assigned with a string <code>&#39;TK&#39;</code></li>
+        <li>The definition of the <code>displayName</code> function (that just log the <code>name</code> constant)</li>
+        <li>And finally the <code>makeFunction</code> returns the <code>displayName</code> function</li>
+      </ul>
+      <p>This is just a definition of a function. When we call the <code>makeFunction</code>, it will create everything
+        within it: constant and function in this case.</p>
+      <p>As we know, when the <code>displayName</code> function is created, the closure is also created and it makes the
+        function aware of the environment, in this case, the <code>name</code> constant. This is why we can
+        <code>console.log</code> the <code>name</code> without breaking anything. The function knows about the lexical
+        environment.</p>
+      <pre><code class="lang-javascript">const myFunction = makeFunction()<span class="hljs-comment">;</span>
+myFunction()<span class="hljs-comment">; // TK</span>
+</code></pre>
+      <p>Great! It works as expected! The return of the <code>makeFunction</code> is a function that we store it in the
+        <code>myFunction</code> constant, call it later, and displays <code>TK</code>.</p>
+      <p>We can also make it work as an arrow function:</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> makeFunction = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">const</span> name = <span class="hljs-string">'TK'</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(name);
+};
+</code></pre>
+      <p>But what if we want to pass the name and display it? A parameter!</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> makeFunction = <span class="hljs-function">(<span class="hljs-params">name = <span class="hljs-string">'TK'</span></span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(name);
+};
+
+<span class="hljs-comment">// Or a one-liner</span>
+<span class="hljs-keyword">const</span> makeFunction = <span class="hljs-function">(<span class="hljs-params">name = <span class="hljs-string">'TK'</span></span>) =&gt;</span> () =&gt; <span class="hljs-built_in">console</span>.log(name);
+</code></pre>
+      <p>Now we can play with the name:</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> myFunction = makeFunction();
+myFunction(); <span class="hljs-comment">// TK</span>
+
+<span class="hljs-keyword">const</span> myFunction = makeFunction(<span class="hljs-string">'Dan'</span>);
+myFunction(); <span class="hljs-comment">// Dan</span>
+</code></pre>
+      <p>Our <code>myFunction</code> is aware of the arguments passed: default or dynamic value.</p>
+      <p>The closure does make the created function not only aware of constants/variables, but also other functions
+        within the function.</p>
+      <p>So this also works:</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> makeFunction = <span class="hljs-function">(<span class="hljs-params">name = <span class="hljs-string">'TK'</span></span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> display = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-built_in">console</span>.log(name);
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> display();
+};
+
+<span class="hljs-keyword">const</span> myFunction = makeFunction();
+myFunction(); <span class="hljs-comment">// TK</span>
+</code></pre>
+      <p>The returned function knows about the <code>display</code> function and it is able to call it.</p>
+      <p>One powerful technique is to use closures to build &quot;private&quot; functions and variables.</p>
+      <p>Months ago I was learning data structures (again!) and wanted to implement each one. But I was always using the
+        object oriented approach. As a functional programming enthusiast, I wanted to build all the data structures
+        following FP principles (pure functions, immutability, referential transparency, etc).</p>
+      <p>The first data structure I was learning was the Stack. It is pretty simple. The main API is:</p>
+      <ul>
+        <li><code>push</code>: add an item to the first place of the stack</li>
+        <li><code>pop</code>: remove the first item from the stack</li>
+        <li><code>peek</code>: get the first item from the</li>
+        <li><code>isEmpty</code>: verify if the stack is empty</li>
+        <li><code>size</code>: get the number of items the stack has</li>
+      </ul>
+      <p>We could clearly create a simple function to each &quot;method&quot; and pass the stack data to it. It
+        uses/transforms the data and returns it.</p>
+      <p>But we can also create a private stack data and exposes only the API methods. Let&#39;s do this!</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> buildStack = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-keyword">let</span> items = [];
+
+  <span class="hljs-keyword">const</span> push = <span class="hljs-function">(<span class="hljs-params">item</span>) =&gt;</span> items = [item, ...items];
+  <span class="hljs-keyword">const</span> pop = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> items = items.slice(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> peek = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> items[<span class="hljs-number">0</span>];
+  <span class="hljs-keyword">const</span> isEmpty = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> !items.length;
+  <span class="hljs-keyword">const</span> size = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> items.length;
+
+  <span class="hljs-keyword">return</span> {
+    push,
+    pop,
+    peek,
+    isEmpty,
+    size,
+  };
+};
+</code></pre>
+      <p>As we created the <code>items</code> stack data inside our <code>buildStack</code> function, it is
+        &quot;private&quot;. It can be accessed only within the function. In this case, only the <code>push</code>,
+        <code>pop</code>, etc could touch the data. And this is what we&#39;re looking for.</p>
+      <p>And how do we use it? Like this:</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-built_in">stack</span> = buildStack();
+
+<span class="hljs-built_in">stack</span>.isEmpty(); <span class="hljs-comment">// true</span>
+
+<span class="hljs-built_in">stack</span>.push(<span class="hljs-number">1</span>); <span class="hljs-comment">// [1]</span>
+<span class="hljs-built_in">stack</span>.push(<span class="hljs-number">2</span>); <span class="hljs-comment">// [2, 1]</span>
+<span class="hljs-built_in">stack</span>.push(<span class="hljs-number">3</span>); <span class="hljs-comment">// [3, 2, 1]</span>
+<span class="hljs-built_in">stack</span>.push(<span class="hljs-number">4</span>); <span class="hljs-comment">// [4, 3, 2, 1]</span>
+<span class="hljs-built_in">stack</span>.push(<span class="hljs-number">5</span>); <span class="hljs-comment">// [5, 4, 3, 2, 1]</span>
+
+<span class="hljs-built_in">stack</span>.peek(); <span class="hljs-comment">// 5</span>
+<span class="hljs-built_in">stack</span>.size(); <span class="hljs-comment">// 5</span>
+<span class="hljs-built_in">stack</span>.isEmpty(); <span class="hljs-comment">// false</span>
+
+<span class="hljs-built_in">stack</span>.pop(); <span class="hljs-comment">// [4, 3, 2, 1]</span>
+<span class="hljs-built_in">stack</span>.pop(); <span class="hljs-comment">// [3, 2, 1]</span>
+<span class="hljs-built_in">stack</span>.pop(); <span class="hljs-comment">// [2, 1]</span>
+<span class="hljs-built_in">stack</span>.pop(); <span class="hljs-comment">// [1]</span>
+
+<span class="hljs-built_in">stack</span>.isEmpty(); <span class="hljs-comment">// false</span>
+<span class="hljs-built_in">stack</span>.peek(); <span class="hljs-comment">// 1</span>
+<span class="hljs-built_in">stack</span>.pop(); <span class="hljs-comment">// []</span>
+<span class="hljs-built_in">stack</span>.isEmpty(); <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">stack</span>.size(); <span class="hljs-comment">// 0</span>
+</code></pre>
+      <p>So, when the stack is created, all the functions are aware of the <code>items</code> data. But outside the
+        function, we can&#39;t access this data. It&#39;s private. We just modify the data by using the stack builtin
+        API.</p>
+      <h2 id="-curry-"><strong>Curry</strong></h2>
+      <blockquote>
+        <p>&quot;Currying is the process of taking a function with multiple arguments and turning it into a sequence of
+          functions each with only a single argument.&quot; - Wikipedia</p>
+      </blockquote>
+      <p>So imagine you have a function with multiple arguments: <code>f(a, b, c)</code>. Using currying, we achieve a
+        function <code>f(a)</code> that returns a function <code>g(b)</code> that returns a function <code>h(c)</code>.
+      </p>
+      <p>Basically: <code>f(a, b, c)</code> —&gt; <code>f(a) =&gt; g(b) =&gt; h(c)</code></p>
+      <p>Let&#39;s build a simple example: add two numbers. But first, without currying!</p>
+      <pre><code class="lang-javascript">const <span class="hljs-keyword">add</span><span class="bash"> = (x, y) =&gt; x + y;
+</span><span class="hljs-keyword">add</span><span class="bash">(1, 2); // 3</span>
+</code></pre>
+      <p>Great! Super simple! Here we have a function with two arguments. To transform it into a curried function we
+        need a function that receives <code>x</code> and returns a function that receives <code>y</code> and returns the
+        sum of both values.</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> {
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addY</span>(<span class="hljs-params">y</span>) </span>{
+    <span class="hljs-keyword">return</span> x + y;
+  }
+
+  <span class="hljs-keyword">return</span> addY;
+};
+</code></pre>
+      <p>We can refactor this <code>addY</code> into a anonymous arrow function:</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">x</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">y</span>) =&gt;</span> {
+    <span class="hljs-keyword">return</span> x + y;
+  }
+};
+</code></pre>
+      <p>Or simplify it by building one liner arrow functions:</p>
+      <pre><code class="lang-javascript">const add = (<span class="hljs-name">x</span>) =&gt; (<span class="hljs-name">y</span>) =&gt; x + y<span class="hljs-comment">;</span>
+</code></pre>
+      <p>These three different curried functions have the same behavior: build a sequence of functions with only one
+        argument.</p>
+      <p>How we use it?</p>
+      <pre><code class="lang-javascript">add(10)(20); <span class="hljs-comment">// 30</span></code></pre>
+      <p>At first, it can look a bit strange, but it has a logic behind it. <code>add(10)</code> returns a function. And
+        we call this function with the <code>20</code> value.</p>
+      <p>This is the same as:</p>
+      <pre><code class="lang-javascript"><span class="hljs-symbol">const</span> addTen = add(10);
+addTen(20); // <span class="hljs-number">30</span>
+</code></pre>
+      <p>And this is interesting. We can generate specialized functions by calling the first function. Imagine we want
+        an
+        <code>increment</code> function. We can generate it from our <code>add</code> function by passing the
+        <code>1</code> as the argument value.</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> increment = add(<span class="hljs-number">1</span>);
+increment(<span class="hljs-number">9</span>); <span class="hljs-comment">// 10</span>
+</code></pre>
+      <hr>
+      <p>When I was implementing the <a href="https://github.com/leandrotk/lazy-cypress">Lazy Cypress</a>, a npm library
+        to record the user behavior in a form page and generate Cypress testing code, I want to build a function to
+        generate this string <code>input[data-testid=&quot;123&quot;]</code>. So here we have the element
+        (<code>input</code>), the attribute (<code>data-testid</code>), and the value (<code>123</code>). Interpolating
+        this string in JavaScript would look like this: <code>${element}[${attribute}=&quot;${value}&quot;]</code>.</p>
+      <p>the first implementation in mind is to receive these three values as parameters and return the interpolated
+        string above.</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> buildSelector = <span class="hljs-function">(<span class="hljs-params">element, attribute, value</span>) =&gt;</span>
+  <span class="hljs-string">`<span class="hljs-subst">${element}</span>[<span class="hljs-subst">${attribute}</span>="<span class="hljs-subst">${value}</span>"]`</span>;
+
+buildSelector(<span class="hljs-string">'input'</span>, <span class="hljs-string">'data-testid'</span>, <span class="hljs-number">123</span>); <span class="hljs-comment">// input[data-testid="123"]</span>
+</code></pre>
+      <p>And it is great. I achieved what I was looking for. But at the same time, I wanted to build a more idiomatic
+        function. Something I could write &quot;<em>get an element X with attribute Y and value Z</em>&quot;. So what if
+        we break this phrase into three steps:</p>
+      <ul>
+        <li>&quot;<em>get an element X</em>&quot;: <code>get(x)</code></li>
+        <li>&quot;<em>with attribute Y</em>&quot;: <code>withAttribute(y)</code></li>
+        <li>&quot;<em>and value Z</em>&quot;: <code>andValue(z)</code></li>
+      </ul>
+      <p>We can transform the <code>buildSelector(x, y, z)</code> into <code>get(x)</code> ⇒
+        <code>withAttribute(y)</code> ⇒ <code>andValue(z)</code> by using the currying concept.</p>
+      <pre><code class="lang-javascript">const get = <span class="hljs-function"><span class="hljs-params">(element)</span> =&gt;</span> {
+  <span class="hljs-keyword">return</span> {
+    withAttribute: <span class="hljs-function"><span class="hljs-params">(attribute)</span> =&gt;</span> {
+      <span class="hljs-keyword">return</span> {
+        andValue: <span class="hljs-function"><span class="hljs-params">(value)</span> =&gt;</span> `<span class="javascript">${element}[${attribute}=<span class="hljs-string">"${value}"</span>]</span>`,
+      }
+    }
+  };
+};
+</code></pre>
+      <p>Here we use a different idea: returning an object with function as key-value. This way we can achieve this
+        syntax: <code>get(x).withAttribute(y).andValue(z)</code>.</p>
+      <p>And for each returned object, we have the next function and argument.</p>
+      <p>Refactoring time! Remove the <code>return</code> statements:</p>
+      <pre><code class="lang-javascript">const get = <span class="hljs-function"><span class="hljs-params">(element)</span> =&gt;</span> ({
+  withAttribute: <span class="hljs-function"><span class="hljs-params">(attribute)</span> =&gt;</span> ({
+    andValue: <span class="hljs-function"><span class="hljs-params">(value)</span> =&gt;</span> `<span class="javascript">${element}[${attribute}=<span class="hljs-string">"${value}"</span>]</span>`,
+  })
+});
+</code></pre>
+      <p>I think it looks prettier. And we use it like:</p>
+      <pre><code class="lang-javascript"><span class="hljs-symbol">const</span> selector = get(<span class="hljs-string">'input'</span>)
+  .withAttribute(<span class="hljs-string">'data-testid'</span>)
+  .andValue(123);
+</span>
+selector; // <span class="hljs-comment">input[<span class="hljs-meta">data</span>-testid="123"]</span>
+</code></pre>
+      <p>The <code>andValue</code> function knows about the <code>element</code> and <code>attribute</code> values
+        because it is aware of the lexical environment as we talked about closures before.</p>
+      <hr>
+      <p>We can also implement functions using &quot;partial currying&quot;. Separate only the first argument from the
+        rest for example.</p>
+      <p>Doing web development for a long time, I commonly used the <a
+          href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">event listener Web
+          API</a>. It is used this way:</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> <span class="hljs-built_in">log</span> = () =&gt; console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'clicked'</span>)<span class="hljs-comment">;</span>
+button.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-built_in">log</span>)<span class="hljs-comment">;</span>
+</code></pre>
+      <p>I wanted to create an abstraction to build specialized event listeners and use them by passing the element and
+        callback handler.</p>
+      <pre><code class="lang-javascript"><span class="hljs-keyword">const</span> buildEventListener = (event) =&gt; (element, <span class="hljs-keyword">handler</span>) =&gt; element.addEventListener(event, <span class="hljs-keyword">handler</span>);
+</code></pre>
+      <p>This way I can create different specialized event listeners and use it as functions.</p>
+      <pre><code class="lang-javascript">const onClick = buildEventListener('click')<span class="hljs-comment">;</span>
+onClick(<span class="hljs-name">button</span>, log)<span class="hljs-comment">;</span>
+
+const onHover = buildEventListener('hover')<span class="hljs-comment">;</span>
+onHover(<span class="hljs-name">link</span>, log)<span class="hljs-comment">;</span>
+</code></pre>
+      <hr>
+      <p>With all these concepts, I could create a SQL query using JavaScript syntax. I wanted to SQL query a JSON data
+        like:</p>
+      <pre><code class="lang-javascript">const json = {
+  <span class="hljs-string">"users"</span>: [
+    {
+      <span class="hljs-string">"id"</span>: <span class="hljs-number">1</span>,
+      <span class="hljs-string">"name"</span>: <span class="hljs-string">"TK"</span>,
+      <span class="hljs-string">"age"</span>: <span class="hljs-number">25</span>,
+      <span class="hljs-string">"email"</span>: <span class="hljs-string">"tk@mail.com"</span>
+    },
+    {
+      <span class="hljs-string">"id"</span>: <span class="hljs-number">2</span>,
+      <span class="hljs-string">"name"</span>: <span class="hljs-string">"Kaio"</span>,
+      <span class="hljs-string">"age"</span>: <span class="hljs-number">11</span>,
+      <span class="hljs-string">"email"</span>: <span class="hljs-string">"kaio@mail.com"</span>
+    },
+    {
+      <span class="hljs-string">"id"</span>: <span class="hljs-number">3</span>,
+      <span class="hljs-string">"name"</span>: <span class="hljs-string">"Daniel"</span>,
+      <span class="hljs-string">"age"</span>: <span class="hljs-number">28</span>,
+      <span class="hljs-string">"email"</span>: <span class="hljs-string">"dani@mail.com"</span>
+    }
+  ]
+}
+</code></pre>
+      <p>So I built a simple engine to handle this implementation:</p>
+      <pre><code class="lang-javascript">const startEngine = (json) =&gt; (<span class="hljs-keyword">attributes</span>) =&gt; ({ from: from(json, <span class="hljs-keyword">attributes</span>) });
+
+const buildAttributes = (<span class="hljs-keyword">node</span><span class="hljs-title">) =&gt; (acc</span>, <span class="hljs-keyword">attribute</span>) =&gt; ({ ...acc, [<span class="hljs-keyword">attribute</span>]: <span class="hljs-keyword">node</span><span class="hljs-title">[attribute</span>] });
+
+const executeQuery = (<span class="hljs-keyword">attributes</span>, <span class="hljs-keyword">attribute</span>, value) =&gt; (resultList, <span class="hljs-keyword">node</span><span class="hljs-title">) =&gt;
+  node</span>[<span class="hljs-keyword">attribute</span>] === value
+    ? [...resultList, <span class="hljs-keyword">attributes</span>.reduce(buildAttributes(<span class="hljs-keyword">node</span><span class="hljs-title">), {})]
+    : resultList</span>;
+
+const where = (json, <span class="hljs-keyword">attributes</span>) =&gt; (<span class="hljs-keyword">attribute</span>, value) =&gt;
+  json
+    .reduce(executeQuery(<span class="hljs-keyword">attributes</span>, <span class="hljs-keyword">attribute</span>, value), []);
+
+const from = (json, <span class="hljs-keyword">attributes</span>) =&gt; (<span class="hljs-keyword">node</span><span class="hljs-title">) =&gt; ({ where</span>: where(json[<span class="hljs-keyword">node</span><span class="hljs-title">], attributes</span>) });
+</code></pre>
+      <p>With this implementation, we can start the engine with the JSON data:</p>
+      <pre><code class="lang-javascript">const select = startEngine(<span class="hljs-keyword">json</span>);
+</code></pre>
+      <p>And use it as a SQL query:</p>
+      <pre><code class="lang-javascript">select([<span class="hljs-string">'id'</span>, <span class="hljs-string">'name'</span>])
+  .from(<span class="hljs-string">'users'</span>)
+  .where(<span class="hljs-string">'id'</span>, <span class="hljs-number">1</span>);
+
+result; <span class="hljs-comment">// [{ id: 1, name: 'TK' }]</span>
+</code></pre>
+      <hr>
+      <p>That&#39;s it for today. We could go on and on showing a lot of different examples of abstractions, but now I
+        let you play with those concepts.</p>
+
+      <h2>Resources</h2>
+      <ul>
+        <li>
+          <a target="_blank"
+            href="https://github.com/tk-notes/blog/tree/master/closures-currying-and-cool-abstractions">
+            Blog post source code
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures">
+            Closures | MDN Web Docs
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.youtube.com/watch?v=iZLP4qOwY8I">
+            Currying | Fun Fun Function
+          </a>
+        </li>
+      </ul>
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/javascript.html">javascript</a>
+        <a class="tag-link" href="../../../tags/web_development.html">web_development</a>
+        <a class="tag-link" href="../../../tags/functional_programming.html">functional_programming</a>
+      </div>
+    </div>
+
+    <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+    <script type='text/javascript'>
+      kofiwidget2.init('Buy me a Coffee', '#4b798d', 'O4O5YO9J');
+      kofiwidget2.draw();
+    </script>
+  </div>
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2020 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+          <li><a href="../../../quotes.html">Quotes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
