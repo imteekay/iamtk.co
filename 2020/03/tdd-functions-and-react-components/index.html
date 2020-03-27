@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="description" content="This is part of my studies on how to build sustainable and consistent software.">
+  <meta name="keywords" content="javascript,react,web">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="TDD, simple functions, and React components">
+  <meta property="og:description"
+    content="This is part of my studies on how to build sustainable and consistent software.">
+  <meta property="og:locale" content="en">
+  <meta property="og:image" content="https://cdn-images-1.medium.com/max/1600/0*Es4A_-yTrMYikiom">
+  <meta property="og:updated_time" content="2020-03-08T00:00:00.000Z">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="TDD, simple functions, and React components">
+  <meta name="twitter:description"
+    content="This is part of my studies on how to build sustainable and consistent software.">
+  <meta name="twitter:image" content="https://cdn-images-1.medium.com/max/1600/0*Es4A_-yTrMYikiom">
+
+  <title>TDD, simple functions, and React components</title>
+  <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/monokai.min.css">
+</head>
+
+<body>
+  <div class="content index width mx-auto px2 my4">
+    <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+      <header>
+        <h1 class="posttitle">TDD, simple functions, and React components</h1>
+        <div class="meta">
+          <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">TK</span>
+          </span>
+
+          <div class="postdate">
+            <time datetime="2020-03-27T00:00:00.000Z" itemprop="datePublished">2020-03-27</time>
+          </div>
+
+          <div class="article-tag">
+            <i class=b fa-tag"></i>
+            <a class="tag-link" href="../../../tags/javascript.html">javascript</a>
+            <a class="tag-link" href="../../../tags/web_development.html">web_development</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="figure">
+        <img src="https://cdn-images-1.medium.com/max/1600/0*Es4A_-yTrMYikiom">
+        <span class="figcaption">
+          Photo by <a href="https://unsplash.com/@sploshd" target="_blank">phil sheldon</a>
+        </span>
+      </div>
+
+      <hr />
+
+      <p>This is part of my studies on how to build sustainable and consistent software. In this post we will talk about
+        the thinking behind the testing driven development and how to apply this knowledge to simple functions, web
+        accessibility, and React components, manly with Jest and React Testing Library.</p>
+
+      <p>Automated tests are a big part of software development. It give us, developers, confidence to ship code to
+        production fast and consistently without the fear of breaking everything. Actually, the fear will be there, but
+        we
+        increase the confidence that the software will be up and running and working appropriately.</p>
+
+      <p>I began my software career in the Ruby community writing tests from the first day I learned the language. The
+        Ruby (and Rails) community was always strong in the testing automation area. It helped shape my mindset on how
+        to write good software.</p>
+
+      <p>So using Ruby and Rails, I did a lot of backend stuff like background jobs, data structure modeling, API
+        building, and so on. In this scope, the user is always one: the developer user. If building an API, the user
+        would be the developer that's consuming the API. If building the models, the user would be the developer that
+        will
+        use this model.</p>
+
+      <p>Now doing a lof of frontend stuff too, after 1 intense year of building PWAs using mostly React and Redux, at
+        first some thoughts came to my mind:</p>
+
+      <ul>
+        <li>TDD is impossible when building UI stuff. How do I know if it is a div or span?</li>
+
+        <li>Testing can be "complex". Should I shallow or should I mount? Test everything? Ensure every div should be
+          the right place?</li>
+      </ul>
+
+      <p>So I started re-thinking about these testing practices and how to make it productive.</p>
+
+      <p>TDD is possible. If I'm wondering if I should expect a div or a span, I'm probably testing the wrong thing.
+        Remember: tests should give us confidence to ship, not necessary cover every bit or implementation details. We
+        will dive in into this topic later!</p>
+
+      <p>I want to build tests that:</p>
+
+      <ul>
+        <li>Ensure the software works appropriately</li>
+
+        <li>Give confidence to ship code to production</li>
+
+        <li>Make us think about software design</li>
+      </ul>
+
+      <p>And tests that make software:</p>
+
+      <ul>
+        <li>Easy to maintain</li>
+
+        <li>Easy to refactor</li>
+      </ul>
+
+      <h2>Testing Driven Development</h2>
+
+      <p>TDD shouldn't be complex. It is just a process of 3 steps:</p>
+
+      <ul>
+        <li>Make a test</li>
+
+        <li>Make it run</li>
+
+        <li>Make it right</li>
+      </ul>
+
+      <p>We start writing a simple test to cover how we expect the software works. Then we make the first implementation
+        of the code (class, function, script, etc). Now the software is behaving. It works as expected. Time to make it
+        right. Time to make it better.</p>
+
+      <p>The goal is clean code that works. We solve the "that works" problem first and then make the code clean.</p>
+
+      <p>It is pretty simple. And it should be. I didin't say it is easy. But it is simple, straightforward, just 3
+        steps. Everytime you exercise this process of writing tests first, code after, and then refactoring, you feel
+        more confident.</p>
+
+      <p>One good technique when writing your tests first is to think about use cases and simulate how it should be used
+        (as a function, component, or used by a real user).</p>
+
+      <h2>Functions</h2>
+
+      <p>Let's apply this TDD thing into simple functions.</p>
+
+      <p>Some time ago I was implementing a draft feature for a real estate registration flow. Part of the feature was
+        to show a modal if the user had a not finished real estate. The function we will implement is the one that
+        answers if the user has at least one real estate draft.</p>
+
+      <p>So first step: writing the test! Let's think of the use cases of this function. It always responds a boolean:
+        true or false.</p>
+
+      <ul>
+        <li>Has no unsaved real estate draft: <code>false</code></li>
+
+        <li>Has at least one unsaved real estate draft: <code>true</code></li>
+      </ul>
+
+      <p>Let's write the tests that represent these behaviour:</p>
+
+      <pre><code class="javascript language-javascript">describe('hasRealEstateDraft', () => {
+  describe('with real estate drafts', () => {
+    it('returns true', () => {
+      const realEstateDrafts = [
+        {
+          address: 'São Paulo',
+          status: 'UNSAVED'
+        }
+      ];
+
+      expect(hasRealEstateDraft(realEstateDrafts)).toBeTruthy();
+    });
+  });
+
+  describe('with not drafts', () => {
+    it('returns false', () => {
+      expect(hasRealEstateDraft([])).toBeFalsy();
+    });
+  });
+});
+</code></pre>
+
+      <p>We wrote the tests. But when running it, it show go red: 2 broken tests because we do not have the function
+        implemented yet.</p>
+
+      <p>Second step: make it run! In this case, it is pretty simple. We need to receive this array object and return if
+        it has or hasn't at least one real estate draft.</p>
+
+      <pre><code class="javascript language-javascript">const hasRealEstateDraft = (realEstateDrafts) => realEstateDrafts.length > 0;
+</code></pre>
+
+      <p>Great! Simple function. Simple tests. We could go to the step 3: make it right! But in this case, our function
+        is really simple and we've already got it right.</p>
+
+      <p>But now we need the function to get the real estate drafts and pass it to the <code>hasRealEstateDraft</code>.
+      </p>
+
+      <p>Which use case we can think of?</p>
+
+      <ul>
+        <li>Empty list of real estates</li>
+
+        <li>Only saved real estates</li>
+
+        <li>Only unsaved real estates</li>
+
+        <li>Mixed: save and unsaved real estates</li>
+      </ul>
+
+      <p>Let's write the tests to represent it:</p>
+
+      <pre><code class="javascript language-javascript">describe('getRealEstateDrafts', () => {
+  describe('with an empty list', () => {
+    it('returns an empty list', () => {
+      const realEstates = [];
+
+      expect(getRealEstateDrafts(realEstates)).toMatchObject([]);
+    });
+  });
+
+  describe('with only unsaved real estates', () => {
+    it('returns the drafts', () => {
+      const realEstates = [
+        {
+          address: 'São Paulo',
+          status: 'UNSAVED'
+        },
+        {
+          address: 'Tokyo',
+          status: 'UNSAVED'
+        }
+      ];
+
+      expect(getRealEstateDrafts(realEstates)).toMatchObject(realEstates);
+    });
+  });
+
+  describe('with only saved real estates', () => {
+    it('returns an empty list', () => {
+      const realEstates = [
+        {
+          address: 'São Paulo',
+          status: 'SAVED'
+        },
+        {
+          address: 'Tokyo',
+          status: 'SAVED'
+        }
+      ];
+
+      expect(getRealEstateDrafts(realEstates)).toMatchObject([]);
+    });
+  });
+
+  describe('with saved and unsaved real estates', () => {
+    it('returns the drafts', () => {
+      const realEstates = [
+        {
+          address: 'São Paulo',
+          status: 'SAVED'
+        },
+        {
+          address: 'Tokyo',
+          status: 'UNSAVED'
+        }
+      ];
+
+      expect(getRealEstateDrafts(realEstates)).toMatchObject([{
+        address: 'Tokyo',
+        status: 'UNSAVED'
+      }]);
+    });
+  });
+});
+</code></pre>
+
+      <p>Great! We run the tests. It doesn't work.. yet! Now implement the function.</p>
+
+      <pre><code class="javascript language-javascript">const getRealEstatesDrafts = (realEstates) => {
+  const unsavedRealEstates = realEstates.filter((realEstate) => realEstate.status === 'UNSAVED');
+  return unsavedRealEstates;
+};
+</code></pre>
+
+      <p>We simply filter by the real estate status and return it. Great, the tests are passing, the bar is green! And
+        the software is behaving, but we can make it better: step 3!</p>
+
+      <p>What about extracting the anonimous function within the <code>filter</code> function and make the
+        <code>'UNSAVED'</code> be represented by an enum?</p>
+
+      <pre><code class="javascript language-javascript">const STATUS = {
+  UNSAVED: 'UNSAVED',
+  SAVED: 'SAVED',
+};
+
+const byUnsaved = (realEstate) => realEstate.status === STATUS.UNSAVED;
+
+const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
+</code></pre>
+
+      <p>The tests are still passing and we have a better solution.</p>
+
+      <p>One thing to have in mind here: I isolated the data source from the logic. What does it mean? We get the data
+        from local storage (data source), but we test only the functions responsible to the logic to get drafts and see
+        if it has at least one draft. The functions with the logic, we ensure that it works and it is clean code.</p>
+
+      <p>If we get the <code>localStorage</code> inside our functions, it becomes hard to test. So we separate the
+        responsibility and make the tests easy to write. Pure functions are easier to maintain and simpler to write
+        tests.</p>
+
+      <h2>React Components</h2>
+
+      <p>Now let's talk about React components. Back to the introduction, we talked about writing tests that test
+        implementation details. And now we will see how we can make it better, more sustainable, and have more
+        confidence.</p>
+
+      <p>A couple days ago I was plannig to build the new onboarding information for the real estate owner. It is
+        basically a bunch of pages with the same design, but it changes the icon, title, and description among the
+        pages.</p>
+
+      <img src="./assets/ui.png" alt="" />
+
+      <p>I wanted to build just one component: <code>Content</code> and pass the information needed to render the
+        correct icon, title, and description. I would pass <code>businessContext</code> and <code>step</code> as props
+        and it would render the correct content to the onboarding page.</p>
+
+      <p>We don't want to know if we will render a div or paragraph tag. Our test need to ensure that for a given
+        business context and step, the correct content will be there. So I came with these use cases:</p>
+
+      <ul>
+        <li>First step of the rental business context</li>
+
+        <li>Last step of the rental business context</li>
+
+        <li>First step of the sales business context</li>
+
+        <li>Last step of the sales business context</li>
+      </ul>
+
+      <p>Let's see the tests:</p>
+
+      <pre><code class="javascript language-javascript">describe('Content', () => {
+  describe('in the rental context', () => {
+    const defaultProps = {
+      businessContext: BUSINESS_CONTEXT.RENTAL
+    };
+
+    it('renders the title and description for the first step', () => {
+      const step = 0;
+      const { getByText } = render(<Content {...defaultProps} step={step} />);
+
+      expect(getByText('the first step title')).toBeInTheDocument();
+      expect(getByText('the first step description')).toBeInTheDocument();
+    });
+
+    it('renders the title and description for the forth step', () => {
+      const step = 3;
+      const { getByText } = render(<Content {...defaultProps} step={step} />);
+
+      expect(getByText('the last step title')).toBeInTheDocument();
+      expect(getByText('the last step description')).toBeInTheDocument();
+    });
+  });
+
+  describe('in the sales context', () => {
+    const defaultProps = {
+      businessContext: BUSINESS_CONTEXT.SALE
+    };
+
+    it('renders the title and description for the first step', () => {
+      const step = 0;
+      const { getByText } = render(<Content {...defaultProps} step={step} />);
+
+      expect(getByText('the first step title')).toBeInTheDocument();
+      expect(getByText('the first step description')).toBeInTheDocument();
+    });
+
+    it('renders the title and description for the last step', () => {
+      const step = 6;
+      const { getByText } = render(<Content {...defaultProps} step={step} />);
+
+      expect(getByText('the last step title')).toBeInTheDocument();
+      expect(getByText('the last step description')).toBeInTheDocument();
+    });
+  });
+});
+</code></pre>
+
+      <p>We have one <code>describe</code> block for each business context and a <code>it</code> block for each step. I
+        also created an accessbility test to ensure the component we are building is accessible.</p>
+
+      <pre><code class="javascript language-javascript">it('has not accessibility violations', async () => {
+  const props = {
+    businessContext: BUSINESS_CONTEXT.SALE,
+    step: 0,
+  };
+
+  const { container } = render(<Content {...props} />);
+  const results = await axe(container);
+
+  expect(results).toHaveNoViolations();
+});
+</code></pre>
+
+      <p>Now we need to make it run! Basically, the UI part of this component is just the icon, the title, and the
+        description. Something like:</p>
+
+      <pre><code class="javascript language-javascript">&lt;Fragment>
+  &lt;Icon />
+  &lt;h1>{title}&lt;/h1>
+  &lt;p>{description}&lt;/p>
+&lt;/Fragment>
+</code></pre>
+
+      <p>We just need to build the logic to get all these correct data. As I have the <code>businessContext</code> and
+        the <code>step</code> in this component, I wanted to just do something like</p>
+
+      <pre><code class="javascript language-javascript">content[businessContext][step]
+</code></pre>
+
+      <p>And it get the correct content. So I built a data structure to work that way.</p>
+
+      <pre><code class="javascript language-javascript">const onboardingStepsContent = {
+  alugar: {
+    0: {
+      Icon: Home,
+      title: 'first step title',
+      description: 'first step description',
+    },
+    // ...
+  },
+  vender: {
+    0: {
+      Icon: Home,
+      title: 'first step title',
+      description: 'first step description',
+    },
+    // ...
+  },
+};
+</code></pre>
+
+      <p>It's just an object with the first keys as the business context data and for each business context, it has keys
+        that represent each step of the onboarding. And our component would be:</p>
+
+      <pre><code class="javascript language-javascript">const Content = ({ businessContext, step }) => {
+  const onboardingStepsContent = {
+    alugar: {
+      0: {
+        Icon: Home,
+        title: 'first step title',
+        description: 'first step description',
+      },
+      // ...
+    },
+    vender: {
+      0: {
+        Icon: Home,
+        title: 'first step title',
+        description: 'first step description',
+      },
+      // ...
+    },
+  };
+
+  const { Icon, title, description } = onboardingStepsContent[businessContext][step];
+
+  return (
+    &lt;Fragment>
+      &lt;Icon />
+      &lt;h1>{title}&lt;/h1>
+      &lt;p>{description}&lt;/p>
+    &lt;/Fragment>
+  );
+};
+</code></pre>
+
+      <p>It works! Now let's make it better. I wanted to make the get content more resilient. What if it receives step
+        that doesn't exist for example? These are the use cases:</p>
+
+      <ul>
+        <li>First step of the rental business context</li>
+
+        <li>Last step of the rental business context</li>
+
+        <li>First step of the sales business context</li>
+
+        <li>Last step of the sales business context</li>
+
+        <li>Inexistent step of the rental busines context</li>
+
+        <li>Inexistent step of the sales busines context</li>
+      </ul>
+
+      <p>Let's see the tests:</p>
+
+      <pre><code class="javascript language-javascript">describe('getOnboardingStepContent', () => {
+  describe('when it receives existent businessContext and step', () => {
+    it('returns the correct content for the step in "alugar" businessContext', () => {
+      const businessContext = 'alugar';
+      const step = 0;
+
+      expect(getOnboardingStepContent({ businessContext, step })).toMatchObject({
+        Icon: Home,
+        title: 'first step title',
+        description: 'first step description',
+      });
+    });
+
+    it('returns the correct content for the step in "vender" businessContext', () => {
+      const businessContext = 'vender';
+      const step = 5;
+
+      expect(getOnboardingStepContent({ businessContext, step })).toMatchObject({
+        Icon: ContractSign,
+        title: 'last step title',
+        description: 'last step description',
+      });
+    });
+  });
+
+  describe('when it receives inexistent step for a given businessContext', () => {
+    it('returns the first step of "alugar" businessContext', () => {
+      const businessContext = 'alugar';
+      const step = 7;
+
+      expect(getOnboardingStepContent({ businessContext, step })).toMatchObject({
+        Icon: Home,
+        title: 'first step title',
+        description: 'first step description',
+      });
+    });
+
+    it('returns the first step of "vender" businessContext', () => {
+      const businessContext = 'vender';
+      const step = 10;
+
+      expect(getOnboardingStepContent({ businessContext, step })).toMatchObject({
+        Icon: Home,
+        title: 'first step title',
+        description: 'first step description',
+      });
+    });
+  });
+});
+</code></pre>
+
+      <p>Great! Now let's build our <code>getOnboardingStepContent</code> function to handle this logic.</p>
+
+      <pre><code class="javascript language-javascript">const getOnboardingStepContent = ({ businessContext, step }) => {
+  const content = onboardingStepsContent[businessContext][step];
+
+  return content
+    ? content
+    : onboardingStepsContent[businessContext][0];
+};
+</code></pre>
+
+      <p>We try to get content. If we have it, just return it. If don't have it, return the first step of the
+        onboarding.</p>
+
+      <p>Neat! But we can improve it. What about using the <code>||</code> operator? No need to assign to a variable, no
+        need to use a ternary.</p>
+
+      <pre><code class="javascript language-javascript">const getOnboardingStepContent = ({ businessContext, step }) =>
+  onboardingStepsContent[businessContext][step] ||
+  onboardingStepsContent[businessContext][0];
+</code></pre>
+
+      <p>If it finds the content, just return it. If it didn't find, return the first step of the given business
+        context.</p>
+
+      <p>Now our component is only UI.</p>
+
+      <pre><code class="javascript language-javascript">const Content = ({ businessContext, step }) => {
+  const {
+    Icon,
+    title,
+    description,
+  } = getOnboardingStepContent({ businessContext, step });
+
+  return (
+    &lt;Fragment>
+      &lt;Icon />
+      &lt;h1>{title}&lt;/h1>
+      &lt;p>{description}&lt;/p>
+    &lt;/Fragment>
+  );
+};
+</code></pre>
+
+      <hr />
+
+      <h2>Final thoughts</h2>
+
+      <p>I like to think deeply about the tests I'm writing. And I think all developers should too. It does need to give
+        us confidence to ship more code and have a bigger impact in the market we are working on.</p>
+
+      <p>As all code, when we write smelly and bad tests, it influences other developers to follow the "pattern". It
+        gets worse in bigger companies. It scales badly. But we are always able to stop, reflect about the status quo,
+        and take action to make it better.</p>
+
+      <p>I shared some resources I found interesting reading and learning. If you want to get a great introduction to
+        TDD, I really recommend TDD by example, a book from Kent Beck.</p>
+
+      <p>I will write more about tests, TDD, and React. And how we can make our software more consistent and feel safe
+        when shipping code to production.</p>
+
+      <hr />
+
+      <h2>Resources</h2>
+
+      <ul>
+        <li>
+          <a href="https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530">
+            Test Driven Development by example book by Kent Beck
+          </a>
+        </li>
+
+        <li>
+          <a
+            href="https://www.amazon.com/Testable-JavaScript-Ensuring-Reliable-Code/dp/1449323391/ref=sr_1_8?dchild=1&keywords=testing+javascript&qid=1585274935&s=books&sr=1-8">
+            Testable Javascript book by Mark Ethan Trostler
+          </a>
+        </li>
+
+        <li><a
+            href="https://medium.com/hackernoon/testing-react-with-jest-axe-and-react-testing-library-accessibility-34b952240f53">Testing
+            React applications with jest, jest-axe, and react-testing-library</a></li>
+
+        <li><a href="https://blog.sapegin.me/all/react-testing-3-jest-and-react-testing-library/">Modern React testing,
+            part 3: Jest and React Testing Library</a></li>
+
+        <li><a
+            href="https://accessibility.blog.gov.uk/2017/02/24/what-we-found-when-we-tested-tools-on-the-worlds-least-accessible-webpage/">What
+            we found when we tested tools on the world’s least-accessible webpage</a></li>
+
+        <li><a href="https://kentcdodds.com/blog/testing-implementation-details">Testing Implementation Details</a></li>
+      </ul>
+
+      <h2>Dependencies</h2>
+
+      <ul>
+        <li><a href="https://github.com/nickcolley/jest-axe">jest-axe</a>: jest matchers for testing accessibility</li>
+
+        <li><a
+            href="https://github.com/testing-library/react-testing-library">testing-library/react-testing-library</a>:
+          testing utilities to help test react</li>
+
+        <li><a href="https://github.com/testing-library/jest-dom">testing-library/jest-dom</a>: jest matchers to test
+          the state of the DOM</li>
+      </ul>
+    </article>
+
+    <div class="meta meta-footer">
+      <div class="article-tag">
+        Tags:
+        <a class="tag-link" href="../../../tags/javascript.html">javascript</a>
+        <a class="tag-link" href="../../../tags/web_development.html">web_development</a>
+      </div>
+    </div>
+
+    <script type='text/javascript' src='https://ko-fi.com/widgets/widget_2.js'></script>
+    <script type='text/javascript'>
+      kofiwidget2.init('Buy me a Coffee', '#4b798d', 'O4O5YO9J');
+      kofiwidget2.draw();
+    </script>
+  </div>
+
+  <footer id="footer" class="article-footer">
+    <div class="footer-left">
+      Copyright &copy; 2020 TK
+    </div>
+    <div class="footer-right">
+      <nav>
+        <ul>
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../writing.html">Writing</a></li>
+          <li><a href="https://github.com/leandrotk" target="_blank">Projects</a></li>
+          <li><a href="../../../quotes.html">Quotes</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
