@@ -63,8 +63,9 @@
         the thinking behind the testing driven development and how to apply this knowledge to simple functions, web
         accessibility, and React components, manly with Jest and React Testing Library.</p>
 
-      <p>Aumated tests are a big part of software development. It give us, developers, confidence to ship code to
-        production fast and consistly without the fear of breaking everything. Actually, fear will be there, but we
+      <p>Automated tests are a big part of software development. It give us, developers, confidence to ship code to
+        production fast and consistently without the fear of breaking everything. Actually, the fear will be there, but
+        we
         increase the confidence that the software will be up and running and working appropriately.</p>
 
       <p>I began my software career in the Ruby community writing tests from the first day I learned the language. The
@@ -73,20 +74,21 @@
 
       <p>So using Ruby and Rails, I did a lot of backend stuff like background jobs, data structure modeling, API
         building, and so on. In this scope, the user is always one: the developer user. If building an API, the user
-        would be the developer that's consuming the API. If build the models, the user would be the developer that will
+        would be the developer that's consuming the API. If building the models, the user would be the developer that
+        will
         use this model.</p>
 
       <p>Now doing a lof of frontend stuff too, after 1 intense year of building PWAs using mostly React and Redux, at
         first some thoughts came to my mind:</p>
 
       <ul>
-        <li>TDD is impossible building UI stuff. How do I know if it is a div or span?</li>
+        <li>TDD is impossible when building UI stuff. How do I know if it is a div or span?</li>
 
         <li>Testing can be "complex". Should I shallow or should I mount? Test everything? Ensure every div should be
           the right place?</li>
       </ul>
 
-      <p>So I start re-thinking about these testing practices and how to make it productive.</p>
+      <p>So I started re-thinking about these testing practices and how to make it productive.</p>
 
       <p>TDD is possible. If I'm wondering if I should expect a div or a span, I'm probably testing the wrong thing.
         Remember: tests should give us confidence to ship, not necessary cover every bit or implementation details. We
@@ -102,7 +104,7 @@
         <li>Make us think about software design</li>
       </ul>
 
-      <p>And makes software:</p>
+      <p>And tests that make software:</p>
 
       <ul>
         <li>Easy to maintain</li>
@@ -110,7 +112,7 @@
         <li>Easy to refactor</li>
       </ul>
 
-      <h2>Testing Drive Development</h2>
+      <h2>Testing Driven Development</h2>
 
       <p>TDD shouldn't be complex. It is just a process of 3 steps:</p>
 
@@ -595,6 +597,12 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
       <p>As all code, when we write smelly and bad tests, it influences other developers to follow the "pattern". It
         gets worse in bigger companies. It scales badly. But we are always able to stop, reflect about the status quo,
         and take action to make it better.</p>
+
+      <p>I shared some resources I found interesting reading and learning. If you want to get a great introduction to
+        TDD, I really recommend TDD by example, a book from Kent Beck.</p>
+
+      <p>I will write more about tests, TDD, and React. And how we can make our software more consistent and feel safe
+        when shipping code to production.</p>
 
       <hr />
 
