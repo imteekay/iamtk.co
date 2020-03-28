@@ -1500,10 +1500,55 @@ pre code {
   color: #1b1b1b;
 }
 
-.btn-container {
+.btn-container a {
+  height: 100%;
+  display: inline-flex !important;
+  align-items: center;
+}
+
+.support-buttons {
+  display: flex;
   margin-top: 40px;
 }
 
-a.kofi-button {
-  box-shadow: none;
+a.kofi-button,
+a.kofi-button:visited,
+a.kofi-button:hover,
+a.kofi-button:active {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  border: none;
+  border: 2px solid #4b798d;
+  background: #4b798d;
+  color: #fff;
+  height: 50px;
+  line-height: 21px;
+  padding: 0 1rem;
+}
+
+a.kofi-button img {
+  max-width: 40px;
+  height: auto;
+  padding: 0 1rem 0 0;
+}
+
+a.patreon-button,
+a.patreon-button:visited,
+a.patreon-button:hover,
+a.patreon-button:active {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  border: 2px solid #f96854;
+  background: #f96854;
+  padding: 0 1rem 0 0;
+  color: #fff!important;
+  margin: 0 .5rem 0 0;
+  height: 50px;
+  line-height: 21px;
+}
+
+a.patreon-button img {
+  max-width: 40px;
 }
