@@ -59,14 +59,14 @@
 
       <hr />
 
-      <p>This is part of my studies on how to build sustainable and consistent software. In this post we will talk about
+      <p>This is part of my studies on how to build sustainable and consistent software. In this post, we will talk
+        about
         the thinking behind the testing driven development and how to apply this knowledge to simple functions, web
         accessibility, and React components, manly with Jest and React Testing Library.</p>
 
-      <p>Automated tests are a big part of software development. It give us, developers, confidence to ship code to
+      <p>Automated tests are a big part of software development. It gives us, developers, confidence to ship code to
         production fast and consistently without the fear of breaking everything. Actually, the fear will be there, but
-        we
-        increase the confidence that the software will be up and running and working appropriately.</p>
+        we increase the confidence that the software will be up and running and working appropriately.</p>
 
       <p>I began my software career in the Ruby community writing tests from the first day I learned the language. The
         Ruby (and Rails) community was always strong in the testing automation area. It helped shape my mindset on how
@@ -91,16 +91,14 @@
       <p>So I started re-thinking about these testing practices and how to make it productive.</p>
 
       <p>TDD is possible. If I'm wondering if I should expect a div or a span, I'm probably testing the wrong thing.
-        Remember: tests should give us confidence to ship, not necessary cover every bit or implementation details. We
-        will dive in into this topic later!</p>
+        Remember: tests should give us the confidence to ship, not necessarily to cover every bit or implementation
+        details. We will dive into this topic later!</p>
 
       <p>I want to build tests that:</p>
 
       <ul>
         <li>Ensure the software works appropriately</li>
-
-        <li>Give confidence to ship code to production</li>
-
+        <li>Give the confidence to ship code to production</li>
         <li>Make us think about software design</li>
       </ul>
 
@@ -108,7 +106,6 @@
 
       <ul>
         <li>Easy to maintain</li>
-
         <li>Easy to refactor</li>
       </ul>
 
@@ -118,9 +115,7 @@
 
       <ul>
         <li>Make a test</li>
-
         <li>Make it run</li>
-
         <li>Make it right</li>
       </ul>
 
@@ -130,8 +125,8 @@
 
       <p>The goal is clean code that works. We solve the "that works" problem first and then make the code clean.</p>
 
-      <p>It is pretty simple. And it should be. I didin't say it is easy. But it is simple, straightforward, just 3
-        steps. Everytime you exercise this process of writing tests first, code after, and then refactoring, you feel
+      <p>It is pretty simple. And it should be. I didn't say it is easy. But it is simple, straightforward, just 3
+        steps. Every time you exercise this process of writing tests first, code after, and then refactoring, you feel
         more confident.</p>
 
       <p>One good technique when writing your tests first is to think about use cases and simulate how it should be used
@@ -154,7 +149,7 @@
         <li>Has at least one unsaved real estate draft: <code>true</code></li>
       </ul>
 
-      <p>Let's write the tests that represent these behaviour:</p>
+      <p>Let's write the tests that represent this behavior:</p>
 
       <pre><code class="javascript language-javascript">describe('hasRealEstateDraft', () => {
   describe('with real estate drafts', () => {
@@ -178,7 +173,7 @@
 });
 </code></pre>
 
-      <p>We wrote the tests. But when running it, it show go red: 2 broken tests because we do not have the function
+      <p>We wrote the tests. But when running it, it shows go red: 2 broken tests because we do not have the function
         implemented yet.</p>
 
       <p>Second step: make it run! In this case, it is pretty simple. We need to receive this array object and return if
@@ -187,7 +182,7 @@
       <pre><code class="javascript language-javascript">const hasRealEstateDraft = (realEstateDrafts) => realEstateDrafts.length > 0;
 </code></pre>
 
-      <p>Great! Simple function. Simple tests. We could go to the step 3: make it right! But in this case, our function
+      <p>Great! Simple function. Simple tests. We could go to step 3: make it right! But in this case, our function
         is really simple and we've already got it right.</p>
 
       <p>But now we need the function to get the real estate drafts and pass it to the <code>hasRealEstateDraft</code>.
@@ -196,12 +191,9 @@
       <p>Which use case we can think of?</p>
 
       <ul>
-        <li>Empty list of real estates</li>
-
+        <li>An empty list of real estates</li>
         <li>Only saved real estates</li>
-
         <li>Only unsaved real estates</li>
-
         <li>Mixed: save and unsaved real estates</li>
       </ul>
 
@@ -283,7 +275,7 @@
       <p>We simply filter by the real estate status and return it. Great, the tests are passing, the bar is green! And
         the software is behaving, but we can make it better: step 3!</p>
 
-      <p>What about extracting the anonimous function within the <code>filter</code> function and make the
+      <p>What about extracting the anonymous function within the <code>filter</code> function and make the
         <code>'UNSAVED'</code> be represented by an enum?</p>
 
       <pre><code class="javascript language-javascript">const STATUS = {
@@ -312,8 +304,8 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
         implementation details. And now we will see how we can make it better, more sustainable, and have more
         confidence.</p>
 
-      <p>A couple days ago I was plannig to build the new onboarding information for the real estate owner. It is
-        basically a bunch of pages with the same design, but it changes the icon, title, and description among the
+      <p>A couple of days ago I was planning to build the new onboarding information for the real estate owner. It is
+        basically a bunch of pages with the same design, but it changes the icon, title, and description of the
         pages.</p>
 
       <img src="./assets/ui.png" alt="" />
@@ -322,16 +314,13 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
         correct icon, title, and description. I would pass <code>businessContext</code> and <code>step</code> as props
         and it would render the correct content to the onboarding page.</p>
 
-      <p>We don't want to know if we will render a div or paragraph tag. Our test need to ensure that for a given
+      <p>We don't want to know if we will render a div or paragraph tag. Our test needs to ensure that for a given
         business context and step, the correct content will be there. So I came with these use cases:</p>
 
       <ul>
-        <li>First step of the rental business context</li>
-
+        <li>The first step of the rental business context</li>
         <li>Last step of the rental business context</li>
-
-        <li>First step of the sales business context</li>
-
+        <li>The first step of the sales business context</li>
         <li>Last step of the sales business context</li>
       </ul>
 
@@ -384,8 +373,8 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
 });
 </code></pre>
 
-      <p>We have one <code>describe</code> block for each business context and a <code>it</code> block for each step. I
-        also created an accessbility test to ensure the component we are building is accessible.</p>
+      <p>We have one <code>describe</code> block for each business context and an <code>it</code> block for each step. I
+        also created an accessibility test to ensure the component we are building is accessible.</p>
 
       <pre><code class="javascript language-javascript">it('has not accessibility violations', async () => {
   const props = {
@@ -416,7 +405,7 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
       <pre><code class="javascript language-javascript">content[businessContext][step]
 </code></pre>
 
-      <p>And it get the correct content. So I built a data structure to work that way.</p>
+      <p>And it gets the correct content. So I built a data structure to work that way.</p>
 
       <pre><code class="javascript language-javascript">const onboardingStepsContent = {
   alugar: {
@@ -477,17 +466,12 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
         that doesn't exist for example? These are the use cases:</p>
 
       <ul>
-        <li>First step of the rental business context</li>
-
+        <li>The first step of the rental business context</li>
         <li>Last step of the rental business context</li>
-
-        <li>First step of the sales business context</li>
-
+        <li>The first step of the sales business context</li>
         <li>Last step of the sales business context</li>
-
-        <li>Inexistent step of the rental busines context</li>
-
-        <li>Inexistent step of the sales busines context</li>
+        <li>Inexistent step of the rental business context</li>
+        <li>Inexistent step of the sales business context</li>
       </ul>
 
       <p>Let's see the tests:</p>
@@ -554,7 +538,7 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
 };
 </code></pre>
 
-      <p>We try to get content. If we have it, just return it. If don't have it, return the first step of the
+      <p>We try to get content. If we have it, just return it. If we don't have it, return the first step of the
         onboarding.</p>
 
       <p>Neat! But we can improve it. What about using the <code>||</code> operator? No need to assign to a variable, no
@@ -592,10 +576,10 @@ const getRealEstatesDrafts = (realEstates) => realEstates.filter(byUnsaved);
       <h2>Final thoughts</h2>
 
       <p>I like to think deeply about the tests I'm writing. And I think all developers should too. It does need to give
-        us confidence to ship more code and have a bigger impact in the market we are working on.</p>
+        us the confidence to ship more code and have a bigger impact on the market we are working on.</p>
 
-      <p>As all code, when we write smelly and bad tests, it influences other developers to follow the "pattern". It
-        gets worse in bigger companies. It scales badly. But we are always able to stop, reflect about the status quo,
+      <p>Like all code, when we write smelly and bad tests, it influences other developers to follow the "pattern". It
+        gets worse in bigger companies. It scales badly. But we are always able to stop, reflect on the status quo,
         and take action to make it better.</p>
 
       <p>I shared some resources I found interesting reading and learning. If you want to get a great introduction to
