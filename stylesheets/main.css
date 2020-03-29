@@ -468,9 +468,13 @@ body {
 }
 
 .content pre {
-  padding: 10px 15px;
+  padding: 0;
   background-color: #292929e8;
   border: 0;
+  margin: 30px 0 40px;
+  -webkit-box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 10px 1px rgba(0,0,0,0.75);
 }
 
 .content pre,
@@ -480,6 +484,11 @@ body {
   -webkit-hyphens: manual;
   hyphens: manual;
 }
+
+.content pre .hljs {
+  padding: 1.5em;
+}
+
 .content a {
   text-decoration: none;
   color: #c9cacc;
