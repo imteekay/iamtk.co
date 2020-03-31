@@ -1452,8 +1452,8 @@ pre {
 code {
   -webkit-border-radius: 2px;
   border-radius: 2px;
-  border: 1px dotted #666;
-  padding: 0 5px;
+  padding: 1px 5px;
+  background-color: #303e80;
 }
 pre code {
   border: none;
