@@ -103,6 +103,7 @@
   <span class="hljs-attribute">name</span>: <span class="hljs-string">'TK'</span>,
   <span class="hljs-attribute">email</span>: <span class="hljs-string">'tk@mail.com'</span>
 };
+
 <span class="hljs-keyword">const</span> <span class="hljs-attribute"></span>person</span>: Person = fromAPI(payloadAPI); <span class="hljs-comment">// { id: 1, name: 'TK', email: 'tk@mail.com' }</span>
 </code></pre>
       <p>Data comes in. Data comes out. Everything pure.</p>
@@ -322,7 +323,7 @@ PersonStatus<span class="hljs-selector-class">.Inactive</span> <span class="hljs
 </code></pre>
       <p>Just a few tweaks: Object Property Value Shorthand for <code>id</code> and <code>email</code>.</p>
       <pre><code class="lang-typescript"><span class="hljs-keyword">const</span> fromAPI = (person: PersonAPI): Person =&gt; {
-  <span class="hljs-keyword">const</span> { id, email } = person;
+  <span class="hljs-keyword">const</span> { id, email }: PersonAPI = person;
   <span class="hljs-keyword">const</span> name: string = buildPersonName(person);
   <span class="hljs-keyword">const</span> active: <span class="hljs-keyword">boolean</span> = isActive(person);
 
