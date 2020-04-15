@@ -201,7 +201,8 @@ new Date(2020, 0, 0); // 2019-12-31
   return { day, month, year };
 };
 </code></pre>
-      <p>I this case, we are always returning the <code>day</code>, <code>month</code>, and <code>year</code> attributes
+      <p>In this case, we are always returning the <code>day</code>, <code>month</code>, and <code>year</code>
+        attributes
         of the current date. But what if we want to pass a different date? A new argument to the rescue:</p>
       <pre><code class="typescript language-typescript">const getSeparatedDate = (now: Date = new Date()): SeparatedDate =&gt; {
   const day: number = now.getDate();
