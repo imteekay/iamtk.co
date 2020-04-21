@@ -70,13 +70,13 @@
       <hr />
 
       <p>This is part of my series on <a href="https://leandrotk.github.io/tk/2020/04/elixir-learnings/">Elixir
-          Learnings</a>, where I share micro posts about everything I'm learning related to Elixir.</p>
+          Learnings</a>, where I share micro-posts about everything I'm learning related to Elixir.</p>
       <p>Today we going to play around with lists. At the same time lists are very simple, they are powerful. And we use
         it always in our day-to-day work. Here we will understand some common concepts we need to handle lists.</p>
       <h2 id="addandremoveitems">Add and remove items</h2>
       <p>We have two ways to add new items to the list. We can use the <code>insert_at</code> List function and the
         <code>++</code> operator to concat lists.</p>
-      <p>The <code>insert_at</code> function receive three parameters: the list, the index position you want to add the
+      <p>The <code>insert_at</code> function receives three parameters: the list, the index position you want to add the
         new item, and the item.</p>
       <pre><code class="elixir language-elixir">items = [1 ,2 ,3 ,4]
 List.insert_at(items, 0, 0) # [0, 1 ,2 ,3 ,4]
@@ -100,7 +100,7 @@ brothers ++ [new_brother] # ['TK', 'Yuji', 'Bruno', 'Kaio']
 bookshelf -- ['HP'] # ['Compound Effect', 'Enlightenment Now']
 </code></pre>
       <h2 id="gettingitems">Getting items</h2>
-      <p>I learned to simple but very useful functions to get items: <code>first</code> and <code>last</code>.</p>
+      <p>I learned simple but very useful functions to get items: <code>first</code> and <code>last</code>.</p>
       <pre><code class="elixir language-elixir">List.first([1, 2, 3]) # 1
 List.last([1, 2, 3]) # 3
 </code></pre>
@@ -109,7 +109,7 @@ List.last([1, 2, 3]) # 3
 List.last([]) # nil
 </code></pre>
       <h2 id="makeitflat">Make it flat</h2>
-      <p>Another cool function is <code>flat</code>. It flats nested lists. In other word, it transform nested lists
+      <p>Another cool function is <code>flat</code>. It flats nested lists. In other words, it transforms nested lists
         into just one with all the elements.</p>
       <ul>
         <li>Not so nested lists</li>
@@ -152,7 +152,7 @@ IO.inspect c
 IO.inspect x # 2
 </code></pre>
       <p>Another interesting way to get items is by using the <code>|</code> operator. With this operator, we get the
-        head (first item) and right part represents the other items.</p>
+        head (first item) and the right part represents the other items.</p>
       <pre><code class="elixir language-elixir">[head | rest] = [1, 2, 3, 4, 5]
 IO.inspect head # 1
 IO.inspect rest # [2, 3, 4, 5]
