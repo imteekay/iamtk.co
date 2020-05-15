@@ -30,4 +30,4 @@ const fetchCasesFromAPI = async () => {
   return legalCases;
 };
 
-// 4.0: better?
+// 4.0: better
