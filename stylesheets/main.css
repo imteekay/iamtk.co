@@ -899,6 +899,11 @@ body {
 .sociallinks li {
   display: inline-block;
 }
+
+.post {
+  margin-bottom: 40px;
+}
+
 .post-list {
   padding: 0;
 }
