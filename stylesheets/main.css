@@ -717,7 +717,7 @@ body {
   position: fixed;
   top: 2rem;
   right: 0;
-  float: right;
+  float: left;
 }
 
 .home-icon-wrapper .home-icon:hover {
@@ -725,28 +725,10 @@ body {
 }
 
 .home-icon-wrapper .home-icon {
-  float: right;
+  float: left;
   margin-left: 15px;
   margin-right: 2rem;
   color: #c9cacc;
-}
-
-@media (max-width: 480px) {
-  .home-icon-wrapper {
-    display: none;
-  }
-}
-
-@media (min-width: 480px) {
-  #header-post {
-    display: none;
-  }
-}
-
-.menu-icon, .home-icon {
-  border: 1px solid;
-  padding: 4px 6px 2px;
-  border-radius: 3px;
 }
 
 .content .meta-footer {
@@ -1432,4 +1414,13 @@ a.patreon-button:active {
 
 a.patreon-button img {
   max-width: 40px;
+}
+
+p.no-margin {
+  margin: 0;
+}
+
+.spacing {
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
