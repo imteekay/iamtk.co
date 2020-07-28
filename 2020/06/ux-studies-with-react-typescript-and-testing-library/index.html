@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="description" content="Studying and applying UX using React, Typescript, Testing Library">
+  <meta name="description" content="Studying and applying UX using React, TypeScript, Testing Library">
   <meta name="keywords" content="javascript,typescript,web_development">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="UX Studies with React, Typescript, and Testing Library">
-  <meta property="og:description" content="Studying and applying UX using React, Typescript, Testing Library">
+  <meta property="og:title" content="UX Studies with React, TypeScript, and Testing Library">
+  <meta property="og:description" content="Studying and applying UX using React, TypeScript, Testing Library">
   <meta property="og:locale" content="en">
   <meta property="og:image"
     content="https://raw.githubusercontent.com/leandrotk/tk/master/2020/06/ux-studies-with-react-typescript-and-testing-library/assets/cover.jpg">
   <meta property="og:updated_time" content="2020-06-21T00:00:00.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="UX Studies with React, Typescript, and Testing Library">
-  <meta name="twitter:description" content="Studying and applying UX using React, Typescript, Testing Library">
+  <meta name="twitter:title" content="UX Studies with React, TypeScript, and Testing Library">
+  <meta name="twitter:description" content="Studying and applying UX using React, TypeScript, Testing Library">
   <meta name="twitter:image"
     content="https://raw.githubusercontent.com/leandrotk/tk/master/2020/06/ux-studies-with-react-typescript-and-testing-library/assets/cover.jpg">
 
-  <title>UX Studies with React, Typescript, and Testing Library</title>
+  <title>UX Studies with React, TypeScript, and Testing Library</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -39,7 +39,7 @@
     </div>
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
       <header>
-        <h1 class="posttitle">UX Studies with React, Typescript, and Testing Library</h1>
+        <h1 class="posttitle">UX Studies with React, TypeScript, and Testing Library</h1>
         <div class="meta">
           <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span itemprop="name">TK</span>
@@ -89,11 +89,11 @@
       </ul>
       <p>And user experience is the main focus of this PoC. The software and techniques are the foundation to enable
         good experience for users.</p>
-      <p>To make the state consistent, I wanted a type system. So I chose Typescript. This was the first time I'm using
-        Typescript with React. This project also allowed me to build custom hooks and test it properly.</p>
+      <p>To make the state consistent, I wanted a type system. So I chose TypeScript. This was the first time I'm using
+        TypeScript with React. This project also allowed me to build custom hooks and test it properly.</p>
       <h2 id="settinguptheproject">Setting up the project</h2>
       <p>I came across this library called <a href="https://github.com/jaredpalmer/tsdx">tsdx</a> that sets up all the
-        Typescript configuration for you. It's mainly used to build packages. As this was a simple side project, I
+        TypeScript configuration for you. It's mainly used to build packages. As this was a simple side project, I
         didn't mind giving it a try.</p>
       <p>After installing it, I chose the react template and I was ready to code. But before the fun part, I wanted to
         set up the test configuration too. <a href="https://github.com/testing-library/react-testing-library">React
@@ -235,7 +235,7 @@ const menuItems: MenuItem[] = [
 </code></pre>
       <p>The <code>menuItems</code> is a list of objects. The object has the correct contract expected by the
         <code>Menu</code> component. The type <code>MenuItem</code> ensures that the contract is correct. It is just a
-        Typescript <code>type</code>:</p>
+        TypeScript <code>type</code>:</p>
       <pre><code class="typescript language-typescript">export type MenuItem = {
   linkTo: string;
   label: string;
@@ -333,7 +333,7 @@ export const fetchReducer = (state: State, action: FetchAction): State =&gt; {
         <li><code>FETCH_ERROR</code>: <code>hasError</code> is true and <code>isLoading</code> is false.</li>
       </ul>
       <p>In case it doesn't match any action type, just return the current state.</p>
-      <p>The <code>FetchActionType</code> is a simple Typescript enum:</p>
+      <p>The <code>FetchActionType</code> is a simple TypeScript enum:</p>
       <pre><code class="typescript language-typescript">export enum FetchActionType {
   FETCH_INIT = 'FETCH_INIT',
   FETCH_SUCCESS = 'FETCH_SUCCESS',
@@ -636,7 +636,7 @@ const initialData: Data = [];
   return &lt;ProductList products={data} isLoading={isLoading} /&gt;;
 };
 </code></pre>
-      <p>As I'm using Typescript, I can enforce the static types for the component props. In this case, I have the prop
+      <p>As I'm using TypeScript, I can enforce the static types for the component props. In this case, I have the prop
         <code>products</code> and the <code>isLoading</code>.</p>
       <p>I built a <code>ProductListPropsType</code> type to handle the product list props.</p>
       <pre><code class="typescript language-typescript">type ProductListPropsType = {
@@ -1471,7 +1471,7 @@ export const useIntersectionObserver = (
             loading</a></li>
         <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API">Intersection Observer
             API - MDN</a></li>
-        <li><a href="https://github.com/typescript-cheatsheets/react-typescript-cheatsheet">React Typescript
+        <li><a href="https://github.com/typescript-cheatsheets/react-typescript-cheatsheet">React TypeScript
             Cheatsheet</a></li>
         <li><a href="https://github.com/leandrotk/ux-studies">UX Studies repository</a></li>
       </ul>

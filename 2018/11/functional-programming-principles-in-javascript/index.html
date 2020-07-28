@@ -41,7 +41,7 @@
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
       <header>
         <h1 class="posttitle" id="functional-programming-principles-in-javascript">Functional Programming Principles in
-          Javascript</h1>
+          JavaScript</h1>
         <div class="meta">
           <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span itemprop="name">TK</span>
@@ -70,7 +70,7 @@
           concepts are big advantages to build side-effect-free functions, so it is easier to maintain systems — with
           some other <a href="https://hackernoon.com/why-functional-programming-matters-c647f56a7691">benefits</a>.</p>
         <p>In this post, I will tell you more about functional programming, and some important concepts, with a lot of
-          code examples. In Javascript!</p>
+          code examples. In JavaScript!</p>
         <h2 id="what-is-functional-programming-">What is functional programming?</h2>
         <blockquote>
           <p>Functional programming is a programming paradigm — a style of building the structure and elements of
@@ -223,7 +223,7 @@ function incrementNumbers(<span class="hljs-type">list</span>) {
         <p><img src="https://cdn-images-1.medium.com/max/1600/0*MGlzHgISuw0dXwsf" alt=""></p>
         <p><strong>after it’s created. </strong>If you want to change an immutable object, you can’t. Instead,<strong>
             you create a new object with the new value.</strong></p>
-        <p>In Javascript we commonly use the <code>for</code> loop. This next <code>for</code> statement has some
+        <p>In JavaScript we commonly use the <code>for</code> loop. This next <code>for</code> statement has some
           mutable
           variables.</p>
         <pre><code class="javascript">var values = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];
@@ -424,7 +424,7 @@ doubleOperator(subtraction, <span class="hljs-number">3</span>, <span class="hlj
           the element in the result collection. Otherwise, it will not.</p>
         <p>A simple example is when we have a collection of integers and we want only the even numbers.</p>
         <p><strong>Imperative approach</strong></p>
-        <p>An imperative way to do it with Javascript is to:</p>
+        <p>An imperative way to do it with JavaScript is to:</p>
         <ul>
           <li>
             <p>create an empty array <code>evenNumbers</code></p>
@@ -461,7 +461,7 @@ listOfNumbers.filter(even); <span class="hljs-comment">// [0, 2, 4, 6, 8, 10]</s
           problem idea is to filter a given array of integers and output only those values that are less than a
           specified
           value <code>X</code>.</p>
-        <p>An imperative Javascript solution to this problem is something like:</p>
+        <p>An imperative JavaScript solution to this problem is something like:</p>
         <pre><code class="javascript">var filterArray = function(x, coll) {
   var resultArray = [];
 
@@ -481,7 +481,7 @@ console.log(filterArray(<span class="hljs-number">3</span>, [<span class="hljs-n
         <p><strong>Declarative approach</strong></p>
         <p>But we want a more declarative way to solve this problem, and using the <code>filter</code> higher order
           function as well.</p>
-        <p>A declarative Javascript solution would be something like this:</p>
+        <p>A declarative JavaScript solution would be something like this:</p>
         <pre><code class="javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">smaller</span>(<span class="hljs-params">number</span>) </span>{
   <span class="hljs-keyword">return</span> number &lt; <span class="hljs-keyword">this</span>;
 }
@@ -543,7 +543,7 @@ overAge(people); // [{ name: <span class="hljs-symbol">'TK</span>', age: <span c
           <code>:name is :age years old</code>
           where <code>:name</code> and <code>:age</code> are attributes from each element in the <code>people</code>
           collection.</p>
-        <p>In a imperative Javascript way, it would be:</p>
+        <p>In a imperative JavaScript way, it would be:</p>
         <pre><code class="javascript"><span class="hljs-built_in">var</span> people = [
   { name: <span class="hljs-string">"TK"</span>, age: <span class="hljs-number">26</span> },
   { name: <span class="hljs-string">"Kaio"</span>, age: <span class="hljs-number">10</span> },
@@ -559,7 +559,7 @@ overAge(people); // [{ name: <span class="hljs-symbol">'TK</span>', age: <span c
 
 console.<span class="hljs-built_in">log</span>(peopleSentences); // ['TK <span class="hljs-built_in">is</span> <span class="hljs-number">26</span> years old', 'Kaio <span class="hljs-built_in">is</span> <span class="hljs-number">10</span> years old', 'Kazumi <span class="hljs-built_in">is</span> <span class="hljs-number">30</span> years old']
 </code></pre>
-        <p>In a declarative Javascript way, it would be:</p>
+        <p>In a declarative JavaScript way, it would be:</p>
         <pre><code class="javascript"><span class="hljs-keyword">function</span> <span class="hljs-title">makeSentence</span>(person) {
   <span class="hljs-keyword">return</span> <span class="hljs-type">`${person.name}</span> <span class="hljs-keyword">is</span> ${person.age} years old`;
 }
@@ -730,7 +730,7 @@ getTotalAmount(shoppingCart); <span class="hljs-comment">// 70</span>
                 resources</a></p>
           </li>
           <li>
-            <p><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/javascript">Javascript
+            <p><a href="https://github.com/LeandroTk/learning-functional-programming/tree/master/javascript">JavaScript
                 specific resources</a></p>
           </li>
           <li>

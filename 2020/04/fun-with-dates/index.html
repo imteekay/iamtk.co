@@ -89,7 +89,7 @@ date.day # 5
       <p>Rails also provides other interesting APIs: <code>beginning_of_month</code>, <code>minutes.ago</code>,
         <code>days.ago</code>.</p>
       <p>So after a long time with Ruby and Rails, I started using JavaScript more and more. But the JavaScript Date
-        object was really strange for me. I wanted to use all the Ruby/Rails date APIs but in JavaScript and Typescript.
+        object was really strange for me. I wanted to use all the Ruby/Rails date APIs but in JavaScript and TypeScript.
       </p>
       <p>I didn't want to monkey patch or build new methods in the JavaScript Date object. I could just provide some
         simple functions and handle the Date internally.</p>
@@ -190,7 +190,7 @@ new Date(2020, 0, 0); // 2019-12-31
   return { day, month, year };
 };
 </code></pre>
-      <p>Let's improve this! This returned type could be a Typescript <code>type</code>.</p>
+      <p>Let's improve this! This returned type could be a TypeScript <code>type</code>.</p>
       <pre><code class="typescript language-typescript">type SeparatedDate = {
   day: number
   month: number
@@ -332,7 +332,7 @@ const yesterday = (): Date =&gt; {
 };
 </code></pre>
       <ul>
-        <li>In this case, I also created the <code>DatesAgo</code> type and used the Typescript <code>Union Type</code>
+        <li>In this case, I also created the <code>DatesAgo</code> type and used the TypeScript <code>Union Type</code>
           feature.</li>
         <li>We reuse the singular values.</li>
         <li>And do a simple ternary to handle the number received.</li>
@@ -381,14 +381,14 @@ const yesterday = (): Date =&gt; {
         <li><a href="https://ruby-doc.org/stdlib-2.7.1/libdoc/date/rdoc/Date.html">Ruby Date API</a></li>
         <li><a href="https://github.com/leandrotk/dating">Dating library</a></li>
         <li><a
-            href="https://leandrotk.github.io/tk/2020/04/typescript-learnings/001-object-destructuring.html">Typescript
+            href="https://leandrotk.github.io/tk/2020/04/typescript-learnings/001-object-destructuring.html">TypeScript
             Learnings 001: Object Destructuring</a></li>
         <li><a
             href="https://www.digitalocean.com/community/tutorials/understanding-date-and-time-in-javascript">Understanding
             Date and Time in JavaScript</a></li>
         <li>
           <a href="https://github.com/leandrotk/dating">
-            Dating: A human way to deal with dates in JavaScript and Typescript.
+            Dating: A human way to deal with dates in JavaScript and TypeScript.
           </a>
         </li>
       </ul>

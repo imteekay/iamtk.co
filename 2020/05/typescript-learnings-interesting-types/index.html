@@ -6,22 +6,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <meta name="description" content="Learning interesting types from Typescript">
+  <meta name="description" content="Learning interesting types from TypeScript">
   <meta name="keywords" content="typescript,javascript">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Typescript Learnings: Interesting Types">
-  <meta property="og:description" content="Learning interesting types from Typescript">
+  <meta property="og:title" content="TypeScript Learnings: Interesting Types">
+  <meta property="og:description" content="Learning interesting types from TypeScript">
   <meta property="og:locale" content="en">
   <meta property="og:image"
     content="https://raw.githubusercontent.com/leandrotk/tk/master/2020/05/typescript-learnings-interesting-types/assets/cover.jpg">
   <meta property="og:updated_time" content="2020-05-09T00:00:00.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Typescript Learnings: Interesting Types">
-  <meta name="twitter:description" content="Learning interesting types from Typescript">
+  <meta name="twitter:title" content="TypeScript Learnings: Interesting Types">
+  <meta name="twitter:description" content="Learning interesting types from TypeScript">
   <meta name="twitter:image"
     content="https://raw.githubusercontent.com/leandrotk/tk/master/2020/05/typescript-learnings-interesting-types/assets/cover.jpg">
 
-  <title>Typescript Learnings: Interesting Types</title>
+  <title>TypeScript Learnings: Interesting Types</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -39,7 +39,7 @@
     </div>
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
       <header>
-        <h1 class="posttitle">Typescript Learnings: Interesting Types</h1>
+        <h1 class="posttitle">TypeScript Learnings: Interesting Types</h1>
         <div class="meta">
           <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span itemprop="name">TK</span>
@@ -67,11 +67,11 @@
 
       <hr />
 
-      <p>This post is part of the <a href="../../04/typescript-learnings/index.html">Typescript Learning Series</a>.</p>
+      <p>This post is part of the <a href="../../04/typescript-learnings/index.html">TypeScript Learning Series</a>.</p>
 
       <p>These days I'm building a new project to understand some topics deeply. It is about user experience, web
         performance, accessibility, and a type system for consistent data.</p>
-      <p>This project I'm basically using React with Typescript. At first, I implemented a custom hook to handle the
+      <p>This project I'm basically using React with TypeScript. At first, I implemented a custom hook to handle the
         data fetching. One of the possible data types the fetch could return is a <code>Product</code> type. It looks
         like this:</p>
       <pre><code class="typescript language-typescript">type Product = {
@@ -84,7 +84,7 @@
 };
 </code></pre>
       <p>Now that I could fetch some products, I wanted to use the list of products to render in the DOM. So I created a
-        <code>Product</code> component. But as we are using Typescript, the props should be typed. In this case, I used
+        <code>Product</code> component. But as we are using TypeScript, the props should be typed. In this case, I used
         the <code>Product</code> type. It looks like this:</p>
       <pre><code class="typescript language-typescript">export const Product = ({
   imageUrl,
@@ -148,7 +148,7 @@ export const Image = ({ imageUrl }): ImagePropsType =&gt;
         and <code>width</code>.</p>
       <p>What I wanted is the intersection of the <code>Pick&lt;ProductType, 'imageUrl'&gt;</code>, the
         <code>imageAlt</code> type, and the <code>width</code> type.</p>
-      <p>In Typescript, the representation of the intersection is the <code>&amp;</code> operator.</p>
+      <p>In TypeScript, the representation of the intersection is the <code>&amp;</code> operator.</p>
       <p>I defined the <code>ImageUrlType</code>:</p>
       <pre><code class="typescript language-typescript">type ImageUrlType = Pick&lt;ProductType, 'imageUrl'&gt;;
 </code></pre>
