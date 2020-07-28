@@ -139,17 +139,17 @@
         <li>The tool in the tech community.</li>
       </ul>
 
-      <p>Some tools that can solve the problem: Flow, ReasonML, Elm, ClojureScript, and Typescript.
+      <p>Some tools that can solve the problem: Flow, ReasonML, Elm, ClojureScript, and TypeScript.
         (<em>disclaimer</em>: ClojureScript is from the LISP family. It doesn't have a static type system. But it has
         some cool features like immutable data structures)</p>
 
       <p>Thinking about the QuintoAndar's codebase, it's all JavaScript. Choosing a different language like ReasonML,
         Elm or ClojureScript would be a drawback in terms of learning a new language and have a guideline with best
-        practices and conventions. Flow and Typescript, instead, are wrappers - or a superset - to JavaScript. It's
+        practices and conventions. Flow and TypeScript, instead, are wrappers - or a superset - to JavaScript. It's
         easier to learn new APIs in comparison to a totally new language. Even though we like learning and trying new
         things, I thought that we should have a gentle learning curve and still solve the main problem.</p>
 
-      <p>Typescript is used in some PWAs. Some use to type the API and app data contract with Typescript models
+      <p>TypeScript is used in some PWAs. Some use to type the API and app data contract with TypeScript models
         (classes, interfaces, types). Others use the data fetcher for houses, search, and neighborhood. Flow, instead,
         is not used in our PWAs.</p>
 
@@ -158,7 +158,7 @@
           compile-to-JavaScript language</a>. Some big companies - like <a
           href="https://www.youtube.com/watch?v=P-J9Eg7hJwE">Airbnb - are also adopting this tool at scale</a>.</p>
 
-      <p>So we started with Typescript to do a proof of concept and see how it goes.</p>
+      <p>So we started with TypeScript to do a proof of concept and see how it goes.</p>
 
       <h3 id="reduxlifecycleagents">Redux Lifecycle Agents</h3>
 
@@ -246,9 +246,9 @@
         with <a href="https://github.com/jonaskello/tslint-immutable">lint</a> - and use only one language API, without
         the need to reason about between languages - JavaScript and Immutable.js?</p>
 
-      <h4 id="typescriptreadonlyandtslintimmutable">Typescript readonly and TSLint-Immutable</h4>
+      <h4 id="typescriptreadonlyandtslintimmutable">TypeScript readonly and TSLint-Immutable</h4>
 
-      <p>Typescript has <a href="https://mariusschulz.com/blog/read-only-properties-in-typescript">Readonly
+      <p>TypeScript has <a href="https://mariusschulz.com/blog/read-only-properties-in-typescript">Readonly
           properties</a> to handle <a
           href="https://stackoverflow.com/questions/55905801/can-typescripts-readonly-fully-replace-immutable-js/55906256#55906256">immutable
           data in compile-time</a>. They are:</p>
@@ -441,7 +441,7 @@ export type PhotoSessionsActions =
           like <a href="https://immutable-js.github.io/immutable-js/docs/#/mergeDeep">mergeDeep</a> without an Immutable
           Map/Array/DS, but only using Immutable.js version 4.</li>
 
-        <li>Performance optimization when removing Immutable in favor of Typescript readonly
+        <li>Performance optimization when removing Immutable in favor of TypeScript readonly
 
 
           <ul>
@@ -474,9 +474,9 @@ export type PhotoSessionsActions =
         <li><a href="https://dropbox.tech/application/our-journey-to-type-checking-4-million-lines-of-python">Our
             journey to type checking 4 million lines of Python</a></li>
 
-        <li><a href="https://medium.com/javascript-scene/the-typescript-tax-132ff4cb175b">The Typescript Tax</a></li>
+        <li><a href="https://medium.com/javascript-scene/the-typescript-tax-132ff4cb175b">The TypeScript Tax</a></li>
 
-        <li><a href="https://www.youtube.com/watch?v=P-J9Eg7hJwE">Adopting Typescript at Scale</a></li>
+        <li><a href="https://www.youtube.com/watch?v=P-J9Eg7hJwE">Adopting TypeScript at Scale</a></li>
 
         <li><a href="https://medium.com/javascript-scene/the-dao-of-immutability-9f91a70c88cd#.9g51h5stk">The Dao of
             Immutability</a></li>
@@ -501,9 +501,9 @@ export type PhotoSessionsActions =
 
         <li><a href="https://github.com/jonaskello/tslint-immutable">Tslint-immutable</a></li>
 
-        <li><a href="https://mariusschulz.com/blog/read-only-properties-in-typescript">Read-only Typescript</a></li>
+        <li><a href="https://mariusschulz.com/blog/read-only-properties-in-typescript">Read-only TypeScript</a></li>
 
-        <li><a href="https://stackoverflow.com/a/55906256/11314146">Typescript Read-only doesn't fully replace
+        <li><a href="https://stackoverflow.com/a/55906256/11314146">TypeScript Read-only doesn't fully replace
             Immutable</a></li>
 
         <li><a href="https://stackoverflow.com/a/49670389/11314146">Deep ReadOnly Objects</a></li>
@@ -513,7 +513,7 @@ export type PhotoSessionsActions =
 
         <li><a href="https://github.com/gcanti/io-ts">io-ts</a></li>
 
-        <li><a href="https://klzns.github.io/how-to-use-type-script-and-jest-mocks/">Typescript and jest mock</a></li>
+        <li><a href="https://klzns.github.io/how-to-use-type-script-and-jest-mocks/">TypeScript and jest mock</a></li>
       </ul>
     </article>
 

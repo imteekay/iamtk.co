@@ -146,7 +146,7 @@
       <p>Great! Transforming data for UI rendering.</p>
       <p>Next step: imagine our <code>lastName</code> is an optional database column. So the API endpoint can return
         it... or not!</p>
-      <p>We can use the Typescript <code>Optional Property</code>. It tells us: &quot;It is an optional property, it has
+      <p>We can use the TypeScript <code>Optional Property</code>. It tells us: &quot;It is an optional property, it has
         this type, but the data can be here... or not!&quot;</p>
       <p>So we use it in our API contract:</p>
       <pre><code class="lang-typescript">type PersonAPI = {
@@ -255,7 +255,7 @@
 };
 </code></pre>
       <p>Let&#39;s refactor it! We will start with the <code>status</code> thing. <code>&#39;active&#39;</code> is a
-        string. To define it in a data structure and enable reusability, we can use Typescript&#39;s Enum.</p>
+        string. To define it in a data structure and enable reusability, we can use TypeScript&#39;s Enum.</p>
       <pre><code class="lang-typescript"><span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">PersonStatus</span> {</span>
   Active = <span class="hljs-string">'active'</span>,
   Inactive = <span class="hljs-string">'inactive'</span>

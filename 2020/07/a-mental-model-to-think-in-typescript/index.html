@@ -7,24 +7,24 @@
   <meta name="HandheldFriendly" content="True">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="description"
-    content="Types can be hard and this long-format essay tries to give a way of thinking about types and Typescript">
+    content="Types can be hard and this long-format essay tries to give a way of thinking about types and TypeScript">
   <meta name="keywords" content="typescript,javascript,web_development">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="A Mental Model to think in Typescript">
+  <meta property="og:title" content="A Mental Model to think in TypeScript">
   <meta property="og:description"
-    content="Types can be hard and this long-format essay tries to give a way of thinking about types and Typescript">
+    content="Types can be hard and this long-format essay tries to give a way of thinking about types and TypeScript">
   <meta property="og:locale" content="en">
   <meta property="og:image"
     content="https://leandrotk.github.io/tk/2020/07/a-mental-model-to-think-in-typescript/assets/cover.jpg">
   <meta property="og:updated_time" content="2020-07-19T00:00:00.000Z">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="A Mental Model to think in Typescript">
+  <meta name="twitter:title" content="A Mental Model to think in TypeScript">
   <meta name="twitter:description"
-    content="Types can be hard and this long-format essay tries to give a way of thinking about types and Typescript">
+    content="Types can be hard and this long-format essay tries to give a way of thinking about types and TypeScript">
   <meta name="twitter:image"
     content="https://leandrotk.github.io/tk/2020/07/a-mental-model-to-think-in-typescript/assets/cover.jpg">
 
-  <title>A Mental Model to think in Typescript</title>
+  <title>A Mental Model to think in TypeScript</title>
   <link rel="stylesheet" type="text/css" href="../../../stylesheets/main.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -42,7 +42,7 @@
     </div>
     <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
       <header>
-        <h1 class="posttitle">A Mental Model to think in Typescript</h1>
+        <h1 class="posttitle">A Mental Model to think in TypeScript</h1>
         <div class="meta">
           <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
             <span itemprop="name">TK</span>
@@ -77,25 +77,25 @@
         <p>"Can I make a suggestion? Types are hard to understand when you’ve only worked with JS in your life and
           suddenly have to learn TypeScript"</p>
       </blockquote>
-      <p>As a software engineer that learned Python, Ruby, Javascript, and Clojure first, when I tried C++, it was a
+      <p>As a software engineer that learned Python, Ruby, JavaScript, and Clojure first, when I tried C++, it was a
         horror movie. I couldn't do much, so counterproductive, and frustrating. Maybe because I was doing everything
         wrong and I didn't understand types the right way.</p>
       <p>But even though I had so many problems, I could implement a bunch of <a
           href="https://github.com/leandrotk/algorithms">algorithms and data structures</a>.</p>
-      <p>Now I'm using more and more Typescript in my day-to-day job and in <a
+      <p>Now I'm using more and more TypeScript in my day-to-day job and in <a
           href="https://github.com/leandrotk/laziness">my side projects</a>, I feel I'm more prepared to confront types.
         Actually, not confront, but use them in my favor.</p>
       <p>This post is my attempt to help developers think more in types and understand this mental model.</p>
-      <h2 id="javascripttypes">Javascript types</h2>
-      <p>If you're here, you probably heard that Typescript is a superset of Javascript. If not, great, you had just
+      <h2 id="javascripttypes">JavaScript types</h2>
+      <p>If you're here, you probably heard that TypeScript is a superset of JavaScript. If not, great, you had just
         learned
         something new today. YAY!</p>
-      <p>Typescript is a superset because any Javascript code is valid in Typescript, syntactically speaking. It may or
-        may not compile depending on the Typescript compiler configuration. But in terms of syntax, it works just fine.
-        This is why you can migrate Javascript to Typescript progressively by just replacing the <code>.js</code>
+      <p>TypeScript is a superset because any JavaScript code is valid in TypeScript, syntactically speaking. It may or
+        may not compile depending on the TypeScript compiler configuration. But in terms of syntax, it works just fine.
+        This is why you can migrate JavaScript to TypeScript progressively by just replacing the <code>.js</code>
         extension with the <code>.ts</code>. Everything will be without type declarations (the <code>any</code> type),
         but that's another story.</p>
-      <p>Also, if you code in Javascript - or any other programming language - you probably think in types:</p>
+      <p>Also, if you code in JavaScript - or any other programming language - you probably think in types:</p>
       <ul>
         <li>"Hm, it is a list of integers, so I'll need to filter only the even numbers and return a new list"</li>
         <li>"This is an object, but I just need to get this string value from the property X"</li>
@@ -134,7 +134,7 @@
 
 sumAllPrices(products); // 425
 </code></pre>
-      <p>Just receive the products as the argument and reduce all product prices. Javascript works just fine. But while
+      <p>Just receive the products as the argument and reduce all product prices. JavaScript works just fine. But while
         building this function you start to think about the data and how to handle it properly.</p>
       <p>The first part: products as an argument. Here you just think: "well, we're receiving a list of some objects".
         Yeah, in our heads the products are a list. This is why we can think of using the <code>reduce</code> method. It
@@ -158,18 +158,18 @@ sumAllPrices(products); // 425
         types. It knows the types, so it can show the members of the data. We will take a look at this idea later. Here
         I just wanted to show that we think in types in our heads.</p>
       <h2 id="simplestypessimpleuses">Simples Types &amp; Simple Uses</h2>
-      <p>So we are ready to use some static typed programming languages like Typescript. We simply need to explicitly
+      <p>So we are ready to use some static typed programming languages like TypeScript. We simply need to explicitly
         add type annotations to our data structures. It's simple. But sometimes it's not that easy (usually it's not
         easy when you come from dynamically typed languages. You feel unproductive. It feels like a battle against
         types. The idea here is to make this learning curve more smooth and fun).</p>
-      <p>Here we will see many examples of how to use types in Typescript. We start with easy and silly examples and
+      <p>Here we will see many examples of how to use types in TypeScript. We start with easy and silly examples and
         progressively make it more complex while designing the mental model to think in types.</p>
-      <p>As Javascript, Typescript also has basic data types like <code>number</code>, <code>string</code>,
+      <p>As JavaScript, TypeScript also has basic data types like <code>number</code>, <code>string</code>,
         <code>boolean</code>, <code>null</code>, etc. You can find all the basic data types in the <a
-          href="https://www.typescriptlang.org/docs/handbook/basic-types.html">Typescript Docs</a>.</p>
+          href="https://www.typescriptlang.org/docs/handbook/basic-types.html">TypeScript Docs</a>.</p>
       <p>With these units of data, we can make our programs more useful. To be more practical, let's get a simple
         example. A <code>sum</code> function.</p>
-      <p>How does it work in Javascript?</p>
+      <p>How does it work in JavaScript?</p>
       <pre><code class="typescript language-typescript">function sum(a, b) {
   return a + b;
 }
@@ -180,7 +180,7 @@ sumAllPrices(products); // 425
 sum(2, 2); // 4
 sum(0, 'string'); // '0string'   WTF!
 </code></pre>
-      <p>The first two calls are what we expect to happen in our system. But Javascript is very flexible, it lets us
+      <p>The first two calls are what we expect to happen in our system. But JavaScript is very flexible, it lets us
         provide any value to this function. The last call is bizarre. We can call with a string, but it will return an
         unexpected result. It doesn't break in development, but it will result in strange behavior in runtime.</p>
       <p>What do we want? We want to add some constraints to the function. It will only be able to receive numbers. That
@@ -196,17 +196,17 @@ sum(0, 'string'); // Argument of type '"string"' is not assignable to parameter 
 </code></pre>
       <p>As we type annotate our function, we provide information to the compiler to see if everything is correct. It
         will follow the constraints we added to the function.</p>
-      <p>So the first two calls are the same as in Javascript. It will return the correct calculation. But the last one
+      <p>So the first two calls are the same as in JavaScript. It will return the correct calculation. But the last one
         we have an error in compile time. This is important. The error now happens in compile time and prevents us to
         ship incorrect code to production. It says that the <code>string</code> type is not part of the set of values in
         the <code>number</code> type universe.</p>
       <p>For basic types, we just need to add colon followed by the type definition.</p>
-      <pre><code class="typescript language-typescript">const isTypescript: boolean = true;
+      <pre><code class="typescript language-typescript">const isTypeScript: boolean = true;
 const age: number = 24;
 const username: string = 'tk';
 </code></pre>
-      <p>Now let's increase the challenge. Remember the product object code we wrote in Javascript? Let's implement it
-        again, but now with the Typescript mindset.</p>
+      <p>Now let's increase the challenge. Remember the product object code we wrote in JavaScript? Let's implement it
+        again, but now with the TypeScript mindset.</p>
       <p>Just to remember what we are talking about:</p>
       <pre><code class="typescript language-typescript">const product = {
   title: 'Some product',
@@ -281,7 +281,7 @@ sumAllPrices([]); // 0
 sumAllPrices([{ title: 'Test', willFail: true }]); // Type '{ title: string; willFail: true; }' is not assignable to type 'Product'.
 </code></pre>
       <p>Passing the <code>products</code> will result in the value <code>425</code>. An empty list will result in the
-        value <code>0</code>. And if we pass an object with a different structure - Typescript has a structural type
+        value <code>0</code>. And if we pass an object with a different structure - TypeScript has a structural type
         system and we will dig deep into this topic later - the compiler will throw a type error telling that the
         structure is not part of the <code>Product</code> type.</p>
       <h2 id="structuraltyping">Structural Typing</h2>
@@ -302,9 +302,9 @@ Client c = new Person();  // compiler throws an error
 Client c = new Client();  // OK!
 </code></pre>
       <p>In nominal type systems, the relevant part of a type is the name, not the structure.</p>
-      <p>Typescript, on another hand, verifies the structural compatibility to allow or not specific data. Its type
+      <p>TypeScript, on another hand, verifies the structural compatibility to allow or not specific data. Its type
         system is based on structural typing.</p>
-      <p>The same code implementation that crashes in Java, would work in Typescript.</p>
+      <p>The same code implementation that crashes in Java, would work in TypeScript.</p>
       <pre><code class="typescript language-typescript">class Person {
   name: string;
 }
@@ -317,7 +317,7 @@ const c1: Client = new Person(); // OK!
 const c2: Client = new Client(); // OK!
 </code></pre>
       <p>We want to use the <code>Client</code> type, and it has the property <code>name</code>, to point to the
-        <code>Person</code> type. It also has the property type. So Typescript will understand that both types have the
+        <code>Person</code> type. It also has the property type. So TypeScript will understand that both types have the
         same shape.</p>
       <p>But it is not only about classes, but it works for any other "object".</p>
       <pre><code class="typescript language-typescript">const c3: Client = {
@@ -356,7 +356,7 @@ const c2: Client = new Client(); // OK!
         list of <s>Pokemons</s> products.</p>
       <p>Compile time is basically when the compiler is executing operations in the source code to satisfy the
         programming language requirements. It can include type checking as an operation for example. Compile time errors
-        in Typescript, for example, is very related to the code that we wrote before:</p>
+        in TypeScript, for example, is very related to the code that we wrote before:</p>
       <ul>
         <li>When the type is missing property:
           <code>Property 'age' is missing in type 'Client' but required in type 'Customer'.</code></li>
@@ -370,7 +370,7 @@ const c2: Client = new Client(); // OK!
 }
 </code></pre>
       <p>It receives the <code>language</code> and the <code>part</code> that we will look for to get the index.</p>
-      <pre><code class="typescript language-typescript">getIndexOf('Typescript', 'script'); // 4
+      <pre><code class="typescript language-typescript">getIndexOf('TypeScript', 'script'); // 4
 getIndexOf(42, 'script'); // Uncaught TypeError: language.indexOf is not a function at getIndexOf
 </code></pre>
       <p>When passing a string, it works fine. But passing a number, we got a runtime error
@@ -384,7 +384,7 @@ getIndexOf(42, 'script'); // Uncaught TypeError: language.indexOf is not a funct
 </code></pre>
       <p>Now our program knows that it will need to receive two strings and return a number. The compiler can use this
         information to throw errors when we get a type error… before runtime.</p>
-      <pre><code class="typescript language-typescript">getIndexOf('Typescript', 'script'); // 4
+      <pre><code class="typescript language-typescript">getIndexOf('TypeScript', 'script'); // 4
 getIndexOf(42, 'script'); // Argument of type '42' is not assignable to parameter of type 'string'.
 </code></pre>
       <p>Maybe, for small projects (or small functions like ours) we don't really see too much benefit. In this case, we
@@ -397,15 +397,15 @@ getIndexOf(42, 'script'); // Argument of type '42' is not assignable to paramete
       <p>As we are learning about the basic difference between compile time and runtime, I think it's great to
         differentiate types from values.</p>
       <p>All the examples I'll show here can be copied and run in the <a
-          href="https://www.typescriptlang.org/play">Typescript Playground</a> to understand the compiler and the result
-        of the compilation process (aka the <em>"Javascript"</em>).</p>
-      <p>In Typescript, we have two different universes: the value and the type spaces. The type space is where types
+          href="https://www.typescriptlang.org/play">TypeScript Playground</a> to understand the compiler and the result
+        of the compilation process (aka the <em>"JavaScript"</em>).</p>
+      <p>In TypeScript, we have two different universes: the value and the type spaces. The type space is where types
         are defined and used to enable the compiler to do all the great magic. And the value space is the values in our
         programs like variables, constants, functions, value literals, and things that we have in runtime.</p>
-      <p>It's good to have an understanding of this concept because in Typescript we can't use type checking in runtime.
+      <p>It's good to have an understanding of this concept because in TypeScript we can't use type checking in runtime.
         It has a very clear separation between type checking and the compilation process.</p>
-      <p>Typescript has the process of type checking the source code types and sees if everything is correct and
-        consistent. And then it can compile to Javascript. As these two parts are separate, we can't use type checking
+      <p>TypeScript has the process of type checking the source code types and sees if everything is correct and
+        consistent. And then it can compile to JavaScript. As these two parts are separate, we can't use type checking
         in runtime. Only in "compile time". If you try to use a type as a value, it will throw an error:
         <code>only refers to a type, but is being used as a value here</code>.</p>
       <p>Let's see examples of this idea.</p>
@@ -429,7 +429,7 @@ type PaymentMethod = CreditCard | DebitCard;
 </code></pre>
       <p>These types are in the <em>Type space</em>, so it only works in compile time. After type checking this
         function, the compiler removes all the types.</p>
-      <p>If you add these types in the Typescript Playground, the output will be only a strict definition
+      <p>If you add these types in the TypeScript Playground, the output will be only a strict definition
         <code>"use strict";</code>.</p>
       <p>The idea here is to really understand that the types live in the <em>Type space</em> and will not be available
         in the runtime. So in our function, it won't be possible to do this:</p>
@@ -445,7 +445,7 @@ type PaymentMethod = CreditCard | DebitCard;
         <code>'CreditCard' only refers to a type, but is being used as a value here.</code>.</p>
       <p>The compiler knows the difference between the two spaces and that the type <code>CreditCard</code> lives in the
         <em>Type space</em>.</p>
-      <p>The playground is a very cool tool to see the output of your Typescript code. If you create a new credit card
+      <p>The playground is a very cool tool to see the output of your TypeScript code. If you create a new credit card
         object like this:</p>
       <pre><code class="typescript language-typescript">const creditCard: CreditCard = {
   number: 2093,
@@ -454,7 +454,7 @@ type PaymentMethod = CreditCard | DebitCard;
   secutiryCode: 101
 };
 </code></pre>
-      <p>The compiler will type check it and do all the magic and then it transpiles the Typescript code to Javascript.
+      <p>The compiler will type check it and do all the magic and then it transpiles the TypeScript code to JavaScript.
         And we have this:</p>
       <pre><code class="typescript language-typescript">const creditCard = {
     number: 2093,
@@ -516,7 +516,7 @@ half((a, b) =&gt; a + b); // Argument of type '(a: any, b: any) =&gt; any' is no
       <p>Basically the compiler will tell us that only the number type, in this case, the <code>0</code> value, is a
         valid input, it will compile, and allow to run the code. We narrow the input type and allow only the value we
         really want for this function.</p>
-      <p>But are other ways to narrow the types in Typescript. Imagine we have a function that receives a parameter that
+      <p>But are other ways to narrow the types in TypeScript. Imagine we have a function that receives a parameter that
         can be either a string or a number.</p>
       <pre><code class="typescript language-typescript">type StringOrNumber = string | number;
 
@@ -615,7 +615,7 @@ getComplementLength({
       <p>We could also use more advanced concepts like assertion function or type guards, but I'll let these concepts to
         future posts.</p>
       <p>One thing that I want to dig deep in this <em>Constraints</em> topic is immutability.</p>
-      <p>In Javascript and Typescript, we have the idea of mutable objects. If you define value in a variable, we can
+      <p>In JavaScript and TypeScript, we have the idea of mutable objects. If you define value in a variable, we can
         reassign it with another value later.</p>
       <pre><code class="typescript language-typescript">let email = 'harry.potter@mail.com';
 email // 'harry.potter@mail.com'
@@ -647,7 +647,7 @@ sumNumbers(list); // 10
         function. It gets the references and removes the item from them. It's not a copy, it's the real reference.</p>
       <p>In runtime, we can use other functions or ways to do the same thing: using reduce, do a for loop without the
         need to <code>pop</code> items from the array.</p>
-      <p>But using Typescript, we can provide immutability in compile time. If you are not using types, it's possible to
+      <p>But using TypeScript, we can provide immutability in compile time. If you are not using types, it's possible to
         use a type assertion <code>as const</code>. Imagine this:</p>
       <pre><code class="typescript language-typescript">const author = {
   name: 'Walter Isaacson',
@@ -725,7 +725,7 @@ type Author = {
 author.books.push(book);
 </code></pre>
       <p>It works just fine!</p>
-      <p>I want to show another way to add immutability in compile time. Typescript has an utility type called
+      <p>I want to show another way to add immutability in compile time. TypeScript has an utility type called
         <code>Readonly</code>.</p>
       <p>You can add the <code>readonly</code> for each property in an object. Something like this:</p>
       <pre><code class="typescript language-typescript">type Book = {
@@ -786,7 +786,7 @@ author.books;
 </code></pre>
       <p>The <code>push</code> will work just fine.</p>
       <p>So, how do we enforce a readonly to the <code>books</code>? We need to make sure that the array is a readonly
-        type. We can use the <code>Readonly</code>, or use another utility from Typescript called
+        type. We can use the <code>Readonly</code>, or use another utility from TypeScript called
         <code>ReadonlyArray</code>. Let's see the two ways to do it.</p>
       <p>With <code>Readonly</code>:</p>
       <pre><code class="typescript language-typescript">type Author = Readonly&lt;{
@@ -811,11 +811,11 @@ author.books.push(book); // Property 'push' does not exist on type 'readonly [{ 
       <p>Great! Now we can catch mutable operations in compile time. This is a way to use the concept of adding
         constraints to our types to make sure they only do what is really needed.</p>
       <h2 id="semanticsreadability">Semantics &amp; Readability</h2>
-      <p>At first, I felt that Typescript could be very verbose because of the types and make the code much more complex
+      <p>At first, I felt that TypeScript could be very verbose because of the types and make the code much more complex
         than it should be. And it actually can. Strive for simplicity is the goal and it is difficult at the same time.
       </p>
       <p>This idea is very related to clean code and how we can write code to be human-readable and maintainable.
-        Typescript is no different. Most of the cases, we don't need super complex types. Let the simple types do the
+        TypeScript is no different. Most of the cases, we don't need super complex types. Let the simple types do the
         work.</p>
       <p>Another thing that I find very useful is semantic of types.</p>
       <p>Imagine you need to add a string to the <code>sessionStorage</code> to save it in the browser. Your function
@@ -828,7 +828,7 @@ author.books.push(book); // Property 'push' does not exist on type 'readonly [{ 
         a <code>any</code> type.</p>
       <p>But what's the real meaning behind this returning type? Is it returning anything?</p>
       <p>It just saves the string to the <code>sessionStorage</code>. It doesn't return anything. The <code>void</code>
-        type was what you're looking for. As Typescript docs says: <code>the absence of having any type at all</code>.
+        type was what you're looking for. As TypeScript docs says: <code>the absence of having any type at all</code>.
       </p>
       <pre><code class="typescript language-typescript">function saveMyString(value: string): void {
   sessionStorage.myString = value;
@@ -836,9 +836,9 @@ author.books.push(book); // Property 'push' does not exist on type 'readonly [{ 
 </code></pre>
       <p>Great, the meaning of the type is correct now. The correctness is very important in a type system. It's a way
         to model our data, but also help maintain systems for future developers. Even if the developer is … you!</p>
-      <p>Before we were talking about verbose code. And we can improve a lot of our code by using Typescript type
+      <p>Before we were talking about verbose code. And we can improve a lot of our code by using TypeScript type
         inference.</p>
-      <p>For some code, we don't need to explicitly add type annotation. The Typescript compiler will understand and
+      <p>For some code, we don't need to explicitly add type annotation. The TypeScript compiler will understand and
         infer it implicitly. For example:</p>
       <pre><code class="typescript language-typescript">const num: number = 1;
 </code></pre>
@@ -848,10 +848,10 @@ author.books.push(book); // Property 'push' does not exist on type 'readonly [{ 
       <p>In our example earlier, we add the annotation <code>void</code> to the <code>saveMyString</code> function. But
         as the function doesn't return any value, the compiler will infer that the returning type is <code>void</code>
         implicitly.</p>
-      <p>When I learned this, I thought with myself. But one of the biggest advantages of using Typescript (or any other
+      <p>When I learned this, I thought with myself. But one of the biggest advantages of using TypeScript (or any other
         type system / static type language) is types as documentation. If we let the compiler infer most of the types,
         we won't have the documentation we want.</p>
-      <p>But if you hover over the Typescript code in your editor (at least VS Code works like that), you can see the
+      <p>But if you hover over the TypeScript code in your editor (at least VS Code works like that), you can see the
         type information and relevant documentation.</p>
       <p>Let's see other examples of redundant code and make the code less verbose and let the compiler works for us.
       </p>
@@ -1010,7 +1010,7 @@ fetch('/harry-potter/spells', {
 </code></pre>
       <p>This is a way to use an enum to encapsulate important data into a meaningful block of code in your application.
       </p>
-      <p>Another cool feature from Typescript is optional properties. When we have properties from an object that can be
+      <p>Another cool feature from TypeScript is optional properties. When we have properties from an object that can be
         a real value or undefined, we use an optional property to be explicitly that the property can be or not be
         there. The syntax for this is a simple <code>?</code> operator in the object property. Imagine this function:
       </p>
@@ -1027,7 +1027,7 @@ fetch('/harry-potter/spells', {
       <pre><code class="typescript language-typescript">(parameter) c: number | undefined
 Object is possibly 'undefined'.
 </code></pre>
-      <p>We can't sum an <code>undefined</code> value (well, actually in Javascript we can, but we receive a
+      <p>We can't sum an <code>undefined</code> value (well, actually in JavaScript we can, but we receive a
         <code>NaN</code> value).</p>
       <p>We need to ensure that the <code>c</code> exists. Type narrowing!</p>
       <pre><code class="typescript language-typescript">function sumAll(a: number, b: number, c?: number) {
@@ -1300,16 +1300,16 @@ const imagePropsWithWidth: ImageProps = {
           href="https://leandrotk.github.io/tk/2020/05/typescript-learnings-interesting-types/index.html">interesting
           types</a> that we could write here, but the idea here is to understand that we can compose type and there is
         no limit to reuse types. If you're interested in study other types, take a look at this post I wrote: <a
-          href="https://leandrotk.github.io/tk/2020/05/typescript-learnings-interesting-types/index.html">Typescript
+          href="https://leandrotk.github.io/tk/2020/05/typescript-learnings-interesting-types/index.html">TypeScript
           Learnings: Interesting Types</a>.</p>
       <h2 id="tooling">Tooling</h2>
       <p>When you <code>npm install typescript</code>, you don't just get the compiler, you get the language service
         API, a standalone server called tsserver that editors can run to provide autocompletion, go-to, and other cool
         features.</p>
-      <p>These features are what some people from the Typescript team call developer productivity tools like smart
+      <p>These features are what some people from the TypeScript team call developer productivity tools like smart
         errors when type checking and IntelliSense (code completion, hover info, signature information). We look at
         these features throughout the whole article, but I want to make a special topic to talk about it.</p>
-      <p>The Typescript type checker is powerful in the sense that it can infer types and provide information to some
+      <p>The TypeScript type checker is powerful in the sense that it can infer types and provide information to some
         possible issues. Example: It inferred that the city is a string. And the <code>uppercase</code> is used the
         wrong way. As it knows it is a string, it also tries to find a possible method that the engineer is looking for.
       </p>
@@ -1341,7 +1341,7 @@ for (const person of people) {
       <p>The type definition "on hover" is another thing that we saw earlier in this article. Let the compiler infer the
         types implicitly and you won't lose the type documentation. Using the hover in the object, the IDE or editor
         will always be able to show the type definition.</p>
-      <p>Another interesting thing is that Typescript will not only flag what could go wrong on runtime, but it also
+      <p>Another interesting thing is that TypeScript will not only flag what could go wrong on runtime, but it also
         helps to find code that doesn't do what you intend.</p>
       <p>Imagine we have a function to open a snackbar if it is still closed. It would verify the status of the
         snackbar. If it is closed, just call another function to open it.</p>
@@ -1363,7 +1363,7 @@ for (const person of people) {
         the <code>undefined</code> object is a <code>falsy</code> value, so it will skip the if condition and not call
         the <code>openSnackbar</code> function. No runtime error. But probably it will behavior different than the
         expected.</p>
-      <p>In Typescript, the compiler will give some hints to make it works properly. First it will show this error:</p>
+      <p>In TypeScript, the compiler will give some hints to make it works properly. First it will show this error:</p>
       <pre><code class="typescript language-typescript">// Argument of type '{ isclosed: boolean; }' is not assignable to
 // parameter of type 'SnackbarStatus'.
 </code></pre>
@@ -1376,12 +1376,12 @@ for (const person of people) {
 </code></pre>
       <p>It tells exactly what you probably need to do: rename the <code>isclosed</code> to <code>isClosed</code>.</p>
       <p>We can talk a lot of things about the tooling about I think this is the main part.</p>
-      <p>My suggestion to learn more about this is to just code in Typescript and "have a conversation" with the
+      <p>My suggestion to learn more about this is to just code in TypeScript and "have a conversation" with the
         compiler. Read the errors. Play with the hover. See the autocompletion. Understand the method signatures. It's
         really a productive way to code.</p>
       <h2 id="tipslearnings">Tips &amp; Learnings</h2>
       <p>As the article is coming to an end, I want to just add the final thoughts, learnings, and tips to help you in
-        your journey learning Typescript or just applying it in your projects.</p>
+        your journey learning TypeScript or just applying it in your projects.</p>
       <ul>
         <li>Really read the type error: this will help you better understand the issue and the types.</li>
         <li><code>strictNullChecks</code> and <code>noImplicitAny</code> can be very helpful in finding bugs. Enable
@@ -1392,13 +1392,13 @@ for (const person of people) {
           Mainly with the values that occur only in runtime like an API response. Correctness is important to catch as
           many bugs as possible in compile time.</li>
         <li>Understand the difference between runtime and compile time: types only affects in compile type. It runs the
-          type checker and then compiles to Javascript. The Javascript source code doesn't use any type of references or
+          type checker and then compiles to JavaScript. The JavaScript source code doesn't use any type of references or
           type operations.</li>
         <li>Learn about utility types. We talk about more specific about the <code>Readonly</code> in the immutability
-          in compile time, but Typescript has a box of helpers like <code>Required</code>, <code>Pick</code>, and many
+          in compile time, but TypeScript has a box of helpers like <code>Required</code>, <code>Pick</code>, and many
           more.</li>
         <li>If possible, prefer letting the compiler infers the types for you. Most of the types and returning types are
-          redundant. The Typescript compiler is very smart in this topic. If not possible, you can always add type
+          redundant. The TypeScript compiler is very smart in this topic. If not possible, you can always add type
           annotations. And let the type assertions as to the last option.</li>
         <li>As writing code, take a look at the tooling. The design of the tooling provided in an IDE is amazing. The
           IntelliSense and type checking provide a really good experience.</li>
@@ -1423,7 +1423,7 @@ for (const person of people) {
         <li><a href="https://2ality.com/2020/06/type-guards-assertion-functions-typescript.html">TypeScript: narrowing
             types via type guards and assertion functions</a></li>
         <li><a
-            href="https://leandrotk.github.io/tk/2020/05/typescript-learnings-interesting-types/index.html">Typescript
+            href="https://leandrotk.github.io/tk/2020/05/typescript-learnings-interesting-types/index.html">TypeScript
             Learnings: Interesting Types</a></li>
         <li><a href="https://www.youtube.com/watch?v=MbZoQlmQaWQ">Understanding TypeScript's Structural Type System</a>
         </li>
@@ -1434,7 +1434,7 @@ for (const person of people) {
         <li><a href="https://www.youtube.com/watch?v=4C4wCGcsiT0">Type Systems & Props Design</a></li>
         <li><a href="https://www.youtube.com/watch?v=wSdV1M7n4gQ">Anders Hejlsberg on Modern Compiler Construction</a>
         </li>
-        <li><a href="https://www.youtube.com/watch?v=f6TCB61fDwY">Typescript Compiler explained by the Author Anders
+        <li><a href="https://www.youtube.com/watch?v=f6TCB61fDwY">TypeScript Compiler explained by the Author Anders
             Hejlsberg</a></li>
       </ul>
       <h3 id="compiletimevsruntime">Compile time vs Runtime</h3>
@@ -1445,12 +1445,12 @@ for (const person of people) {
             href="https://stackoverflow.com/questions/9471837/what-is-the-difference-between-run-time-error-and-compiler-error">Compile
             error vs Runtime error</a></li>
         <li><a href="https://stackoverflow.com/a/51132333/3159162">Value space and Type space</a></li>
-        <li><a href="https://www.typescriptlang.org/play">A playground tool to play with Typescript and see the
-            Javascript output</a></li>
+        <li><a href="https://www.typescriptlang.org/play">A playground tool to play with TypeScript and see the
+            JavaScript output</a></li>
       </ul>
       <h3 id="bestpractices">Best Practices</h3>
       <ul>
-        <li><a href="https://engineering.zalando.com/posts/2019/02/typescript-best-practices.html">Typescript Best
+        <li><a href="https://engineering.zalando.com/posts/2019/02/typescript-best-practices.html">TypeScript Best
             Practices</a></li>
         <li><a href="https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html">Do's and
             Don'ts for General Types</a></li>
