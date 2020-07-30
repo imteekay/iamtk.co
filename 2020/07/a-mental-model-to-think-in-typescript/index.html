@@ -415,14 +415,14 @@ getIndexOf(42, 'script'); // Argument of type '42' is not assignable to paramete
   number: number;
   cardholder: string;
   expirationDate: Date;
-  secutiryCode: number;
+  securityCode: number;
 };
 
 type DebitCard = {
   number: number;
   cardholder: string;
   expirationDate: Date;
-  secutiryCode: number;
+  securityCode: number;
 };
 
 type PaymentMethod = CreditCard | DebitCard;
@@ -451,7 +451,7 @@ type PaymentMethod = CreditCard | DebitCard;
   number: 2093,
   cardholder: 'TK',
   expirationDate: new Date(),
-  secutiryCode: 101
+  securityCode: 101
 };
 </code></pre>
       <p>The compiler will type check it and do all the magic and then it transpiles the TypeScript code to JavaScript.
@@ -460,7 +460,7 @@ type PaymentMethod = CreditCard | DebitCard;
     number: 2093,
     cardholder: 'TK',
     expirationDate: new Date(),
-    secutiryCode: 101
+    securityCode: 101
 };
 </code></pre>
       <p>The same object, but now only with the value and without the type.</p>
