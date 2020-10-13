@@ -88,7 +88,7 @@
 <p>So let's get started!</p>
 <h1 id="howtoquery">How to query</h1>
 <p>We have three main ways to get elements from the DOM: <code>getBy</code>, <code>queryBy</code>, and <code>findBy</code>.</p>
-<p>All of these queries have different variants. For example, the <code>getBy</code> query has some variants like <code>getByRole</code> and <code>getByLabelText</code>. Depending on the context, you better use one over the others. But to simplify this process, the Testing Library docs has a section called <code>[Which query should I use?](https://testing-library.com/docs/guide-which-query)</code> that explains the priority of one query over the others thinking about accessibility and semantics.</p>
+<p>All of these queries have different variants. For example, the <code>getBy</code> query has some variants like <code>getByRole</code> and <code>getByLabelText</code>. Depending on the context, you better use one over the others. But to simplify this process, the Testing Library docs has a section called <code><a href="https://testing-library.com/docs/guide-which-query">Which query should I use?</a></code> that explains the priority of one query over the others thinking about accessibility and semantics.</p>
 <h2 id="getby">getBy</h2>
 <p>Before start using the <code>getBy</code> query, let's see what we are testing.</p>
 <pre><code class="jsx language-jsx">import React from 'react';
@@ -225,14 +225,14 @@ describe('findBy', () =&gt; {
 <p>In this test, I added a <code>try-catch</code> to see that the <code>findByText</code> really throws an error.</p>
 <h1 id="howtoexpectcontent">How to expect content</h1>
 <p>There are many ways to verify the correct content in the page or component. But one I like the most is the matcher <code>.toBeInTheDocument</code>.</p>
-<p>The <code>.toBeInTheDocument</code> is matcher from the <code>[jest-dom</code> library](https://github.com/testing-library/jest-dom) from the testing library org. There other custom jest matchers we can use too.</p>
+<p>The <code>.toBeInTheDocument</code> is matcher from the <a href="https://github.com/testing-library/jest-dom">jest-dom</a> library from the testing library org. There other custom jest matchers we can use too.</p>
 <p>We use this matcher in all the queries examples. But one thing that is cool to mention is that we don't need to import the matchers if we import the <code>jest-dom</code> in the <code>setupTests.js</code> like this:</p>
 <pre><code class="jsx language-jsx">// setupTests.js
 import '@testing-library/jest-dom/extend-expect';
 </code></pre>
 <p>So now the <code>expect</code> function from <code>jest</code> is extended to use all the matchers from the <code>jest-dom</code>.</p>
 <h1 id="howtohandleforms">How to handle forms</h1>
-<p>We can also handle forms with the testing library. The best practice is to use the <code>[@testing-library/user-event</code> library](https://github.com/testing-library/user-event). This library simulates the real interactions between users and browsers.</p>
+<p>We can also handle forms with the testing library. The best practice is to use the <a href="https://github.com/testing-library/user-event">@testing-library/user-event library</a>. This library simulates the real interactions between users and browsers.</p>
 <p>Before starting to test, let's the simple form we want to test.</p>
 <pre><code class="jsx language-jsx">import React from 'react';
 
