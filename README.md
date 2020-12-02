@@ -1,1 +1,1 @@
-[My Website](http://leandrotk.github.io/tk/)  
+[My Website](http://leandrotk.github.io)
