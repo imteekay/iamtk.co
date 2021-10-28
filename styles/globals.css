@@ -82,3 +82,69 @@ p.no-margin-bottom {
   margin-top: 4 rem;
   margin-bottom: 4 rem;
 }
+
+.footer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #666;
+  font-size: 11px;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto 1rem auto;
+  vertical-align: top;
+  text-align: center;
+}
+
+.footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+  border-right: 1px solid #4a4a4a;
+}
+
+.footer li a {
+  margin-right: 15px;
+}
+
+.footer li:last-child {
+  border-right: 0;
+  margin-right: 0;
+}
+
+.footer li:last-child a {
+  margin-right: 0;
+}
+
+.footer a {
+  color: #c1c1c1;
+}
+
+.footer a:hover {
+  color: #999;
+}
+
+.footer .footer-left {
+  height: 20px;
+  line-height: 20px;
+  vertical-align: middle;
+  color: #c1c1c1;
+}
+
+@media (min-width: 39rem) {
+  .footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .footer .footer-left {
+    float: left;
+  }
+  .footer .footer-right {
+    float: right;
+  }
+}
