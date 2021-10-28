@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { SkipLink } from '../Home/components/SkipLink';
 import { Title } from '../Home/components/Title';
-import styles from '../styles/Home.module.css';
+import { About } from '../Home/components/About';
 
 const Home: NextPage = () => {
   return (
@@ -10,93 +10,8 @@ const Home: NextPage = () => {
       <SkipLink />
       <main id="main">
         <div className="content index width mx-auto px2 my4">
-          <section id="about">
-            <Title text="TK" />
-            <p>Hi, I&apos;m TK!</p>
-            <p className="sociallinks">
-              Find me
-              <a
-                className="icon"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/leandrotk"
-                title="github"
-              >
-                building on github
-                <span className="fab fa-github" />
-              </a>
-            </p>
-            <p className="sociallinks">
-              and sharing my
-              <a
-                className="icon"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://twitter.com/leandrotk_"
-                title="twitter"
-              >
-                thoughts on twitter
-                <span className="fab fa-twitter" />
-              </a>
-            </p>
-            <p>
-              Find my books reviews on
-              <a
-                className="icon"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.goodreads.com/iamteekay"
-                title="goodreads"
-              >
-                goodreads
-                <span className="fab fa-goodreads" />
-              </a>
-            </p>
-            <p className="no-margin">You can support my work on</p>
-            <a
-              className="icon"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://ko-fi.com/teekay"
-              title="kofi"
-            >
-              ko-fi <span className="fas fa-mug-hot" />,
-            </a>
-            and
-            <a
-              className="icon"
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://teekay.substack.com/"
-              title="substack"
-            >
-              substack <span className="fas fa-envelope" />
-            </a>
-            <p className="no-margin-bottom">
-              Take a look at my
-              <a
-                className="icon"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.linkedin.com/in/imtk"
-                title="linkedin"
-              >
-                linkedin <span className="fab fa-linkedin" />
-              </a>
-            </p>
-            <p className="no-margin">
-              <span> or my</span>
-              <a
-                className="icon"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="./images/cv.pdf"
-                title="cv"
-              >
-                cv <span className="fas fa-sticky-note" />
-              </a>
-            </p>
-          </section>
+          <Title text="TK" />
+          <About />
 
           <section id="writing">
             <span className="h1">
