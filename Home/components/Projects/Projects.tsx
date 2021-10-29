@@ -4,9 +4,9 @@ import { List } from '../../../Base/components/List';
 
 export const Projects: NextPage = () => (
   <List
-    sectionId={'projects'}
-    titleLink={'https://github.com/leandrotk'}
-    titleText={'projects'}
+    sectionId="projects"
+    titleLink="https://github.com/leandrotk"
+    titleText="projects"
     list={projectsList}
   />
 );
