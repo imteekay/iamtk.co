@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { Layout } from '../Base/components/Layout';
 import { SkipLink } from '../Home/components/SkipLink';
-import { Title } from '../Home/components/Title';
+import { Title } from '../Base/components/Title';
 import { About } from '../Home/components/About';
 import { Writings } from '../Home/components/Writings';
 import { Series } from '../Home/components/Series';

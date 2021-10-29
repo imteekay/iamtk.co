@@ -1,18 +1,18 @@
 import type { NextPage } from 'next';
-import { projectItemStyle, linkStyle } from './style';
+import { itemStyle, linkStyle } from './style';
 
-type ProjectProps = {
+export type ItemProps = {
   link: string;
   title: string;
   description: string;
 };
 
-export const Project: NextPage<ProjectProps> = ({
+export const Item: NextPage<ItemProps> = ({
   link,
   title,
   description,
-}: ProjectProps) => (
-  <li style={projectItemStyle}>
+}: ItemProps) => (
+  <li style={itemStyle}>
     <strong>
       <a
         href={link}

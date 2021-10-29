@@ -1,4 +1,4 @@
-export const projectItemStyle = {
+export const itemStyle = {
   marginBottom: '5px',
 };
 
