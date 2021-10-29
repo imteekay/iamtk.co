@@ -855,13 +855,7 @@
     text-align: left;
   }
 }
-.project-list {
-  padding: 0;
-  list-style: none;
-}
-.project-list .project-item {
-  margin-bottom: 5px;
-}
+
 article header .posttitle {
   margin-top: 0;
   margin-bottom: 0;

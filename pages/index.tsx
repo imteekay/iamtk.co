@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import { Layout } from '../Base/components/Layout';
 import { SkipLink } from '../Home/components/SkipLink';
 import { Title } from '../Home/components/Title';

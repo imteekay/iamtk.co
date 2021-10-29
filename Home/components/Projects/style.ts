@@ -1,11 +1,12 @@
-type SocialLinks = {
-  listStyle: string;
-  padding: number;
-  margin: number;
+type TitleLink = {
+  textDecoration: string;
 };
 
-export const socialLinks: SocialLinks = {
-  listStyle: 'none',
+export const titleLink: TitleLink = {
+  textDecoration: 'none',
+};
+
+export const projectListStyle = {
   padding: 0,
-  margin: 0,
+  listStyle: 'none',
 };
