@@ -1,16 +1,16 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { Layout } from '../Base/components/Layout';
 import { SkipLink } from '../Home/components/SkipLink';
 import { Title } from '../Home/components/Title';
 import { About } from '../Home/components/About';
 import { Writings } from '../Home/components/Writings';
 import { Series } from '../Home/components/Series';
 import { Projects } from '../Home/components/Projects';
-import { Footer } from '../Base/components/Footer';
 
 const Home: NextPage = () => {
   return (
-    <>
+    <Layout>
       <SkipLink />
       <main id="main">
         <div className="content">
@@ -21,8 +21,7 @@ const Home: NextPage = () => {
           <Projects />
         </div>
       </main>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 
