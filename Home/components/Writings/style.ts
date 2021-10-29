@@ -1,11 +1,4 @@
-type SocialLinks = {
-  listStyle: string;
-  padding: number;
-  margin: number;
-};
-
-export const socialLinks: SocialLinks = {
-  listStyle: 'none',
+export const listStyle = {
   padding: 0,
-  margin: 0,
+  listStyle: 'none',
 };
