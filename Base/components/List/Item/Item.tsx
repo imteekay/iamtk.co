@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { itemStyle, linkStyle } from './style';
 
 export type ItemProps = {
@@ -7,11 +7,7 @@ export type ItemProps = {
   description: string;
 };
 
-export const Item: NextPage<ItemProps> = ({
-  link,
-  title,
-  description,
-}: ItemProps) => (
+export const Item: FC<ItemProps> = ({ link, title, description }) => (
   <li style={itemStyle}>
     <strong>
       <a

@@ -1,7 +1,7 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { skipLink } from './style';
 
-export const SkipLink: NextPage = () => (
+export const SkipLink: FC = () => (
   <a style={skipLink} href="#main">
     Skip to main
   </a>

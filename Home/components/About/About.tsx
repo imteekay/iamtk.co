@@ -1,7 +1,7 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { socialLinks } from './style';
 
-export const About: NextPage = () => (
+export const About: FC = () => (
   <section id="about">
     <p>Hi, I&apos;m TK!</p>
     <p style={socialLinks}>

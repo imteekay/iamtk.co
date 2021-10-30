@@ -1,4 +1,4 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { Title } from '../Title';
 import { Item, ItemProps } from './Item';
 import { titleLinkStyle, listStyle } from './style';
@@ -10,12 +10,12 @@ type ListPropType = {
   list: ItemProps[];
 };
 
-export const List: NextPage<ListPropType> = ({
+export const List: FC<ListPropType> = ({
   sectionId,
   titleLink,
   titleText,
   list,
-}: ListPropType) => (
+}) => (
   <section id={sectionId}>
     <a
       href={titleLink}

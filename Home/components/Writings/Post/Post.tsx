@@ -1,13 +1,9 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { itemStyle, timeWrapperStyle, linkStyle } from './style';
 
 type PostPropType = { datetime: string; link: string; title: string };
 
-export const Post: NextPage<PostPropType> = ({
-  datetime,
-  link,
-  title,
-}: PostPropType) => (
+export const Post: FC<PostPropType> = ({ datetime, link, title }) => (
   <li style={itemStyle}>
     <div style={timeWrapperStyle}>
       <time>{datetime}</time>

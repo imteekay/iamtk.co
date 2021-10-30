@@ -1,6 +1,6 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 
-export const Footer: NextPage = () => (
+export const Footer: FC = () => (
   <footer id="footer" className="footer">
     <div className="footer-left">Copyright &copy; 2021 TK</div>
     <div className="footer-right">

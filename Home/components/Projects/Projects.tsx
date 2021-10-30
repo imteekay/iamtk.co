@@ -1,8 +1,8 @@
-import type { NextPage } from 'next';
+import { FC } from 'react';
 import { projectsList } from './projectsList';
 import { List } from '../../../Base/components/List';
 
-export const Projects: NextPage = () => (
+export const Projects: FC = () => (
   <List
     sectionId="projects"
     titleLink="https://github.com/leandrotk"
