@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { Layout } from '../Base/components/Layout';
+import { Head } from '../Base/components/Head';
 import { SkipLink } from '../Home/components/SkipLink';
 import { Title } from '../Base/components/Title';
 import { About } from '../Home/components/About';
@@ -9,7 +9,13 @@ import { Projects } from '../Home/components/Projects';
 
 const Home: NextPage = () => {
   return (
-    <Layout>
+    <>
+      <Head
+        title="TK"
+        description="Learning & Improving with TK"
+        imageUrl="https://raw.githubusercontent.com/leandrotk/tk/master/images/logo.jpg"
+      />
+
       <SkipLink />
       <main id="main">
         <div className="content">
@@ -20,7 +26,7 @@ const Home: NextPage = () => {
           <Projects />
         </div>
       </main>
-    </Layout>
+    </>
   );
 };
 
