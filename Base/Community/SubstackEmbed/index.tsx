@@ -1,0 +1,1 @@
+export { SubstackEmbed } from './SubstackEmbed';
