@@ -124,7 +124,7 @@ export const postsList = [
   {
     datetime: '2020-06-14',
     link: 'series/data-structures',
-    title: 'Data Structures Serie',
+    title: 'Data Structures Series',
   },
   {
     datetime: '2020-05-17',
