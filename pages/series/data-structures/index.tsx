@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Image from 'next/image';
 import { Head } from '../../../Base/components/Head';
 import { SubstackEmbed } from '../../../Base/Community/SubstackEmbed';
-import { Title } from '../../../Base/components/Title';
+import { Title } from '../../../Base/Article/Title';
 import { Author } from '../../../Base/Article/Author';
 import { ArticleDate } from '../../../Base/Article/ArticleDate';
 
@@ -41,7 +41,7 @@ export const Body = () => (
       </header>
 
       <div className="figure">
-        <Image src="/assets/intro.jpg" layout="fill" alt="" />
+        <Image src="/assets/intro.jpg" width="200" height="300" alt="" />
         <span className="figcaption">
           Photo by
           <a

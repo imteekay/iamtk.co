@@ -7,6 +7,8 @@ type Title = {
   marginTop: string;
   marginBottom: string;
   display: string;
+  textTransform: 'none';
+  lineHeight: number;
 };
 
 export const titleStyle: Title = {
@@ -15,7 +17,9 @@ export const titleStyle: Title = {
   fontStyle: 'normal',
   fontWeight: 700,
   color: 'white',
-  marginTop: '3rem',
-  marginBottom: '1rem',
   display: 'block',
+  marginTop: '0',
+  marginBottom: '0',
+  textTransform: 'none',
+  lineHeight: 1.25,
 };
