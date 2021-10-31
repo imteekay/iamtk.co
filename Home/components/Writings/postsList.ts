@@ -1,5 +1,15 @@
 export const postsList = [
   {
+    datetime: '2021-11-01',
+    link: '2021/11/on-leaving',
+    title: 'On Leaving',
+  },
+  {
+    datetime: '2021-10-30',
+    link: '2021/11/on-distraction',
+    title: 'On Distraction',
+  },
+  {
     datetime: '2021-10-17',
     link: 'series/building-an-interpreter/parser-part-1-fundamental-parts-of-ast-and-basic-statements',
     title:
@@ -18,18 +28,18 @@ export const postsList = [
   {
     datetime: '2021-06-23',
     link: 'series/rebuilding-mercaris-search/home-menu',
-    title: 'Rebuilding Mercari&apos;s Search: Home and Menu',
+    title: "Rebuilding Mercari's Search: Home and Menu",
   },
   {
     datetime: '2021-06-20',
     link: 'series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest',
     title:
-      'Rebuilding Mercari&apos;s Search: Setup NextJS with TypeScript, Prettier, and Jest',
+      "Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest",
   },
   {
     datetime: '2021-06-13',
     link: 'series/rebuilding-mercaris-search',
-    title: 'Rebuilding Mercari&apos;s Search Series',
+    title: "Rebuilding Mercari's Search Series",
   },
   {
     datetime: '2021-06-12',
@@ -104,7 +114,7 @@ export const postsList = [
   {
     datetime: '2020-06-25',
     link: '2020/06/designing-my-lifes-system',
-    title: 'Designing my Life&apos;s System',
+    title: "Designing my Life's System",
   },
   {
     datetime: '2020-06-21',
