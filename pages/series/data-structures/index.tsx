@@ -1,12 +1,23 @@
 import type { NextPage } from 'next';
+import { FC } from 'react';
 import Image from 'next/image';
 import { Head } from '../../../Base/components/Head';
 import { SubstackEmbed } from '../../../Base/Community/SubstackEmbed';
 import { Title } from '../../../Base/Article/Title';
-import { Author } from '../../../Base/Article/Author';
-import { ArticleDate } from '../../../Base/Article/ArticleDate';
+import { Meta } from '../../../Base/Article/Meta';
 
-export const Body = () => (
+export const tags = [
+  {
+    href: '../../tags/algorithms_and_data_structures.html',
+    name: 'algorithms_and_data_structures',
+  },
+  {
+    href: '../../tags/python.html',
+    name: 'python',
+  },
+];
+
+export const Body: FC = () => (
   <div className="content index width mx-auto px2 my4">
     <div id="header-post">
       <a id="menu-icon" href="../../../index.html">
@@ -21,23 +32,7 @@ export const Body = () => (
     >
       <header>
         <Title text="Data Structures Series" />
-        <div className="meta">
-          <Author />
-          <ArticleDate date="2020-06-14" />
-
-          <div className="article-tag">
-            <span className="fa fa-tag"></span>
-            <a
-              className="tag-link"
-              href="../../tags/algorithms_and_data_structures.html"
-            >
-              algorithms_and_data_structures
-            </a>
-            <a className="tag-link" href="../../tags/python.html">
-              python
-            </a>
-          </div>
-        </div>
+        <Meta date="2020-06-14" tags={tags} />
       </header>
 
       <div className="figure">

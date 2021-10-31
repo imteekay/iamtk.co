@@ -1,1 +1,0 @@
-export { ArticleDate } from './ArticleDate';

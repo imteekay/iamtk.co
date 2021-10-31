@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { authorNameStyle } from './styles';
 
 type AuthorPropTypes = {
   name?: string;
@@ -11,6 +12,8 @@ export const Author: FC<AuthorPropTypes> = ({ name = 'TK' }) => (
     itemScope
     itemType="http://schema.org/Person"
   >
-    <span itemProp="name">{name}</span>
+    <span itemProp="name" style={authorNameStyle}>
+      {name}
+    </span>
   </span>
 );
