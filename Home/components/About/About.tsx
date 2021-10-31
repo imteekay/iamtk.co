@@ -80,7 +80,7 @@ export const About: FC = () => (
         className="icon"
         target="_blank"
         rel="noopener noreferrer"
-        href="./images/cv.pdf"
+        href="./cv.pdf"
         title="cv"
       >
         {' '}
