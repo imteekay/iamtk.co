@@ -5,6 +5,7 @@ import { Head } from '../../../Base/components/Head';
 import { SubstackEmbed } from '../../../Base/Community/SubstackEmbed';
 import { Title } from '../../../Base/Article/Title';
 import { Meta } from '../../../Base/Article/Meta';
+import { HomeLink } from '../../../Base/Article/HomeLink';
 
 export const tags = [
   {
@@ -19,12 +20,7 @@ export const tags = [
 
 export const Body: FC = () => (
   <div className="content index width mx-auto px2 my4">
-    <div id="header-post">
-      <a id="menu-icon" href="../../../index.html">
-        <span className="fas fa-long-arrow-alt-left"></span>
-        Home
-      </a>
-    </div>
+    <HomeLink />
     <article
       className="post"
       itemScope
@@ -38,7 +34,7 @@ export const Body: FC = () => (
       <div className="figure">
         <Image src="/assets/intro.jpg" width="200" height="300" alt="" />
         <span className="figcaption">
-          Photo by
+          Photo by{' '}
           <a
             href="https://unsplash.com/@fabioha"
             target="_blank"
