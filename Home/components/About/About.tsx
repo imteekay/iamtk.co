@@ -37,6 +37,7 @@ export const About: FC = () => (
         href="https://www.goodreads.com/iamteekay"
         title="goodreads"
       >
+        {' '}
         goodreads <span className="fab fa-goodreads" />
       </a>
     </p>
