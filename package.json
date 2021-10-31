@@ -9,7 +9,8 @@
     "lint": "next lint",
     "prettier:check": "prettier --check '**/*.{ts,tsx}'",
     "prettier:fix": "prettier --write '**/*.{ts,tsx}'",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "12.0.1",
@@ -21,7 +22,13 @@
     "@types/react": "17.0.33",
     "eslint": "7",
     "eslint-config-next": "12.0.1",
+    "husky": ">=6",
+    "lint-staged": ">=10",
     "prettier": "^2.4.1",
     "typescript": "4.4.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": "eslint --cache --fix",
+    "*.{js,ts,tsx,css,md}": "prettier --write"
   }
 }
