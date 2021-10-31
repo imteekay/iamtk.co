@@ -13,8 +13,7 @@ export const About: FC = () => (
         href="https://github.com/leandrotk"
         title="github"
       >
-        building on github
-        <span className="fab fa-github" />
+        building on github <span className="fab fa-github" />
       </a>
     </p>
     <p style={socialLinks}>
@@ -26,12 +25,11 @@ export const About: FC = () => (
         href="https://twitter.com/leandrotk_"
         title="twitter"
       >
-        thoughts on twitter
-        <span className="fab fa-twitter" />
+        thoughts on twitter <span className="fab fa-twitter" />
       </a>
     </p>
     <p>
-      Find my books reviews on{' '}
+      Find my books reviews on
       <a
         className="icon"
         target="_blank"
@@ -39,8 +37,7 @@ export const About: FC = () => (
         href="https://www.goodreads.com/iamteekay"
         title="goodreads"
       >
-        goodreads
-        <span className="fab fa-goodreads" />
+        goodreads <span className="fab fa-goodreads" />
       </a>
     </p>
     <p className="no-margin">You can support my work on</p>
