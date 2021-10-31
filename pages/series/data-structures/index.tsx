@@ -6,6 +6,7 @@ import { SubstackEmbed } from '../../../Base/Community/SubstackEmbed';
 import { Title } from '../../../Base/Article/Title';
 import { Meta } from '../../../Base/Article/Meta';
 import { HomeLink } from '../../../Base/Article/HomeLink';
+import { CoverImage } from '../../../Base/Article/CoverImage';
 
 export const tags = [
   {
@@ -31,19 +32,14 @@ export const Body: FC = () => (
         <Meta date="2020-06-14" tags={tags} />
       </header>
 
-      <div className="figure">
-        <Image src="/assets/intro.jpg" width="200" height="300" alt="" />
-        <span className="figcaption">
-          Photo by{' '}
-          <a
-            href="https://unsplash.com/@fabioha"
-            target="_blank"
-            rel="noreferrer"
-          >
-            fabio
-          </a>
-        </span>
-      </div>
+      <CoverImage
+        src="/series/data-structures/intro.jpg"
+        width="592"
+        height="444"
+        alt=""
+        authorHref="https://unsplash.com/@fabioha"
+        authorName="fabio"
+      />
 
       <hr />
 
