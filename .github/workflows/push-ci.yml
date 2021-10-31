@@ -27,6 +27,3 @@ jobs:
 
       - name: Analyze code w/ ESLint
         run: yarn lint
-
-      - name: Run Jest tests
-        run: yarn test
