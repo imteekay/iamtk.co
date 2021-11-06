@@ -1,14 +1,15 @@
 import { FC } from 'react';
-import { articleTagStyle } from './styles';
+import { articleTagStyle, tagIcon } from './styles';
 import { Tag, TagPropTypes } from '../Tag';
 
 type TagsPropTypes = {
   tags: TagPropTypes[];
+  hasTagIcon?: boolean;
 };
 
-export const Tags: FC<TagsPropTypes> = ({ tags }) => (
+export const Tags: FC<TagsPropTypes> = ({ tags, hasTagIcon = false }) => (
   <div style={articleTagStyle}>
-    | <span className="fa fa-tag"></span>
+    |{hasTagIcon && <span className="fa fa-tag" style={tagIcon}></span>}
     {tags.map((tag) => (
       <Tag key={tag.name} href={tag.href} name={tag.name} />
     ))}

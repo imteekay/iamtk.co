@@ -14,6 +14,6 @@ export const Meta: FC<MetaPropTypes> = ({ date, tags }) => (
   <div style={metaStyle}>
     <Author />
     <Date date={date} />
-    <Tags tags={tags} />
+    <Tags tags={tags} hasTagIcon />
   </div>
 );

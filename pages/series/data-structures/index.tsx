@@ -9,6 +9,7 @@ import { HomeLink } from '../../../Base/Article/HomeLink';
 import { CoverImage } from '../../../Base/Article/CoverImage';
 import { PostsList } from '../../../Base/Article/PostsList';
 import { SocialLinks } from '../../../Base/Article/SocialLinks';
+import { Tags } from '../../../Base/Article/Tags';
 
 export const tags = [
   {
@@ -85,21 +86,7 @@ export const Body: FC = () => (
     </article>
 
     <SubstackEmbed />
-
-    <div className="meta meta-footer">
-      <div className="article-tag">
-        Tags:
-        <a
-          className="tag-link"
-          href="../../tags/algorithms_and_data_structures.html"
-        >
-          algorithms_and_data_structures
-        </a>
-        <a className="tag-link" href="../../tags/python.html">
-          python
-        </a>
-      </div>
-    </div>
+    <Tags tags={tags} />
 
     <div className="support-buttons">
       <a
