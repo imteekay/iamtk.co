@@ -7,8 +7,8 @@ import { Title } from '../../../Base/Article/Title';
 import { Meta } from '../../../Base/Article/Meta';
 import { HomeLink } from '../../../Base/Article/HomeLink';
 import { CoverImage } from '../../../Base/Article/CoverImage';
-import { Post } from '../../../Base/Article/Post';
 import { PostsList } from '../../../Base/Article/PostsList';
+import { SocialLinks } from '../../../Base/Article/SocialLinks';
 
 export const tags = [
   {
@@ -81,30 +81,7 @@ export const Body: FC = () => (
       <h2>Data Structures Series</h2>
 
       <PostsList postsList={postsList} />
-
-      <p>
-        My
-        <a
-          className="icon"
-          target="_blank"
-          href="https://twitter.com/leandrotk_"
-          title="twitter"
-          rel="noreferrer"
-        >
-          Twitter <span className="fab fa-twitter" />
-        </a>
-        and
-        <a
-          className="icon"
-          target="_blank"
-          href="https://github.com/leandrotk"
-          title="github"
-          rel="noreferrer"
-        >
-          Github
-          <span className="fab fa-github" />
-        </a>
-      </p>
+      <SocialLinks />
     </article>
 
     <SubstackEmbed />
