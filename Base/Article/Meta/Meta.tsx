@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { Author } from '../Author';
-import { Date } from '../Date';
-import { Tags } from '../Tags';
-import { TagPropTypes } from '../Tag';
+import { Author } from 'Base/Article/Author';
+import { Date } from 'Base/Article/Date';
+import { Tags } from 'Base/Article/Tags';
+import { TagPropTypes } from 'Base/Article/Tag';
 import { metaStyle } from './styles';
 
 type MetaPropTypes = {

@@ -1,12 +1,12 @@
 import { FC } from 'react';
-import { SubstackEmbed } from '../../../Base/Community/SubstackEmbed';
-import { Title } from '../../../Base/Article/Title';
-import { Meta } from '../../../Base/Article/Meta';
-import { HomeLink } from '../../../Base/Article/HomeLink';
-import { CoverImage } from '../../../Base/Article/CoverImage';
-import { SocialLinks } from '../../../Base/Article/SocialLinks';
-import { Tags } from '../../../Base/Article/Tags';
-import { Sponsorship } from '../../../Base/Article/Sponsorship/Sponsorship';
+import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
+import { Title } from 'Base/Article/Title';
+import { Meta } from 'Base/Article/Meta';
+import { HomeLink } from 'Base/Article/HomeLink';
+import { CoverImage } from 'Base/Article/CoverImage';
+import { SocialLinks } from 'Base/Article/SocialLinks';
+import { Tags } from 'Base/Article/Tags';
+import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
 
 type Tag = {
   href: string;

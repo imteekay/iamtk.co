@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Post, PostPropType } from '../Post';
+import { Post, PostPropType } from 'Base/Article/Post';
 import { listStyle } from './styles';
 
 type PostsListPropType = {

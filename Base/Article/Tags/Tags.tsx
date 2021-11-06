@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { articleTagStyle, tagIcon } from './styles';
-import { Tag, TagPropTypes } from '../Tag';
+import { Tag, TagPropTypes } from 'Base/Article/Tag';
 
 type TagsPropTypes = {
   tags: TagPropTypes[];

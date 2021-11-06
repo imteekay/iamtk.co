@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import { Head } from '../Base/components/Head';
-import { SkipLink } from '../Home/components/SkipLink';
-import { Title } from '../Base/components/Title';
-import { About } from '../Home/components/About';
-import { Writings } from '../Home/components/Writings';
-import { Series } from '../Home/components/Series';
-import { Projects } from '../Home/components/Projects';
+import { Head } from 'Base/components/Head';
+import { Title } from 'Base/components/Title';
+import { SkipLink } from 'Home/components/SkipLink';
+import { About } from 'Home/components/About';
+import { Writings } from 'Home/components/Writings';
+import { Series } from 'Home/components/Series';
+import { Projects } from 'Home/components/Projects';
 
 const Home: NextPage = () => {
   return (

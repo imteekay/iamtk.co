@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Title } from '../../../Base/components/Title';
+import { Title } from 'Base/components/Title';
 import { Post } from './Post';
 import { listStyle } from './style';
 import { postsList } from './postsList';

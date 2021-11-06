@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import { Head } from '../../../Base/components/Head';
-import { Layout } from '../../../Base/Article/Layout';
-import { PostsList } from '../../../Base/Article/PostsList';
-import { pageData } from '../../../PagesData/series/data-structures';
+import { Head } from 'Base/components/Head';
+import { Layout } from 'Base/Article/Layout';
+import { PostsList } from 'Base/Article/PostsList';
+import { pageData } from 'PagesData/series/data-structures';
 
 const DataStructures: NextPage = () => (
   <>
