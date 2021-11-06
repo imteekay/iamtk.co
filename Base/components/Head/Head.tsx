@@ -21,6 +21,11 @@ export const Head = ({ title, description, imageUrl }: HeadPropTypes) => (
       crossOrigin="anonymous"
     />
 
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/monokai.min.css"
+    />
+
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="HandheldFriendly" content="True" />
     <meta name="description" content={description} />

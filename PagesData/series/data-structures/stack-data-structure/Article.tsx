@@ -1,6 +1,20 @@
 import { FC } from 'react';
 import Link from 'next/link';
+import Highlight from 'react-highlight';
 import { ResourcesList } from 'Base/Article/ResourcesList';
+import {
+  sourceCode1,
+  sourceCode10,
+  sourceCode11,
+  sourceCode2,
+  sourceCode3,
+  sourceCode4,
+  sourceCode5,
+  sourceCode6,
+  sourceCode7,
+  sourceCode8,
+  sourceCode9,
+} from './sourceCode';
 
 const resourcesList = [
   {
@@ -63,9 +77,9 @@ export const Article: FC = () => (
     </p>
 
     <p>
-      The main API methods are <code>push</code> (add) and
-      <code>pop</code> (remove). But we can also add other methods as part of
-      the API implementation: <code>size</code>, <code>top</code>, and
+      The main API methods are <code>push</code> (add) and <code>pop</code>{' '}
+      (remove). But we can also add other methods as part of the API
+      implementation: <code>size</code>, <code>top</code>, and{' '}
       <code>is_empty</code>.
     </p>
 
@@ -75,8 +89,7 @@ export const Article: FC = () => (
       We can create a <code>Stack</code> class as a wrapper and use the Python
       list to store the stack data. This class will have the implementation of
       the <code>push</code>, <code>pop</code>,<code>size</code>,{' '}
-      <code>top</code>, and
-      <code>is_empty</code> methods.
+      <code>top</code>, and <code>is_empty</code> methods.
     </p>
 
     <p>
@@ -84,16 +97,12 @@ export const Article: FC = () => (
       our items.
     </p>
 
-    <pre>
-      <code className="python">
-        class Stack: def __init__(self): self.items = []
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode1}</Highlight>
 
     <p>
       This is basically what we need for now. Just a class and its constructor.
-      When the instance is created, it will have the
-      <code>items</code> list to store the stack items.
+      When the instance is created, it will have the <code>items</code> list to
+      store the stack items.
     </p>
 
     <p>
@@ -103,11 +112,7 @@ export const Article: FC = () => (
       the stack will always be the last item.
     </p>
 
-    <pre>
-      <code className="python">
-        def push(self, item): self.items.append(item)
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode2}</Highlight>
 
     <p>It receives the new item and appends it to the list.</p>
 
@@ -116,9 +121,7 @@ export const Article: FC = () => (
       using the <code>len</code> function.
     </p>
 
-    <pre>
-      <code className="python">def size(self): return len(self.items)</code>
-    </pre>
+    <Highlight className="python">{sourceCode3}</Highlight>
 
     <p>
       The idea of the <code>is_empty</code> method is to verify if the list has
@@ -127,11 +130,7 @@ export const Article: FC = () => (
       simply use the <code>size</code> method already implemented.
     </p>
 
-    <pre>
-      <code className="python">
-        def is_empty(self): return self.size() == 0
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode4}</Highlight>
 
     <p>
       The <code>pop</code> method from the list data structure can also be used
@@ -139,29 +138,20 @@ export const Article: FC = () => (
       for the stack. The last added item.
     </p>
 
-    <pre>
-      <code className="python">def pop(self): return self.items.pop()</code>
-    </pre>
+    <Highlight className="python">{sourceCode5}</Highlight>
 
     <p>
       But we need to handle the stack emptiness. For an empty list, the
-      <code>pop</code> method raises an exception
+      <code>pop</code> method raises an exception{' '}
       <code>IndexError: pop from empty list</code>. So we can create an
       exception class to handle this issue.
     </p>
 
-    <pre>
-      <code className="python">class Emptiness(Exception): pass</code>
-    </pre>
+    <Highlight className="python">{sourceCode6}</Highlight>
 
     <p>And uses it when the list is empty:</p>
 
-    <pre>
-      <code className="python">
-        def pop(self): if self.is_empty(): raise Emptiness(&apos;The Stack is
-        empty&apos;) return self.items.pop()
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode7}</Highlight>
 
     <p>
       If it is empty, we raise this exception. Otherwise, we can pop the top
@@ -172,12 +162,7 @@ export const Article: FC = () => (
       We use this same emptiness strategy for the <code>top</code> method:
     </p>
 
-    <pre>
-      <code className="python">
-        def top(self): if self.is_empty(): raise Emptiness(&apos;The Stack is
-        empty&apos;) return self.items[-1]
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode8}</Highlight>
 
     <p>
       If it has at least one item, we get the top, the last added item in the
@@ -188,16 +173,7 @@ export const Article: FC = () => (
 
     <p>The usage would be something like:</p>
 
-    <pre>
-      <code className="python">
-        stack = Stack() stack.is_empty() # True stack.push(1) # [1]
-        stack.push(2) # [1, 2] stack.push(3) # [1, 2, 3] stack.push(4) # [1, 2,
-        3, 4] stack.push(5) # [1, 2, 3, 4, 5] stack.is_empty() # False
-        stack.top() # 5 stack.pop() # 5 stack.pop() # 4 stack.pop() # 3
-        stack.pop() # 2 stack.is_empty() # False stack.pop() # 1
-        stack.is_empty() # True
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode9}</Highlight>
 
     <p>
       We first instantiate a new stack from the <code>Stack</code> class.
@@ -230,7 +206,7 @@ export const Article: FC = () => (
     <p>Now about space and runtime complexities for each method implemented.</p>
 
     <p>
-      The space is pretty simple. It&apos;s a list, so it&apos;s
+      The space is pretty simple. It&apos;s a list, so it&apos;s{' '}
       <code>O(n)</code> where <code>n</code> is the current number of items in
       the stack.
     </p>
@@ -250,13 +226,7 @@ export const Article: FC = () => (
 
     <p>We want to reverse a list of books, a bookshelf.</p>
 
-    <pre>
-      <code className="python">
-        def reverse(bookshelf): stack = Stack() for book in bookshelf:
-        stack.push(book) reversed_bookshelf = [] while not stack.is_empty():
-        reversed_bookshelf.append(stack.pop()) return reversed_bookshelf
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode10}</Highlight>
 
     <ul>
       <li>Create a stack instance</li>
@@ -279,26 +249,18 @@ export const Article: FC = () => (
 
     <p>The function usage would be something like:</p>
 
-    <pre>
-      <code className="python">
-        bookshelf = [ &apos;Harry Potter&apos;, &apos;Atomic Habits&apos;,
-        &apos;Leonardo da Vinci&apos;, &apos;Sapiens&apos;, &apos;Peak&apos; ]
-        reversed_bookshelf = reverse(bookshelf) print(reversed_bookshelf) #
-        [&apos;Peak&apos;, &apos;Sapiens&apos;, &apos;Leonardo da Vinci&apos;,
-        &apos;Atomic Habits&apos;, &apos;Harry Potter&apos;]
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode11}</Highlight>
 
     <hr />
 
     <h2>Other examples</h2>
 
     <p>
-      We can also implement the stack concept in a<code>undo</code> command.
+      We can also implement the stack concept in a <code>undo</code> command.
       Imagine our text editor. For each document change, we store the new
-      document in the stack. If we want to
-      <code>undo</code> the change, we just need to pop the last change and stay
-      with the previous state of the document.
+      document in the stack. If we want to <code>undo</code> the change, we just
+      need to pop the last change and stay with the previous state of the
+      document.
     </p>
 
     <p>
