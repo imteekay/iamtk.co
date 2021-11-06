@@ -7,6 +7,8 @@ import { Title } from '../../../Base/Article/Title';
 import { Meta } from '../../../Base/Article/Meta';
 import { HomeLink } from '../../../Base/Article/HomeLink';
 import { CoverImage } from '../../../Base/Article/CoverImage';
+import { Post } from '../../../Base/Article/Post';
+import { PostsList } from '../../../Base/Article/PostsList';
 
 export const tags = [
   {
@@ -19,8 +21,31 @@ export const tags = [
   },
 ];
 
+const postsList = [
+  {
+    datetime: '2020-01-06',
+    link: '/2020/01/stack-data-structure',
+    title: 'Stack Data Structure',
+  },
+  {
+    datetime: '2020-02-02',
+    link: '/2020/01/queue-data-structure',
+    title: 'Queue Data Structure',
+  },
+  {
+    datetime: '2020-01-13',
+    link: '/2020/01/linked-list',
+    title: 'Linked List Data Structure',
+  },
+  {
+    datetime: '2020-02-10',
+    link: '/2020/02/tree-data-structure',
+    title: 'Tree Data Structure',
+  },
+];
+
 export const Body: FC = () => (
-  <div className="content index width mx-auto px2 my4">
+  <div className="content">
     <HomeLink />
     <article
       className="post"
@@ -55,59 +80,7 @@ export const Body: FC = () => (
 
       <h2>Data Structures Series</h2>
 
-      <ul className="post-list">
-        <li className="post-item">
-          <div className="meta">
-            <time dateTime="2020-01-06T00:00:00.000Z" itemProp="datePublished">
-              2020-01-06
-            </time>
-          </div>
-          <span>
-            <a href="../../2020/01/stack-data-structure/index.html">
-              Stack Data Structure
-            </a>
-          </span>
-        </li>
-
-        <li className="post-item">
-          <div className="meta">
-            <time dateTime="2020-01-13T00:00:00.000Z" itemProp="datePublished">
-              2020-01-13
-            </time>
-          </div>
-          <span>
-            <a href="../../2020/01/queue-data-structure/index.html">
-              Queue Data Structure
-            </a>
-          </span>
-        </li>
-
-        <li className="post-item">
-          <div className="meta">
-            <time dateTime="2020-02-02T00:00:00.000Z" itemProp="datePublished">
-              2020-02-02
-            </time>
-          </div>
-          <span>
-            <a href="../../2020/02/linked-list/index.html">
-              Linked List Data Structure
-            </a>
-          </span>
-        </li>
-
-        <li className="post-item">
-          <div className="meta">
-            <time dateTime="2020-02-10T00:00:00.000Z" itemProp="datePublished">
-              2020-02-10
-            </time>
-          </div>
-          <span>
-            <a href="../../2020/02/tree-data-structure/index.html">
-              Tree Data Structure
-            </a>
-          </span>
-        </li>
-      </ul>
+      <PostsList postsList={postsList} />
 
       <p>
         My
