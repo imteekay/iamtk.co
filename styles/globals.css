@@ -116,16 +116,32 @@ pre {
   border: 1px dotted #666;
   overflow-x: auto;
 }
+
 code {
   -webkit-border-radius: 2px;
   border-radius: 2px;
   padding: 1px 5px;
   background-color: #303e80;
 }
+
 pre code {
   border: none;
   display: block;
   padding: 0;
+}
+
+a.link {
+  text-decoration: none;
+  color: #c9cacc;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(
+    transparent,
+    transparent 5px,
+    #c9cacc 5px,
+    #c9cacc
+  );
 }
 
 .footer {

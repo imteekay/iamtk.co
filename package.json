@@ -9,6 +9,7 @@
     "lint": "next lint",
     "prettier:check": "prettier --check '**/*.{ts,tsx}'",
     "prettier:fix": "prettier --write '**/*.{ts,tsx}'",
+    "eslint:fix": "eslint --cache --fix",
     "typecheck": "tsc",
     "prepare": "husky install"
   },
