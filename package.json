@@ -15,11 +15,13 @@
   "dependencies": {
     "next": "12.0.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-highlight": "^0.14.0"
   },
   "devDependencies": {
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
+    "@types/react-highlight": "^0.12.5",
     "eslint": "7",
     "eslint-config-next": "12.0.1",
     "husky": ">=6",
