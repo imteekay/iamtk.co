@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import { PostsList } from 'Base/Article/PostsList';
-import { pageData } from 'PagesData/series/data-structures';
+import { pageData, Article } from 'PagesData/series/data-structures/index';
 
 const DataStructures: NextPage = () => (
   <>
@@ -17,18 +17,7 @@ const DataStructures: NextPage = () => (
       date={pageData.date}
       coverImage={pageData.coverImage}
     >
-      <p>
-        This is part of my series on <code>Data Structures</code>, where I
-        document posts about algorithms problems I solved.
-      </p>
-
-      <p>
-        This is live document and will be updated everytime I solve new
-        problems.
-      </p>
-
-      <h2>{pageData.title}</h2>
-
+      <Article />
       <PostsList postsList={pageData.postsList} />
     </Layout>
   </>

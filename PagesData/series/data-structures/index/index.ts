@@ -1,3 +1,5 @@
+export { Article } from './Article';
+
 const tags = [
   {
     href: '../../tags/algorithms_and_data_structures.html',
@@ -21,7 +23,7 @@ const coverImage = {
 const postsList = [
   {
     datetime: '2020-01-06',
-    link: '/2020/01/stack-data-structure',
+    link: '/series/data-structures/stack-data-structure',
     title: 'Stack Data Structure',
   },
   {
