@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import { FC } from 'react';
+import Highlight from 'react-highlight';
 import { Head } from '../../../Base/components/Head';
 import { SubstackEmbed } from '../../../Base/Community/SubstackEmbed';
 import { Title } from '../../../Base/Article/Title';
