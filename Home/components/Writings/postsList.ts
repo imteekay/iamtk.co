@@ -198,22 +198,22 @@ export const postsList = [
   },
   {
     datetime: '2020-02-10',
-    link: '2020/02/tree-data-structure',
+    link: '/series/data-structures/tree-data-structure',
     title: 'Tree Data Structure',
   },
   {
     datetime: '2020-02-02',
-    link: '2020/02/linked-list.html">',
+    link: '/series/data-structures/linked-list',
     title: 'Linked List',
   },
   {
     datetime: '2020-01-13',
-    link: '2020/01/queue-data-structure',
+    link: '/series/data-structures/queue-data-structure',
     title: 'Queue Data Structure',
   },
   {
     datetime: '2020-01-06',
-    link: '2020/01/stack-data-structure',
+    link: '/series/data-structures/stack-data-structure',
     title: 'Stack Data Structure',
   },
   {

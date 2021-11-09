@@ -2,11 +2,11 @@ export { Article } from './Article';
 
 const tags = [
   {
-    href: '../../tags/algorithms_and_data_structures.html',
+    href: '/tags/algorithms-and-data-structures',
     name: 'algorithms_and_data_structures',
   },
   {
-    href: '../../tags/python.html',
+    href: '/tags/python',
     name: 'python',
   },
 ];
@@ -15,7 +15,7 @@ const coverImage = {
   src: '/series/data-structures/intro.jpg',
   width: '592',
   height: '444',
-  alt: '',
+  alt: '3D squares in a dark place with blue and white light',
   authorHref: 'https://unsplash.com/@fabioha',
   authorName: 'fabio',
 };
