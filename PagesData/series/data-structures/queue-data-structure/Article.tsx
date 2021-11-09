@@ -66,7 +66,7 @@ export const Article: FC = () => (
     </p>
 
     <p>
-      The queue data structure is a collection of items that follow the
+      The queue data structure is a collection of items that follow the{' '}
       <code>first-in, first out</code> principle. The first added element will
       be the first element to be removed from the queue. So, elements are added
       in the back and removed from the front.
