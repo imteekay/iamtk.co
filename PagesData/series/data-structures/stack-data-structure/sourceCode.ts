@@ -18,13 +18,13 @@ export const sourceCode6 = `class Emptiness(Exception): pass`;
 
 export const sourceCode7 = `def pop(self):
   if self.is_empty():
-    raise Emptiness(&apos;The Stack isempty&apos;)
+    raise Emptiness('The Stack isempty')
   
   return self.items.pop()`;
 
 export const sourceCode8 = `def top(self):
   if self.is_empty():
-    raise Emptiness(&apos;The Stack isempty&apos;)
+    raise Emptiness('The Stack isempty')
       
   return self.items[-1]`;
 

@@ -27,12 +27,12 @@ const postsList = [
     title: 'Stack Data Structure',
   },
   {
-    datetime: '2020-02-02',
-    link: '/2020/01/queue-data-structure',
+    datetime: '2020-01-13',
+    link: '/series/data-structures/queue-data-structure',
     title: 'Queue Data Structure',
   },
   {
-    datetime: '2020-01-13',
+    datetime: '2020-02-02',
     link: '/2020/01/linked-list',
     title: 'Linked List Data Structure',
   },

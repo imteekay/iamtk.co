@@ -12,18 +12,18 @@ const tags = [
 ];
 
 const coverImage = {
-  src: '/series/data-structures/books.jpg',
+  src: '/series/data-structures/queue-of-people.jpeg',
   width: '592',
-  height: '592',
-  alt: 'An old man with piles of books',
-  authorHref: 'https://unsplash.com/@katergaris',
-  authorName: 'Aris Sfakianakis',
+  height: '394',
+  alt: 'A narrow stree with a queue of people in the rain',
+  authorHref: 'https://unsplash.com/@ethanhjy',
+  authorName: 'Ethan Hu',
 };
 
 export const pageData = {
-  title: 'Stack Data Structure',
+  title: 'Queue Data Structure',
   description: 'Solving algorithms problems with TK',
-  date: '2020-01-06',
+  date: '2020-01-13',
   tags,
   coverImage,
 };
