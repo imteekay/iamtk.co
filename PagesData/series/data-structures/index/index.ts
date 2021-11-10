@@ -33,12 +33,12 @@ const postsList = [
   },
   {
     datetime: '2020-02-02',
-    link: '/2020/01/linked-list',
+    link: '/series/data-structures/linked-list-data-structure',
     title: 'Linked List Data Structure',
   },
   {
     datetime: '2020-02-10',
-    link: '/2020/02/tree-data-structure',
+    link: '/series/data-structures/tree-data-structure',
     title: 'Tree Data Structure',
   },
 ];

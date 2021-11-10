@@ -55,7 +55,6 @@ export const Layout: FC<LayoutPropTypes> = ({
         authorName={coverImage.authorName}
       />
 
-      <hr />
       {children}
       <SocialLinks />
     </article>

@@ -12,18 +12,18 @@ const tags = [
 ];
 
 const coverImage = {
-  src: '/series/data-structures/books.jpg',
+  src: '/series/data-structures/chain.jpeg',
   width: '592',
-  height: '592',
-  alt: 'An old man with piles of books',
-  authorHref: 'https://unsplash.com/@katergaris',
-  authorName: 'Aris Sfakianakis',
+  height: '394',
+  alt: 'A chain',
+  authorHref: 'https://unsplash.com/@sandym10',
+  authorName: 'Sandy Millar',
 };
 
 export const pageData = {
-  title: 'Stack Data Structure',
+  title: 'Linked List Data Structure',
   description: 'Solving algorithms problems with TK',
-  date: '2020-01-06',
+  date: '2020-02-02',
   tags,
   coverImage,
 };
