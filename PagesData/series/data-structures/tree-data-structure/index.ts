@@ -12,18 +12,18 @@ const tags = [
 ];
 
 const coverImage = {
-  src: '/series/data-structures/books.jpg',
+  src: '/series/data-structures/trees.jpeg',
   width: '592',
   height: '592',
-  alt: 'An old man with piles of books',
-  authorHref: 'https://unsplash.com/@katergaris',
-  authorName: 'Aris Sfakianakis',
+  alt: 'A tree on the top and a house on the bottom cover by trees',
+  authorHref: 'https://leandrotk.github.io',
+  authorName: 'TK',
 };
 
 export const pageData = {
-  title: 'Stack Data Structure',
+  title: 'Tree Data Structure',
   description: 'Solving algorithms problems with TK',
-  date: '2020-01-06',
+  date: '2020-02-02',
   tags,
   coverImage,
 };

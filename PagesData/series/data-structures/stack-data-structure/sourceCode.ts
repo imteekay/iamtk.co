@@ -1,249 +1,79 @@
-export const sourceCode1 = `class Node:
-  def __init__(self, value, next=None):
-    self.value = value
-    self.next = next`;
-
-export const sourceCode2 = `new_node = Node(1)
-new_node.value  # 1
-new_node.next  # None`;
-
-export const sourceCode3 = `next_node = Node(2)
-
-new_node = Node(1, next_node)
-new_node.value  # 1
-new_node.next.value  # 2`;
-
-export const sourceCode4 = `class LinkedList:
+export const sourceCode1 = `class Stack:
   def __init__(self):
-    self.head = None`;
+    self.items = []`;
 
-export const sourceCode5 = `def is_empty(self):
-  return self.head is None`;
+export const sourceCode2 = `def push(self, item):
+  self.items.append(item)`;
 
-export const sourceCode6 = `Node(value, previous_head)`;
+export const sourceCode3 = `def size(self):
+  return len(self.items)`;
 
-export const sourceCode7 = `Node(value, self.head)`;
+export const sourceCode4 = `def is_empty(self):
+  return self.size() == 0`;
 
-export const sourceCode8 = `self.head = Node(value, self.head)`;
+export const sourceCode5 = `def pop(self):
+  return self.items.pop()`;
 
-export const sourceCode9 = `def prepend(self, value):
-  self.head = Node(value, self.head)`;
+export const sourceCode6 = `class Emptiness(Exception): pass`;
 
-export const sourceCode10 = `current_node = self.head`;
-
-export const sourceCode11 = `while current_node.next is not None:
-  current_node = current_node.next`;
-
-export const sourceCode13 = `current_node.next = Node(value)`;
-
-export const sourceCode14 = `current_node = self.head
-
-while current_node.next is not None:
-  current_node = current_node.next
-
-current_node.next = Node(value)`;
-
-export const sourceCode15 = `def append(self, value):
+export const sourceCode7 = `def pop(self):
   if self.is_empty():
-      self.head = Node(value)
-      return
+    raise Emptiness('The Stack isempty')
+  
+  return self.items.pop()`;
 
-  current_node = self.head
-
-  while current_node.next is not None:
-      current_node = current_node.next
-
-  current_node.next = Node(value)`;
-
-export const sourceCode16 = `while current_node is not None:
-  current_node = current_node.next`;
-
-export const sourceCode17 = `def size(self):
-  list_length = 0
-  current_node = self.head
-
-  while current_node is not None:
-      list_length += 1
-      current_node = current_node.next
-
-  return list_length`;
-
-export const sourceCode18 = `while current_node is not None:
-  current_node = current_node.next`;
-
-export const sourceCode19 = `while current_node is not None:
-  if current_node.value == value:
-      return True
-
-  current_node = current_node.next`;
-
-export const sourceCode20 = `while not found and current_node is not None:
-  found = current_node.value == value
-  current_node = current_node.next`;
-
-export const sourceCode21 = `def search(self, value):
-  found = False
-  current_node = self.head
-
-  while not found and current_node is not None:
-      found = current_node.value == value
-      current_node = current_node.next
-
-  return found`;
-
-export const sourceCode22 = `if self.is_empty():
-  return`;
-
-export const sourceCode23 = `if self.head.value == value:
-  self.head = self.head.next
-  return`;
-
-export const sourceCode24 = `while current_node.next is not None:
-  if current_node.next.value == value:
-      current_node.next = current_node.next.next
-      return
-
-  current_node = current_node.next`;
-
-export const sourceCode25 = `if current_node.next.value == value:`;
-
-export const sourceCode26 = `def remove(self, value):
+export const sourceCode8 = `def top(self):
   if self.is_empty():
-      return
+    raise Emptiness('The Stack isempty')
+      
+  return self.items[-1]`;
 
-  if self.head.value == value:
-      self.head = self.head.next
-      return
+export const sourceCode9 = `stack = Stack()
 
-  current_node = self.head
+stack.is_empty() # True
 
-  while current_node.next is not None:
-      if current_node.next.value == value:
-          current_node.next = current_node.next.next
-          return
+stack.push(1) # [1]
+stack.push(2) # [1, 2]
+stack.push(3) # [1, 2, 3]
+stack.push(4) # [1, 2, 3, 4]
+stack.push(5) # [1, 2, 3, 4, 5]
 
-      current_node = current_node.next`;
+stack.is_empty() # False
+stack.top() # 5
 
-export const sourceCode27 = `class Node:
-def __init__(self, value, next=None):
-    self.value = value
-    self.next = next
+stack.pop() # 5
+stack.pop() # 4
+stack.pop() # 3
+stack.pop() # 2
 
+stack.is_empty() # False
 
-class LinkedList:
-  def __init__(self):
-      self.head = None
+stack.pop() # 1
 
-  def append(self, value):
-      if self.is_empty():
-          self.head = Node(value)
-          return
+stack.is_empty() # True`;
 
-      current_node = self.head
+export const sourceCode10 = `def reverse(bookshelf):
+  stack = Stack()
 
-      while current_node.next is not None:
-          current_node = current_node.next
+  for book in bookshelf:
+      stack.push(book)
 
-      current_node.next = Node(value)
+  reversed_bookshelf = []
 
-  def prepend(self, value):
-      self.head = Node(value, self.head)
+  while not stack.is_empty():
+      reversed_bookshelf.append(stack.pop())
 
-  def remove(self, value):
-      if self.is_empty():
-          return
+  return reversed_bookshelf`;
 
-      if self.head.value == value:
-          self.head = self.head.next
-          return
+export const sourceCode11 = `bookshelf = [
+  'Harry Potter',
+  'Atomic Habits',
+  'Leonardo da Vinci',
+  'Sapiens',
+  'Peak'
+]
 
-      current_node = self.head
+reversed_bookshelf = reverse(bookshelf)
 
-      while current_node.next is not None:
-          if current_node.next.value == value:
-              current_node.next = current_node.next.next
-              return
-
-          current_node = current_node.next
-
-  def search(self, value):
-      found = False
-      current_node = self.head
-
-      while not found and current_node is not None:
-          found = current_node.value == value
-          current_node = current_node.next
-
-      return found
-
-  def is_empty(self):
-      return self.head is None
-
-  def size(self):
-      list_length = 0
-      current_node = self.head
-
-      while current_node is not None:
-          list_length += 1
-          current_node = current_node.next
-
-      return list_length`;
-
-export const sourceCode28 = `def print_all(linked_list):
-  print('All values:', end=' ')
-  current_node = linked_list.head
-
-  while current_node is not None:
-      print(current_node.value, end=' ')
-      current_node = current_node.next
-
-  print()
-
-
-  def print_found(linked_list, value):
-  found = linked_list.search(value)
-  print('For value:', value, '-->', 'Found:', found, )
-
-
-  def print_size(linked_list):
-  list_length = linked_list.size()
-  print('Size:', list_length)`;
-
-export const sourceCode29 = `linked_list = LinkedList()`;
-
-export const sourceCode30 = `print_all(linked_list)
-print_size(linked_list)  # 0`;
-
-export const sourceCode31 = `linked_list.append(1)
-print_all(linked_list)  # 1
-print_size(linked_list)  # 1`;
-
-export const sourceCode32 = `linked_list.remove(0)
-print_all(linked_list)  # 1
-linked_list.remove(1)
-print_all(linked_list)`;
-
-export const sourceCode33 = `linked_list.append(2)
-linked_list.append(3)
-print_all(linked_list)  # 2 3
-print_size(linked_list)  # 2`;
-
-export const sourceCode34 = `print_found(linked_list, 1)  # False
-print_found(linked_list, 2)  # True
-print_found(linked_list, 3)  # True`;
-
-export const sourceCode35 = `linked_list.remove(1)
-print_all(linked_list)  # 2 3
-linked_list.remove(2)
-print_all(linked_list)  # 3
-linked_list.remove(3)
-print_all(linked_list)`;
-
-export const sourceCode36 = `linked_list.prepend(4)
-linked_list.prepend(3)
-linked_list.prepend(2)
-linked_list.prepend(1)
-print_all(linked_list)  # 1 2 3 4`;
-
-export const sourceCode37 = `linked_list.remove(3)
-print_all(linked_list)  # 1 2 4`;
+print(reversed_bookshelf) # ['Peak', 'Sapiens', 'Leonardo da Vinci', 'Atomic Habits', 'Harry Potter']
+`;

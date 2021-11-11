@@ -2,11 +2,11 @@ import type { NextPage } from 'next';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
-  Article,
   pageData,
-} from 'PagesData/series/data-structures/linked-list-data-structure';
+  Article,
+} from 'PagesData/series/data-structures/tree-data-structure';
 
-const LinkedListDataStructure: NextPage = () => (
+const TreeDataStructure: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -24,4 +24,4 @@ const LinkedListDataStructure: NextPage = () => (
   </>
 );
 
-export default LinkedListDataStructure;
+export default TreeDataStructure;
