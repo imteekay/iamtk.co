@@ -1,249 +1,240 @@
-export const sourceCode1 = `class Node:
-  def __init__(self, value, next=None):
-    self.value = value
-    self.next = next`;
-
-export const sourceCode2 = `new_node = Node(1)
-new_node.value  # 1
-new_node.next  # None`;
-
-export const sourceCode3 = `next_node = Node(2)
-
-new_node = Node(1, next_node)
-new_node.value  # 1
-new_node.next.value  # 2`;
-
-export const sourceCode4 = `class LinkedList:
-  def __init__(self):
-    self.head = None`;
-
-export const sourceCode5 = `def is_empty(self):
-  return self.head is None`;
-
-export const sourceCode6 = `Node(value, previous_head)`;
-
-export const sourceCode7 = `Node(value, self.head)`;
-
-export const sourceCode8 = `self.head = Node(value, self.head)`;
-
-export const sourceCode9 = `def prepend(self, value):
-  self.head = Node(value, self.head)`;
-
-export const sourceCode10 = `current_node = self.head`;
-
-export const sourceCode11 = `while current_node.next is not None:
-  current_node = current_node.next`;
-
-export const sourceCode13 = `current_node.next = Node(value)`;
-
-export const sourceCode14 = `current_node = self.head
-
-while current_node.next is not None:
-  current_node = current_node.next
-
-current_node.next = Node(value)`;
-
-export const sourceCode15 = `def append(self, value):
-  if self.is_empty():
-      self.head = Node(value)
-      return
-
-  current_node = self.head
-
-  while current_node.next is not None:
-      current_node = current_node.next
-
-  current_node.next = Node(value)`;
-
-export const sourceCode16 = `while current_node is not None:
-  current_node = current_node.next`;
-
-export const sourceCode17 = `def size(self):
-  list_length = 0
-  current_node = self.head
-
-  while current_node is not None:
-      list_length += 1
-      current_node = current_node.next
-
-  return list_length`;
-
-export const sourceCode18 = `while current_node is not None:
-  current_node = current_node.next`;
-
-export const sourceCode19 = `while current_node is not None:
-  if current_node.value == value:
-      return True
-
-  current_node = current_node.next`;
-
-export const sourceCode20 = `while not found and current_node is not None:
-  found = current_node.value == value
-  current_node = current_node.next`;
-
-export const sourceCode21 = `def search(self, value):
-  found = False
-  current_node = self.head
-
-  while not found and current_node is not None:
-      found = current_node.value == value
-      current_node = current_node.next
-
-  return found`;
-
-export const sourceCode22 = `if self.is_empty():
-  return`;
-
-export const sourceCode23 = `if self.head.value == value:
-  self.head = self.head.next
-  return`;
-
-export const sourceCode24 = `while current_node.next is not None:
-  if current_node.next.value == value:
-      current_node.next = current_node.next.next
-      return
-
-  current_node = current_node.next`;
-
-export const sourceCode25 = `if current_node.next.value == value:`;
-
-export const sourceCode26 = `def remove(self, value):
-  if self.is_empty():
-      return
-
-  if self.head.value == value:
-      self.head = self.head.next
-      return
-
-  current_node = self.head
-
-  while current_node.next is not None:
-      if current_node.next.value == value:
-          current_node.next = current_node.next.next
-          return
-
-      current_node = current_node.next`;
-
-export const sourceCode27 = `class Node:
-def __init__(self, value, next=None):
-    self.value = value
-    self.next = next
-
-
-class LinkedList:
-  def __init__(self):
-      self.head = None
-
-  def append(self, value):
-      if self.is_empty():
-          self.head = Node(value)
-          return
-
-      current_node = self.head
-
-      while current_node.next is not None:
-          current_node = current_node.next
-
-      current_node.next = Node(value)
-
-  def prepend(self, value):
-      self.head = Node(value, self.head)
-
-  def remove(self, value):
-      if self.is_empty():
-          return
-
-      if self.head.value == value:
-          self.head = self.head.next
-          return
-
-      current_node = self.head
-
-      while current_node.next is not None:
-          if current_node.next.value == value:
-              current_node.next = current_node.next.next
-              return
-
-          current_node = current_node.next
-
-  def search(self, value):
-      found = False
-      current_node = self.head
-
-      while not found and current_node is not None:
-          found = current_node.value == value
-          current_node = current_node.next
-
-      return found
-
-  def is_empty(self):
-      return self.head is None
-
-  def size(self):
-      list_length = 0
-      current_node = self.head
-
-      while current_node is not None:
-          list_length += 1
-          current_node = current_node.next
-
-      return list_length`;
-
-export const sourceCode28 = `def print_all(linked_list):
-  print('All values:', end=' ')
-  current_node = linked_list.head
-
-  while current_node is not None:
-      print(current_node.value, end=' ')
-      current_node = current_node.next
-
-  print()
-
-
-  def print_found(linked_list, value):
-  found = linked_list.search(value)
-  print('For value:', value, '-->', 'Found:', found, )
-
-
-  def print_size(linked_list):
-  list_length = linked_list.size()
-  print('Size:', list_length)`;
-
-export const sourceCode29 = `linked_list = LinkedList()`;
-
-export const sourceCode30 = `print_all(linked_list)
-print_size(linked_list)  # 0`;
-
-export const sourceCode31 = `linked_list.append(1)
-print_all(linked_list)  # 1
-print_size(linked_list)  # 1`;
-
-export const sourceCode32 = `linked_list.remove(0)
-print_all(linked_list)  # 1
-linked_list.remove(1)
-print_all(linked_list)`;
-
-export const sourceCode33 = `linked_list.append(2)
-linked_list.append(3)
-print_all(linked_list)  # 2 3
-print_size(linked_list)  # 2`;
-
-export const sourceCode34 = `print_found(linked_list, 1)  # False
-print_found(linked_list, 2)  # True
-print_found(linked_list, 3)  # True`;
-
-export const sourceCode35 = `linked_list.remove(1)
-print_all(linked_list)  # 2 3
-linked_list.remove(2)
-print_all(linked_list)  # 3
-linked_list.remove(3)
-print_all(linked_list)`;
-
-export const sourceCode36 = `linked_list.prepend(4)
-linked_list.prepend(3)
-linked_list.prepend(2)
-linked_list.prepend(1)
-print_all(linked_list)  # 1 2 3 4`;
-
-export const sourceCode37 = `linked_list.remove(3)
-print_all(linked_list)  # 1 2 4`;
+export const sourceCode1 = `class BinaryTree:
+    def __init__(self, value):
+        self.value = value
+        self.left_child = None
+        self.right_child = None`;
+
+export const sourceCode2 = `tree = BinaryTree('a')
+print(tree.value) # a
+print(tree.left_child) # None
+print(tree.right_child) # None`;
+
+export const sourceCode3 = `def insert_left(self, value):
+    if self.left_child == None:
+        self.left_child = BinaryTree(value)
+    else:
+        new_node = BinaryTree(value)
+        new_node.left_child = self.left_child
+        self.left_child = new_node`;
+
+export const sourceCode4 = `def insert_right(self, value):
+    if self.right_child == None:
+        self.right_child = BinaryTree(value)
+    else:
+        new_node = BinaryTree(value)
+        new_node.right_child = self.right_child
+        self.right_child = new_node`;
+
+export const sourceCode5 = `a_node = BinaryTree('a')
+a_node.insert_left('b')
+a_node.insert_right('c')
+
+b_node = a_node.left_child
+b_node.insert_right('d')
+
+c_node = a_node.right_child
+c_node.insert_left('e')
+c_node.insert_right('f')
+
+d_node = b_node.right_child
+e_node = c_node.left_child
+f_node = c_node.right_child
+
+print(a_node.value) # a
+print(b_node.value) # b
+print(c_node.value) # c
+print(d_node.value) # d
+print(e_node.value) # e
+print(f_node.value) # f`;
+
+export const sourceCode6 = `def pre_order(self):
+    print(self.value)
+
+    if self.left_child:
+        self.left_child.pre_order()
+
+    if self.right_child:
+        self.right_child.pre_order()`;
+
+export const sourceCode7 = `def in_order(self):
+    if self.left_child:
+        self.left_child.in_order()
+
+    print(self.value)
+
+    if self.right_child:
+        self.right_child.in_order()`;
+
+export const sourceCode8 = `def post_order(self):
+    if self.left_child:
+        self.left_child.post_order()
+
+    if self.right_child:
+        self.right_child.post_order()
+
+    print(self.value)`;
+
+export const sourceCode9 = `def bfs(self):
+    queue = Queue()
+    queue.put(self)
+
+    while not queue.empty():
+        current_node = queue.get()
+        print(current_node.value)
+
+        if current_node.left_child:
+            queue.put(current_node.left_child)
+
+        if current_node.right_child:
+            queue.put(current_node.right_child)`;
+
+export const sourceCode10 = `class BinarySearchTree:
+    def __init__(self, value):
+        self.value = value
+        self.left_child = None
+        self.right_child = None
+
+    def insert_node(self, value):
+        if value <= self.value and self.left_child:
+            self.left_child.insert_node(value)
+        elif value <= self.value:
+            self.left_child = BinarySearchTree(value)
+        elif value > self.value and self.right_child:
+            self.right_child.insert_node(value)
+        else:
+            self.right_child = BinarySearchTree(value)`;
+
+export const sourceCode11 = `class BinarySearchTree:
+    def __init__(self, value):
+        self.value = value
+        self.left_child = None
+        self.right_child = None
+
+    def find_node(self, value):
+        if value < self.value and self.left_child:
+            return self.left_child.find_node(value)
+        if value > self.value and self.right_child:
+            return self.right_child.find_node(value)
+
+        return value == self.value`;
+
+export const sourceCode13 = `bst = BinarySearchTree(15)`;
+
+export const sourceCode14 = `bst.insert_node(10)
+bst.insert_node(8)
+bst.insert_node(12)
+bst.insert_node(20)
+bst.insert_node(17)
+bst.insert_node(25)
+bst.insert_node(19)`;
+
+export const sourceCode15 = `print(bst.find_node(15)) # True
+print(bst.find_node(10)) # True
+print(bst.find_node(8)) # True
+print(bst.find_node(12)) # True
+print(bst.find_node(20)) # True
+print(bst.find_node(17)) # True
+print(bst.find_node(25)) # True
+print(bst.find_node(19)) # True`;
+
+export const sourceCode16 = `print(bst.find_node(0)) # False`;
+
+export const sourceCode17 = `#        |50|                              |50|
+#      /      \\                           /    \\
+#    |30|     |70|   (DELETE 20) --->   |30|   |70|
+#   /    \\                                \\
+# |20|   |40|                             |40|`;
+
+export const sourceCode18 = `#        |50|                              |50|
+#      /      \\                           /    \\
+#    |30|     |70|   (DELETE 30) --->   |40|   |70|
+#   /    \\                             /
+# |20|   |40|                        |20|`;
+
+export const sourceCode19 = `def remove_node(self, value, parent):
+    if value < self.value and self.left_child:
+        return self.left_child.remove_node(value, self)
+    elif value < self.value:
+        return False
+    elif value > self.value and self.right_child:
+        return self.right_child.remove_node(value, self)
+    elif value > self.value:
+        return False
+    else:
+        if self.left_child is None and self.right_child is None and self == parent.left_child:
+            parent.left_child = None
+            self.clear_node()
+        elif self.left_child is None and self.right_child is None and self == parent.right_child:
+            parent.right_child = None
+            self.clear_node()
+        elif self.left_child and self.right_child is None and self == parent.left_child:
+            parent.left_child = self.left_child
+            self.clear_node()
+        elif self.left_child and self.right_child is None and self == parent.right_child:
+            parent.right_child = self.left_child
+            self.clear_node()
+        elif self.right_child and self.left_child is None and self == parent.left_child:
+            parent.left_child = self.right_child
+            self.clear_node()
+        elif self.right_child and self.left_child is None and self == parent.right_child:
+            parent.right_child = self.right_child
+            self.clear_node()
+        else:
+            self.value = self.right_child.find_minimum_value()
+            self.right_child.remove_node(self.value, self)
+
+        return True`;
+
+export const sourceCode20 = `def clear_node(self):
+    self.value = None
+    self.left_child = None
+    self.right_child = None`;
+
+export const sourceCode21 = `def find_minimum_value(self):
+    if self.left_child:
+        return self.left_child.find_minimum_value()
+    else:
+        return self.value`;
+
+export const sourceCode22 = `#        |15|
+#      /      \\
+#    |10|     |20|
+#   /    \\    /    \\
+# |8|   |12| |17| |25|
+#              \\
+#              |19|`;
+
+export const sourceCode23 = `print(bst.remove_node(8, None)) # True
+bst.pre_order_traversal()
+
+#     |15|
+#   /      \\
+# |10|     |20|
+#    \\    /    \\
+#   |12| |17| |25|
+#          \\
+#          |19|`;
+
+export const sourceCode24 = `print(bst.remove_node(17, None)) # True
+bst.pre_order_traversal()
+
+#        |15|
+#      /      \\
+#    |10|     |20|
+#       \\    /    \\
+#      |12| |19| |25|`;
+
+export const sourceCode25 = `print(bst.remove_node(15, None)) # True
+bst.pre_order_traversal()
+
+#        |19|
+#      /      \\
+#    |10|     |20|
+#        \\        \\
+#        |12|     |25|`;
+
+export const sourceCode26 = `#        |50|                              |50|
+#      /      \\                           /    \\
+#    |30|     |70|   (DELETE 30) --->   |40|   |70|
+#   /    \\                             /
+# |20|   |40|                        |20|`;

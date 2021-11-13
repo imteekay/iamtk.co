@@ -22,18 +22,7 @@ import {
   sourceCode24,
   sourceCode25,
   sourceCode26,
-  sourceCode27,
-  sourceCode28,
-  sourceCode29,
   sourceCode3,
-  sourceCode30,
-  sourceCode31,
-  sourceCode32,
-  sourceCode33,
-  sourceCode34,
-  sourceCode35,
-  sourceCode36,
-  sourceCode37,
   sourceCode4,
   sourceCode5,
   sourceCode6,
@@ -160,9 +149,7 @@ export const Article: FC = () => (
       <li>How to implement tree structures in code.</li>
     </ul>
     <p>Let’s start this learning journey. :)</p>
-    <h2>
-      <a id="Definition_24"></a>Definition
-    </h2>
+    <h2>Definition</h2>
     <p>
       When starting out programming, it is common to understand better the
       linear data structures than data structures like trees and graphs.
@@ -171,10 +158,7 @@ export const Article: FC = () => (
       Trees are well-known as a non-linear data structure. They don’t store data
       in a linear way. They organize data hierarchically.
     </p>
-    <h2>
-      <a id="Lets_dive_into_real_life_examples_30"></a>Let’s dive into real life
-      examples!
-    </h2>
+    <h2>Let’s dive into real life examples!</h2>
     <p>What do I mean when I say in a hierarchical way?</p>
     <p>
       Imagine a family tree with relationships from all generation:
@@ -182,8 +166,10 @@ export const Article: FC = () => (
       family trees hierarchically.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*MasdC5DmucEU2abIXQe45Q.jpeg"
+      <Image
+        src="/series/data-structures/kinoshita-tree.jpeg"
+        width={592}
+        height={293}
         alt=""
       />
     </p>
@@ -201,16 +187,20 @@ export const Article: FC = () => (
     </p>
     <p>An organization’s structure is another example of a hierarchy.</p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*GsBCmW5E1GuJ3MpH2Zz0Ew.jpeg"
+      <Image
+        src="/series/data-structures/company-tree.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>In HTML, the Document Object Model (DOM) works as a tree.</p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*dLXUdR4NuIZG8GJdu_Cinw.jpeg"
+      <Image
+        src="/series/data-structures/dom-tree.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -221,9 +211,7 @@ export const Article: FC = () => (
       in the user interface, for example, <code>h1</code>,<code>a</code>,{' '}
       <code>li</code>, etc.
     </p>
-    <h2>
-      <a id="A_technical_definition_54"></a>A technical definition
-    </h2>
+    <h2>A technical definition</h2>
     <p>
       A <code>tree</code> is a collection of entities called
       <code>nodes</code>. Nodes are connected by <code>edges</code>. Each
@@ -231,9 +219,11 @@ export const Article: FC = () => (
       it may or may not have a<code>child node</code>.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*3WN7tIQ-kNBQmY9MgvTuOA.jpeg"
+      <Image
+        src="/series/data-structures/dom-as-nodes.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -245,9 +235,11 @@ export const Article: FC = () => (
       <code>child</code>.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*9AtR3bhhlMJxQlaUVEQgrw.jpeg"
+      <Image
+        src="/series/data-structures/dom-leaves.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -256,9 +248,11 @@ export const Article: FC = () => (
       it’s manages the relationship between <code>nodes</code>.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*j5qKwIxKcEjoxy88EOc1Rg.jpeg"
+      <Image
+        src="/series/data-structures/tree-height-and-depth.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -268,9 +262,11 @@ export const Article: FC = () => (
       <code>leaves</code>.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*c9_5uMUsIy4Q3OA7Q8bJiw.jpeg"
+      <Image
+        src="/series/data-structures/tree-example.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -285,9 +281,7 @@ export const Article: FC = () => (
       The <code>depth</code> of a <code>node</code> is the length of the path to
       its <code>root</code>.
     </p>
-    <h2>
-      <a id="Terminology_summary_78"></a>Terminology summary
-    </h2>
+    <h2>Terminology summary</h2>
     <ul>
       <li>
         <p>
@@ -332,9 +326,7 @@ export const Article: FC = () => (
         </p>
       </li>
     </ul>
-    <h2>
-      <a id="Binary_trees_94"></a>Binary trees
-    </h2>
+    <h2>Binary trees</h2>
     <p>
       Now we will discuss a specific type of <code>tree</code>. We call it the{' '}
       <code>binary tree</code>.
@@ -350,14 +342,14 @@ export const Article: FC = () => (
       So let’s look at an example of a <code>binary tree</code>.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*ofbwuz4inpf2OlB-l9gtHw.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-2.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
-    <h2>
-      <a id="Lets_code_a_binary tree_104"></a>Let’s code a binary tree
-    </h2>
+    <h2>Let’s code a binary tree</h2>
     <p>
       The first thing we need to keep in mind when we implement a
       <code>binary tree</code> is that it is a collection of
@@ -370,22 +362,7 @@ export const Article: FC = () => (
       with these three properties?
     </p>
     <p>Let’s take a look.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-class">
-          <span className="hljs-keyword">class</span>{' '}
-          <span className="hljs-title">BinaryTree</span>:
-        </span>
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">__init__</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        self.value = value self.left_child ={' '}
-        <span className="hljs-keyword">None</span>
-        self.right_child = <span className="hljs-keyword">None</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode1}</Highlight>
     <p>
       Here it is. Our <code>binary tree</code> class.
     </p>
@@ -401,14 +378,7 @@ export const Article: FC = () => (
       children. We just have the <code>node data</code>.
     </p>
     <p>Let’s test it:</p>
-    <pre>
-      <code className="language-python">
-        tree = BinaryTree(<span className="hljs-string">'a'</span>)
-        print(tree.value) <span className="hljs-comment"># a</span>
-        print(tree.left_child) <span className="hljs-comment"># None</span>
-        print(tree.right_child) <span className="hljs-comment"># None</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode2}</Highlight>
     <p>That’s it.</p>
     <p>
       We can pass the <code>string</code> ‘<code>a</code>’ as the
@@ -441,26 +411,15 @@ export const Article: FC = () => (
     </ul>
     <p>Let’s draw it out. :)</p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*ofbwuz4inpf2OlB-l9gtHw.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-3.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>Here’s the code:</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">insert_left</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> self.left_child =={' '}
-        <span className="hljs-keyword">None</span>: self.left_child =
-        BinaryTree(value)
-        <span className="hljs-keyword">else</span>: new_node = BinaryTree(value)
-        new_node.left_child = self.left_child self.left_child = new_node
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode3}</Highlight>
     <p>
       Again, if the current node doesn’t have a <code>left child</code>, we just
       create a new node and set it to the current node’s
@@ -472,29 +431,18 @@ export const Article: FC = () => (
     <p>
       And we do the same thing to insert a <code>right child node</code>.
     </p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">insert_right</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> self.right_child =={' '}
-        <span className="hljs-keyword">None</span>: self.right_child =
-        BinaryTree(value)
-        <span className="hljs-keyword">else</span>: new_node = BinaryTree(value)
-        new_node.right_child = self.right_child self.right_child = new_node
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode4}</Highlight>
     <p>Done! :)</p>
     <p>But not entirely. We still need to test it.</p>
     <p>
       Let’s build the following <code>tree</code>:
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*V_EUgNXVc8Wy9H1-JoqT3g.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-4.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>To summarize the illustration of this tree:</p>
@@ -547,25 +495,7 @@ export const Article: FC = () => (
     <p>
       So here is the code for the <code>tree</code>:
     </p>
-    <pre>
-      <code className="language-python">
-        a_node = BinaryTree(<span className="hljs-string">'a'</span>)
-        a_node.insert_left(<span className="hljs-string">'b'</span>)
-        a_node.insert_right(<span className="hljs-string">'c'</span>) b_node =
-        a_node.left_child b_node.insert_right(
-        <span className="hljs-string">'d'</span>) c_node = a_node.right_child
-        c_node.insert_left(<span className="hljs-string">'e'</span>)
-        c_node.insert_right(<span className="hljs-string">'f'</span>) d_node =
-        b_node.right_child e_node = c_node.left_child f_node =
-        c_node.right_child print(a_node.value){' '}
-        <span className="hljs-comment"># a</span>
-        print(b_node.value) <span className="hljs-comment"># b</span>
-        print(c_node.value) <span className="hljs-comment"># c</span>
-        print(d_node.value) <span className="hljs-comment"># d</span>
-        print(e_node.value) <span className="hljs-comment"># e</span>
-        print(f_node.value) <span className="hljs-comment"># f</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode5}</Highlight>
     <p>Insertion is done.</p>
     <p>
       Now we have to think about <code>tree</code> traversal.
@@ -592,18 +522,18 @@ export const Article: FC = () => (
       </li>
     </ul>
     <p>So let’s dive into each tree traversal type.</p>
-    <h3>
-      <a id="DepthFirst_Search DFS_243"></a>Depth-First Search (DFS)
-    </h3>
+    <h3>Depth-First Search (DFS)</h3>
     <p>
       <strong>DFS</strong> explores a path all the way to a leaf before
       <strong>backtracking</strong> and exploring another path. Let’s take a
       look at an example with this type of traversal.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-5.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>The result for this algorithm will be 1–2–3–4–5–6–7.</p>
@@ -662,39 +592,24 @@ export const Article: FC = () => (
       <code>in-order</code>, and
       <code>post-order</code>.
     </p>
-    <h3>
-      <a id="Preorder_275"></a>Pre-order
-    </h3>
+    <h3>Pre-order</h3>
     <p>This is exactly what we did in the above example.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">pre_order</span>
-          <span className="hljs-params">(self)</span>:
-        </span>
-        print(self.value)
-        <span className="hljs-keyword">if</span> self.left_child:
-        self.left_child.pre_order()
-        <span className="hljs-keyword">if</span> self.right_child:
-        self.right_child.pre_order()
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode6}</Highlight>
 
     <p>
-      Print the current node, go to the left until it didn't have a left child,
-      and then go to the right.
+      Print the current node, go to the left until it didn&#39;t have a left
+      child, and then go to the right.
     </p>
 
     <p>The result is exactly as the above algorithm: 1–2–3–4–5–6–7.</p>
 
-    <h3>
-      <a id="Inorder_292"></a>In-order
-    </h3>
+    <h3>In-order</h3>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-6.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -703,26 +618,14 @@ export const Article: FC = () => (
     </p>
     <p>The left first, the middle second, and the right last.</p>
     <p>Now let’s code it.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">in_order</span>
-          <span className="hljs-params">(self)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> self.left_child:
-        self.left_child.in_order() print(self.value)
-        <span className="hljs-keyword">if</span> self.right_child:
-        self.right_child.in_order()
-      </code>
-    </pre>
-    <h3>
-      <a id="Postorder_315"></a>Post-order
-    </h3>
+    <Highlight className="python">{sourceCode7}</Highlight>
+    <h3>Post-order</h3>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-7.jpeg"
         alt=""
+        width={592}
+        height={333}
       />
     </p>
     <p>
@@ -731,32 +634,20 @@ export const Article: FC = () => (
     </p>
     <p>The left first, the right second, and the middle last.</p>
     <p>Let’s code this.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">post_order</span>
-          <span className="hljs-params">(self)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> self.left_child:
-        self.left_child.post_order()
-        <span className="hljs-keyword">if</span> self.right_child:
-        self.right_child.post_order() print(self.value)
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode8}</Highlight>
 
     <p>These algorithms go deeply in the tree.</p>
 
-    <h3>
-      <a id="BreadthFirst_Search BFS_338"></a>Breadth-First Search (BFS)
-    </h3>
+    <h3>Breadth-First Search (BFS)</h3>
     <p>
       <strong>BFS</strong> algorithm traverses the <code>tree</code> level by
       level and depth by depth.
     </p>
-    <img
-      src="https://cdn-images-1.medium.com/max/1600/1*ZNxp_NkRZLCeak85rreebA.jpeg"
+    <Image
+      src="/series/data-structures/tree-level.jpeg"
       alt=""
+      width={592}
+      height={333}
     />
 
     <p>
@@ -765,9 +656,11 @@ export const Article: FC = () => (
     </p>
 
     <p>Here is an example that helps to better explain this algorithm:</p>
-    <img
-      src="https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg"
+    <Image
+      src="/series/data-structures/tree-example-8.jpeg"
       alt=""
+      width={592}
+      height={333}
     />
     <p>
       So we traverse level by level. In this example, the result is
@@ -791,32 +684,18 @@ export const Article: FC = () => (
       </li>
     </ul>
     <p>Now let’s code it.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">bfs</span>
-          <span className="hljs-params">(self)</span>:
-        </span>
-        queue = Queue() queue.put(self)
-        <span className="hljs-keyword">while</span>{' '}
-        <span className="hljs-keyword">not</span> queue.empty(): current_node =
-        queue.get() print(current_node.value)
-        <span className="hljs-keyword">if</span> current_node.left_child:
-        queue.put(current_node.left_child)
-        <span className="hljs-keyword">if</span> current_node.right_child:
-        queue.put(current_node.right_child)
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode9}</Highlight>
     <p>
       To implement a <strong>BFS</strong> algorithm, we use the
       <code>queue</code> data structure to help.
     </p>
     <p>How does it work?</p>
     <p>Here’s the explanation.</p>
-    <img
-      src="https://cdn-images-1.medium.com/max/1600/1*A4yGfEoiqcZ-COvAfr2CWQ.jpeg"
+    <Image
+      src="/series/data-structures/tree-with-queue.jpeg"
       alt=""
+      width={592}
+      height={660}
     />
 
     <ul>
@@ -824,7 +703,7 @@ export const Article: FC = () => (
         <p>Add the root node to the queue</p>
       </li>
       <li>
-        <p>We run the algorithm until the queue doesn't anything</p>
+        <p>We run the algorithm until the queue doesn&#39;t anything</p>
       </li>
       <li>
         <p>Get the first element in queue</p>
@@ -852,9 +731,7 @@ export const Article: FC = () => (
       node.
     </p>
 
-    <h2>
-      <a id="Binary_Search tree_384"></a>Binary Search tree
-    </h2>
+    <h2>Binary Search tree</h2>
     <blockquote>
       <p>
         “A Binary Search Tree is sometimes called ordered or sorted binary
@@ -869,12 +746,12 @@ export const Article: FC = () => (
       <code>left child</code>, but smaller than the value of the offspring of
       its <code>right child.</code>”
     </p>
-    <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*mslH9VtVUN9Hs983XxUN5A.jpeg"
-        alt=""
-      />
-    </p>
+    <Image
+      src="/series/data-structures/trees-a-b-c.jpeg"
+      alt=""
+      width={592}
+      height={204}
+    />
     <p>Here is a breakdown of the above illustration:</p>
     <ul>
       <li>
@@ -899,20 +776,14 @@ export const Article: FC = () => (
         </p>
       </li>
     </ul>
-    <h2>
-      <a id="Lets_code_a_Binary_Search Tree_400"></a>Let’s code a Binary Search
-      Tree!
-    </h2>
+    <h2>Let’s code a Binary Search Tree!</h2>
     <p>Now it’s time to code!</p>
     <p>
       What will we see here? We will insert new nodes, search for a value,
       delete nodes, and the balance of the <code>tree</code>.
     </p>
     <p>Let’s start.</p>
-    <h3>
-      <a id="Insertion_adding_new_nodes_to_our tree_408"></a>Insertion: adding
-      new nodes to our tree
-    </h3>
+    <h3>Insertion: adding new nodes to our tree</h3>
     <p>
       Imagine that we have an empty <code>tree</code> and we want to add new
       <code>nodes</code> with the following values in this order: 50, 76, 21, 4,
@@ -922,12 +793,12 @@ export const Article: FC = () => (
       The first thing we need to know is if 50 is the <code>root</code> of our
       tree.
     </p>
-    <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*fxSlTwgQSN_DlzfEmcxqQg.jpeg"
-        alt=""
-      />
-    </p>
+    <Image
+      src="/series/data-structures/one-node.jpeg"
+      alt=""
+      width={592}
+      height={333}
+    />
     <p>
       We can now start inserting <code>node</code> by <code>node</code>.
     </p>
@@ -976,46 +847,34 @@ export const Article: FC = () => (
         </p>
       </li>
     </ul>
-    <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*LlLDNx7wgJfH6VAGnyAbIQ.jpeg"
-        alt=""
-      />
-    </p>
+    <Image
+      src="/series/data-structures/tree-example-9.jpeg"
+      alt=""
+      width={592}
+      height={333}
+    />
     <p>Do you notice a pattern here?</p>
     <p>Let’s break it down.</p>
+    <ol>
+      <li>Is the new node value greater or smaller than the current node?</li>
+      <li>
+        If the value of the new node is greater than the current node, go to the
+        right subtree. If the current node doesn’t have a right child, insert it
+        there, or else backtrack to step #1.
+      </li>
+      <li>
+        If the value of the new node is smaller than the current node, go to the
+        left subtree. If the current node doesn’t have a left child, insert it
+        there, or else backtrack to step #1.
+      </li>
+      <li>
+        We did not handle special cases here. When the value of a new node is
+        equal to the current value of the node, use rule number 3. Consider
+        inserting equal values to the left side of the subtree.
+      </li>
+    </ol>
     <p>Now let’s code it.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-class">
-          <span className="hljs-keyword">class</span>{' '}
-          <span className="hljs-title">BinarySearchTree</span>:
-        </span>
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">__init__</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        self.value = value self.left_child ={' '}
-        <span className="hljs-keyword">None</span>
-        self.right_child = <span className="hljs-keyword">None</span>
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">insert_node</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> value &lt;= self.value{' '}
-        <span className="hljs-keyword">and</span> self.left_child:
-        self.left_child.insert_node(value)
-        <span className="hljs-keyword">elif</span> value &lt;= self.value:
-        self.left_child = BinarySearchTree(value)
-        <span className="hljs-keyword">elif</span> value &gt; self.value{' '}
-        <span className="hljs-keyword">and</span> self.right_child:
-        self.right_child.insert_node(value)
-        <span className="hljs-keyword">else</span>: self.right_child =
-        BinarySearchTree(value)
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode10}</Highlight>
     <p>It seems very simple.</p>
     <p>
       The powerful part of this algorithm is the recursion part, which is on
@@ -1025,10 +884,7 @@ export const Article: FC = () => (
       respectively. Lines <code>11</code> and <code>15</code> are the ones that
       do the insertion for each <code>child</code>.
     </p>
-    <h3>
-      <a id="Lets_search_for_the_node_value_Or not_464"></a>Let’s search for the
-      node value... Or not...
-    </h3>
+    <h3>Let’s search for the node value... Or not...</h3>
     <p>
       The algorithm that we will build now is about doing searches. For a given
       value (integer number), we will say if our
@@ -1048,50 +904,42 @@ export const Article: FC = () => (
       Imagine that we have this <code>tree</code>.
     </p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*LlLDNx7wgJfH6VAGnyAbIQ.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-10.jpeg"
         alt=""
+        width={592}
+        height={397}
       />
     </p>
     <p>Now we want to know if we have a node based on value 52.</p>
     <p>
-      <img
-        src="https://cdn-images-1.medium.com/max/1600/1*NwvTrpKiJWb1u2yAY-nnAA.jpeg"
+      <Image
+        src="/series/data-structures/tree-example-11.jpeg"
         alt=""
+        width={592}
+        height={405}
       />
     </p>
     <p>Let’s break it down.</p>
+    <ol>
+      <li>
+        We start with the root node as our current node. Is the given value
+        smaller than the current node value? If yes, then we will search for it
+        on the left subtree.
+      </li>
+      <li>
+        Is the given value greater than the current node value? If yes, then we
+        will search for it on the right subtree.
+      </li>
+      <li>
+        If rules #1 and #2 are both false, we can compare the current node value
+        and the given value if they are equal. If the comparison returns true,
+        then we can say, “Yeah! Our tree has the given value,” otherwise, we
+        say, “Nooo, it hasn’t.”
+      </li>
+    </ol>
     <p>Now let’s code it.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-class">
-          <span className="hljs-keyword">class</span>{' '}
-          <span className="hljs-title">BinarySearchTree</span>:
-        </span>
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">__init__</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        self.value = value self.left_child ={' '}
-        <span className="hljs-keyword">None</span>
-        self.right_child = <span className="hljs-keyword">None</span>
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">find_node</span>
-          <span className="hljs-params">(self, value)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> value &lt; self.value{' '}
-        <span className="hljs-keyword">and</span> self.left_child:
-        <span className="hljs-keyword">return</span>{' '}
-        self.left_child.find_node(value)
-        <span className="hljs-keyword">if</span> value &gt; self.value{' '}
-        <span className="hljs-keyword">and</span> self.right_child:
-        <span className="hljs-keyword">return</span>{' '}
-        self.right_child.find_node(value)
-        <span className="hljs-keyword">return</span> value == self.value
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode11}</Highlight>
     <p>Let’s break down the code:</p>
     <ul>
       <li>
@@ -1109,66 +957,24 @@ export const Article: FC = () => (
       Let’s create our <code>Binary Search Tree</code> by initializing the
       <code>root</code> <code>node</code> with the value 15.
     </p>
-    <pre>
-      <code className="language-python">
-        bst = BinarySearchTree(<span className="hljs-number">15</span>)
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode13}</Highlight>
     <p>
       And now we will insert many new <code>nodes</code>.
     </p>
-    <pre>
-      <code className="language-python">
-        bst.insert_node(<span className="hljs-number">10</span>)
-        bst.insert_node(
-        <span className="hljs-number">8</span>) bst.insert_node(
-        <span className="hljs-number">12</span>) bst.insert_node(
-        <span className="hljs-number">20</span>) bst.insert_node(
-        <span className="hljs-number">17</span>) bst.insert_node(
-        <span className="hljs-number">25</span>) bst.insert_node(
-        <span className="hljs-number">19</span>)
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode14}</Highlight>
     <p>
       For each inserted <code>node</code>, we will test if our
       <code>find_node</code> method really works.
     </p>
-    <pre>
-      <code className="language-python">
-        print(bst.find_node(<span className="hljs-number">15</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">10</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">8</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">12</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">20</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">17</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">25</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        print(bst.find_node(<span className="hljs-number">19</span>)){' '}
-        <span className="hljs-comment"># True</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode15}</Highlight>
     <p>
       Yeah, it works for these given values! Let’s test for a value that doesn’t
       exist in our <code>Binary Search Tree</code>.
     </p>
-    <pre>
-      <code className="language-python">
-        print(bst.find_node(<span className="hljs-number">0</span>)){' '}
-        <span className="hljs-comment"># False</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode16}</Highlight>
     <p>Oh yeah.</p>
     <p>Our search is done.</p>
-    <h3>
-      <a id="Deletion_removing_and_organizing_553"></a>Deletion: removing and
-      organizing
-    </h3>
+    <h3>Deletion: removing and organizing</h3>
     <p>
       Deletion is a more complex algorithm because we need to handle different
       cases. For a given value, we need to remove the
@@ -1182,17 +988,7 @@ export const Article: FC = () => (
         <code>children</code> (<code>leaf</code> <code>node</code>).
       </li>
     </ul>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-comment"># |50| |50|</span>
-        <span className="hljs-comment"># / \ / \</span>
-        <span className="hljs-comment">
-          # |30| |70| (DELETE 20) ---&gt; |30| |70|
-        </span>
-        <span className="hljs-comment"># / \ \</span>
-        <span className="hljs-comment"># |20| |40| |40|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode17}</Highlight>
     <p>
       If the <code>node</code> we want to delete has no children, we simply
       delete it. The algorithm doesn’t need to reorganize the
@@ -1206,17 +1002,7 @@ export const Article: FC = () => (
         child).
       </li>
     </ul>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-comment"># |50| |50|</span>
-        <span className="hljs-comment"># / \ / \</span>
-        <span className="hljs-comment">
-          # |30| |70| (DELETE 30) ---&gt; |20| |70|
-        </span>
-        <span className="hljs-comment"># /</span>
-        <span className="hljs-comment"># |20|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode18}</Highlight>
     <p>
       In this case, our algorithm needs to make the parent of the
       <code>node</code> point to the <code>child</code> node. If the
@@ -1231,17 +1017,7 @@ export const Article: FC = () => (
         <strong>Scenario #3</strong>: A <code>node</code> with two children.
       </li>
     </ul>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-comment"># |50| |50|</span>
-        <span className="hljs-comment"># / \ / \</span>
-        <span className="hljs-comment">
-          # |30| |70| (DELETE 30) ---&gt; |40| |70|
-        </span>
-        <span className="hljs-comment"># / \ /</span>
-        <span className="hljs-comment"># |20| |40| |20|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode26}</Highlight>
     <p>
       When the <code>node</code> has 2 children, we need to find the
       <code>node</code> with the minimum value, starting from the
@@ -1250,77 +1026,7 @@ export const Article: FC = () => (
       <code>node</code> we want to remove.
     </p>
     <p>It’s time to code.</p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">remove_node</span>
-          <span className="hljs-params">(self, value, parent)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> value &lt; self.value{' '}
-        <span className="hljs-keyword">and</span> self.left_child:
-        <span className="hljs-keyword">return</span>{' '}
-        self.left_child.remove_node(value, self)
-        <span className="hljs-keyword">elif</span> value &lt; self.value:
-        <span className="hljs-keyword">return</span>{' '}
-        <span className="hljs-keyword">False</span>
-        <span className="hljs-keyword">elif</span> value &gt; self.value{' '}
-        <span className="hljs-keyword">and</span> self.right_child:
-        <span className="hljs-keyword">return</span>{' '}
-        self.right_child.remove_node(value, self)
-        <span className="hljs-keyword">elif</span> value &gt; self.value:
-        <span className="hljs-keyword">return</span>{' '}
-        <span className="hljs-keyword">False</span>
-        <span className="hljs-keyword">else</span>:
-        <span className="hljs-keyword">if</span> self.left_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self.right_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self == parent.left_child:
-        parent.left_child = <span className="hljs-keyword">None</span>
-        self.clear_node()
-        <span className="hljs-keyword">elif</span> self.left_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self.right_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self == parent.right_child:
-        parent.right_child = <span className="hljs-keyword">None</span>
-        self.clear_node()
-        <span className="hljs-keyword">elif</span> self.left_child{' '}
-        <span className="hljs-keyword">and</span> self.right_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self == parent.left_child:
-        parent.left_child = self.left_child self.clear_node()
-        <span className="hljs-keyword">elif</span> self.left_child{' '}
-        <span className="hljs-keyword">and</span> self.right_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self == parent.right_child:
-        parent.right_child = self.left_child self.clear_node()
-        <span className="hljs-keyword">elif</span> self.right_child{' '}
-        <span className="hljs-keyword">and</span> self.left_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self == parent.left_child:
-        parent.left_child = self.right_child self.clear_node()
-        <span className="hljs-keyword">elif</span> self.right_child{' '}
-        <span className="hljs-keyword">and</span> self.left_child{' '}
-        <span className="hljs-keyword">is</span>{' '}
-        <span className="hljs-keyword">None</span>{' '}
-        <span className="hljs-keyword">and</span> self == parent.right_child:
-        parent.right_child = self.right_child self.clear_node()
-        <span className="hljs-keyword">else</span>: self.value =
-        self.right_child.find_minimum_value()
-        self.right_child.remove_node(self.value, self)
-        <span className="hljs-keyword">return</span>{' '}
-        <span className="hljs-keyword">True</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode19}</Highlight>
     <ul>
       <li>
         To use the <code>clear_node</code> method: set the
@@ -1329,111 +1035,37 @@ export const Article: FC = () => (
         <code>right_child</code>)
       </li>
     </ul>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">clear_node</span>
-          <span className="hljs-params">(self)</span>:
-        </span>
-        self.value = <span className="hljs-keyword">None</span>
-        self.left_child = <span className="hljs-keyword">None</span>
-        self.right_child = <span className="hljs-keyword">None</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode20}</Highlight>
     <ul>
       <li>
         To use the <code>find_minimum_value</code> method: go way down to the
         left. If we can’t find anymore nodes, we found the smallest one.
       </li>
     </ul>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-function">
-          <span className="hljs-keyword">def</span>{' '}
-          <span className="hljs-title">find_minimum_value</span>
-          <span className="hljs-params">(self)</span>:
-        </span>
-        <span className="hljs-keyword">if</span> self.left_child:
-        <span className="hljs-keyword">return</span>{' '}
-        self.left_child.find_minimum_value()
-        <span className="hljs-keyword">else</span>:
-        <span className="hljs-keyword">return</span> self.value
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode21}</Highlight>
     <p>Now let’s test it.</p>
     <p>
       We will use this <code>tree</code> to test our
       <code>remove_node</code> algorithm.
     </p>
-    <pre>
-      <code className="language-python">
-        <span className="hljs-comment"># |15|</span>
-        <span className="hljs-comment"># / \</span>
-        <span className="hljs-comment"># |10| |20|</span>
-        <span className="hljs-comment"># / \ / \</span>
-        <span className="hljs-comment"># |8| |12| |17| |25|</span>
-        <span className="hljs-comment"># \</span>
-        <span className="hljs-comment"># |19|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode22}</Highlight>
     <p>
       Let’s remove the <code>node</code> with the <code>value</code> 8. It’s a{' '}
       <code>node</code> with no child.
     </p>
-    <pre>
-      <code className="language-python">
-        print(bst.remove_node(<span className="hljs-number">8</span>,{' '}
-        <span className="hljs-keyword">None</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        bst.pre_order_traversal()
-        <span className="hljs-comment"># |15|</span>
-        <span className="hljs-comment"># / \</span>
-        <span className="hljs-comment"># |10| |20|</span>
-        <span className="hljs-comment"># \ / \</span>
-        <span className="hljs-comment"># |12| |17| |25|</span>
-        <span className="hljs-comment"># \</span>
-        <span className="hljs-comment"># |19|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode23}</Highlight>
     <p>
       Now let’s remove the <code>node</code> with the <code>value</code> 17.
       It’s a <code>node</code> with just one child.
     </p>
-    <pre>
-      <code className="language-python">
-        print(bst.remove_node(<span className="hljs-number">17</span>,{' '}
-        <span className="hljs-keyword">None</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        bst.pre_order_traversal()
-        <span className="hljs-comment"># |15|</span>
-        <span className="hljs-comment"># / \</span>
-        <span className="hljs-comment"># |10| |20|</span>
-        <span className="hljs-comment"># \ / \</span>
-        <span className="hljs-comment"># |12| |19| |25|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode24}</Highlight>
     <p>
       Finally, we will remove a <code>node</code> with two children. This is the{' '}
       <code>root</code> of our <code>tree</code>.
     </p>
-    <pre>
-      <code className="language-python">
-        print(bst.remove_node(<span className="hljs-number">15</span>,{' '}
-        <span className="hljs-keyword">None</span>)){' '}
-        <span className="hljs-comment"># True</span>
-        bst.pre_order_traversal()
-        <span className="hljs-comment"># |19|</span>
-        <span className="hljs-comment"># / \</span>
-        <span className="hljs-comment"># |10| |20|</span>
-        <span className="hljs-comment"># \ \</span>
-        <span className="hljs-comment"># |12| |25|</span>
-      </code>
-    </pre>
+    <Highlight className="python">{sourceCode25}</Highlight>
     <p>The tests are now done. :)</p>
-    <h2>
-      <a id="Thats_all_for now_709"></a>That’s all for now!
-    </h2>
+    <h2>That’s all for now!</h2>
     <p>We learned a lot here.</p>
     <p>
       Congrats on finishing this dense content. It’s really tough to understand

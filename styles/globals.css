@@ -26,6 +26,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+article img {
+  width: 100%;
+}
+
 h1 a,
 h2 a,
 h3 a,
