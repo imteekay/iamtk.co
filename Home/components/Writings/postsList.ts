@@ -1,7 +1,7 @@
 export const postsList = [
   {
     datetime: '2021-11-01',
-    link: '2021/11/on-leaving',
+    link: '/on-leaving',
     title: 'On Leaving',
   },
   {

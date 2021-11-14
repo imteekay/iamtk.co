@@ -26,8 +26,62 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+article h2 {
+  position: relative;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 2 rem;
+  margin-bottom: 0.5 rem;
+  color: #eee;
+  display: block;
+  line-height: 40px;
+}
+
 article img {
   width: 100%;
+}
+
+article blockquote {
+  margin: 1rem 10px;
+  padding: 0.5em 10px;
+  font-size: 1.1em;
+  font-size: 1.5em;
+  color: #666;
+  margin-top: 1.5em;
+  text-align: center;
+  line-height: 1.25;
+  color: #eee;
+  word-spacing: -4px;
+  letter-spacing: -1px;
+  position: relative;
+  line-height: 30px;
+}
+
+article blockquote::before {
+  color: #eee;
+  content: '\201C';
+  font-size: 2em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+  position: absolute;
+  left: -15px;
+}
+
+article a {
+  text-decoration: none;
+  color: #c9cacc;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: 100% 6px;
+  background-image: linear-gradient(
+    transparent,
+    transparent 5px,
+    #c9cacc 5px,
+    #c9cacc
+  );
 }
 
 h1 a,
