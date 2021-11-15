@@ -32,11 +32,20 @@ article h2 {
   font-weight: bold;
   text-transform: none;
   letter-spacing: normal;
-  margin-top: 2 rem;
-  margin-bottom: 0.5 rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
   color: #eee;
   display: block;
   line-height: 40px;
+}
+
+article h3 {
+  margin-top: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #eee;
+  line-height: 30px;
 }
 
 article img {

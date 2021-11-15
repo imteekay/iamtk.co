@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
-import { pageData, Article } from 'PagesData/on-leaving';
+import { pageData, Article } from 'PagesData/on-distraction';
 
-const OnLeaving: NextPage = () => (
+const OnDistraction: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -21,4 +21,4 @@ const OnLeaving: NextPage = () => (
   </>
 );
 
-export default OnLeaving;
+export default OnDistraction;
