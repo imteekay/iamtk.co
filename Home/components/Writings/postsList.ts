@@ -43,7 +43,7 @@ export const postsList = [
   },
   {
     datetime: '2021-06-12',
-    link: '2021/06/react-query-complex-dependent-queries',
+    link: '/react-query-complex-dependent-queries',
     title: 'react-query: complex dependent queries',
   },
   {
