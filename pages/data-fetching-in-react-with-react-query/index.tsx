@@ -4,7 +4,7 @@ import { Layout } from 'Base/Article/Layout';
 import {
   pageData,
   Article,
-} from 'PagesData/react-query-complex-dependent-queries';
+} from 'PagesData/data-fetching-in-react-with-react-query';
 
 const Page: NextPage = () => (
   <>

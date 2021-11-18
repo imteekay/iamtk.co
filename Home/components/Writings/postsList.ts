@@ -48,7 +48,7 @@ export const postsList = [
   },
   {
     datetime: '2021-06-05',
-    link: '2021/06/data-fetching-in-react-with-reactquery',
+    link: '/data-fetching-in-react-with-react-query',
     title: 'Data Fetching in React with react-query',
   },
   {
