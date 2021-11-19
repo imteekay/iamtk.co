@@ -6,7 +6,7 @@ export const postsList = [
   },
   {
     datetime: '2021-10-30',
-    link: '2021/11/on-distraction',
+    link: '/on-distraction',
     title: 'On Distraction',
   },
   {
