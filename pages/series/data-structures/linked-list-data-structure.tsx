@@ -6,7 +6,7 @@ import {
   pageData,
 } from 'PagesData/series/data-structures/linked-list-data-structure';
 
-const LinkedListDataStructure: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -24,4 +24,4 @@ const LinkedListDataStructure: NextPage = () => (
   </>
 );
 
-export default LinkedListDataStructure;
+export default Page;

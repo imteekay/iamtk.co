@@ -6,7 +6,7 @@ import {
   pageData,
 } from 'PagesData/series/data-structures/stack-data-structure';
 
-const StackDataStructure: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -24,4 +24,4 @@ const StackDataStructure: NextPage = () => (
   </>
 );
 
-export default StackDataStructure;
+export default Page;

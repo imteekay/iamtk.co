@@ -3,7 +3,7 @@ import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import { pageData, Article } from 'PagesData/on-leaving';
 
-const OnLeaving: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -21,4 +21,4 @@ const OnLeaving: NextPage = () => (
   </>
 );
 
-export default OnLeaving;
+export default Page;

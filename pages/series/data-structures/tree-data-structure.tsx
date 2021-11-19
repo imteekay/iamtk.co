@@ -6,7 +6,7 @@ import {
   Article,
 } from 'PagesData/series/data-structures/tree-data-structure';
 
-const TreeDataStructure: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -24,4 +24,4 @@ const TreeDataStructure: NextPage = () => (
   </>
 );
 
-export default TreeDataStructure;
+export default Page;

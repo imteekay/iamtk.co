@@ -4,7 +4,7 @@ import { Layout } from 'Base/Article/Layout';
 import { PostsList } from 'Base/Article/PostsList';
 import { pageData, Article } from 'PagesData/series/data-structures/index';
 
-const DataStructures: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -23,4 +23,4 @@ const DataStructures: NextPage = () => (
   </>
 );
 
-export default DataStructures;
+export default Page;

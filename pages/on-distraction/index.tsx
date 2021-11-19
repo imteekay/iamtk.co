@@ -3,7 +3,7 @@ import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import { pageData, Article } from 'PagesData/on-distraction';
 
-const OnDistraction: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -21,4 +21,4 @@ const OnDistraction: NextPage = () => (
   </>
 );
 
-export default OnDistraction;
+export default Page;

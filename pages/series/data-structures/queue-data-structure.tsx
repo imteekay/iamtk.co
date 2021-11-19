@@ -6,7 +6,7 @@ import {
   pageData,
 } from 'PagesData/series/data-structures/queue-data-structure';
 
-const QueueDataStructure: NextPage = () => (
+const Page: NextPage = () => (
   <>
     <Head
       title={pageData.title}
@@ -24,4 +24,4 @@ const QueueDataStructure: NextPage = () => (
   </>
 );
 
-export default QueueDataStructure;
+export default Page;

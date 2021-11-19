@@ -7,7 +7,7 @@ import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
 
-const Home: NextPage = () => {
+const Page: NextPage = () => {
   return (
     <>
       <Head
@@ -31,4 +31,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Page;
