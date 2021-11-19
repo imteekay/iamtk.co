@@ -2,7 +2,10 @@ import type { NextPage } from 'next';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import { PostsList } from 'Base/Article/PostsList';
-import { pageData, Article } from 'PagesData/series/building-an-interpreter';
+import {
+  pageData,
+  Article,
+} from 'PagesData/series/building-an-interpreter/index';
 
 const Page: NextPage = () => (
   <>
