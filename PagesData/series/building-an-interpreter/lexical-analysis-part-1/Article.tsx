@@ -40,6 +40,13 @@ const resourcesList = [
 export const Article: FC = () => (
   <>
     <p>
+      This post is part of a series called{' '}
+      <Link href="/series/building-an-interpreter">
+        Building an Interpreter
+      </Link>
+      .
+    </p>
+    <p>
       Lexical Analysis is the process of transforming the source code into
       tokens. Tokens are an accessible form to ease the way we interpret the
       programming language.
