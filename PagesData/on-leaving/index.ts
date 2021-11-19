@@ -2,7 +2,7 @@ export { Article } from './Article';
 
 const tags = [
   {
-    href: '/tags/lifestyle_design ',
+    href: '/tags/lifestyle-design ',
     name: 'lifestyle_design',
   },
   {

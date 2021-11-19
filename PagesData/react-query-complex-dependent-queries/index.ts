@@ -6,7 +6,7 @@ const tags = [
     name: 'javascript',
   },
   {
-    href: '/tags/web_development',
+    href: '/tags/web-development',
     name: 'web_development',
   },
 ];
