@@ -11,34 +11,34 @@ export const postsList = [
   },
   {
     datetime: '2021-10-17',
-    link: 'series/building-an-interpreter/parser-part-1-fundamental-parts-of-ast-and-basic-statements',
+    link: '/series/building-an-interpreter/parser-part-1-fundamental-parts-of-ast-and-basic-statements',
     title:
       'Building an Interpreter: Parser - Part 1: Fundamental parts of AST and basic statements',
   },
   {
     datetime: '2021-07-20',
-    link: 'series/building-an-interpreter/building-an-interpreter-repl',
+    link: '/series/building-an-interpreter/repl',
     title: 'Building an Interpreter: REPL',
   },
   {
     datetime: '2021-07-18',
-    link: 'series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-3',
+    link: '/series/building-an-interpreter/lexical-analysis-part-3',
     title: 'Building an Interpreter: Lexical Analysis - Part 3',
   },
   {
     datetime: '2021-06-23',
-    link: 'series/rebuilding-mercaris-search/home-menu',
+    link: '/series/rebuilding-mercaris-search/home-menu',
     title: "Rebuilding Mercari's Search: Home and Menu",
   },
   {
     datetime: '2021-06-20',
-    link: 'series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest',
+    link: '/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest',
     title:
       "Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest",
   },
   {
     datetime: '2021-06-13',
-    link: 'series/rebuilding-mercaris-search',
+    link: '/series/rebuilding-mercaris-search',
     title: "Rebuilding Mercari's Search Series",
   },
   {
@@ -53,17 +53,17 @@ export const postsList = [
   },
   {
     datetime: '2021-05-29',
-    link: 'series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2',
+    link: '/series/building-an-interpreter/lexical-analysis-part-2',
     title: 'Building an Interpreter: Lexical Analysis - Part 2',
   },
   {
     datetime: '2021-05-23',
-    link: 'series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1',
+    link: '/series/building-an-interpreter/lexical-analysis-part-1',
     title: 'Building an Interpreter: Lexical Analysis - Part 1',
   },
   {
     datetime: '2021-05-23',
-    link: 'series/building-an-interpreter',
+    link: '/series/building-an-interpreter',
     title: 'Building an Interpreter Series',
   },
   {
@@ -123,12 +123,12 @@ export const postsList = [
   },
   {
     datetime: '2020-06-14',
-    link: 'series/data-structures',
+    link: '/series/data-structures',
     title: 'Data Structures Series',
   },
   {
     datetime: '2020-05-17',
-    link: 'series/algorithms-problem-solving',
+    link: '/series/algorithms-problem-solving',
     title: 'Algorithms Problem Solving Series',
   },
   {
