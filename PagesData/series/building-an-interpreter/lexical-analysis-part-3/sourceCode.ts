@@ -156,32 +156,3 @@ export const sourceCode14 = `switch (this.char) {
     }
   // ...
 }`;
-
-export const sourceCode15 = `case '=':
-  this.readChar();
-  return new Token(Tokens.ASSIGN, '=');`;
-
-export const sourceCode16 = `private buildToken(type: TokenType, literal: string) {
-  this.readChar();
-  return new Token(type, literal);
-}`;
-
-export const sourceCode17 = `switch (this.char) {
-  case '=':
-    return this.buildToken(Tokens.ASSIGN, '=');
-  case ';':
-    return this.buildToken(Tokens.SEMICOLON, ';');
-  case '(':
-    return this.buildToken(Tokens.LPAREN, '(');
-  case ')':
-    return this.buildToken(Tokens.RPAREN, ')');
-  case ',':
-    return this.buildToken(Tokens.COMMA, ',');
-  case '+':
-    return this.buildToken(Tokens.PLUS, '+');
-  case '{':
-    return this.buildToken(Tokens.LBRACE, '{');
-  case '}':
-    return this.buildToken(Tokens.RBRACE, '}');
-  case '':
-    return this.buildToken(Tokens.EOF, '');`;
