@@ -2,12 +2,16 @@ export { Article } from './Article';
 
 const tags = [
   {
-    href: '/tags/algorithms-and-data-structures',
-    name: 'algorithms_and_data_structures',
+    href: '/tags/programming-language-design',
+    name: 'programming_language_design',
   },
   {
-    href: '/tags/python',
-    name: 'python',
+    href: '/tags/typescript',
+    name: 'typescript',
+  },
+  {
+    href: '/tags/javascript',
+    name: 'javascript',
   },
 ];
 

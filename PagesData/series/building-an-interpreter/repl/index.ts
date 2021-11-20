@@ -9,6 +9,10 @@ const tags = [
     href: '/tags/typescript',
     name: 'typescript',
   },
+  {
+    href: '/tags/javascript',
+    name: 'javascript',
+  },
 ];
 
 const coverImage = {
