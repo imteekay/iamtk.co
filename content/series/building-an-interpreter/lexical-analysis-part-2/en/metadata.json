@@ -1,0 +1,27 @@
+{
+  "title": "Building an Interpreter: Lexical Analysis - Part 2",
+  "description": "The second part of the Lexical Analysis implementation of the interpreter",
+  "date": "2021-05-29",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/building-an-interpreter/analysis-2.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Two men discussing and writing in a whiteboard",
+    "authorHref": "https://unsplash.com/@isaacmsmith",
+    "authorName": "Isaac Smith"
+  }
+}

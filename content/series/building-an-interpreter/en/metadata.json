@@ -1,0 +1,27 @@
+{
+  "title": "Building an Interpreter Series",
+  "description": "A documentation series about the interpreter I'm building and learning",
+  "date": "2021-05-23",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/building-an-interpreter/intro.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Glasses on top of a notebook",
+    "authorHref": "https://unsplash.com/@sigmund",
+    "authorName": "Sigmund"
+  }
+}

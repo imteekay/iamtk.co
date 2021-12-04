@@ -1,0 +1,27 @@
+{
+  "title": "Parser - Part 1: Fundamental parts of AST and basic statements",
+  "description": "Build a parser and the fundamental parts of the Abstract Syntax Tree",
+  "date": "2021-10-17",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/building-an-interpreter/fire.jpg",
+    "width": "592",
+    "height": "886",
+    "alt": "Fire",
+    "authorHref": "https://unsplash.com/@andrewcoop",
+    "authorName": "Andrew Coop"
+  }
+}
