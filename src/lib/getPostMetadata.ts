@@ -33,3 +33,33 @@ export function getPostMetadata(
 
   return JSON.parse(postMetadata);
 }
+
+export function getNestedPostMetadata(
+  series: string,
+  locale: string = 'en',
+): PostMetadata {
+  const postsDir = path.join(process.cwd(), 'content', 'series');
+  const postPath = path.join(postsDir, series, locale, 'metadata.json');
+  const postMetadata = fs.readFileSync(postPath, 'utf8');
+
+  return JSON.parse(postMetadata);
+}
+
+export function getSeriesPostMetadata(
+  series: string,
+  seriesItem: string,
+  locale: string = 'en',
+): PostMetadata {
+  const postsDir = path.join(process.cwd(), 'content', 'series');
+  const postPath = path.join(
+    postsDir,
+    series,
+    seriesItem,
+    locale,
+    'metadata.json',
+  );
+
+  const postMetadata = fs.readFileSync(postPath, 'utf8');
+
+  return JSON.parse(postMetadata);
+}

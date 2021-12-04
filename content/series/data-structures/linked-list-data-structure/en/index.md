@@ -1,0 +1,497 @@
+A linked list is a collection of nodes that form a linear sequence. The difference between an array and a linked list is that the array has indexed elements, so we can get an element by constant time by just searching by its index. In the linked list, we need to go through the nodes to get the searched element and that takes linear time.
+
+The advantage is that the linked lists can insert and remove items in constant time.
+
+A Linked List is a sequence of nodes and each node has two `attributes`: the value it stores and the reference to the next node of the sequence.
+
+The first and last nodes are called `head` and `tail` of the list, respectively. So to get to the tail of the last, we traverse the linked list by moving from one node to another using each node's next reference.
+
+The Linked List having the `head` and the `tail` as attributes helps add new nodes to the start and the end of the list. But we can implement it with or without the `tail` attribute. We will dive into this implementation.
+
+We can separate the linked list from its elements. Each element is a node and we can implement this representation with a `Node` class.
+
+```python
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+```
+
+Basically, it has a value and the reference to the next node. We add a default value (`None`) to the `next` parameter to make it more flexible to use when creating new nodes.
+
+The simplest way to use it is:
+
+```python
+new_node = Node(1)
+new_node.value  # 1
+new_node.next  # None
+```
+
+- Instantiate the new node.
+- We can access the `value` and the `next` attributes.
+
+But with the flexibility of the `next` parameter, we can also use it by passing the next node reference.
+
+```python
+next_node = Node(2)
+
+new_node = Node(1, next_node)
+new_node.value  # 1
+new_node.next.value  # 2
+```
+
+- Have the next node.
+- Instantiate the new node by passing the value and the reference to the next node (`next_node` in our case).
+- We can access the `value` and the `next` value.
+
+For the linked list, the first step is to create a class representing it. For now, we just want a `head` attribute when creating an empty list.
+
+```python
+class LinkedList:
+    def __init__(self):
+        self.head = None
+```
+
+Simple as that. Just a class and initialize the `head` attribute with `None` for an empty list.
+
+Let's implement the easier method: `is_empty`. How do we know when a list is empty? If the `head` is `None`, we didn't add any node to this list. This is the logic behind the `is_empty` method.
+
+```python
+def is_empty(self):
+    return self.head is None
+```
+
+Pretty simple, huh?
+
+Now the `prepend` method. We basically need to create a new node, points the `next` attribute from this new node to the `head`, and assign this new node to be the new linked list `head`.
+
+Remember we have the `next` parameter when creating a new node? We can use it to assign the previous `head` when creating the new node. Something like this:
+
+```python
+Node(value, previous_head)
+```
+
+In the context of the linked list, we will have the `self.head`. So:
+
+```python
+Node(value, self.head)
+```
+
+The last step is to assign this new node to the `head` and we will prepend it.
+
+```python
+self.head = Node(value, self.head)
+```
+
+- Create new node
+- Assign the `next` attribute to the previous `head`
+- And assign the new node to the `head`
+
+The complete method will be like this:
+
+```python
+def prepend(self, value):
+    self.head = Node(value, self.head)
+```
+
+Just one line. Pretty good!
+
+For the `append`, it's a bit different, because, instead of adding a new node to the head of the list, we need to add to the tail. So basically we need to iterate through the list to be in the last node and point it's `next` attribute to the newly created node.
+
+The question is: How do we iterate through the list?
+
+The difference between the tail node and the rest is the `next` attribute. The tail has no `next`. It points to `None`. The rest always point to a different node.
+
+To iterate through the list to get the last node, we get the next node until the node has no `next` attribute. Start with the first node: the head.
+
+```python
+current_node = self.head
+```
+
+And then iterate.
+
+```python
+while current_node.next is not None:
+    current_node = current_node.next
+```
+
+We divide this code into two parts:
+
+- looping while the node's `next` attribute is not `None`
+- update the current node by assigning the next node
+
+When the `while` loop breaks, we have the last node, so we just need to update the last node `next` attribute.
+
+```python
+current_node.next = Node(value)
+```
+
+The complete code:
+
+```python
+current_node = self.head
+
+while current_node.next is not None:
+    current_node = current_node.next
+
+current_node.next = Node(value)
+```
+
+But this code will break if the linked list is empty, because the `head` is `None`, it can't have a `next` attribute.
+
+In this case, we just make a condition for emptiness. If it is empty, we just assign the new node to the `head`.
+
+```python
+def append(self, value):
+    if self.is_empty():
+        self.head = Node(value)
+        return
+
+    current_node = self.head
+
+    while current_node.next is not None:
+        current_node = current_node.next
+
+    current_node.next = Node(value)
+```
+
+For the `size` method is straightforward. We basically need to iterate through the whole list and count each node.
+
+To iterate is pretty simple. We just need to loop while the current node is not `None`.
+
+```python
+while current_node is not None:
+    current_node = current_node.next
+```
+
+And for each iteration, we need to increase our counter.
+
+```python
+def size(self):
+    list_length = 0
+    current_node = self.head
+
+    while current_node is not None:
+        list_length += 1
+        current_node = current_node.next
+
+    return list_length
+```
+
+- Initialize the `list_length` with `0`.
+- Get the current node: the `head`.
+- Iterate through the list.
+- For each iteration, increase the counter.
+- Returns the `list_length`.
+
+For the `search` algorithm, we need to receive a value and return `True` or `False` if this value is in the linked list.
+
+So we basically need to iterate through the linked list searching for this value.
+
+The iteration is simple:
+
+```python
+while current_node is not None:
+		current_node = current_node.next
+```
+
+Now, for each node, we see if the current node value is the same as the searched value.
+
+```python
+while current_node is not None:
+    if current_node.value == value:
+        return True
+
+    current_node = current_node.next
+```
+
+We can do this way to return `True` if the searched value is found. Or we can define a `found` variable and use it to set it to `True` when finding it and get out of the loop.
+
+```python
+while not found and current_node is not None:
+    found = current_node.value == value
+    current_node = current_node.next
+```
+
+- We will iterate while we didn't find the value and it is not the last node
+- Basically, the loop will stop when finding the searched value or finish the entire linked list
+- The `current_node.value == value` logic will store a `True` or `False` value for each current node value
+
+We define the `found` and `current_node` before iterating and return if we found the searched value or not.
+
+```python
+def search(self, value):
+    found = False
+    current_node = self.head
+
+    while not found and current_node is not None:
+        found = current_node.value == value
+        current_node = current_node.next
+
+    return found
+```
+
+The last method to be implemented is the `empty` method. We can think about this method in separated cases:
+
+- when the list is empty.
+- when we want to remove the head node.
+- when we want to remove a node from the middle or the last one.
+
+For the empty case is pretty simple. We just check the list with our `is_empty` method.
+
+```python
+if self.is_empty():
+    return
+```
+
+We can also throw an error exception or just print "The list is empty", for example.
+
+For the case when we want to remove the head node, we check it first and then remove it.
+
+```python
+if self.head.value == value:
+    self.head = self.head.next
+    return
+```
+
+To remove it, we just need to point the head to the its next node.
+
+The last case is when we want to remove a node in the middle or the last one. Let's draw it!
+
+![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fd50915-6d6b-43ee-9032-b0c85533d11d/20200202_201216.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fd50915-6d6b-43ee-9032-b0c85533d11d/20200202_201216.jpg)
+
+For this algorithm, what we want is to get the previous node of the node to be removed and point to the next node of the node to be removed. So we need to have the previous node in each iteration. This is the fundamental part of our algorithm.
+
+```python
+while current_node.next is not None:
+    if current_node.next.value == value:
+        current_node.next = current_node.next.next
+        return
+
+    current_node = current_node.next
+```
+
+This is the algorithm.
+
+We will iterate through the list while the current node's next is not a `None` value. Why? Because we want to compare the next node value. Not the current one.
+
+```python
+if current_node.next.value == value:
+```
+
+This the logic we are searching for. Does the current node's next value is the value we want to remove?
+
+If it is `True`, we basically remove the current node's next node by pointing the `next` to the `next.next`, and returning the function.
+
+If it is `False`, we keep iterating until we find the value we want or when we finish the entire list.
+
+Joining all the parts, we have:
+
+```python
+def remove(self, value):
+    if self.is_empty():
+        return
+
+    if self.head.value == value:
+        self.head = self.head.next
+        return
+
+    current_node = self.head
+
+    while current_node.next is not None:
+        if current_node.next.value == value:
+            current_node.next = current_node.next.next
+            return
+
+        current_node = current_node.next
+```
+
+## The Linked List class
+
+Joining all the parts we talked about and implemented, we have:
+
+```python
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, value):
+        if self.is_empty():
+            self.head = Node(value)
+            return
+
+        current_node = self.head
+
+        while current_node.next is not None:
+            current_node = current_node.next
+
+        current_node.next = Node(value)
+
+    def prepend(self, value):
+        self.head = Node(value, self.head)
+
+    def remove(self, value):
+        if self.is_empty():
+            return
+
+        if self.head.value == value:
+            self.head = self.head.next
+            return
+
+        current_node = self.head
+
+        while current_node.next is not None:
+            if current_node.next.value == value:
+                current_node.next = current_node.next.next
+                return
+
+            current_node = current_node.next
+
+    def search(self, value):
+        found = False
+        current_node = self.head
+
+        while not found and current_node is not None:
+            found = current_node.value == value
+            current_node = current_node.next
+
+        return found
+
+    def is_empty(self):
+        return self.head is None
+
+    def size(self):
+        list_length = 0
+        current_node = self.head
+
+        while current_node is not None:
+            list_length += 1
+            current_node = current_node.next
+
+        return list_length
+```
+
+## Let's test it!
+
+I basically created three helper functions to help us to test our linked list.
+
+```python
+def print_all(linked_list):
+    print('All values:', end=' ')
+    current_node = linked_list.head
+
+    while current_node is not None:
+        print(current_node.value, end=' ')
+        current_node = current_node.next
+
+    print()
+
+def print_found(linked_list, value):
+    found = linked_list.search(value)
+    print('For value:', value, '-->', 'Found:', found, )
+
+def print_size(linked_list):
+    list_length = linked_list.size()
+    print('Size:', list_length)
+```
+
+They will print all the values, the found value, and the size of the list. So first we instantiate our list:
+
+```python
+linked_list = LinkedList()
+```
+
+Let's see what we get when we try to print all the values and its size:
+
+```python
+print_all(linked_list)
+print_size(linked_list)  # 0
+```
+
+Yes, no values and `0` elements.
+
+We can append a node with value `1`, print the values, and see its size.
+
+```python
+linked_list.append(1)
+print_all(linked_list)  # 1
+print_size(linked_list)  # 1
+```
+
+If we try to remove `0`, the `1` is still there. But if we remove `1`, we have no nodes anymore. The first line is cool: it doesn't break if we try to remove an element that doesn't exist in the linked list.
+
+```python
+linked_list.remove(0)
+print_all(linked_list)  # 1
+linked_list.remove(1)
+print_all(linked_list)
+```
+
+Adding new nodes and printing them:
+
+```python
+linked_list.append(2)
+linked_list.append(3)
+print_all(linked_list)  # 2 3
+print_size(linked_list)  # 2
+```
+
+Let's try out `found` method:
+
+```python
+print_found(linked_list, 1)  # False
+print_found(linked_list, 2)  # True
+print_found(linked_list, 3)  # True
+```
+
+That's cool! We really don't have the `1` node, but we have the `2` and the `3`.
+
+Now printing after removing each node:
+
+```python
+linked_list.remove(1)
+print_all(linked_list)  # 2 3
+linked_list.remove(2)
+print_all(linked_list)  # 3
+linked_list.remove(3)
+print_all(linked_list)
+```
+
+Let's try out `prepend` method:
+
+```python
+linked_list.prepend(4)
+linked_list.prepend(3)
+linked_list.prepend(2)
+linked_list.prepend(1)
+print_all(linked_list)  # 1 2 3 4
+```
+
+And remove the `3`.
+
+```python
+linked_list.remove(3)
+print_all(linked_list)  # 1 2 4
+```
+
+Works fine!
+
+## Resources
+
+- [Learning Python: From Zero to Hero](http://leandrotk.github.io/tk/2017/09/learning-python-from-zero-to-hero/index.html)
+- [One Month - Learn Python](https://mbsy.co/lG6tv)
+- [Big-O Notation For Coding Interviews and Beyond](https://www.educative.io/courses/big-o-notation-for-interviews-and-beyond?aff=x8bV)
+- [Learn Python from Scratch](https://www.educative.io/courses/learn-python-from-scratch?aff=x8bV)
+- [Learn Object-Oriented Programming in Python](https://www.educative.io/courses/learn-object-oriented-programming-in-python?aff=x8bV)
+- [Data Structures in Python: An Interview Refresher](https://www.educative.io/courses/data-structures-in-python-an-interview-refresher?aff=x8bV)
+- [Data Structures and Algorithms in Python](https://www.amazon.com/Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275))
+- [HackerRank Linked List](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)
+- [Linked List Part 1](https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d)
+- [Linked List Part 2](https://medium.com/basecs/whats-a-linked-list-anyway-part-2-131d96f71996)
+- [Data Structures in Python: Circular Linked Lists - Remove Node](https://www.youtube.com/watch?v=op42w-5o3nE)
+- [Data Structures: Linked Lists](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)
