@@ -11,7 +11,7 @@ export const postsList = [
   },
   {
     datetime: '2021-10-17',
-    link: '/series/building-an-interpreter/parser-part-1-fundamental-parts-of-ast-and-basic-statements',
+    link: '/series/building-an-interpreter/parser-part-1',
     title:
       'Building an Interpreter: Parser - Part 1: Fundamental parts of AST and basic statements',
   },

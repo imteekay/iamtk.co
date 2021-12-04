@@ -24,11 +24,11 @@ export type PostMetadata = {
 };
 
 export function getPostMetadata(
-  folder: string,
+  slug: string,
   locale: string = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content');
-  const postPath = path.join(postsDir, folder, locale, 'metadata.json');
+  const postPath = path.join(postsDir, slug, locale, 'metadata.json');
   const postMetadata = fs.readFileSync(postPath, 'utf8');
 
   return JSON.parse(postMetadata);

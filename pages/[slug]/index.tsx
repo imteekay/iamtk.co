@@ -8,7 +8,7 @@ import { getPostContent } from 'src/lib/getPostContent';
 import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
 
 interface Params extends ParsedUrlQuery {
-  folder: string;
+  slug: string;
 }
 
 type PageProps = {
@@ -53,9 +53,9 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
-  const { folder } = context.params!;
-  const postContent = getPostContent(folder);
-  const postMetadata = getPostMetadata(folder);
+  const { slug } = context.params!;
+  const postContent = getPostContent(slug);
+  const postMetadata = getPostMetadata(slug);
 
   return {
     props: {
