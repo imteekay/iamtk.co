@@ -1,0 +1,145 @@
+This is the second post of the [Rebuilding Mercari's Search series](https://leandrotk.github.io/series/rebuilding-mercaris-search/).
+
+In this post, we'll talk about the home and the menu drafts. Before starting to implement the search, the filter, and the products list, I wanted to add a very simple home and a very simple menu to do the navigation between the home (url: `/`) and the search (url: `/search`) pages.
+
+As we start to implement UI, I should tell you that my focus on this project was to do the logic, state management, and tests. This is why I was looking for a UI framework to work as my design system. With this idea, I don't need to work heavily with CSS.
+
+I chose Material UI, because I'm familiar with it, so I can focus on other parts instead of learning a new framework now.
+
+So let's install the library and start implement the home and the menu.
+
+```bash
+yarn add @material-ui/core
+```
+
+The home is just a page with a title for now as I want to focus on the navigation between the home and the search.
+
+So the home, that will live in the `/` url, will have the menu to navigate to the search page, which will live in the `/search` url for now.
+
+This is the home with the title:
+
+```tsx
+export default function Home() {
+  return <h1>Home</h1>;
+}
+```
+
+This component page lives in the `pages/index.tsx` as NextJS does routing based on the folder and file structures.
+
+To make all the pages have a menu to be able to navigate to other places, we need to add it to the `pages/_app.tsx` file. But to be able to do that, let's first implement our Menu component.
+
+To simplify the menu at first, I wanted to add a button that will open or close the menu showing or hiding the menu items.
+
+```tsx
+<Button aria-controls="menu" aria-haspopup="true" onClick={handleClick}>
+  Open Menu
+</Button>
+```
+
+This is the first part. Nothing much here. We need the `handleClick` function now.
+
+```tsx
+const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+
+const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  setAnchorEl(event.currentTarget);
+};
+```
+
+The `handleClick` function only manage the state related to the `anchorEl`.
+
+The rest of the menu UI is pretty simple, we only need to use the `Menu` and the `MenuItem` from the Material UI.
+
+```tsx
+<MuiMenu
+  id="menu"
+  anchorEl={anchorEl}
+  keepMounted
+  open={Boolean(anchorEl)}
+  onClose={handleClose}
+>
+  {menuItems.map((item: MenuItem) => (
+    <Link href={item.linkTo} key={item.key}>
+      <MuiMenuItem>{item.label}</MuiMenuItem>
+    </Link>
+  ))}
+</MuiMenu>
+```
+
+We know about the `anchorEl`, but we need to implement the `handleClose` function, the `menuItems` list, and the `MenuItem` type.
+
+The `MenuItem` is a "type" representation for each item:
+
+```tsx
+export type MenuItem = {
+  linkTo: string;
+  label: string;
+  key: string;
+};
+```
+
+The `menuItems` is the simplest as it is just a list of items passed as a prop to this menu component. But we need to make sure it is passed and the "type" representation of this list is in the function component contract.
+
+```tsx
+import { FunctionComponent } from 'react';
+
+type MenuPropsType = { menuItems: MenuItem[] };
+
+export const Menu: FunctionComponent<MenuPropsType> = ({ menuItems }) => {
+	...
+};
+```
+
+And the `handleClose` function only undo what the `handleClick` does: reset the `anchorEl` with a `null` value.
+
+```tsx
+const handleClose = (_: any) => {
+  setAnchorEl(null);
+};
+```
+
+Nice! The menu is not complete nor pretty, but it's functional now. We can start using in our app. To be able to reuse for all pages (for this app, it'll be for the home and the search pages), we just need to add it to the `_app.tsx` file.
+
+```tsx
+import { Fragment } from 'react';
+import type { AppProps } from 'next/app';
+import Menu, { MenuItem } from 'Base/Layout/Menu';
+import '../styles/globals.css';
+
+const menuItems: MenuItem[] = [
+  {
+    linkTo: '/',
+    label: 'Home',
+    key: 'link-to-home',
+  },
+  {
+    linkTo: '/search',
+    label: 'Search',
+    key: 'link-to-search',
+  },
+];
+
+function App({ Component, pageProps }: AppProps) {
+  return (
+    <Fragment>
+      <Menu menuItems={menuItems} />
+      <Component {...pageProps} />
+    </Fragment>
+  );
+}
+
+export default App;
+```
+
+The `Component` is each page we want to create and we add the `Menu` at the top of the page. As we saw earlier, we need to pass the `menuItems` with the type contract we built in the menu. It's also nice that we can reuse the types to make the data consistent.
+
+## Final words
+
+This was the second post of the _Rebuilding Mercari's Search_ series and I hope this also provides value to you. In this post, we start creating the building blocks for the app by adding a very simple home and menu for navigation.
+
+For the following post, we'll talk about the implementation of the search page, where we'll focus on the products list UI first.
+
+## Resources
+
+- [Home & Menu Pull Request](https://github.com/leandrotk/mercari-search/pull/1)
+- [mercari-search repo](https://github.com/leandrotk/mercari-search)

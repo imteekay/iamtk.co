@@ -1,0 +1,27 @@
+{
+  "title": "Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest",
+  "description": "Setting up the project with NextJS, TypeScript, Prettier, and Jest to rebuild the Mercari's Search.",
+  "date": "2021-06-20",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/rebuilding-mercaris-search/lego.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "lego",
+    "authorHref": "https://unsplash.com/@markusspiske",
+    "authorName": "Markus Spiske"
+  }
+}

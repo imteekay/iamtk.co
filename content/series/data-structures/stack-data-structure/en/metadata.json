@@ -1,0 +1,23 @@
+{
+  "title": "Stack Data Structure",
+  "description": "Solving algorithms problems with TK",
+  "date": "2020-01-06",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/python",
+      "name": "python"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/data-structures/books.jpg",
+    "width": "592",
+    "height": "592",
+    "alt": "An old man with piles of books",
+    "authorHref": "https://unsplash.com/@katergaris",
+    "authorName": "Aris Sfakianakis"
+  }
+}

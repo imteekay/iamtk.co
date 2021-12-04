@@ -1,0 +1,23 @@
+{
+  "title": "Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest",
+  "description": "Setting up the project with NextJS, TypeScript, Prettier, and Jest to rebuild the Mercari's Search.",
+  "date": "2021-06-20",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/python",
+      "name": "python"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/rebuilding-mercaris-search/house.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "house",
+    "authorHref": "https://unsplash.com/@insolitus",
+    "authorName": "Rowan Heuvel"
+  }
+}

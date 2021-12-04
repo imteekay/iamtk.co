@@ -1,0 +1,23 @@
+{
+  "title": "Rebuilding Mercari's Search Series",
+  "description": "A documentation series about how I rebuilt the Mercari's Search experience with NextJS, ReactJS, and TypeScript.",
+  "date": "2021-06-13",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/python",
+      "name": "python"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/rebuilding-mercaris-search/intro.jpg",
+    "width": "592",
+    "height": "888",
+    "alt": "Tokyo Tower",
+    "authorHref": "https://unsplash.com/@cmacmillanmarin",
+    "authorName": "Christian MacMillan"
+  }
+}
