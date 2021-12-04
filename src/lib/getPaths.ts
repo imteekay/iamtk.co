@@ -10,11 +10,20 @@ type Params = {
   params: SeriesParams;
 };
 
+function removeSeries(postsNames: string[], filterList: string[]) {
+  console.log(
+    filterList,
+    postsNames,
+    postsNames.filter((post) => !filterList.includes(post)),
+  );
+  return postsNames.filter((post) => !filterList.includes(post));
+}
+
 export function getPaths() {
   const postsDir = path.join(process.cwd(), 'content');
-  const fileNames = fs.readdirSync(postsDir);
+  const postsNames = fs.readdirSync(postsDir);
 
-  return fileNames.map((slug) => ({
+  return removeSeries(postsNames, ['series']).map((slug) => ({
     params: {
       slug,
     },
@@ -39,7 +48,7 @@ export function getSeriesPaths() {
   return seriesNames.reduce((acc: Params[], seriesName: string) => {
     const seriesDir = path.join(process.cwd(), 'content', 'series', seriesName);
     const seriesPosts = fs.readdirSync(seriesDir);
-    const series = seriesPosts.map((series) => ({
+    const series = removeSeries(seriesPosts, ['en']).map((series) => ({
       params: {
         series: seriesName,
         seriesItem: series,
