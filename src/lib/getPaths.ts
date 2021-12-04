@@ -11,11 +11,6 @@ type Params = {
 };
 
 function removeSeries(postsNames: string[], filterList: string[]) {
-  console.log(
-    filterList,
-    postsNames,
-    postsNames.filter((post) => !filterList.includes(post)),
-  );
   return postsNames.filter((post) => !filterList.includes(post));
 }
 
