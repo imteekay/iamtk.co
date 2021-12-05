@@ -98,7 +98,7 @@ export const postsList = [
   },
   {
     datetime: '2020-10-18',
-    link: '2020/10/building-a-simple-individual-development-plan-idp-with-notion',
+    link: '/building-an-individual-development-plan-with-notion',
     title: 'Building a simple Individual Development Plan (IDP) with Notion',
   },
   {

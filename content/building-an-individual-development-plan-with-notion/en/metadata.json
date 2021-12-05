@@ -1,0 +1,23 @@
+{
+  "title": "Building a simple Individual Development Plan (IDP) with Notion",
+  "description": "In this post I share with you how I created a simple individual development plan using Notion",
+  "date": "2020-10-18",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design ",
+      "name": "lifestyle_design"
+    },
+    {
+      "href": "/tags/learning ",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/building-an-individual-development-plan-with-notion/cover.jpeg",
+    "width": "592",
+    "height": "887",
+    "alt": "Lines and dots connected",
+    "authorHref": "https://unsplash.com/@11th_wave",
+    "authorName": "Eleventh Wave"
+  }
+}
