@@ -132,11 +132,6 @@ export const postsList = [
     title: 'Algorithms Problem Solving Series',
   },
   {
-    datetime: '2020-05-09',
-    link: '2020/05/typescript-learnings-interesting-types',
-    title: 'TypeScript Interesting Types',
-  },
-  {
     datetime: '2020-05-05',
     link: '2020/05/constant-feedback-driven-development-with-nodemon',
     title: 'Constant feedback driven development with Nodemon',
@@ -147,53 +142,43 @@ export const postsList = [
     title: 'Automating my blog posts publishing process',
   },
   {
-    datetime: '2020-04-25',
-    link: '2020/04/typescript-learnings-002-type-system',
-    title: 'TypeScript Type System',
-  },
-  {
-    datetime: '2020-04-21',
-    link: '2020/04/elixir-learnings/002-playing-around-with-lists',
-    title: 'Playing around with Elixir lists',
-  },
-  {
     datetime: '2020-04-18',
     link: '2020/04/react-hooks-context-api-and-pokemons',
     title: 'React Hooks, Context API, and Pokemons',
   },
   {
     datetime: '2020-04-15',
-    link: '2020/04/fun-with-dates.html">',
+    link: '/fun-with-dates',
     title: 'Fun with Dates',
   },
   {
     datetime: '2020-04-13',
-    link: '2020/04/elixir-learnings',
+    link: '/elixir-learnings',
     title: 'Elixir Learnings Series',
   },
   {
     datetime: '2020-04-08',
-    link: '2020/04/thinking-in-data-contracts',
+    link: '/thinking-in-data-contracts',
     title: 'Thinking in data contracts',
   },
   {
     datetime: '2020-04-05',
-    link: '2020/04/typescript-learnings',
+    link: '/typescript-learnings',
     title: 'TypeScript Learnings Series',
   },
   {
     datetime: '2020-04-01',
-    link: '2020/04/consistent-state-management-in-react-and-redux',
+    link: '/consistent-state-management-in-react-and-redux',
     title: 'Consistent State Management in React and Redux',
   },
   {
     datetime: '2020-03-27',
-    link: '2020/03/tdd-functions-and-react-components',
+    link: '/tdd-functions-and-react-components',
     title: 'TDD, simple functions, and React components',
   },
   {
     datetime: '2020-03-08',
-    link: '2020/03/closure-currying-and-cool-abstractions',
+    link: '/closure-currying-and-cool-abstractions',
     title: 'Closures, Currying, and Cool Abstractions',
   },
   {
@@ -218,63 +203,58 @@ export const postsList = [
   },
   {
     datetime: '2020-01-01',
-    link: '2020/01/building-an-abstraction-for-react-internationalization-messages',
+    link: '/building-an-abstraction-for-react-internationalization-messages',
     title: 'Building an abstraction for React internationalization messages',
   },
   {
     datetime: '2019-09-16',
-    link: '2019/09/designing-my-learning-experience',
+    link: '/designing-my-learning-experience',
     title: 'Designing my Learning Experience',
   },
   {
     datetime: '2019-07-07',
-    link: '2019/07/thoughts-on-my-productivity',
+    link: '/thoughts-on-my-productivity',
     title: 'Thoughts on my productivity',
   },
   {
     datetime: '2018-11-17',
-    link: '2018/11/functional-programming-principles-in-javascript',
+    link: '/functional-programming-principles-in-javascript',
     title: 'Functional Programming Principles in JavaScript',
   },
   {
     datetime: '2018-11-15',
-    link: '2018/11/an-introduction-to-the-basic-principles-of-functional-programming',
+    link: '/an-introduction-to-the-basic-principles-of-functional-programming',
     title: 'An introduction to the basic principles of Functional Programming',
   },
   {
     datetime: '2018-01-05',
-    link: '2018/01/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work',
+    link: '/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work',
     title:
       'Understanding the basics of Ruby on Rails: SQL Databases and how they work',
   },
   {
     datetime: '2018-01-03',
-    link: '2018/01/actionable-advice-to-start-learning-to-code',
+    link: '/actionable-advice-to-start-learning-to-code',
     title: 'Actionable advice to start learning to code',
   },
   {
     datetime: '2018-01-02',
-    link: '2018/01/understanding-the-basics-of-ruby-on-rails-http-mvc-and-routes',
+    link: '/understanding-the-basics-of-ruby-on-rails-http-mvc-and-routes',
     title: 'Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes',
   },
   {
-    datetime: '2017-11-05',
-    link: '2017/11/everything-you-need-to-know-about-tree-data-structures',
-    title: 'Everything you need to know about tree data structures',
-  },
-  {
     datetime: '2017-09-30',
-    link: '2017/09/learning-python-from-zero-to-hero',
+    link: '/learning-python-from-zero-to-hero',
     title: 'Learning Python From Zero to Hero',
   },
   {
     datetime: '2017-09-28',
-    link: '2017/09/idiomatic-ruby-writing-beautiful-code',
+    link: '/writing-idiomatic-beautiful-ruby-code',
     title: 'Idiomatic Ruby: Writing beautiful code',
   },
   {
     datetime: '2017-09-12',
-    link: '2017/09/learning-ruby-from-zero-to-hero',
+    link: '/learning-ruby-from-zero-to-hero',
     title: 'Learning Ruby From Zero to Hero',
   },
 ];
