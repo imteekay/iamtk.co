@@ -1,0 +1,23 @@
+{
+  "title": "Optimizing the Performance of a React Progressive Web App",
+  "description": "Tech Debts, Software Maintainability, Developer Experience, and Technical Leadership",
+  "date": "2021-04-04",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/optimizing-the-performance-of-a-react-progressive-web-app/cover.jpeg",
+    "width": "592",
+    "height": "386",
+    "alt": "Cars running in Tokyo",
+    "authorHref": "https://unsplash.com/@jezael",
+    "authorName": "Jezael Melgoza"
+  }
+}

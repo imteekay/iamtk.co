@@ -73,7 +73,7 @@ export const postsList = [
   },
   {
     datetime: '2021-01-21',
-    link: '2021/01/optimizing-the-performance-of-a-react-progressive-web-app',
+    link: '/optimizing-the-performance-of-a-react-progressive-web-app',
     title: 'Optimizing the Performance of a React Progressive Web App',
   },
   {
