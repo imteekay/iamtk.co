@@ -4,10 +4,10 @@ export const itemStyle = {
 
 export const linkStyle = {
   textDecoration: 'none',
-  color: '#c9cacc',
+  color: 'white',
   backgroundRepeat: 'repeat-x',
   backgroundPosition: 'bottom',
   backgroundSize: '100% 6px',
   backgroundImage:
-    'linear-gradient(transparent, transparent 5px, #c9cacc 5px, #c9cacc)',
+    'linear-gradient(transparent, transparent 5px, white 5px, white)',
 };

@@ -1,7 +1,7 @@
 export const homeLinkStyle = {
   textDecoration: 'none',
   background: 'none',
-  color: '#c9cacc',
+  color: 'white',
   marginBottom: '20px',
   display: 'block',
 };

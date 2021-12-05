@@ -467,15 +467,15 @@
 
 .content a {
   text-decoration: none;
-  color: #c9cacc;
+  color: white;
   background-repeat: repeat-x;
   background-position: bottom;
   background-size: 100% 6px;
   background-image: linear-gradient(
     transparent,
     transparent 5px,
-    #c9cacc 5px,
-    #c9cacc
+    white 5px,
+    white
   );
 }
 @media (min-width: 540px) {
@@ -532,7 +532,7 @@
   line-height: 2rem;
   font-style: normal;
   font-weight: 700;
-  color: #c9cacc;
+  color: white;
   margin-top: 0;
   margin-bottom: 0;
   -moz-osx-font-smoothing: grayscale;
@@ -668,7 +668,7 @@
   float: left;
   margin-left: 15px;
   margin-right: 2rem;
-  color: #c9cacc;
+  color: white;
 }
 
 .content .meta-footer {
@@ -788,7 +788,7 @@
 }
 #footer-post #toc-footer .toc-level-2 {
   font-size: 0.8rem;
-  color: #c9cacc;
+  color: white;
 }
 #footer-post #toc-footer .toc-level-2:before {
   content: '#';
@@ -1124,11 +1124,11 @@ article .content .caption {
   width: 100%;
 }
 .pagination .page-number {
-  color: #c9cacc;
+  color: white;
   font-size: 0.8rem;
 }
 .pagination a {
-  color: #c9cacc;
+  color: white;
   padding: 4px 6px;
   text-decoration: none;
   border-radius: 5px;
