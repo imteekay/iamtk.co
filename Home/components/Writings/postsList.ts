@@ -93,7 +93,7 @@ export const postsList = [
   },
   {
     datetime: '2021-01-01',
-    link: '2021/01/slow-living',
+    link: '/slow-living',
     title: 'Slow Living',
   },
   {

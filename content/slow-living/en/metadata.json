@@ -1,0 +1,17 @@
+{
+  "title": "Slow Living",
+  "description": "Why am I moving to Tokyo, Japan?",
+  "date": "2021-01-01",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design ",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/slow-living/cover.jpeg",
+    "width": "592",
+    "height": "198",
+    "alt": "A story from flash and books"
+  }
+}

@@ -1,0 +1,61 @@
+> "Now I'm shaking, drinking all this coffee. These last few weeks have been exhausting. I'm lost in my imagination."
+
+In these 8 years I've been doing software engineering, sometimes we had to experience a rush to finish some projects, mostly at the end of a quarter or the end of the year.
+
+These are not good experiences at all and I always get myself reflecting on these moments. What could we have done better? Is it the planning, the process, the strategy, or maybe the team?
+
+It's always good to reflect on these topics to not repeat it as a team or as a company. But I myself started to think that this is not the kind of life I plan to have. Not for now. Not for my future.
+
+Wake up, get a cup of coffee, not enjoying the morning, the breakfast, and be so mentally accelerated. No good. At least for me.
+
+I want to be able to be mentally healthy, do things properly, be present, enjoy moments. I don't want to be a productivity machine. The 20 years old TK would love to be as much productive as possible. But the current TK doesn't really enjoy the rush and doing things without quality. I don't need to live like playing Tetris, where I would fill every time in my calendar with a thing to do, just for the sake of being productive.
+
+I want to be productive, achieve my goals, but I also want to enjoy all the processes behind it. Making it sustainable for the long run is something I carefully think about.
+
+So I started learning about `Slow Living` and made a list of things I'm applying in my daily life. It's nothing new or out of this world. It's pretty simple actually. Just applying some concepts on a daily basis is helping me reflect on my lifestyle, my actions, my habits, and how I truly want to live my life.
+
+I always preferred to be intentional about my life choices instead of just being reactive or letting life decide for me.
+
+This is what I'm learning and applying:
+
+## Expectation vs Reality
+
+The idea here is super simple: be able to set the real expectations instead of thinking you can do everything. Be realistic. Instead of adding 100 things to do to my daily ToDo list, think reasonably about the work I want to do in the day.
+
+`Learn to say no`. This is truly important! As a curious person, I want to learn everything, embrace the world, and just do things.. from photography to computer science. from book reading to running. and so on. Learning to say no is pretty hard but very necessary.
+
+`Constantly prioritize` to do only the things that really matter to you. I try to prioritize the things that truly give me happiness. There are things that I love to do, there are things I like to do. And it's a fine line between these two boxes. We have moments in life and these boxes will always change over time, so to re-prioritize this list of things will always be an important daily task for me.
+
+`Be patient`. Good things take time. When we are not patient, we tend to do everything faster, sometimes - or most of the time - without any quality, only to accomplish the goal as fast as possible. Now I prefer the balance and constantly trying to apply the "life is not a sprint, it's a marathon" kind of rule.
+
+And finally, we are able to be productive without being productivity machines. Slow living is not about doing things slowly but experiencing life to the fullest.
+
+## Be present
+
+As I wrote above, the idea of slow living is about being present and experiencing life to the fullest. In our current world where we are bombarded by information, to simplify my life, I want to keep only the health habits and cut the attention seekers like social media, so I uninstalled all the social media like Twitter, Instagram, Facebook, Linkedin from my phone (I also deactivated Facebook and Instagram). For the web version, I added the `Work Mode` browser extension to block all these social media.
+
+The other thing I'm trying to apply in my life is the idea of deep work, to get my attention in that one thing and get most of it. Multitasking is a real problem for me, so I'm always paying attention to this when I'm doing that one thing. I don't want to rush and get many things done just to check all the things on my list, quality is important for me.
+
+To be present is for everything in my life: be present with people I love, at work, just appreciating life and nature.
+
+## Take time to recharge
+
+I'm always trying to do things, be active, and I don't take seriously "sleep and rest" (I should and I'm working on it!), so the first thing is to give the permission to pause and slow down. I don't need to be "productive" every single minute. To relax and recharge is really important to do great work.
+
+Self-awareness is also very important. As far as I know myself, I was always an introverted person, so taking time for myself is very important. I like to be social, meet interesting people, but I also need time for myself. This is one way - one of the best - that makes me relax and recharge.
+
+Meditation and stretching are habits I'm trying to build along the way. I believe in mindfulness and it's helping me relieve stress. I feel that stretching is relaxing for my body in the same way meditation is relaxing for my mind.
+
+---
+
+We live in a world with so much information and attention seekers that I wanted to pause everything and rethink how I really want to live my life. I don't want to follow what people say. I want to experiment myself tools, ideas, concepts, and lifestyle and see if it fits well for me.
+
+Time to reflect about life is so damn important but so rare in these days where we are constantly doing, watching, listening, but not pausing to rethink ideas or reflect on how the system works.
+
+I hope this post can be the starting point to reflect on your own life the same way I started on my own.
+
+## Inspirations
+
+- [Malama Life](https://www.youtube.com/channel/UCDn5zbDIhRG97O2rqia9Gag)
+- [Halle Burns](https://www.youtube.com/channel/UCqPwe2Y-GIDr81qnke0qy4A)
+- [simply by christine](https://www.youtube.com/channel/UCZqVfLvSXSGnVT_awp9WBMw)

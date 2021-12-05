@@ -25,16 +25,18 @@ export const CoverImage: FC<CoverImagePropTypes> = ({
 }) => (
   <div style={coverImageStyle}>
     <Image src={src} width={width} height={height} alt={alt} />
-    <span style={figcaptionStyle}>
-      Photo by{' '}
-      <a
-        href={authorHref}
-        style={figcaptionLinkStyle}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {authorName}
-      </a>
-    </span>
+    {authorName ? (
+      <span style={figcaptionStyle}>
+        Photo by{' '}
+        <a
+          href={authorHref}
+          style={figcaptionLinkStyle}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {authorName}
+        </a>
+      </span>
+    ) : null}
   </div>
 );
