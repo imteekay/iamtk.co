@@ -1,0 +1,23 @@
+{
+  "title": "The Effective Engineer",
+  "description": "Notes from the Effective Engineer book",
+  "date": "2021-01-02",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    },
+    {
+      "href": "/tags/career",
+      "name": "career"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/the-effective-engineer/cover.jpg",
+    "width": "592",
+    "height": "888",
+    "alt": "A book, a glasses, and a cup of coffee",
+    "authorHref": "https://unsplash.com/@taisiia_shestopal",
+    "authorName": "Taisiia Shestopal"
+  }
+}

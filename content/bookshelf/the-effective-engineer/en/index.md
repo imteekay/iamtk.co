@@ -1,0 +1,110 @@
+I've been reading this book for 3 years now and it had different values for different moments in my career. As a new grad (or as a junior software engineer), the first time I read this book, I saw it with a lot of great tips and started applying in my career. The second time I read this book I was a more senior engineer and had a lot of different experiences in my career.
+
+Reading this book for the second time was like remembering good examples from my career and things I could apply in some moments.
+
+For new engineers, I think this book can be very valuable. Senior engineers, though, probably had these experiences before, but I think it can also be valuable for them as well. By the way, we are always learning.
+
+So here are the notes I liked and documented while reading this book:
+
+## Dedicate time to develop a new skill
+
+At Google, engineers have the 20/80 rule, where they can spend 20% of their time investing on innovation activities, personal projects, or learn new skills.
+
+- Think of using 20% of the time to make investments that will make you more effective in the long run.
+- Think of adjacent disciplines related to your core role. eg. product engineer learns product management, user research, frontend engineering. You can find adjacent disciplines to enrich your knowledge.
+- Using the time to master the programming language that you use: focus on developing a solid grasp of the advanced concepts, read one or two good books, use platforms like [exercism](https://exercism.io/) to receive feedback on your code.
+- Send Pull Requests to everyone you feel you can be benefited. Feedback on the code is really important to improve your coding skills. The feedback on the code can also start an interesting discussion about the language, clean code, system design, etc.
+- Use the time to discuss software design and architecture.
+- Have no fear jumping into code you don’t know: fear of failure hold us back. New codebases can be challenge at first, but we can always learn something new reading code.
+- Use the time to study new technologies: programming languages, frameworks, tools, etc
+- Read books: learn from lessons and mistakes of others. Re-apply knowledge without having to start from scratch.
+- Join discussion groups: a group of people to discuss and talk about a specific topic.
+- Attend talks / meetups / conferences. Maintain relationships
+- Follow blogs / Write posts
+- Build side projects / do what you love: hone your skills and do something that interest you.
+
+## Prioritize Regularly
+
+There will always be more tasks to do than you have time for. Working on one task means not working on another. This is why prioritization is so important. Some tasks will have more impact and more value (business or engineering value) than others. It's important to sort these tasks.
+
+- List everything you need to do to start prioritizing: "the human brain is optimized for processing, not for storage." - David Allen, Getting Things Done
+- Sort tasks by leverage: Estimate work by percentage of impact (0.1%, 1%, 10%, 100%) and the time each would take to implement (hours, days, weeks, months). With this visibility, we start to understand how we can prioritize by value and effort/time.
+- Focus on what directly produces value: "when you get the important things right, the small things often don't matter". At the end of the day, what matters is how much value you've created. Don't try to get everything done. Focus on what matters  - and what matters is what produces value. This value can be a business value like increase percentage of conversion in the landing page. Or it can be an engineering value like refactor this module, because it was a tech debit and will make the software easier to maintain and the developers more productive.
+
+## Productivity Engineering
+
+We can always improve the developer experience and productivity.
+
+- Use the Checklist Manifesto by Dr. Atul Gawande: adoption of checklists has drastically reduced errors in fields after fields. eg. Pilots with pre-flight checklists. Surgeons with operations checklist. ToDo list for a feature implementation, from database design to backend to frontend, and automated tests.
+- Protect your schedule: engineers need longer and more contiguous blocks of time. Focused time, called by _flow_ by psychologist Mihály Csíkszentmihályi. _Flow_ is a state of effortless concentration so deep that they lose their sense of time, of themselves, of their problems. When possible preserve larger blocks of focused time in your schedule.
+- Limit the amount of work in progress: it can be tempting to try to tackle many things at once. When we fragment our attention too much, we end up reducing our overall productivity
+
+## Invest in iteration speed
+
+To improve the iteration speed, we need to basically improve the engineering cycle. From when the engineer gets a new task to shipping it to production. When the iteration speed is fast, we take business opportunities and we learn faster.
+
+- Move fast to learn fast: The faster that you can iterate, the more that you can learn about what works and what doesn't work. With the "Move fast and break things" mantra, Facebook is a brilliant example of why investing in iteration speed is such a high-leverage decision. Many new employees ship code to production in their first few days. Facebook's culture emphasizes iterating quickly and focusing on impact rather than being conservative and minimizing mistakes. When you move too slowly trying to avoid mistakes, you lose opportunities.
+- Invest in time-stamping tools
+  - "I’ve found that almost all successful people write a lot of tools. A very good indicator of future success of the first things a person did on a problem was to write a tool."  -  Bobby Johnson, former Facebook director of infrastructure engineering.
+  - "if you have to do something manually more than twice, then write a tool for the third time" -  Raffi Krikorian, former VP of Platform Engineering at Twitter.
+- The time-saving tools also scale with team adoption. A tool that saves you one hour per day saves 10 times as much when you get 10 people on your team to use it. That's why companies like Google, Facebook have entire teams devoted to improving internal development tools.
+
+## **Master your programming environment**
+
+To improve your experience developing software, mastering your coding environment is essential to be productive.
+
+- **Get proficient with your favorite text editor or IDE**: figure out the workflows for efficient file navigation, search, replace, auto-completion. Learn and practice.
+- **Get familiar with shell commands**: use grep, sort, uniq, find, wc, awk, etc.
+- **Prefer keyboard over mouse**: moving our hands back and forth from the keyboard to the mouse takes time. Many applications offer keyboard shortcuts. This an opportunity for optimization.
+- **Automate your manual workflows**: as a rule of thumb, once you've manually performed a task three or more times, start thinking if it would be worthwhile to automate that task. Example: setup a hot reload for frontend development. When you update the HTML or CSS files, it would automatically update the browser.
+- **Test out ideas on an interactive interpreter**: Python, Ruby, and Javascript have interpreters available to test your code. Use it to build confidence that your program behaves as expected. The REPL is a very good tool to test our code and consistently get feedback.
+
+## Measure what you want to improve
+
+To see if our work is having a real impact, we need metrics.
+
+Google, for example, use metrics for the quality of the search
+
+- Dan Russel, tech lead responsible for search quality at Google, explains that user happiness is correlated to "that sense of delight". Example: when a user query `28 euro to usd` and automatically converts it to you.
+- Steven Levy: the best indication of user happiness is "long click". When someone clicks a search result and doesn't return to the search page, or stays on the result page for a long time.
+- A good example of the frontend world is the performance metrics for the browser. Google created the Web Vitals, the way to measure user experience related to web performance.
+- What you don't measure is important as well: most call centers asses the performance of customer service representatives using their "average handle time". Reducing this metric saves costs because employees handle more phone calls per day. But this was not something that Tony Hsieh, Zappos CEO, actually want to optimize for. "This [metric] translates into reps worrying about how quickly they can get a customer off the phone, which in our eyes is not delivering great customer service.. we just care about whether the rep goes above and beyond for every customer".
+- Internalize useful numbers: Percona can audit your database and show how well it's performing. They internalize useful numbers as how slow queries are, number of connections, so they can benchmark a particular system's performance. The knowledge of useful numbers provides a valuable shortcut for knowing where to invest effort to maximize gains.
+
+## Instrument everything to understand what is going on
+
+Monitoring errors and system reliability have a huge importance in software engineering.
+
+- Jack Dorsey, Twitter Co-Founder, told that one of the most valuable lessons he learned years at Twitter was the importance of instrument everything. "For the first 2 years of Twitter, we were flying blind. We had no idea what was going on with the network. We had no idea what was going on with the system, because we could not see what was happening". After Twitter engineers started monitoring and instrumenting their systems were they able to identify problems and build a much more reliable service.
+- Adopting a mindset of instrumentation means ensuring we have a set of dashboard that surface key health metrics and that enable us to drill down the relevant data.
+
+## Validate your ideas early and quickly
+
+Sometimes we have ideas to make the product or the software better, but we are not sure if it really works. Validate your ideas early and quickly to see if it is worth the time and effort, if it can be improved.
+
+- Iteration provides opportunities to validate new ideas. Iterate quickly to validate quickly.
+- Little efforts to validate if it is worth doing large implementations. It can be a very small implementation to see if the idea works. It can talking to a more experienced engineer to see if you are not forgetting anything. It can be presentation for the team explaining the change you want to do. It can be a ADR (Architecture Decision Record). Find ways to get feedback.
+- Reduce risks by breaking the project in small pieces. When you have smaller pieces, you have more control and less risks of doing the wrong thing or doing much more than the expected. This idea works well when refactoring a legacy codebase. Refactor very small pieces, run the tests, and see how the system behaves.
+
+## Balance quality with pragmatism
+
+As software engineers, we always need to strive for quality. Sometimes we don't control over the quality because of a deadline or any other issue in the project. But we always need to find opportunities to the best work possible, but with pragmatism.
+
+Implementing an abstraction that will take 2 days but will improve the software quality and make developers productive is a good idea. Implementing an abstraction that will take a month can be a signal to not do it now.
+
+The idea is to write down the tradeoffs and find the balance in our decisions.
+
+- Manage complexity through abstraction: it solves the hard problems once and enables the solutions to be used multiple times.
+- "Pick the right ones (abstraction), and programming will flow naturally from design; modules will have small and simple interfaces; and new functionality will more likely to fit in without extensive reorganization. Pick the wrong ones, and programming will be a series of nasty surprises; interfaces will become baroque and clumsy as they are forced to accommodate unanticipated interactions, and even the simplest of changes will be hard to make"
+
+## Activities where automation can help
+
+- Validating that a piece of code, an interaction, or a system behaves as expected
+- Detecting spikes in the error rate
+- Checking code to ensure it conforms to style guidelines
+
+## Final words
+
+I truly think this book can be valuable for engineers. It helped me a lot to reflect in my actions and behavior to be more effective and therefore have more impact.
+
+If you can't find the time to read the entire book, I hope these notes can be beneficial for you. But I recommend reading the book to see the stories behind each topic and be inspired to put them in action.

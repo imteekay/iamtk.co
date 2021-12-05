@@ -88,7 +88,7 @@ export const postsList = [
   },
   {
     datetime: '2021-01-02',
-    link: '2021/01/the-effective-engineer',
+    link: '/bookshelf/the-effective-engineer',
     title: 'The Effective Engineer',
   },
   {
