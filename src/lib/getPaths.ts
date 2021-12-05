@@ -10,6 +10,13 @@ type Params = {
   params: SeriesParams;
 };
 
+const folderMapper = {
+  bookshelf: 'book',
+  series: 'series',
+};
+
+type FolderTypes = keyof typeof folderMapper;
+
 function removeSeries(postsNames: string[], filterList: string[]) {
   return postsNames.filter((post) => !filterList.includes(post));
 }
@@ -25,13 +32,13 @@ export function getPaths() {
   }));
 }
 
-export function getNestedPaths() {
-  const postsDir = path.join(process.cwd(), 'content', 'series');
+export function getNestedPaths(folder: FolderTypes) {
+  const postsDir = path.join(process.cwd(), 'content', folder);
   const fileNames = fs.readdirSync(postsDir);
 
-  return fileNames.map((series) => ({
+  return fileNames.map((name) => ({
     params: {
-      series,
+      [folderMapper[folder]]: name,
     },
   }));
 }

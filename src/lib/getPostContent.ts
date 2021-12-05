@@ -33,9 +33,13 @@ export function getPostContent(slug: string, locale: string = 'en') {
   return marked.parse(postContent);
 }
 
-export function getNestedPostContent(series: string, locale: string = 'en') {
-  const postsDir = path.join(process.cwd(), 'content', 'series');
-  const postPath = path.join(postsDir, series, locale, 'index.md');
+export function getNestedPostContent(
+  folder: string,
+  post: string,
+  locale: string = 'en',
+) {
+  const postsDir = path.join(process.cwd(), 'content', folder);
+  const postPath = path.join(postsDir, post, locale, 'index.md');
   const postContent = fs.readFileSync(postPath, 'utf8');
 
   setupHighlight();

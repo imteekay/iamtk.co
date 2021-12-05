@@ -1,0 +1,23 @@
+{
+  "title": "Atomic Habits",
+  "description": "Notes from the Atomic Habits book",
+  "date": "2021-01-19",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/booshelf/atomic-habits/cover.jpeg",
+    "width": "592",
+    "height": "375",
+    "alt": "The Atomic Habits book",
+    "authorHref": "https://jamesclear.com/atomic-habits",
+    "authorName": "James Clear"
+  }
+}

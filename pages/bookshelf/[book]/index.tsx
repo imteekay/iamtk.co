@@ -11,7 +11,7 @@ import {
 } from 'src/lib';
 
 interface Params extends ParsedUrlQuery {
-  series: string;
+  book: string;
 }
 
 type PageProps = {
@@ -48,7 +48,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getNestedPaths('series'),
+    paths: getNestedPaths('bookshelf'),
     fallback: false,
   };
 }
@@ -56,9 +56,9 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
-  const { series } = context.params!;
-  const postContent = getNestedPostContent('series', series);
-  const postMetadata = getNestedPostMetadata('series', series);
+  const { book } = context.params!;
+  const postContent = getNestedPostContent('bookshelf', book);
+  const postMetadata = getNestedPostMetadata('bookshelf', book);
 
   return {
     props: {

@@ -1,0 +1,156 @@
+> "Look at a stone cutter hammering away at his rock, perhaps a hundred times without as much as a crack showing in it. Yet at the hundred-and-first blow it will split in two, and I know it was not the last blow that did it, but all that had gone before." - Jacob Riis
+
+The book is very easy to read, clear, and practical. I felt like reading a bunch of cool blog posts (I got to know later that the author had written some great posts as well and turn that into this book: [jamesclear.com](http://jamesclear.com/)).
+
+The idea of the book is to break down goals into systems. And systems into habits. And habits into atomic habits.
+
+The small behavior on a daily basis will compound and have an extraordinary effect on your life. We make good habits clear, attractive, easy, and satisfactory. And make bad habits invisible, unattractive, hard, and unsatisfactory.
+
+## Atomic Habits & Compound Effect
+
+Atomic habits can have an enormous impact in our lives because the composition of small habits compounds in the long term. He talks about the idea of improving small parts of an "engine" in 1% to make this "engine" works better and better.
+
+The example was his small habits while preparing to be one of the best players at college.
+
+- Make the bed
+- Organize the room
+- Sleep better
+- Constant training
+- Big impact: baseball national star
+
+Another example was the improvement of the whole system for the British Cycling team.
+
+Redesign the bikes' saddles to make it more comfortable, electrically heated shorts to make the ideal muscular temperature, different muscular gel to better recovering, the best way to clean their hands to not get cold. The compound effect of all these little improvements had a big impact: Olympics gold medals, won the Tour de France, and many other championships.
+
+Habits are for the long run. Because it compounds over time. But the same time it can compound good habits, it can also compound bad habits. Examples:
+
+- Productivity: One more task in a day is small, but if you do an extra task each day for years, it compounds and have enormous impact. Impact: more projects done.
+- Stress: Compounding different kind of stress in a day-to-day life like bad relationship, bad sleep, toxic work have a very negative impact inside you. Impact: burnout.
+
+The book also talks about other habits that compounding can have a good or bad impact on you: knowledge (good), negative thoughts (bad), good relationship and friends (good).
+
+## Systems and Goals
+
+Focus on the [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system), not (only) the goal.
+
+The goal is related to the results I want to happen. The [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system) is related to the process that lead to these results.
+
+The goal is important to give a sense of direction, but the [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system) is what makes the progress.
+
+The [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system) makes you have a mindset of continuous improvement and refinement cycle. The commitment to the process will determine the progress.
+
+## Behavior Change
+
+To change or create new habits, we need to change or create new behaviors.
+
+We have 3 levels of behavior change:
+
+- Results: what we get
+- Process: what we do
+- Identity: what we believe
+
+The idea is to get from `identity` to `results` by the `process`. The habits need to be part of the identity and it must not end when we get the results. Our behavior is the reflex of our identity.
+
+- The goal is not to read a book. The goal is to be a reader.
+- The goal is not to run a marathon. The goal is to become a runner.
+- The goal is not to play a instrument. The goal is to become an artist.
+
+The process is simple:
+
+- Decide the type of person you want to become.
+- Prove it to yourself based on small wins.
+
+## Creating habits
+
+What's the science behind habits?
+
+- Four stages:
+  - `cue`: the cue triggers your brain to initiate a behavior
+  - `craving`: the motivational force behind every habit
+  - `response`: the practice, the behavior, the habit
+  - `reward`: it satisfies us and teaches us
+
+It's easy to set habits like "I will study more" or "I will write more". But this is very vague and you don't know where and when to actually do these things.
+
+Be specific with your habits. With an implementation intention, you don't need motivation or inspiration. You just do what you set to do.
+
+The first rule to change a behavior is to make it crystal clear: write where and when to do it.
+
+- E.g.: I will [behavior] in [local] at [time]
+
+Examples:
+
+- Meditation: I will meditate for 5 minutes at 7 a.m. in my kitchen
+- Study: I will study Japanese for 20 minutes at 6 p.m. in my office
+- Exercise: I will exercise for an hour at 7 p.m. at the gym
+
+## Making good habits work
+
+The process of creating a good habit works:
+
+- Make it clear
+- Make it attractive
+- Make it easy
+- Make it satisfactory
+
+## Habit Stacking
+
+Habit stacking is the idea of linking a new habit to another. Examples:
+
+- After I pour my cup of coffee each morning, I will meditate for ten minutes.
+- After meditation, I will stretch my body with some exercises.
+- After stretching, I will run.
+- After running, I will take a cold shower.
+- And so on.
+
+## Habits as freedom
+
+Creating habits is a way of freedom.
+
+- If you don't create a health finance habit, you don't have financial freedom
+- If you don't create a health life (eating, sleeping, exercising), you don't have freedom to use your energy at the best way possible
+- If you don't create a learning habit, you don't progress in your career
+
+## Environment & Minimum Effort
+
+- It's easy to not play a guitar if it is kept in the wardrobe.
+- It's easy to not read a book if it is in hidden spot in the house.
+
+Before doing the actual habit, the goal is to master the habit to show up.
+
+Use the minimum effort rule to ease the habit creation and the decision making. Create the environment to to make it easier to do the right thing.
+
+- If you want to be healthier, separate the fruits and vegetables to eat
+- If you want to exercise, prepare your clothes, shoes, and everything to be easier to do it
+- If you want to read more, make the book or the kindle accessible
+
+The idea is to reduce the resistance to do the good habits. Creating an environment using the minimum effort rule is a way make it easier.
+
+## Reprogram your brain to do hard habits
+
+Reassign the meaning of the habit with positive outcomes
+
+- Exercise: associate the running with positive skills
+  - Good: Healthier, stronger
+  - Bad: drain energy
+- Finances: associate with more freedom instead of sacrifice
+  - Good: financially freedom
+  - Bad: sacrifice
+
+## Movement and Action
+
+What's the difference between movement and action?
+
+- `movement`: planing, learning, strategizing, but not actually doing, not actually acting
+- `action`: do the actual work
+
+The concept is pretty simple:
+
+- Instead of only writing down 20 ideas for a blog post (movement), sit down and actually write the post (action).
+- Instead of only plan the best diet and listen to the best nutrition podcast (movement), start eating healthy (action).
+
+Sometimes we use movement just to feel that we are acting. Sometimes we use it as a procrastination tool. The key for the habit is starting with repetition, not perfection. We will improve the habit along the way.
+
+## Resources
+
+- [Book Review](https://www.goodreads.com/review/show/2817710524?book_show_action=true&from_review_page=1)

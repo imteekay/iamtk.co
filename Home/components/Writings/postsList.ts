@@ -83,7 +83,7 @@ export const postsList = [
   },
   {
     datetime: '2021-01-17',
-    link: '2021/01/atomic-habits',
+    link: '/bookshelf/atomic-habits',
     title: 'Atomic Habits',
   },
   {

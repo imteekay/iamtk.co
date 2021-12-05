@@ -35,11 +35,12 @@ export function getPostMetadata(
 }
 
 export function getNestedPostMetadata(
-  series: string,
+  folder: string,
+  post: string,
   locale: string = 'en',
 ): PostMetadata {
-  const postsDir = path.join(process.cwd(), 'content', 'series');
-  const postPath = path.join(postsDir, series, locale, 'metadata.json');
+  const postsDir = path.join(process.cwd(), 'content', folder);
+  const postPath = path.join(postsDir, post, locale, 'metadata.json');
   const postMetadata = fs.readFileSync(postPath, 'utf8');
 
   return JSON.parse(postMetadata);
