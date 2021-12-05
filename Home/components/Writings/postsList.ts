@@ -78,7 +78,7 @@ export const postsList = [
   },
   {
     datetime: '2021-01-19',
-    link: '2021/01/performance-prefetch-next-pages-chunks',
+    link: '/performance-prefetch-next-pages-chunks',
     title: 'Performance: Prefetch Next Page Chunk',
   },
   {
