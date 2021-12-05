@@ -68,7 +68,7 @@ export const postsList = [
   },
   {
     datetime: '2021-04-04',
-    link: '2021/04/dx-and-software-maintainability-in-frontend-engineering',
+    link: '/dx-and-software-maintainability-in-frontend-engineering',
     title: 'DX & Software Maintainability in Frontend Engineering',
   },
   {

@@ -1,0 +1,31 @@
+{
+  "title": "DX & Software Maintainability in Frontend Engineering",
+  "description": "Tech Debts, Software Maintainability, Developer Experience, and Technical Leadership",
+  "date": "2021-04-04",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/career",
+      "name": "career"
+    }
+  ],
+  "coverImage": {
+    "src": "/dx-and-software-maintainability-in-frontend-engineering/cover.jpeg",
+    "width": "592",
+    "height": "888",
+    "alt": "An architect drawing a house",
+    "authorHref": "https://unsplash.com/@ryanancill",
+    "authorName": "Ryan Ancill"
+  }
+}
