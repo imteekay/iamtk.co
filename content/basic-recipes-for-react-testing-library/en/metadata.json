@@ -1,0 +1,23 @@
+{
+  "title": "Basic Recipes for React Testing Library",
+  "description": "Understanding testing in the frontend and react applications",
+  "date": "2020-10-13",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/basic-recipes-for-react-testing-library/cover.jpeg",
+    "width": "592",
+    "height": "396",
+    "alt": "A photo of a paper with a blank recipe",
+    "authorHref": "https://unsplash.com/@markuswinkler",
+    "authorName": "Markus Winkler"
+  }
+}

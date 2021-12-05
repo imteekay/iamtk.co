@@ -103,7 +103,7 @@ export const postsList = [
   },
   {
     datetime: '2020-10-13',
-    link: '2020/10/basic-recipes-for-react-testing-library',
+    link: '/basic-recipes-for-react-testing-library',
     title: 'Basic Recipes for React Testing Library',
   },
   {

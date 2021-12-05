@@ -1,0 +1,602 @@
+Last year I attended a conference called [Clojure South](https://clojure-south.com/) where we had a lot of cool tech talks about functional programming and the programming language Clojure.
+
+One of the talks I really liked was about [Clojure Spec & Generative Tests](https://www.youtube.com/watch?v=0hhQmbHlwcY&ab_channel=BuildingNubank) by David Chelimsky. He was part of the [Rspec team](https://github.com/rspec/rspec) and he works in the clojure.spec team.
+
+He started his talk asking
+
+> Why do you make tests?
+
+_"Confidence"_ said someone in the audience. Confidence that your software works as expected.
+
+But tests only give confidence if we add tests that make sense. So it's important to have best practices and adjust the mindset to test properly.
+
+> Side note: In my opinion, having bad tests is worse than having any tests at all. Without tests, you are aware that you need tests in the future or that you will need to manually test your software before shipping to production. With bad tests, you think the tests cover good parts of your product, but they actually don't.
+
+Thinking about this, I wanted to play around with React Testing Library to provide good examples of what and how to test properly. So I created a playground to, well, [play with the Testing Library in some different contexts](https://github.com/leandrotk/react-testing-library-recipes).
+
+So, for this post, we will talk about theses topics:
+
+- How to query
+- How to verify content
+- How to handle forms
+- How to handle loading and fetching/async operations
+
+So let's get started!
+
+# How to query
+
+We have three main ways to get elements from the DOM: `getBy`, `queryBy`, and `findBy`.
+
+All of these queries have different variants. For example, the `getBy` query has some variants like `getByRole` and `getByLabelText`. Depending on the context, you better use one over the others. But to simplify this process, the Testing Library docs has a section called [Which query should I use?](https://testing-library.com/docs/guide-which-query) that explains the priority of one query over the others thinking about accessibility and semantics.
+
+## getBy
+
+Before start using the `getBy` query, let's see what we are testing.
+
+```jsx
+import React from 'react';
+
+const Queries = () => <h1>Title</h1>;
+
+export default Queries;
+```
+
+This a simple component called `Queries` that renders a title with a text `Title`.
+
+In this first test, we want to know if it renders the proper text. To query the element (`<h1>`), we'll be using the `getBy`. More specifically, we'll try the `getByText`.
+
+```jsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Queries from '../Queries';
+
+describe('getBy', () => {
+  it('title is in the document', () => {
+    render(<Queries />);
+
+    const title = screen.getByText(/title/i);
+
+    expect(title).toBeInTheDocument();
+  });
+});
+```
+
+So here it is the first test. As simple as it looks.
+
+- We use the `render` function from the testing library to render the component we want to test
+- Query by the text `title` together with the `screen` function from the testing library.
+- In the query, we use the regular expression to not have the problem of upper or lower case.
+- And finally we expect to have this element `title` in the DOM.
+
+We'll talk about this `toBeInTheDocument` method later. But we basically want to use this matcher to expect that title is in the DOM.
+
+One specific "feature" the `getBy` has is to throw an error if it doesn't find the element in the rendered component. Let's see it in action.
+
+```jsx
+it('verify no element', () => {
+  render(<Queries />);
+
+  try {
+    screen.getByText(/subtitle/i);
+  } catch (e) {
+    console.log('Did not find nonexistent element');
+  }
+});
+```
+
+If you run this test, the `subtitle` text doesn't exist and it will throw an error. As we use the `try-catch`, when we run the test, it will log the text `Did not find nonexistent element` in your terminal.
+
+## queryBy
+
+`queryBy` has the same feature as the `getBy`. The main difference is that the `queryBy` doesn't throw an error if it doesn't find a given element in the DOM. Let's do the same implementation we did with `getBy`, but now with `queryBy`.
+
+```jsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Queries from '../Queries';
+
+describe('queryBy', () => {
+  it('title is in the document', () => {
+    render(<Queries />);
+
+    const title = screen.queryByText(/title/i);
+
+    expect(title).toBeInTheDocument();
+  });
+});
+```
+
+The happy path works the same way. Here we use the `queryByText` to get the title element and expect it to be in the document.
+
+But now when it doesn't find an element:
+
+```jsx
+it('verify no element', () => {
+  render(<Queries />);
+
+  const subtitle = screen.queryByText(/subtitle/i);
+
+  expect(subtitle).not.toBeInTheDocument();
+});
+```
+
+It won't throw an error. Here we can use the `queryByText` without the `try-catch` and try to get the subtitle element.
+
+We use the `.not` together with the `toBeInTheDocument` matcher to expect that the subtitle is not in the DOM.
+
+The `queryBy` is very useful when we want to make sure that the page is not showing an element.
+
+## findBy
+
+The `findBy` always returns a promise. And the promise resolves when it finds the element we are searching for.
+
+It's very useful when the element is not the DOM. But the element appears after a specific event. Let's see an example:
+
+```jsx
+import React, { useState } from 'react';
+
+const Queries = () => {
+  const [isParagraphVisible, setIsParagraphVisible] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setIsParagraphVisible(true)}>
+        Show paragraph
+      </button>
+      {isParagraphVisible ? <p>A paragraph</p> : null}
+    </>
+  );
+};
+
+export default Queries;
+```
+
+So here it is a simple component where we have a button and a logic to show or not a paragraph.
+
+At the top of the component, we use a `useState` hook to just manage the state to show or hide the paragraph. If the user click the button, it will show the paragraph. This is the "feature".
+
+Now we can use the `findBy` to query a paragraph, after clicking in the button.
+
+```jsx
+import React from 'react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import Queries from '../Queries';
+
+describe('findBy', () => {
+  it('paragraph is in the document', async () => {
+    render(<Queries />);
+
+    const button = screen.getByRole('button', { name: /show paragraph/i });
+    fireEvent.click(button);
+
+    const paragraph = await screen.findByText(/a paragraph/i);
+    expect(paragraph).toBeInTheDocument();
+  });
+});
+```
+
+- First we render the `Queries` component.
+- Get the button with the `getByRole` query.
+- We use the `fireEvent` function from the testing library to mimic the click in the button.
+- And now we finally try to get the paragraph with the `findByText`.
+- After getting the paragraph, we make sure it is in the document.
+- As the `findBy` query returns a promise, we can use the `.then` method or the `await` to get the real element. As we used the `await` in this example, we need to add an `async` statement in the `it` block.
+
+A common example to use `findBy` is when we do an asynchronous operation like fetching an API for some data, so we need to wait until we have the data rendered in the dom to get the elements we want to verify that are there.
+
+The `findBy` also throws an error when it doesn't find an element like the `getBy`.
+
+```jsx
+it('verify no other item', async () => {
+  render(<Queries />);
+
+  const button = screen.getByRole('button', { name: /show paragraph/i });
+  fireEvent.click(button);
+
+  try {
+    await screen.findByText(/another paragraph/i);
+  } catch (e) {
+    console.log('Did not find nonexistent element');
+  }
+});
+```
+
+In this test, I added a `try-catch` to see that the `findByText` really throws an error.
+
+# How to expect content
+
+There are many ways to verify the correct content in the page or component. But one I like the most is the matcher `.toBeInTheDocument`.
+
+The `.toBeInTheDocument` is matcher from the [jest-dom library](https://github.com/testing-library/jest-dom) from the testing library org. There other custom jest matchers we can use too.
+
+We use this matcher in all the queries examples. But one thing that is cool to mention is that we don't need to import the matchers if we import the `jest-dom` in the `setupTests.js` like this:
+
+```jsx
+// setupTests.js
+import '@testing-library/jest-dom/extend-expect';
+```
+
+So now the `expect` function from `jest` is extended to use all the matchers from the `jest-dom`.
+
+# How to handle forms
+
+We can also handle forms with the testing library. The best practice is to use the [@testing-library/user-event library](https://github.com/testing-library/user-event). This library simulates the real interactions between users and browsers.
+
+Before starting to test, let's the simple form we want to test.
+
+```jsx
+import React from 'react';
+
+export const Form = () => (
+  <>
+    <h1>Form</h1>
+
+    <form>
+      <div>
+        <label htmlFor="name">Name</label>
+        <input id="name" name="name" />
+      </div>
+
+      <div>
+        <label htmlFor="age">Age</label>
+        <input id="age" name="age" type="number" />
+      </div>
+
+      <div>
+        <label htmlFor="birthday">Birthday</label>
+        <input id="birthday" name="birthday" type="date" />
+      </div>
+
+      <div>
+        Hobbies:
+        <input type="checkbox" name="coding" id="coding" value="coding" />
+        <label htmlFor="coding">Coding</label>
+        <input type="checkbox" name="reading" id="reading" value="reading" />
+        <label htmlFor="reading">Reading</label>
+        <input type="checkbox" name="writing" id="writing" value="writing" />
+        <label htmlFor="writing">Writing</label>
+      </div>
+
+      <div>
+        OS:
+        <input type="radio" name="windows" id="windows" value="windows" />
+        <label htmlFor="windows">Windows</label>
+        <input type="radio" name="mac" id="mac" value="mac" />
+        <label htmlFor="mac">Mac</label>
+        <input type="radio" name="linux" id="linux" value="linux" />
+        <label htmlFor="linux">Linux</label>
+      </div>
+
+      <div>
+        <label>Favorite city?</label>
+        <select id="favcity" name="favcity" data-testid="favcity">
+          <option value="1">Amsterdam</option>
+          <option value="2">Hong Kong</option>
+          <option value="3">London</option>
+          <option value="4">New York</option>
+          <option value="5">Sao Paulo</option>
+          <option value="6">Tokyo</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Countries you want to visit</label>
+        <div>
+          <select
+            id="countries"
+            name="countries"
+            data-testid="countries"
+            multiple
+          >
+            <option value="Brazil">Brazil</option>
+            <option value="Japan">Japan</option>
+            <option value="New Zealand">Italy</option>
+            <option value="Germany">Germany</option>
+            <option value="India">India</option>
+            <option value="Netherlands">Netherlands</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </>
+);
+
+export default Form;
+```
+
+Wow! A lot of stuff here. But let's break down each part of the form (and see that it's not that scary). We want to test a lot of different kind of elements (input, select, multi-select, radio button, checkbox, etc):
+
+- A text input for the name
+- A number input for the age
+- A date input for the birthdate
+- A checkbox for hobbies
+- A radio button for operating system
+- A select for favorite city
+- A multi-select for countries I want to visit
+
+That's it! We want to fill, select, and check all these elements with the testing library, and finally click the submit button.
+
+First thing we always do: render the component.
+
+```jsx
+render(<Form />);
+```
+
+And then we use the `screen` together with the `getBy` query to get the form fields.
+
+```jsx
+const nameInput = screen.getByLabelText(/name/i);
+const ageInput = screen.getByLabelText(/age/i);
+const birthdayInput = screen.getByLabelText(/birthday/i);
+
+const codingCheckbox = screen.getByLabelText(/coding/i);
+const readingCheckbox = screen.getByLabelText(/reading/i);
+const writingCheckbox = screen.getByLabelText(/writing/i);
+
+const osRadio = screen.getByLabelText(/mac/i);
+
+const favCitySelect = screen.getByTestId(/favcity/i);
+const tokyoOption = screen.getByText(/tokyo/i);
+
+const countriesMultiSelect = screen.getByTestId(/countries/i);
+const japanOption = screen.getByText(/japan/i);
+const germanyOption = screen.getByText(/germany/i);
+const netherlandsOption = screen.getByText(/netherlands/i);
+
+const button = screen.getByRole('button', { name: /submit/i });
+```
+
+### Text, number, and date inputs
+
+And finally we fill the input fields with the `type` function:
+
+```jsx
+userEvent.type(nameInput, 'TK');
+userEvent.type(ageInput, '24');
+userEvent.type(birthdayInput, '01/01/1996');
+```
+
+### Checkboxes
+
+Check the checkboxes with the `click` function:
+
+```jsx
+userEvent.click(codingCheckbox);
+userEvent.click(readingCheckbox);
+userEvent.click(writingCheckbox);
+```
+
+### Radio buttons
+
+Choose an option from the radio button with the `click` function:
+
+```jsx
+userEvent.click(osRadio);
+```
+
+### Selects
+
+Select the favorite city with the `selectOptions` function:
+
+```jsx
+userEvent.selectOptions(favCitySelect, [tokyoOption]);osRadio);
+```
+
+### Multi-selects
+
+Select countries I want visit (again) with the `selectOptions`
+
+```jsx
+userEvent.selectOptions(countriesMultiSelect, [
+  japanOption,
+  germanyOption,
+  netherlandsOption,
+]);
+```
+
+And after filling all the form, we are able to click the submit button:
+
+```jsx
+userEvent.click(button);
+```
+
+### How does all come together?
+
+```jsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { Form } from '../Form';
+
+describe('Form', () => {
+  it('fills form', () => {
+    render(<Form />);
+
+    const nameInput = screen.getByLabelText(/name/i);
+    const ageInput = screen.getByLabelText(/age/i);
+    const birthdayInput = screen.getByLabelText(/birthday/i);
+
+    const codingCheckbox = screen.getByLabelText(/coding/i);
+    const readingCheckbox = screen.getByLabelText(/reading/i);
+    const writingCheckbox = screen.getByLabelText(/writing/i);
+
+    const osRadio = screen.getByLabelText(/mac/i);
+
+    const favCitySelect = screen.getByTestId(/favcity/i);
+    const tokyoOption = screen.getByText(/tokyo/i);
+
+    const countriesMultiSelect = screen.getByTestId(/countries/i);
+    const japanOption = screen.getByText(/japan/i);
+    const germanyOption = screen.getByText(/germany/i);
+    const netherlandsOption = screen.getByText(/netherlands/i);
+
+    const button = screen.getByRole('button', { name: /submit/i });
+
+    userEvent.type(nameInput, 'TK');
+    userEvent.type(ageInput, '24');
+    userEvent.type(birthdayInput, '01/01/1996');
+
+    userEvent.click(codingCheckbox);
+    userEvent.click(readingCheckbox);
+    userEvent.click(writingCheckbox);
+
+    userEvent.click(osRadio);
+
+    userEvent.selectOptions(favCitySelect, [tokyoOption]);
+    userEvent.selectOptions(countriesMultiSelect, [
+      japanOption,
+      germanyOption,
+      netherlandsOption,
+    ]);
+
+    userEvent.click(button);
+  });
+});
+```
+
+This is a simple form, but if we want to add some validation, we can think of how a user would use the form.
+
+Have each form field a validation of presence that show a text below each field? We could, for example, click the submit buttons and verify which fields have the validation text until it doesn't have any error anymore.
+
+# How to handle fetching and loading
+
+Now we will see an example of fetching within a component and test the loading state and then the data rendered in the DOM.
+
+```jsx
+import React from 'react';
+import { useFetchAPI } from './useFetchAPI';
+
+const Loading = ({ pokemon }) => {
+  const { hasError, isLoading, isResolved, data } = useFetchAPI(
+    `https://pokeapi.co/api/v2/pokemon/${pokemon}`,
+  );
+
+  if (hasError) {
+    return <p>Error!</p>;
+  }
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!isResolved) {
+    return null;
+  }
+
+  const { name, types } = data;
+  const skills = types.map((type) => type.type.name).join(', ');
+
+  return (
+    <>
+      <h1>Name: {name}</h1>
+      <p>Skills: {skills}</p>
+    </>
+  );
+};
+
+export default Loading;
+```
+
+This is a very simple component that we'll use to test the loading and the error state and the data rendered.
+
+Here we have:
+
+- A custom hook for fetching: it uses the `fetch` function to request data from any API.
+- The custom hook receives a url that it will request and returns 4 values: `hasError`, `isLoading`, `isResolved`, and the `data` to render.
+- Below we have three if statements to handle the error, the loading, and when the request didn't finish.
+- And then we have the data we want to render: the name and skills of a pokemon.
+
+Let's first test the error state when the API responds with an error.
+
+```jsx
+it('renders the error', async () => {
+  fetch.mockReject(() => Promise.reject('API is down'));
+
+  render(<Loading pokemon="charmander" />);
+
+  const error = await screen.findByText('Error!');
+  expect(error).toBeInTheDocument();
+});
+```
+
+- The first thing I did was to mock the `fetch` function to simulate that the API will respond with an error.
+- Then we render the `Loading` component with a prop called `pokemon` and a value `charmander`.
+- We try to find the text `Error!`.
+- And verify if it is actually in the document.
+
+We use the `findByText` because the error state will appear only after the fetching finishes, so it's a asynchronous operation. This is why we need to have an `async-await` in the test.
+
+Now for the happy path: we fetch the pokemon, the loading state appears, and then the pokemon data renders in the DOM.
+
+```jsx
+it('renders the loading and then the pokemon info', async () => {
+  const data = { name: 'charmander', types: [{ type: { name: 'fire' } }] };
+  fetch.once(JSON.stringify(data));
+
+  render(<Loading pokemon="charmander" />);
+
+  const loading = screen.getByText('Loading...');
+  expect(loading).toBeInTheDocument();
+
+  const charmander = await screen.findByText('Name: charmander');
+  const charmanderSkills = await screen.findByText('Skills: fire');
+
+  expect(charmander).toBeInTheDocument();
+  expect(charmanderSkills).toBeInTheDocument();
+});
+```
+
+- The first two lines we define the data and mock the fetch to return this value for us.
+- We fetch the `Loading` component passing `charmander`
+- Then we first want to see the `Loading...` text in the document.
+- And then verify if the pokemon name and skills are in the document.
+
+Now everything together:
+
+```jsx
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Loading from '../Loading';
+
+describe('Loading', () => {
+  it('renders the loading and then the pokemon info', async () => {
+    const data = { name: 'charmander', types: [{ type: { name: 'fire' } }] };
+    fetch.once(JSON.stringify(data));
+
+    render(<Loading pokemon="charmander" />);
+
+    const loading = screen.getByText('Loading...');
+    expect(loading).toBeInTheDocument();
+
+    const charmander = await screen.findByText('Name: charmander');
+    const charmanderSkills = await screen.findByText('Skills: fire');
+
+    expect(charmander).toBeInTheDocument();
+    expect(charmanderSkills).toBeInTheDocument();
+  });
+
+  it('renders the error', async () => {
+    fetch.mockReject(() => Promise.reject('API is down'));
+
+    render(<Loading pokemon="charmander" />);
+
+    const error = await screen.findByText('Error!');
+    expect(error).toBeInTheDocument();
+  });
+});
+```
+
+# Final words
+
+So here we finish this first conversation about tests in frontend. We've learned a lot of things:
+
+- How to: query elements in the DOM
+- How to: verify content in the document
+- How to: test forms
+- How to: handle fetching and loading
+
+I wanted to cover as much as possible, but I think this is a good start to understand how use this tool to test our applications and gain more confidence when shipping features or refactorings to production. I hope these recipes can help you understand more about testing in general and improve the quality of your software.
+
+Until the next time! Keep learning!
