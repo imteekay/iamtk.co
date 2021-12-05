@@ -108,7 +108,7 @@ export const postsList = [
   },
   {
     datetime: '2020-07-19',
-    link: '2020/07/a-mental-model-to-think-in-typescript',
+    link: '/a-mental-model-to-think-in-typescript',
     title: 'A Mental Model to think in TypeScript',
   },
   {
