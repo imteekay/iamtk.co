@@ -113,7 +113,7 @@ export const postsList = [
   },
   {
     datetime: '2020-06-25',
-    link: '2020/06/designing-my-lifes-system',
+    link: '/designing-my-lifes-system',
     title: "Designing my Life's System",
   },
   {

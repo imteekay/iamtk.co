@@ -1,0 +1,23 @@
+{
+  "title": "Designing my life's System",
+  "description": "A full documentation of how I designed a system for my life",
+  "date": "2020-06-25",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    },
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/designing-my-lifes-system/cover.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A photo of the universe",
+    "authorHref": "https://unsplash.com/@phaelnogueira",
+    "authorName": "Raphael Nogueira"
+  }
+}
