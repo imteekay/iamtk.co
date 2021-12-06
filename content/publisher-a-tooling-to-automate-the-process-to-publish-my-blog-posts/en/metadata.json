@@ -1,0 +1,27 @@
+{
+  "title": "Publisher, a tooling to automate the process to publish my blog posts",
+  "description": "A detail implementation of the Publisher tooling to automate the process to publish blog posts",
+  "date": "2020-05-04",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts/cover.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A type writer side by side with a Mac computer notebook",
+    "authorHref": "https://unsplash.com/@glenncarstenspeters",
+    "authorName": "Glenn Carstens-Peters"
+  }
+}

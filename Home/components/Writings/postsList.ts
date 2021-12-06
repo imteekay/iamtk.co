@@ -126,11 +126,11 @@ export const postsList = [
     link: '/series/data-structures',
     title: 'Data Structures Series',
   },
-  {
-    datetime: '2020-05-17',
-    link: '/series/algorithms-problem-solving',
-    title: 'Algorithms Problem Solving Series',
-  },
+  // {
+  //   datetime: '2020-05-17',
+  //   link: '/series/algorithms-problem-solving',
+  //   title: 'Algorithms Problem Solving Series',
+  // },
   {
     datetime: '2020-05-05',
     link: '/constant-feedback-driven-development-with-nodemon',
@@ -138,7 +138,7 @@ export const postsList = [
   },
   {
     datetime: '2020-04-29',
-    link: '2020/04/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts',
+    link: '/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts',
     title: 'Automating my blog posts publishing process',
   },
   {
