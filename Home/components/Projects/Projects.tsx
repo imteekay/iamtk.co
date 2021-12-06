@@ -8,5 +8,6 @@ export const Projects: FC = () => (
     titleLink="https://github.com/leandrotk"
     titleText="projects"
     list={projectsList}
+    openNewTab
   />
 );

@@ -5,17 +5,20 @@ export type ItemProps = {
   link: string;
   title: string;
   description: string;
+  target: string;
+  rel: string;
 };
 
-export const Item: FC<ItemProps> = ({ link, title, description }) => (
+export const Item: FC<ItemProps> = ({
+  link,
+  title,
+  description,
+  target,
+  rel,
+}) => (
   <li style={itemStyle}>
     <strong>
-      <a
-        href={link}
-        target="_blank"
-        rel="noopener noreferrer"
-        style={linkStyle}
-      >
+      <a href={link} target={target} rel={rel} style={linkStyle}>
         {title}
       </a>
     </strong>

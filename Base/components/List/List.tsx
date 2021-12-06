@@ -8,6 +8,7 @@ type ListPropType = {
   titleLink: string;
   titleText: string;
   list: ItemProps[];
+  openNewTab: boolean;
 };
 
 export const List: FC<ListPropType> = ({
@@ -15,25 +16,34 @@ export const List: FC<ListPropType> = ({
   titleLink,
   titleText,
   list,
-}) => (
-  <section id={sectionId}>
-    <a
-      href={titleLink}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={titleLinkStyle}
-    >
-      <Title text={titleText} />
-    </a>
-    <ul style={listStyle}>
-      {list.map((item) => (
-        <Item
-          key={item.link}
-          title={item.title}
-          description={item.description}
-          link={item.link}
-        />
-      ))}
-    </ul>
-  </section>
-);
+  openNewTab,
+}) => {
+  const linkAttr = openNewTab
+    ? { target: '_blank', rel: 'noopener noreferrer' }
+    : { target: '', rel: '' };
+
+  return (
+    <section id={sectionId}>
+      <a
+        href={titleLink}
+        target={linkAttr.target}
+        rel={linkAttr.rel}
+        style={titleLinkStyle}
+      >
+        <Title text={titleText} />
+      </a>
+      <ul style={listStyle}>
+        {list.map((item) => (
+          <Item
+            key={item.link}
+            title={item.title}
+            description={item.description}
+            link={item.link}
+            target={item.target}
+            rel={item.rel}
+          />
+        ))}
+      </ul>
+    </section>
+  );
+};
