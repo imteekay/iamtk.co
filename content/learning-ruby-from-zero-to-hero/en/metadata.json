@@ -1,0 +1,17 @@
+{
+  "title": "Learning Ruby: From Zero to Hero",
+  "description": "Ruby is simple in appearance, but is very complex inside, just like our human body.",
+  "date": "2017-09-12",
+  "tags": [
+    {
+      "href": "/tags/ruby",
+      "name": "ruby"
+    }
+  ],
+  "coverImage": {
+    "src": "/writing-idiomatic-beautiful-ruby-code/cover.png",
+    "width": "592",
+    "height": "592",
+    "alt": "Ruby symbol"
+  }
+}
