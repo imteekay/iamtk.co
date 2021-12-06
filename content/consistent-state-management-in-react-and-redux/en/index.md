@@ -1,0 +1,263 @@
+This is part of my studies on how to build sustainable and consistent software. In this post, we will talk about state management in the context of React and Redux. I'll show you a problem I was trying to solve and a proposed solution I made for QuintoAndar.
+
+# The problem
+
+First thing first: the problem! This part is really important. I was trying to solve a problem, not adding shiny technologies to QuintoAndar's tech stack.
+
+While developing the new Originals listing, we fetched data from an API to render the page. An important part of this data was an attribute called `specialConditions`. It is a list of real estate conditions.
+
+A list. Yes, we expected it to be always a list, but somewhere in the codebase, we dispatched an action to mutate this value to an `undefined` causing a bug and need for a bug fix.
+
+Since that day, I was searching for a solution to make the system more consistent. If it is a list, it will always be a list. No matter how creative we are as developers.
+
+This problem can be really common as the codebase grows. Because it is easy to have hidden effects that you are not aware of. It scales badly.
+
+So typing the whole redux lifecycle came to mind. If we type the state and each Redux "lifecycle agent", we can make it resilient and consistent.
+
+# The solution
+
+The idea was to make the PWA architecture explicit, resilient, and consistent across the Redux lifecycle by typing the state, actions, reducers, handlers, and selectors.
+
+Handling frontend state management is complex. As we use Redux as the main state management architecture for - almost - all PWAs at QuintoAndar, building a framework to apply typings to Redux is a good way to make a guideline with best practices and conventions to scale across QuintoAndar PWAs.
+
+[Constraints](https://www.youtube.com/watch?v=TqfbAXCCVwE&feature=emb_title) are a really important concept to keep us away from making simple mistakes. By typing our redux lifecycle, we can protect, at least in compile-time, our main data handler from these kinds of mistakes.
+
+By typing our initial states, reducers, and handlers [we gain for free good documentation](https://dropbox.tech/application/our-journey-to-type-checking-4-million-lines-of-python) about the Redux lifecycle, making it easier to reason the details about what is expected in each step.
+
+# The proposal
+
+An important note in this proposal is that we created it thinking about the problem and the QuintoAndar's context (current tech stack and tooling, developers acceptance, what could scale across our PWAs). We will talk about these topics:
+
+- Choosing the tool
+- Redux Lifecycle Agents
+- Immutable data
+- Proof of Concept with one of our PWAs
+- Pros and Cons
+
+## Choosing the tool
+
+We came across some questions to choose a tool:
+
+- Does it really solve the problem?
+- Acceptance at QuintoAndar.
+- The tool in the tech community.
+
+Some tools that can solve the problem: Flow, ReasonML, Elm, ClojureScript, and Typescript. (_disclaimer_: ClojureScript is from the LISP family. It doesn't have a static type system. But it has some cool features like immutable data structures)
+
+Thinking about the QuintoAndar's codebase, it's all JavaScript. Choosing a different language like ReasonML, Elm or ClojureScript would be a drawback in terms of learning a new language and have a guideline with best practices and conventions. Flow and Typescript, instead, are wrappers - or a superset - to JavaScript. It's easier to learn new APIs in comparison to a totally new language. Even though we like learning and trying new things, I thought that we should have a gentle learning curve and still solve the main problem.
+
+Typescript is used in some PWAs. Some use to type the API and app data contract with Typescript models (classes, interfaces, types). Others use the data fetcher for houses, search, and neighborhood. Flow, instead, is not used in our PWAs.
+
+TypeScript is one of the fastest-growing languages and is [currently the leading compile-to-JavaScript language](https://medium.com/javascript-scene/the-typescript-tax-132ff4cb175b). Some big companies - like [Airbnb - are also adopting this tool at scale](https://www.youtube.com/watch?v=P-J9Eg7hJwE).
+
+So we started with Typescript to do a proof of concept and see how it goes.
+
+## Redux Lifecycle Agents
+
+The idea behind the proposal is to type Redux agents. For - almost - all QuintoAndar's PWAs, we have actions, reducers, handlers, and selectors to type.
+
+- **Actions**: Using types to type the actions contract - type, promise, meta, extraProperties, properties, etc.
+
+- **Store state**: Contract for initialState and make it consistent across the Redux lifecycle.
+
+- **Reducers**: Take care of the state contract, returning only the correct type contract - changing only the data, not the types - by using handlers.
+
+- **Handlers**: Take care of the external interaction lifecycle and state mapping. Enforce that the final state will have the same contract as expected - the store state contract. Handlers are a common pattern when using [redux-pack](https://github.com/lelandrichardson/redux-pack).
+
+- **From External Interaction Data**: A contract for data from API or Firestore or any other external interaction.
+
+- **To Store State**: Use the store state contract - basically, the reducer initial state contract.
+
+- **Selectors**: Get the store state and map to component state - props - with mapStateToProps.
+
+- **Types**: a repository of types for all the agents.
+
+We can organize these agents inside the container component folder:
+
+```bash
+__ containers
+      |__ MyComponent
+        |__ actions.ts
+        |__ handlers.ts
+        |__ reducer.ts
+        |__ selectors.ts
+        |__ types.ts
+```
+
+## Immutable data
+
+### Immutable.js
+
+Immutable data is a fundamental feature to [make the frontend state management less complex](https://medium.com/javascript-scene/the-dao-of-immutability-9f91a70c88cd#.9g51h5stk). It's a core principle to make pure functions, a mathematical function concept of for a giving input, it always returns the same output, without mutation or side effects.
+
+We currently use Immutable.js to make JavaScript with immutable data structures. It gives JavaScript new data structures to handle immutable data with a whole new API.
+
+Predictability is really important to understand code. But Immutable.js doesn't enforce us to always use it in the state, so we don't know which API to use - Immutable or JavaScript API - to get data in the selector, for example. It is easy to mix data in the store. Part of it is an Immutable object. Other is vanilla JavaScript objects.
+
+Redux docs [raised some concerns about using Immutable.js](https://redux.js.org/recipes/using-immutablejs-with-redux/). And Redux authors [suggests avoiding using Immutable.js with Redux](https://www.reddit.com/r/javascript/comments/4rcqpx/dan_abramov_redux_is_not_an_architecture_or/d51g4k4/?utm_source=share&utm_medium=web2x). For immutable data, [they strongly recommend using Immer.js](https://redux.js.org/style-guide/style-guide/#use-immer-for-writing-immutable-updates).
+
+To make it consistent and predictable, what if we handle immutable data in compile-time and in development - with [lint](https://github.com/jonaskello/tslint-immutable) - and use only one language API, without the need to reason about between languages - JavaScript and Immutable.js?
+
+### Typescript readonly and TSLint-Immutable
+
+Typescript has [Readonly properties](https://mariusschulz.com/blog/read-only-properties-in-typescript) to handle [immutable data in compile-time](https://stackoverflow.com/questions/55905801/can-typescripts-readonly-fully-replace-immutable-js/55906256#55906256). They are:
+
+- **readonly**: immutable primitive data
+
+- **Readonly**: immutable object
+
+- **ReadonlyArray**: immutable array
+
+### readonly
+
+Add immutable features for primitive values as a number, string, boolean, etc.
+
+If we add this feature to a type definition, we enforce the data to be immutable in compile time. If you are using VS Code, your code will have an error "Cannot assign to 'your property here' because it is a read-only property".
+
+### Readonly
+
+Add immutable features for [objects](https://stackoverflow.com/questions/41879327/deepreadonly-object-typescript/49670389#49670389).
+
+If you are handling an object, you will probably use Readonly to mark all of its properties as readonly using mapped types.
+
+### ReadonlyArray
+
+Add immutable features for lists.
+
+If you try adding new items to the readonly array, you will have an error "Property 'push' does not exist on type 'readonly Readonly<T>[]"
+
+## Benchmark: Immutable.js vs Native APIs
+
+We did some [benchmarks to compare the PWA with and without Immutable.js](https://github.com/leandrotk/javascript-immutable-data-benchmarks). In the first benchmark, we decided to compare native JavaScript and Immutable.js APIs: get, get-in, set, and set-in. And understand how it looks like to transform data structure with fromJS and toJS functions.
+
+**[Get - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/get.js)**: getting the first attribute of an object is way more costly for the Immutable.js API. 7 times (in milliseconds) running with 1 million cycles and 5 million cycles. Getting the first element of an array is closer compared to those APIs.
+
+![Object.get results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/get.png)
+
+**[Get-In - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/getin.js)**: getting a nested attribute for an object or a nested element of an array is way more costly for the Immutable.js API than the native one. For both 1 and 5 million cycles.
+
+![Object.getIn results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/getin.png)
+
+**[Set - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/set.js)**: setting a new value to an object attribute is way more costly for the native JavaScript API. But using the set method, we can still work with native Objects and drastically decrease the milliseconds. For the array, it's closer, but it can be better with the set method.
+
+![Object.set results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/set.png)
+
+**[Set-In - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/setin.js)**: for both objects and arrays, it's better to use the native JavaScript API instead of the Immutable.js data structures and methods.
+
+![Object.setIn results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/setin.png)
+
+**[fromJS](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/fromJS.js) & [toJS](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/toJS.js)**: we can see that the fromJS function can be costly when transforming native JavaScript data structures to Immutable DS. toJS is way less costly, but every time we need to get a value, in the selector, for example, we use toJS and it can influence performance.
+
+![fromJS toJS](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/transformation.png)
+
+# Typed State Management: The lifecycle
+
+![Redux Lifecycle](https://user-images.githubusercontent.com/5835798/70868988-f96bbe80-1f64-11ea-948d-7be14ad19cdc.gif)
+
+The component renders with the initial state defined in the reducer. It dispatches an action. This action will have an external interaction, so it uses the promise concurrent model. The new data arrives in the reducer as part of the action and it passes the action to the handler to handle the external interaction lifecycle and add new data to the state if it succeeds. With an updated state, the selector will get and pass it to the component as props in mapStateToProps.
+
+The concept of typed state management is to make sure all the communication between these agents has a consistent and predictable state contract. From the initial state to the updated state after the external interaction, it has the same type of contract.
+
+# Typed State Management PoC
+
+Trying this concept as a Photos PWA Proof of Concept: Photos PWA is a small app maintained by a small team, this is why we chose it as part of the PoC. We needed to validate this idea in production, but without too much complication.
+
+The container component we applied to this concept is called NotStartedPhotoSessions. It fetches an API endpoint to get photo sessions to list in the photographer's agenda.
+
+The first thing was to build the store state contract as the initial state:
+
+```typescript
+// types.ts
+export type PhotoSessionsState = {
+  notStarted: ReadonlyPhotoSession;
+  started: ReadonlyPhotoSession;
+};
+
+// reducer.ts
+export const initialState: PhotoSessionsState = {
+  notStarted: [],
+  started: [],
+};
+```
+
+So in the first render, the component will access these values as props. In the rendering, it will dispatch a new typed action:
+
+```typescript
+// actions.ts
+export const fetchNotStartedPhotoSessionsAction = (): PhotoSessionsActions => ({
+  type: FETCH_NOT_STARTED_PHOTO_SESSIONS,
+  promise: fetchNotStartedPhotoSessions(),
+});
+
+// types.ts
+export type FetchNotStartedPhotoSessionsAction = {
+  type: typeof FETCH_NOT_STARTED_PHOTO_SESSIONS;
+  promise?: Promise<any>;
+  payload?: PhotoSessionsPayloadType;
+};
+
+export type PhotoSessionsActions =
+  | FetchNotStartedPhotoSessionsAction
+  | FetchStartedPhotoSessionsAction
+  | PhotoSessionsPageViewedAnalyticsAction
+  | PhotoSessionsClickedAnalyticsAction;
+```
+
+The reducer will receive this action. And ensure that the final result will have the same state contract as the initial state:
+
+```typescript
+export const photoSessionsReducer = (state = initialState, action: PhotoSessionsActions): PhotoSessionsState => {
+  ...
+};
+```
+
+The reducer then calls the handler and it transforms the API response payload into the store state. It's just data mapping.
+
+Now that the store state is updated, it's time to let the selector gets the new data:
+
+```typescript
+export const selectNotStartedPhotoSessions = (
+  photoSessions: PhotoSessionsState,
+): ReadonlyPhotoSession => photoSessions.notStarted;
+```
+
+And we get back to the component, where we map state to props and receive the new data.
+
+# Benefits
+
+- Foreseeability: type checking makes the code more foreseeable and, in turn, makes it less error-prone.
+- Documentation: making contracts for each agent in the redux lifecycle gives us good documentation about them for free.
+- Type safety to data flow: since most of our data flow happens in the redux lifecycle we get type safety, at least in compile-time, to our data - where most of our bugs originate.
+- If we choose to remove Immutable.js (fromJS and toJS) from the store state, we can still use cool functions like [mergeDeep](https://immutable-js.github.io/immutable-js/docs/#/mergeDeep) without an Immutable Map/Array/DS, but only using Immutable.js version 4.
+- Performance optimization when removing Immutable in favor of Typescript readonly
+  - [Immutable vs JS Benchmark](https://github.com/leandrotk/javascript-immutable-data-benchmarks): get, get-in, set, set-in, fromJS, toJS.
+  - Google Lighthouse: a slight improvement when running Google Lighthouse without Immutable.js.
+
+# Resources
+
+- [Beginner JavaScript Course](https://BeginnerJavaScript.com/friend/LEANDRO)
+- [React for Beginners Course](https://ReactForBeginners.com/friend/LEANDRO)
+- [Advanced React Course](https://AdvancedReact.com/friend/LEANDRO)
+- [ES6 Course](https://ES6.io/friend/LEANDRO)
+- [JavaScript Course by OneMonth](https://mbsy.co/lFtbC)
+- [Constraints in frontend development](https://www.youtube.com/watch?v=TqfbAXCCVwE&feature=emb_title)
+- [Our journey to type checking 4 million lines of Python](https://dropbox.tech/application/our-journey-to-type-checking-4-million-lines-of-python)
+- [The Typescript Tax](https://medium.com/javascript-scene/the-typescript-tax-132ff4cb175b)
+- [Adopting Typescript at Scale](https://www.youtube.com/watch?v=P-J9Eg7hJwE)
+- [The Dao of Immutability](https://medium.com/javascript-scene/the-dao-of-immutability-9f91a70c88cd#.9g51h5stk)
+- [Concerns on using Immutable.js with Redux](https://redux.js.org/recipes/using-immutablejs-with-redux/)
+  - [Avoid using Immutable.js with Redux](https://www.reddit.com/r/javascript/comments/4rcqpx/dan_abramov_redux_is_not_an_architecture_or/d51g4k4?utm_source=share&utm_medium=web2x)
+  - [3 Reasons to Avoid Using ImmutableJS With Redux](https://medium.com/better-programming/3-reasons-to-avoid-using-immutablejs-with-redux-b0109d0123e8)
+  - [Use Immer for Writing Immutable Updates](https://redux.js.org/style-guide/style-guide/#use-immer-for-writing-immutable-updates)
+- [Tslint-immutable](https://github.com/jonaskello/tslint-immutable)
+- [Read-only Typescript](https://mariusschulz.com/blog/read-only-properties-in-typescript)
+- [Typescript Read-only doesn't fully replace Immutable](https://stackoverflow.com/a/55906256/11314146)
+- [Deep ReadOnly Objects](https://stackoverflow.com/a/49670389/11314146)
+- [Native JavaScript vs Immutable.js APIs](https://github.com/leandrotk/javascript-immutable-data-benchmarks)
+- [io-ts](https://github.com/gcanti/io-ts)
+- [Typescript and jest mock](https://klzns.github.io/how-to-use-type-script-and-jest-mocks/)
+- [The Road to learn React](https://www.educative.io/courses/the-road-to-learn-react?aff=x8bV)
+- [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
+- [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
+- [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
+- [Practical Redux](https://www.educative.io/courses/practical-redux)
