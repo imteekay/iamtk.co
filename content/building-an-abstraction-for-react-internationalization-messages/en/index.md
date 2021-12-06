@@ -1,0 +1,312 @@
+I came across a feature I wanted to build and part of it included rendering an internationalized text based on a data type from the API. This API can return three types: `common`, `password`, or `biometry`. And we use it to build our `EntryInfo` component.
+
+For the `common` type, the API response looks like this:
+
+```javascript
+{
+  type: 'common',
+  ownerName: 'TK',
+  password: null
+}
+```
+
+The type is `common`, the `password` is `null`, and the `ownerName` is present as a string.
+
+For the `password` type:
+
+```javascript
+{
+  type: 'password',
+  ownerName: null,
+  password: 'lololol'
+}
+```
+
+The type is `password`, the `ownerName` is `null`, but `password` is present as a string.
+
+And for the `biometry` type:
+
+```javascript
+{
+  type: 'biometry',
+  ownerName: null,
+  password: null
+}
+```
+
+The type is `biometry`, without a `ownerName` and the `password`.
+
+These are the three possible payloads we receive from the API. And I needed to render an internationalized text based on this data.
+
+The logic to build the message text based on the type and the other values is:
+
+- when `type` is `'Common'`, it renders `'Owner {ownerName} will be there'`
+- when `type` is `'Password'`, it renders `'Password: {password}'`
+- when `type` is `'Biometry'`, it renders `'Type: biometry'`
+- when `type` is `null`, it renders `'Call the owner'`
+
+So the first thing I did was to build the message definitions:
+
+```javascript
+import { defineMessages } from 'react-intl';
+
+export const messages = defineMessages({
+  common: {
+    id: 'app.containers.entryInfo.owner',
+    defaultMessage: 'Owner {ownerName} will be there',
+  },
+  password: {
+    id: 'app.containers.entryInfo.password',
+    defaultMessage: 'Password: {password}',
+  },
+  biometry: {
+    id: 'app.containers.entryInfo.biometry',
+    defaultMessage: 'Type: biometry',
+  },
+  defaultMessage: {
+    id: 'app.containers.entryInfo.defaultMessage',
+    defaultMessage: 'Call the owner',
+  },
+}
+```
+
+The `EntryInfo` component would be like:
+
+```javascript
+const EntryInfo = ({ type, password, ownerName, intl }) => {
+  let entryInfo;
+
+  if (type === 'common') {
+    entryInfo = intl.format(messages.common, { ownerName });
+  } else if (type === 'password') {
+    entryInfo = intl.format(messages.password, { password });
+  } else if (type === 'biometry') {
+    entryInfo = intl.format(messages.biometry);
+  } else {
+    entryInfo = intl.format(messages.defaultMessage);
+  }
+
+  return <p>{entryInfo}</p>;
+};
+
+export default injectIntl(EntryInfo);
+```
+
+To follow the defined logic, I just added an `if-elseif-else` to render the appropriate message using the `intl.format` function. It's straightforward, the `intl.format` function receives the appropriate message and returns the entry info text and pass it to the component to render.
+
+But I could separate it in a helper function `getEntryInfo` to separate the logic from the UI component. I could also export it to unit test it without too much complication.
+
+I also pass the `intl` object to this new function to return the correct string.
+
+```javascript
+const getEntryInfo = ({ type, password, ownerName, intl }) => {
+  if (type === 'common') {
+    return intl.format(messages.common, { ownerName });
+  } else if (type === 'password') {
+    return intl.format(messages.password, { password });
+  } else if (type === 'biometry') {
+    return intl.format(messages.biometry);
+  } else {
+    return intl.format(messages.defaultMessage);
+  }
+};
+
+const EntryInfo = ({ type, password, ownerName, intl }) => {
+  const entryInfo = getEntryInfo({ type, password, ownerName, intl });
+
+  return <p>{entryInfo}</p>;
+};
+
+export default injectIntl(EntryInfo);
+```
+
+This logic looks more like a switch case comparing just the `type` value. So just a minor refactor in the `getEntryInfo`:
+
+```javascript
+const getEntryInfo = ({ type, password, ownerName, intl }) => {
+  switch (type) {
+    case 'Common':
+      return intl.format(messages.common, { ownerName });
+    case 'Password':
+      return intl.format(messages.password, { password });
+    case 'Biometry':
+      return intl.format(messages.biometry);
+    default:
+      return intl.format(messages.defaultMessage);
+  }
+};
+```
+
+The type is hardcoded, so we could also refactor these constants using an enum:
+
+```javascript
+const ENTRY_INFO_TYPES = Object.freeze({
+  COMMON: 'Common',
+  PASSWORD: 'Password',
+  BIOMETRY: 'Biometry',
+});
+
+const getEntryInfo = ({ type, password, ownerName, intl }) => {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return intl.format(messages.common, { ownerName });
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return intl.format(messages.password, { password });
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return intl.format(messages.biometry);
+    default:
+      return intl.format(messages.defaultMessage);
+  }
+};
+```
+
+Now we are good to go.
+
+Thinking about `cohesion`, I thought the `getEntryInfo` function did know too much about how the component renders the message text (by using `intl`).
+
+One idea is to think about the single responsibility of each function.
+
+So, for the `getEntryInfo` function, we can remove the `intl` parameter as a dependency and build the message object, instead of returning a string.
+
+```javascript
+const getEntryInfoMessage = ({ type, password, ownerName }) => {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return { message: messages.common, values: { ownerName } };
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return { message: messages.password, values: { password } };
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return { message: messages.biometry, values: {} };
+    default:
+      return { message: messages.defaultMessage, values: {} };
+  }
+};
+```
+
+And use like this in the component:
+
+```javascript
+const EntryInfo = ({ type, password, ownerName, intl }) => {
+  const entryInfoMessage = getEntryInfoMessage({ type, password, ownerName });
+
+  return (
+    <p>{intl.format(entryInfoMessage.message, entryInfoMessage.values)}</p>
+  );
+};
+```
+
+As a component refactor, we can destructure the message object:
+
+```javascript
+const EntryInfo = ({ type, password, ownerName, intl }) => {
+  const { message, values } = getEntryInfoMessage({
+    type,
+    password,
+    ownerName,
+  });
+
+  return <p>{intl.format(message, values)}</p>;
+};
+```
+
+It is more readable and less verbose.
+
+For the message object, we can build a simple function to handle the message object creation:
+
+```javascript
+const buildMessageObject = (message, values = {}) => ({
+  message,
+  values,
+});
+
+const getEntryInfoMessage = ({ type, password, ownerName }) => {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return buildMessageObject(messages.common, { ownerName });
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return buildMessageObject(messages.password, { password });
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return buildMessageObject(messages.biometry);
+    default:
+      return buildMessageObject(messages.defaultMessage);
+  }
+};
+```
+
+Take a look at the `values = {}` argument. We add this empty object as the default value to not need to pass anything in the `biometry` and `default` cases.
+
+Without the `intl` dependency, it's easier to use and test the function. It relies only upon the data, not on the dependencies anymore.
+
+---
+
+## The final component
+
+The complete component with all the separated logic is more cohesive. Each part has its own responsibility and it helps to reduce the coupling.
+
+```javascript
+const messages = defineMessages({
+  common: {
+    id: 'app.containers.entryInfo.owner',
+    defaultMessage: 'Owner {ownerName} will be there',
+  },
+  password: {
+    id: 'app.containers.entryInfo.password',
+    defaultMessage: 'Password: {password}',
+  },
+  biometry: {
+    id: 'app.containers.entryInfo.biometry',
+    defaultMessage: 'Type: biometry',
+  },
+  defaultMessage: {
+    id: 'app.containers.entryInfo.default',
+    defaultMessage: 'Call the owner',
+  },
+}
+
+const ENTRY_INFO_TYPES = Object.freeze({
+  COMMON: 'Common',
+  PASSWORD: 'Password',
+  BIOMETRY: 'Biometry',
+});
+
+const buildMessageObject = (message, values = {}) => ({
+  message,
+  values,
+});
+
+const getEntryInfoMessage = ({ type, password, ownerName }) => {
+  switch (type) {
+    case ENTRY_INFO_TYPES.COMMON:
+      return buildMessageObject(messages.common, { ownerName });
+    case ENTRY_INFO_TYPES.PASSWORD:
+      return buildMessageObject(messages.password, { password });
+    case ENTRY_INFO_TYPES.BIOMETRY:
+      return buildMessageObject(messages.biometry);
+    default:
+      return buildMessageObject(messages.defaultMessage);
+  }
+};
+
+const EntryInfo = ({ type, password, ownerName, intl }) => {
+  const { message, values } = getEntryInfoMessage({ type, password, ownerName });
+
+  return <p>{intl.format(message, values)}</p>;
+}
+
+export default injectIntl(EntryInfo);
+```
+
+## Resources
+
+- [Beginner JavaScript](https://BeginnerJavaScript.com/friend/LEANDRO)
+- [Learn ES6 - JavaScript](https://ES6.io/friend/LEANDRO)
+- [Beginner React](https://BeginnerJavaScript.com/friend/LEANDRO)
+- [One Month Javascript Bootcamp](https://mbsy.co/lFtbC)
+- [The Road to learn React](https://www.educative.io/courses/the-road-to-learn-react?aff=x8bV)
+- [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
+- [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
+- [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
+- [React in Patterns](https://www.educative.io/courses/react-in-patterns?aff=x8bV)
+- [Full Stack Advanced React](https://AdvancedReact.com/friend/LEANDRO)
+- [High cohesion and low coupling](https://stackoverflow.com/a/3085419/3159162)
+- [Learn React by building an App](https://alterclass.io/?ref=5ec57f513c1321001703dcd2)

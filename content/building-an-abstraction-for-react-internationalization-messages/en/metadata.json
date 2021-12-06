@@ -1,0 +1,23 @@
+{
+  "title": "Building an abstraction for React intl messages",
+  "description": "Implementing better abstractions for internationalization messages",
+  "date": "2020-06-21",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/building-an-abstraction-for-react-internationalization-messages/cover.jpeg",
+    "width": "592",
+    "height": "797",
+    "alt": "Plates",
+    "authorHref": "https://unsplash.com/@sonereker",
+    "authorName": "Soner Eker"
+  }
+}
