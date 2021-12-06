@@ -1,0 +1,17 @@
+{
+  "title": "Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes",
+  "description": "We’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on Rails web framework",
+  "date": "2018-01-02",
+  "tags": [
+    {
+      "href": "/tags/ruby",
+      "name": "ruby"
+    }
+  ],
+  "coverImage": {
+    "src": "/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work/cover.jpeg",
+    "width": "592",
+    "height": "253",
+    "alt": "I love ruby on rails"
+  }
+}

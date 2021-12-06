@@ -1,0 +1,119 @@
+After learning your [first programming language](https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d), you may ask what can you do with programming: AI/Machine Learning? Hardware development? Mobile apps? Or maybe you want to start developing web applications! :)
+
+Here we’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on Rails web framework. Let’s dive into the web world.
+
+Before learning web development with Rails, I really recommend learning about [Ruby first](https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d).
+
+### How does the web work?
+
+The web has a bunch of layers ([Application, TCP, Internet, Hardware layers](https://web.stanford.edu/class/msande91si/www-spr04/readings/week1/InternetWhitepaper.htm)) that are all connected. But basically, it works through **HTTP** (Hypertext Transfer Protocol).
+
+> The Hypertext Transfer Protocol (HTTP) is an application protocol for distributed, collaborative, hypermedia information systems. — Wikipedia
+
+The **HTTP** works like a request — response cycle in the client — server model.
+
+We have a web browser (Google Chrome, for example). So we type the `www.google.com` URL, and the client submits the HTTP request (request message) to the server. The server returns the HTTP response (response message — in that case, the response is the HTML from Google’s website).
+
+![](https://cdn-images-1.medium.com/max/1600/1*0HsqvxES_m9Serhg8xW2Xg.png)
+
+The client does the request and receives the response from the server. The client handles the UI and user interactions. On the server, we can store and retrieve data (on databases), process logic on the background (workers/jobs), and a lot of other things.
+
+If you want to deeply understand it, I’ll suggest some resources. I am a big fan of [Preethi](https://medium.com/@preethikasireddy)’s posts. Here a series of **3 parts**:
+
+- [A Primer for Newcomers to Web Development](https://medium.freecodecamp.org/how-the-web-works-a-primer-for-newcomers-to-web-development-or-anyone-really-b4584e63585c)
+
+- [Client-Server Model & the Structure of a Web Application](https://medium.freecodecamp.org/how-the-web-works-part-ii-client-server-model-the-structure-of-a-web-application-735b4b6d76e3)
+
+- [HTTP & REST](https://medium.freecodecamp.org/how-the-web-works-part-iii-http-rest-e61bc50fa0a)
+
+### The MVC architecture and Rails Routes
+
+![](https://cdn-images-1.medium.com/max/1600/1*eDPWR3lYGm1ogbef2beyHA.png)
+
+Now that we understand how the Web works, we’ll study the MVC architecture and Rails Routes.
+
+MVC stands for Model, View, and Controller.
+
+On this architecture, we have the “separation of the concerns” among Models, Views and, Controllers. Each part has its own responsibility. Let’s dive into each part.
+
+#### Model
+
+> “Maintains the relationship between Object and Database and handles validation, association, transactions”
+
+This means that the model will maintain an extreme relation with the Database. Each model (can) represent a database table (in case of SQL databases). This model object gains capabilities (inherited from ActiveRecord — Rails class) to retrieve, save, edit, and delete data from database table. We use model objects as a layer between our application and the database.
+
+Besides that relation with the database, the model can create **validations**and **associations** between models.
+
+#### View
+
+> “A presentation of data in a particular format, triggered by a controller’s decision to present the data.”
+
+This is the presentation of the request’s response. This presentation can be in a bunch of format types: PDF, HTML, JSON, etc. The final result of a view will likely be the user interface (UI) — Part of the “Client.”
+
+For most pages on the web, the views will be an HTML styled with CSS and JS. But we can implement PDFs of user behavior on a [Travel digital product](https://www.worldpackers.com/) to show all employees how people use their website, too.
+
+#### Controller
+
+> “The facility within the application that directs traffic, on the one hand querying the models for specific data, and on the other hand organizing that data (searching, sorting) into a form that fits the needs of a given view.”
+
+The controller is the “Maestro.” It takes care of the flow: uses models to do queries, parses data, and make decisions about in which format you’ll present the data.
+
+![](https://cdn-images-1.medium.com/max/1600/1*KK61kGXrkaFBDfY7uWukyQ.png)
+
+### MVC & Routes cycle on a Rails application
+
+So imagine that we work at a [Travel Startup](https://www.worldpackers.com). Part of the product is to present a [list of great articles about travel stories and tips](https://www.worldpackers.com/articles) to travelers.
+
+Just think from the traveler’s perspective. You go to `www.worldpackers.com/articles` and you see a beautiful page listing a bunch of great articles.
+
+When you type this URL in the browser, it makes a request to the server. In the server, we have the Rails web application. The Rails Router verifies if there is an entry matching the requested URL.
+
+We just need to configure the routes for this line:
+
+```ruby
+resources :articles
+```
+
+This will create RESTful routes for articles. If we run `bundle exec rake routes`, it will show the list of paths created.
+
+```shell
+HTTP VERB   PATH                          Controller#Action
+GET         /articles(.:format)           articles#index
+POST        /articles(.:format)           articles#create
+GET         /articles/new(.:format)       articles#new
+GET         /articles/:id/edit(.:format)  articles#edit
+GET         /articles/:id(.:format)       articles#show
+PATCH       /articles/:id(.:format)       articles#update
+PUT         /articles/:id(.:format)       articles#update
+DELETE      /articles/:id(.:format)       articles#destroy
+```
+
+The HTTP verb can be `GET`, `POST`, `PATCH`, `PUT`, or `DELETE`. And we know how Rails maps each `PATH` to the right `controller` and `action`. Read more [here](http://guides.rubyonrails.org/routing.html).
+
+In our case, the server will receive `/articles` path and `GET` as the HTTP verb. It will map to `ArticlesController` and `index` action.
+
+In the **controller**`ArticlesController` we use the **model** `Article` to get all articles in the database and render the **view** `index.html.erb` as the server response (the UI).
+
+```ruby
+class ArticlesController < ApplicationController
+  def index
+    @articles = Article.all
+  end
+end
+```
+
+By convention, this controller will render the view in `views/articles/index.html.erb`. Basically, it’s a plain HTML file powered by Ruby.
+
+The Rails request-response cycle is one of the first concepts you need to understand when you start learning web development.
+
+The user does stuff (request to the server), the the Rails application has the router to map the URL path to the right controller. In the controller, we can do all things with a model (or more than one model) — meaning getting, saving, editing, deleting data — and render a view to the user.
+
+### That’s all!
+
+We learned a lot here. I hope you guys appreciate the content and learn more about how the MVC architecture and routing work on Rails.
+
+This is one more step forward in my journey to learning and mastering Rails and web development. You can see the documentation of my complete journey here on my [Renaissance Developer publication](https://medium.com/the-renaissance-developer).
+
+If you want a complete [Ruby](https://onemonth.com/courses/ruby?mbsy=lG6tt&mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&campaignid=33446&discount_code=TKRuby1) and [Rails](https://onemonth.com/courses/rails?mbsy=lG6tz&mbsy_source=d2442db6-e764-401a-a394-a9c081468830&discount_code=TKRuby1&campaignid=33448) course, learn real-world coding skills and build projects, try [One Month Ruby Bootcamp](https://onemonth.com/courses/ruby?mbsy=lG6tt&mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&campaignid=33446&discount_code=TKRuby1) and [Rails Bootcamp](https://onemonth.com/courses/rails?mbsy=lG6tz&mbsy_source=d2442db6-e764-401a-a394-a9c081468830&discount_code=TKRuby1&campaignid=33448). See you there ☺
+
+Have fun, and keep learning and coding.
