@@ -1,0 +1,301 @@
+After [learning about Ruby](https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d), the first step we took was to understand how the [web and the Ruby on Rails request-response cycle](https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84) work.
+
+Now it’s time to learn about databases and how they connect with Ruby on Rails. Basically, the answer is the Model: the `M` from `MVC` , as we learned [here](https://medium.com/the-renaissance-developer/ruby-on-rails-http-mvc-and-routes-f02215a46a84).
+
+Before learning web development with Rails, I really recommend learning about [Ruby first](https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d).
+
+Let’s begin!
+
+### What is a database?
+
+Hmmm… The first thought that comes to my mind is something that stores data.
+
+But this definition is quite imprecise! An array, a hash, a linked list, or any data structure can be something that is able to store data.
+
+When you turn off the computer, you lose all data values that were stored in that array (the same as all data structures). So it’s not a good idea to store all my `precious data`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*p1Yw2imC4HhUPaEfssliXw.gif)
+
+We need to solve two problems here:
+
+1. Store data and get it anytime we want.
+
+2. Store data in an organized and structured way, so we can get it easily.
+
+Should I store all the data in a notepad? Just put all the information inside it separated by commas, save the `txt file`, and done. Now I can open it and get all the data I want. We can store data and get it anytime… problem solved!
+
+We solved this problem, but we missed the other. Now all the data is stored and we won’t lose it. But it’s not well-structured in the file. We need the rule to store and get data in an organized and well-structured form.
+
+Let’s think about how can we organize the data in a well-structured way.
+
+**What about organizing all the data in tables?**
+
+![](https://cdn-images-1.medium.com/max/1600/1*QzMTJf39jdsi_alIWlGxig.jpeg)
+
+So, here’s we have: the table’s header (columns name: First Name, Last Name, Address, etc) containing values that we’ll store. For example, if we want to store the **string “Mickey”** (the value), it’ll be stored in the **“First Name”** column.
+
+- **Table**: let’s say **People**
+
+- **Columns**: **First name**, **Last Name**, **Address**, etc
+
+- **Rows**: in this case, we can say that a row can be a **person** with, for example, first name “Mickey” and last name “Mouse,” address “123 Fantasy Way,” etc.
+
+- **Fields**: all data stored in the database.
+
+And now we have a well-structured way to store data**: in a Table!**
+
+### How about get, delete, insert, and update data?
+
+We’ll use SQL language (I’ll not mention NoSQL world!) to manipulate the data. Let’s get the basics.
+
+1. **GET:** if we want to get all data (**person**) from **People** table, we need to select it from that table.
+
+```sql
+SELECT * FROM People;
+```
+
+The (**\*)** symbol means that it will select all columns from **People** table. If we can get all columns, we can specify which columns we need for this select.
+
+```sql
+SELECT firstname, lastname, age FROM People;
+```
+
+2. **DELETE:** we want to delete all data from our **People** table.
+
+```sql
+DELETE FROM People;
+```
+
+But it’s not common to delete all data from a table. We usually use a condition to delete, like “I want to delete all people under 21 years old.” We will learn how later in this post!
+
+3. **INSERT:** we will insert/store data into the table.
+
+```sql
+INSERT INTO People VALUES ('Leandro', 'Tk', 'My Address 123', 'São Paulo', 23);
+```
+
+or we can specify into which columns we want to insert data.
+
+```sql
+INSERT INTO People (firstname, lastname, age) VALUES ('Leandro', 'Tk', 23);
+```
+
+4. **UPDATE:** we have stored the data, but we want to update it.
+
+```sql
+UPDATE People SET firstname='Gennady', lastname='korotkevich';
+```
+
+### Using conditions in our queries
+
+Now we can use SQL language to query (select, delete, insert, update) data.
+
+- But what if we want to delete just records with the last name **Kinoshita**?
+
+- Or if we want to update a specific person with first name **Leandro**and last name **Kinoshita**?
+
+- Or just select all data from the people table and sort it by age from younger to older?
+
+Yeah, we use conditions like **where**and **order by,**and operators like **or**and **and**. Let’s see some examples:
+
+- Deleting all records from the people table with last name **Kinoshita**.
+
+```sql
+DELETE From People WHERE lastname="Kinoshita";
+```
+
+- Updating all records from the people table with first name **Leandro** and last name **Kinoshita**.
+
+```sql
+UPDATE People SET firstname="Gennady" WHERE firstname="Leandro" AND lastname="Kinoshita";
+```
+
+- Selecting all records from the people table but ordering them by age (in ascending order → ASC).
+
+```sql
+SELECT * FROM People ORDER BY age;
+```
+
+#### Relationship between tables
+
+We know how to execute queries (with or without conditions). Let’s understand how the tables’ relationships work.
+
+- **One to One (1–1)**: it’s about a relationship between two tables in which one can only belong with the other. **e.g.** A person has one passport and that passport belongs to that specific person. So in this example, we have table People, table Passports and a 1–1 relationship.
+
+- **One to Many (1-n)**: it’s about a relationship between two tables in which a record from one table can reference many records from another. **e.g.** Imagine an e-commerce platform: users, orders, products, payments, etc. A user can have many orders, and each order belongs to that specific user. So in this example, we have table Users, table Orders, and a 1-n relationship.
+
+- **Many to Many (n-n)**: it’s about a relationship between two tables in which a record from one table can reference many records from another. And a record from another can also reference many records from the one. **e.g.** We have again the e-commerce platform: we divide products into categories. A category has many products (category Technology has many products like cell phones, notebooks, etc) and a product can belong to many categories (product Cellphone belongs to the Technology and Electronics Categories). So in this example, we have table Products, table Categories, and an n-n relationship.
+
+### Rails Mode ON
+
+We now understand the meaning of databases, we’ve tried some basic queries, and have talked about the relationship between tables. But how can we use that knowledge in the **Ruby on Rails and web development World**?
+
+First of all: **Rails** is **Rails**. The **Database** is **Database**. Is it obvious? But people usually get confused about that.
+
+A User model **can** represent a Users table. But the model isn’t the table.
+
+- In the **database**, we have tables and rows.
+
+- On **rails**, we have models (classes) and objects.
+
+Imagine a blog site. The blog needs an author for each post. So we create an **Authors** table with some columns (first_name, last_name, etc):
+
+```
+rails g migration CreateAuthors
+```
+
+In the migration, we add columns `first_name`, `last_name`, `email`, `birthday`, `created_at`, and `updated_at`. (`created_at` and `updated_at` are created by the `t.timestamps` code).
+
+```ruby
+class CreateAuthors < ActiveRecord::Migration[5.0]
+  def change
+    create_table :authors do |t|
+      t.string :first_name
+      t.string :last_name
+      t.string :email
+      t.date :birthday
+      t.timestamps
+    end
+  end
+end
+
+```
+
+So we create a migration (Ruby code), run the `rake db:migrate` command in the terminal, and it generates a table `Authors` with `first_name`, `last_name`, `email`, `birthday`, `created_at`, and `updated_at` columns.
+
+Back to Rails — we can create an `Author` model:
+
+```ruby
+class Author < ActiveRecord::Base
+
+end
+```
+
+So now we have an `Authors` table with some columns and an `Author` model.
+
+#### Using the Rails Console
+
+Open the terminal and type `bundle exec rails c`. Remember, we are in the **RAILS** console, so we have classes, objects, attributes, etc.
+
+```ruby
+author = Author.new
+=> #<Author id: nil, first_name: nil, last_name: nil>
+author.first_name = "Leandro"
+=> "Leandro"
+author.last_name = "Tk"
+=> "Tk"
+author.save
+=> #<Author id: 1, first_name: "Leandro", last_name: "Tk">
+```
+
+### Relationships on Rails
+
+We created an `Authors` table/model. What we need now is a `Posts` table/model. An author has many posts and a post belongs to a specific author. The relationship here is **one to many** (**1-n**). Remember?
+
+So when we create a `Posts` table, we need to store a reference to the post’s author (column **author_id** in the **Posts** table). It’s known as the `Foreign Key`.
+
+And how do we relate the models?
+
+#### author has_many posts
+
+```ruby
+class Author < ActiveRecord::Base
+
+  has_many :posts
+
+end
+```
+
+#### post belongs_to an author
+
+```ruby
+class Post < ActiveRecord::Base
+
+  belongs_to :author
+
+end
+```
+
+#### Using the Rails Console
+
+```ruby
+author = Author.new
+=> #<Author id: nil, first_name: nil, last_name: nil>
+author.first_name = "Leandro"
+=> "Leandro"
+author.last_name = "Tk"
+=> "Tk"
+author.save
+=> #<Author id: 1, first_name: "Leandro", last_name: "Tk">
+
+post = Post.new(title: "Database & Rails", text: "Lorem Ipsum...")
+=> #<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: nil>
+post.author
+=> nil
+post.author = author
+=> #<Author id: 1, first_name: "Leandro", last_name: "Tk">
+post
+=> #<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: 1>
+post.save
+=> #<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: 1>
+```
+
+- Quick explanation about `has_many` and `belongs_to`. Both `codes` are methods defined on `ActiveRecord` class. You can see that we create our models inheriting from `ActiveRecord::Base`.
+
+Remember in my [Ruby Foundation](https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d) article that we learned about Object Oriented Programming, the Inheritance part? This is why we can use `has_many` and `belongs_to` methods without defining it anywhere on our application. Rails handles it for us.
+
+If you want to understand this concept deeply, clone the [Rails repo](https://github.com/rails/rails) or check out the [Behind the Scenes of the ‘Has Many’ Active Record Association](http://callahan.io/blog/2014/10/08/behind-the-scenes-of-the-has-many-active-record-association/).
+
+### Queries on Rails
+
+We can query using ActiveRecord methods:
+
+- **all**: Get all objects from a specific model.
+
+```ruby
+Post.all
+=> [#<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: 1>]
+```
+
+Behind the scenes, it is executing the `SELECT * FROM posts` query.
+
+- **find**: Using find we can get the object by the id (primary key).
+
+```ruby
+Post.find(1)
+=> #<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: 1>
+```
+
+Behind the scenes, it is executing `SELECT * FROM posts WHERE id = 1` query.
+
+- **where**: Get the objects that pass the conditions.
+
+```ruby
+Post.where(title: "Database & Rails")
+=> [#<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: 1>]
+Post.where(title: "Database & Rails").first
+=> #<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", author_id: 1>
+```
+
+Behind the scenes, it is executing `SELECT * FROM posts WHERE title = 'Database & Rails'`query.
+
+- **order**: Sort all objects based on a column.
+
+```ruby
+Post.all
+=> [#<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", created_at: "2015-10-13 20:00:00", author_id: 1>, #<Post id: 2, title: "Ruby on Rails: HTTP, MVC and Routes", text: "Lorem Ipsum2...", created_at: "2015-10-13 21:00:00", author_id: 1>]
+Post.order("created_at DESC")
+=> [#<Post id: 2, title: "Ruby on Rails: HTTP, MVC and Routes", text: "Lorem Ipsum2...", created_at: "2015-10-13 20:00:00", author_id: 1>, #<Post id: 1, title: "Database & Rails", text: "Lorem Ipsum...", created_at: "2015-10-13 21:00:00", author_id: 1>]
+```
+
+Behind the scenes, it is executing `SELECT * FROM posts ORDER BY created_at DESC` query.
+
+### That’s all!
+
+We learned a lot here. I hope you guys appreciate the content and learn more about how the Databases and Rails models work.
+
+This is one more step forward in my journey to learning and mastering Rails and web development. You can see the documentation of my complete journey here on my [Renaissance Developer publication](https://medium.com/the-renaissance-developer).
+
+If you want a complete [Ruby](https://onemonth.com/courses/ruby?mbsy=lG6tt&mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&campaignid=33446&discount_code=TKRuby1) and [Rails](https://onemonth.com/courses/rails?mbsy=lG6tz&mbsy_source=d2442db6-e764-401a-a394-a9c081468830&discount_code=TKRuby1&campaignid=33448) course, learn real-world coding skills and build projects, try [One Month Ruby Bootcamp](https://onemonth.com/courses/ruby?mbsy=lG6tt&mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&campaignid=33446&discount_code=TKRuby1) and [Rails Bootcamp](https://onemonth.com/courses/rails?mbsy=lG6tz&mbsy_source=d2442db6-e764-401a-a394-a9c081468830&discount_code=TKRuby1&campaignid=33448). See you there ☺
+
+Have fun, and keep learning and coding.
