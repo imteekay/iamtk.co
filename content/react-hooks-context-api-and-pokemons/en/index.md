@@ -1,0 +1,981 @@
+After 7 years of full stack development using Ruby, Python, and vanilla JavaScript, I'm now working mostly with JavaScript, Typescript, React, and Redux. The JavaScript community is great.. and fast. Tons of things are created "overnight", figuratively, but sometimes literally. And it is really difficult to keep up to date.
+
+> Mental note: I always feel I'm late at the JavaScript party. And I want to be there. Even though I don't really like parties.
+
+1 year working with React and Redux and I feel I need to learn new things like Hooks and the Context API to manage state. After reading some articles about it, I wanted to try these concepts, so I created a simple project as a laboratory to experiment with those things.
+
+Since I was a little boy, I'm passionate about Pokemon. It was a fun time playing Game Boy and conquering all the Leagues. Now, as a developer, I want to play around with the [Pokemon API](https://pokeapi.co/).
+
+So basically I wanted to build a simple web page that I could share data among pieces of this page. I thought: what if I build a page with three boxes:
+
+- A box with the list of all existent pokemons
+- A box with the list of all captured pokemons
+- A box with input to add new pokemons to the list
+
+And I can build behavior or actions to each box:
+
+- For each pokemon in the first box, I can capture them and send to the second box
+- For each pokemon in the second box, I can release them and send to the first box
+- As a game god, I'm able to create pokemons by filling the input and send them to the first box
+
+Ok, it is clear to me all the features we need to implement here. Lists & Actions. Let's begin!
+
+## Listing Pokemons
+
+The basic feature I wanted to build first was listing pokemons. So for an array of objects, I want to list and show the `name` attribute of each one. And that's it.
+
+I'll start with the first box: the existent Pokemons. At first, I thought, I don't need the Pokemon API, Let's just mock the list and see if it works. With `useState`, I can declare my component state and use it.
+
+We define it with a default value of a mock of Pokemons, just to test it.
+
+```javascript
+const [pokemons] = useState([
+  { id: 1, name: 'Bulbasaur' },
+  { id: 2, name: 'Charmander' },
+  { id: 3, name: 'Squirtle' },
+]);
+```
+
+Here we a list of three Pokemon objects. The `useState` hook provides a pair of items: the current state and a function to let you update this created state.
+
+Now with the pokemons state, we can map it and render the name of each one.
+
+```javascript
+{
+  pokemons.map((pokemon) => <p>{pokemon.name}</p>);
+}
+```
+
+It is just a map returning each Pokemon's name in a paragraph tag.
+
+This is the whole component implemented:
+
+```javascript
+import React, { useState } from 'react';
+
+const PokemonsList = () => {
+  const [pokemons] = useState([
+    { id: 1, name: 'Bulbasaur' },
+    { id: 2, name: 'Charmander' },
+    { id: 3, name: 'Squirtle' },
+  ]);
+
+  return (
+    <div className="pokemons-list">
+      <h2>Pokemons List</h2>
+
+      {pokemons.map((pokemon) => (
+        <div key={`${pokemon.id}-${pokemon.name}`}>
+          <p>{pokemon.id}</p>
+          <p>{pokemon.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default PokemonsList;
+```
+
+Just a little tweak here:
+
+- Added the `key` in a combination of the pokemon's `id` and `name`
+- And render a paragraph for the `id` attribute (I was just testing it. But we will remove it later)
+
+Great! Now we have the first list up and running.
+
+I want to make this same implementation but now for the captured pokemons. But for the captured pokemons, I want to make them as an empty list. Because when the "game" starts, I don't have any captured Pokemons, right? Right!
+
+```javascript
+const [pokemons] = useState([]);
+```
+
+That's it, really simple!
+
+The whole component looks similar to the other:
+
+```javascript
+import React, { useState } from 'react';
+
+const CapturedPokemons = () => {
+  const [pokemons] = useState([]);
+
+  return (
+    <div className="pokedex">
+      <h2>Captured Pokemons</h2>
+
+      {pokemons.map((pokemon) => (
+        <div key={`${pokemon.id}-${pokemon.name}`}>
+          <p>{pokemon.id}</p>
+          <p>{pokemon.name}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default CapturedPokemons;
+```
+
+Here we map, but as the array is empty, it doesn't render anything.
+
+Now that I have the two main components, I can get them together in the `App` component:
+
+```javascript
+import React from 'react';
+import './App.css';
+
+import PokemonsList from './PokemonsList';
+import Pokedex from './Pokedex';
+
+const App = () => (
+  <div className="App">
+    <PokemonsList />
+    <Pokedex />
+  </div>
+);
+
+export default App;
+```
+
+## Capturing & Releasing
+
+This is the second part of our app. We will capture and release Pokemons. So let's think of the expected behavior.
+
+For each Pokemon in the list of available Pokemons, I want to enable an action to capture them. The capture action will remove them from the list they were and add them to the list of captured Pokemons.
+
+The release action will have similar behavior. But instead of moving from the available list to the captured list, it will be the reverse. We will move them from the captured list to the available list.
+
+So both boxes need to share data to be able to add the Pokemon to the other list. How we do this as they are different components in the app? Let's talk about the React Context API.
+
+The Context API was designed to make global data for a defined tree of React components. As the data is global, we can share it among components in this defined tree. So let's use it to share our simple Pokemon data between the two boxes.
+
+> Mental Note: "Context is primarily used when some data needs to be accessible by many components at different nesting levels." - React Docs.
+
+Using the API, we simply create a new context like that:
+
+```javascript
+import { createContext } from 'react';
+
+const PokemonContext = createContext();
+```
+
+Now, with the `PokemonContext`, we can use its provider. It will work as a component wrapper of a tree of components. It provides global data to these components and enables them to subscribe to any changes related to this context. It looks like this:
+
+```javascript
+<PokemonContext.Provider value={/* some value */}>
+```
+
+The `value` prop is just a value that this context provides the wrapped components. What should we provide to the available and the captured lists?
+
+- `pokemons`: to list in the available list
+- `capturedPokemons`: to list in the captured list
+- `setPokemons`: to be able to update the available list
+- `setCapturedPokemons`: to be able to update the captured list
+
+As I mentioned before in the `useState` part, this hook always provides a pair: the state and a function to update this state. This function handles and updates the context state. In other words, they are the `setPokemons` and `setCapturedPokemons`. How?
+
+```javascript
+const [pokemons, setPokemons] = useState([
+  { id: 1, name: 'Bulbasaur' },
+  { id: 2, name: 'Charmander' },
+  { id: 3, name: 'Squirtle' },
+]);
+```
+
+Now we have the `setPokemons`.
+
+```javascript
+const [capturedPokemons, setCapturedPokemons] = useState([]);
+```
+
+And now we also have the `setCapturedPokemons`.
+
+With all these values in hand, we can now pass them to the provider's `value` prop.
+
+```javascript
+import React, { createContext, useState } from 'react';
+
+export const PokemonContext = createContext();
+
+export const PokemonProvider = (props) => {
+  const [pokemons, setPokemons] = useState([
+    { id: 1, name: 'Bulbasaur' },
+    { id: 2, name: 'Charmander' },
+    { id: 3, name: 'Squirtle' },
+  ]);
+
+  const [capturedPokemons, setCapturedPokemons] = useState([]);
+
+  const providerValue = {
+    pokemons,
+    setPokemons,
+    capturedPokemons,
+    setCapturedPokemons,
+  };
+
+  return (
+    <PokemonContext.Provider value={providerValue}>
+      {props.children}
+    </PokemonContext.Provider>
+  );
+};
+```
+
+I created a `PokemonProvider` to wrap all these data and APIs to create the context and return the context provider with the defined value.
+
+But how do we provide these data and APIs to the component? We need to do two main things:
+
+- Wrap the components into this context provider
+- Use the context in each component
+
+Let's wrap them first:
+
+```javascript
+const App = () => (
+  <PokemonProvider>
+    <div className="App">
+      <PokemonsList />
+      <Pokedex />
+    </div>
+  </PokemonProvider>
+);
+```
+
+And we use the context by using the `useContext` and passing the created `PokemonContext`. Like this:
+
+```javascript
+import { useContext } from 'react';
+import { PokemonContext } from './PokemonContext';
+
+useContext(PokemonContext); // returns the context provider value we created
+```
+
+For the available pokemons, we want to capture them, so it would be useful to have the `setCapturedPokemons` function API to update the captured pokemons. As the pokemon is captured, we need to remove it from the available list. `setPokemons` is also needed here. And to update each list, we need the current data. So basically we need everything from the context provider.
+
+We need to build a button with an action to capture the pokemon:
+
+- `<button>` tag with an `onClick` calling the `capture` function and passing the Pokemon
+
+```javascript
+<button onClick={capture(pokemon)}>+</button>
+```
+
+- The `capture` function will update the `pokemons` and the `capturedPokemons` lists
+
+```javascript
+const capture = (pokemon) => (event) => {
+  // update captured pokemons list
+  // update available pokemons list
+};
+```
+
+To update the `capturedPokemons`, we can just call the `setCapturedPokemons` function with the current `capturedPokemons` and the pokemon to be captured.
+
+```javascript
+setCapturedPokemons([...capturedPokemons, pokemon]);
+```
+
+And to update the `pokemons` list, just filter the pokemon that will be captured.
+
+```javascript
+setPokemons(removePokemonFromList(pokemon));
+```
+
+`removePokemonFromList` is just a simple function to filter the pokemons by removing the captured pokemon.
+
+```javascript
+const removePokemonFromList = (removedPokemon) =>
+  pokemons.filter((pokemon) => pokemon !== removedPokemon);
+```
+
+How does the component look like now?
+
+```javascript
+import React, { useContext } from 'react';
+import { PokemonContext } from './PokemonContext';
+
+export const PokemonsList = () => {
+  const { pokemons, setPokemons, capturedPokemons, setCapturedPokemons } =
+    useContext(PokemonContext);
+
+  const removePokemonFromList = (removedPokemon) =>
+    pokemons.filter((pokemon) => pokemon !== removedPokemon);
+
+  const capture = (pokemon) => () => {
+    setCapturedPokemons([...capturedPokemons, pokemon]);
+    setPokemons(removePokemonFromList(pokemon));
+  };
+
+  return (
+    <div className="pokemons-list">
+      <h2>Pokemons List</h2>
+
+      {pokemons.map((pokemon) => (
+        <div key={`${pokemon.id}-${pokemon.name}`}>
+          <div>
+            <span>{pokemon.name}</span>
+            <button onClick={capture(pokemon)}>+</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default PokemonsList;
+```
+
+It will look very similar for the captured pokemons component. Instead of `capture`, it will be a `release` function:
+
+```javascript
+import React, { useContext } from 'react';
+import { PokemonContext } from './PokemonContext';
+
+const CapturedPokemons = () => {
+  const { pokemons, setPokemons, capturedPokemons, setCapturedPokemons } =
+    useContext(PokemonContext);
+
+  const releasePokemon = (releasedPokemon) =>
+    capturedPokemons.filter((pokemon) => pokemon !== releasedPokemon);
+
+  const release = (pokemon) => () => {
+    setCapturedPokemons(releasePokemon(pokemon));
+    setPokemons([...pokemons, pokemon]);
+  };
+
+  return (
+    <div className="captured-pokemons">
+      <h2>CapturedPokemons</h2>
+
+      {capturedPokemons.map((pokemon) => (
+        <div key={`${pokemon.id}-${pokemon.name}`}>
+          <div>
+            <span>{pokemon.name}</span>
+            <button onClick={release(pokemon)}>-</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default CapturedPokemons;
+```
+
+## Reducing the complexity
+
+Now we use the `useState`, the Context API, context provider, the `useContext`. And more importantly, we can share data between Pokemon boxes.
+
+Another way to manage the state is by using `useReducer` as an alternative for `useState`.
+
+The reducer lifecycle works like this: the `useReducer` provides a `dispatch` function. With this function, we can dispatch an `action` inside a component. The `reducer` receives the action and the state. It understands the type of action, handles the data, and return a new state. Now, the new state can be used in the component.
+
+As an exercise and to have a better understanding of this hook, I tried to replace the `useState` with it.
+
+The `useState` was inside the `PokemonProvider`. We can redefine the initial state for the available and the captured pokemons in this data structure:
+
+```javascript
+const defaultState = {
+  pokemons: [
+    { id: 1, name: 'Bulbasaur' },
+    { id: 2, name: 'Charmander' },
+    { id: 3, name: 'Squirtle' },
+  ],
+  capturedPokemons: [],
+};
+```
+
+And pass this value to the `useReducer`:
+
+```javascript
+const [state, dispatch] = useReducer(pokemonReducer, defaultState);
+```
+
+The `useReducer` receives two parameters: the reducer and the initial state. Let's build the `pokemonReducer` now.
+
+The reducer receives the current state and the action that was dispatched.
+
+```javascript
+const pokemonReducer = (state, action) => // returns the new state based on the action type
+```
+
+Here we get the action type and return a new state. The action is an object. It looks like this:
+
+```javascript
+{
+  type: 'AN_ACTION_TYPE';
+}
+```
+
+But could also be bigger:
+
+```javascript
+{
+  type: 'AN_ACTION_TYPE',
+  pokemon: {
+    name: 'Pikachu'
+  }
+}
+```
+
+This is the case, we pass a Pokemon to the action object. Let's pause for a minute and think about what we want to do inside the reducer.
+
+Here, we usually update data and handle actions. Actions are dispatched. So actions are behavior. And the behavior from our app are: capture and release! These are the action we need to handle here.
+
+This is what our reducer will look like:
+
+```javascript
+const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case 'CAPTURE':
+    // handle capture and return new state
+    case 'RELEASE':
+    // handle release and return new state
+    default:
+      return state;
+  }
+};
+```
+
+If our action has a type `CAPTURE`, we handle it in one way. If our action type is the `RELEASE`, we handle it in another way. If the action type doesn't match any of these types, just return the current state.
+
+When we capture the pokemon, we need to update both lists: remove the pokemon from the available list and add it to the captured list. This state is what we need to return from the reducer.
+
+```javascript
+const getPokemonsList = (pokemons, capturedPokemon) =>
+  pokemons.filter((pokemon) => pokemon !== capturedPokemon);
+
+const capturePokemon = (pokemon, state) => ({
+  pokemons: getPokemonsList(state.pokemons, pokemon),
+  capturedPokemons: [...state.capturedPokemons, pokemon],
+});
+```
+
+The `capturePokemon` function just returns the updated lists. The `getPokemonsList` removes the captured pokemon from the available list.
+
+And we use this new function in the reducer:
+
+```javascript
+const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case 'CAPTURE':
+      return capturePokemon(action.pokemon, state);
+    case 'RELEASE':
+    // handle release and return new state
+    default:
+      return state;
+  }
+};
+```
+
+Now the `release` function!
+
+```javascript
+const getCapturedPokemons = (capturedPokemons, releasedPokemon) =>
+  capturedPokemons.filter((pokemon) => pokemon !== releasedPokemon);
+
+const releasePokemon = (releasedPokemon, state) => ({
+  pokemons: [...state.pokemons, releasedPokemon],
+  capturedPokemons: getCapturedPokemons(
+    state.capturedPokemons,
+    releasedPokemon,
+  ),
+});
+```
+
+The `getCapturedPokemons` remove the released pokemon from the captured list. The `releasePokemon` function returns the updated lists.
+
+Our reducer looks like this now:
+
+```javascript
+const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case 'CAPTURE':
+      return capturePokemon(action.pokemon, state);
+    case 'RELEASE':
+      return releasePokemon(action.pokemon, state);
+    default:
+      return state;
+  }
+};
+```
+
+Just one minor refactor: action types! These are strings and we can extract them into a constant and provide for the dispatcher.
+
+```javascript
+export const CAPTURE = 'CAPTURE';
+export const RELEASE = 'RELEASE';
+```
+
+And the reducer:
+
+```javascript
+const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case CAPTURE:
+      return capturePokemon(action.pokemon, state);
+    case RELEASE:
+      return releasePokemon(action.pokemon, state);
+    default:
+      return state;
+  }
+};
+```
+
+The entire reducer file looks like this:
+
+```javascript
+export const CAPTURE = 'CAPTURE';
+export const RELEASE = 'RELEASE';
+
+const getCapturedPokemons = (capturedPokemons, releasedPokemon) =>
+  capturedPokemons.filter((pokemon) => pokemon !== releasedPokemon);
+
+const releasePokemon = (releasedPokemon, state) => ({
+  pokemons: [...state.pokemons, releasedPokemon],
+  capturedPokemons: getCapturedPokemons(
+    state.capturedPokemons,
+    releasedPokemon,
+  ),
+});
+
+const getPokemonsList = (pokemons, capturedPokemon) =>
+  pokemons.filter((pokemon) => pokemon !== capturedPokemon);
+
+const capturePokemon = (pokemon, state) => ({
+  pokemons: getPokemonsList(state.pokemons, pokemon),
+  capturedPokemons: [...state.capturedPokemons, pokemon],
+});
+
+export const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case CAPTURE:
+      return capturePokemon(action.pokemon, state);
+    case RELEASE:
+      return releasePokemon(action.pokemon, state);
+    default:
+      return state;
+  }
+};
+```
+
+As the reducer is now implemented, we can import it into our provider and use it in the `useReducer` hook.
+
+```javascript
+const [state, dispatch] = useReducer(pokemonReducer, defaultState);
+```
+
+As we are inside the `PokemonProvider`, we want to provide some value to the consuming components: the capture and release actions.
+
+These functions just need to dispatch the correct action type and pass the pokemon to the reducer.
+
+- The `capture` function: it receives the pokemon and returns a new function that dispatches an action with the type `CAPTURE` and the captured pokemon.
+
+```javascript
+const capture = (pokemon) => () => {
+  dispatch({ type: CAPTURE, pokemon });
+};
+```
+
+- The `release` function: it receives the pokemon and returns a new function that dispatches an action with the type `RELEASE` and the release pokemon.
+
+```javascript
+const release = (pokemon) => () => {
+  dispatch({ type: RELEASE, pokemon });
+};
+```
+
+Now with the state and the actions implemented, we can provide these values to the consuming components. Just update the provider value prop.
+
+```javascript
+const { pokemons, capturedPokemons } = state;
+
+const providerValue = {
+  pokemons,
+  capturedPokemons,
+  release,
+  capture,
+};
+
+<PokemonContext.Provider value={providerValue}>
+  {props.children}
+</PokemonContext.Provider>;
+```
+
+Great! Now back to the component. Let's use these new actions. All the capture and release logics are encapsulated in our provider and reducer. Our component is pretty clean now. The `useContext` will look like this:
+
+```javascript
+const { pokemons, capture } = useContext(PokemonContext);
+```
+
+And the whole component:
+
+```javascript
+import React, { useContext } from 'react';
+import { PokemonContext } from './PokemonContext';
+
+const PokemonsList = () => {
+  const { pokemons, capture } = useContext(PokemonContext);
+
+  return (
+    <div className="pokemons-list">
+      <h2>Pokemons List</h2>
+
+      {pokemons.map((pokemon) => (
+        <div key={`${pokemon.id}-${pokemon.name}`}>
+          <span>{pokemon.name}</span>
+          <button onClick={capture(pokemon)}>+</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default PokemonsList;
+```
+
+For the captured pokemons component, it will look the very similar. The `useContext`:
+
+```javascript
+const { capturedPokemons, release } = useContext(PokemonContext);
+```
+
+And the whole component:
+
+```javascript
+import React, { useContext } from 'react';
+import { PokemonContext } from './PokemonContext';
+
+const Pokedex = () => {
+  const { capturedPokemons, release } = useContext(PokemonContext);
+
+  return (
+    <div className="pokedex">
+      <h2>Pokedex</h2>
+
+      {capturedPokemons.map((pokemon) => (
+        <div key={`${pokemon.id}-${pokemon.name}`}>
+          <span>{pokemon.name}</span>
+          <button onClick={release(pokemon)}>-</button>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Pokedex;
+```
+
+No logic. Just UI. Very clean.
+
+## Pokemon God: The Creator
+
+Now that we have the communication between the two lists, I want to build a third box. This will how we create new Pokemons. But it is just a simple input and submit button. When we add a pokemon name into the input and press the button, it will dispatch an action to add this pokemon to the available list.
+
+As we need to access the available list to update it, we need to share the state. So our component will be wrapped by our `PokemonProvider` together with the other components.
+
+```javascript
+const App = () => (
+  <PokemonProvider>
+    <div className="main">
+      <PokemonsList />
+      <Pokedex />
+    </div>
+    <PokemonForm />
+  </PokemonProvider>
+);
+```
+
+Let's build the `PokemonForm` component now. The form is pretty straightforward:
+
+```javascript
+<form onSubmit={handleFormSubmit}>
+  <input type="text" placeholder="pokemon name" onChange={handleNameOnChange} />
+  <input type="submit" value="Add" />
+</form>
+```
+
+We have a form, an input, and a button. To sum up, we also have a function to handle the form submit and another function to handle the input on change.
+
+The `handleNameOnChange` will be called every time the user type or remove a character. I wanted to build a local state, a representation of the pokemon name. With this state, we can use it to dispatch when submitting the form.
+
+As we want to try hooks, we will use `useState` to handle this local state.
+
+```javascript
+const [pokemonName, setPokemonName] = useState();
+
+const handleNameOnChange = (e) => setPokemonName(e.target.value);
+```
+
+We use the `setPokemonName` to update the `pokemonName` every time the user interacts with the input.
+
+And the `handleFormSubmit` is a function to dispatch the new pokemon to be added to the available list.
+
+```javascript
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  addPokemon({
+    id: generateID(),
+    name: pokemonName,
+  });
+};
+```
+
+The `addPokemon` is the API we will build later. It receives the pokemon: id and name. The name is the local state we defined: `pokemonName`.
+
+The `generateID` is just a simple function I built to generate a random number. It looks like this:
+
+```javascript
+export const generateID = () => {
+  const a = Math.random().toString(36).substring(2, 15);
+
+  const b = Math.random().toString(36).substring(2, 15);
+
+  return a + b;
+};
+```
+
+The `addPokemon` will be provided by the context api we build. That way, this function can receive the new Pokemon and add to the available list. It looks like this:
+
+```javascript
+const addPokemon = (pokemon) => {
+  dispatch({ type: ADD_POKEMON, pokemon });
+};
+```
+
+It will dispatch this action type `ADD_POKEMON` and also pass the Pokemon.
+
+In our reducer, we add the case for the `ADD_POKEMON` and handle the state to add the new pokemon to state.
+
+```javascript
+const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case CAPTURE:
+      return capturePokemon(action.pokemon, state);
+    case RELEASE:
+      return releasePokemon(action.pokemon, state);
+    case ADD_POKEMON:
+      return addPokemon(action.pokemon, state);
+    default:
+      return state;
+  }
+};
+```
+
+And the `addPokemon` function will be:
+
+```javascript
+const addPokemon = (pokemon, state) => ({
+  pokemons: [...state.pokemons, pokemon],
+  capturedPokemons: state.capturedPokemons,
+});
+```
+
+Another approach is to destructure the state and change only the pokemons attribute. Like this:
+
+```javascript
+const addPokemon = (pokemon, state) => ({
+  ...state,
+  pokemons: [...state.pokemons, pokemon],
+});
+```
+
+Back to our component, we just need to make the `useContext` provides the `addPokemon` dispatch API based on the `PokemonContext`:
+
+```javascript
+const { addPokemon } = useContext(PokemonContext);
+```
+
+And the whole component looks like this:
+
+```javascript
+import React, { useContext, useState } from 'react';
+import { PokemonContext } from './PokemonContext';
+import { generateID } from './utils';
+
+const PokemonForm = () => {
+  const [pokemonName, setPokemonName] = useState();
+  const { addPokemon } = useContext(PokemonContext);
+
+  const handleNameOnChange = (e) => setPokemonName(e.target.value);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    addPokemon({
+      id: generateID(),
+      name: pokemonName,
+    });
+  };
+
+  return (
+    <form onSubmit={handleFormSubmit}>
+      <input
+        type="text"
+        placeholder="pokemon name"
+        onChange={handleNameOnChange}
+      />
+      <input type="submit" value="Add" />
+    </form>
+  );
+};
+
+export default PokemonForm;
+```
+
+Now we have the available pokemons list, the captured pokemons list, and the third box to create new pokemons.
+
+## Pokemon Effects
+
+Now that we have our app almost complete, we can replace the mocked pokemons with a list of pokemons from the PokeAPI.
+
+So, inside the function component, we can't do side effects like logging or subscriptions. This is why the `useEffect` hook exists. With this hook, we can fetch pokemons (a side-effect), and add to the list.
+
+Fetching the PokeAPI will look like this:
+
+```javascript
+const url = 'https://pokeapi.co/api/v2/pokemon';
+const response = await fetch(url);
+const data = await response.json();
+data.results; // [{ name: 'bulbasaur', url: 'https://pokeapi.co/api/v2/pokemon/1/' }, ...]
+```
+
+The `results` attribute is the list of fetched pokemons. With this data, we will be able to add to the pokemons list.
+
+Let's get the request code inside the `useEffect`:
+
+```javascript
+useEffect(() => {
+  const fetchPokemons = async () => {
+    const response = await fetch(url);
+    const data = await response.json();
+    data.results; // update the pokemons list with this data
+  };
+
+  fetchPokemons();
+}, []);
+```
+
+To be able to the `async-await`, we need to create a function and call it later. The empty array is a parameter to make the `useEffect` knows the dependencies it will look up to re-run.
+
+The default behavior is to run the effect of every completed render. If we add a dependency to this list, the `useEffect` will only re-run when the dependency changes, instead of running in all completed renders.
+
+Now, that we fetched the pokemons, we need to update the list. It's an action, a new behavior. We need to use the dispatch again, implement a new type in the reducer, and update the state in the context provider.
+
+In the `PokemonContext`, we create the `addPokemons` function to provide an API to the consuming component uses it.
+
+```javascript
+const addPokemons = (pokemons) => {
+  dispatch({ type: ADD_POKEMONS, pokemons });
+};
+```
+
+It receives pokemons and dispatches a new action: `ADD_POKEMONS`.
+
+At the reducer, we add this new type, expect the pokemons, and call a function to add the pokemons to the available list state.
+
+```javascript
+const pokemonReducer = (state, action) => {
+  switch (action.type) {
+    case CAPTURE:
+      return capturePokemon(action.pokemon, state);
+    case RELEASE:
+      return releasePokemon(action.pokemon, state);
+    case ADD_POKEMON:
+      return addPokemon(action.pokemon, state);
+    case ADD_POKEMONS:
+      return addPokemons(action.pokemons, state);
+    default:
+      return state;
+  }
+};
+```
+
+The `addPokemons` function just add the pokemons to the list:
+
+```javascript
+const addPokemons = (pokemons, state) => ({
+  pokemons: pokemons,
+  capturedPokemons: state.capturedPokemons,
+});
+```
+
+We can refactor this by doing a state destructuring and the object property value shorthand:
+
+```javascript
+const addPokemons = (pokemons, state) => ({
+  ...state,
+  pokemons,
+});
+```
+
+As we provide this function API to the consuming component now, we can use the `useContext` to get it.
+
+```javascript
+const { addPokemons } = useContext(PokemonContext);
+```
+
+The whole component looks like this:
+
+```javascript
+import React, { useContext, useEffect } from 'react';
+import { PokemonContext } from './PokemonContext';
+
+const url = 'https://pokeapi.co/api/v2/pokemon';
+
+export const PokemonsList = () => {
+  const { state, capture, addPokemons } = useContext(PokemonContext);
+
+  useEffect(() => {
+    const fetchPokemons = async () => {
+      const response = await fetch(url);
+      const data = await response.json();
+      addPokemons(data.results);
+    };
+
+    fetchPokemons();
+  }, [addPokemons]);
+
+  return (
+    <div className="pokemons-list">
+      <h2>Pokemons List</h2>
+
+      {state.pokemons.map((pokemon) => (
+        <div key={pokemon.name}>
+          <div>
+            <span>{pokemon.name}</span>
+            <button onClick={capture(pokemon)}>+</button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default PokemonsList;
+```
+
+## Wrapping up
+
+This was my attempt to share my learnings and experience while trying hooks in a mini side-project. We learned how to handle local state with `useState`, building a global state with the `Context API`, how to rewrite and replace the `useState` with `useReducer`, and doing side-effects within the `useEffect`.
+
+> Disclaimer: it was just an experimental project. Just for learning purposes. I don't have the answer about Hooks's good practices or how to make it scalable in big projects.
+
+I hope it was good reading! Keep learning and coding!
+
+## Resources
+
+- [React Docs: Context](https://reactjs.org/docs/context.html)
+- [React Docs: Hooks](https://reactjs.org/docs/hooks-reference.html)
+- [Pokemon Hooks side-project: source code](https://github.com/leandrotk/pokehooks-labs)
+- [Beginner JavaScript Course](https://BeginnerJavaScript.com/friend/LEANDRO)
+- [React for Beginners Course](https://ReactForBeginners.com/friend/LEANDRO)
+- [Advanced React Course](https://AdvancedReact.com/friend/LEANDRO)
+- [ES6 Course](https://ES6.io/friend/LEANDRO)
+- [JavaScript Course by OneMonth](https://mbsy.co/lFtbC)
+- [The Road to learn React](https://www.educative.io/courses/the-road-to-learn-react?aff=x8bV)
+- [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
+- [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
+- [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
+- [Practical Redux](https://www.educative.io/courses/practical-redux)
+- [Learn React by building an App](https://alterclass.io/?ref=5ec57f513c1321001703dcd2)

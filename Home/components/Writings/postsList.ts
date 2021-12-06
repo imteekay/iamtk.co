@@ -143,7 +143,7 @@ export const postsList = [
   },
   {
     datetime: '2020-04-18',
-    link: '2020/04/react-hooks-context-api-and-pokemons',
+    link: '/react-hooks-context-api-and-pokemons',
     title: 'React Hooks, Context API, and Pokemons',
   },
   {

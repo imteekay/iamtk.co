@@ -1,0 +1,23 @@
+{
+  "title": "React Hooks, Context API, and Pokemons",
+  "description": "Understanding hooks and the context API by building a Pokemon app.",
+  "date": "2020-05-04",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/react-hooks-context-api-and-pokemons/ash.gif",
+    "width": "592",
+    "height": "503",
+    "alt": "Ash from Pokemon",
+    "authorHref": "https://www.instagram.com/kazuh.illust",
+    "authorName": "kazuh.yasiro"
+  }
+}
