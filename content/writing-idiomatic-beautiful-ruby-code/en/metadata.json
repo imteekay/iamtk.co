@@ -1,0 +1,17 @@
+{
+  "title": "Idiomatic Ruby: writing beautiful code",
+  "description": "How to writing beautiful, high quality Ruby code",
+  "date": "2017-09-28",
+  "tags": [
+    {
+      "href": "/tags/ruby",
+      "name": "ruby"
+    }
+  ],
+  "coverImage": {
+    "src": "/writing-idiomatic-beautiful-ruby-code/cover.png",
+    "width": "592",
+    "height": "592",
+    "alt": "Ruby symbol"
+  }
+}

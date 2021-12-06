@@ -1,0 +1,428 @@
+Ruby is a beautiful programming language.
+
+According to [Ruby](http://www.ruby-lang.org/en/)’s official web page, Ruby is a:
+
+> “dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.”
+
+Ruby was created by [Yukihiro Matsumoto](https://twitter.com/yukihiro_matz), a Japanese software engineer. Since 2011, he has been the chief designer & software engineer for Ruby at [Heroku](https://www.heroku.com/).
+
+Matsumoto has often said that he tries **to make Ruby natural, not simple**, in a way that mirrors life.
+
+> “Ruby is simple in appearance, but is very complex inside, just like our human body” — Yukihiro Matsumoto
+
+I feel the same way about Ruby. It is a complex but very natural programming language, with a beautiful and intuitive syntax.
+
+With more intuitive and faster code, we are able to build better software. In this post, I will show you how I express my thoughts (aka code) with Ruby, by using snippets of code.
+
+### Expressing my thoughts with array methods
+
+#### Map
+
+Use the **map** method to simplify your code and get what you want.
+
+The method **map** returns a new array with the results of running a block once for every element in enum.
+
+Let’s try it:
+
+```ruby
+an_array.map { |element| element * element }
+```
+
+Simple as that.
+
+But when you begin coding with Ruby, it is easy to always use the **each** iterator.
+
+The **each** iterator as shown below
+
+```ruby
+user_ids = []
+users.each { |user| user_ids << user.id }
+```
+
+Can be simplified with **map** in a single beautiful line of code:
+
+```ruby
+user_ids = users.map { |user| user.id }
+```
+
+Or even better (and faster):
+
+```ruby
+user_ids = users.map(&:id)
+```
+
+#### Select
+
+And when you’re used to coding with **map**, sometimes your code can be like this:
+
+```ruby
+even_numbers = [1, 2, 3, 4, 5].map { |element| element if element.even? } # [ni, 2, nil, 4, nil]
+even_numbers = even_numbers.compact # [2, 4]
+```
+
+**nil** object as well. Use the **compact** method to remove all **nil** objects.
+
+And ta-da, you’ve selected all the even numbers.
+
+Mission accomplished.
+
+Come on, we can do better than this! Did you hear about the **select** method from enumerable module?
+
+```ruby
+[1, 2, 3, 4, 5].select { |element| element.even? }
+```
+
+Just one line. Simple code. Easy to understand.
+
+#### Bonus
+
+```ruby
+[1, 2, 3, 4, 5].select(&:even?)
+```
+
+#### Sample
+
+Imagine that you need to get a random element from an array. You just started learning Ruby, so your first thought will be, “Let’s use the **random** method,” and that’s what happens:
+
+```ruby
+[1, 2, 3][rand(3)]
+```
+
+Well, we can understand the code, but I’m not sure if it is good enough. And what if we use the **shuffle** method?
+
+```ruby
+[1, 2, 3].shuffle.first
+```
+
+Hmm. I actually prefer to use **shuffle** over **rand**. But when I discovered the **sample** method, it made so much more sense:
+
+```ruby
+[1, 2, 3].sample
+```
+
+Really, really simple.
+
+Pretty natural and intuitive. We ask a **sample** from an array and the method returns it. Now I’m happy.
+
+What about you?
+
+### Expressing my thoughts with Ruby syntax
+
+As I mentioned before, I love the way Ruby lets me code. It’s really natural for me. I’ll show parts of the beautiful Ruby syntax.
+
+#### Implicit return
+
+Any statement in Ruby returns the value of the last evaluated expression. A simple example is the **getter **method. We call a method and expect some value in return.
+
+Let’s see:
+
+```ruby
+def get_user_ids(users)
+  return users.map(&:id)
+end
+
+```
+
+But as we know, Ruby always returns the last evaluated expression. Why use the **return** statement?
+
+```ruby
+def get_user_ids(users)
+  users.map(&:id)
+end
+
+```
+
+After using Ruby for 3 years, I feel great using almost every method without the **return** statement.
+
+#### Multiple assignments
+
+Ruby allows me to assign multiple variables at the same time. When you begin, you may be coding like this:
+
+```ruby
+def values
+  [1, 2, 3]
+end
+
+one   = values[0]
+two   = values[1]
+three = values[2]
+```
+
+But why not assign multiple variables at the same time?
+
+```ruby
+def values
+  [1, 2, 3]
+end
+
+one, two, three = values
+
+```
+
+Pretty awesome.
+
+#### Methods that ask questions (also called predicates)
+
+One feature that caught my attention when I was learning Ruby was the **question mark (?)** method, also called the **predicates **methods. It was weird to see at first, but now it makes so much sense. You can write code like this:
+
+```ruby
+movie.awesome # => true
+```
+
+Ok… nothing wrong with that. But let’s use the question mark:
+
+```ruby
+movie.awesome? # => true
+```
+
+This code is much more expressive, and I expect the method’s answer to return either a **true** or **false** value.
+
+A method that I commonly use is **any?** It’s like asking an array if it has **any**thing inside it.
+
+```ruby
+[].any? # => false
+[1, 2, 3].any? # => true
+
+```
+
+#### Interpolation
+
+For me string interpolation is more intuitive than string concatenation. Period. Let’s see it in action.
+
+An example of a string concatenation:
+
+```ruby
+programming_language = "Ruby"
+programming_language + " is a beautiful programming_language" # => "Ruby is a beautiful programming_language"
+```
+
+An example of a string interpolation:
+
+```ruby
+programming_language = "Ruby"
+"#{programming_language} is a beautiful programming_language" # => "Ruby is a beautiful programming_language"
+```
+
+I prefer string interpolation.
+
+What do you think?
+
+#### The if statement
+
+I like to use the **if** statement:
+
+```ruby
+def hey_ho?
+  true
+end
+
+puts "let’s go" if hey_ho?
+```
+
+Pretty nice to code like that.
+
+Feels really natural.
+
+#### The try method (with Rails mode on)
+
+The **try** method invokes the method identified by the symbol, passing it any arguments and/or the block specified. This is similar to Ruby’s **Object#send.** Unlike that method, **nil** will be returned if the receiving object is a **nil** object or **NilClass.**
+
+Using **if and unless** condition statement:
+
+```ruby
+user.id unless user.nil?
+```
+
+Using the **try **method:
+
+```ruby
+user.try(:id)
+```
+
+Since Ruby 2.3, we can use Ruby’s safe navigation operator** (&.)** instead of Rails **try **method.
+
+```ruby
+user&.id
+```
+
+#### Double pipe equals (||=) / memoization
+
+This feature is so C-O-O-L. It’s like caching a value in a variable.
+
+```ruby
+some_variable ||= 10
+puts some_variable # => 10
+
+some_variable ||= 99
+puts some_variable # => 10
+
+```
+
+You don’t need to use the **if** statement ever. Just use double pipe equals **(||=)** and it’s done.
+
+Simple and easy.
+
+#### Class static method
+
+One way I like to write Ruby classes is to define a **static **method (class method).
+
+```ruby
+GetSearchResult.call(params)
+```
+
+Simple. Beautiful. Intuitive.
+
+What happens in the background?
+
+```ruby
+class GetSearchResult
+  def self.call(params)
+    new(params).call
+  end
+
+  def initialize(params)
+    @params = params
+  end
+
+  def call
+    # ... your code here ...
+  end
+end
+
+```
+
+The **self.call** method initializes an instance, and this object calls the **call **method. [Interactor design pattern](https://github.com/collectiveidea/interactor) uses it.
+
+#### Getters and setters
+
+For the same **GetSearchResult** class, if we want to use the params, we can use the @params
+
+```ruby
+class GetSearchResult
+  def self.call(params)
+    new(params).call
+  end
+
+  def initialize(params)
+    @params = params
+  end
+
+  def call
+    # ... your code here ...
+    @params # do something with @params
+  end
+end
+
+```
+
+We define a **setter **and **getter:**
+
+```ruby
+class GetSearchResult
+  def self.call(params)
+    new(params).call
+  end
+
+  def initialize(params)
+    @params = params
+  end
+
+  def call
+    # ... your code here ...
+    params # do something with params method here
+  end
+
+  private
+
+  def params
+    @params
+  end
+
+  def params=(parameters)
+    @params = parameters
+  end
+end
+
+```
+
+Or we can define **attr_reader**, **attr_writer,** or **attr_accessor**
+
+```ruby
+class GetSearchResult
+  attr_reader :param
+
+  def self.call(params)
+    new(params).call
+  end
+
+  def initialize(params)
+    @params = params
+  end
+
+  def call
+    # ... your code here ...
+    params # do something with params method here
+  end
+end
+
+```
+
+Nice.
+
+We don’t need to define the **getter** and **setter** methods. The code just became simpler, just what we want.
+
+#### Tap
+
+Imagine you want to define a **create_user** method. This method will instantiate, set the parameters, and save and return the user.
+
+Let’s do it.
+
+```ruby
+def create_user(params)
+  user       = User.new
+  user.id    = params[:id]
+  user.name  = params[:name]
+  user.email = params[:email]
+  # ...
+  user.save
+  user
+end
+```
+
+Simple. Nothing wrong here.
+
+So now let’s implement it with the **tap** method
+
+```ruby
+def create_user(params)
+  User.new.tap do |user|
+    user.id    = params[:id]
+    user.name  = params[:name]
+    user.email = params[:email]
+    # ...
+    user.save
+  end
+end
+```
+
+You just need to worry about the user parameters, and the **tap** method will return the user object for you.
+
+### That’s it
+
+We learned I write idiomatic Ruby by coding with
+
+- array methods
+
+- syntax
+
+We also learned how Ruby is beautiful and intuitive, and runs even faster.
+
+And that’s it, guys! I will be updating and including more details to my [blog](https://medium.com/@leandrotk_/). The idea is to share great content, and the community helps to improve this post! ☺
+
+I hope you guys appreciate the content and learned how to program beautiful code (and better software).
+
+If you want a complete Ruby course, learn real-world coding skills and build projects, try [One Month Ruby Bootcamp](https://onemonth.com/courses/ruby?mbsy=lG6tt&mbsy_source=97541b09-e3ab-45d7-a9b1-dbc77028e008&campaignid=33446&discount_code=TKRuby1). See you there ☺
+
+This post appeared first [here](https://medium.com/the-renaissance-developer/idiomatic-ruby-1b5fa1445098) on my [Renaissance Developer publication](https://medium.com/the-renaissance-developer).
+
+Have fun, keep learning, and always keep coding!
