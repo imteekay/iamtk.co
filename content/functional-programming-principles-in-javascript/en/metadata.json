@@ -1,0 +1,21 @@
+{
+  "title": "Functional Programming Principles in JavaScript",
+  "description": "In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.",
+  "date": "2018-11-17",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/functional-programming",
+      "name": "functional_programming"
+    }
+  ],
+  "coverImage": {
+    "src": "/functional-programming-principles-in-javascript/cover.png",
+    "width": "592",
+    "height": "148",
+    "alt": "Yellow lambda cover"
+  }
+}
