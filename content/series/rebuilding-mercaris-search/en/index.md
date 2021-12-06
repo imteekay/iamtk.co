@@ -1,3 +1,4 @@
+<div class="series">
 I'm always looking for ways to improve my craft. One of the fun things I do is side projects. Things that I find interesting but also challenging.
 
 A search experience was something that came to my mind as it has a lot of complexity both in the frontend and in the backend sides.
@@ -8,5 +9,6 @@ This post will be a live document where I update with all the upcoming posts fro
 
 ## Rebuilding Mercari‘s Search Series
 
-- 2021-06-20: [Setup NextJS with TypeScript, Prettier, and Jest](/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest)
-- 2021-06-23: [Home and Menu](/series/rebuilding-mercaris-search/home-menu)
+- <time class="date">2021-06-20</time> <span>[Setup NextJS with TypeScript, Prettier, and Jest](/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest)</span>
+- <time class="date">2021-06-23</time> <span>[Home and Menu](/series/rebuilding-mercaris-search/home-menu)</span>
+</div>

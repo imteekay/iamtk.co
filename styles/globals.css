@@ -93,6 +93,22 @@ article a {
   );
 }
 
+article .series ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+article .series ul li {
+  margin-bottom: 8px;
+  display: flex;
+}
+
+article .series ul li time {
+  display: block;
+  min-width: 100px;
+  margin-right: 16px;
+}
+
 h1 a,
 h2 a,
 h3 a,
