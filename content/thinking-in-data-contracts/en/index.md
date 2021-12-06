@@ -1,0 +1,363 @@
+In frontend development, it is common to consume API data and use it to render user interfaces. But sometimes, the API data is not exactly how we want to work with. So we manage to map the API data into the App state.
+
+But it doesn't need to be complex. It can be just a simple mapper function, an API data contract, and the App state contract.
+
+I'll show an example in the context of a Redux app and how we can make the state consistent.
+
+We start with the initial state contract.
+
+```typescript
+type Person = {
+  id: number;
+  name: string;
+  email: string;
+};
+```
+
+And use the contract type in the initial state definition:
+
+```typescript
+const initialState: Person = {
+  id: 0,
+  name: 'TK',
+  email: 'tk@mail.com',
+};
+```
+
+After the app state definition, we can think of the API contract. We can just implement a type `PersonAPI` with all the types needed for the data.
+
+```typescript
+type PersonAPI = {
+  id: number;
+  name: string;
+  email: string;
+};
+```
+
+Now that we have our contract defined, we can work with the data mapping. it doesn't need to be a super complex class. It can be a simple pure function, receiving `PersonAPI` data and transforming it into a `Person` data.
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => ({
+  id: person.id,
+  name: person.name,
+  email: person.email,
+});
+```
+
+That's pretty simple! And how do we use it?
+
+```typescript
+const payloadAPI = {
+  id: 1,
+  name: 'TK',
+  email: 'tk@mail.com',
+};
+
+const person: Person = fromAPI(payloadAPI); // { id: 1, name: 'TK', email: 'tk@mail.com' }
+```
+
+Data comes in. Data comes out. Everything pure.
+
+Here we have a very simple mapping, no involved logic. But what if the API data we receive has no `name`, but `firstName` and `lastName`? We want to transform the `firstName` and `lastName` into a `name` attribute in the `Person` contract.
+
+The `PersonAPI` type:
+
+```typescript
+type PersonAPI = {
+  id: number;
+  firstName: string;
+  lastname: string;
+  email: string;
+};
+```
+
+The `Person` type:
+
+```typescript
+type Person = {
+  id: number;
+  name: string;
+  email: string;
+};
+```
+
+In our `name`, we need to join strings. Basically doing string interpolation:
+
+```typescript
+`${person.firstName} ${person.lastName}`;
+```
+
+So our mapping function would be something like:
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => ({
+  id: person.id,
+  name: `${person.firstName} ${person.lastName}`,
+  email: person.email,
+});
+```
+
+Great! Transforming data for UI rendering.
+
+Next step: imagine our `lastName` is an optional database column. So the API endpoint can return it... or not!
+
+We can use the Typescript `Optional Property`. It tells us: "It is an optional property, it has this type, but the data can be here... or not!"
+
+So we use it in our API contract:
+
+```typescript
+type PersonAPI = {
+  id: number;
+  firstName: string;
+  lastName?: string;
+  email: string;
+};
+```
+
+Nice! Now we know that we need to do some kind of logic to build the `name` attribute.
+
+- It has the `lastName` property: concat `firstName` and `lastName`
+- It hasn't the `lastName`: just return the `firstName` value
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => {
+  let name: string;
+  if (person.lastName) {
+    name = `${person.firstName} ${person.lastName}`;
+  } else {
+    person.firstName;
+  }
+  return {
+    id: person.id,
+    name,
+    email: person.email,
+  };
+};
+```
+
+But we can also transform this `let` statement into a `const` by doing a ternary operation:
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => {
+  const name: string = person.lastName
+    ? `${person.firstName} ${person.lastName}`
+    : person.firstName;
+  return {
+    id: person.id,
+    name,
+    email: person.email,
+  };
+};
+```
+
+Or better: separate its responsibility into a function that builds the name!
+
+```typescript
+const buildPersonName = (person: PersonAPI): string =>
+  person.lastName ? `${person.firstName} ${person.lastName}` : person.firstName;
+const fromAPI = (person: PersonAPI): Person => {
+  const name: string = buildPersonName(person);
+  return {
+    id: person.id,
+    name,
+    email: person.email,
+  };
+};
+```
+
+We separate the responsibility of each function. Great! It is easier to test our functions now.
+
+Next phase: using the API data to build a new app state. Imagine we want to know if the person is active. The business rule is: the person status should be `active` and the last visit should be within this week (in the last 7 days).
+
+Our API contract first:
+
+```typescript
+type PersonAPI = {
+  id: number;
+  firstName: string;
+  lastName?: string;
+  email: string;
+  status: string;
+  lastVisit: Date;
+};
+```
+
+We will use these properties: `status` and `lastVisit`.
+
+Our app state contract second:
+
+```typescript
+type Person = {
+  id: number;
+  name: string;
+  email: string;
+  active: boolean;
+};
+```
+
+The business rule now:
+
+- Person status should be `active`
+
+```typescript
+person.status === 'active';
+```
+
+- Person last visit should be in the last 7 days
+
+```typescript
+person.lastVisit >= new Date(Date.now() - 7 * 24 * 3600 * 1000);
+```
+
+Now our mapping function:
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => {
+  const name: string = buildPersonName(person);
+  const active: boolean =
+    person.status === 'active' &&
+    person.lastVisit >= new Date(Date.now() - 7 * 24 * 3600 * 1000);
+  return {
+    id: person.id,
+    name,
+    email: person.email,
+    active,
+  };
+};
+```
+
+Let's refactor it! We will start with the `status` thing. `'active'` is a string. To define it in a data structure and enable reusability, we can use Typescript's Enum.
+
+```typescript
+enum PersonStatus {
+  Active = 'active',
+  Inactive = 'inactive',
+}
+```
+
+We use it like:
+
+```typescript
+PersonStatus.Active; // 'active'
+PersonStatus.Inactive; // 'inactive'
+```
+
+The person status logic comes easy with this feature:
+
+```typescript
+person.status === PersonStatus.Active;
+```
+
+Now the last visit thing. Instead of random numbers, what about making it a little bit more descriptive? This is 1 day in milliseconds:
+
+```typescript
+const oneDayInMilliseconds: number = 24 * 3600 * 1000;
+```
+
+This is 7 days in milliseconds:
+
+```typescript
+const sevenDaysInMilliseconds: number = oneDayInMilliseconds * 7;
+```
+
+And this is a week ago:
+
+```typescript
+const weekAgo: Date = new Date(Date.now() - sevenDaysInMilliseconds);
+```
+
+Now our logic comes easy:
+
+```typescript
+person.lastVisit >= weekAgo;
+```
+
+We can now join all together in a function called `isActive` that returns a boolean?
+
+```typescript
+const isActive = (person: PersonAPI): boolean => {
+  const oneDayInMilliseconds: number = 24 * 3600 * 1000;
+  const sevenDaysInMilliseconds: number = oneDayInMilliseconds * 7;
+  const weekAgo: Date = new Date(Date.now() - sevenDaysInMilliseconds);
+  return person.status === PersonStatus.Active && person.lastVisit >= weekAgo;
+};
+```
+
+I really want to separate the `weekAgo` "logic" into a new function. And I also want to name the statements.
+
+```typescript
+const getWeekAgo = (): Date => {
+  const oneDayInMilliseconds: number = 24 * 3600 * 1000;
+  const sevenDaysInMilliseconds: number = oneDayInMilliseconds * 7;
+  return new Date(Date.now() - sevenDaysInMilliseconds);
+};
+const weekAgo: Date = getWeekAgo();
+```
+
+Naming our statements, it looks like:
+
+```typescript
+const hasActiveStatus: boolean = person.status === PersonStatus.Active;
+const lastVisitInSevenDays: boolean = person.lastVisit >= weekAgo;
+```
+
+So our final `isActive` function looks beautiful:
+
+```typescript
+const isActive = (person: PersonAPI): boolean => {
+  const weekAgo: Date = getWeekAgo();
+  const hasActiveStatus: boolean = person.status === PersonStatus.Active;
+  const lastVisitInSevenDays: boolean = person.lastVisit >= weekAgo;
+  return hasActiveStatus && lastVisitInSevenDays;
+};
+```
+
+And our mapping function keeps simple:
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => {
+  const name: string = buildPersonName(person);
+  const active: boolean = isActive(person);
+  return {
+    id: person.id,
+    name,
+    email: person.email,
+    active,
+  };
+};
+```
+
+Just a few tweaks: Object Property Value Shorthand for `id` and `email`.
+
+```typescript
+const fromAPI = (person: PersonAPI): Person => {
+  const { id, email }: PersonAPI = person;
+  const name: string = buildPersonName(person);
+  const active: boolean = isActive(person);
+  return {
+    id,
+    name,
+    email,
+    active,
+  };
+};
+```
+
+## Learnings
+
+So what have we learned here?
+
+- Data contracts help us better define our data structures, the state we want in our frontend to render UI properly.
+- It also serves as good documentation: a better understanding of our API response and the app state we need to deal with.
+- Another cool benefit is when we define the data types and use it in the initial state. [We make our system really consistent](https://leandrotk.github.io/tk/2020/04/consistent-state-management-in-react-and-redux/index.html) if we preserve the state contract across the application.
+- It doesn't need to be complex. Simple & pure functions only. Separate the responsibility of each function and we are good to go. It also helps us when testing.
+
+I hope I could show a good overview of the data contracts, simples functions, and the single responsibility principle. In software engineering, it is really easy to make everything complex and mess it up. But if we think carefully about our data, the data structures we are using, and how we manage complexity and logic, I think we have a good chance of building good software.
+
+## Resources
+
+- [Beginner JavaScript Course](https://BeginnerJavaScript.com/friend/LEANDRO)
+- [React for Beginners Course](https://ReactForBeginners.com/friend/LEANDRO)
+- [Advanced React Course](https://AdvancedReact.com/friend/LEANDRO)
+- [ES6 Course](https://ES6.io/friend/LEANDRO)
+- [JavaScript Course by OneMonth](https://mbsy.co/lFtbC)

@@ -1,0 +1,27 @@
+{
+  "title": "Thinking in data contracts",
+  "description": "This is part of my studies on how to build sustainable and consistent software.",
+  "date": "2020-04-08",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/thinking-in-data-contracts/maps.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Maps",
+    "authorHref": "https://unsplash.com/@nahilnaseer",
+    "authorName": "Andrew Neel"
+  }
+}

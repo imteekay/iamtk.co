@@ -151,11 +151,11 @@ export const postsList = [
     link: '/fun-with-dates',
     title: 'Fun with Dates',
   },
-  {
-    datetime: '2020-04-13',
-    link: '/elixir-learnings',
-    title: 'Elixir Learnings Series',
-  },
+  // {
+  //   datetime: '2020-04-13',
+  //   link: '/elixir-learnings',
+  //   title: 'Elixir Learnings Series',
+  // },
   {
     datetime: '2020-04-08',
     link: '/thinking-in-data-contracts',
