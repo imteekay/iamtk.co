@@ -1,0 +1,27 @@
+{
+  "title": "Fun with Dates",
+  "description": "Learning about Dates and playing around with a new API",
+  "date": "2020-04-15",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/fun-with-dates/couple-date.jpeg",
+    "width": "592",
+    "height": "881",
+    "alt": "Two girls sitting together and eating icecream in restaurant",
+    "authorHref": "https://unsplash.com/@jmvillejo",
+    "authorName": "Jed Villejo"
+  }
+}
