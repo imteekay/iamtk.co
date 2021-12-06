@@ -1,0 +1,17 @@
+{
+  "title": "Actionable advice to start learning to code",
+  "description": "This post has stories and a lot of actionable advice for you to be inspired, motivated, and take the first step in the programming world.",
+  "date": "2018-01-03",
+  "tags": [
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/actionable-advice-to-start-learning-to-code/cover.jpeg",
+    "width": "592",
+    "height": "333",
+    "alt": "code"
+  }
+}
