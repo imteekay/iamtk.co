@@ -118,7 +118,7 @@ export const postsList = [
   },
   {
     datetime: '2020-06-21',
-    link: '2020/06/ux-studies-with-react-typescript-and-testing-library',
+    link: '/ux-studies-with-react-typescript-and-testing-library',
     title: 'UX Studies with React, TypeScript, and Testing Library',
   },
   {

@@ -1,0 +1,27 @@
+{
+  "title": "UX Studies with React, TypeScript, and Testing Library",
+  "description": "Studying and applying UX using React, TypeScript, Testing Library",
+  "date": "2020-06-21",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/ux-studies-with-react-typescript-and-testing-library/cover.jpeg",
+    "width": "592",
+    "height": "888",
+    "alt": "Tokyo street",
+    "authorHref": "https://unsplash.com/@mojaghrout",
+    "authorName": "Moujib Aghrout"
+  }
+}
