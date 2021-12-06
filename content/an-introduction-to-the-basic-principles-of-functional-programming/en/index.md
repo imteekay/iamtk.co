@@ -1,0 +1,710 @@
+After a long time learning and working with object-oriented programming, I took a step back to think about system complexity.
+
+> "`Complexity is anything that makes software hard to understand or to modify.`"
+> — John Outerhout
+
+Doing some research, I found functional programming concepts like immutability and pure function. Those concepts are big advantages to build side-effect-free functions, so it is easier to maintain systems — with some other
+[benefits](https://hackernoon.com/why-functional-programming-matters-c647f56a7691).
+
+In this post, I will tell you more about functional programming, and some
+important concepts, with a lot of code examples.
+
+### What is functional programming?
+
+> **Functional programming** is a programming paradigm — a style of building the > structure and elements of computer programs — that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data
+> — [Wikipedia](https://en.wikipedia.org/wiki/Functional_programming)
+
+### Pure functions
+
+The first fundamental concept we learn when we want to understand functional programming is **pure functions**. But what does that really mean? What makes a function pure?
+
+So how do we know if a function is `pure` or not? Here is a very strict definition of purity:
+
+- It returns the same result if given the same arguments (it is also referred as
+  `deterministic`)
+
+- It does not cause any observable side effects
+
+#### It returns the same result if given the same arguments
+
+Imagine we want to implement a function that calculates the area of a circle. An impure function would receive `radius` as the parameter, and then calculate `radius * radius * PI`. In Clojure, the operator comes first, so `radius * radius * PI` becomes `(* radius radius PI)`:
+
+```clojure
+(def PI 3.14)
+
+(defn calculate-area
+  [radius]
+  (* radius radius PI))
+
+(calculate-area 10) ;; returns 314.0
+```
+
+Why is this an impure function? Simply because it uses a global object that was not passed as a parameter to the function.
+
+Now imagine some mathematicians argue that the `PI` value is actually `42` and change the value of the global object.
+
+Our impure function will now result in `10 * 10 * 42` = `4200`. For the same parameter (`radius = 10`), we have a different result. Let's fix it!
+
+```clojure
+(def PI 3.14)
+
+(defn calculate-area
+  [radius, PI]
+  (* radius radius PI))
+
+(calculate-area 10 PI) ;; returns 314.0
+```
+
+TA-DA 🎉! Now we’ll always pass the`PI` value as a parameter to the function. So now we are just accessing parameters passed to the function. No `external object`.
+
+- For the parameters `radius = 10` & `PI = 3.14`, we will always have the same the result: `314.0`
+
+- For the parameters `radius = 10` & `PI = 42`, we will always have the same the result: `4200`
+
+#### Reading Files
+
+If our function reads external files, it’s not a pure function — the file’s contents can change.
+
+```clojure
+(defn characters-counter
+  [text]
+  (str "Character count: " (count text)))
+
+(defn analyze-file
+  [filename]
+  (characters-counter (slurp filename)))
+
+(analyze-file "test.txt")
+```
+
+#### Random number generation
+
+Any function that relies on a random number generator cannot be pure.
+
+```clojure
+(defn year-end-evaluation
+  []
+  (if (> (rand) 0.5)
+    "You get a raise!"
+    "Better luck next year!"))
+```
+
+#### It does not cause any observable side effects
+
+Examples of observable side effects include modifying a global object or a parameter passed by reference.
+
+Now we want to implement a function to receive an integer value and return the value increased by 1.
+
+```clojure
+(def counter 1)
+
+(defn increase-counter
+  [value]
+  (def counter (inc value))) ;; please don't do this
+
+(increase-counter counter) ;; 2
+counter ;; 2
+```
+
+We have the `counter` value. Our impure function receives that value and re-assigns the counter with the value increased by 1.
+
+**Observation**: mutability is discouraged in functional programming.
+
+We are modifying the global object. But how would we make it `pure`? Just return the value increased by 1. Simple as that.
+
+```clojure
+(def counter 1)
+
+(defn increase-counter
+  [value]
+  (inc value))
+
+(increase-counter counter) ;; 2
+counter ;; 1
+```
+
+See that our pure function `increase-counter` returns 2, but the `counter` value is still the same. The function returns the incremented value without altering the value of the variable.
+
+If we follow these two simple rules, it gets easier to understand our programs. Now every function is isolated and unable to impact other parts of our system.
+
+Pure functions are stable, consistent, and predictable. Given the same parameters, pure functions will always return the same result. We don’t need to think of situations when the same parameter has different results — because it will never happen.
+
+#### Pure functions benefits
+
+The code’s definitely easier to test. We don’t need to mock anything. So we can
+unit test pure functions with different contexts:
+
+- Given a parameter `A` → expect the function to return value `B`
+
+- Given a parameter `C` → expect the function to return value `D`
+
+A simple example would be a function to receive a collection of numbers and expect it to increment each element of this collection.
+
+```clojure
+(defn increment-numbers
+  [numbers]
+  (map inc numbers))
+```
+
+We receive the `numbers` collection, use `map` with the `inc` function to increment each number, and return a new list of incremented numbers.
+
+```clojure
+(= [2 3 4 5 6] (increment-numbers [1 2 3 4 5])) ;; true
+```
+
+For the `input` `[1 2 3 4 5]`, the expected `output` would be `[2 3 4 5 6]`.
+
+### Immutability
+
+> _Unchanging over time or unable to be changed._
+
+When data is immutable, its **state cannot change** after it’s created. **If you want to change an immutable object, you can’t. Instead,** you create a new
+object with the new value.
+
+In Javascript we commonly use the `for` loop. This next `for` statement has some mutable variables.
+
+```javascript
+var values = [1, 2, 3, 4, 5];
+var sumOfValues = 0;
+
+for (var i = 0; i < values.length; i++) {
+  sumOfValues += values[i];
+}
+
+sumOfValues; // 15
+```
+
+For each iteration, we are changing the `i` and the `sumOfValue` **state**. But how do we handle mutability in iteration? Recursion! Back to Clojure!
+
+```clojure
+(defn sum
+  [values]
+  (loop [vals values
+         total 0]
+    (if (empty? vals)
+      total
+      (recur (rest vals) (+ (first vals) total)))))
+
+(sum [1 2 3 4 5]) ;; 15
+```
+
+So here we have the `sum` function that receives a vector of numerical values. The `recur` jumps back into the `loop` until we get the vector empty ([our recursion](https://en.wikipedia.org/wiki/Recursion) `base case`). For each "iteration" we will add the value to the `total` accumulator.
+
+With recursion, we keep our **variables** immutable.
+
+**Observation**: Yes! We can use `reduce` to implement this function. We will see this in the `Higher Order Functions` topic.
+
+It is also very common to build up the final **state** of an object. Imagine we have a string, and we want to transform this string into a `url slug`.
+
+```ruby
+class UrlSlugify
+  attr_reader :text
+
+  def initialize(text)
+    @text = text
+  end
+
+  def slugify!
+    text.downcase!
+    text.strip!
+    text.gsub!(' ', '-')
+  end
+end
+
+UrlSlugify.new(' I will be a url slug   ').slugify! # "i-will-be-a-url-slug"
+```
+
+In OOP in Ruby, we would create a class, let’s say, `UrlSlugify`. And this class will have a `slugify!` method to transform the string input into a `url slug`.
+
+Beautiful! It’s implemented! Here we have imperative programming saying exactly what we want to do in each `slugify` process — first lower case, then remove useless white spaces and, finally, replace remaining white spaces with hyphens.
+
+But we are mutating the input state in this process.
+
+We can handle this mutation by doing function composition, or function chaining. In other words, the result of a function will be used as an input for the next function, without modifying the original input string.
+
+```clojure
+(defn slugify
+  [string]
+  (clojure.string/replace
+    (clojure.string/lower-case
+      (clojure.string/trim string)) #" " "-"))
+
+(slugify " I will be a url slug   ")
+```
+
+Here we have:
+
+- `trim`: removes whitespace from both ends of a string
+
+- `lower-case`: converts the string to all lower-case
+
+- `replace`: replaces all instances of match with replacement in a given string
+
+We combine all three functions and we can `"slugify"` our string.
+
+Speaking of **combining functions**, we can use the `comp` function to compose all three functions. Let's take a look:
+
+```clojure
+(defn slugify
+  [string]
+  ((comp #(clojure.string/replace % #" " "-")
+         clojure.string/lower-case
+         clojure.string/trim)
+    string))
+
+(slugify " I will be a url slug   ") ;; "i-will-be-a-url-slug"
+```
+
+### Referential transparency
+
+Let’s implement a `square function`:
+
+```clojure
+(defn square
+  [n]
+  (* n n))
+```
+
+This (pure) function will always have the same output, given the same input.
+
+```clojure
+(square 2) ;; 4
+(square 2) ;; 4
+(square 2) ;; 4
+;; ...
+```
+
+Passing “2” as a parameter of the `square function`will always returns 4. So now we can replace the `(square 2)` with 4. That's it! Our function is `referentially transparent`.
+
+Basically, if a function consistently yields the same result for the same input, it is referentially transparent.
+
+**pure functions + immutable data = referential transparency**
+
+With this concept, a cool thing we can do is to memoize the function. Imagine we have this function:
+
+```clojure
+(+ 3 (+ 5 8))
+```
+
+The `(+ 5 8)` equals `13`. This function will always result in `13`. So we can do this:
+
+```clojure
+(+ 3 13)
+```
+
+And this expression will always result in `16`. We can replace the entire expression with a numerical constant and [memoize](https://en.wikipedia.org/wiki/Memoization) it.
+
+### Functions as first-class entities
+
+The idea of functions as first-class entities is that functions are **also** treated as values **and** used as data.
+
+In Clojure it’s common to use `defn` to define functions, but this is just syntactic sugar for `(def foo (fn ...))`. `fn` returns the function itself. `defn` returns a `var` which points to a function object.
+
+Functions as first-class entities can:
+
+- refer to it from constants and variables
+
+- pass it as a parameter to other functions
+
+- return it as result from other functions
+
+The idea is to treat functions as values and pass functions like data. This way we can combine different functions to create new functions with new behavior.
+
+Imagine we have a function that sums two values and then doubles the value. Something like this:
+
+```clojure
+(defn double-sum
+  [a b]
+  (* 2 (+ a b)))
+```
+
+Now a function that subtracts values and the returns the double:
+
+```clojure
+(defn double-subtraction
+  [a b]
+  (* 2 (- a b)))
+```
+
+These functions have similar logic, but the difference is the operators functions. If we can treat functions as values and pass these as arguments, we can build a function that receives the operator function and use it inside our function. Let’s build it!
+
+```clojure
+(defn double-operator
+  [f a b]
+  (* 2 (f a b)))
+
+(double-operator + 3 1) ;; 8
+(double-operator - 3 1) ;; 4
+```
+
+Done! Now we have an `f` argument, and use it to process `a` and `b`. We passed the `+` and `-` functions to compose with the `double-operator` function and create a new behavior.
+
+### Higher-order functions
+
+When we talk about higher-order functions, we mean a function that either:
+
+- takes one or more functions as arguments, or
+
+- returns a function as its result
+
+The `double-operator` function we implemented above is a higher-order function because it takes an operator function as an argument and uses it.
+
+You’ve probably already heard about `filter`, `map`, and `reduce`. Let's take a look at these.
+
+#### Filter
+
+Given a collection, we want to filter by an attribute. The filter function expects a `true` or `false` value to determine if the element **should or should not** be included in the result collection. Basically,if the callback expression is `true`, the filter function will include the element in the result collection. Otherwise, it will not.
+
+A simple example is when we have a collection of integers and we want only the even numbers.
+
+**Imperative approach**
+
+An imperative way to do it with Javascript is to:
+
+- create an empty vector `evenNumbers`
+
+- iterate over the `numbers` vector
+
+- push the even numbers to the `evenNumbers` vector
+
+```javascript
+var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+var evenNumbers = [];
+
+for (var i = 0; i < numbers.length; i++) {
+  if (numbers[i] % 2 == 0) {
+    evenNumbers.push(numbers[i]);
+  }
+}
+
+console.log(evenNumbers); // (6) [0, 2, 4, 6, 8, 10]
+```
+
+We can use the `filter` higher order function to receive the `even?` function, and return a list of even numbers:
+
+```clojure
+(defn even-numbers
+  [coll]
+  (filter even? coll))
+
+(even-numbers [0 1 2 3 4 5 6 7 8 9 10]) ;; (0 2 4 6 8 10)
+```
+
+One interesting problem I solved on [Hacker Rank FP](https://www.hackerrank.com/domains/fp) Path was the [Filter Array problem](https://www.hackerrank.com/challenges/fp-filter-array/problem). The problem idea is to filter a given array of integers and output only those values that are less than a specified value `X`.
+
+An imperative Javascript solution to this problem is something like:
+
+```javascript
+var filterArray = function (x, coll) {
+  var resultArray = [];
+
+  for (var i = 0; i < coll.length; i++) {
+    if (coll[i] < x) {
+      resultArray.push(coll[i]);
+    }
+  }
+
+  return resultArray;
+};
+
+console.log(filterArray(3, [10, 9, 8, 2, 7, 5, 1, 3, 0])); // (3) [2, 1, 0]
+```
+
+We say exactly what our function needs to do — iterate over the collection, compare the collection current item with `x`, and push this element to the `resultArray` if it pass the condition.
+
+**Declarative approach**
+
+But we want a more declarative way to solve this problem, and using the `filter` higher order function as well.
+
+A declarative Clojure solution would be something like this:
+
+```clojure
+(defn filter-array
+  [x coll]
+  (filter #(> x %) coll))
+
+(filter-array 3 [10 9 8 2 7 5 1 3 0]) ;; (2 1 0)
+```
+
+This syntax seems a bit strange in the first place, but is easy to understand.
+
+`#(> x %)` is just a anonymous function that receives `x` and compares it with each element in the collection. `%` represents the parameter of the anonymous function — in this case the current element inside the `filter`.
+
+We can also do this with maps. Imagine we have a map of people with their `name` and `age`. And we want to filter only people over a specified value of age, in this example people who are more than 21 years old.
+
+```clojure
+(def people [{:name "TK" :age 26}
+             {:name "Kaio" :age 10}
+             {:name "Kazumi" :age 30}])
+
+(defn over-age
+  [people]
+  (filter
+    #(< 21 (:age %))
+    people))
+
+(over-age people) ;; ({:name "TK", :age 26} {:name "Kazumi", :age 30})
+```
+
+Summary of code:
+
+- we have a list of people (with `name` and `age`).
+
+- we have the anonymous function `#(< 21 (:age %))`. Remember that the `%` represents the current element from the collection? Well, the element of the collection is a people map. If we do `(:age {:name "TK" :age 26})`, it returns the age value, `26` in this case.
+
+- we filter all people based on this anonymous function.
+
+#### Map
+
+The idea of map is to transform a collection.
+
+> The `map` method transforms a collection by applying a function to all of its > elements and building a new collection from the returned values.
+
+Let’s get the same `people` collection above. We don't want to filter by “over age” now. We just want a list of strings, something like `TK is 26 years old`. So the final string might be `:name is :age years old` where `:name` and `:age` are attributes from each element in the `people` collection.
+
+In a imperative Javascript way, it would be:
+
+```javascript
+var people = [
+  { name: 'TK', age: 26 },
+  { name: 'Kaio', age: 10 },
+  { name: 'Kazumi', age: 30 },
+];
+
+var peopleSentences = [];
+
+for (var i = 0; i < people.length; i++) {
+  var sentence = people[i].name + ' is ' + people[i].age + ' years old';
+  peopleSentences.push(sentence);
+}
+
+console.log(peopleSentences); // ['TK is 26 years old', 'Kaio is 10 years old', 'Kazumi is 30 years old']
+```
+
+In a declarative Clojure way, it would be:
+
+```clojure
+(def people [{:name "TK" :age 26}
+             {:name "Kaio" :age 10}
+             {:name "Kazumi" :age 30}])
+
+(defn people-sentences
+  [people]
+  (map
+    #(str (:name %) " is " (:age %) " years old")
+    people))
+
+(people-sentences people) ;; ("TK is 26 years old" "Kaio is 10 years old" "Kazumi is 30 years old")
+```
+
+The whole idea is to transform a given collection into a new collection.
+
+Another interesting Hacker Rank problem was the [update list problem](https://www.hackerrank.com/challenges/fp-update-list/problem). We just want to update the values of a given collection with their absolute values.
+
+For example, the input `[1 2 3 -4 5]`needs the output to be `[1 2 3 4 5]`. The absolute value of `-4` is `4`.
+
+A simple solution would be an in-place update for each collection value.
+
+```javascript
+var values = [1, 2, 3, -4, 5];
+
+for (var i = 0; i < values.length; i++) {
+  values[i] = Math.abs(values[i]);
+}
+
+console.log(values); // [1, 2, 3, 4, 5]
+```
+
+We use the `Math.abs` function to transform the value into its absolute value, and do the in-place update.
+
+This is **not** a functional way to implement this solution.
+
+First, we learned about immutability. We know how immutability is important to make our functions more consistent and predictable. The idea is to build a new collection with all absolute values.
+
+Second, why not use `map` here to "transform" all data?
+
+My first idea was to build a `to-absolute` function to handle only one value.
+
+```clojure
+(defn to-absolute
+  [n]
+  (if (neg? n)
+    (* n -1)
+    n))
+
+(to-absolute -1) ;; 1
+(to-absolute 1)  ;; 1
+(to-absolute -2) ;; 2
+(to-absolute 0)  ;; 0
+```
+
+If it is negative, we want to transform it in a positive value (the absolute value). Otherwise, we don’t need to transform it.
+
+Now that we know how to do `absolute` for one value, we can use this function to pass as an argument to the `map` function. Do you remember that a `higher order function` can receive a function as an argument and use it? Yes, map can do it!
+
+```clojure
+(defn update-list-map
+  [coll]
+  (map to-absolute coll))
+
+(update-list-map [])               ;; ()
+(update-list-map [1 2 3 4 5])      ;; (1 2 3 4 5)
+(update-list-map [-1 -2 -3 -4 -5]) ;; (1 2 3 4 5)
+(update-list-map [1 -2 3 -4 5])    ;; (1 2 3 4 5)
+```
+
+Wow. So beautiful! 😍
+
+#### Reduce
+
+The idea of reduce is to receive a function and a collection, and return a value created by combining the items.
+
+A common example people talk about is to get the total amount of an order. Imagine you were at a shopping website. You’ve added `Product 1`, `Product 2`, `Product 3`, and `Product 4` to your shopping cart (order). Now we want to calculate the total amount of the shopping cart.
+
+In imperative way, we would iterate the order list and sum each product amount to the total amount.
+
+```javascript
+var orders = [
+  { productTitle: 'Product 1', amount: 10 },
+  { productTitle: 'Product 2', amount: 30 },
+  { productTitle: 'Product 3', amount: 20 },
+  { productTitle: 'Product 4', amount: 60 },
+];
+
+var totalAmount = 0;
+
+for (var i = 0; i < orders.length; i++) {
+  totalAmount += orders[i].amount;
+}
+
+console.log(totalAmount); // 120
+```
+
+Using `reduce`, we can build a function to handle the `amount sum` and pass it as an argument to the `reduce` function.
+
+```clojure
+(def shopping-cart
+  [{ :product-title "Product 1" :amount 10 },
+   { :product-title "Product 2" :amount 30 },
+   { :product-title "Product 3" :amount 20 },
+   { :product-title "Product 4" :amount 60 }])
+
+(defn sum-amount
+  [total-amount current-product]
+  (+ (:amount current-product) total-amount))
+
+(defn get-total-amount
+  [shopping-cart]
+  (reduce sum-amount 0 shopping-cart))
+
+(get-total-amount shopping-cart) ;; 120
+```
+
+Here we have `shopping-cart`, the function `sum-amount` that receives the current `total-amount` , and the `current-product` object to `sum` them.
+
+The `get-total-amount` function is used to `reduce` the `shopping-cart` by using the `sum-amount` and starting from `0`.
+
+Another way to get the total amount is to compose `map` and `reduce`. What do I mean by that? We can use `map` to transform the `shopping-cart` into a collection of `amount` values, and then just use the `reduce` function with `+` function.
+
+```clojure
+(def shopping-cart
+  [{ :product-title "Product 1" :amount 10 },
+   { :product-title "Product 2" :amount 30 },
+   { :product-title "Product 3" :amount 20 },
+   { :product-title "Product 4" :amount 60 }])
+
+(defn get-amount
+  [product]
+  (:amount product))
+
+(defn get-total-amount
+  [shopping-cart]
+  (reduce + (map get-amount shopping-cart)))
+
+(get-total-amount shopping-cart) ;; 120
+```
+
+The `get-amount` receives the product object and returns only the `amount` value. So what we have here is `[10 30 20 60]`. And then the `reduce` combines all items by adding up. Beautiful!
+
+We took a look at how each higher-order function works. I want to show you an example of how we can compose all three functions in a simple example.
+
+Talking about `shopping cart`, imagine we have this list of products in our order:
+
+```clojure
+(def shopping-cart
+  [{ :product-title "Functional Programming" :type "books"      :amount 10 },
+   { :product-title "Kindle"                 :type "eletronics" :amount 30 },
+   { :product-title "Shoes"                  :type "fashion"    :amount 20 },
+   { :product-title "Clean Code"             :type "books"      :amount 60 }])
+```
+
+We want the total amount of all books in our shopping cart. Simple as that. The algorithm?
+
+- **filter** by book type
+
+- transform the shopping cart into a collection of amount using **map**
+
+- combine all items by adding them up with **reduce**
+
+Done! 🎉
+
+### Resources
+
+I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For more resources, visit my [Functional Programming Github repository](https://github.com/LeandroTk/learning-functional-programming).
+
+- [Ruby specific resources](https://github.com/LeandroTk/learning-functional-programming/tree/master/ruby)
+- [Javascript specific resources](https://github.com/LeandroTk/learning-functional-programming/tree/master/javascript)
+- [Clojure specific resources](https://github.com/LeandroTk/learning-functional-programming/tree/master/clojure)
+
+#### Intros
+
+- [Learning FP in JS](https://www.youtube.com/watch?v=e-5obm1G_FY)
+- [Intro do FP with Python](https://codewords.recurse.com/issues/one/an-introduction-to-functional-programming)
+- [Overview of FP](https://blog.codeship.com/overview-of-functional-programming)
+- [A quick intro to functional JS](https://hackernoon.com/a-quick-introduction-to-functional-javascript-7e6fe520e7fa)
+- [What is FP?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-functional-programming-7f218c68b3a0)
+- [Functional Programming Jargon](https://github.com/hemanth/functional-programming-jargon)
+
+#### Pure functions
+
+- [What is a pure function?](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976)
+- [Pure Functional Programming 1](https://www.fpcomplete.com/blog/2017/04/pure-functional-programming)
+- [Pure Functional Programming 2](https://www.fpcomplete.com/blog/2017/05/pure-functional-programming-part-2)
+
+#### Immutable data
+
+- [Immutable DS for functional programming](https://www.youtube.com/watch?v=Wo0qiGPSV-s)
+- [Why shared mutable state is the root of all evil](http://henrikeichenhardt.blogspot.com/2013/06/why-shared-mutable-state-is-root-of-all.html)
+- [Structural Sharing in Clojure: Part 1](http://hypirion.com/musings/understanding-persistent-vector-pt-1)
+- [Structural Sharing in Clojure: Part 2](http://hypirion.com/musings/understanding-persistent-vector-pt-2)
+- [Structural Sharing in Clojure: Part 3](http://hypirion.com/musings/understanding-persistent-vector-pt-3)
+- [Structural Sharing in Clojure: Final part](http://hypirion.com/musings/persistent-vector-performance-summarised)
+
+#### Higher-order functions
+
+- [Eloquent JS: Higher Order Functions](https://eloquentjavascript.net/05_higher_order.html)
+- [Fun fun function Filter](https://www.youtube.com/watch?v=BMUiFMZr7vk&t=0s&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=2&ab_channel=FunFunFunction)
+- [Fun fun function Map](https://www.youtube.com/watch?v=bCqtb-Z5YGQ&index=2&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&ab_channel=FunFunFunction)
+- [Fun fun function Basic Reduce](https://www.youtube.com/watch?v=Wl98eZpkp-c&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=3&frags=wn&ab_channel=FunFunFunction)
+- [Fun fun function Advanced Reduce](https://www.youtube.com/watch?v=1DMolJ2FrNY&list=PL0zVEGEvSaeEd9hlmCXrk5yUyqUag-n84&index=4&ab_channel=FunFunFunction)
+- [Clojure Higher Order Functions](https://clojure.org/guides/higher_order_functions)
+- [Purely Function Filter](https://purelyfunctional.tv/lesson/filter/)
+- [Purely Functional Map](https://purelyfunctional.tv/lesson/map/)
+- [Purely Functional Reduce](https://purelyfunctional.tv/lesson/reduce/)
+
+#### Declarative Programming
+
+- [Declarative Programming vs
+  Imperative](https://tylermcginnis.com/imperative-vs-declarative-programming/)
+
+---
+
+## That’s it!
+
+Hey people, I hope you had fun reading this post, and I hope you learned a lot here! This was my attempt to share what I’m learning.
+
+[Here is the repository with all codes](https://github.com/LeandroTk/functional-programming-article-source-code) from this article.
+
+Come learn with me. I’m sharing resources and my code in this [Learning Functional Programming repository](https://github.com/LeandroTk/learning-functional-programming).
+
+I hope you saw something useful to you here. And see you next time! :)

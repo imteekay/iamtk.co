@@ -1,0 +1,17 @@
+{
+  "title": "An introduction to the basic principles of Functional Programming",
+  "description": "In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.",
+  "date": "2018-11-15",
+  "tags": [
+    {
+      "href": "/tags/functional-programming",
+      "name": "functional_programming"
+    }
+  ],
+  "coverImage": {
+    "src": "/an-introduction-to-the-basic-principles-of-functional-programming/cover.png",
+    "width": "592",
+    "height": "445",
+    "alt": "Lambda cover"
+  }
+}
