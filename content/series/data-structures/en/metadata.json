@@ -1,7 +1,7 @@
 {
   "title": "Data Structures Series",
   "description": "Solving algorithms problems with TK",
-  "date": "2020-02-02",
+  "date": "2020-06-14",
   "tags": [
     {
       "href": "/tags/algorithms-and-data-structures",
@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/data-structures/chain.jpeg",
+    "src": "/series/data-structures/intro.jpg",
     "width": "592",
     "height": "394",
     "alt": "A chain",
-    "authorHref": "https://unsplash.com/@sandym10",
-    "authorName": "Sandy Millar"
+    "authorHref": "https://unsplash.com/@fabioha",
+    "authorName": "fabio"
   }
 }
