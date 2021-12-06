@@ -1,0 +1,23 @@
+{
+  "title": "TDD, simple functions, and React components",
+  "description": "This is part of my studies on how to build sustainable and consistent software.",
+  "date": "2020-03-27",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/tdd-functions-and-react-components/cover.jpeg",
+    "width": "592",
+    "height": "888",
+    "alt": "Legos",
+    "authorHref": "https://unsplash.com/@sploshd",
+    "authorName": "phil sheldon"
+  }
+}
