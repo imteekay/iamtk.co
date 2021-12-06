@@ -1,0 +1,23 @@
+{
+  "title": "Designing my Learning Experience",
+  "description": "I'm learning a lot and sharing knowledge. This is my first take on designing a better learning experience",
+  "date": "2019-09-16",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    },
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/designing-my-learning-experience/learn-books.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "books",
+    "authorHref": "https://unsplash.com/@impatrickt",
+    "authorName": "Patrick Tomasso"
+  }
+}
