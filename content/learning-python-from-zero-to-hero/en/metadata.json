@@ -1,0 +1,17 @@
+{
+  "title": "Learning Python: From Zero to Hero",
+  "description": "Learn about databases and how they connect with Ruby on Rails.",
+  "date": "2018-01-05",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    }
+  ],
+  "coverImage": {
+    "src": "/learning-python-from-zero-to-hero/cover.png",
+    "width": "592",
+    "height": "335",
+    "alt": "Python logo"
+  }
+}
