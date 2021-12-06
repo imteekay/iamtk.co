@@ -1,0 +1,19 @@
+{
+  "title": "Thoughts on my productivity",
+  "description": "Think about my energy. Think about prioritization. Think about tasks planning. Think about removing distractions.",
+  "date": "2019-07-07",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/thoughts-on-my-productivity/cover.jpeg",
+    "width": "592",
+    "height": "1074",
+    "alt": "Cup of coffee",
+    "authorHref": "https://unsplash.com/@impatrickt",
+    "authorName": "Patrick Tomasso"
+  }
+}

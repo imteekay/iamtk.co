@@ -1,0 +1,19 @@
+_**TLDR**_: Think about my energy. Think about prioritization. Think about tasks planning. Think about removing distractions.
+
+## Energy
+
+Productivity is about the energy I put into tasks. Strive to think about quality, instead of only quantity of thing you get done in the end of the day.
+
+Strive to be physically and mentally well. Eat healthy. Do exercises. Sleep well. De-stress.
+
+## Task Planning & Prioritization
+
+Realise you won't get done a thousand things in a single day.
+
+Prioritization is so important. Design your tasks to get done the most important and impactful things.
+
+Plan to get things done. It is easy to do other things not related to things you really need to get done. Planning your day, or the things you want to do is a way to be productive and not procrastinating all day.
+
+## Focus & Distractions
+
+Design your environment to be focused on your tasks: get a good headphone, stay away from loud places with too many people, silence the phone.
