@@ -133,7 +133,7 @@ export const postsList = [
   },
   {
     datetime: '2020-05-05',
-    link: '2020/05/constant-feedback-driven-development-with-nodemon',
+    link: '/constant-feedback-driven-development-with-nodemon',
     title: 'Constant feedback driven development with Nodemon',
   },
   {

@@ -1,0 +1,27 @@
+{
+  "title": "Constant feedback driven development with Nodemon",
+  "description": "As I'm building a lot of TypeScript projects, I wanted to make it more dynamic and with constant feedback.",
+  "date": "2020-05-04",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/constant-feedback-driven-development-with-nodemon/cover.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Tokyo street",
+    "authorHref": "https://unsplash.com/@chuttersnap",
+    "authorName": "chuttersnap"
+  }
+}

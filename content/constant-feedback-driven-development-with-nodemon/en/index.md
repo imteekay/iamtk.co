@@ -1,0 +1,67 @@
+I'm learning a lot about building new projects using Typescript. Today I want to tell you more about building things with constant feedback and how to make the development dynamic.
+
+At first, when I started building things with Typescript, for every function I built, I had two options:
+
+1. Execute the file by using `ts-node`.
+2. Open a repl with `ts-node` and copy and paste the function there.
+
+At first, it is ok to test simple things. But you all need to stop the development and lose the flow. I wanted a more dynamic development flow and I found `nodemon`.
+
+`nodemon` is not specific for Typescript. It is a
+
+> Tool that helps develop node.js based applications by automatically restarting the node application when file changes in the directory are detected. - nodemon.io
+
+So, for every file you saved, `nodemon` will restart the application. With that, you can have constant feedback from what you are building.
+
+## Setting up
+
+If you really like this tooling, you can install it globally:
+
+```bash
+npm install -g nodemon
+```
+
+But I like to configure dependencies for each project. So I install it in the dev dependencies in the project I want to use it.
+
+```bash
+npm install --save-dev nodemon
+```
+
+After installing it, we have to configure the nodemon json config. This is the simple configuration I did for my [publisher tool](https://leandrotk.github.io/tk/2020/04/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts/index.html):
+
+```json
+{
+  "watch": ["src", "examples"],
+  "ext": ".ts,.js,.html,.json",
+  "ignore": [],
+  "exec": "ts-node ./src/index.ts"
+}
+```
+
+It watches the `src` and `example` folders with `.ts`, `.js`, `.html`, and `.json` files. If one of these files changes, the nodemon executes your main file defined in the `exec` property. In my project, I add the main file in the `./src/index.ts`.
+
+In your `package.json`, you can add a script to handle nodemon:
+
+```json
+{
+  "scripts": {
+    "start:dev": "nodemon"
+  }
+}
+```
+
+Run the command:
+
+```bash
+npm run start:dev
+```
+
+And now your app is up and running.. with constant feedback.
+
+As I said earlier, dynamic feedback is really important in development mode. It helps you have instant feedback as early as possible, making it breaking and working faster.
+
+For your next project, I really recommend you to play around with this library. Or set up a different tool to make your development more dynamic.
+
+## Resources
+
+- [npm package](https://www.npmjs.com/package/nodemon)
