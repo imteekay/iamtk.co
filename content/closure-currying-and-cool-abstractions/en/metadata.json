@@ -1,0 +1,27 @@
+{
+  "title": "Closures, Currying, and Cool Abstractions",
+  "description": "In this article, we will talk about closures, curried functions, and play around with these concepts to build cool abstractions.",
+  "date": "2020-03-08",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/functional-programming",
+      "name": "functional_programming"
+    }
+  ],
+  "coverImage": {
+    "src": "/closure-currying-and-cool-abstractions/cover.jpeg",
+    "width": "592",
+    "height": "542",
+    "alt": "curry",
+    "authorHref": "https://www.japancentre.com/en/recipes/6-japanese-pork-katsu-curry",
+    "authorName": "Japan Centre"
+  }
+}
