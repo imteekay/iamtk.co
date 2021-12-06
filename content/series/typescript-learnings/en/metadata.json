@@ -1,0 +1,23 @@
+{
+  "title": "Thinking in data contracts",
+  "description": "This is part of my studies on how to build sustainable and consistent software.",
+  "date": "2020-04-08",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/typescript-learnings/books.jpeg",
+    "width": "592",
+    "height": "375",
+    "alt": "Books",
+    "authorHref": "https://unsplash.com/@eugi1492",
+    "authorName": "Eugenio Mazzone"
+  }
+}

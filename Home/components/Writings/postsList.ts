@@ -163,7 +163,7 @@ export const postsList = [
   },
   {
     datetime: '2020-04-05',
-    link: '/typescript-learnings',
+    link: '/series/typescript-learnings',
     title: 'TypeScript Learnings Series',
   },
   {
