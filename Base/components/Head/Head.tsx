@@ -1,4 +1,5 @@
 import HeadNext from 'next/head';
+import { GAScript } from 'Base/Analytics/GAScript';
 
 type HeadPropTypes = {
   title: string;
@@ -50,5 +51,7 @@ export const Head = ({ title, description, imageUrl }: HeadPropTypes) => (
     <meta name="twitter:title" content="TK's website" />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl} />
+
+    <GAScript />
   </HeadNext>
 );
