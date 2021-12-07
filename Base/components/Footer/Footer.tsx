@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
 import { FC } from 'react';
+import Link from 'next/link';
 
 export const Footer: FC = () => (
   <footer id="footer" className="footer">
@@ -7,7 +9,7 @@ export const Footer: FC = () => (
       <nav>
         <ul>
           <li>
-            <a href="index.html">Home</a>
+            <Link href="/">Home</Link>
           </li>
           <li>
             <a href="writing.html">Writing</a>
@@ -21,11 +23,11 @@ export const Footer: FC = () => (
               Projects
             </a>
           </li>
+          {/* <li>
+            <Link href="/quotes">Quotes</Link>
+          </li> */}
           <li>
-            <a href="quotes.html">Quotes</a>
-          </li>
-          <li>
-            <a href="rss.xml" target="_blank" rel="noopener noreferrer">
+            <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
               RSS
             </a>
           </li>

@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<channel>
+  <title>TK's Blog</title>
+  <link>https://iamtk.co</link>
+  <atom:link href="https://iamtk.co/rss.xml" rel="self" type="application/rss+xml" />
+  <description>Software Engineering, Lifestyle, Books, Learning</description>
+  <image>
+    <url>https://raw.githubusercontent.com/leandrotk/master/images/logo.jpg</url>
+    <title>TK's Blog</title>
+    <link>https://iamtk.co</link>
+  </image>
+  <item>
+    <title>On Leaving</title>
+    <link>https://iamtk.co/on-leaving</link>
+    <guid isPermaLink="true">https://iamtk.co/on-leaving</guid>
+    <description>Why am I moving to Tokyo, Japan?</description>
+  </item>
+  <item>
+    <title>On Distraction</title>
+    <link>https://iamtk.co/on-distraction</link>
+    <guid isPermaLink="true">https://iamtk.co/on-distraction</guid>
+    <description>Focusing on things I can control and systems to fight distractions and procrastination.</description>
+  </item>
+  <item>
+    <title>Parser - Part 1: Fundamental parts of AST and basic statements</title>
+    <link>https://iamtk.co/series/building-an-interpreter/parser-part-1</link>
+    <guid isPermaLink="true">https://iamtk.co/series/building-an-interpreter/parser-part-1</guid>
+    <description>Build a parser and the fundamental parts of the Abstract Syntax Tree</description>
+  </item>
+  <item>
+    <title>Building an Interpreter: REPL</title>
+    <link>https://iamtk.co/series/building-an-interpreter/repl</link>
+    <guid isPermaLink="true">https://iamtk.co/series/building-an-interpreter/repl</guid>
+    <description>Building an Interpreter: REPL</description>
+  </item>
+  <item>
+    <title>Building an Interpreter: Lexical Analysis - Part 3</title>
+    <link>https://iamtk.co/series/building-an-interpreter/lexical-analysis-part-3</link>
+    <guid isPermaLink="true">https://iamtk.co/series/building-an-interpreter/lexical-analysis-part-3</guid>
+    <description>Building an Interpreter: Lexical Analysis - Part 3</description>
+  </item>
+  <item>
+    <title>Rebuilding Mercari's Search: Home and Menu</title>
+    <link>https://iamtk.co/series/rebuilding-mercaris-search/home-menu</link>
+    <guid isPermaLink="true">https://iamtk.co/series/rebuilding-mercaris-search/home-menu</guid>
+    <description>Rebuilding Mercari's Search: Home and Menu</description>
+  </item>
+  <item>
+    <title>Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest</title>
+    <link>https://iamtk.co/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest</link>
+    <guid isPermaLink="true">https://iamtk.co/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest</guid>
+    <description>Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest</description>
+  </item>
+  <item>
+    <title>Rebuilding Mercari's Search Series</title>
+    <link>https://iamtk.co/series/rebuilding-mercaris-search</link>
+    <guid isPermaLink="true">https://iamtk.co/series/rebuilding-mercaris-search</guid>
+    <description>A documentation series about how I rebuilt the Mercari's Search experience with NextJS, ReactJS, and TypeScript.</description>
+  </item>
+  <item>
+    <title>react-query: complex dependent queries</title>
+    <link>https://iamtk.co/react-query-complex-dependent-queries</link>
+    <guid isPermaLink="true">https://iamtk.co/react-query-complex-dependent-queries</guid>
+    <description>Building complex queries in data fetching with react and react-query.</description>
+  </item>
+  <item>
+    <title>Data Fetching in React with react-query</title>
+    <link>https://iamtk.co/data-fetching-in-react-with-reactquery</link>
+    <guid isPermaLink="true">https://iamtk.co/data-fetching-in-react-with-reactquery</guid>
+    <description>Understanding data fetching from the early days with xml requests and jquery to these days that we handle more complex cases.</description>
+  </item>
+  <item>
+    <title>Building an Interpreter: Lexical Analysis - Part 2</title>
+    <link>https://iamtk.co/series/building-an-interpreter/lexical-analysis-part-2</link>
+    <guid isPermaLink="true">https://iamtk.co/series/building-an-interpreter/lexical-analysis-part-2</guid>
+    <description>The second part of the Lexical Analysis implementation of the interpreter</description>
+  </item>
+  <item>
+    <title>Building an Interpreter: Lexical Analysis - Part 1</title>
+    <link>https://iamtk.co/series/building-an-interpreter/lexical-analysis-part-1</link>
+    <guid isPermaLink="true">https://iamtk.co/series/building-an-interpreter/lexical-analysis-part-1</guid>
+    <description>The first part of the Lexical Analysis implementation of the interpreter</description>
+  </item>
+  <item>
+    <title>Building an Interpreter Series</title>
+    <link>https://iamtk.co/series/building-an-interpreter</link>
+    <guid isPermaLink="true">https://iamtk.co/series/building-an-interpreter</guid>
+    <description>A documentation series about the interpreter I'm building and learning</description>
+  </item>
+  <item>
+    <title>DX &amp; Software Maintainability in Frontend Engineering</title>
+    <link>https://iamtk.co/dx-and-software-maintainability-in-frontend-engineering</link>
+    <guid isPermaLink="true">https://iamtk.co/dx-and-software-maintainability-in-frontend-engineering</guid>
+    <description>Tech Debts, Software Maintainability, Developer Experience, and Technical Leadership</description>
+  </item>
+  <item>
+    <title>Optimizing the Performance of a React Progressive Web App</title>
+    <link>https://iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app</link>
+    <guid isPermaLink="true">https://iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app</guid>
+    <description>A performance case study of a React PWA</description>
+  </item>
+  <item>
+    <title>Performance: Prefetch Next Page Chunk</title>
+    <link>https://iamtk.co/performance-prefetch-next-pages-chunks</link>
+    <guid isPermaLink="true">https://iamtk.co/performance-prefetch-next-pages-chunks</guid>
+    <description>Prefetching next pages chunks to optimize performance</description>
+  </item>
+  <item>
+    <title>Atomic Habits</title>
+    <link>https://iamtk.co/bookshelf/atomic-habits</link>
+    <guid isPermaLink="true">https://iamtk.co/bookshelf/atomic-habits</guid>
+    <description>Atomic Habits: Book Review</description>
+  </item>
+  <item>
+    <title>The Effective Engineer</title>
+    <link>https://iamtk.co/bookshelf/the-effective-engineer</link>
+    <guid isPermaLink="true">https://iamtk.co/bookshelf/the-effective-engineer</guid>
+    <description>Notes on how to be an effective engineer</description>
+  </item>
+  <item>
+    <title>Slow Living</title>
+    <link>https://iamtk.co/slow-living</link>
+    <guid isPermaLink="true">https://iamtk.co/slow-living</guid>
+    <description>To experience life to the fullest</description>
+  </item>
+  <item>
+    <title>Building a simple Individual Development Plan (IDP) with Notion</title>
+    <link>https://www.iamtk.co/building-an-individual-development-plan-with-notion</link>
+    <guid isPermaLink="true">https://www.iamtk.co/building-an-individual-development-plan-with-notion</guid>
+    <description>In this post I share with you how I created a simple individual development plan using Notion</description>
+  </item>
+  <item>
+    <title>Basic Recipes for React Testing Library</title>
+    <link>https://iamtk.co/basic-recipes-for-react-testing-library</link>
+    <guid isPermaLink="true">https://iamtk.co/basic-recipes-for-react-testing-library</guid>
+    <description>Understanding testing in the frontend and react applications</description>
+  </item>
+  <item>
+    <title>A Mental Model to think in TypeScript</title>
+    <link>https://iamtk.co/a-mental-model-to-think-in-typescript</link>
+    <guid isPermaLink="true">https://iamtk.co/a-mental-model-to-think-in-typescript</guid>
+    <description>Types can be hard and this long-format essay tries to give a way of thinking about types and TypeScript</description>
+  </item>
+  <item>
+    <title>Designing my life's System</title>
+    <link>https://iamtk.co/designing-my-lifes-system</link>
+    <guid isPermaLink="true">https://iamtk.co/designing-my-lifes-system</guid>
+    <description>A full documentation of how I designed a system for my life</description>
+  </item>
+  <item>
+    <title>UX Studies with React, TypeScript, and Testing Library</title>
+    <link>https://iamtk.co/ux-studies-with-react-typescript-and-testing-library</link>
+    <guid isPermaLink="true">https://iamtk.co/ux-studies-with-react-typescript-and-testing-library</guid>
+    <description>Studying and applying UX using React, TypeScript, Testing Library</description>
+  </item>
+  <item>
+    <title>Data Structures Series</title>
+    <link>https://iamtk.co/series/data-structures</link>
+    <guid isPermaLink="true">https://iamtk.co/series/data-structures</guid>
+    <description>Solving algorithms problems with TK</description>
+  </item>
+  <!-- <item>
+    <title>Algorithms Problem Solving Series</title>
+    <link>https://iamtk.co/series/algorithms-problem-solving</link>
+    <guid isPermaLink="true">https://iamtk.co/series/algorithms-problem-solving</guid>
+    <description>Solving algorithms problems with TK</description>
+  </item> -->
+  <item>
+    <title>TypeScript Learnings: Interesting Types</title>
+    <link>https://iamtk.co/series/typescript-learnings/interesting-types</link>
+    <guid isPermaLink="true">https://iamtk.co/series/typescript-learnings/interesting-types</guid>
+    <description>Learning interesting types from TypeScript</description>
+  </item>
+  <item>
+    <title>Constant feedback driven development with Nodemon</title>
+    <link>https://iamtk.co/constant-feedback-driven-development-with-nodemon</link>
+    <guid isPermaLink="true">https://iamtk.co/constant-feedback-driven-development-with-nodemon</guid>
+    <description>As I'm building a lot of TypeScript projects, I wanted to make it more dynamic and with constant feedback.</description>
+  </item>
+  <item>
+    <title>Publisher, a tooling to automate the process to publish my blog posts</title>
+    <link>https://iamtk.co/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts</link>
+    <guid isPermaLink="true">https://iamtk.co/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts</guid>
+    <description>An implementation detail of the Publisher tooling to automate the process to publish blog posts</description>
+  </item>
+  <item>
+    <title>TypeScript Learnings 002: Type System</title>
+    <link>https://iamtk.co/series/typescript-learnings/type-system</link>
+    <guid isPermaLink="true">https://iamtk.co/series/typescript-learnings/type-system</guid>
+    <description>Understanding TypeScript Type Systerm</description>
+  </item>
+  <item>
+    <title>Elixir Learnings 002: playing around with lists</title>
+    <link>https://iamtk.co/series/elixir-learnings/playing-around-with-lists</link>
+    <guid isPermaLink="true">https://iamtk.co/series/elixir-learnings/playing-around-with-lists</guid>
+    <description>Understanding how lists work in Elixir</description>
+  </item>
+  <item>
+    <title>React Hooks, Context API, and Pokemons</title>
+    <link>https://iamtk.co/react-hooks-context-api-and-pokemons</link>
+    <guid isPermaLink="true">https://iamtk.co/react-hooks-context-api-and-pokemons</guid>
+    <description>Understanding hooks and the context API by building a Pokemon app.</description>
+  </item>
+  <item>
+    <title>Fun with Dates</title>
+    <link>https://iamtk.co/fun-with-dates</link>
+    <guid isPermaLink="true">https://iamtk.co/fun-with-dates</guid>
+    <description>Learning about Dates and playing around with a new API</description>
+  </item>
+  <item>
+    <title>Elixir Learnings Series</title>
+    <link>https://iamtk.co/series/elixir-learnings</link>
+    <guid isPermaLink="true">https://iamtk.co/series/elixir-learnings</guid>
+    <description>Learning elixir with TK</description>
+  </item>
+  <item>
+    <title>Thinking in data contracts</title>
+    <link>https://iamtk.co/thinking-in-data-contracts</link>
+    <guid isPermaLink="true">https://iamtk.co/thinking-in-data-contracts</guid>
+    <description>This is part of my studies on how to build sustainable and consistent software.</description>
+  </item>
+  <item>
+    <title>TypeScript Learnings Series</title>
+    <link>https://iamtk.co/series/typescript-learnings</link>
+    <guid isPermaLink="true">https://iamtk.co/series/typescript-learnings</guid>
+    <description>Learning TypeScript with TK</description>
+  </item>
+  <item>
+    <title>Consistent State Management in React and Redux</title>
+    <link>https://iamtk.co/consistent-state-management-in-react-and-redux</link>
+    <guid isPermaLink="true">https://iamtk.co/consistent-state-management-in-react-and-redux</guid>
+    <description>This is part of my studies on how to build sustainable and consistent software.</description>
+  </item>
+  <item>
+    <title>TDD, simple functions, and React components</title>
+    <link>https://iamtk.co/tdd-functions-and-react-components</link>
+    <guid isPermaLink="true">https://iamtk.co/tdd-functions-and-react-components</guid>
+    <description>This is part of my studies on how to build sustainable and consistent software.</description>
+  </item>
+  <item>
+    <title>Closures, Currying, and Cool Abstractions</title>
+    <link>https://iamtk.co/closure-currying-and-cool-abstractions</link>
+    <guid isPermaLink="true">https://iamtk.co/closure-currying-and-cool-abstractions</guid>
+    <description>In this article, we will talk about closures, curried functions, and play around with these concepts to build cool abstractions.</description>
+  </item>
+  <item>
+    <title>Tree Data Structure</title>
+    <link>https://iamtk.co/series/data-structures/tree-data-structure</link>
+    <guid isPermaLink="true">https://iamtk.co/series/data-structures/tree-data-structure</guid>
+    <description>This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it..</description>
+  </item>
+  <item>
+    <title>Linked List</title>
+    <link>https://iamtk.co/series/data-structures/linked-list-data-structure</link>
+    <guid isPermaLink="true">https://iamtk.co/series/data-structures/linked-list-data-structure</guid>
+    <description>Notes on what is a linked list, how it works, and a Python implementation</description>
+  </item>
+  <item>
+    <title>Queue Data Structure</title>
+    <link>https://iamtk.co/series/data-structures/queue-data-structure</link>
+    <guid isPermaLink="true">https://iamtk.co/series/data-structures/queue-data-structure</guid>
+    <description>Notes on what is a queue, how it works, and a Python implementation</description>
+  </item>
+  <item>
+    <title>Stack Data Structure</title>
+    <link>https://iamtk.co/series/data-structures/stack-data-structure</link>
+    <guid isPermaLink="true">https://iamtk.co/series/data-structures/stack-data-structure</guid>
+    <description>Notes on what is a stack, how it works, and a Python implementation</description>
+  </item>
+  <item>
+    <title>Building an abstraction for React internationalization messages</title>
+    <link>https://iamtk.co/building-an-abstraction-for-react-internationalization-messages</link>
+    <guid isPermaLink="true">https://iamtk.co/building-an-abstraction-for-react-internationalization-messages</guid>
+    <description>I came across a feature I wanted to build and...</description>
+  </item>
+  <item>
+    <title>Designing my Learning Experience</title>
+    <link>https://iamtk.co/designing-my-learning-experience</link>
+    <guid isPermaLink="true">https://iamtk.co/designing-my-learning-experience</guid>
+    <description>I'm learning a lot and sharing knowledge. This is my first take on designing a better learning experience</description>
+  </item>
+  <item>
+    <title>Thoughts on my productivity</title>
+    <link>https://iamtk.co/thoughts-on-my-productivity</link>
+    <guid isPermaLink="true">https://iamtk.co/thoughts-on-my-productivity</guid>
+    <description>Think about my energy. Think about prioritization. Think about tasks planning. Think about removing distractions.</description>
+  </item>
+  <item>
+    <title>An introduction to the basic principles of Functional Programming</title>
+    <link>https://iamtk.co/functional-programming-principles-in-javascript</link>
+    <guid isPermaLink="true">https://iamtk.co/functional-programming-principles-in-javascript</guid>
+    <description>In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.</description>
+  </item>
+  <item>
+    <title>An introduction to the basic principles of Functional Programming</title>
+    <link>https://iamtk.co/an-introduction-to-the-basic-principles-of-functional-programming</link>
+    <guid isPermaLink="true">https://iamtk.co/an-introduction-to-the-basic-principles-of-functional-programming</guid>
+    <description>In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.</description>
+  </item>
+  <item>
+    <title>Understanding the basics of Ruby on Rails: SQL Databases and how they work</title>
+    <link>https://iamtk.co/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work</link>
+    <guid isPermaLink="true">https://iamtk.co/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work</guid>
+    <description>Learn about databases and how they connect with Ruby on Rails.</description>
+  </item>
+  <item>
+    <title>Actionable advice to start learning to code</title>
+    <link>https://iamtk.co/actionable-advice-to-start-learning-to-code</link>
+    <guid isPermaLink="true">https://iamtk.co/actionable-advice-to-start-learning-to-code</guid>
+    <description>This post has stories and a lot of actionable advice for you to be inspired, motivated, and take the first step in the programming world.</description>
+  </item>
+  <item>
+    <title>Understanding the basics of Ruby on Rails: HTTP, MVC, and Routes</title>
+    <link>https://iamtk.co/understanding-the-basics-of-ruby-on-rails-http-mvc-and-routes</link>
+    <guid isPermaLink="true">https://iamtk.co/understanding-the-basics-of-ruby-on-rails-http-mvc-and-routes</guid>
+    <description>We’ll understand the basics of how the web, the routes, and the MVC architecture work using the Ruby on Rails web framework</description>
+  </item>
+  <item>
+    <title>Learning Python: From Zero to Hero</title>
+    <link>https://iamtk.co/learning-python-from-zero-to-hero</link>
+    <guid isPermaLink="true">https://iamtk.co/learning-python-from-zero-to-hero</guid>
+    <description>High-level programming language, and its core design philosophy is all about code readability and a syntax which allows programmers to express concepts in a few lines of code.</description>
+  </item>
+  <item>
+    <title>Idiomatic Ruby: writing beautiful code</title>
+    <link>https://iamtk.co/writing-idiomatic-beautiful-ruby-code</link>
+    <guid isPermaLink="true">https://iamtk.co/writing-idiomatic-beautiful-ruby-code</guid>
+    <description>A dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.</description>
+  </item>
+  <item>
+    <title>Learning Ruby: From Zero to Hero</title>
+    <link>https://iamtk.co/learning-ruby-from-zero-to-hero</link>
+    <guid isPermaLink="true">https://iamtk.co/learning-ruby-from-zero-to-hero</guid>
+    <description>Ruby is simple in appearance, but is very complex inside, just like our human body.</description>
+  </item>
+</channel>
+
+</rss>
