@@ -1,0 +1,131 @@
+These days I'm building a new project to understand some topics deeply. It is about user experience, web performance, accessibility, and a type system for consistent data.
+
+This project I'm basically using React with Typescript. At first, I implemented a custom hook to handle the data fetching. One of the possible data types the fetch could return is a `Product` type. It looks like this:
+
+```typescript
+type Product = {
+  name: string;
+  price: number;
+  imageUrl: string;
+  description: string;
+  isShippingFree: boolean;
+  discount: number;
+};
+```
+
+Now that I could fetch some products, I wanted to use the list of products to render in the DOM. So I created a `Product` component. But as we are using Typescript, the props should be typed. In this case, I used the `Product` type. It looks like this:
+
+```typescript
+export const Product = ({
+  imageUrl,
+  name,
+  description,
+  price,
+  discount,
+  isShippingFree,
+}: ProductType) => (
+  <Box>
+    <Image imageUrl={imageUrl} imageAlt={name} />
+    <TitleDescription name={name} description={description} />
+    <Price price={price} discount={discount} />
+    <Tag label="Free Shipping" isVisible={isShippingFree} />
+  </Box>
+);
+```
+
+And when I started implementing the `Image` component, I just passed the `imageUrl` and the `imageAlt` as props. It looks like this:
+
+```typescript
+export const Image = ({ imageUrl }) => <img src={imageUrl} />;
+```
+
+In this case, I couldn't use the `Product` type. But I could reuse it.
+
+I learned about this new type: the [Partial](https://www.typescriptlang.org/docs/handbook/utility-types.html#partialt) type. The idea of the `Partial` type is to build a new type based on the passed type and set all attributes to `optional`.
+
+So, if we do a partial of the `Product` type, it would look like this:
+
+```typescript
+type Product = {
+  name?: string;
+  price?: number;
+  imageUrl?: string;
+  description?: string;
+  isShippingFree?: boolean;
+  discount?: number;
+};
+```
+
+All properties are set to optional.
+
+And now I can use it for the `Image` component:
+
+```typescript
+export const Image = ({ imageUrl }): Partial<ProductType> => (
+  <img src={imageUrl} />
+);
+```
+
+But when I use the `Image` component, I can pass any props I want. I miss the type check. It doesn't break in compile time.
+
+To fix that, I could just build an `ImagePropsType` and use it as the component props type.
+
+```typescript
+type ImagePropsType = {
+  imageUrl: string;
+};
+
+export const Image = ({ imageUrl }): ImagePropsType => <img src={imageUrl} />;
+```
+
+But I already have the type for the `imageUrl` inside the `Product` type. So I started to search how I could reuse the type: I found the `Pick` type.
+
+The `Pick` type lets me reuse the `Product` type by picking a set of properties I want:
+
+```typescript
+type ImagePropsType = Pick<ProductType, 'imageUrl'>;
+```
+
+Now I ensure that type checking and the type reusability work well.
+
+To build the whole `Image` component, I also needed to pass other props like: `imageAlt` and `width`.
+
+What I wanted is the intersection of the `Pick<ProductType, 'imageUrl'>`, the `imageAlt` type, and the `width` type.
+
+In Typescript, the representation of the intersection is the `&` operator.
+
+I defined the `ImageUrlType`:
+
+```typescript
+type ImageUrlType = Pick<ProductType, 'imageUrl'>;
+```
+
+And the `ImageAttrType` to represent both the `imageAlt` and the `width`:
+
+```typescript
+type ImageAttrType = { imageAlt: string; width?: string };
+```
+
+And compose them together by insecting the types:
+
+```typescript
+type ImagePropsType = ImageUrlType & ImageAttrType;
+```
+
+And the final result is:
+
+```typescript
+import { ProductType } from 'types/Product';
+
+type ImageUrlType = Pick<ProductType, 'imageUrl'>;
+type ImageAttrType = { imageAlt: string; width?: string };
+type ImagePropsType = ImageUrlType & ImageAttrType;
+
+export const Image = ({ imageUrl, imageAlt, width }: ImagePropsType) => (
+  <img src={imageUrl} alt={imageAlt} width={width} />
+);
+```
+
+I have the image URL, alt, width types intersected, and defined in the `ImagePropsType`. It can think of types as data and compose them. This is a very cool feature.
+
+These are the interesting new types I learned this week.

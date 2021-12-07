@@ -1,0 +1,174 @@
+This post is part of the [Typescript Learning Series](/series/typescript-learnings).
+
+When I was testing some ideas and API features for JavaScript dates, I built a project in Typescript. I wanted to build a more [human-friendly API to handle dates](https://leandrotk.github.io/fun-with-dates).
+
+This is what I was looking for:
+
+```tsx
+get(1).dayAgo; // it gets yesterday
+```
+
+I also make it work for month and year:
+
+```tsx
+get(1).monthAgo; // it gets a month ago from today
+get(1).yearAgo; // it gets a year ago from today
+```
+
+These are great! But I wanted more: what if we want to get days, months, or years ago? It works too:
+
+```tsx
+get(30).daysAgo;
+get(6).monthsAgo;
+get(10).yearsAgo;
+```
+
+And about the implementation? It is just a function that returns an JavaScript object:
+
+```tsx
+const get = (n: number): DateAgo | DatesAgo => {
+  if (n < 1) {
+    throw new Error('Number should be greater or equal than 1');
+  }
+
+  const { day, month, year }: SeparatedDate = getSeparatedDate();
+
+  const dayAgo: Date = new Date(year, month, day - n);
+  const monthAgo: Date = new Date(year, month - n, day);
+  const yearAgo: Date = new Date(year - n, month, day);
+
+  const daysAgo: Date = new Date(year, month, day - n);
+  const monthsAgo: Date = new Date(year, month - n, day);
+  const yearsAgo: Date = new Date(year - n, month, day);
+
+  if (n > 1) {
+    return { daysAgo, monthsAgo, yearsAgo };
+  }
+
+  return { dayAgo, monthAgo, yearAgo };
+};
+```
+
+And here we are! I want to tell you about Union Type with objects.
+
+We have different return types depending on the `n` parameter. If the `n` is greater than `1`, we return an object with "plural" kind of attributes. Otherwise, I just return the "singular" type of attributes.
+
+Different return types. So I built the two types.
+
+The `DateAgo`:
+
+```tsx
+type DateAgo = {
+  dayAgo: Date;
+  monthAgo: Date;
+  yearAgo: Date;
+};
+```
+
+And the `DatesAgo`:
+
+```tsx
+type DatesAgo = {
+  daysAgo: Date;
+  monthsAgo: Date;
+  yearsAgo: Date;
+};
+```
+
+And use them in the function definition:
+
+```tsx
+const get = (n: number): DateAgo | DatesAgo =>
+```
+
+But this gets a type error.
+
+When using:
+
+```tsx
+get(2).daysAgo;
+```
+
+I got this error: `Property 'daysAgo' does not exist on type 'DateAgo | DatesAgo'.`
+
+When using:
+
+```tsx
+get(1).dayAgo;
+```
+
+I got this error: `Property 'dayAgo' does not exist on type 'DateAgo | DatesAgo'.`
+
+The `DateAgo` doesn't declare the following types:
+
+- `daysAgo`
+- `monthsAgo`
+- `yearsAgo`
+
+The same for the `DatesAgo`:
+
+- `dayAgo`
+- `monthAgo`
+- `yearAgo`
+
+But it can have this properties in run-time. Because we can assign any kind of properties to an object. So a possible solution would be to add an `undefined` type to both `DateAgo` and `DatesAgo`.
+
+```tsx
+type DateAgo = {
+  dayAgo: Date;
+  monthAgo: Date;
+  yearAgo: Date;
+  daysAgo: undefined;
+  monthsAgo: undefined;
+  yearsAgo: undefined;
+};
+
+type DatesAgo = {
+  daysAgo: Date;
+  monthsAgo: Date;
+  yearsAgo: Date;
+  dayAgo: undefined;
+  monthAgo: undefined;
+  yearAgo: undefined;
+};
+```
+
+This will fix the issue in compile time. But with this, you'll always need to set an `undefined` value to the object. One to get around this is to add an optional to the `undefined` types. Like this:
+
+```tsx
+yearAgo?: undefined
+```
+
+With that, you can set these `undefined` properties. A better solution is to use the `never` type:
+
+> "The never type represents the type of values that never occur."
+
+```tsx
+type DateAgo = {
+  dayAgo: Date;
+  monthAgo: Date;
+  yearAgo: Date;
+  daysAgo?: never;
+  monthsAgo?: never;
+  yearsAgo?: never;
+};
+
+type DatesAgo = {
+  daysAgo: Date;
+  monthsAgo: Date;
+  yearsAgo: Date;
+  dayAgo?: never;
+  monthAgo?: never;
+  yearAgo?: never;
+};
+```
+
+It works as expected and it also represents the data semantically as these attributes will not occur for both situations.
+
+## Resources
+
+- [Possible solution for objects](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-266250230)
+- [Better solution](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-373047380)
+- [Even better solution](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-506946211)
+- [Solution example](https://github.com/leandrotk/dating/blob/master/src/index.ts#L11)
+- [Dating API source code](https://github.com/leandrotk/dating)

@@ -1,0 +1,27 @@
+{
+  "title": "Typescript Learnings: Type System",
+  "description": "Understanding TypeScript Type Systerm",
+  "date": "2020-04-25",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/typescript-learnings/rino.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Beautiful white rhino at the Pilanesberg National Park, South Africa",
+    "authorHref": "https://unsplash.com/@zoeeee_",
+    "authorName": "Zoë Reeve"
+  }
+}

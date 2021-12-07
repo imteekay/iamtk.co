@@ -1,0 +1,120 @@
+This is part of my series on [Typescript Learning](/series/typescript-learnings), where I share micro-posts about everything I'm learning related to Typescript.
+
+One of the main Typescript features is the Type System. We are going to play around with the type system and see how it works.
+
+## Basic Types
+
+The basic types are:
+
+- number
+- string
+- boolean
+
+We define these type by using this nomenclature: `variableName: typeName`, where the `variableName` you choose and the `typeName` can a `number`, a `string`, or a `boolean`. Let's try it out.
+
+```typescript
+const age: number = 25;
+const name: string = 'TK';
+const isLearning: boolean = true;
+```
+
+What is the power of the Typescript type system? We define a type for a given variable or constant, it doesn't change across the whole system. A string will be a string forever. A number too. And so on.
+
+```typescript
+let age: number = 25;
+age = 'TK'; // Type '"TK"' is not assignable to type 'number'.
+```
+
+It fails on compile-time and raises a "Type Error". This helps us with immutable types and prevent possible bugs.
+
+## Collections
+
+Here we have Arrays, Tuples, and Objects. They are collection, data structures to store, well, data.
+
+There are two ways to define a `Array` type. The type followed by a `[]`:
+
+```typescript
+const bookshelf: string[] = [
+  'The Compound Effect',
+  'Leonardo Da Vinci',
+  'Enlightenment Now',
+];
+```
+
+The `string` is the type followed by `[]`.
+
+Another way is to use the `Array` type:
+
+```typescript
+const bookshelf: Array<string> = [
+  'The Compound Effect',
+  'Leonardo Da Vinci',
+  'Enlightenment Now',
+];
+```
+
+Tuples are a little different from the array. It has a fixed number of elements, so we define the type for each index.
+
+```typescript
+const thoughts: [string, number] = ['Programming', 42];
+```
+
+By the way, the order of the elements and types is relevant:
+
+```typescript
+let thoughts: [string, number];
+
+thoughts = ['Programming', 42]; // Succeeds!
+thoughts = [42, 'Programming']; // Fails!
+```
+
+For objects, we can use the `object` type that represents the non-primitive type (`number`, `string`, `boolean`, `bigint`, `symbol`, `null`, or `undefined`).
+
+```typescript
+const printObj = (obj: object): void => {
+  console.log(obj);
+};
+
+printObj({ name: 'TK' }); // it compiles and prints!
+
+printObj(42); // Argument of type '42' is not assignable to parameter of type 'object'.
+printObj('TK'); // Argument of type '"TK"' is not assignable to parameter of type 'object'.
+printObj(null); // Argument of type 'null' is not assignable to parameter of type 'object'.
+printObj(undefined); // Argument of type 'undefined' is not assignable to parameter of type 'object'.
+printObj(true); // Argument of type 'true' is not assignable to parameter of type 'object'.
+```
+
+Another way to define types for the object is to use Interfaces and Types.
+
+Interfaces give the shape of the object. We define the types for the object structure. For the `printObj` function we defined before, we just need an interface to handle the object structure.
+
+```typescript
+interface Person {
+  name: string;
+}
+
+const printObj = (obj: Person): void => {
+  console.log(obj);
+};
+
+printObj({ name: 'TK' }); // it compiles and prints!
+```
+
+The `Type` looks the same way:
+
+```typescript
+type Person = {
+  name: string;
+};
+
+const printObj = (obj: Person): void => {
+  console.log(obj);
+};
+
+printObj({ name: 'TK' }); // it compiles and prints!
+```
+
+## Resources
+
+- [Typescript Utility Types: Docs](https://www.typescriptlang.org/docs/handbook/utility-types.html)
+- [Typescript Basic Types: Docs](https://www.typescriptlang.org/docs/handbook/basic-types.html)

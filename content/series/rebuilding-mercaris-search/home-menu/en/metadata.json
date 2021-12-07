@@ -4,12 +4,16 @@
   "date": "2021-06-20",
   "tags": [
     {
-      "href": "/tags/algorithms-and-data-structures",
-      "name": "algorithms_and_data_structures"
+      "href": "/tags/web-development",
+      "name": "web_development"
     },
     {
-      "href": "/tags/python",
-      "name": "python"
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
     }
   ],
   "coverImage": {

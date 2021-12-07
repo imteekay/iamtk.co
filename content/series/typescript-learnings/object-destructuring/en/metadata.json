@@ -1,0 +1,27 @@
+{
+  "title": "Typescript Learnings: Object Destructuring",
+  "description": "Learning TypeScript with TK",
+  "date": "2020-04-05",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/typescript-learnings/storage-room.jpeg",
+    "width": "592",
+    "height": "444",
+    "alt": "the internal of a house",
+    "authorHref": "https://unsplash.com/@jamesq",
+    "authorName": "James Qualtrough"
+  }
+}

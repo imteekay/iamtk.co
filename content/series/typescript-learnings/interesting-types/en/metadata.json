@@ -1,0 +1,27 @@
+{
+  "title": "Typescript Interesting Types",
+  "description": "Learning some Typescript Interesting Types",
+  "date": "2020-05-09",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/typescript-learnings/cover.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Soil",
+    "authorHref": "https://unsplash.com/@pixel_talkies",
+    "authorName": "Nijwam Swargiary"
+  }
+}

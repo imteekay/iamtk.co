@@ -1,0 +1,27 @@
+{
+  "title": "Union Types with Objects",
+  "description": "Learning TypeScript union types for objects",
+  "date": "2020-05-23",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/typescript-learnings/hands.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Two people hand in hand",
+    "authorHref": "https://unsplash.com/@healing_photographer",
+    "authorName": "Aarón Blanco Tejedor"
+  }
+}
