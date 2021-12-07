@@ -1,0 +1,19 @@
+{
+  "title": "Elixir Learnings: div and rem",
+  "description": "Learning Elixir with TK",
+  "date": "2020-04-13",
+  "tags": [
+    {
+      "href": "/tags/elixir",
+      "name": "elixir"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/elixir-learnings/math.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A chalk board with math",
+    "authorHref": "https://unsplash.com/@roman_lazygeek",
+    "authorName": "Roman Mager"
+  }
+}

@@ -1,0 +1,174 @@
+This is part of my series on [Elixir Learnings](https://leandrotk.github.io/tk/2020/04/elixir-learnings/), where I share micro-posts about everything I'm learning related to Elixir.
+
+Today we going to play around with lists. At the same time lists are very simple, they are powerful. And we use it always in our day-to-day work. Here we will understand some common concepts we need to handle lists.
+
+## Add and remove items
+
+We have two ways to add new items to the list. We can use the `insert_at` List function and the `++` operator to concat lists.
+
+The `insert_at` function receives three parameters: the list, the index position you want to add the new item, and the item.
+
+```elixir
+items = [1 ,2 ,3 ,4]
+List.insert_at(items, 0, 0) # [0, 1 ,2 ,3 ,4]
+List.insert_at(items, 4, 5) # [1 ,2 ,3 ,4, 5]
+```
+
+And Elixir lists are immutable. After these operations, if we call the `items` again, it will be the first value.
+
+```elixir
+items # [1 ,2 ,3 ,4]
+```
+
+The list value doesn't change.
+
+We can also use the `++` operator to concat lists to add a new item.
+
+```elixir
+brothers = ['TK', 'Yuji', 'Bruno']
+new_brother = 'Kaio'
+brothers ++ [new_brother] # ['TK', 'Yuji', 'Bruno', 'Kaio']
+```
+
+Not only one item. But concat any list.
+
+```elixir
+['TK', 'Kaio'] ++ ['Yuji', 'Bruno'] # ['TK', 'Kaio', 'Yuji', 'Bruno']
+```
+
+With the `--` operator, we can subtract a list of items from the left list.
+
+```elixir
+bookshelf = ['HP', 'Compound Effect', 'Enlightenment Now']
+bookshelf -- ['HP'] # ['Compound Effect', 'Enlightenment Now']
+```
+
+## Getting items
+
+I learned simple but very useful functions to get items: `first` and `last`.
+
+```elixir
+List.first([1, 2, 3]) # 1
+List.last([1, 2, 3]) # 3
+```
+
+We can also handle empty lists:
+
+```elixir
+List.first([]) # nil
+List.last([]) # nil
+```
+
+## Make it flat
+
+Another cool function is `flat`. It flats nested lists. In other words, it transforms nested lists into just one with all the elements.
+
+- Not so nested lists
+
+```elixir
+List.flatten([1, [2], [3]]) # [1, 2, 3]
+```
+
+- More complex nested lists
+
+```elixir
+List.flatten([1, [[2, [3]]]]) # [1, 2, 3]
+```
+
+- Nested empty lists
+
+```elixir
+List.flatten([[], [[], []]]) # []
+```
+
+## Iterate through it
+
+One thing we always do with lists is iteration. We can use the `each` function from the `Enum` module to loop through the list.
+
+```elixir
+items = [1, 2, 3, 4, 5]
+Enum.each(items, fn (n) -> IO.inspect(n) end)
+```
+
+And we can also use a shortcut for functions.
+
+```elixir
+Enum.each(items, &IO.inspect/1) # shortcut
+```
+
+The `Enum` module has various other functions to work on data types, like lists, that implements the `Enumerable` protocol.
+
+## Destructuring
+
+Another way to get items from the list is called `destructuring`. We unpack items from the list by specifying the "variables" inside a list.
+
+```elixir
+[a, b, c] = [1, 2, 3]
+IO.inspect a
+IO.inspect b
+IO.inspect c
+```
+
+With the `[a, b, c]`, we are specifying the variable names to destructure the list.
+
+If you want to get only the second item, use the `_` operator (also called `wildcard`).
+
+```elixir
+[_, x, _] = [1, 2, 3]
+IO.inspect x # 2
+```
+
+Another interesting way to get items is by using the `|` operator. With this operator, we get the head (first item) and the right part represents the other items.
+
+```elixir
+[head | rest] = [1, 2, 3, 4, 5]
+IO.inspect head # 1
+IO.inspect rest # [2, 3, 4, 5]
+```
+
+But it's not just about the first element. We can specify more than just the first item.
+
+```elixir
+[first, second | rest] = [1, 2, 3, 4, 5]
+IO.inspect first # 1
+IO.inspect second # 2
+IO.inspect rest # [2, 3, 4, 5]
+```
+
+Lists are linked lists in Elixir. The last node points to an empty list.
+
+```elixir
+[head | rest] = [:a]
+IO.inspect head # :a
+IO.inspect rest # []
+```
+
+This is why when we get the rest, it is an empty list.
+
+## Wrapping up
+
+Lists have the `wrap` function to transform values into a list. It wraps the value in a list.
+
+```elixir
+List.wrap("TK") # ["TK"]
+List.wrap(1) # [1]
+List.wrap(true) # [true]
+List.wrap(:ola) # [:ola]
+```
+
+We can also wrap a list. But it just returns the same list.
+
+```elixir
+List.wrap([1, 2, 3]) # [1, 2, 3]
+```
+
+`nil` is also a value. It represents the absence of a value. When we wrap it, the function returns an empty list.
+
+```elixir
+List.wrap(nil) # []
+```
+
+## Resources
+
+- [Enum module docs](https://hexdocs.pm/elixir/Enum.html)
+- [Learn Functional Programming with Elixir book](https://www.amazon.com/Learn-Functional-Programming-Elixir-Foundations/dp/168050245X)

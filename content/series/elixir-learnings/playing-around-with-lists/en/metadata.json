@@ -1,0 +1,19 @@
+{
+  "title": "Elixir Learnings: playing around with lists",
+  "description": "Learning Elixir with TK",
+  "date": "2020-04-21",
+  "tags": [
+    {
+      "href": "/tags/elixir",
+      "name": "elixir"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/elixir-learnings/todo-list.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A person writing a To Do list",
+    "authorHref": "https://unsplash.com/@glenncarstenspeters",
+    "authorName": "Glenn Carstens-Peters"
+  }
+}

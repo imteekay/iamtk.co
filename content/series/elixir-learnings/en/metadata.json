@@ -1,0 +1,17 @@
+{
+  "title": "Elixir Learnings Series",
+  "description": "Learning elixir with TK",
+  "date": "2020-04-13",
+  "tags": [
+    {
+      "href": "/tags/elixir",
+      "name": "elixir"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/elixir-learnings/elixir-logo.png",
+    "width": "592",
+    "height": "394",
+    "alt": "The elixir logo"
+  }
+}
