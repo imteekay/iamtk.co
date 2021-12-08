@@ -13,6 +13,7 @@ type Params = {
 const folderMapper = {
   bookshelf: 'book',
   series: 'series',
+  tags: 'tag',
 };
 
 type FolderTypes = keyof typeof folderMapper;

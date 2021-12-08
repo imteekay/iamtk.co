@@ -93,17 +93,20 @@ article a {
   );
 }
 
-article .series ul {
+article .series ul,
+article .tags ul {
   list-style-type: none;
   padding: 0;
 }
 
-article .series ul li {
+article .series ul li,
+article .tags ul li {
   margin-bottom: 8px;
   display: flex;
 }
 
-article .series ul li time {
+article .series ul li time,
+article .tags ul li time {
   display: block;
   min-width: 100px;
   margin-right: 16px;

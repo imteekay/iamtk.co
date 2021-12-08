@@ -46,14 +46,16 @@ export const Layout: FC<LayoutPropTypes> = ({
         <Meta date={date} tags={tags} />
       </header>
 
-      <CoverImage
-        src={coverImage.src}
-        width={coverImage.width}
-        height={coverImage.height}
-        alt={coverImage.alt}
-        authorHref={coverImage.authorHref}
-        authorName={coverImage.authorName}
-      />
+      {coverImage.src && (
+        <CoverImage
+          src={coverImage.src}
+          width={coverImage.width}
+          height={coverImage.height}
+          alt={coverImage.alt}
+          authorHref={coverImage.authorHref}
+          authorName={coverImage.authorName}
+        />
+      )}
 
       {children}
       <SocialLinks />

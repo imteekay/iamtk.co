@@ -12,8 +12,8 @@ type MetaPropTypes = {
 
 export const Meta: FC<MetaPropTypes> = ({ date, tags }) => (
   <div style={metaStyle}>
-    <Author />
-    <Date date={date} />
-    <Tags tags={tags} hasTagIcon />
+    {date && <Author />}
+    {date && <Date date={date} />}
+    {tags.length > 0 && <Tags tags={tags} hasTagIcon />}
   </div>
 );
