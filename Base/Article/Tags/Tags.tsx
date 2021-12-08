@@ -7,11 +7,12 @@ type TagsPropTypes = {
   hasTagIcon?: boolean;
 };
 
-export const Tags: FC<TagsPropTypes> = ({ tags, hasTagIcon = false }) => (
-  <div style={articleTagStyle}>
-    |{hasTagIcon && <span className="fa fa-tag" style={tagIcon}></span>}
-    {tags.map((tag) => (
-      <Tag key={tag.name} href={tag.href} name={tag.name} />
-    ))}
-  </div>
-);
+export const Tags: FC<TagsPropTypes> = ({ tags, hasTagIcon = false }) =>
+  tags.length > 0 ? (
+    <div style={articleTagStyle}>
+      |{hasTagIcon && <span className="fa fa-tag" style={tagIcon}></span>}
+      {tags.map((tag) => (
+        <Tag key={tag.name} href={tag.href} name={tag.name} />
+      ))}
+    </div>
+  ) : null;
