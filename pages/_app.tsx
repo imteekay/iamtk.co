@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Layout } from 'Base/components/Layout';
-import { pageview } from 'lib/gtag';
+import { pageview } from 'src/lib/tracking/gtag';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
