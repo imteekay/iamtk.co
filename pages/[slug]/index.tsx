@@ -28,6 +28,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
         tags={postMetadata.tags}
         title={postMetadata.title}
         date={postMetadata.date}
+        showSocialLinks
         coverImage={{
           src: postMetadata.coverImage.src,
           width: postMetadata.coverImage.width,

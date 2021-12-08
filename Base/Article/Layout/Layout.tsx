@@ -17,6 +17,7 @@ type LayoutPropTypes = {
   tags: Tag[];
   title: string;
   date: string;
+  showSocialLinks?: boolean;
   coverImage: {
     src: string;
     width: string;
@@ -32,6 +33,7 @@ export const Layout: FC<LayoutPropTypes> = ({
   tags,
   title,
   date,
+  showSocialLinks = false,
   coverImage,
 }) => (
   <div className="content">
@@ -58,7 +60,7 @@ export const Layout: FC<LayoutPropTypes> = ({
       )}
 
       {children}
-      <SocialLinks />
+      {showSocialLinks && <SocialLinks />}
     </article>
 
     <SubstackEmbed />
