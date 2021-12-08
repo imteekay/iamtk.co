@@ -6,6 +6,10 @@
     {
       "href": "/tags/functional-programming",
       "name": "functional_programming"
+    },
+    {
+      "href": "/tags/clojure",
+      "name": "clojure"
     }
   ],
   "coverImage": {
