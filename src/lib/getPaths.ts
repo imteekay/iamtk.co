@@ -26,11 +26,13 @@ export function getPaths() {
   const postsDir = path.join(process.cwd(), 'content');
   const postsNames = fs.readdirSync(postsDir);
 
-  return removeSeries(postsNames, ['series', 'bookshelf']).map((slug) => ({
-    params: {
-      slug,
-    },
-  }));
+  return removeSeries(postsNames, ['series', 'bookshelf', 'tags']).map(
+    (slug) => ({
+      params: {
+        slug,
+      },
+    }),
+  );
 }
 
 export function getNestedPaths(folder: FolderTypes) {
