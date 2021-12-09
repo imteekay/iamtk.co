@@ -1,4 +1,4 @@
-This is the second post of the [Rebuilding Mercari's Search series](https://www.iamtk.co/series/rebuilding-mercaris-search).
+This is the second post of the [Rebuilding Mercari's Search series](/series/rebuilding-mercaris-search).
 
 In this post, we'll talk about the home and the menu drafts. Before starting to implement the search, the filter, and the products list, I wanted to add a very simple home and a very simple menu to do the navigation between the home (url: `/`) and the search (url: `/search`) pages.
 

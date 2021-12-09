@@ -614,12 +614,12 @@ That's all for this post. The next one we'll talk about expressions, I'm excited
 
 ## **Final words & Resources**
 
-If you didn't have the opportunity, take a look at the posts from the [Building an Interpreter series](https://www.iamtk.co/series/building-an-interpreter):
+If you didn't have the opportunity, take a look at the posts from the [Building an Interpreter series](/series/building-an-interpreter):
 
-- [Building an Interpreter: Lexical Analysis - Part 1](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1)
-- [Building an Interpreter: Lexical Analysis - Part 2](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-2)
-- [Building an Interpreter: Lexical Analysis - Part 3](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-3)
-- [Building an Interpreter: REPL](https://www.iamtk.co/series/building-an-interpreter/repl)
+- [Building an Interpreter: Lexical Analysis - Part 1](/series/building-an-interpreter/lexical-analysis-part-1)
+- [Building an Interpreter: Lexical Analysis - Part 2](/series/building-an-interpreter/lexical-analysis-part-2)
+- [Building an Interpreter: Lexical Analysis - Part 3](/series/building-an-interpreter/lexical-analysis-part-3)
+- [Building an Interpreter: REPL](/series/building-an-interpreter/repl)
 
 These are the resources I'm using to learn more about this field:
 

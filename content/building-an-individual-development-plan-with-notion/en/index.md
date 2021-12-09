@@ -1,4 +1,4 @@
-Some time ago, I wrote about [how I design my life's system](https://www.iamtk.co/designing-my-lifes-system/index.html) using mainly Notion. Over the months, I'm getting used to have an open Notion app to use, document, and do absolutely everything there.
+Some time ago, I wrote about [how I design my life's system](/designing-my-lifes-system/index.html) using mainly Notion. Over the months, I'm getting used to have an open Notion app to use, document, and do absolutely everything there.
 
 The last month I got to know more about the Individual Development Plan (IDP) by a talk from the company I work now. And I thought it was pretty interesting and I wanted to try, but in my own way.
 
@@ -6,7 +6,7 @@ In a certain way, I was already doing this IDP thing in Notion. I have the `Lear
 
 But I also wanted to do the same idea in my work and give visibility to my leader and peers about my career next steps, what I'm working on, collect feedback, and show what I accomplished.
 
-I like this idea of learning in public and [I practice it with this blog for 6 years now](https://www.iamtk.co). Doing the same thing at work and being transparent with the people I work with is something I value and I wanted to give it a try.
+I like this idea of learning in public and [I practice it with this blog for 6 years now](). Doing the same thing at work and being transparent with the people I work with is something I value and I wanted to give it a try.
 
 ## How did I start?
 

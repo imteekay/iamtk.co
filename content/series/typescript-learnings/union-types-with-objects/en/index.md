@@ -1,6 +1,6 @@
 This post is part of the [Typescript Learning Series](/series/typescript-learnings).
 
-When I was testing some ideas and API features for JavaScript dates, I built a project in Typescript. I wanted to build a more [human-friendly API to handle dates](https://www.iamtk.co/fun-with-dates).
+When I was testing some ideas and API features for JavaScript dates, I built a project in Typescript. I wanted to build a more [human-friendly API to handle dates](/fun-with-dates).
 
 This is what I was looking for:
 

@@ -1466,7 +1466,7 @@ const imagePropsWithWidth: ImageProps = {
 
 Nice! One more concept to reuse and compose types.
 
-I also find the `Pick` type very interesting and useful. We have other [interesting types](https://www.iamtk.co/series/typescript-learnings/interesting-types) that we could write here, but the idea here is to understand that we can compose type and there is no limit to reuse types. If you're interested in study other types, take a look at this post I wrote: [Typescript Learnings: Interesting Types](https://www.iamtk.co/series/typescript-learnings/interesting-types).
+I also find the `Pick` type very interesting and useful. We have other [interesting types](/series/typescript-learnings/interesting-types) that we could write here, but the idea here is to understand that we can compose type and there is no limit to reuse types. If you're interested in study other types, take a look at this post I wrote: [Typescript Learnings: Interesting Types](/series/typescript-learnings/interesting-types).
 
 ## Tooling
 
@@ -1587,7 +1587,7 @@ Also, if you found the examples on this post useful, I added all of them this re
 - [TypeScript: narrowing types via type guards and assertion functions](https://2ality.com/2020/06/type-guards-assertion-functions-typescript.html)
 - [Programming with Types Book](https://www.goodreads.com/book/show/48920810-programming-with-types)
 - [Effective TypeScript: 62 Specific Ways to Improve Your TypeScript Book](https://www.goodreads.com/book/show/48570456-effective-typescript)
-- [Typescript Learnings: Interesting Types](https://www.iamtk.co/series/typescript-learnings/interesting-types)
+- [Typescript Learnings: Interesting Types](/series/typescript-learnings/interesting-types)
 
 ### Tooling & Developer Experience
 

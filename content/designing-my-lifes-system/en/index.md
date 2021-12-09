@@ -208,7 +208,7 @@ The _spiritual_ part is a work in progress. I tend to focus too much on my skill
 
 > _“One thing we do know: Life will give you whatever experience is most helpful for the evolution of your consciousness.” _ — Eckhart Tolle
 
-Projects enable me to be creative, try new things, and grow. For most things I wanted to accomplish, projects were an excellent tool to achieve them. If I want to try and understand new technology, I can use projects as a Proof of Concept (PoC). I can use projects to manage my digital bookshelf, what I am reading, my notes, highlights. If I see that I can improve my process, I build [tools to automate it](https://www.iamtk.co/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts).
+Projects enable me to be creative, try new things, and grow. For most things I wanted to accomplish, projects were an excellent tool to achieve them. If I want to try and understand new technology, I can use projects as a Proof of Concept (PoC). I can use projects to manage my digital bookshelf, what I am reading, my notes, highlights. If I see that I can improve my process, I build [tools to automate it](/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts).
 
 I think you got the idea.
 

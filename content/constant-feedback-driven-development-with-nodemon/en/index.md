@@ -27,7 +27,7 @@ But I like to configure dependencies for each project. So I install it in the de
 npm install --save-dev nodemon
 ```
 
-After installing it, we have to configure the nodemon json config. This is the simple configuration I did for my [publisher tool](https://www.iamtk.co/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts):
+After installing it, we have to configure the nodemon json config. This is the simple configuration I did for my [publisher tool](/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts):
 
 ```json
 {
