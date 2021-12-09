@@ -1,4 +1,4 @@
-This post is part of a series called [Building an Interpreter](https://www.iamtk.co/series/building-an-interpreter/index.html). The [first part of the Lexical Analysis](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html) post illustrated a basic lexer creating tokens from a simple source code.
+This post is part of a series called [Building an Interpreter](https://www.iamtk.co/series/building-an-interpreter). The [first part of the Lexical Analysis](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1) post illustrated a basic lexer creating tokens from a simple source code.
 
 In this post we'll extend the tests and improve the `Lexer` to work with new tokens. The source code was this basic one-liner `"=+(){},;"`. But now we want a more complex source code:
 
@@ -292,7 +292,7 @@ Now we have the tests passing and an improved lexer. Our language is taking shap
 
 ## **Final words & Resources**
 
-If you didn't have the opportunity, take a look at the [first part of the Lexical Analysis](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html). This is the second post about my journey learning compilers and studying programming language theory. And part of the [Building an Interpreter series](https://www.iamtk.co/series/building-an-interpreter/).
+If you didn't have the opportunity, take a look at the [first part of the Lexical Analysis](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1.html). This is the second post about my journey learning compilers and studying programming language theory. And part of the [Building an Interpreter series](https://www.iamtk.co/series/building-an-interpreter).
 
 These are the resources I'm using to learn more about this field:
 

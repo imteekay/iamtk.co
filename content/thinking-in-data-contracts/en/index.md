@@ -349,7 +349,7 @@ So what have we learned here?
 
 - Data contracts help us better define our data structures, the state we want in our frontend to render UI properly.
 - It also serves as good documentation: a better understanding of our API response and the app state we need to deal with.
-- Another cool benefit is when we define the data types and use it in the initial state. [We make our system really consistent](https://www.iamtk.co/tk/2020/04/consistent-state-management-in-react-and-redux/index.html) if we preserve the state contract across the application.
+- Another cool benefit is when we define the data types and use it in the initial state. [We make our system really consistent](https://www.iamtk.co/consistent-state-management-in-react-and-redux) if we preserve the state contract across the application.
 - It doesn't need to be complex. Simple & pure functions only. Separate the responsibility of each function and we are good to go. It also helps us when testing.
 
 I hope I could show a good overview of the data contracts, simples functions, and the single responsibility principle. In software engineering, it is really easy to make everything complex and mess it up. But if we think carefully about our data, the data structures we are using, and how we manage complexity and logic, I think we have a good chance of building good software.

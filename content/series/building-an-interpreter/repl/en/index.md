@@ -1,6 +1,6 @@
-This post is part of a series called [Building an Interpreter](https://www.iamtk.co/series/building-an-interpreter/).
+This post is part of a series called [Building an Interpreter](https://www.iamtk.co/series/building-an-interpreter).
 
-Now that we implemented the [first steps of our lexer](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html), [more complex tokens](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2.html), and [extended the token set with special characters](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-3.html), we want to take a step back and implement a REPL and print the tokens using our lexer.
+Now that we implemented the [first steps of our lexer](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1), [more complex tokens](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-2), and [extended the token set with special characters](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-3), we want to take a step back and implement a REPL and print the tokens using our lexer.
 
 A REPL stands for Read-Eval-Print-Loop, and it is an interactive environment that "reads" the input, "evaluates" and "prints" it. And then do it all over again (loop).
 
@@ -157,9 +157,9 @@ And now we can call it anywhere in our code to start the REPL.
 
 If you didn't have the opportunity, take a look at the posts from the [Building an Interpreter series](https://www.iamtk.co/series/building-an-interpreter/):
 
-- [Building an Interpreter: Lexical Analysis - Part 1](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html)
-- [Building an Interpreter: Lexical Analysis - Part 2](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2.html)
-- [Building an Interpreter: Lexical Analysis - Part 3](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-3.html)
+- [Building an Interpreter: Lexical Analysis - Part 1](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1)
+- [Building an Interpreter: Lexical Analysis - Part 2](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-2)
+- [Building an Interpreter: Lexical Analysis - Part 3](https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-3)
 
 These are the resources I'm using to learn more about this field:
 

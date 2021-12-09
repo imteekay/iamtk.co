@@ -762,7 +762,7 @@ it('has no accessibility violations', async () => {
 
 We are ready to implement another component: the `TitleDescription`. It will work almost similar to the `Tag` component. It receives some props: `name`, `description`, and `isLoading`.
 
-As we have the `Product` type with the type definition for the `name` and the `description`, I wanted to reuse it. I tried different things - and you can [take a look here for more details](https://www.iamtk.co/tk/2020/05/typescript-learnings-interesting-types/index.html) - and I found the `Pick` type. With that, I could get the `name` and the `description` from the `ProductType`:
+As we have the `Product` type with the type definition for the `name` and the `description`, I wanted to reuse it. I tried different things - and you can [take a look here for more details](https://www.iamtk.co/series/typescript-learnings/interesting-types) - and I found the `Pick` type. With that, I could get the `name` and the `description` from the `ProductType`:
 
 ```tsx
 type TitleDescriptionType = Pick<ProductType, 'name' | 'description'>;

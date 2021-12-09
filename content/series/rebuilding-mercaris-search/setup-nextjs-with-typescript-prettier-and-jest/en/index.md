@@ -1,4 +1,4 @@
-This post is part of the [Rebuilding Mercari's Search series](https://www.iamtk.co/series/rebuilding-mercaris-search/) and the very first one.
+This post is part of the [Rebuilding Mercari's Search series](https://www.iamtk.co/series/rebuilding-mercaris-search) and the very first one.
 
 In this post, we'll setup the project with some nice tooling I've been working on these days. It'll be a NextJS application powered by TypeScript and nice devtools like Prettier, Jest, and the Testing Library.
 
