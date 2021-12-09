@@ -38,7 +38,7 @@ As a "one-person team", I understood that if I really wanted to have a real impa
 
 Before start working on this project, I worked on other 4 different products at QuintoAndar. They were all different in terms of business contexts and clients, but very similar when it comes to tech stack and technical challenges.
 
-Over time, I noticed the similarities and started to document the same technical debts, [reimagining future architectures](https://leandrotk.github.io/2020/04/react-hooks-context-api-and-pokemons), [building abstractions](https://leandrotk.github.io/2020/01/building-an-abstraction-for-react-internationalization-messages) that could be reused across the organization, proposing new ways to handle [data contracts](https://leandrotk.github.io/2020/04/thinking-in-data-contracts) and [consistent state management](https://leandrotk.github.io/2020/04/consistent-state-management-in-react-and-redux), build [tools to improve DX](https://github.com/leandrotk/laziness), etc.
+Over time, I noticed the similarities and started to document the same technical debts, [reimagining future architectures](https://www.iamtk.co/react-hooks-context-api-and-pokemons), [building abstractions](https://www.iamtk.co/building-an-abstraction-for-react-internationalization-messages) that could be reused across the organization, proposing new ways to handle [data contracts](https://www.iamtk.co/thinking-in-data-contracts) and [consistent state management](https://www.iamtk.co/consistent-state-management-in-react-and-redux), build [tools to improve DX](https://github.com/leandrotk/laziness), etc.
 
 They were all frontend engineering challenges I encountered on my way by building different products. It was a good starting point to have these initial ideas in my backlog to start exploring. But it was very limited.
 
@@ -74,7 +74,7 @@ I was also working on some studies related to component tests with the testing-l
 
 As we didn't have much experience nor knowledge of the best way of how to use it, I started learning it, writing tests as examples, document all my learning, and improving our test setup.
 
-I started writing simple [recipes to use the testing-library](https://leandrotk.github.io/2020/10/basic-recipes-for-react-testing-library/) and about [testing-driven development in React](https://leandrotk.github.io/2020/03/tdd-functions-and-react-components/). Then I wrote tests for different use cases: query elements, expecting content, user behavior (click, focus, etc), custom hooks, better setup for components using redux.
+I started writing simple [recipes to use the testing-library](https://www.iamtk.co/basic-recipes-for-react-testing-library/) and about [testing-driven development in React](https://www.iamtk.co/tdd-functions-and-react-components). Then I wrote tests for different use cases: query elements, expecting content, user behavior (click, focus, etc), custom hooks, better setup for components using redux.
 
 The idea behind this was to make the tests very easy to implement and improve all the pain points. This study's final result was a set of tests as examples and a wiki in our Github project to guide `How to test the frontend` that covers integration tests, custom hooks, component tests, using the redux store, etc.
 
@@ -118,7 +118,7 @@ The Pull Request template was a bit outdated so I did a revamp to have only the 
 
 ### Performance tooling
 
-My latest project was very related to web performance (I also wrote about this experience: [Optimizing the Performance of a React Progressive Web App](https://leandrotk.github.io/2021/01/optimizing-the-performance-of-a-react-progressive-web-app/)). But I was only using lab metrics. I wanted to start collecting metrics related to real users as well. This would enable us to see if we have any performance issues for our users and tackle that problem.
+My latest project was very related to web performance (I also wrote about this experience: [Optimizing the Performance of a React Progressive Web App](https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app)). But I was only using lab metrics. I wanted to start collecting metrics related to real users as well. This would enable us to see if we have any performance issues for our users and tackle that problem.
 
 We have an internal tool to handle the RUM (Real User Metrics), so I set up the tooling our PWA to start collecting these metrics. And also started to measure the navigation between pages. One of our main users flows is house registration, so adding navigation metrics would have a huge impact if we find any issue and fix it.
 
@@ -180,9 +180,9 @@ Among all explorations I did, this is the one that we could really do incrementa
 
 ### Interface between backend and frontend
 
-One of the goals for the future is to have a layer between the PWA and the OwnerappAPI to [make the data consistent using TypeScript](https://leandrotk.github.io/2020/04/thinking-in-data-contracts).
+One of the goals for the future is to have a layer between the PWA and the OwnerappAPI to [make the data consistent using TypeScript](https://www.iamtk.co/thinking-in-data-contracts).
 
-We are experimenting with TypeScript in our Backend for Frontend (BFF) to have better and explicit types for each payload. And also in the frontend. [I've been studying TypeScript](https://leandrotk.github.io/2020/07/a-mental-model-to-think-in-typescript) and got to understand the real benefits of applying it to the [state part of the frontend application](https://leandrotk.github.io/2020/04/consistent-state-management-in-react-and-redux), but also in the [UI part](https://leandrotk.github.io/2020/06/ux-studies-with-react-typescript-and-testing-library) by replacing the `PropTypes` with "compile-time" types.
+We are experimenting with TypeScript in our Backend for Frontend (BFF) to have better and explicit types for each payload. And also in the frontend. [I've been studying TypeScript](https://www.iamtk.co/a-mental-model-to-think-in-typescript) and got to understand the real benefits of applying it to the [state part of the frontend application](https://www.iamtk.co/consistent-state-management-in-react-and-redux), but also in the [UI part](https://www.iamtk.co/ux-studies-with-react-typescript-and-testing-library) by replacing the `PropTypes` with "compile-time" types.
 
 It's an initial thought yet, but an idea is to have a common repository of types to reuse it between the PWA and the BFF. With this package of types, we can make the interface really consistent. But at the same time, we can add a level of bureaucracy that makes us slower in shipping features. It's a tradeoff that we need to think about before implementing it. But this is just an idea for the future.
 

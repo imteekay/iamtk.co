@@ -265,7 +265,7 @@ Running our test again, we fixed all the issues and it is passing now.
 
 I'm very happy to share with you the first post about my journey learning compilers and studying programming language theory.
 
-This is the first part of the Lexical Analysis posts and part of the [Building an Interpreter series](https://leandrotk.github.io/series/building-an-interpreter/).
+This is the first part of the Lexical Analysis posts and part of the [Building an Interpreter series](https://www.iamtk.co/series/building-an-interpreter/).
 
 These are the resources I'm using to learn more about this field:
 

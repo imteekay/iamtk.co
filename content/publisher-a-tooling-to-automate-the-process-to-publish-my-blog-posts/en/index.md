@@ -562,16 +562,16 @@ And that was it!
 
 This project was a lot of fun! I learned some cool things through this process. I want to list them here:
 
-- As I'm [learning Typescript](https://leandrotk.github.io/tk/2020/04/typescript-learnings/index.html), I wanted to quickly validate the code I was writing. So I configured `nodemon` to compile and run the code on every file save. It is cool to make the development process so dynamic.
+- As I'm [learning Typescript](https://www.iamtk.co/tk/2020/04/typescript-learnings/index.html), I wanted to quickly validate the code I was writing. So I configured `nodemon` to compile and run the code on every file save. It is cool to make the development process so dynamic.
 - I tried to use the new node `fs`'s `promises`: `readFile`, `mkdir`, `writeFile`, and `copyFile`. It is on `Stability: 2`.
-- I did a lot of [currying](https://leandrotk.github.io/tk/2020/03/closure-currying-and-cool-abstractions/index.html) for some function to make it reusable.
-- Enums and [Types](https://leandrotk.github.io/tk/2020/04/typescript-learnings-002-type-system/index.html) are good ways to make the state consistent in Typescript, but also make a good representation and documentation of all the project's data. [Data contracts](https://leandrotk.github.io/tk/2020/04/thinking-in-data-contracts/index.html) is a really nice thing.
+- I did a lot of [currying](https://www.iamtk.co/tk/2020/03/closure-currying-and-cool-abstractions/index.html) for some function to make it reusable.
+- Enums and [Types](https://www.iamtk.co/tk/2020/04/typescript-learnings-002-type-system/index.html) are good ways to make the state consistent in Typescript, but also make a good representation and documentation of all the project's data. [Data contracts](https://www.iamtk.co/tk/2020/04/thinking-in-data-contracts/index.html) is a really nice thing.
 - The tooling mindset. This is one of the things I really love about programming. Build toolings to automate repetitive tasks and make life easier.
 
 I hope it was good reading! Keep learning and coding!
 
 ## Resources
 
-- [Thinking in data contracts](https://leandrotk.github.io/tk/2020/04/thinking-in-data-contracts/index.html)
-- [Typescript Learnings](https://leandrotk.github.io/tk/2020/04/typescript-learnings/index.html)
-- [Closures, Currying, and Cool Abstractions](https://leandrotk.github.io/tk/2020/03/closure-currying-and-cool-abstractions/index.html)
+- [Thinking in data contracts](https://www.iamtk.co/tk/2020/04/thinking-in-data-contracts/index.html)
+- [Typescript Learnings](https://www.iamtk.co/tk/2020/04/typescript-learnings/index.html)
+- [Closures, Currying, and Cool Abstractions](https://www.iamtk.co/tk/2020/03/closure-currying-and-cool-abstractions/index.html)

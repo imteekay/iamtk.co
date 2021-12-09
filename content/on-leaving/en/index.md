@@ -77,7 +77,7 @@ Seeking discomfort to learn more and grow is one of the things I'm thinking abou
 
 I keep asking myself which one is riskier: to do and fail or not to do and have regret?
 
-As Kobe Bryant said, [failure doesn't exist](https://www.youtube.com/watch?v=js8OfeEL4jI&ab_channel=MykChiz). If you "fail" Monday, try Tuesday. If you "fail" Tuesday, try Wednesday. I want to keep going, keep growing, and [enable myself to understand more about the world (and about myself)](https://leandrotk.github.io/2020/06/designing-my-lifes-system/index.html).
+As Kobe Bryant said, [failure doesn't exist](https://www.youtube.com/watch?v=js8OfeEL4jI&ab_channel=MykChiz). If you "fail" Monday, try Tuesday. If you "fail" Tuesday, try Wednesday. I want to keep going, keep growing, and [enable myself to understand more about the world (and about myself)](https://www.iamtk.co/designing-my-lifes-system).
 
 I usually have two different pains: the pain of discipline or the pain of regret. And I want to always consciously choose the pain of discipline.
 
@@ -100,5 +100,5 @@ Well, I think I have a lot of things to do and my life is just starting. I'm pre
 - [Devtools Research](https://github.com/leandrotk/devtools-research)
 - [Web Performance Research](https://github.com/leandrotk/web-performance-research)
 - [Web Development Research](https://github.com/leandrotk/webdev-research)
-- [Designing my life's System](https://leandrotk.github.io/2020/06/designing-my-lifes-system/index.html)
+- [Designing my life's System](https://www.iamtk.co/designing-my-lifes-system)
 - [Histórias do Japão](https://leandrotk.medium.com/hist%C3%B3rias-do-jap%C3%A3o-13a0cddd9ac)

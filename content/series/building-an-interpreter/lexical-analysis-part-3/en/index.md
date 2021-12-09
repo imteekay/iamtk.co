@@ -1,4 +1,4 @@
-This post is part of a series called [Building an Interpreter](https://leandrotk.github.io/series/building-an-interpreter/). After implementing a [basic lexer](https://leandrotk.github.io/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html) and [building more tokens](https://leandrotk.github.io/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2.html), we'll extend the token set to work with special characters, new keywords, and the "equal" and "not equal" symbols.
+This post is part of a series called [Building an Interpreter](https://www.iamtk.co/series/building-an-interpreter/). After implementing a [basic lexer](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html) and [building more tokens](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2.html), we'll extend the token set to work with special characters, new keywords, and the "equal" and "not equal" symbols.
 
 Let's add support for `==`, `!`, `!=`, `-`, `/`, `*`, `<`, `>`, and the keywords `true`, `false`, `if`, `else`, and `return`.
 
@@ -247,7 +247,7 @@ But now we are looking at the `!` character.
 
 ## **Final words & Resources**
 
-If you didn't have the opportunity, take a look at the [first](https://leandrotk.github.io/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html) and the [second part of the Lexical Analysis](https://leandrotk.github.io/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2.html). This is the third post about my journey learning compilers and studying programming language theory. And part of the [Building an Interpreter series](https://leandrotk.github.io/series/building-an-interpreter/).
+If you didn't have the opportunity, take a look at the [first](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-1.html) and the [second part of the Lexical Analysis](https://www.iamtk.co/series/building-an-interpreter/building-an-interpreter-lexical-analysis-part-2.html). This is the third post about my journey learning compilers and studying programming language theory. And part of the [Building an Interpreter series](https://www.iamtk.co/series/building-an-interpreter/).
 
 These are the resources I'm using to learn more about this field:
 

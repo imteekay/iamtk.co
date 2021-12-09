@@ -370,5 +370,5 @@ The Date can be fun too. Learn the basic concepts and just play around with it, 
 - [Ruby on Rails Date API](https://api.rubyonrails.org/classes/Date.html)
 - [Ruby Date API](https://ruby-doc.org/stdlib-2.7.1/libdoc/date/rdoc/Date.html)
 - [Dating library](https://github.com/leandrotk/dating)
-- [Typescript Learnings 001: Object Destructuring](https://leandrotk.github.io/tk/2020/04/typescript-learnings/001-object-destructuring.html)
+- [Typescript Learnings 001: Object Destructuring](https://www.iamtk.co/series/typescript-learnings/object-destructuring)
 - [Understanding Date and Time in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-date-and-time-in-javascript)

@@ -1,6 +1,6 @@
-A few months ago I wrote a blog post about my latest project working on [developer experience and software maintainability in frontend engineering](https://leandrotk.github.io/2021/04/dx-and-software-maintainability-in-frontend-engineering). I started exploring many problems and opportunities in our current frontend application and one of my focuses was how we currently build the frontend and improve the foundation. Things like error handling, data fetching, state management, web performance, and so on.
+A few months ago I wrote a blog post about my latest project working on [developer experience and software maintainability in frontend engineering](https://www.iamtk.co/2021/04/dx-and-software-maintainability-in-frontend-engineering). I started exploring many problems and opportunities in our current frontend application and one of my focuses was how we currently build the frontend and improve the foundation. Things like error handling, data fetching, state management, web performance, and so on.
 
-Among all these topics, I started [exploring data fetching solutions](https://leandrotk.github.io/2021/06/data-fetching-in-react-with-reactquery) and got to build PoCs (Proofs-of-Concept) for react-query to test various use cases in our application. Together with a colleague, we wrote an ADR (Architecture Design Record) to spread the adoption idea and how it would change our current architecture (our apps heavily use Redux for client state management and server cache).
+Among all these topics, I started [exploring data fetching solutions](https://www.iamtk.co/2021/06/data-fetching-in-react-with-reactquery) and got to build PoCs (Proofs-of-Concept) for react-query to test various use cases in our application. Together with a colleague, we wrote an ADR (Architecture Design Record) to spread the adoption idea and how it would change our current architecture (our apps heavily use Redux for client state management and server cache).
 
 After the adoption, we are now in a phase that different use cases are showing up. The idea is to help architect solutions for these different challenges and write down documents to guide the entire organization.
 
@@ -104,5 +104,5 @@ It has been the obvious solution for me when it comes to this specific data fetc
 ## Resources
 
 - [Doc: Dependent Queries](https://react-query.tanstack.com/guides/dependent-queries)
-- [DX & Software Maintainability in Frontend Engineering](https://leandrotk.github.io/2021/04/dx-and-software-maintainability-in-frontend-engineering/)
-- [Data Fetching in React with react-query](https://leandrotk.github.io/2021/06/data-fetching-in-react-with-reactquery/)
+- [DX & Software Maintainability in Frontend Engineering](https://www.iamtk.co/2021/04/dx-and-software-maintainability-in-frontend-engineering/)
+- [Data Fetching in React with react-query](https://www.iamtk.co/2021/06/data-fetching-in-react-with-reactquery/)

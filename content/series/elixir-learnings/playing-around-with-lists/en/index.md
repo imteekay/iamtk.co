@@ -1,4 +1,4 @@
-This is part of my series on [Elixir Learnings](https://leandrotk.github.io/tk/2020/04/elixir-learnings/), where I share micro-posts about everything I'm learning related to Elixir.
+This is part of my series on [Elixir Learnings](https://www.iamtk.co/tk/2020/04/elixir-learnings/), where I share micro-posts about everything I'm learning related to Elixir.
 
 Today we going to play around with lists. At the same time lists are very simple, they are powerful. And we use it always in our day-to-day work. Here we will understand some common concepts we need to handle lists.
 

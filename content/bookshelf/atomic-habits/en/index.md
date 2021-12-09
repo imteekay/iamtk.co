@@ -31,13 +31,13 @@ The book also talks about other habits that compounding can have a good or bad i
 
 ## Systems and Goals
 
-Focus on the [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system), not (only) the goal.
+Focus on the [system](https://www.iamtk.co/designing-my-lifes-system), not (only) the goal.
 
-The goal is related to the results I want to happen. The [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system) is related to the process that lead to these results.
+The goal is related to the results I want to happen. The [system](https://www.iamtk.co/designing-my-lifes-system) is related to the process that lead to these results.
 
-The goal is important to give a sense of direction, but the [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system) is what makes the progress.
+The goal is important to give a sense of direction, but the [system](https://www.iamtk.co/designing-my-lifes-system) is what makes the progress.
 
-The [system](https://leandrotk.github.io/2020/06/designing-my-lifes-system) makes you have a mindset of continuous improvement and refinement cycle. The commitment to the process will determine the progress.
+The [system](https://www.iamtk.co/designing-my-lifes-system) makes you have a mindset of continuous improvement and refinement cycle. The commitment to the process will determine the progress.
 
 ## Behavior Change
 
