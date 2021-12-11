@@ -266,9 +266,9 @@ As I wrote at the beginning of this essay, even though the title is a true story
 
 Finally, I need to say _Thanks!_ to QuintoAndar for its great culture and the amazing people I worked with: my peers, my managers and leaders, and stakeholders that enabled me to be the best version of myself. I only have gratitude.
 
-# Resources
+## Resources
 
-## Writings
+# Writings
 
 - [Optimizing the Performance of a React Progressive Web App](/optimizing-the-performance-of-a-react-progressive-web-app)
 - [React Hooks, Context API, and Pokemons](/react-hooks-context-api-and-pokemons)
@@ -283,12 +283,12 @@ Finally, I need to say _Thanks!_ to QuintoAndar for its great culture and the am
 - [Data Fetching in React with react-query](/data-fetching-in-react-with-react-query)
 - [DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)
 
-## Series
+# Series
 
 - [Data Structures series](/series/data-structures)
 - [Building an Interpreter Series](/series/building-an-interpreter)
 
-## Learning
+# Learning
 
 - [Designing my Life's System](/designing-my-lifes-system)
 - [Designing my Learning Experience](/designing-my-learning-experience)
@@ -298,7 +298,7 @@ Finally, I need to say _Thanks!_ to QuintoAndar for its great culture and the am
 - [First Principles: The Building Blocks of True Knowledge](https://fs.blog/first-principles/)
 - [First Principles: Elon Musk on the Power of Thinking for Yourself](https://jamesclear.com/first-principles)
 
-## Interesting resources
+# Interesting resources
 
 - [Get your work recognized: write a brag document](https://jvns.ca/blog/brag-documents/)
 - [Do Things that Don't Scale](http://paulgraham.com/ds.html)
