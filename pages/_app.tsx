@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Layout } from 'Base/components/Layout';
+import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -31,7 +32,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `}
       </Script>
       <Layout>
-        <Component {...pageProps} />
+        <SearchBar>
+          <Component {...pageProps} />
+        </SearchBar>
       </Layout>
     </>
   );
