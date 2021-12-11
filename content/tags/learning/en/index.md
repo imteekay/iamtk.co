@@ -2,7 +2,6 @@
 
 ## 2021
 
-- <time class="date">2021-12-13</time> <span>[How I received 4 salary raises in 2 years of QuintoAndar as a Software Engineer](/how-i-received-4-salary-raises-in-2-years-of-quintoandar-as-a-software-engineer)</span>
 - <time class="date">2021-11-01</time> <span>[On Leaving](/on-leaving)</span>
 
 ## 2020
