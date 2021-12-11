@@ -11,7 +11,7 @@ import {
   ActionImpl,
 } from 'kbar';
 
-const positionerStyle: CSSProperties = {
+const positionerStyle = {
   position: 'fixed',
   display: 'flex',
   alignItems: 'flex-start',
@@ -21,18 +21,18 @@ const positionerStyle: CSSProperties = {
   padding: '14vh 16px 16px',
   background: 'rgba(0, 0, 0, .8)',
   boxSizing: 'border-box',
-};
+} as const;
 
-const animatorStyle: CSSProperties = {
+const animatorStyle = {
   background: '#1b1b1b',
   maxWidth: '600px',
   width: '100%',
   color: 'white',
   borderRadius: '8px',
   overflow: 'hidden',
-};
+} as const;
 
-const searchStyle: CSSProperties = {
+const searchStyle = {
   padding: '12px 16px',
   fontSize: '16px',
   width: '100%',
@@ -42,7 +42,7 @@ const searchStyle: CSSProperties = {
   margin: 0,
   background: '#1b1b1b',
   color: 'white',
-};
+} as const;
 
 const groupNameStyle: CSSProperties = {
   padding: '8px 16px',
@@ -175,7 +175,7 @@ export const SearchBar: FC = ({ children }) => {
       shortcut: ['f', 'g'],
       keywords: 'go-github',
       section: 'Follow',
-      perform: () => window.open('https://github.com/zenorocha', '_blank'),
+      perform: () => window.open('https://github.com/leandrotk', '_blank'),
       icon: <i className="ri-github-line" style={iconStyle} />,
     },
     {
@@ -184,7 +184,7 @@ export const SearchBar: FC = ({ children }) => {
       shortcut: ['f', 't'],
       keywords: 'go-twitter',
       section: 'Follow',
-      perform: () => window.open('https://twitter.com/zenorocha', '_blank'),
+      perform: () => window.open('https://twitter.com/leandrotk_', '_blank'),
       icon: <i className="ri-twitter-line" style={iconStyle} />,
     },
     {
@@ -193,7 +193,7 @@ export const SearchBar: FC = ({ children }) => {
       shortcut: ['f', 'l'],
       keywords: 'go-linkedin',
       section: 'Follow',
-      perform: () => window.open('https://linkedin.com/in/zenorocha', '_blank'),
+      perform: () => window.open('https://linkedin.com/in/imtk', '_blank'),
       icon: <i className="ri-linkedin-line" style={iconStyle} />,
     },
   ];
@@ -202,7 +202,7 @@ export const SearchBar: FC = ({ children }) => {
     <KBarProvider actions={actions}>
       <KBarPortal>
         <KBarPositioner style={positionerStyle}>
-          <KBarAnimator className="kbar-blur" style={animatorStyle}>
+          <KBarAnimator style={animatorStyle}>
             <KBarSearch
               style={searchStyle}
               placeholder="Type a command or search…"
