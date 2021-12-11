@@ -31,11 +31,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           gtag('config', '${GA_TRACKING_ID}');
         `}
       </Script>
-      <Layout>
-        <SearchBar>
+      <SearchBar>
+        <Layout>
           <Component {...pageProps} />
-        </SearchBar>
-      </Layout>
+        </Layout>
+      </SearchBar>
     </>
   );
 };

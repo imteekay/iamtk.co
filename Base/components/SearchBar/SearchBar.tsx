@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { FC, CSSProperties } from 'react';
+import { FC, CSSProperties, forwardRef } from 'react';
 import {
   KBarAnimator,
   KBarProvider,
@@ -11,7 +11,7 @@ import {
   ActionImpl,
 } from 'kbar';
 
-const positionerStyle = {
+const positionerStyle: CSSProperties = {
   position: 'fixed',
   display: 'flex',
   alignItems: 'flex-start',
@@ -21,18 +21,18 @@ const positionerStyle = {
   padding: '14vh 16px 16px',
   background: 'rgba(0, 0, 0, .8)',
   boxSizing: 'border-box',
-} as const;
+};
 
-const animatorStyle = {
+const animatorStyle: CSSProperties = {
   background: '#1b1b1b',
   maxWidth: '600px',
   width: '100%',
   color: 'white',
   borderRadius: '8px',
   overflow: 'hidden',
-} as const;
+};
 
-const searchStyle = {
+const searchStyle: CSSProperties = {
   padding: '12px 16px',
   fontSize: '16px',
   width: '100%',
@@ -42,7 +42,7 @@ const searchStyle = {
   margin: 0,
   background: '#1b1b1b',
   color: 'white',
-} as const;
+};
 
 const groupNameStyle: CSSProperties = {
   padding: '8px 16px',
@@ -112,31 +112,36 @@ const RenderResults: FC = () => {
   );
 };
 
-const ResultItem = ({
-  action,
-  active,
-}: {
+type ResultItemProps = {
   action: ActionImpl;
   active: boolean;
-}) => (
-  <div style={getResultStyle(active)}>
-    <div style={actionStyle}>
-      {action.icon && action.icon}
-      <div style={actionRowStyle}>
-        <span>{action.name}</span>
+};
+
+const ResultItem = forwardRef<HTMLInputElement, ResultItemProps>(
+  ({ action, active }, ref) => {
+    return (
+      <div ref={ref} style={getResultStyle(active)}>
+        <div style={actionStyle}>
+          {action.icon && action.icon}
+          <div style={actionRowStyle}>
+            <span>{action.name}</span>
+          </div>
+        </div>
+        {action.shortcut?.length ? (
+          <div aria-hidden style={shortcutStyle}>
+            {action.shortcut.map((shortcut) => (
+              <kbd key={shortcut} style={kbdStyle}>
+                {shortcut}
+              </kbd>
+            ))}
+          </div>
+        ) : null}
       </div>
-    </div>
-    {action.shortcut?.length ? (
-      <div aria-hidden style={shortcutStyle}>
-        {action.shortcut.map((shortcut) => (
-          <kbd key={shortcut} style={kbdStyle}>
-            {shortcut}
-          </kbd>
-        ))}
-      </div>
-    ) : null}
-  </div>
+    );
+  },
 );
+
+ResultItem.displayName = 'ResultItem';
 
 export const SearchBar: FC = ({ children }) => {
   const router = useRouter();
@@ -211,7 +216,6 @@ export const SearchBar: FC = ({ children }) => {
           </KBarAnimator>
         </KBarPositioner>
       </KBarPortal>
-
       {children}
     </KBarProvider>
   );
