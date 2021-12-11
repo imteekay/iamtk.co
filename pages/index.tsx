@@ -13,7 +13,7 @@ const Page: NextPage = () => {
       <Head
         title="TK"
         description="Learning & Improving with TK"
-        imageUrl="https://raw.githubusercontent.com/leandrotk/tk/master/images/logo.jpg"
+        imageUrl="/logo.jpeg"
       />
 
       <SkipLink />
