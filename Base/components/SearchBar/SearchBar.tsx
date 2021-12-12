@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import Image from 'next/Image';
 import { FC, CSSProperties } from 'react';
 import {
   KBarAnimator,
@@ -44,10 +45,19 @@ const searchStyle: CSSProperties = {
 };
 
 const iconStyle: CSSProperties = {
-  fontSize: '18px',
   position: 'relative',
-  top: '-2px',
+  top: '2px',
 };
+
+type IconPropTypes = {
+  src: string;
+};
+
+const Icon: FC<IconPropTypes> = ({ src }) => (
+  <div style={iconStyle}>
+    <Image src={src} width={16} height={16} alt="" />
+  </div>
+);
 
 export const SearchBar: FC = ({ children }) => {
   const router = useRouter();
@@ -59,16 +69,16 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-home',
       section: 'Go To',
       perform: () => router.push('/'),
-      icon: <i className="fas fa-home" style={iconStyle} />,
+      icon: <Icon src="/home.svg" />,
     },
     {
-      id: 'articles',
-      name: 'Articles',
-      shortcut: ['g', 'a'],
-      keywords: 'go-articles',
+      id: 'writings',
+      name: 'Writings',
+      shortcut: ['g', 'w'],
+      keywords: 'go-writings',
       section: 'Go To',
-      perform: () => router.push('/articles'),
-      icon: <i className="fas fa-pen-square" style={iconStyle} />,
+      perform: () => router.push('/writings'),
+      icon: <Icon src="/pencil.svg" />,
     },
     {
       id: 'projects',
@@ -77,34 +87,34 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-projects',
       section: 'Go To',
       perform: () => router.push('/projects'),
-      icon: <i className="far fa-lightbulb" style={iconStyle} />,
+      icon: <Icon src="/lightbulb.svg" />,
     },
     {
       id: 'github',
       name: 'Github',
       shortcut: ['f', 'g'],
       keywords: 'go-github',
-      section: 'Follow',
+      section: 'Social',
       perform: () => window.open('https://github.com/leandrotk', '_blank'),
-      icon: <i className="fab fa-github-square" style={iconStyle} />,
+      icon: <Icon src="/github.svg" />,
     },
     {
       id: 'twitter',
       name: 'Twitter',
       shortcut: ['f', 't'],
       keywords: 'go-twitter',
-      section: 'Follow',
+      section: 'Social',
       perform: () => window.open('https://twitter.com/leandrotk_', '_blank'),
-      icon: <i className="fab fa-twitter-square" style={iconStyle} />,
+      icon: <Icon src="/twitter.svg" />,
     },
     {
       id: 'linkedin',
       name: 'LinkedIn',
       shortcut: ['f', 'l'],
       keywords: 'go-linkedin',
-      section: 'Follow',
+      section: 'Social',
       perform: () => window.open('https://linkedin.com/in/imtk', '_blank'),
-      icon: <i className="fab fa-linkedin" style={iconStyle} />,
+      icon: <Icon src="/linkedin.svg" />,
     },
   ];
 
