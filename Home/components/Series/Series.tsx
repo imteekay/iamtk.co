@@ -5,7 +5,7 @@ import { List } from 'Base/components/List';
 export const Series: FC = () => (
   <List
     sectionId="series"
-    titleLink=""
+    titleLink="/series"
     titleText="series"
     list={seriesList}
     openNewTab={false}

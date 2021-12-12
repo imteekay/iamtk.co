@@ -1,12 +1,17 @@
+import Link from 'next/link';
 import { FC } from 'react';
 import { Title } from 'Base/components/Title';
 import { Post } from './Post';
-import { listStyle } from './style';
+import { listStyle, titleLinkStyle } from './style';
 import { postsList } from './postsList';
 
 export const Writings: FC = () => (
   <section id="writings">
-    <Title text="writings" />
+    <Link href="/writings" passHref>
+      <a style={titleLinkStyle}>
+        <Title text="writings" />
+      </a>
+    </Link>
     <ul style={listStyle}>
       {postsList.map((post) => (
         <Post
