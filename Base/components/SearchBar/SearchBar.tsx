@@ -1,15 +1,14 @@
 import { useRouter } from 'next/router';
-import { FC, CSSProperties, forwardRef } from 'react';
+import { FC, CSSProperties } from 'react';
 import {
   KBarAnimator,
   KBarProvider,
   KBarPortal,
-  useMatches,
   KBarPositioner,
   KBarSearch,
-  KBarResults,
-  ActionImpl,
 } from 'kbar';
+
+import { RenderResults } from './RenderResults';
 
 const positionerStyle: CSSProperties = {
   position: 'fixed',
@@ -44,108 +43,14 @@ const searchStyle: CSSProperties = {
   color: 'white',
 };
 
-const groupNameStyle: CSSProperties = {
-  padding: '8px 16px',
-  fontSize: '10px',
-  textTransform: 'uppercase',
-  letterSpacing: '1px',
-  background: '#1b1b1b',
-};
-
 const iconStyle: CSSProperties = {
   fontSize: '20px',
   position: 'relative',
   top: '-2px',
 };
 
-const kbdStyle: CSSProperties = {
-  padding: '4px 8px',
-  textTransform: 'uppercase',
-  color: 'white',
-  background: 'rgba(255, 255, 255, .1)',
-  borderRadius: '4px',
-  fontSize: '14px',
-};
-
-const shortcutStyle: CSSProperties = {
-  display: 'grid',
-  gridAutoFlow: 'column',
-  gap: '4px',
-};
-
-const actionStyle: CSSProperties = {
-  display: 'flex',
-  gap: '8px',
-  alignItems: 'center',
-};
-
-const actionRowStyle: CSSProperties = {
-  display: 'flex',
-  flexDirection: 'column',
-};
-
-const getResultStyle = (active: boolean) => ({
-  padding: '8px 16px',
-  background: active ? 'rgba(255, 255, 255, 0.1)' : '#1b1b1b',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  margin: 0,
-  cursor: 'pointer',
-  color: active ? 'white' : 'white',
-});
-
-const RenderResults: FC = () => {
-  const { results } = useMatches();
-
-  return (
-    <KBarResults
-      items={results}
-      onRender={({ item, active }) =>
-        typeof item === 'string' ? (
-          <div style={groupNameStyle}>{item}</div>
-        ) : (
-          <ResultItem action={item} active={active} />
-        )
-      }
-    />
-  );
-};
-
-type ResultItemProps = {
-  action: ActionImpl;
-  active: boolean;
-};
-
-const ResultItem = forwardRef<HTMLInputElement, ResultItemProps>(
-  ({ action, active }, ref) => {
-    return (
-      <div ref={ref} style={getResultStyle(active)}>
-        <div style={actionStyle}>
-          {action.icon && action.icon}
-          <div style={actionRowStyle}>
-            <span>{action.name}</span>
-          </div>
-        </div>
-        {action.shortcut?.length ? (
-          <div aria-hidden style={shortcutStyle}>
-            {action.shortcut.map((shortcut) => (
-              <kbd key={shortcut} style={kbdStyle}>
-                {shortcut}
-              </kbd>
-            ))}
-          </div>
-        ) : null}
-      </div>
-    );
-  },
-);
-
-ResultItem.displayName = 'ResultItem';
-
 export const SearchBar: FC = ({ children }) => {
   const router = useRouter();
-
   const actions = [
     {
       id: 'home',
