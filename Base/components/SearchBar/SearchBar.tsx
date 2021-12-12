@@ -59,7 +59,7 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-home',
       section: 'Go To',
       perform: () => router.push('/'),
-      icon: <i className="ri-home-5-line" style={iconStyle} />,
+      icon: <i className="fas fa-home" style={iconStyle} />,
     },
     {
       id: 'articles',
@@ -68,7 +68,7 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-articles',
       section: 'Go To',
       perform: () => router.push('/articles'),
-      icon: <i className="ri-ball-pen-line" style={iconStyle} />,
+      icon: <i className="fas fa-pen-square" style={iconStyle} />,
     },
     {
       id: 'projects',
@@ -77,7 +77,7 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-projects',
       section: 'Go To',
       perform: () => router.push('/projects'),
-      icon: <i className="ri-lightbulb-line" style={iconStyle} />,
+      icon: <i className="far fa-lightbulb" style={iconStyle} />,
     },
     {
       id: 'github',
@@ -86,7 +86,7 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-github',
       section: 'Follow',
       perform: () => window.open('https://github.com/leandrotk', '_blank'),
-      icon: <i className="ri-github-line" style={iconStyle} />,
+      icon: <i className="fab fa-github-square" style={iconStyle} />,
     },
     {
       id: 'twitter',
@@ -95,7 +95,7 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-twitter',
       section: 'Follow',
       perform: () => window.open('https://twitter.com/leandrotk_', '_blank'),
-      icon: <i className="ri-twitter-line" style={iconStyle} />,
+      icon: <i className="fab fa-twitter-square" style={iconStyle} />,
     },
     {
       id: 'linkedin',
@@ -104,21 +104,20 @@ export const SearchBar: FC = ({ children }) => {
       keywords: 'go-linkedin',
       section: 'Follow',
       perform: () => window.open('https://linkedin.com/in/imtk', '_blank'),
-      icon: <i className="ri-linkedin-line" style={iconStyle} />,
+      icon: <i className="fab fa-linkedin" style={iconStyle} />,
     },
   ];
 
   return (
     <KBarProvider actions={actions}>
       <KBarPortal>
-        <KBarPositioner style={positionerStyle}>
-          <KBarAnimator style={animatorStyle}>
-            <KBarSearch
-              style={searchStyle}
-              placeholder="Type a command or search…"
-            />
-            <RenderResults />
-          </KBarAnimator>
+        <KBarPositioner>
+          <div style={positionerStyle}>
+            <KBarAnimator style={animatorStyle}>
+              <KBarSearch style={searchStyle} />
+              <RenderResults />
+            </KBarAnimator>
+          </div>
         </KBarPositioner>
       </KBarPortal>
       {children}
