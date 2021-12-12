@@ -4,6 +4,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Layout } from 'Base/components/Layout';
+import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
@@ -30,9 +31,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           gtag('config', '${GA_TRACKING_ID}');
         `}
       </Script>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <SearchBar>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SearchBar>
     </>
   );
 };
