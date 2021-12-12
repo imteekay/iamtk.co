@@ -10,7 +10,7 @@ import {
 
 import { RenderResults } from './RenderResults';
 
-const positionerStyle = {
+const positionerStyle: CSSProperties = {
   position: 'fixed',
   display: 'flex',
   alignItems: 'flex-start',
@@ -20,18 +20,18 @@ const positionerStyle = {
   padding: '14vh 16px 16px',
   background: 'rgba(0, 0, 0, .8)',
   boxSizing: 'border-box',
-} as const;
+};
 
-const animatorStyle = {
+const animatorStyle: CSSProperties = {
   background: '#1b1b1b',
   maxWidth: '600px',
   width: '100%',
   color: 'white',
   borderRadius: '8px',
   overflow: 'hidden',
-} as const;
+};
 
-const searchStyle = {
+const searchStyle: CSSProperties = {
   padding: '12px 16px',
   fontSize: '16px',
   width: '100%',
@@ -41,7 +41,7 @@ const searchStyle = {
   margin: 0,
   background: '#1b1b1b',
   color: 'white',
-} as const;
+};
 
 const iconStyle: CSSProperties = {
   fontSize: '20px',
