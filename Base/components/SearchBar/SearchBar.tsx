@@ -44,7 +44,7 @@ const searchStyle: CSSProperties = {
 };
 
 const iconStyle: CSSProperties = {
-  fontSize: '20px',
+  fontSize: '18px',
   position: 'relative',
   top: '-2px',
 };
