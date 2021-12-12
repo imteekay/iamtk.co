@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import Image from 'next/Image';
 import { FC, CSSProperties } from 'react';
 import {
   KBarAnimator,
@@ -10,6 +9,7 @@ import {
 } from 'kbar';
 
 import { RenderResults } from './RenderResults';
+import { Icon } from './Icon';
 
 const positionerStyle: CSSProperties = {
   position: 'fixed',
@@ -43,21 +43,6 @@ const searchStyle: CSSProperties = {
   background: '#1b1b1b',
   color: 'white',
 };
-
-const iconStyle: CSSProperties = {
-  position: 'relative',
-  top: '2px',
-};
-
-type IconPropTypes = {
-  src: string;
-};
-
-const Icon: FC<IconPropTypes> = ({ src }) => (
-  <div style={iconStyle}>
-    <Image src={src} width={16} height={16} alt="" />
-  </div>
-);
 
 export const SearchBar: FC = ({ children }) => {
   const router = useRouter();
