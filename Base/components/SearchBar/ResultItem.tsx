@@ -40,7 +40,7 @@ const getResultStyle = (active: boolean) => ({
   justifyContent: 'space-between',
   margin: 0,
   cursor: 'pointer',
-  color: active ? 'white' : 'white',
+  color: 'white',
 });
 
 export const ResultItem = forwardRef<HTMLInputElement, ResultItemProps>(
