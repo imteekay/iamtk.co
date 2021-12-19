@@ -1,0 +1,1 @@
+export { AlternativeArticle } from './AlternativeArticle';

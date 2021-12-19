@@ -2,12 +2,12 @@ import path from 'path';
 import fs from 'fs';
 import { Locale } from 'src/types/Locale';
 
-type Tag = {
+export type Tag = {
   href: '/tags/javascript';
   name: 'javascript';
 };
 
-type CoverImage = {
+export type CoverImage = {
   src: string;
   width: string;
   height: string;
@@ -16,12 +16,18 @@ type CoverImage = {
   authorName: string;
 };
 
+export type AlternativeArticle = {
+  url: string;
+  language: string;
+};
+
 export type PostMetadata = {
   title: string;
   description: string;
   date: string;
   tags: Tag[];
   coverImage: CoverImage;
+  alternativeArticle: AlternativeArticle;
 };
 
 export function getPostMetadata(
