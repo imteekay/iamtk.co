@@ -1,4 +1,4 @@
-Quando comecei a compartilhar minha jornada sobre [dominar a programação](https://medium.com/the-renaissance-developer) e [hackear minha educação](https://medium.com/the-renaissance-developer/how-i-hack-my-education-354fb5b8a025), as pessoas ficaram realmente interessadas e me perguntaram muito sobre como começar a aprender a codificar.
+Quando comecei a compartilhar minha jornada sobre [dominar a programação](/) e [hackear minha educação](/designing-my-learning-experience), as pessoas ficaram realmente interessadas e me perguntaram muito sobre como começar a aprender a codificar.
 
 Eu realmente quero ajudar os futuros desenvolvedores em sua jornada e a quantidade de perguntas sobre como começar me inspirou a escrever este artigo.
 
@@ -20,7 +20,7 @@ Lembre-se: não é um sprint. É uma longa e longa maratona. Não espere aprende
 
 #### Dica número dois: continue aprendendo
 
-Como engenheiro de software, um dos meus desafios é sempre acompanhar as coisas novas que estão surgindo em nosso mundo: novas bibliotecas como [ReactJS em 2013](https://en.wikipedia.org/wiki/React_ 'JavaScript_libary'), aplicativos da web como [SPA](https://en.wikipedia.org/wiki/Single-page_application), [PWA](https://en.wikipedia.org/wiki/Progressive_web_app), tendências tecnológicas como aprendizado de máquina, IA, criptomoeda (Blockchain Blockchain Blockchain!), e assim por diante.
+Como engenheiro de software, um dos meus desafios é sempre acompanhar as coisas novas que estão surgindo em nosso mundo: novas bibliotecas como [ReactJS em 2013](https://en.wikipedia.org/wiki/React_ 'JavaScript_libary'), aplicativos da web como [SPA](https://en.wikipedia.org/wiki/Single-page_application), [PWA](https://en.wikipedia.org/wiki/Progressive_web_app), tendências tecnológicas como aprendizado de máquina, IA, criptomoeda, e assim por diante.
 
 Não estou dizendo que precisamos aprender tudo e nos sobrecarregar. Meu ponto é que novas coisas são criadas tão rápido no mundo da tecnologia, então precisamos adotar a mentalidade de **aprendizado vitalício**.
 
@@ -142,7 +142,7 @@ Se você tem colegas ou amigos com mais experiência que pedem ajuda, provavelme
 
 Outro aprendizado que podemos obter com a história de Doug: ele estabeleceu uma meta para fazer o aplicativo mais simples pela primeira vez.
 
-> “Eu construí a [primeira versão do aplicativo](https://play.google.com/store/apps/details?id=co.iacovelli.usp) e publiquei na Play Store. Então, aprendi mais e mais sobre Java / Kotlin / Android e pude implementar mais recursos neste aplicativo. Mas foi um processo demorado. Eu precisava de muita persistência ” - Doug
+> “Eu construí a primeira versão do aplicativo e publiquei na Play Store. Então, aprendi mais e mais sobre Java / Kotlin / Android e pude implementar mais recursos neste aplicativo. Mas foi um processo demorado. Eu precisava de muita persistência ” - Doug
 
 É tão bom quando estamos em uma curva de aprendizado que nos sentimos confiantes e simplesmente “no fluxo” para continuar aprendendo e construindo. Mas eu concordo totalmente com Doug, quando você começa a aprender algo novo, você precisa de muita persistência para manter seu aprendizado consistente.
 
@@ -174,7 +174,7 @@ Em [resposta de Feross](https://www.quora.com/How-did-Feross-Aboukhadijeh-learn-
 - Se você deseja construir um produto completo, comece com uma livraria online, produto
   inventário ou um blog.
 
-A lista continua e continua. Aqui [outra lista](https://github.com/karan/Projects#networking) que pode te ajudar a escolher o projeto. Mas eu concordo com Feross, não importa o que você constrói, desde que você escolha algo e comece. Portanto, comece a construir! Você terá problemas, ficará preso. Mas você aprenderá MUITO!
+A lista continua e continua. Aqui [outra lista](https://github.com/karan/Projects) que pode te ajudar a escolher o projeto. Mas eu concordo com Feross, não importa o que você constrói, desde que você escolha algo e comece. Portanto, comece a construir! Você terá problemas, ficará preso. Mas você aprenderá MUITO!
 
 #### Eu sei que é bastante desafiador manter seu projeto funcionando.
 
@@ -182,7 +182,7 @@ Para se manter responsável, descobri um projeto interessante que você pode faz
 
 E realmente funciona. Você se mantém responsável, mantém seu projeto em andamento e acompanha seu progresso. Tudo em um repositório público no GitHub, para que você também possa compartilhar com seus amigos. Colabore com a comunidade GitHub. E compartilhe e inspire outras pessoas.
 
-Procurando por 100 dias de histórias de código, descobri “[How I Coded Everyday for 365 Days](https://hackernoon.com/how-i-coded-everyday-for-365days-67ebb5fc7ae)” por [Emily](https://medium.com/@emilyyu_17465). Uma história tão inspiradora de disciplina e vontade de aprender a programar.
+Procurando por 100 dias de histórias de código, descobri “[How I Coded Everyday for 365 Days](https://hackernoon.com/how-i-coded-everyday-for-365-days-67ebb5fc7ae)” por [Emily](https://medium.com/@emilyyu_17465). Uma história tão inspiradora de disciplina e vontade de aprender a programar.
 
 É muito legal como ela escreve sobre seus projetos e como ela aprendeu ao longo do ano. Os projetos foram desde aplicativos iOS usando a linguagem de programação Swift, até o desenvolvimento web usando toda a pilha (HTML, CSS, JS, Flask - framework web Python). Vá ler o [artigo completo](https://hackernoon.com/how-i-coded-everyday-for-365-days-67ebb5fc7ae).
 
@@ -221,7 +221,7 @@ Bons sites, artigos e vídeos:
 Eu realmente gosto de assistir vlogs e ver o estilo de vida das pessoas no YouTube.
 
 - [Fun Fun Function](https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q) é um canal administrado por [Mattias Petter Johansson](https://medium.com/@mpjme), um ex-engenheiro do Spotify. Tudo começou com JavaScript, mas ultimamente ele está falando sobre desenvolvimento em geral. Gosto muito de como ele coloca suas ideias e apresenta cada tópico.
-- [Mayuko](https://www.youtube.com/user/hellomayuko) é um engenheiro de software iOS que trabalha na [Patreon](https://medium.com/@Patreon). Ela também fala sobre engenharia e estilo de vida em geral.
+- [Mayuko](https://www.youtube.com/user/hellomayuko) é um engenheiro de software iOS que trabalha no [Patreon](https://medium.com/@Patreon). Ela também fala sobre engenharia e estilo de vida em geral.
 - [CS Dojo](https://www.youtube.com/channel/UCxX9wt5FWQUAAz4UrysqK9A) é realmente focado em conselhos de entrevistas de programação, algoritmos e material de estrutura de dados. Este canal é de [YK Sugishita](https://medium.com/@ykdojo), um ex-engenheiro do Google no Canadá.
 - [Joma Tech](https://www.youtube.com/channel/UCV0qA-eDDICsRR9rPcG7tw) é o canal do YouTube mais engraçado e divertido de todos. [Jonathan Ma](https://medium.com/@joma) é um cientista de dados do Facebook. Ele vlogs sobre sua vida de engenheiro e também dá conselhos sobre entrevistas de codificação com base em sua experiência como estagiário em várias empresas de tecnologia.
 
