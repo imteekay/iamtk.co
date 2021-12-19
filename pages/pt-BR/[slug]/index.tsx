@@ -49,7 +49,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getPaths(),
+    paths: getPaths('pt-BR'),
     fallback: false,
   };
 }

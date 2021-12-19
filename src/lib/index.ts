@@ -1,4 +1,5 @@
 export { getPaths, getNestedPaths, getSeriesPaths } from './getPaths';
+
 export {
   getPostContent,
   getNestedPostContent,
