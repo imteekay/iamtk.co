@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { Locale } from 'src/types/Locale';
 
 type Tag = {
   href: '/tags/javascript';
@@ -25,7 +26,7 @@ export type PostMetadata = {
 
 export function getPostMetadata(
   slug: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content');
   const postPath = path.join(postsDir, slug, locale, 'metadata.json');
@@ -37,7 +38,7 @@ export function getPostMetadata(
 export function getNestedPostMetadata(
   folder: string,
   post: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content', folder);
   const postPath = path.join(postsDir, post, locale, 'metadata.json');
@@ -49,7 +50,7 @@ export function getNestedPostMetadata(
 export function getSeriesPostMetadata(
   series: string,
   seriesItem: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content', 'series');
   const postPath = path.join(
