@@ -79,6 +79,7 @@ article blockquote::before {
   left: -15px;
 }
 
+a,
 article a {
   text-decoration: none;
   color: white;

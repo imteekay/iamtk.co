@@ -3,16 +3,14 @@ import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
-import {
-  getSeriesPostContent,
-  getSeriesPostMetadata,
-  PostMetadata,
-  getSeriesPaths,
-} from 'src/lib';
+import { getPaths } from 'src/lib';
+import { getPostContent } from 'src/lib/getPostContent';
+import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
+import { Locale } from 'src/types/Locale';
 
 interface Params extends ParsedUrlQuery {
-  series: string;
-  seriesItem: string;
+  lang: Locale;
+  slug: string;
 }
 
 type PageProps = {
@@ -51,7 +49,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getSeriesPaths(),
+    paths: getPaths('pt-BR'),
     fallback: false,
   };
 }
@@ -59,9 +57,9 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
-  const { series, seriesItem } = context.params!;
-  const postContent = getSeriesPostContent(series, seriesItem);
-  const postMetadata = getSeriesPostMetadata(series, seriesItem);
+  const { slug } = context.params!;
+  const postContent = getPostContent(slug, 'pt-BR');
+  const postMetadata = getPostMetadata(slug, 'pt-BR');
 
   return {
     props: {

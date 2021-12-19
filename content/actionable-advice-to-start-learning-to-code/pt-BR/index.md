@@ -1,0 +1,232 @@
+Quando comecei a compartilhar minha jornada sobre [dominar a programação](/) e [hackear minha educação](/designing-my-learning-experience), as pessoas ficaram realmente interessadas e me perguntaram muito sobre como começar a aprender a codificar.
+
+Eu realmente quero ajudar os futuros desenvolvedores em sua jornada e a quantidade de perguntas sobre como começar me inspirou a escrever este artigo.
+
+Tive um tempo para pensar sobre minha jornada e perguntei a desenvolvedores experientes sobre codificação, como eles começaram, sobre carreira e todas aquelas coisas interessantes que todos querem saber.
+
+Esta postagem contém histórias e muitos conselhos úteis para você se inspirar, motivar e dar o primeiro passo no mundo da programação.
+
+Espero que isto ajude!
+
+### A mentalidade
+
+Quando comecei me apaixonei por programação. Minha dica número um é aprender porque você gosta, acha interessante ou talvez ache útil (e realmente é!).
+
+Por que eu digo isso? Eu sou um grande fã de "faça o que você ama". Parece clichê, mas sempre funcionou para mim. E se você começar a programar, precisará dessa motivação interna. Paixão e interesse ajudam você a ser consistente e disciplinado em sua jornada de aprendizado.
+
+Lembre-se: não é um sprint. É uma longa e longa maratona. Não espere aprender tudo durante a noite. Não acontece assim.
+
+![](https://cdn-images-1.medium.com/max/1600/1*TWEjK-8fXse8_4lyz-2YRA.png)
+
+#### Dica número dois: continue aprendendo
+
+Como engenheiro de software, um dos meus desafios é sempre acompanhar as coisas novas que estão surgindo em nosso mundo: novas bibliotecas como [ReactJS em 2013](https://en.wikipedia.org/wiki/React_ 'JavaScript_libary'), aplicativos da web como [SPA](https://en.wikipedia.org/wiki/Single-page_application), [PWA](https://en.wikipedia.org/wiki/Progressive_web_app), tendências tecnológicas como aprendizado de máquina, IA, criptomoeda, e assim por diante.
+
+Não estou dizendo que precisamos aprender tudo e nos sobrecarregar. Meu ponto é que novas coisas são criadas tão rápido no mundo da tecnologia, então precisamos adotar a mentalidade de **aprendizado vitalício**.
+
+Falando em _opressor_, aqui está a dica número três: tente não se sobrecarregar. Você não precisa começar com conceitos rígidos primeiro ou com o livro de algoritmo mais pesado.
+
+Aqui está uma analogia: quando você quer perder peso, você não começa com uma maratona. Em vez disso, você pode começar com uma corrida de 1 milha.
+
+Da mesma forma com a programação, você não precisa programar e estudar em todo o seu tempo livre, mudando completamente sua programação.
+
+Faça pequenas mudanças, mas faça-as regularmente. Um código de cada vez.
+
+**Não se compare com "engenheiros experientes"** ou "gênio do codificador" é a dica número quatro. Em primeiro lugar, não é justo. Em segundo lugar, você está apenas começando. Mantenha o foco em seus estudos.
+
+É fácil se comparar com seus colegas de equipe ou [gênio da programação](https://en.wikipedia.org/wiki/Gennady_Korotkevich), mas isso apenas aumenta a síndrome do impostor dentro de você. Não deixe que isso interrompa sua jornada de programação.
+
+A prática é a chave. **Encontre maneiras de aprender os conceitos e praticá-los.** Esta é a quinta dica. Construir a base com conceitos e teorias é importante, mas seja prático. Experimentar. Experimentar. Vamos mergulhar nisso mais tarde, mas a prática é a chave!
+
+### Teoria e conceitos
+
+É realmente importante entender os conceitos básicos de programação e construir a base primeiro. Se você está na faculdade agora, você se sairá bem! As faculdades são ótimas para ensinar teorias e conceitos básicos. Se você está cursando Ciência da Computação, provavelmente terá aulas de Algoritmos e Estruturas de Dados. Mas se você não está na faculdade, a internet está aqui para te ajudar!
+
+Quando comecei, aprendi com 2 excelentes cursos online: [Codecademy](https://www.codecademy.com/) e [CS50 em Harvard](https://cs50.harvard.edu/).
+
+Lá, aprendi o básico com Python no Codecademy e C no CS50. Mas minha opinião é: você só precisa começar. Escolha uma linguagem de programação e comece a entender os conceitos básicos (variáveis, if-else, loops, estruturas de dados).
+
+> [Seja a linguagem agnostic](http://www.gayle.com/blog/2014/07/09/15-pieces-of-career-advice-software-developers-should-follow). A linguagem é apenas uma ferramenta. É valioso conhecer um idioma profundamente, mas também é valioso aprender coisas novas. Os melhores desenvolvedores tendem a não se identificar como um \_\_\_\_ desenvolvedor. — [Gayle Laakmann McDowell](https://medium.com/u/e21bc4f4525e)
+
+Provavelmente, ao escolher um curso, eles o ensinarão com uma linguagem de programação específica. Mas não se preocupe! Concentre-se nos conceitos básicos (e talvez se apaixone pela linguagem de programação como fiz com [Python](https://medium.freecodecamp.org/learning-python-from-zero-to-hero-120ea540b567) e [Ruby](https://medium.freecodecamp.org/learning-ruby-from-zero-to-hero-90ad4eecc82d).
+
+#### Por que escolhi esses cursos?
+
+Como estava procurando algo para começar, queria entender profundamente os conceitos e ser prático a respeito. CS50 parecia o melhor recurso para construir uma base sólida.
+
+David J. Malan é definitivamente um dos melhores professores que tive. E Codecademy ajudou muito a ser prático. Treine-me para codificar tudo o que estava aprendendo. Código do código do código. Lembra da quinta dica? Encontre maneiras de aprender os conceitos e praticá-los.
+
+#### Outros recursos com ótimo conteúdo são:
+
+[Introdução à Ciência da Computação](https://br.udacity.com/course/intro-to-computer-science--cs101/) por Udacity. Ele cobre praticamente tudo que você precisa para começar a entender a programação. Os cursos da Udacity sempre têm “tempo de prática” após cada teoria e conceito que você aprende.
+
+A [Introdução aos Algoritmos do MIT](http://courses.csail.mit.edu/6.006/fall11/notes.shtml) vai lhe ensinar o pensamento algorítmico. Compreender algoritmos e como eles funcionam é a coisa mais importante que você deve aprender ao iniciar sua jornada de codificação. Outros excelentes recursos são livros de algoritmo como [Introdução ao Algoritmo](https://www.amazon.com/Introduction-Algorithms3rd-MIT-Press/dp/0262033844) por CLRS e [Algoritmos](https://www.amazon.com/Algorithms-4th-RobertSedgewick/dp/032157351X/ref=pd_sim_14_3?_encoding=UTF8&pd_rd_i=032157351X&pd_rd_r=Y548PDB04MJN6BH8MYFB&pd_rd_w=UgKc5&pd_rd_wg=CvgEt&psc=1&refRID=Y548PDB04MJN6BH8MYFB).
+
+Aqui, você começará a se sobrecarregar com as toneladas de recursos que temos na Internet. Mas **tente não se sobrecarregar**. Você não precisa fazer todos os cursos, focar em um, aprender, praticar, construir confiança. Lembre-se, é uma jornada. Uma linha de código por vez :)
+
+### Treinamento, prática, codificação, construção
+
+**Prática Prática Prática**. Não posso dizer o suficiente como a praticidade é tão importante quando você começa a aprender a codificar.
+
+> Código. Muito ... A melhor maneira de ser um grande programador é apenas praticar - muito. - [Gayle Laakmann McDowell](http://www.gayle.com/blog/2014/07/09/15-pieces-of-career-advice-software-developers-should-follow)
+
+A prática não apenas o torna um programador melhor, mas também ganha muita confiança com isso. [Síndrome do Impostor](http://blog.teamtreehouse.com/become-a-software-engineer-jonas) é uma coisa real!
+
+Como disse no início deste artigo, tentarei escrever itens acionáveis ​​para você. Opções que você pode fazer em sua jornada de aprendizado para ser mais prático.
+
+Como eu fiz, você pode começar com [Codecademy](https://www.codecademy.com/). Tem um conteúdo muito bom e uma ótima experiência para codificar tudo o que você está aprendendo.
+
+Outro ótimo site é [Hacker Rank](https://www.hackerrank.com/). O site tem várias opções de linguagem de programação para escolher. Mas não só isso, você também pode fazer outros exercícios de domínio. Eu realmente gosto dos exercícios de resolução de problemas do Hacker Rank. Você recebe muitas entradas e seu algoritmo precisa ser aprovado em todos os testes.
+
+![](https://cdn-images-1.medium.com/max/1600/1*bkvDxLVBKJ1Gd8cA86B-fg.png)
+
+Outra coisa que realmente me apaixona é a Programação Competitiva. Fiz isso por dois anos na faculdade, para competições como [ACM ICPC](https://icpc.baylor.edu/).
+
+Basicamente, você tem um monte de problemas e precisa implementar um algoritmo para passar em cada um. Fazer isso me ajudou a ganhar muita confiança em minhas habilidades de codificação e me sinto um desenvolvedor mais forte depois do meu treinamento pesado e da participação em competições. ([Aqui está meu repositório no GitHub](https://github.com/LeandroTk/algorithms) - Resolvi muitos problemas).
+
+Sou um grande usuário do Quora e, algum dia, li uma ótima resposta de [Veni Johanna](https://medium.com/u/f1962714b0f6) sobre “A programação competitiva realmente ajuda a melhorar seu conhecimento e conjunto de habilidades como um desenvolvedor?"
+
+Vou escrever algumas habilidades que adquirimos ao aprender programação competitiva:
+
+1. Você desenvolveu o hábito de converter / modelar um problema específico em um abstrato.
+
+1. Você está acostumado a registrar padrões e combinar padrões em relação ao seu padrão
+   Banco.
+
+1. Você sabe como se concentrar e atuar sob pressão.
+
+1. Você tem consciência e confiança de sua própria capacidade e deficiências como um
+   codificador.
+
+1. Você aprendeu a administrar o tempo, especialmente em termos de pensamento e codificação
+   hábitos.
+
+1. Você está acostumado a problemas bem definidos.
+
+1. Você está acostumado a ter um objetivo em mente.
+
+1. Você pode ficar preso no modo de 'solução de problemas'.
+
+Adorei seus comentários e concordo 100% com cada um. Dê uma olhada na [resposta completa](https://www.quora.com/Does-competitive-programming-really-help-in-improving-your-knowledge-and-skill-set-as-a-developer-Are-there-better-things-that-would-help-one-amass-greater-knowledge-in-less-time/answer/Veni-Johanna). Você deve. É ótimo!
+
+Minha intenção aqui é dar a você o conselho mais prático possível, então vou listar alguns ótimos sites para você começar a aprender e treinar a partir do dia 0.
+
+- [Codeforces](http://codeforces.com/): é um site muito bom para treinar e aprender. Tem toneladas de grandes conjuntos de problemas. Editorial é um ponto positivo aqui (_Editorial_:
+  O autor do problema escreve como você deve abordar e resolver o problema - qual algoritmo ou estrutura de dados usar).
+- [Topcoder](https://www.topcoder.com/): este site é muito semelhante ao Codeforces em termos de problemas de qualidade e editorial. Também é conhecido por seus [tutoriais](https://www.topcoder.com/community/data-science/data-science-tutorials/). Cada “tutorial” ensina alguma técnica, algoritmo ou estrutura de dados.
+- [Hacker Rank](http://hackerrank.com/): como eu disse acima, Hacker Rank tem muitos domínios diferentes, como Algoritmos, Estruturas de Dados, Matemática, Linguagens de Programação etc. A IU e UX do site são uma vantagem para Hacker Rank, é bonito e muito fácil de usar. Usei muito o domínio Python para construir uma boa base em minhas habilidades em Python.
+- [Hacker Earth](https://www.hackerearth.com/) e [Código
+  Chef](https://www.codechef.com/) são outros bons sites.
+
+Agora você pode escolher um site e começar a praticar :)
+
+### Projetos de construção
+
+Depois de aprender os fundamentos, programar e praticar muito, senti que estava preso. Eu começo a pesquisar como eu poderia ir para o próximo nível. Projetos de construção foram a resposta para mim. Então, eu me ensinei os fundamentos da web: HTML, CSS, Javascript e uma estrutura da web. Naquela época, aprendi Ruby on Rails (Ruby Web Framework) e Django (Python Web Framework).
+
+Meu primeiro projeto foi [meu próprio site](/). Então eu construí um site para o restaurante da minha mãe. Em seguida, dois jogos: jogo da velha e cobra. Todos os sites estáticos.
+
+Senti que estava pronto para desenvolver um site full stack. Então, eu construí uma livraria online com um painel de administração (o administrador pode adicionar novos produtos, editá-los, excluí-los ... todas as coisas [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)) e a parte pública - o cliente pode se inscrever / fazer login, pesquisar livros e comprá-los. Fiquei muito feliz por poder terminar este projeto. Foi muito desafiador para mim naquela época e aprendi muito.
+
+O primeiro produto real que desenvolvi foi o site responsivo [aLavadeira](https://www.alavadeira.com/). E agora eu construo o produto da web [Worldpackers](http://worldpackers.com/) e API para aplicativos móveis para mais de 900 mil viajantes e hospedo em todo o mundo.
+
+Meu bom amigo [Douglas](https://medium.com/@douglas.iacovelli) tem uma ótima história sobre como ele começou a codificar e desenvolver aplicativos. Ele aprendeu os conceitos fundamentais na faculdade, mas construir aplicativos móveis era algo que o deixava sempre curioso. Ele tentou construir muitos aplicativos para Android, mas logo desistiu.
+
+> “Simplesmente não sabia por onde começar, porque tinha muito o que aprender e não me sentia pronto para construir um aplicativo. Havia tantas coisas diferentes para aprender e maneiras de fazer a mesma coisa, que fiquei preso tentando descobrir qual era a certa ou a melhor. As 2 coisas mais importantes nesta fase foram: 1. Defina uma meta simples e tente aprender o básico para alcançá-la. 2. Evite o perfeccionismo e apenas o faça. ” - Doug
+
+Ouvindo a história de Doug, eu senti que todo mundo que está começando algo fica preso em alguma parte do processo. E é super normal se sentir frustrado ou não saber como começar.
+
+> “Recebi ajuda de um amigo meu que já havia desenvolvido um aplicativo simples. Perguntei se ele sabia qual era a melhor maneira de fazer uma coisa específica e a verdade é: ele não sabia, mas me senti mais seguro sabendo que estávamos construindo da mesma maneira. ” - Doug
+
+Se você tem colegas ou amigos com mais experiência que pedem ajuda, provavelmente eles o ajudarão de alguma forma. E é legal como esses “mentores” inspiram e motivam você a começar e tentar novamente.
+
+Outro aprendizado que podemos obter com a história de Doug: ele estabeleceu uma meta para fazer o aplicativo mais simples pela primeira vez.
+
+> “Eu construí a primeira versão do aplicativo e publiquei na Play Store. Então, aprendi mais e mais sobre Java / Kotlin / Android e pude implementar mais recursos neste aplicativo. Mas foi um processo demorado. Eu precisava de muita persistência ” - Doug
+
+É tão bom quando estamos em uma curva de aprendizado que nos sentimos confiantes e simplesmente “no fluxo” para continuar aprendendo e construindo. Mas eu concordo totalmente com Doug, quando você começa a aprender algo novo, você precisa de muita persistência para manter seu aprendizado consistente.
+
+Agora Doug trabalha como desenvolvedor Android. Ele tem 2 projetos pessoais (aplicativos móveis) publicados na Play Store e lidera o [aplicativo Worldpackers Android](https://play.google.com/store/apps/details?id=com.worldpackers.travelers).
+
+> “Aprendi a programar trabalhando em muitos projetos diferentes de sites desde muito jovem. A melhor maneira de aprender uma nova habilidade é praticar, praticar, praticar. Não importa o que você constrói, contanto que você escolha algo e comece. ” - [Feross Aboukhadijeh](https://medium.com/u/1299c645ef11)
+
+Em [resposta de Feross](https://www.quora.com/How-did-Feross-Aboukhadijeh-learn-to-program-And-if-he-could-do-it-over-again-what-would-he-do-different-What-language-would-he-start-with/answer/Feross-Aboukhadijeh?) em [Quora](https://medium.com/@quoraanswers), ele conta como aprendeu a codificar por construir muitos projetos paralelos. Sua história é tão inspiradora. Você percebe como ele continua progredindo projeto por projeto. Seu conselho para aprender a programar:
+
+- Faça projetos paralelos.
+- Compre e leia livros de programação.
+- Faça projetos paralelos.
+- Faça aulas de ciência da computação.
+- Faça projetos paralelos.
+- Leia blogs de programação.
+- Faça projetos paralelos.
+
+[Leia a história completa aqui](https://www.quora.com/How-did-Feross-Aboukhadijeh-learn-to-program-And-if-he-could-do-it-over-again-what-would-he-do-different-What-language-would-he-start-with/answer/Feross-Aboukhadijeh?)!
+
+### Aqui está uma lista de projetos paralelos que você pode fazer.
+
+É hora de ajudá-lo a começar a construir coisas!
+
+- Se você é um jogador, talvez possa começar com Tic-Tac-Toe, Sudoku ou Flappy
+  Pássaro.
+- Se você é um amante de dados, pode fazer web scraping ou trabalhar com ações comerciais
+  API para construir e analisar gráficos de ações.
+- Se você quiser entender melhor o front-end, crie seu próprio site / portfólio.
+- Se você deseja construir um produto completo, comece com uma livraria online, produto
+  inventário ou um blog.
+
+A lista continua e continua. Aqui [outra lista](https://github.com/karan/Projects) que pode te ajudar a escolher o projeto. Mas eu concordo com Feross, não importa o que você constrói, desde que você escolha algo e comece. Portanto, comece a construir! Você terá problemas, ficará preso. Mas você aprenderá MUITO!
+
+#### Eu sei que é bastante desafiador manter seu projeto funcionando.
+
+Para se manter responsável, descobri um projeto interessante que você pode fazer diariamente. São chamados de 100 dias de código. Aqui está o [modelo](https://github.com/Kallaway/100-days-of-code). É simples, você escreve um diário sobre seu progresso e pensamentos sobre um projeto que está fazendo.
+
+E realmente funciona. Você se mantém responsável, mantém seu projeto em andamento e acompanha seu progresso. Tudo em um repositório público no GitHub, para que você também possa compartilhar com seus amigos. Colabore com a comunidade GitHub. E compartilhe e inspire outras pessoas.
+
+Procurando por 100 dias de histórias de código, descobri “[How I Coded Everyday for 365 Days](https://hackernoon.com/how-i-coded-everyday-for-365-days-67ebb5fc7ae)” por [Emily](https://medium.com/@emilyyu_17465). Uma história tão inspiradora de disciplina e vontade de aprender a programar.
+
+É muito legal como ela escreve sobre seus projetos e como ela aprendeu ao longo do ano. Os projetos foram desde aplicativos iOS usando a linguagem de programação Swift, até o desenvolvimento web usando toda a pilha (HTML, CSS, JS, Flask - framework web Python). Vá ler o [artigo completo](https://hackernoon.com/how-i-coded-everyday-for-365-days-67ebb5fc7ae).
+
+Mantenha-se motivado, continue construindo, continue programando! :)
+
+### Alguns recursos úteis
+
+Bons sites, artigos e vídeos:
+
+#### Sites
+
+- [freeCodeCamp](https://www.freecodecamp.org/) é um ótimo site focado em desenvolvimento web e JavaScript. Totalmente grátis (YEY!).
+- [Udemy](https://www.udemy.com/), [CodeSchool](https://www.codeschool.com/) e [Khan Academy](https://www.khanacademy.org/) são muito semelhante em termos de variedade de cursos, mas a Udemy tem cursos pagos, a Khan Academy é gratuita e a CodeSchool é uma mistura de ambos (cursos pagos e gratuitos).
+- Não se esqueça dos MOOCs: [Udacity](https://www.udacity.com/), [Coursera](https://www.coursera.org/) e [edX](https://www.edx.org/). Todos esses sites têm ótimos cursos. De uma chance! :)
+
+#### Siga pessoas no Twitter
+
+- Se você está interessado em aprendizado de máquina, [Andrew Ng](https://medium.com/@andrewng) é a pessoa!
+- Para coisas de programação, gosto de ler tweets de [DHH](https://medium.com/@dhh)
+  (Criador do Ruby on Rails), [Dan Abramov](https://medium.com/@dan_abramov) (Co-autor do Redux), [Tracy Chou](https://medium.com/@triketora) (antigo Quora, Pinterest), [Quincy Larson](https://medium.com/@quincylarson) (criador do freeCodeCamp), [Dan Bader](https://medium.com/@dbader_org) (executa Real Python), e a lista continua.
+
+#### Pessoas que estão documentando sua jornada no Medium
+
+- [Como se ensinar com sucesso como fazer
+  Code](https://medium.freecodecamp.org/successfully-teaching-yourself-how-to-code-f6aac23db44a) por [Lydia Hallie](https://medium.com/@lydiahallie)
+- [Como passei de modelo de moda a engenheiro de software em 1
+  ano](https://medium.freecodecamp.org/how-i-went-from-fashion-model-to-software-engineer-in-1-year-a7399a40d9e7) por [Madison Kanna](https://medium.com/@madisonkanna)
+- [BaseCS](https://medium.com/basecs) por [Vaidehi Joshi](https://medium.com/@vaidehijoshi)
+- [Veja por que aprender a codificar é tão
+  Difícil](https://medium.com/the-mission/heres-why-learning-how-to-code-is-so-hard-and-what-to-do-about-it-3d6fda152409) por [Kevin Kononenko](https://medium.com/@kevink)
+- [Quero aprender programação, mas não sei para onde
+  Iniciar](https://codeburst.io/i-want-to-learn-programming-but-i-dont-know-where-to-start-80dd2d55e1fd) por [Robyn Silber](https://medium.com/@robynjsilber)
+
+#### Vlogs e canais do YouTube
+
+Eu realmente gosto de assistir vlogs e ver o estilo de vida das pessoas no YouTube.
+
+- [Fun Fun Function](https://www.youtube.com/channel/UCO1cgjhGzsSYb1rsB4bFe4Q) é um canal administrado por [Mattias Petter Johansson](https://medium.com/@mpjme), um ex-engenheiro do Spotify. Tudo começou com JavaScript, mas ultimamente ele está falando sobre desenvolvimento em geral. Gosto muito de como ele coloca suas ideias e apresenta cada tópico.
+- [Mayuko](https://www.youtube.com/user/hellomayuko) é um engenheiro de software iOS que trabalha no [Patreon](https://medium.com/@Patreon). Ela também fala sobre engenharia e estilo de vida em geral.
+- [CS Dojo](https://www.youtube.com/channel/UCxX9wt5FWQUAAz4UrysqK9A) é realmente focado em conselhos de entrevistas de programação, algoritmos e material de estrutura de dados. Este canal é de [YK Sugishita](https://medium.com/@ykdojo), um ex-engenheiro do Google no Canadá.
+- [Joma Tech](https://www.youtube.com/channel/UCV0qA-eDDICsRR9rPcG7tw) é o canal do YouTube mais engraçado e divertido de todos. [Jonathan Ma](https://medium.com/@joma) é um cientista de dados do Facebook. Ele vlogs sobre sua vida de engenheiro e também dá conselhos sobre entrevistas de codificação com base em sua experiência como estagiário em várias empresas de tecnologia.
+
+### Isso é tudo!
+
+Espero que este artigo possa ajudá-lo a começar.
+
+Divirta-se! Continue aprendendo e programando.
