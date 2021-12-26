@@ -7,14 +7,14 @@ Let's talk about the challenge:
 ### Technology
 
 - The project is setup using React
-- They prefer using [TypeScript](https://www.iamtk.co/a-mental-model-to-think-in-typescript) (or Flow)
+- They prefer using [TypeScript](/a-mental-model-to-think-in-typescript) (or Flow)
 - They use EmotionJS as a CSS tool
 
 ### UI
 
 The idea is to create a Guest and Room Overlay component. The user can open it, add different rooms, select any limited number of adults and children, and select the children's ages.
 
-![Screen Shot 2021-12-24 at 18.15.00.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/97ab09d5-31b6-4301-a5a4-e7532556dea5/Screen_Shot_2021-12-24_at_18.15.00.png)
+![The findhotel home, the dialog opened, and the dialog with multiple rooms](/series/frontend-challenges/findhotel-challenge.png)
 
 ### Input rules
 
@@ -45,7 +45,7 @@ Now, giving this introduction to the challenge, I want to share the topics I wil
 
 - **Data Structure & State Management**: in this part, we'll discuss how to design the UI’s state data structure and manage it throughout the entire component.
 - **UI & Style**: creating reusable components, handling responsive design with media queries and react-device-detect, and handling animation.
-- **Unit & Integration tests**: the implementation of the tests to make us confident about the feature. Unit tests will be handled by [react-testing-library](https://www.iamtk.co/basic-recipes-for-react-testing-library) and Integration tests by Cypress.
+- **Unit & Integration tests**: the implementation of the tests to make us confident about the feature. Unit tests will be handled by [react-testing-library](/basic-recipes-for-react-testing-library) and Integration tests by Cypress.
 
 ## Data Structure & State Management
 
@@ -117,7 +117,7 @@ Listing all the behaviors makes it easier to understand how we should handle the
 
 I sketched a little drawing with all the behaviors:
 
-![Screen Shot 2021-12-24 at 22.58.18.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/331cf02b-0784-44bd-8b1e-8c63c726c624/Screen_Shot_2021-12-24_at_22.58.18.png)
+![Showing each component's behavior in the guest rooms dialog](/series/frontend-challenges/guest-rooms-dialog.png)
 
 Let's list them here:
 
@@ -1089,7 +1089,11 @@ export const Button: FC<ButtonPropTypes> = ({
 
 To make sure we have an effect when opening the overlay component in the mobile view, we will use `keyframes` and `animation`.
 
-[transition-overlay.mov](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/16d67662-3910-49ef-b09f-995175e9f0ec/transition-overlay.mov)
+<div style="margin: auto; text-align: center;">
+  <video controls="true" allowfullscreen="true" >
+    <source src="/series/frontend-challenges/dialog-transition.mov" type="video/mp4">
+  </video>
+</div>
 
 The code looks very simple for this transition.
 
@@ -1725,7 +1729,11 @@ describe('GuestRoomsDialog', () => {
 
 Let's see a preview of the integration test in action?
 
-[integration-test-cypress-dialog.mov](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/6c1cc966-9a6b-42b4-8e91-4bd99426eec7/integration-test-cypress-dialog.mov)
+<div style="margin: auto; text-align: center;">
+  <video controls="true" allowfullscreen="true" class="full-width">
+    <source src="/series/frontend-challenges/dialog-integration-test-cypress.mov" type="video/mp4">
+  </video>
+</div>
 
 ## That's it!
 
@@ -1739,6 +1747,6 @@ See ya!
 
 - [Frontend Challenges](https://github.com/leandrotk/frontend-challenges)
 - [FindHotel Front-end Engineer Assignment](https://github.com/leandrotk/frontend-challenges/blob/master/findhotel-frontend-assignment/INSTRUCTIONS.md)
-- [A Mental Model to think in TypeScript](https://www.iamtk.co/a-mental-model-to-think-in-typescript)
-- [Basic Recipes for React Testing Library](https://www.iamtk.co/basic-recipes-for-react-testing-library)
-- [React Hooks, Context API, and Pokemons](https://www.iamtk.co/react-hooks-context-api-and-pokemons)
+- [A Mental Model to think in TypeScript](/a-mental-model-to-think-in-typescript)
+- [Basic Recipes for React Testing Library](/basic-recipes-for-react-testing-library)
+- [React Hooks, Context API, and Pokemons](/react-hooks-context-api-and-pokemons)

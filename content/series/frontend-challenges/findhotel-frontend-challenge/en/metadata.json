@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/frontend-challenges/intro.jpg",
+    "src": "/series/frontend-challenges/findhotel-frontend-challenge.jpg",
     "width": "592",
     "height": "394",
     "alt": "A chain",
-    "authorHref": "https://unsplash.com/@fabioha",
-    "authorName": "fabio"
+    "authorHref": "https://unsplash.com/@martenbjork",
+    "authorName": "Marten Bjork"
   }
 }

@@ -18,6 +18,8 @@ body {
   font-weight: 400;
   font-display: swap;
   line-height: 1.725;
+  width: 100%;
+  margin: 0;
   text-rendering: geometricPrecision;
   min-height: 100%;
   display: flex;
@@ -111,6 +113,20 @@ article .tags ul li time {
   display: block;
   min-width: 100px;
   margin-right: 16px;
+}
+
+article.post video {
+  width: auto;
+}
+
+article.post video.full-width {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  article.post video {
+    width: auto;
+  }
 }
 
 h1 a,
