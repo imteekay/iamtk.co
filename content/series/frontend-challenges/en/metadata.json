@@ -1,7 +1,7 @@
 {
   "title": "Frontend Challenges Series",
   "description": "Solving interesting challenges in the frontend domain with TK",
-  "date": "2021-12-27",
+  "date": "2021-12-26",
   "tags": [
     {
       "href": "/tags/javascript",
@@ -18,10 +18,10 @@
   ],
   "coverImage": {
     "src": "/series/frontend-challenges/intro.jpg",
-    "width": "592",
-    "height": "394",
-    "alt": "A chain",
-    "authorHref": "https://unsplash.com/@fabioha",
-    "authorName": "fabio"
+    "width": "640",
+    "height": "960",
+    "alt": "The frontend book from increment",
+    "authorHref": "https://unsplash.com/@plhnk",
+    "authorName": "Paul Hanaoka"
   }
 }
