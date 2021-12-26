@@ -1,3 +1,5 @@
+This is part of the [Frontend Challenges Series](/series/frontend-challenges).
+
 Today I finished a frontend challenge and I had a blast working on it. There were so many interesting concepts I debated with myself while designing and implementing the feature, so I was eager to document and share everything I learned through this entire journey.
 
 The challenge was a `Front-end Engineer Assignment` from [FindHotel](https://www.linkedin.com/company/findhotel/). It's actually a public challenge and you can find it on their GitHub: **[FindHotel Front-end Engineer Assignment](https://github.com/FindHotel/fh-fe-assignment)**.

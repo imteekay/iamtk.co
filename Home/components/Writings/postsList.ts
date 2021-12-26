@@ -5,6 +5,11 @@ export const postsList = [
     title: 'Frontend Challenges: FindHotel Front-end Engineer Assignment',
   },
   {
+    datetime: '2021-12-26',
+    link: '/series/frontend-challenges',
+    title: 'Frontend Challenges Series',
+  },
+  {
     datetime: '2021-12-13',
     link: '/how-i-received-4-salary-raises-in-2-years-of-quintoandar-as-a-software-engineer',
     title:
