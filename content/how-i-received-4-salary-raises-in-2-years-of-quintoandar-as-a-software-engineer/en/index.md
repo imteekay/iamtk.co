@@ -6,7 +6,7 @@ _Disclaimer:_
 
 1. these ideas and insights come from a privileged person working in a very privileged industry.
 2. my intent is not to show off, but to share my experience and I hope you can steal some ideas.
-3. it's ok to see money as a valuable capital in your life, but I'll focus on improving the craft.
+3. it's ok to see money as a valuable capital in your life, but I'll focus on how I keeo improving my craft in this post.
 
 ## Before telling my experience
 
