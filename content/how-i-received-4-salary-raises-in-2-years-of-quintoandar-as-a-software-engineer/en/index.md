@@ -117,7 +117,7 @@ And the last piece in this _Challenge the status quo_ part is _Knowledge Sharing
 
 For me, everything that I learn, research, or experiment, I like to document and share. The document format can vary. It can be an article, a guideline, a Notion document, slides to use for tech talks, or simple notes on my Moleskine to be used to create content based on this draft.
 
-I've been doing this for 8 years now and everything is documented here: [writings](https://leandrotk.github.io/writing.html).
+I've been doing this for 8 years now and everything is documented here: [writings](/writings).
 
 It's a way to share my learnings with my teammates, but also share ideas with the tech communities. Having this process helps me craft my thoughts and learn more about each topic I experimented with before.
 
