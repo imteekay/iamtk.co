@@ -1,6 +1,11 @@
 export const postsList = [
   {
     datetime: '2021-12-27',
+    link: '/series/mastering-javascript',
+    title: 'Mastering JavaScript Series',
+  },
+  {
+    datetime: '2021-12-27',
     link: '/series/frontend-challenges/findhotel-frontend-challenge',
     title: 'Frontend Challenges: FindHotel Front-end Engineer Assignment',
   },
