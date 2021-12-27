@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { marked } from 'marked';
+import { Locale } from 'src/types/Locale';
 
 function highlight(code: string, lang: string) {
   const hljs = require('highlight.js');
@@ -36,7 +37,7 @@ export function getPostContent(slug: string, locale: string = 'en') {
 export function getNestedPostContent(
   folder: string,
   post: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ) {
   const postsDir = path.join(process.cwd(), 'content', folder);
   const postPath = path.join(postsDir, post, locale, 'index.md');
@@ -50,7 +51,7 @@ export function getNestedPostContent(
 export function getSeriesPostContent(
   series: string,
   seriesItem: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ) {
   const postsDir = path.join(process.cwd(), 'content', 'series');
   const postPath = path.join(postsDir, series, seriesItem, locale, 'index.md');

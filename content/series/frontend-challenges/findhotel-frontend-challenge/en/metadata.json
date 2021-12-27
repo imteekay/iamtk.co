@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Challenges: FindHotel Front-end Engineer Assignment",
+  "description": "Solving interesting challenges in the frontend domain with TK",
+  "date": "2021-12-27",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/frontend-challenges/findhotel-frontend-challenge.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "A hotel board",
+    "authorHref": "https://unsplash.com/@martenbjork",
+    "authorName": "Marten Bjork"
+  }
+}

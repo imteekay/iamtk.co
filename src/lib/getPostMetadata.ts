@@ -1,12 +1,13 @@
 import path from 'path';
 import fs from 'fs';
+import { Locale } from 'src/types/Locale';
 
-type Tag = {
+export type Tag = {
   href: '/tags/javascript';
   name: 'javascript';
 };
 
-type CoverImage = {
+export type CoverImage = {
   src: string;
   width: string;
   height: string;
@@ -15,17 +16,23 @@ type CoverImage = {
   authorName: string;
 };
 
+export type AlternativeArticle = {
+  url: string;
+  language: string;
+};
+
 export type PostMetadata = {
   title: string;
   description: string;
   date: string;
   tags: Tag[];
   coverImage: CoverImage;
+  alternativeArticle: AlternativeArticle;
 };
 
 export function getPostMetadata(
   slug: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content');
   const postPath = path.join(postsDir, slug, locale, 'metadata.json');
@@ -37,7 +44,7 @@ export function getPostMetadata(
 export function getNestedPostMetadata(
   folder: string,
   post: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content', folder);
   const postPath = path.join(postsDir, post, locale, 'metadata.json');
@@ -49,7 +56,7 @@ export function getNestedPostMetadata(
 export function getSeriesPostMetadata(
   series: string,
   seriesItem: string,
-  locale: string = 'en',
+  locale: Locale = 'en',
 ): PostMetadata {
   const postsDir = path.join(process.cwd(), 'content', 'series');
   const postPath = path.join(

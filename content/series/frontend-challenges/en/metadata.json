@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Challenges Series",
+  "description": "Solving interesting challenges in the frontend domain with TK",
+  "date": "2021-12-26",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/frontend-challenges/intro.jpg",
+    "width": "640",
+    "height": "960",
+    "alt": "The frontend book from increment",
+    "authorHref": "https://unsplash.com/@plhnk",
+    "authorName": "Paul Hanaoka"
+  }
+}

@@ -22,17 +22,19 @@ function removeSeries(postsNames: string[], filterList: string[]) {
   return postsNames.filter((post) => !filterList.includes(post));
 }
 
-export function getPaths() {
+export function getPaths(locale: string = 'en') {
   const postsDir = path.join(process.cwd(), 'content');
   const postsNames = fs.readdirSync(postsDir);
+  const postsToGeneratePath = postsNames.filter((postName) => {
+    const postsDir = path.join(process.cwd(), 'content', postName, locale);
+    return fs.existsSync(postsDir);
+  });
 
-  return removeSeries(postsNames, ['series', 'bookshelf', 'tags']).map(
-    (slug) => ({
-      params: {
-        slug,
-      },
-    }),
-  );
+  return postsToGeneratePath.map((slug) => ({
+    params: {
+      slug,
+    },
+  }));
 }
 
 export function getNestedPaths(folder: FolderTypes) {
@@ -53,7 +55,7 @@ export function getSeriesPaths() {
   return seriesNames.reduce((acc: Params[], seriesName: string) => {
     const seriesDir = path.join(process.cwd(), 'content', 'series', seriesName);
     const seriesPosts = fs.readdirSync(seriesDir);
-    const series = removeSeries(seriesPosts, ['en']).map((series) => ({
+    const series = removeSeries(seriesPosts, ['en', 'pt-BR']).map((series) => ({
       params: {
         series: seriesName,
         seriesItem: series,

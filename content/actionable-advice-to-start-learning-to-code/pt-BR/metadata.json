@@ -1,0 +1,21 @@
+{
+  "title": "Como começar a programar?",
+  "description": "Quando comecei a compartilhar minha jornada de aprendizado no mundo da programação e como eu hackeio minha educação, as pessoas da comunidade começaram a se interessar e me perguntar como começar a programar.",
+  "date": "2018-01-03",
+  "tags": [
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/actionable-advice-to-start-learning-to-code/cover.jpeg",
+    "width": "592",
+    "height": "333",
+    "alt": "code"
+  },
+  "alternativeArticle": {
+    "url": "/actionable-advice-to-start-learning-to-code",
+    "language": "en"
+  }
+}

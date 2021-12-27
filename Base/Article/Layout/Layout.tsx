@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Link from 'next/link';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
@@ -7,25 +8,19 @@ import { CoverImage } from 'Base/Article/CoverImage';
 import { SocialLinks } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';
 import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
-
-type Tag = {
-  href: string;
-  name: string;
-};
+import {
+  Tag,
+  AlternativeArticle as AlternativeArticleType,
+  CoverImage as CoverImageType,
+} from 'src/lib/getPostMetadata';
 
 type LayoutPropTypes = {
   tags: Tag[];
   title: string;
   date: string;
   showSocialLinks?: boolean;
-  coverImage: {
-    src: string;
-    width: string;
-    height: string;
-    alt: string;
-    authorHref: string;
-    authorName: string;
-  };
+  alternativeArticle: AlternativeArticleType;
+  coverImage: CoverImageType;
 };
 
 export const Layout: FC<LayoutPropTypes> = ({
@@ -35,6 +30,7 @@ export const Layout: FC<LayoutPropTypes> = ({
   date,
   showSocialLinks = false,
   coverImage,
+  alternativeArticle,
 }) => (
   <div className="content">
     <HomeLink />
@@ -45,7 +41,7 @@ export const Layout: FC<LayoutPropTypes> = ({
     >
       <header>
         <Title text={title} />
-        <Meta date={date} tags={tags} />
+        <Meta date={date} tags={tags} alternativeArticle={alternativeArticle} />
       </header>
 
       {coverImage.src && (
