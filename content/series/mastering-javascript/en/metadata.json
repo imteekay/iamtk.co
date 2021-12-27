@@ -1,0 +1,27 @@
+{
+  "title": "Mastering JavaScript Series",
+  "description": "The process to master JavaScript",
+  "date": "2021-12-27",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mastering-javascript/cover.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "notebook",
+    "authorHref": "https://unsplash.com/@blakeconnally",
+    "authorName": "Blake Connally"
+  }
+}
