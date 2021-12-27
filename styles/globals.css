@@ -28,7 +28,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-article h2 {
+article h2,
+article .remirror-theme h2 {
   position: relative;
   font-size: 1.7rem;
   font-weight: bold;

@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import { Head } from 'Base/components/Head';
-import { Editor } from 'Base/components/Editor';
+import Editor from 'Base/components/Editor';
 
 const Page: NextPage = () => {
   return (

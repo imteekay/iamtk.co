@@ -14,23 +14,19 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@types/prosemirror-commands": "^1.0.4",
-    "@types/prosemirror-history": "^1.0.3",
-    "@types/prosemirror-keymap": "^1.0.4",
-    "@types/prosemirror-schema-basic": "^1.0.2",
-    "@types/prosemirror-view": "^1.19.2",
+    "@emotion/css": "11.7.1",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
+    "@remirror/pm": "1.0.9",
+    "@remirror/react": "1.0.19",
+    "@remirror/react-editors": "0.1.42",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
     "marked": "^4.0.6",
     "next": "12.0.5",
-    "prosemirror-commands": "^1.1.12",
-    "prosemirror-history": "^1.2.0",
-    "prosemirror-keymap": "^1.1.5",
-    "prosemirror-schema-basic": "^1.1.2",
-    "prosemirror-view": "^1.23.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "use-prosemirror": "^1.2.2"
+    "remirror": "1.0.53"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.8",
