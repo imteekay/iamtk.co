@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export const Footer: FC = () => (
   <footer id="footer" className="footer">
-    <div className="footer-left">Copyright &copy; 2021 TK</div>
+    <div className="footer-left">Copyright &copy; 2022 TK</div>
     <div className="footer-right">
       <nav>
         <ul>
