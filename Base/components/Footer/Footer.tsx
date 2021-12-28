@@ -4,7 +4,9 @@ import Link from 'next/link';
 
 export const Footer: FC = () => (
   <footer id="footer" className="footer">
-    <div className="footer-left">Copyright &copy; 2022 TK</div>
+    <div className="footer-left">
+      Copyright &copy; {new Date().getFullYear()} TK
+    </div>
     <div className="footer-right">
       <nav>
         <ul>
@@ -12,7 +14,7 @@ export const Footer: FC = () => (
             <Link href="/">Home</Link>
           </li>
           <li>
-            <a href="writing.html">Writing</a>
+            <a href="/writings">Writing</a>
           </li>
           <li>
             <a
@@ -23,9 +25,6 @@ export const Footer: FC = () => (
               Projects
             </a>
           </li>
-          {/* <li>
-            <Link href="/quotes">Quotes</Link>
-          </li> */}
           <li>
             <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
               RSS
