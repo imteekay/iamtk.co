@@ -1,0 +1,233 @@
+This post is part of the [Mastering JavaScript Series](/series/mastering-javascript).
+
+We are going to see different ways we can handle conditions in JavaScript and how TypeScript can help us make better use of code.
+
+Imagine we have a boolean value and based on this boolean, we want to assign a value to a new variable.
+
+```tsx
+const isActive = true;
+```
+
+With this boolean, we want:
+
+- if active (`isActive` = true): assign a value `on` to the variable `toggle`.
+- if inactive (`isActive` = false): assign a value `off` to the variable `toggle`.
+
+```tsx
+let toggle;
+
+if (isActive) {
+  toggle = 'on';
+} else {
+  toggle = 'off';
+}
+```
+
+To do this, we usually use a `var` or a `let` statement. Create a `toggle` with `undefined` value and then assign the correct value based on the `isActive` value.
+
+This works.
+
+But we can't use `const` in this case. When defining a `const`, we need to add a value attached to it. Doing something like this will throw an error:
+
+```tsx
+> Uncaught SyntaxError: Missing initializer in const declaration
+```
+
+We also can't use `const` inside the if-else condition.
+
+If we do this:
+
+```tsx
+if (isActive) {
+  const toggle = 'on';
+} else {
+  const toggle = 'off';
+}
+```
+
+And then verify the `toggle` value, it throws an error because this constant is not in the scope.
+
+```tsx
+$ toggle
+> Uncaught ReferenceError: toggle is not defined
+```
+
+Another way to handle this type of condition is by using the ternary operator.
+
+```tsx
+const toggle = isActive ? 'on' : 'off';
+```
+
+That's nice and beautiful. Capture everything in a very short and readable way.
+
+Now imagine handling multiple conditions. We can't really use the ternary operator. The first thought is to come back to the if-else statement, but now with multiple possible conditions:
+
+```tsx
+let label;
+
+if (status === 'finished') {
+  label = 'Finished task';
+} else if (status === 'inactive') {
+  label = 'Task inactive';
+} else if (status === 'ongoing') {
+  label = 'Ongoing task';
+}
+```
+
+Another possibility that comes to mind is using a switch case.
+
+```tsx
+let label;
+
+switch (status) {
+  case 'finished':
+    label = 'Finished task';
+    break;
+  case 'inactive':
+    label = 'Task inactive';
+    break;
+  case 'ongoing':
+    label = 'Ongoing task';
+    break;
+}
+```
+
+But what if we also want to assign a value to another variable? A `tag` variable in this case. The tag's value follows this logic:
+
+- `finished`: `Finished`
+- `inactive`: `Inactive`
+- `ongoing`: `Ongoing`
+
+Let's build it!
+
+```tsx
+let label;
+let tag;
+
+switch (status) {
+  case 'finished':
+    label = 'Finished task';
+    tag = 'Finished';
+    break;
+  case 'inactive':
+    label = 'Task inactive';
+    tag = 'Inactive';
+    break;
+  case 'ongoing':
+    label = 'Ongoing task';
+    tag = 'Ongoing';
+    break;
+}
+```
+
+Now we also want a button's variant for each status. The logic follows:
+
+- `finished`: `secondary`
+- `inactive`: `disabled`
+- `ongoing`: `primary`
+
+Let's add this variable to the switch case.
+
+```tsx
+let label;
+let tag;
+let variant;
+
+switch (status) {
+  case 'finished':
+    label = 'Finished task';
+    tag = 'Finished';
+    variant = 'secondary';
+    break;
+  case 'inactive':
+    label = 'Task inactive';
+    tag = 'Inactive';
+    variant = 'disabled';
+    break;
+  case 'ongoing':
+    label = 'Ongoing task';
+    tag = 'Ongoing';
+    variant = 'primary';
+    break;
+}
+```
+
+The lesson here is that the switch case starts to get bigger and more complex. To abstract this complexity, we can use object to map the status to an object that represents the status.
+
+```tsx
+const statusMap = {
+  finished: {
+    label: 'Finished task',
+    tag: 'Finished',
+    variant: 'secondary',
+  },
+  inactive: {
+    label: 'Task inactive',
+    tag: 'Inactive',
+    variant: 'disabled',
+  },
+  ongoing: {
+    label: 'Ongoing task',
+    tag: 'Ongoing',
+    variant: 'primary',
+  },
+};
+
+const { label, tag, variant } = statusMap['finished'];
+label; // => Finished tag
+tag; // => Finished
+variant; // => secondary
+```
+
+And if you are using a type system like TypeScript, we can do even better things.
+
+We can type the `statusMap`’s key and value and require to use the existing keys.
+
+```tsx
+type Statuses = 'finished' | 'inactive' | 'ongoing';
+type StatusObject = {
+  label: string;
+  tag: string;
+  variant: string;
+};
+
+type StatusMap = Record<Statuses, StatusObject>;
+```
+
+And we used in the map:
+
+```tsx
+const statusMap: StatusMap = {
+  finished: {
+    label: 'Finished task',
+    tag: 'Finished',
+    variant: 'secondary',
+  },
+  inactive: {
+    label: 'Task inactive',
+    tag: 'Inactive',
+    variant: 'disabled',
+  },
+  ongoing: {
+    label: 'Ongoing task',
+    tag: 'Ongoing',
+    variant: 'primary',
+  },
+};
+```
+
+When you use it (and if your editor is configured to make the IntelliSense works), it will show all the possibilities for you.
+
+![](/series/mastering-javascript/intellisense.png)
+
+It will also get errors in compile-time if you use a different key to access the object.
+
+![](/series/mastering-javascript/error-in-compile-time.png)
+
+Great! Now we have a solution abstracting the complexity and getting errors in compile-time. In the future, it will also be possible to use [pattern matching](https://github.com/tc39/proposal-pattern-matching) in JavaScript and we can come up with more solutions to handle conditions.
+
+## Resources
+
+- [Master JavaScript repo](https://github.com/leandrotk/master-javascript)
+- [Master JavaScript: Conditionals](https://github.com/leandrotk/master-javascript/tree/main/conditionals)
+- [Master JavaScript Series](/series/mastering-javascript)
