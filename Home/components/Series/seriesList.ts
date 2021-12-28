@@ -1,5 +1,12 @@
 export const seriesList = [
   {
+    link: '/series/frontend-challenges',
+    title: 'Frontend Challenges',
+    description: 'Design an implementation of frontend challenges',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/data-structures',
     title: 'Data Structures',
     description: 'Theory and implementation',
