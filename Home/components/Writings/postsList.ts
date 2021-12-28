@@ -1,5 +1,11 @@
 export const postsList = [
   {
+    datetime: '2022-01-03',
+    link: '/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript',
+    title:
+      'Mastering JavaScript: Revisiting Conditionals in JavaScript and TypeScript',
+  },
+  {
     datetime: '2021-12-27',
     link: '/series/mastering-javascript',
     title: 'Mastering JavaScript Series',

@@ -1,7 +1,12 @@
 <div class="tags">
 
+## 2022
+
+- <time class="date">2022-01-03</time> <span>[Mastering JavaScript: Revisiting Conditionals in JavaScript and TypeScript](/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript)</span>
+
 ## 2021
 
+- <time class="date">2021-12-27</time> <span>[Mastering JavaScript Series](/series/mastering-javascript)</span>
 - <time class="date">2021-10-17</time> <span>[Building an Interpreter: Parser - Part 1: Fundamental parts of AST and basic statements](/series/building-an-interpreter/parser-part-1)</span>
 - <time class="date">2021-07-20</time> <span>[Building an Interpreter: REPL](/series/building-an-interpreter/repl)</span>
 - <time class="date">2021-07-18</time> <span>[Building an Interpreter: Lexical Analysis - Part 3](/series/building-an-interpreter/lexical-analysis-part-3)</span>
