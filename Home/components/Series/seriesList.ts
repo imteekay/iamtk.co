@@ -1,5 +1,12 @@
 export const seriesList = [
   {
+    link: '/series/mastering-javascript',
+    title: 'Mastering JavaScript',
+    description: 'The process to master JavaScript',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/frontend-challenges',
     title: 'Frontend Challenges',
     description: 'Design an implementation of frontend challenges',
