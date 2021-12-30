@@ -23,6 +23,7 @@ const Page: NextPage = () => {
 
   const a = miniSearch.search(searchTerm);
   console.log('a', a);
+  console.log('suggestion', miniSearch.autoSuggest(searchTerm));
   return (
     <>
       <input
