@@ -600,3 +600,22 @@ So here we finish this first conversation about tests in frontend. We've learned
 I wanted to cover as much as possible, but I think this is a good start to understand how use this tool to test our applications and gain more confidence when shipping features or refactorings to production. I hope these recipes can help you understand more about testing in general and improve the quality of your software.
 
 Until the next time! Keep learning!
+
+## Resources
+
+### Testing React apps
+
+- [React App Testing](https://www.educative.io/path/react-app-testing?aff=x8bV)
+- [Test-driven Development with React](https://www.educative.io/courses/test-driven-react-development?aff=x8bV)
+
+### React
+
+- [Become a React Developer](https://www.educative.io/path/become-a-react-developer?aff=x8bV)
+- [React Development for Professionals](https://www.educative.io/path/react-development-for-professionals?aff=x8bV)
+- [React for Front-End Developers](https://www.educative.io/path/react-front-end-developer?aff=x8bV)
+- [React Deep Dive: From Beginner to Advanced](https://www.educative.io/courses/react-beginner-to-advanced?aff=x8bV)
+- [The Road to learn React](https://www.educative.io/courses/the-road-to-learn-react?aff=x8bV)
+- [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
+- [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
+- [React for Beginners Course](https://reactforbeginners.com/friend/LEANDRO)
+- [Advanced React Course](https://advancedreact.com/friend/LEANDRO)
