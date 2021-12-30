@@ -1,7 +1,6 @@
 import { FC, useState, Dispatch, SetStateAction } from 'react';
-import MiniSearch, { SearchResult, Suggestion } from 'minisearch';
+import MiniSearch, { Suggestion } from 'minisearch';
 import ReactAutocomplete from 'react-autocomplete';
-import { postsList } from 'Home/components/Writings/postsList';
 
 type Options = {
   fields: string[];
@@ -34,19 +33,20 @@ export const Autocomplete: FC<AutocompletePropTypes> = ({
   searchTerm,
   suggestions,
   updateSearchTerm,
-}) => {
-  return (
-    <ReactAutocomplete
-      getItemValue={(item) => item.suggestion}
-      items={suggestions}
-      renderItem={(item, isHighlighted) => (
-        <div style={{ background: isHighlighted ? 'black' : 'lightgray' }}>
-          {item.suggestion}
-        </div>
-      )}
-      value={searchTerm}
-      onChange={(e) => updateSearchTerm(e.target.value)}
-      onSelect={(value) => updateSearchTerm(value)}
-    />
-  );
-};
+}) => (
+  <ReactAutocomplete
+    getItemValue={(item) => item.suggestion}
+    items={suggestions}
+    renderItem={(item, isHighlighted) => (
+      <div
+        key={item.title}
+        style={{ background: isHighlighted ? 'black' : 'lightgray' }}
+      >
+        {item.suggestion}
+      </div>
+    )}
+    value={searchTerm}
+    onChange={(e) => updateSearchTerm(e.target.value)}
+    onSelect={(value) => updateSearchTerm(value)}
+  />
+);
