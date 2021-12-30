@@ -298,15 +298,30 @@ export default injectIntl(EntryInfo);
 
 ## Resources
 
-- [Beginner JavaScript](https://BeginnerJavaScript.com/friend/LEANDRO)
-- [Learn ES6 - JavaScript](https://ES6.io/friend/LEANDRO)
-- [Beginner React](https://BeginnerJavaScript.com/friend/LEANDRO)
-- [One Month Javascript Bootcamp](https://mbsy.co/lFtbC)
+### React
+
+- [Become a React Developer](https://www.educative.io/path/become-a-react-developer?aff=x8bV)
+- [React Development for Professionals](https://www.educative.io/path/react-development-for-professionals?aff=x8bV)
+- [React App Testing](https://www.educative.io/path/react-app-testing?aff=x8bV)
+- [React for Front-End Developers](https://www.educative.io/path/react-front-end-developer?aff=x8bV)
+- [React Deep Dive: From Beginner to Advanced](https://www.educative.io/courses/react-beginner-to-advanced?aff=x8bV)
+- [Test-driven Development with React](https://www.educative.io/courses/test-driven-react-development?aff=x8bV)
 - [The Road to learn React](https://www.educative.io/courses/the-road-to-learn-react?aff=x8bV)
-- [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
 - [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
 - [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
-- [React in Patterns](https://www.educative.io/courses/react-in-patterns?aff=x8bV)
-- [Full Stack Advanced React](https://AdvancedReact.com/friend/LEANDRO)
-- [High cohesion and low coupling](https://stackoverflow.com/a/3085419/3159162)
-- [Learn React by building an App](https://alterclass.io/?ref=5ec57f513c1321001703dcd2)
+- [React for Beginners Course](https://reactforbeginners.com/friend/LEANDRO)
+- [Advanced React Course](https://advancedreact.com/friend/LEANDRO)
+
+### JavaScript
+
+- [JavaScript in Detail: From Beginner to Advanced](https://www.educative.io/courses/javascript-in-detail-from-beginner-to-advanced?aff=x8bV)
+- [Simplifying JavaScript: A Handy Guide for Software Engineers](https://www.educative.io/courses/simplifying-javascript-handy-guide?aff=x8bV)
+- [The Complete Guide to Modern JavaScript](https://www.educative.io/courses/complete-guide-to-modern-javascript?aff=x8bV)
+- [Learn Object-Oriented Programming in JavaScript](https://www.educative.io/courses/learn-object-oriented-programming-in-javascript?aff=x8bV)
+- [JavaScript In Practice: ES6 And Beyond](https://www.educative.io/courses/javascript-in-practice-es6-and-beyond?aff=x8bV)
+- [Data Structures for Coding Interviews in JavaScript](https://www.educative.io/courses/data-structures-coding-interviews-javascript?aff=x8bV)
+- [JavaScript Course by OneMonth](https://mbsy.co/lFtbC)
+- [ES6 Course](https://es6.io/friend/LEANDRO)
+- [Beginner JavaScript Course](https://beginnerjavascript.com/friend/LEANDRO)
+- [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
+- [Rediscovering JavaScript: ES6, ES7 & ES8](https://www.educative.io/courses/rediscovering-javascript?aff=x8bV)
