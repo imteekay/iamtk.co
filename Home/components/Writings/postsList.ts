@@ -11,6 +11,7 @@ export const postsList: Post[] = [
     datetime: '2022-01-01',
     link: '/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content',
     title: 'Building my Legacy through Accessible, Open, and Free content',
+    tags: ['reflaction'],
   },
   {
     datetime: '2021-12-27',
