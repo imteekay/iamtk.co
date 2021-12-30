@@ -12,6 +12,7 @@ export const postsList: Post[] = [
     link: '/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript',
     title:
       'Mastering JavaScript: Revisiting Conditionals in JavaScript and TypeScript',
+    tags: ['javascript', 'typescript'],
   },
   {
     datetime: '2021-12-27',
