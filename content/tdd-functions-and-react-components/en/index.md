@@ -500,7 +500,7 @@ I will write more about tests, TDD, and React. And how we can make our software 
 - [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
 - [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
 - [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
-- [Practical Redux](https://www.educative.io/courses/practical-redux)
+- [Practical Redux](https://www.educative.io/courses/practical-redux?aff=x8bV)
 - [JavaScript Course by OneMonth](https://mbsy.co/lFtbC)
 - [Test Driven Development by example book by Kent Beck](https://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530)
 - [Testable Javascript book by Mark Ethan Trostler](https://www.amazon.com/Testable-JavaScript-Ensuring-Reliable-Code/dp/1449323391/ref=sr_1_8?dchild=1&keywords=testing+javascript&qid=1585274935&s=books&sr=1-8)
