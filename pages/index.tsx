@@ -6,38 +6,24 @@ import { About } from 'Home/components/About';
 import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
-
-import { useState } from 'react';
-import MiniSearch from 'minisearch';
-import Autocomplete from 'react-autocomplete';
 import { postsList } from 'Home/components/Writings/postsList';
-
-const miniSearch = new MiniSearch({
-  fields: ['tags'],
-  storeFields: ['title', 'tags'],
-});
-
-miniSearch.addAll(postsList);
+import { Autocomplete, useSearch } from 'Base/components/Autocomplete';
 
 const Page: NextPage = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const { searchTerm, searchedItems, suggestions, setSearchTerm } = useSearch({
+    fields: ['tags'],
+    storeFields: ['title', 'tags'],
+    items: postsList,
+  });
 
-  const a = miniSearch.search(searchTerm);
-  console.log('a', a);
-  console.log('suggestion', miniSearch.autoSuggest(searchTerm));
+  console.log('searchedItems', searchedItems);
 
   return (
     <>
       <Autocomplete
-        getItemValue={(item) => item.suggestion}
-        items={miniSearch.autoSuggest(searchTerm)}
-        renderItem={(item, isHighlighted) => (
-          <div style={{ background: isHighlighted ? 'black' : 'lightgray' }}>
-            {item.suggestion}
-          </div>
-        )}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        searchTerm={searchTerm}
+        suggestions={suggestions}
+        setSearchTerm={setSearchTerm}
       />
 
       <Head
