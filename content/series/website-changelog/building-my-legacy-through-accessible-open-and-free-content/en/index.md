@@ -1,0 +1,36 @@
+I've been writing for 8 years now, more than 50 posts, everything free and available for everybody. I was not so serious about writing content, my process was always to “Learn & Share”. Make it available for everybody.
+
+Over the years I came with a better process and [implemented toolings](/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts) to help me automate the repetitive process I needed to publish new content.
+
+Now I'm changing again and I want to be transparent about how this website will work from now on.
+
+To start, I debated with myself a lot about creating content only for paid subscribers but I decided for now that I want to keep it open and free.
+
+_My goal with this website is to build a legacy. I see it as a digital notebook where I share all my draft and published content, every piece of knowledge that is in my head and can be valuable in the world. Making it free and available for everybody is part of this mission._
+
+This is the architecture of the new process I'm following:
+
+![My new content creation process and distribution](/series/website-changelog/content-creation.png)
+
+I'll write and publish first on [my Substack (paid subscribers)](https://teekay.substack.com/) and [Patreon (patrons only)](https://www.patreon.com/iamteekay). This content will available as early access for paid subscribers and patrons-only.
+
+After X days or weeks, I’ll publish on [my website](/) and [Substack (free subscribers)](https://teekay.substack.com/) and distribute via [RSS](/rss.xml) and [my Twitter](https://twitter.com/leandrotk_).
+
+Then I'll also share on other platforms like [dev.to](https://dev.to/teekay), [Medium](https://leandrotk.medium.com/), and [Hashnode](https://tk.hashnode.dev/).
+
+In summary, the idea is to:
+
+- give early access to paid Substack subscribers and patrons-only
+- keep everything open and free in the long term
+- cross-post on other platforms as people prefer to access their favorite website
+
+To be compensated for my work and still make it available for everybody is the best of both worlds. This is still an experiment, so let's see if it works well.
+
+You can support my work by
+
+- being a [paid subscriber on Substack](https://teekay.substack.com/)
+- or being a [patron on Patreon](https://www.patreon.com/iamteekay)
+
+My goal is not to be rich. I want to be financially independent to support this website and have more time to dedicate to sharing more well-crafted posts.
+
+I'm also planning to experiment with other media like podcast and youtube. I already have a microphone and I'm saving money to buy a camera to record videos. As I wrote more than 50 pieces of content, I can use them all to provide in other formats like video and audio. So the money from paid subscribers and patrons will be also used to scale my content.

@@ -1,5 +1,19 @@
 export const seriesList = [
   {
+    link: '/series/mastering-javascript',
+    title: 'Mastering JavaScript',
+    description: 'The process to master JavaScript',
+    target: '',
+    rel: '',
+  },
+  {
+    link: '/series/frontend-challenges',
+    title: 'Frontend Challenges',
+    description: 'Design an implementation of frontend challenges',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/data-structures',
     title: 'Data Structures',
     description: 'Theory and implementation',
@@ -21,7 +35,7 @@ export const seriesList = [
     rel: '',
   },
   {
-    link: '/series/algorithms-problem-solving',
+    link: 'https://leandrotk.github.io/series/algorithms-problem-solving',
     title: 'Algorithms Problem Solving',
     description: 'Documenting algorithms problems I solved',
     target: '',

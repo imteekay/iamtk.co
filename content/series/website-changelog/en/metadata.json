@@ -1,0 +1,27 @@
+{
+  "title": "Website Changelog Series",
+  "description": "Everything about this website: from mission to every new feature",
+  "date": "2021-12-30",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/website-changelog/intro.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "The frontend book from increment",
+    "authorHref": "https://unsplash.com/@priscillag",
+    "authorName": "Priscilla Gyamfi"
+  }
+}

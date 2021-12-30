@@ -1,0 +1,19 @@
+{
+  "title": "Building my Legacy through Accessible, Open, and Free content",
+  "description": "Building my legacy through this digital notebook",
+  "date": "2022-01-01",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/website-changelog/fsociety.jpeg",
+    "width": "640",
+    "height": "398",
+    "alt": "fsociety logo",
+    "authorHref": "",
+    "authorName": ""
+  }
+}

@@ -1,4 +1,4 @@
-Some time ago, I wrote about [how I design my life's system](/designing-my-lifes-system/index.html) using mainly Notion. Over the months, I'm getting used to have an open Notion app to use, document, and do absolutely everything there.
+Some time ago, I wrote about [how I design my life's system](/designing-my-lifes-system) using mainly Notion. Over the months, I'm getting used to have an open Notion app to use, document, and do absolutely everything there.
 
 The last month I got to know more about the Individual Development Plan (IDP) by a talk from the company I work now. And I thought it was pretty interesting and I wanted to try, but in my own way.
 
