@@ -27,13 +27,13 @@ export function useSearch({ fields, storeFields, items }: Options) {
 type AutocompletePropTypes = {
   searchTerm: string;
   suggestions: Suggestion[];
-  setSearchTerm: Dispatch<SetStateAction<string>>;
+  updateSearchTerm: Dispatch<SetStateAction<string>>;
 };
 
 export const Autocomplete: FC<AutocompletePropTypes> = ({
   searchTerm,
   suggestions,
-  setSearchTerm,
+  updateSearchTerm,
 }) => {
   return (
     <ReactAutocomplete
@@ -45,8 +45,8 @@ export const Autocomplete: FC<AutocompletePropTypes> = ({
         </div>
       )}
       value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      onSelect={(value) => setSearchTerm(value)}
+      onChange={(e) => updateSearchTerm(e.target.value)}
+      onSelect={(value) => updateSearchTerm(value)}
     />
   );
 };

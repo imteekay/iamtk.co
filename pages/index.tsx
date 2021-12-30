@@ -23,7 +23,7 @@ const Page: NextPage = () => {
       <Autocomplete
         searchTerm={searchTerm}
         suggestions={suggestions}
-        setSearchTerm={setSearchTerm}
+        updateSearchTerm={setSearchTerm}
       />
 
       <Head
