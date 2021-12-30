@@ -1,5 +1,10 @@
 export const postsList = [
   {
+    datetime: '2022-01-01',
+    link: '/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content',
+    title: 'Building my Legacy through Accessible, Open, and Free content',
+  },
+  {
     datetime: '2021-12-27',
     link: '/series/mastering-javascript',
     title: 'Mastering JavaScript Series',
