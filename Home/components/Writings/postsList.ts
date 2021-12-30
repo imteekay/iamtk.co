@@ -15,6 +15,12 @@ export const postsList: Post[] = [
     tags: ['javascript', 'typescript'],
   },
   {
+    datetime: '2022-01-01',
+    link: '/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content',
+    title: 'Building my Legacy through Accessible, Open, and Free content',
+    tags: ['reflaction'],
+  },
+  {
     datetime: '2021-12-27',
     link: '/series/mastering-javascript',
     title: 'Mastering JavaScript Series',
