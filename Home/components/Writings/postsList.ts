@@ -1,4 +1,12 @@
-export const postsList = [
+type Post = {
+  id: number;
+  datetime: string;
+  link: string;
+  title: string;
+  tags: string[];
+};
+
+export const postsList: Post[] = [
   {
     id: 0,
     datetime: '2021-12-27',

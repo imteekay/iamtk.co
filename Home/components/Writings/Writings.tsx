@@ -7,14 +7,14 @@ import { listStyle, titleLinkStyle } from './style';
 import { postsList } from './postsList';
 import { SearchResult } from 'minisearch';
 
+function byDatetime(item1: SearchResult, item2: SearchResult) {
+  if (item1.datetime < item2.datetime) return 1;
+  if (item1.datetime > item2.datetime) return -1;
+  return 0;
+}
+
 function getPosts(searchedItems: SearchResult[]) {
-  return searchedItems.length > 0
-    ? searchedItems.sort((item1, item2) => {
-        if (item1.datetime < item2.datetime) return 1;
-        if (item1.datetime > item2.datetime) return -1;
-        return 0;
-      })
-    : postsList;
+  return searchedItems.length > 0 ? searchedItems.sort(byDatetime) : postsList;
 }
 
 export const Writings: FC = () => {
