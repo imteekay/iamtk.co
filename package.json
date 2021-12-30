@@ -14,11 +14,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@emotion/css": "^11.7.1",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
     "marked": "^4.0.6",
+    "minisearch": "^3.2.0",
     "next": "12.0.5",
     "react": "17.0.2",
+    "react-autocomplete": "^1.8.1",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
@@ -26,6 +29,7 @@
     "@types/marked": "^4.0.1",
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
+    "@types/react-autocomplete": "^1.8.6",
     "eslint": "7",
     "eslint-config-next": "12.0.1",
     "husky": ">=6",
