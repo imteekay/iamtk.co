@@ -6,45 +6,27 @@ import { About } from 'Home/components/About';
 import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
-import { postsList } from 'Home/components/Writings/postsList';
-import { Autocomplete, useSearch } from 'Base/components/Autocomplete';
 
-const Page: NextPage = () => {
-  const { searchTerm, searchedItems, suggestions, setSearchTerm } = useSearch({
-    fields: ['tags'],
-    storeFields: ['title', 'tags'],
-    items: postsList,
-  });
+const Page: NextPage = () => (
+  <>
+    <Head
+      title="TK"
+      description="Learning & Improving with TK"
+      imageUrl="/logo.jpeg"
+    />
 
-  console.log('searchedItems', searchedItems);
+    <SkipLink />
 
-  return (
-    <>
-      <Autocomplete
-        searchTerm={searchTerm}
-        suggestions={suggestions}
-        updateSearchTerm={setSearchTerm}
-      />
-
-      <Head
-        title="TK"
-        description="Learning & Improving with TK"
-        imageUrl="/logo.jpeg"
-      />
-
-      <SkipLink />
-
-      <main id="main">
-        <div className="content">
-          <Title text="TK" />
-          <About />
-          <Writings />
-          <Series />
-          <Projects />
-        </div>
-      </main>
-    </>
-  );
-};
+    <main id="main">
+      <div className="content">
+        <Title text="TK" />
+        <About />
+        <Writings />
+        <Series />
+        <Projects />
+      </div>
+    </main>
+  </>
+);
 
 export default Page;
