@@ -372,3 +372,17 @@ The Date can be fun too. Learn the basic concepts and just play around with it, 
 - [Dating library](https://github.com/leandrotk/dating)
 - [Typescript Learnings 001: Object Destructuring](/series/typescript-learnings/object-destructuring)
 - [Understanding Date and Time in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-date-and-time-in-javascript)
+
+### Javascript
+
+- [JavaScript in Detail: From Beginner to Advanced](https://www.educative.io/courses/javascript-in-detail-from-beginner-to-advanced?aff=x8bV)
+- [Simplifying JavaScript: A Handy Guide for Software Engineers](https://www.educative.io/courses/simplifying-javascript-handy-guide?aff=x8bV)
+- [The Complete Guide to Modern JavaScript](https://www.educative.io/courses/complete-guide-to-modern-javascript?aff=x8bV)
+- [Learn Object-Oriented Programming in JavaScript](https://www.educative.io/courses/learn-object-oriented-programming-in-javascript?aff=x8bV)
+- [JavaScript In Practice: ES6 And Beyond](https://www.educative.io/courses/javascript-in-practice-es6-and-beyond?aff=x8bV)
+- [Data Structures for Coding Interviews in JavaScript](https://www.educative.io/courses/data-structures-coding-interviews-javascript?aff=x8bV)
+- [JavaScript Course by OneMonth](https://mbsy.co/lFtbC)
+- [ES6 Course](https://es6.io/friend/LEANDRO)
+- [Beginner JavaScript Course](https://beginnerjavascript.com/friend/LEANDRO)
+- [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
+- [Rediscovering JavaScript: ES6, ES7 & ES8](https://www.educative.io/courses/rediscovering-javascript?aff=x8bV)
