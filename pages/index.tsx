@@ -7,12 +7,13 @@ import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
 
-import MiniSearch from 'minisearch';
 import { useState } from 'react';
+import MiniSearch from 'minisearch';
+import Autocomplete from 'react-autocomplete';
 import { postsList } from 'Home/components/Writings/postsList';
 
-let miniSearch = new MiniSearch({
-  fields: ['title', 'tags'],
+const miniSearch = new MiniSearch({
+  fields: ['tags'],
   storeFields: ['title', 'tags'],
 });
 
@@ -24,14 +25,21 @@ const Page: NextPage = () => {
   const a = miniSearch.search(searchTerm);
   console.log('a', a);
   console.log('suggestion', miniSearch.autoSuggest(searchTerm));
+
   return (
     <>
-      <input
-        onChange={(event) => {
-          console.log('event.target.value', event.target.value),
-            setSearchTerm(event.target.value);
-        }}
+      <Autocomplete
+        getItemValue={(item) => item.suggestion}
+        items={miniSearch.autoSuggest(searchTerm)}
+        renderItem={(item, isHighlighted) => (
+          <div style={{ background: isHighlighted ? 'black' : 'lightgray' }}>
+            {item.suggestion}
+          </div>
+        )}
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
+
       <Head
         title="TK"
         description="Learning & Improving with TK"
