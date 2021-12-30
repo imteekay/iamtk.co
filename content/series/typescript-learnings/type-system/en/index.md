@@ -118,3 +118,7 @@ printObj({ name: 'TK' }); // it compiles and prints!
 
 - [Typescript Utility Types: Docs](https://www.typescriptlang.org/docs/handbook/utility-types.html)
 - [Typescript Basic Types: Docs](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+- [TypeScript for Front-End Developers](https://www.educative.io/path/typescript-for-front-end-developers?aff=x8bV)
+- [Using TypeScript with React](https://www.educative.io/courses/using-typescript-with-react?aff=x8bV)
+- [Learn TypeScript: The Complete Course for Beginners](https://www.educative.io/courses/learn-typescript-complete-course?aff=x8bV)
+- [Advanced TypeScript Masterclass](https://www.educative.io/courses/advanced-typescript-masterclass?aff=x8bV)

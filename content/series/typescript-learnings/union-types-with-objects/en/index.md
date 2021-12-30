@@ -167,6 +167,10 @@ It works as expected and it also represents the data semantically as these attri
 
 ## Resources
 
+- [TypeScript for Front-End Developers](https://www.educative.io/path/typescript-for-front-end-developers?aff=x8bV)
+- [Using TypeScript with React](https://www.educative.io/courses/using-typescript-with-react?aff=x8bV)
+- [Learn TypeScript: The Complete Course for Beginners](https://www.educative.io/courses/learn-typescript-complete-course?aff=x8bV)
+- [Advanced TypeScript Masterclass](https://www.educative.io/courses/advanced-typescript-masterclass?aff=x8bV)
 - [Possible solution for objects](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-266250230)
 - [Better solution](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-373047380)
 - [Even better solution](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-506946211)

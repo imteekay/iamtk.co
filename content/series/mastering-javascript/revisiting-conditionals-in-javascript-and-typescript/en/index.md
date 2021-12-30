@@ -231,3 +231,5 @@ Great! Now we have a solution abstracting the complexity and getting errors in c
 - [Master JavaScript repo](https://github.com/leandrotk/master-javascript)
 - [Master JavaScript: Conditionals](https://github.com/leandrotk/master-javascript/tree/main/conditionals)
 - [Master JavaScript Series](/series/mastering-javascript)
+- [Learn Object-Oriented Programming in JavaScript](https://www.educative.io/courses/learn-object-oriented-programming-in-javascript?aff=x8bV)
+- [JavaScript in Detail: From Beginner to Advanced](https://www.educative.io/courses/javascript-in-detail-from-beginner-to-advanced?aff=x8bV)
