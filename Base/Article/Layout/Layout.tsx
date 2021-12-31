@@ -4,7 +4,7 @@ import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
 import { HomeLink } from 'Base/Article/HomeLink';
 import { CoverImage } from 'Base/Article/CoverImage';
-import { SocialLinks } from 'Base/Article/SocialLinks';
+import { SocialLinks, ShareButtons } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';
 import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
 import {
@@ -60,6 +60,7 @@ export const Layout: FC<LayoutPropTypes> = ({
 
     <SubstackEmbed />
     <Tags tags={tags} />
+    <ShareButtons />
     <Sponsorship />
   </div>
 );
