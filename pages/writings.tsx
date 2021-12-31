@@ -7,8 +7,8 @@ const Page: NextPage = () => {
   return (
     <>
       <Head
-        title="TK – Writings"
-        description="Learning & Improving with TK – Writings"
+        title="TK —— Writings"
+        description="Learning & Improving with TK —— Writings"
         imageUrl="/logo.jpeg"
       />
 
