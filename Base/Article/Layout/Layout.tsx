@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import Link from 'next/link';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
