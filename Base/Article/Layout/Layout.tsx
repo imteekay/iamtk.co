@@ -8,12 +8,12 @@ import { CoverImage } from 'Base/Article/CoverImage';
 import { SocialLinks, ShareButtons } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';
 import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
+import { mediaQuery } from 'Base/mediaQuery';
 import {
   Tag,
   AlternativeArticle as AlternativeArticleType,
   CoverImage as CoverImageType,
 } from 'src/lib/getPostMetadata';
-import { mediaQuery } from 'Base/mediaQuery';
 
 type LayoutPropTypes = {
   tags: Tag[];
