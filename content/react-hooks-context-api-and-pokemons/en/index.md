@@ -977,5 +977,5 @@ I hope it was good reading! Keep learning and coding!
 - [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
 - [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
 - [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
-- [Practical Redux](https://www.educative.io/courses/practical-redux)
+- [Practical Redux](https://www.educative.io/courses/practical-redux?aff=x8bV)
 - [Learn React by building an App](https://alterclass.io/?ref=5ec57f513c1321001703dcd2)

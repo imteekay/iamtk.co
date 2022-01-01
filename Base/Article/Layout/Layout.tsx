@@ -1,13 +1,14 @@
 import { FC } from 'react';
-import Link from 'next/link';
+import { css } from '@emotion/css';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
 import { HomeLink } from 'Base/Article/HomeLink';
 import { CoverImage } from 'Base/Article/CoverImage';
-import { SocialLinks } from 'Base/Article/SocialLinks';
+import { SocialLinks, ShareButtons } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';
 import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
+import { mediaQuery } from 'Base/mediaQuery';
 import {
   Tag,
   AlternativeArticle as AlternativeArticleType,
@@ -60,7 +61,23 @@ export const Layout: FC<LayoutPropTypes> = ({
     </article>
 
     <SubstackEmbed />
-    <Tags tags={tags} />
+
+    <div
+      className={css`
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        gap: 20px;
+
+        ${mediaQuery['sm']} {
+          flex-direction: row;
+        }
+      `}
+    >
+      <Tags tags={tags} />
+      <ShareButtons />
+    </div>
+
     <Sponsorship />
   </div>
 );

@@ -1,0 +1,27 @@
+{
+  "title": "Refactoring Setup",
+  "description": "Setting up an app with NextJS, TypeScript, and Testing Library",
+  "date": "2022-01-04",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/website-changelog/refactoring-setup.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "fsociety logo",
+    "authorHref": "https://unsplash.com/@aguynamedlukas",
+    "authorName": "Lukas Hellebrand"
+  }
+}

@@ -235,6 +235,10 @@ And we get back to the component, where we map state to props and receive the ne
 
 # Resources
 
+- [TypeScript for Front-End Developers](https://www.educative.io/path/typescript-for-front-end-developers?aff=x8bV)
+- [Using TypeScript with React](https://www.educative.io/courses/using-typescript-with-react?aff=x8bV)
+- [Learn TypeScript: The Complete Course for Beginners](https://www.educative.io/courses/learn-typescript-complete-course?aff=x8bV)
+- [Advanced TypeScript Masterclass](https://www.educative.io/courses/advanced-typescript-masterclass?aff=x8bV)
 - [Beginner JavaScript Course](https://BeginnerJavaScript.com/friend/LEANDRO)
 - [React for Beginners Course](https://ReactForBeginners.com/friend/LEANDRO)
 - [Advanced React Course](https://AdvancedReact.com/friend/LEANDRO)
@@ -260,4 +264,6 @@ And we get back to the component, where we map state to props and receive the ne
 - [JavaScript Fundamentals Before Learning React](https://www.educative.io/courses/javascript-fundamentals-before-learning-react?aff=x8bV)
 - [Reintroducing React: V16 and Beyond](https://www.educative.io/courses/reintroducing-react-v16-beyond?aff=x8bV)
 - [Advanced React Patterns With Hooks](https://www.educative.io/courses/advanced-react-patterns-with-hooks?aff=x8bV)
-- [Practical Redux](https://www.educative.io/courses/practical-redux)
+- [Practical Redux](https://www.educative.io/courses/practical-redux?aff=x8bV)
+- [The Ultimate Guide to Redux](https://www.educative.io/courses/ultimate-guide-to-redux?aff=x8bV)
+- [Intermediate Redux with Redux Toolkit](https://www.educative.io/courses/intermediate-redux-toolkit?aff=x8bV)
