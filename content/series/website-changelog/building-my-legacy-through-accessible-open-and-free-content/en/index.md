@@ -29,7 +29,10 @@ To be compensated for my work and still make it available for everybody is the b
 You can support my work by
 
 - being a [paid subscriber on Substack](https://teekay.substack.com)
-- or being a [patron on Patreon](https://www.patreon.com/iamteekay)
+- being a [patron on Patreon](https://www.patreon.com/iamteekay)
+- or make a one-time donation on [Ko-Fi](https://ko-fi.com/teekay)
+
+By the way, you can take a look at the [Support page](/support).
 
 My goal is not to be rich. I want to be financially independent to support this website and have more time to dedicate to sharing more well-crafted posts.
 
