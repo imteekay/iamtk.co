@@ -1,0 +1,27 @@
+{
+  "title": "A Mental Model to think in TypeScript",
+  "description": "Types can be hard and this long-format essay tries to give a way of thinking about types and TypeScript",
+  "date": "2020-07-19",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/a-mental-model-to-think-in-typescript/cover.jpeg",
+    "width": "592",
+    "height": "439",
+    "alt": "A lonely person sat down looking at the the ocean",
+    "authorHref": "https://unsplash.com/@fabrizioverrecchia",
+    "authorName": "Fabrizio Verrecchia"
+  }
+}
