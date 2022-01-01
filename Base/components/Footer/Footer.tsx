@@ -17,6 +17,9 @@ export const Footer: FC = () => (
             <a href="/writings">Writing</a>
           </li>
           <li>
+            <a href="/support">Support</a>
+          </li>
+          <li>
             <a
               href="https://github.com/leandrotk"
               target="_blank"

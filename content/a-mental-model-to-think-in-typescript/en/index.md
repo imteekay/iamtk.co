@@ -1577,6 +1577,13 @@ I compiled (pun very much intended!) a bunch of resources to help you learn more
 
 Also, if you found the examples on this post useful, I added all of them this repository: [Thinking in Types](https://github.com/leandrotk/thinking-in-types). So you can fork and play with it.
 
+### Courses
+
+- [TypeScript for Front-End Developers](https://www.educative.io/path/typescript-for-front-end-developers?aff=x8bV)
+- [Using TypeScript with React](https://www.educative.io/courses/using-typescript-with-react?aff=x8bV)
+- [Learn TypeScript: The Complete Course for Beginners](https://www.educative.io/courses/learn-typescript-complete-course?aff=x8bV)
+- [Advanced TypeScript Masterclass](https://www.educative.io/courses/advanced-typescript-masterclass?aff=x8bV)
+
 ### Type Systems
 
 - [Type Compatibility](https://www.typescriptlang.org/docs/handbook/type-compatibility.html)

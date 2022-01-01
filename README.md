@@ -1,1 +1,1 @@
-[My Website](https://www.iamtk.co)
+[iamtk.co](https://www.iamtk.co)

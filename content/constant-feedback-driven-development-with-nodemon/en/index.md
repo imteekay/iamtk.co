@@ -65,3 +65,4 @@ For your next project, I really recommend you to play around with this library. 
 ## Resources
 
 - [npm package](https://www.npmjs.com/package/nodemon)
+- [Advanced TypeScript Masterclass](https://www.educative.io/courses/advanced-typescript-masterclass?aff=x8bV)

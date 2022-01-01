@@ -1,0 +1,177 @@
+I created this website a long time ago. At that time, I didn't know any JavaScript framework nor JavaScript, actually. So I made it with Pure HTML and CSS (and some bits of JavaScript).
+
+Running this website was painful to maintain and create new features. If I wanted to create a new feature for the post page, I needed to replicate for all HTML files and it was more than 50 files. In the era of UI components, the DX is so much better. I create one component and reuse it in the entire application. This was I was aiming for.
+
+This is why decided to refactor all my website using React. Why React? Just because I like it and I feel fairly proficient in it.
+
+---
+
+This post is part of this [Website Changelog](/series/website-changelog) and the very first one.
+
+In this post, we'll setup the project with some nice tooling I've been working on these days. It'll be a NextJS application powered by TypeScript and nice devtools like Prettier, Jest, and the Testing Library.
+
+We'll also see how to setup husky to help make our codebase consistent running Prettier on pre-commit. Let's dive in.
+
+## NextJS & TypeScript
+
+NextJS setup with TypeScript is pretty easy. We just need to use its CLI:
+
+```jsx
+yarn create next-app --typescript
+```
+
+And done! We have the whole ready to be run. Just start the dev server and we can see the app running:
+
+```jsx
+yarn dev
+```
+
+Now you're able to access `[localhost:3000](http://localhost:3000)` and see the app running.
+
+It comes with the whole TypeScript initial setup like:
+
+- `tsconfig.json`: the compiler configuration for the TypeScript
+- `next-env.d.ts`: the declaration types for NextJS
+- `_app.tsx`: the main app that runs the pages setup with the extension `.tsx`
+- `index.tsx`: the `/` page as an example of a `.tsx` component
+
+## Prettier
+
+Prettier is an opinionated code formatter. It supports many languages, it's configurable, and it's heavily used in the JavaScript community.
+
+A couple of days ago, Anthony joked about Prettier not respecting himself. And I said that I love prettier for _respecting_ consistency:
+
+[https://twitter.com/leandrotk\_/status/1399090968301801473](https://twitter.com/leandrotk_/status/1399090968301801473)
+
+I think that's the important "word": consistency. When working in a big company with different teams or just many people in the same team, code consistency is key.
+
+To configure Prettier is very simple. Let's take a look:
+
+```bash
+yarn add --dev --exact prettier
+```
+
+Create a file `.prettierrc`:
+
+```json
+{
+  "singleQuote": true,
+  "trailingComma": "all"
+}
+```
+
+And the configuration is pretty much it. To make it work in your editor, you'll probably need to install a plugin or extension. I've been using vscode with Prettier and it looks great.
+
+We can also do other two things to make it more complete:
+
+- Add a `.prettierignore` file to ignore files that we don't want to run Prettier
+
+```json
+node_modules
+.next
+.yarn.lock
+```
+
+For a NextJS project, we'll add the common `node_modules` folder to the ignore file, the `.yarn.lock`, and the `.next` folder that's generated from the NextJS dev build.
+
+- Run prettier on pre-commit to make sure all changes are _Prettier_.
+
+To make this works, we can use lint-staged and husky. The easier way is to run this command:
+
+```json
+npx mrm@2 lint-staged
+```
+
+It'll configure basically everything you need to run prettier on pre-commit. The only thing that I needed to do was adding the important file extensions for this project, more specifically `.tsx` and `.ts`:
+
+```json
+"lint-staged": {
+  "*.{js,ts,tsx}": "eslint --cache --fix",
+  "*.{js,jsx,css,md,ts,tsx}": "prettier --write"
+}
+```
+
+This configuration was added by the command in the `package.json` file. If you add a new file with any of these extensions, it'll run prettier on each file that is in the git staged area before the commit.
+
+Great, now we can make sure the project's code will be consistent from beginning to the end.
+
+## Testing with Jest and Testing Library
+
+Testing is a big part of a project's setup. When building software, we want to ship it with confidence that it really works. Not only now, but across many releases we'll do. Automation is also important in terms of velocity.
+
+To be able to have this confidence, I always rely on Jest, a testing framework, and the Testing Library + its helpers to do the job. First jest:
+
+```bash
+yarn add -D jest @types/jest babel-jest jest-axe @types/jest-axe
+```
+
+- `jest`: the testing framework
+- `@types/jest`: the types to work well with TypeScript
+- `babel-jest`: compiles JavaScript code for the tests files
+- `jest-axe`: a custom Jest matcher to handle accessibility testing
+- `@types/jest-axe`: the types to work well with TypeScript
+
+After installing all the necessary dependencies, we need to add the configuration.
+
+`jest.setup.js`:
+
+```jsx
+import 'jest-axe/extend-expect';
+```
+
+`jest.config.js`:
+
+```jsx
+module.exports = {
+  setupFilesAfterEnv: ['./jest.setup.js'],
+  testEnvironment: 'jsdom',
+};
+```
+
+`.babelrc`:
+
+```json
+{
+  "presets": ["next/babel"]
+}
+```
+
+`package.json`:
+
+```json
+{
+  ...
+	"test": "jest",
+	"test:watch": "jest --watch"
+	...
+}
+```
+
+And now we are able to run our tests by calling these commands:
+
+```bash
+yarn test
+yarn test:watch
+```
+
+For the Testing Library, it's simpler. We just need to install it and start using it.
+
+```json
+yarn add -D @testing-library/react @testing-library/jest-dom
+```
+
+- `@testing-library/react`: the testing tool to test react components
+- `@testing-library/jest-dom`: it provides custom matchers for jest. I really like to use the `toBeInTheDocument` matcher for component testing.
+
+The only configuration I needed to do was adding the `jest-dom` to the testing setup to enable the matchers for test files.
+
+`jest.setup.js`:
+
+```jsx
+import '@testing-library/jest-dom';
+import 'jest-axe/extend-expect';
+```
+
+I didn't setup Cypress because I want to focus on the search implementation first, but we'll see in the last episodes of this series that we'll try to implement an integration test with Cypress to test our app.
+
+## Final words

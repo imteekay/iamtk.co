@@ -208,6 +208,12 @@ p.no-margin-bottom {
   padding: 1.5em;
 }
 
+.content hr {
+  border: 0.5px solid #ccc;
+  width: 80px;
+  margin: 40px auto;
+}
+
 pre {
   font-family: 'Menlo', 'Meslo LG', monospace;
   font-size: 13px;
