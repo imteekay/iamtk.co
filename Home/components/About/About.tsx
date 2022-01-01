@@ -10,7 +10,7 @@ export const About: FC = () => (
         className="icon"
         target="_blank"
         rel="noopener noreferrer"
-        href="https://github.com/leandrotk"
+        href="https://github.com/imteekay"
         title="github"
       >
         building on github <span className="fab fa-github" />

@@ -173,6 +173,6 @@ For the following post, we'll talk about a simple implementation of the home pag
 
 ## Resources
 
-- [Project Set up + Home: Pull Request](https://github.com/leandrotk/mercari-search/pull/1/)
-- [Configure husky and lint-staged to run prettier on pre-commit: Pull Request](https://github.com/leandrotk/mercari-search/pull/3)
-- [mercari-search repo](https://github.com/leandrotk/mercari-search)
+- [Project Set up + Home: Pull Request](https://github.com/imteekay/mercari-search/pull/1/)
+- [Configure husky and lint-staged to run prettier on pre-commit: Pull Request](https://github.com/imteekay/mercari-search/pull/3)
+- [mercari-search repo](https://github.com/imteekay/mercari-search)

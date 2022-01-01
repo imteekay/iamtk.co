@@ -45,7 +45,7 @@ To create the ideal template, I took a look of all variables I needed to create:
 - `article`
 - `keywords`
 
-With these variables, I created the [template](https://github.com/leandrotk/publisher/blob/master/examples/template.html).
+With these variables, I created the [template](https://github.com/imteekay/publisher/blob/master/examples/template.html).
 
 To pass some of this information to build the HTML, I created a `json` file as the article config: `article.config.json`. There I have something like this:
 

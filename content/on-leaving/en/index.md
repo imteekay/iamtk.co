@@ -89,7 +89,7 @@ I have a lot of plans for my life, experiences I want to have, and things I want
 - _Books_: I keep [collecting books](https://www.goodreads.com/iamteekay) to help me understand the world.
 - _Traveling_: embracing the culture won't happen in my apartment. I want to travel as much as possible and get to know the beautiful places in Japan's provinces, meet new people.
 - _Writing_: I've been blogging for 7 years now. But mostly about programming. I want to expand the topics and write about other things I find interesting like, culture, languages, travel.
-- _Tech_: I was in backend, fullstack, and frontend roles. I want to have time (and energy) to learn more about system programming and data science (I want to learn these things with my future colleagues as SmartNews is well-known as a Machine Learning company). I'm also doing [independent research on web performance](https://github.com/leandrotk/web-performance-research), [web development](https://github.com/leandrotk/webdev-research), and [devtools](https://github.com/leandrotk/devtools-research).
+- _Tech_: I was in backend, fullstack, and frontend roles. I want to have time (and energy) to learn more about system programming and data science (I want to learn these things with my future colleagues as SmartNews is well-known as a Machine Learning company). I'm also doing [independent research on web performance](https://github.com/imteekay/web-performance-research), [web development](https://github.com/imteekay/webdev-research), and [devtools](https://github.com/imteekay/devtools-research).
 
 Well, I think I have a lot of things to do and my life is just starting. I'm pretty excited about the future and my journey to become the version of myself.
 
@@ -97,8 +97,8 @@ Well, I think I have a lot of things to do and my life is just starting. I'm pre
 
 ## Resources
 
-- [Devtools Research](https://github.com/leandrotk/devtools-research)
-- [Web Performance Research](https://github.com/leandrotk/web-performance-research)
-- [Web Development Research](https://github.com/leandrotk/webdev-research)
+- [Devtools Research](https://github.com/imteekay/devtools-research)
+- [Web Performance Research](https://github.com/imteekay/web-performance-research)
+- [Web Development Research](https://github.com/imteekay/webdev-research)
 - [Designing my life's System](/designing-my-lifes-system)
 - [Histórias do Japão](https://leandrotk.medium.com/hist%C3%B3rias-do-jap%C3%A3o-13a0cddd9ac)

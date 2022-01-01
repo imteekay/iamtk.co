@@ -226,7 +226,7 @@ increment(9); // 10
 
 ---
 
-When I was implementing the [Lazy Cypress](https://github.com/leandrotk/lazy-cypress), a npm library to record the user behavior in a form page and generate Cypress testing code, I want to build a function to generate this string `input[data-testid="123"]`. So here we have the element (`input`), the attribute (`data-testid`), and the value (`123`). Interpolating this string in JavaScript would look like this: `${element}[${attribute}="${value}"]`.
+When I was implementing the [Lazy Cypress](https://github.com/imteekay/lazy-cypress), a npm library to record the user behavior in a form page and generate Cypress testing code, I want to build a function to generate this string `input[data-testid="123"]`. So here we have the element (`input`), the attribute (`data-testid`), and the value (`123`). Interpolating this string in JavaScript would look like this: `${element}[${attribute}="${value}"]`.
 
 the first implementation in mind is to receive these three values as parameters and return the interpolated string above.
 

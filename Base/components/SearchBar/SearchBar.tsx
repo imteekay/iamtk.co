@@ -80,7 +80,7 @@ export const SearchBar: FC = ({ children }) => {
       shortcut: ['f', 'g'],
       keywords: 'go-github',
       section: 'Social',
-      perform: () => window.open('https://github.com/leandrotk', '_blank'),
+      perform: () => window.open('https://github.com/imteekay', '_blank'),
       icon: <Icon src="/github.svg" />,
     },
     {

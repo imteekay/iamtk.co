@@ -16,7 +16,7 @@ export const SocialLinks: FC = () => (
     <a
       className="icon"
       target="_blank"
-      href="https://github.com/leandrotk"
+      href="https://github.com/imteekay"
       title="github"
       rel="noreferrer"
     >

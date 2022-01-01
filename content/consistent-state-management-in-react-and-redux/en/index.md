@@ -128,25 +128,25 @@ If you try adding new items to the readonly array, you will have an error "Prope
 
 ## Benchmark: Immutable.js vs Native APIs
 
-We did some [benchmarks to compare the PWA with and without Immutable.js](https://github.com/leandrotk/javascript-immutable-data-benchmarks). In the first benchmark, we decided to compare native JavaScript and Immutable.js APIs: get, get-in, set, and set-in. And understand how it looks like to transform data structure with fromJS and toJS functions.
+We did some [benchmarks to compare the PWA with and without Immutable.js](https://github.com/imteekay/javascript-immutable-data-benchmarks). In the first benchmark, we decided to compare native JavaScript and Immutable.js APIs: get, get-in, set, and set-in. And understand how it looks like to transform data structure with fromJS and toJS functions.
 
-**[Get - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/get.js)**: getting the first attribute of an object is way more costly for the Immutable.js API. 7 times (in milliseconds) running with 1 million cycles and 5 million cycles. Getting the first element of an array is closer compared to those APIs.
+**[Get - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/get.js)**: getting the first attribute of an object is way more costly for the Immutable.js API. 7 times (in milliseconds) running with 1 million cycles and 5 million cycles. Getting the first element of an array is closer compared to those APIs.
 
 ![Object.get results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/get.png)
 
-**[Get-In - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/getin.js)**: getting a nested attribute for an object or a nested element of an array is way more costly for the Immutable.js API than the native one. For both 1 and 5 million cycles.
+**[Get-In - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/getin.js)**: getting a nested attribute for an object or a nested element of an array is way more costly for the Immutable.js API than the native one. For both 1 and 5 million cycles.
 
 ![Object.getIn results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/getin.png)
 
-**[Set - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/set.js)**: setting a new value to an object attribute is way more costly for the native JavaScript API. But using the set method, we can still work with native Objects and drastically decrease the milliseconds. For the array, it's closer, but it can be better with the set method.
+**[Set - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/set.js)**: setting a new value to an object attribute is way more costly for the native JavaScript API. But using the set method, we can still work with native Objects and drastically decrease the milliseconds. For the array, it's closer, but it can be better with the set method.
 
 ![Object.set results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/set.png)
 
-**[Set-In - Object and Array](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/setin.js)**: for both objects and arrays, it's better to use the native JavaScript API instead of the Immutable.js data structures and methods.
+**[Set-In - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/setin.js)**: for both objects and arrays, it's better to use the native JavaScript API instead of the Immutable.js data structures and methods.
 
 ![Object.setIn results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/setin.png)
 
-**[fromJS](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/fromJS.js) & [toJS](https://github.com/leandrotk/javascript-immutable-data-benchmarks/blob/master/src/toJS.js)**: we can see that the fromJS function can be costly when transforming native JavaScript data structures to Immutable DS. toJS is way less costly, but every time we need to get a value, in the selector, for example, we use toJS and it can influence performance.
+**[fromJS](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/fromJS.js) & [toJS](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/toJS.js)**: we can see that the fromJS function can be costly when transforming native JavaScript data structures to Immutable DS. toJS is way less costly, but every time we need to get a value, in the selector, for example, we use toJS and it can influence performance.
 
 ![fromJS toJS](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/transformation.png)
 
@@ -230,7 +230,7 @@ And we get back to the component, where we map state to props and receive the ne
 - Type safety to data flow: since most of our data flow happens in the redux lifecycle we get type safety, at least in compile-time, to our data - where most of our bugs originate.
 - If we choose to remove Immutable.js (fromJS and toJS) from the store state, we can still use cool functions like [mergeDeep](https://immutable-js.github.io/immutable-js/docs/#/mergeDeep) without an Immutable Map/Array/DS, but only using Immutable.js version 4.
 - Performance optimization when removing Immutable in favor of Typescript readonly
-  - [Immutable vs JS Benchmark](https://github.com/leandrotk/javascript-immutable-data-benchmarks): get, get-in, set, set-in, fromJS, toJS.
+  - [Immutable vs JS Benchmark](https://github.com/imteekay/javascript-immutable-data-benchmarks): get, get-in, set, set-in, fromJS, toJS.
   - Google Lighthouse: a slight improvement when running Google Lighthouse without Immutable.js.
 
 # Resources
@@ -257,7 +257,7 @@ And we get back to the component, where we map state to props and receive the ne
 - [Read-only Typescript](https://mariusschulz.com/blog/read-only-properties-in-typescript)
 - [Typescript Read-only doesn't fully replace Immutable](https://stackoverflow.com/a/55906256/11314146)
 - [Deep ReadOnly Objects](https://stackoverflow.com/a/49670389/11314146)
-- [Native JavaScript vs Immutable.js APIs](https://github.com/leandrotk/javascript-immutable-data-benchmarks)
+- [Native JavaScript vs Immutable.js APIs](https://github.com/imteekay/javascript-immutable-data-benchmarks)
 - [io-ts](https://github.com/gcanti/io-ts)
 - [Typescript and jest mock](https://klzns.github.io/how-to-use-type-script-and-jest-mocks/)
 - [The Road to learn React](https://www.educative.io/courses/the-road-to-learn-react?aff=x8bV)

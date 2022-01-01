@@ -967,7 +967,7 @@ I hope it was good reading! Keep learning and coding!
 
 - [React Docs: Context](https://reactjs.org/docs/context.html)
 - [React Docs: Hooks](https://reactjs.org/docs/hooks-reference.html)
-- [Pokemon Hooks side-project: source code](https://github.com/leandrotk/pokehooks-labs)
+- [Pokemon Hooks side-project: source code](https://github.com/imteekay/pokehooks-labs)
 - [Beginner JavaScript Course](https://BeginnerJavaScript.com/friend/LEANDRO)
 - [React for Beginners Course](https://ReactForBeginners.com/friend/LEANDRO)
 - [Advanced React Course](https://AdvancedReact.com/friend/LEANDRO)
