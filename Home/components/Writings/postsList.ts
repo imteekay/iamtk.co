@@ -8,6 +8,13 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-01-04',
+    link: '/series/website-changelog/refactoring-setup',
+    title:
+      'Refactoring Setup: NextJS, TypeScript, Prettier, and Testing Library',
+    tags: ['javascript', 'typescript'],
+  },
+  {
     datetime: '2022-01-03',
     link: '/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript',
     title:
