@@ -174,4 +174,95 @@ import 'jest-axe/extend-expect';
 
 I didn't setup Cypress because I want to focus on the search implementation first, but we'll see in the last episodes of this series that we'll try to implement an integration test with Cypress to test our app.
 
+## Continuous Integration
+
+I also automated some code checking with the help of Github actions. I created a workflow to run on every push and the ideas is to type check my code, check code format, run lint, and run tests.
+
+To start, I run an action to setup the node version based on my `.nvmrc`.
+
+```yaml
+- uses: actions/checkout@v2
+- name: Read .nvmrc
+  run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+  id: nvm
+
+- name: Use Node.js (.nvmrc)
+  uses: actions/setup-node@v2
+  with:
+    node-version: '${{ steps.nvm.outputs.NVMRC }}'
+```
+
+And the machine is able to install all dependencies.
+
+```yaml
+- name: Install dependencies
+  run: yarn
+```
+
+And then the following steps I mentioned. Type check code with Typescript.
+
+```yaml
+- name: Type check code w/ TypeScript
+  run: yarn typecheck
+```
+
+Check code format with Prettier:
+
+```yaml
+- name: Check code format w/ Prettier
+  run: yarn prettier:check
+```
+
+Analyze code with ESLint:
+
+```yaml
+- name: Analyze code w/ ESLint
+  run: yarn lint
+```
+
+Test code with Jest:
+
+```yaml
+- name: Test code w/ Jest
+  run: yarn test
+```
+
+And this is the entire file.
+
+```yaml
+name: Push CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Read .nvmrc
+        run: echo "##[set-output name=NVMRC;]$(cat .nvmrc)"
+        id: nvm
+
+      - name: Use Node.js (.nvmrc)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Type check code w/ TypeScript
+        run: yarn typecheck
+
+      - name: Check code format w/ Prettier
+        run: yarn prettier:check
+
+      - name: Analyze code w/ ESLint
+        run: yarn lint
+```
+
+In the future, I have a task to implement integration tests with Cypress and gain more confidence when shipping new features or changes. And it will requires me to add a new step to run cypress tests on CI as well.
+
 ## Final words
+
+I'm pretty happy with this new setup. I'm even happier that the DX will improve a lot and it will enable me to improve the website and write more well-crafted content for everybody.
