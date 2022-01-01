@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { css } from '@emotion/css';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
@@ -59,8 +60,17 @@ export const Layout: FC<LayoutPropTypes> = ({
     </article>
 
     <SubstackEmbed />
-    <Tags tags={tags} />
-    <ShareButtons />
+
+    {/* <div
+      className={css`
+        display: flex;
+        justify-content: space-between;
+      `}
+    >
+      <Tags tags={tags} />
+      <ShareButtons />
+    </div> */}
+
     <Sponsorship />
   </div>
 );

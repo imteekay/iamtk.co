@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { Icon } from './Icon';
+import { css } from '@emotion/css';
+import { Icon } from '../Icon';
 
-const shareButtonsStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '8px',
-};
+const shareButtonsStyle = css`
+  display: 'flex';
+  alignitems: 'center';
+  gap: '8px';
+`;
 
 export const ShareButtons: FC = () => {
   const router = useRouter();
@@ -17,9 +18,12 @@ export const ShareButtons: FC = () => {
   const facebookUrl = `https://www.facebook.com/sharer.php?u=${path}`;
 
   return (
-    <div style={shareButtonsStyle}>
+    <div className={shareButtonsStyle}>
       <a
-        className="icon"
+        className={css`
+          display: inline-block;
+          background: none;
+        `}
         href={twitterUrl}
         target="_blank"
         title="twitter share button"
@@ -28,7 +32,10 @@ export const ShareButtons: FC = () => {
         <Icon src="/twitter.svg" />
       </a>
       <a
-        className="icon"
+        className={css`
+          display: inline-block;
+          background: none;
+        `}
         href={linkedinUrl}
         target="_blank"
         title="linkedin share button"
@@ -37,7 +44,10 @@ export const ShareButtons: FC = () => {
         <Icon src="/linkedin.svg" />
       </a>
       <a
-        className="icon"
+        className={css`
+          display: inline-block;
+          background: none;
+        `}
         href={facebookUrl}
         target="_blank"
         title="facebook share button"
@@ -48,3 +58,5 @@ export const ShareButtons: FC = () => {
     </div>
   );
 };
+
+export default ShareButtons;

@@ -1,2 +1,3 @@
+import ShareButtons from './ShareButtons';
 export { SocialLinks } from './SocialLinks';
-export { ShareButtons } from './ShareButtons';
+export { ShareButtons };
