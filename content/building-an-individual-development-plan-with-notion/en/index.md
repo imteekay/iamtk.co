@@ -117,6 +117,6 @@ Today the whole page looks like this:
 
 First thanks for reading my blog post. I feel amazing that I'm able to share my ideas, learnings, and maybe help other people.
 
-Feel free to use the ideas from this post, [share with me](https://twitter.com/leandrotk_) your own ideas too, and keep learning!
+Feel free to use the ideas from this post, [share with me](https://twitter.com/wordsofteekay) your own ideas too, and keep learning!
 
 Until next time.

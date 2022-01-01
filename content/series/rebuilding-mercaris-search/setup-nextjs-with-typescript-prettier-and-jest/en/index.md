@@ -33,7 +33,7 @@ Prettier is an opinionated code formatter. It supports many languages, it's conf
 
 A couple of days ago, Anthony joked about Prettier not respecting himself. And I said that I love prettier for _respecting_ consistency:
 
-[https://twitter.com/leandrotk\_/status/1399090968301801473](https://twitter.com/leandrotk_/status/1399090968301801473)
+[https://twitter.com/leandrotk\_/status/1399090968301801473](https://twitter.com/wordsofteekay/status/1399090968301801473)
 
 I think that's the important "word": consistency. When working in a big company with different teams or just many people in the same team, code consistency is key.
 

@@ -22,7 +22,7 @@ export const About: FC = () => (
         className="icon"
         target="_blank"
         rel="noopener noreferrer"
-        href="https://twitter.com/leandrotk_"
+        href="https://twitter.com/wordsofteekay"
         title="twitter"
       >
         thoughts on twitter <span className="fab fa-twitter" />

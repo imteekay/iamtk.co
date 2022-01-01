@@ -89,7 +89,7 @@ export const SearchBar: FC = ({ children }) => {
       shortcut: ['f', 't'],
       keywords: 'go-twitter',
       section: 'Social',
-      perform: () => window.open('https://twitter.com/leandrotk_', '_blank'),
+      perform: () => window.open('https://twitter.com/wordsofteekay', '_blank'),
       icon: <Icon src="/twitter.svg" />,
     },
     {

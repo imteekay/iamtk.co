@@ -81,7 +81,7 @@ As Kobe Bryant said, [failure doesn't exist](https://www.youtube.com/watch?v=js8
 
 I usually have two different pains: the pain of discipline or the pain of regret. And I want to always consciously choose the pain of discipline.
 
-I have a lot of plans for my life, experiences I want to have, and things I want to learn. [I don't see myself settling down on things I know](https://twitter.com/leandrotk_/status/1443936035105292288), and I want to use this intellectual vitality to get to know everything. With no priority in mind:
+I have a lot of plans for my life, experiences I want to have, and things I want to learn. [I don't see myself settling down on things I know](https://twitter.com/wordsofteekay/status/1443936035105292288), and I want to use this intellectual vitality to get to know everything. With no priority in mind:
 
 - _Learn Japanese_ (日本語のべんきょうがんばてね！)
 - _Photography_: I can't wait to take photos of the beautiful city of Tokyo.

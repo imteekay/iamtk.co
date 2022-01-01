@@ -6,7 +6,7 @@ export const SocialLinks: FC = () => (
     <a
       className="icon"
       target="_blank"
-      href="https://twitter.com/leandrotk_"
+      href="https://twitter.com/wordsofteekay"
       title="twitter"
       rel="noreferrer"
     >
