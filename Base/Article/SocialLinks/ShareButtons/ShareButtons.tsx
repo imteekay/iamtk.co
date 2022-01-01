@@ -4,9 +4,18 @@ import { css } from '@emotion/css';
 import { Icon } from '../Icon';
 
 const shareButtonsStyle = css`
-  display: 'flex';
-  alignitems: 'center';
-  gap: '8px';
+  display: flex;
+  alignitems: center;
+  gap: 8px;
+`;
+
+const iconLink = css`
+  display: inline-block;
+  background: none;
+
+  &:hover {
+    background: none;
+  }
 `;
 
 export const ShareButtons: FC = () => {
@@ -20,10 +29,7 @@ export const ShareButtons: FC = () => {
   return (
     <div className={shareButtonsStyle}>
       <a
-        className={css`
-          display: inline-block;
-          background: none;
-        `}
+        className={iconLink}
         href={twitterUrl}
         target="_blank"
         title="twitter share button"
@@ -32,10 +38,7 @@ export const ShareButtons: FC = () => {
         <Icon src="/twitter.svg" />
       </a>
       <a
-        className={css`
-          display: inline-block;
-          background: none;
-        `}
+        className={iconLink}
         href={linkedinUrl}
         target="_blank"
         title="linkedin share button"
@@ -44,10 +47,7 @@ export const ShareButtons: FC = () => {
         <Icon src="/linkedin.svg" />
       </a>
       <a
-        className={css`
-          display: inline-block;
-          background: none;
-        `}
+        className={iconLink}
         href={facebookUrl}
         target="_blank"
         title="facebook share button"

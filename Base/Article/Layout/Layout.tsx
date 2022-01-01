@@ -13,6 +13,7 @@ import {
   AlternativeArticle as AlternativeArticleType,
   CoverImage as CoverImageType,
 } from 'src/lib/getPostMetadata';
+import { mediaQuery } from 'Base/mediaQuery';
 
 type LayoutPropTypes = {
   tags: Tag[];
@@ -61,15 +62,21 @@ export const Layout: FC<LayoutPropTypes> = ({
 
     <SubstackEmbed />
 
-    {/* <div
+    <div
       className={css`
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
+        gap: 20px;
+
+        ${mediaQuery['sm']} {
+          flex-direction: row;
+        }
       `}
     >
       <Tags tags={tags} />
       <ShareButtons />
-    </div> */}
+    </div>
 
     <Sponsorship />
   </div>
