@@ -84,7 +84,8 @@ article blockquote::before {
 a,
 article a {
   color: white;
-  text-decoration-color: rgb(168, 168, 168);
+  text-decoration-color: rgb(209 209 209);
+  text-decoration-thickness: 2px;
 }
 
 article .series ul,
