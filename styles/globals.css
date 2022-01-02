@@ -83,17 +83,8 @@ article blockquote::before {
 
 a,
 article a {
-  text-decoration: none;
   color: white;
-  background-repeat: repeat-x;
-  background-position: bottom;
-  background-size: 100% 6px;
-  background-image: linear-gradient(
-    transparent,
-    transparent 5px,
-    white 5px,
-    white
-  );
+  text-decoration-color: rgb(168, 168, 168);
 }
 
 article .series ul,
@@ -254,12 +245,7 @@ a.link {
 }
 
 a:hover {
-  background-image: linear-gradient(
-    transparent,
-    transparent 4px,
-    white 4px,
-    white
-  );
+  text-decoration-color: white;
 }
 
 .footer {

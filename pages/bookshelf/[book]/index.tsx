@@ -17,9 +17,10 @@ interface Params extends ParsedUrlQuery {
 type PageProps = {
   postContent: string;
   postMetadata: PostMetadata;
+  minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
+const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
   return (
     <>
       <Head
@@ -32,6 +33,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
         title={postMetadata.title}
         date={postMetadata.date}
         alternativeArticle={postMetadata.alternativeArticle}
+        minutes={minutes}
         showSocialLinks
         coverImage={{
           src: postMetadata.coverImage.src,
@@ -59,13 +61,14 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
   const { book } = context.params!;
-  const postContent = getNestedPostContent('bookshelf', book);
+  const { postContent, minutes } = getNestedPostContent('bookshelf', book);
   const postMetadata = getNestedPostMetadata('bookshelf', book);
 
   return {
     props: {
       postContent,
       postMetadata,
+      minutes,
     },
   };
 };

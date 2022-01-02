@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import { marked } from 'marked';
+import readingTime from 'reading-time';
 import { Locale } from 'src/types/Locale';
 
 function highlight(code: string, lang: string) {
@@ -28,10 +29,14 @@ export function getPostContent(slug: string, locale: string = 'en') {
   const postsDir = path.join(process.cwd(), 'content');
   const postPath = path.join(postsDir, slug, locale, 'index.md');
   const postContent = fs.readFileSync(postPath, 'utf8');
+  const { minutes } = readingTime(postContent);
 
   setupHighlight();
 
-  return marked.parse(postContent);
+  return {
+    postContent: marked.parse(postContent),
+    minutes: Math.round(minutes),
+  };
 }
 
 export function getNestedPostContent(
@@ -42,10 +47,14 @@ export function getNestedPostContent(
   const postsDir = path.join(process.cwd(), 'content', folder);
   const postPath = path.join(postsDir, post, locale, 'index.md');
   const postContent = fs.readFileSync(postPath, 'utf8');
+  const { minutes } = readingTime(postContent);
 
   setupHighlight();
 
-  return marked.parse(postContent);
+  return {
+    postContent: marked.parse(postContent),
+    minutes: Math.round(minutes),
+  };
 }
 
 export function getSeriesPostContent(
@@ -56,8 +65,12 @@ export function getSeriesPostContent(
   const postsDir = path.join(process.cwd(), 'content', 'series');
   const postPath = path.join(postsDir, series, seriesItem, locale, 'index.md');
   const postContent = fs.readFileSync(postPath, 'utf8');
+  const { minutes } = readingTime(postContent);
 
   setupHighlight();
 
-  return marked.parse(postContent);
+  return {
+    postContent: marked.parse(postContent),
+    minutes: Math.round(minutes),
+  };
 }
