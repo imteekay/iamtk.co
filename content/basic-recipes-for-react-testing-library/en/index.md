@@ -12,7 +12,7 @@ But tests only give confidence if we add tests that make sense. So it's importan
 
 > Side note: In my opinion, having bad tests is worse than having any tests at all. Without tests, you are aware that you need tests in the future or that you will need to manually test your software before shipping to production. With bad tests, you think the tests cover good parts of your product, but they actually don't.
 
-Thinking about this, I wanted to play around with React Testing Library to provide good examples of what and how to test properly. So I created a playground to, well, [play with the Testing Library in some different contexts](https://github.com/leandrotk/react-testing-library-recipes).
+Thinking about this, I wanted to play around with React Testing Library to provide good examples of what and how to test properly. So I created a playground to, well, [play with the Testing Library in some different contexts](https://github.com/imteekay/react-testing-library-recipes).
 
 So, for this post, we will talk about theses topics:
 

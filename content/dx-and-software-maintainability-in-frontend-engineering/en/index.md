@@ -38,7 +38,7 @@ As a "one-person team", I understood that if I really wanted to have a real impa
 
 Before start working on this project, I worked on other 4 different products at QuintoAndar. They were all different in terms of business contexts and clients, but very similar when it comes to tech stack and technical challenges.
 
-Over time, I noticed the similarities and started to document the same technical debts, [reimagining future architectures](/react-hooks-context-api-and-pokemons), [building abstractions](/building-an-abstraction-for-react-internationalization-messages) that could be reused across the organization, proposing new ways to handle [data contracts](/thinking-in-data-contracts) and [consistent state management](/consistent-state-management-in-react-and-redux), build [tools to improve DX](https://github.com/leandrotk/laziness), etc.
+Over time, I noticed the similarities and started to document the same technical debts, [reimagining future architectures](/react-hooks-context-api-and-pokemons), [building abstractions](/building-an-abstraction-for-react-internationalization-messages) that could be reused across the organization, proposing new ways to handle [data contracts](/thinking-in-data-contracts) and [consistent state management](/consistent-state-management-in-react-and-redux), build [tools to improve DX](https://github.com/imteekay/laziness), etc.
 
 They were all frontend engineering challenges I encountered on my way by building different products. It was a good starting point to have these initial ideas in my backlog to start exploring. But it was very limited.
 

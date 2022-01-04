@@ -141,5 +141,5 @@ For the following post, we'll talk about the implementation of the search page, 
 
 ## Resources
 
-- [Home & Menu Pull Request](https://github.com/leandrotk/mercari-search/pull/1)
-- [mercari-search repo](https://github.com/leandrotk/mercari-search)
+- [Home & Menu Pull Request](https://github.com/imteekay/mercari-search/pull/1)
+- [mercari-search repo](https://github.com/imteekay/mercari-search)

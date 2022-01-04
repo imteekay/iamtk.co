@@ -4,9 +4,9 @@ One day I came across a [tweet](https://twitter.com/larimaza/status/127574767098
 
 As a software engineer that learned Python, Ruby, Javascript, and Clojure first, when I tried C++, it was a horror movie. I couldn't do much, so counterproductive, and frustrating. Maybe because I was doing everything wrong and I didn't understand types the right way.
 
-But even though I had so many problems, I could implement a bunch of [algorithms and data structures](https://github.com/leandrotk/algorithms).
+But even though I had so many problems, I could implement a bunch of [algorithms and data structures](https://github.com/imteekay/algorithms).
 
-Now I'm using more and more Typescript in my day-to-today job and [my side projects](https://github.com/leandrotk/laziness), I feel I'm more prepared to confront types. Actually, not confront, but use them in my favor.
+Now I'm using more and more Typescript in my day-to-today job and [my side projects](https://github.com/imteekay/laziness), I feel I'm more prepared to confront types. Actually, not confront, but use them in my favor.
 
 This post is my attempt to help developers think more in types and understand this mental model.
 
@@ -1414,7 +1414,7 @@ Nice!
 
 The intersection type is a bit different, but it can also be used to combine existing types.
 
-When I was implementing a web app to [apply my studies on UX](https://github.com/leandrotk/ux-studies), I needed to create a prop type for the Image component.
+When I was implementing a web app to [apply my studies on UX](https://github.com/imteekay/ux-studies), I needed to create a prop type for the Image component.
 
 I had the type `ImageUrl` from the product type:
 
@@ -1575,7 +1575,7 @@ As the article is coming to an end, I want to just add the final thoughts, learn
 
 I compiled (pun very much intended!) a bunch of resources to help you learn more about programming languages, type systems, and the type mental model.
 
-Also, if you found the examples on this post useful, I added all of them this repository: [Thinking in Types](https://github.com/leandrotk/thinking-in-types). So you can fork and play with it.
+Also, if you found the examples on this post useful, I added all of them this repository: [Thinking in Types](https://github.com/imteekay/thinking-in-types). So you can fork and play with it.
 
 ### Courses
 

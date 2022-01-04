@@ -22,6 +22,7 @@ type LayoutPropTypes = {
   showSocialLinks?: boolean;
   alternativeArticle: AlternativeArticleType;
   coverImage: CoverImageType;
+  minutes: number;
 };
 
 export const Layout: FC<LayoutPropTypes> = ({
@@ -32,6 +33,7 @@ export const Layout: FC<LayoutPropTypes> = ({
   showSocialLinks = false,
   coverImage,
   alternativeArticle,
+  minutes,
 }) => (
   <div className="content">
     <HomeLink />
@@ -42,7 +44,12 @@ export const Layout: FC<LayoutPropTypes> = ({
     >
       <header>
         <Title text={title} />
-        <Meta date={date} tags={tags} alternativeArticle={alternativeArticle} />
+        <Meta
+          date={date}
+          tags={tags}
+          alternativeArticle={alternativeArticle}
+          minutes={minutes}
+        />
       </header>
 
       {coverImage.src && (

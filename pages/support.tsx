@@ -65,7 +65,7 @@ const Page: NextPage = () => {
               Follow me on{' '}
               <a
                 target="_blank"
-                href="https://twitter.com/leandrotk_"
+                href="https://twitter.com/wordsofteekay"
                 title="twitter"
                 rel="noreferrer"
               >
@@ -76,7 +76,7 @@ const Page: NextPage = () => {
               Follow me on{' '}
               <a
                 target="_blank"
-                href="https://github.com/leandrotk"
+                href="https://github.com/imteekay"
                 title="github"
                 rel="noreferrer"
               >

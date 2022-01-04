@@ -369,7 +369,7 @@ The Date can be fun too. Learn the basic concepts and just play around with it, 
 - [Date - JavaScript | MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)
 - [Ruby on Rails Date API](https://api.rubyonrails.org/classes/Date.html)
 - [Ruby Date API](https://ruby-doc.org/stdlib-2.7.1/libdoc/date/rdoc/Date.html)
-- [Dating library](https://github.com/leandrotk/dating)
+- [Dating library](https://github.com/imteekay/dating)
 - [Typescript Learnings 001: Object Destructuring](/series/typescript-learnings/object-destructuring)
 - [Understanding Date and Time in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-date-and-time-in-javascript)
 

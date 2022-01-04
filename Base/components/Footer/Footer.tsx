@@ -21,7 +21,7 @@ export const Footer: FC = () => (
           </li>
           <li>
             <a
-              href="https://github.com/leandrotk"
+              href="https://github.com/imteekay"
               target="_blank"
               rel="noopener noreferrer"
             >

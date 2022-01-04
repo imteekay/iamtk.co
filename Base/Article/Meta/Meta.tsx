@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { css } from '@emotion/css';
 import { Author } from 'Base/Article/Author';
 import { Date } from 'Base/Article/Date';
 import { Tags } from 'Base/Article/Tags';
@@ -11,15 +12,33 @@ type MetaPropTypes = {
   date: string;
   tags: TagPropTypes[];
   alternativeArticle: AlternativeArticleType;
+  minutes: number;
 };
 
-export const Meta: FC<MetaPropTypes> = ({ date, tags, alternativeArticle }) => (
+export const Meta: FC<MetaPropTypes> = ({
+  date,
+  tags,
+  alternativeArticle,
+  minutes,
+}) => (
   <div style={metaStyle}>
     {date && <Author />}
     {date && <Date date={date} />}
-    {tags.length > 0 && <Tags tags={tags} hasTagIcon />}
-    {alternativeArticle ? (
-      <AlternativeArticle alternativeArticle={alternativeArticle} />
+    {date && minutes ? (
+      <span
+        className={css`
+          font-size: 0.85rem;
+          margin-right: 8px;
+        `}
+      >
+        • {minutes} min read
+      </span>
     ) : null}
+    <div>
+      {tags.length > 0 && <Tags tags={tags} hasTagIcon />}
+      {alternativeArticle ? (
+        <AlternativeArticle alternativeArticle={alternativeArticle} />
+      ) : null}
+    </div>
   </div>
 );

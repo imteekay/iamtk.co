@@ -434,7 +434,7 @@ We have more things to do, but we didn't have time to focus on those things in t
 
 ## Resources
 
-I have some resources I used along the way while doing this project. I hope it can be helpful to you too: [Web Performance Studies](https://github.com/leandrotk/web-performance-studies).
+I have some resources I used along the way while doing this project. I hope it can be helpful to you too: [Web Performance Studies](https://github.com/imteekay/web-performance-studies).
 
 ### React
 

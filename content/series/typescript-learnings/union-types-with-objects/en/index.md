@@ -174,5 +174,5 @@ It works as expected and it also represents the data semantically as these attri
 - [Possible solution for objects](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-266250230)
 - [Better solution](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-373047380)
 - [Even better solution](https://github.com/microsoft/TypeScript/issues/12815#issuecomment-506946211)
-- [Solution example](https://github.com/leandrotk/dating/blob/master/src/index.ts#L11)
-- [Dating API source code](https://github.com/leandrotk/dating)
+- [Solution example](https://github.com/imteekay/dating/blob/master/src/index.ts#L11)
+- [Dating API source code](https://github.com/imteekay/dating)

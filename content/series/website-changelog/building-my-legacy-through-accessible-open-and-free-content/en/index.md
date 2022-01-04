@@ -14,7 +14,7 @@ This is the architecture of the new process I'm following:
 
 I'll write and publish first on [my Substack (paid subscribers)](https://teekay.substack.com/) and [Patreon (patrons only)](https://www.patreon.com/iamteekay). This content will available as early access for paid subscribers and patrons-only.
 
-After X days or weeks, I’ll publish on [my website](/) and [Substack (free subscribers)](https://teekay.substack.com/) and distribute via [RSS](/rss.xml) and [my Twitter](https://twitter.com/leandrotk_).
+After X days or weeks, I’ll publish on [my website](/) and [Substack (free subscribers)](https://teekay.substack.com/) and distribute via [RSS](/rss.xml) and [my Twitter](https://twitter.com/wordsofteekay).
 
 Then I'll also share on other platforms like [dev.to](https://dev.to/teekay), [Medium](https://leandrotk.medium.com/), and [Hashnode](https://tk.hashnode.dev/).
 

@@ -1747,8 +1747,8 @@ See ya!
 
 ## Resources
 
-- [Frontend Challenges](https://github.com/leandrotk/frontend-challenges)
-- [FindHotel Front-end Engineer Assignment](https://github.com/leandrotk/frontend-challenges/blob/master/findhotel-frontend-assignment/INSTRUCTIONS.md)
+- [Frontend Challenges](https://github.com/imteekay/frontend-challenges)
+- [FindHotel Front-end Engineer Assignment](https://github.com/imteekay/frontend-challenges/blob/master/findhotel-frontend-assignment/INSTRUCTIONS.md)
 - [A Mental Model to think in TypeScript](/a-mental-model-to-think-in-typescript)
 - [Basic Recipes for React Testing Library](/basic-recipes-for-react-testing-library)
 - [React Hooks, Context API, and Pokemons](/react-hooks-context-api-and-pokemons)

@@ -8,5 +8,6 @@ export const SubstackEmbed = () => (
     style={substackEmbedStyle}
     frameBorder="0"
     scrolling="no"
+    title="TK's Substack"
   ></iframe>
 );
