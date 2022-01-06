@@ -1,7 +1,7 @@
 {
-  "title": "Revisiting Conditionals in JavaScript and TypeScript",
+  "title": "Destructuring Arrays and Objects in JavaScript",
   "description": "The process to master JavaScript",
-  "date": "2022-01-03",
+  "date": "2022-01-06",
   "tags": [
     {
       "href": "/tags/javascript",
@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/mastering-javascript/conditionals.jpg",
+    "src": "/series/mastering-javascript/get.jpg",
     "width": "640",
-    "height": "930",
-    "alt": "two ways rails",
-    "authorHref": "https://unsplash.com/@ivalex",
-    "authorName": "Ivan Aleksic"
+    "height": "360",
+    "alt": "you'll get it eventually",
+    "authorHref": "https://unsplash.com/@nxvision",
+    "authorName": "Nigel Tadyanehondo"
   }
 }

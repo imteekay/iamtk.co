@@ -1,91 +1,184 @@
-# Destructuring
+This post is part of the [Mastering JavaScript Series](/series/mastering-javascript).
 
-The [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) is a very versatile tool introduced in EcmaScript 2016. Specifically looking into object destructuring there is a lot of ways we should use it to improve our code:
+The [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) is a very versatile tool. This technique can be used for both objects and arrays. We will take a closer look on both data structures.
 
 ## Named parameters
 
-We can create named parameters for functions with two or more parameters. This way we don't have to deal with ordering problems, the function API is better exposed and it is easier to track down errors caused by missing parameters:
+We can create named parameters for functions with two or more parameters. This way we don't have to deal with ordering problems, the function API is better exposed and it is easier to track down errors caused by missing parameters.
 
-```diff
-- const printHelloWithNameAndCountry = (name, country) => `Hello, ${name} from ${country}`;
-- printHelloWithNameAndCountry('Brazil', 'Lucca'); // prints 'Hello, Brazil from Lucca'
+We can refactor this code:
 
-+ const printHelloWithNameAndCountry = ({ name, country }) => `Hello, ${name} from ${country}`;
-+ printHelloWithNameAndCountry({ country: 'Brazil', name: 'Lucca' }); // prints 'Hello, Lucca from Brazil'
+```ts
+const hello = (name, country) => `Hi, I'm ${name} from ${country}`;
+
+hello('Brazil', 'TK'); // 'Hi, I'm Brazil from TK'
+```
+
+Into a function that receives only one object with all the necessary parameters and use object destructuring to get all the parameters:
+
+```ts
+const hello = ({ name, country }) => `Hi, I'm ${name} from ${country}`;
+
+hello({ country: 'Brazil', name: 'TK' }); // 'Hi, I'm TK from Brazil'
 ```
 
 You can even set default values!
 
-```javascript
-const printHelloWithNameAndCountry = ({
-  name = "Lucca",
-  country = "Brazil",
-} = {}) => `Hello, ${name} from ${country}`;
-printHelloWithNameAndCountry(); // prints 'Hello, Lucca from Brazil'
+```ts
+const hello = ({ name = 'TK', country = 'Brazil' } = {}) =>
+  `Hi, I'm ${name} from ${country}`;
+
+hello(); // 'Hi, I'm TK from Brazil'
 ```
 
-## Accessing object fields
+## Accessing object attributes
 
-Another way we can use the object destructuring is to access the object fields. This makes the code simpler, creating a copy of the targeted field into a variable:
+Another way we can use the object destructuring is to access the object fields. This makes the code simpler, creating a copy of the targeted field into a variable/constant.
 
-```diff
-const nameCountryObj = { name: 'Lucca', country: 'Brazil' };
+From this:
 
-- const name = nameCountryObj.name;
-- const country = nameCountryObj.country;
+```ts
+const person = { name: 'TK', country: 'Brazil' };
+const name = person.name;
+const country = person.country;
+```
 
-+ const { name, country } = nameCountryObj;
+To this:
+
+```ts
+const person = { name: 'TK', country: 'Brazil' };
+const { name, country } = person;
 ```
 
 You can use default values here too. For example:
 
-```javascript
-const nameCountryObj = { name: "Lucca", country: "Brazil" };
-const { name, country, age = 24 } = nameCountryObj;
+```ts
+const person = { name: 'TK', country: 'Brazil' };
+const { name, country, age = 23 } = person;
 
-name; // 'Lucca'
+name; // 'TK'
 country; // 'Brazil'
-age; // '24'
+age; // 23
 ```
 
-The age is not part of the `nameCountryObj` but it has a default value when the object is destructured.
+The age is not part of the `person` but it has a default value when the object is destructured.
 
 ## Accessing array elements
 
 The destructuring feature also works for the array data structure. But instead using the `{}` notation, we use the `[]` to access elements from the array.
 
-```diff
-const person = ['Mary', 24];
+Instead of accessing the array elements by an index:
 
-- const name = person[0];
-- const age = person[1];
-
-+ const [name, age] = person;
+```ts
+const person = ['TK', 23];
+const name = person[0];
+const age = person[1];
 ```
 
-In the PWA context, it is very common to destructure the array that is returned from a React Hook. For example the `useState` hook. It's a function that return an array of a state and its setter:
+We use array destructuring:
 
-```diff
+```ts
+const person = ['TK', 23];
+const [name, age] = person;
+```
+
+Also, in frontend/react applications, it is very common to destructure the array that is returned from a React Hook. For example the `useState` hook. It's a function that returns an array of a state and its setter:
+
+Here, it works the same way. Instead of accessing by an index:
+
+```ts
 import { useState } from 'react';
 
-const defaultPerson = { name: 'Mary', age: 24 };
+const defaultPerson = { name: 'TK', age: 23 };
 
-- const state = useState(defaultPerson);
-- const person = state[0];
-- const setPerson = state[1];
-
-+ const [person, setPerson] = useState(defaultPerson);
+const state = useState(defaultPerson);
+const person = state[0];
+const setPerson = state[1];
 ```
 
-Just like in objects, we can also set a default value for array destructuring:
+We destructure the array:
 
-```javascript
-const person = ["Mary", 24];
-const [name, age, lastname = "Me"] = person;
-lastname; // 'Me'
+```ts
+import { useState } from 'react';
+
+const defaultPerson = { name: 'TK', age: 23 };
+
+const [person, setPerson] = useState(defaultPerson);
 ```
 
-**References:**
+Just like objects, we can also set a default value for array destructuring:
 
-- <https://medium.com/openmindonline/js-monday-14-destructuring-assignment-934018a6e04d>
-- <https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/>
+```ts
+const person = ['TK', 23];
+const [name, age, lastName = 'Kinoshita'] = person;
+
+name; // 'TK'
+age; // 23
+lastName; // 'Kinoshita'
+```
+
+## Swapping values
+
+It is also useful if you need to swap values between two variables.
+
+```ts
+let name1 = 'TK';
+let name2 = 'Kazumi';
+
+name1; // 'TK'
+name2; // 'Kazumi'
+
+[name1, name2] = [name2, name1];
+
+name1; // 'Kazumi'
+name2; // 'TK'
+```
+
+## Ignoreing values
+
+We saw how we can use destructuring to get attributes from an object or elements from an array. But what if we want to ignore any attribute or element?
+
+In an object, it's pretty straightforward. We just need to not destructure with the attribute we don't want or need.
+
+```ts
+const person = { name: 'TK', country: 'Brazil' };
+const { name } = person;
+```
+
+We just ignore the `country` attribute.
+
+But for arrays, we need to understand that they are linear data structure with sequential access, meaning that the sequence matters.
+
+```ts
+const person = ['TK', 'Brazil', 23];
+const [name, , age] = person;
+
+name; // 'TK';
+age; // 23
+```
+
+If we want to ignore the `'Brazil'` value but still want the `age` element, we can skip it by using an empty space between commas.
+
+## Assigning rest
+
+But what if we don't want to ignore it. We care about one of the values and also want to keep an eye on the other ones. In this next example we care about the `name` attribute and we want to keep an eye on the rest of the other attributes:
+
+```ts
+const person = { name: 'TK', country: 'Brazil', age: 23 };
+const { name, ...rest } = person;
+
+name; // 'TK'
+rest; // { country: 'Brazil', age: 23 }
+```
+
+You can see the `rest` still holds all the other attributes that were not destructured.
+
+This `...` is called `Spread operator` and the `...rest` is commonly called `Rest parameters`.
+
+## Resources
+
+- [Master JavaScript repo](https://github.com/imteekay/master-javascript)
+- [Master JavaScript Series](/series/mastering-javascript)
+- [JavaScript in Detail: From Beginner to Advanced](https://www.educative.io/courses/javascript-in-detail-from-beginner-to-advanced?aff=x8bV)
+- [The Complete Guide to Modern JavaScript](https://www.educative.io/courses/complete-guide-to-modern-javascript?aff=x8bV)
+- [Rediscovering JavaScript: ES6, ES7 & ES8](https://www.educative.io/courses/rediscovering-javascript?aff=x8bV)
