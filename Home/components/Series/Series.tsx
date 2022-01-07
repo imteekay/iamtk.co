@@ -11,3 +11,5 @@ export const Series: FC = () => (
     openNewTab={false}
   />
 );
+
+export default Series;

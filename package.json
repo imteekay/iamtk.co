@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@emotion/css": "^11.7.1",
+    "@loadable/component": "^5.15.2",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
     "marked": "^4.0.6",
@@ -23,10 +24,12 @@
     "react": "17.0.2",
     "react-autocomplete": "^1.8.1",
     "react-dom": "17.0.2",
+    "react-intersection-observer": "^8.33.1",
     "reading-time": "^1.5.0"
   },
   "devDependencies": {
     "@types/gtag.js": "^0.0.8",
+    "@types/loadable__component": "^5.13.4",
     "@types/marked": "^4.0.1",
     "@types/node": "16.11.6",
     "@types/react": "17.0.33",
