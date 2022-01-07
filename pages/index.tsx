@@ -7,26 +7,28 @@ import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
 
-const Page: NextPage = () => (
-  <>
-    <Head
-      title="TK"
-      description="Learning & Improving with TK"
-      imageUrl="/logo.jpeg"
-    />
+const Page: NextPage = () => {
+  return (
+    <>
+      <Head
+        title="TK"
+        description="Learning & Improving with TK"
+        imageUrl="/logo.jpeg"
+      />
 
-    <SkipLink />
+      <SkipLink />
 
-    <main id="main">
-      <div className="content">
-        <Title text="TK" />
-        <About />
-        <Writings />
-        <Series />
-        <Projects />
-      </div>
-    </main>
-  </>
-);
+      <main id="main">
+        <div className="content">
+          <Title text="TK" />
+          <About />
+          <Writings />
+          <Series />
+          <Projects />
+        </div>
+      </main>
+    </>
+  );
+};
 
 export default Page;

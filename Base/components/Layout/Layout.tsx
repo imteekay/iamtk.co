@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Footer } from '../Footer';
+import { Footer } from 'Base/components/Footer';
 
 export const Layout: FC = ({ children }) => (
   <>
