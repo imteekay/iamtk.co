@@ -11,8 +11,8 @@ const Page: NextPage = () => {
   return (
     <>
       <Head
-        title="TK"
-        description="Learning & Improving with TK"
+        title="TK's website about software engineering, web development, and career in tech"
+        description="Learning & Improving with TK: a website about software engineering, web development, and career in tech"
         imageUrl="/logo.jpeg"
       />
 
