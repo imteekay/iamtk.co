@@ -37,12 +37,13 @@ export const Head = ({ title, description, imageUrl }: HeadPropTypes) => {
 
       <link rel="canonical" href={canonicalURL} />
 
+      <meta name="robots" content="index,follow" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="HandheldFriendly" content="True" />
       <meta name="description" content={description} />
       <meta
         name="keywords"
-        content="javascript,typescript,web_development,devtools"
+        content="javascript,typescript,web_development,devtools,software_engineering,reactjs,nextjs,frontend,backend"
       />
 
       <meta property="og:type" content="website" />
