@@ -6,6 +6,10 @@ import { useEffect } from 'react';
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();

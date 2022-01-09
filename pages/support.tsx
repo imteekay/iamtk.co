@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Head } from 'Base/components/Head';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
@@ -69,8 +71,9 @@ const Page: NextPage = () => {
                 title="twitter"
                 rel="noreferrer"
               >
-                Twitter <span className="fab fa-twitter" />
+                Twitter
               </a>{' '}
+              <FontAwesomeIcon icon={faTwitter} />
             </li>
             <li>
               Follow me on{' '}
@@ -80,8 +83,9 @@ const Page: NextPage = () => {
                 title="github"
                 rel="noreferrer"
               >
-                Github <span className="fab fa-github" />
-              </a>
+                Github
+              </a>{' '}
+              <FontAwesomeIcon icon={faGithub} />
             </li>
             <li>Share my content</li>
           </ul>

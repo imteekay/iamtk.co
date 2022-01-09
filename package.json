@@ -16,6 +16,7 @@
   "dependencies": {
     "@emotion/css": "^11.7.1",
     "@fortawesome/fontawesome-svg-core": "1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "5.15.4",
     "@fortawesome/react-fontawesome": "0.1.16",
     "@loadable/component": "^5.15.2",
