@@ -1,5 +1,5 @@
 import { postsList } from 'cypress/helpers/postsList';
-import { seriesList } from 'Home/components/Series/seriesList';
+import { seriesList } from 'cypress/helpers/seriesList';
 
 describe('Home', () => {
   it('verifies all links and content', () => {
