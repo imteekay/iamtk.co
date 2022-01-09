@@ -1,0 +1,27 @@
+{
+  "title": "Destructuring Arrays and Objects in JavaScript",
+  "description": "The process to master JavaScript",
+  "date": "2022-01-10",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mastering-javascript/get.jpg",
+    "width": "640",
+    "height": "360",
+    "alt": "you'll get it eventually",
+    "authorHref": "https://unsplash.com/@nxvision",
+    "authorName": "Nigel Tadyanehondo"
+  }
+}

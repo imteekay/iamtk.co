@@ -182,7 +182,7 @@ p.no-margin-bottom {
   padding: 0;
   background-color: #292929e8;
   border: 0;
-  margin: 30px 0 40px;
+  margin: 20px 0;
   -webkit-box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.75);
