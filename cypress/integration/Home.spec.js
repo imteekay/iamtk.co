@@ -1,14 +1,25 @@
+import { postsList } from 'cypress/helpers/postsList';
+import { seriesList } from 'Home/components/Series/seriesList';
+
 describe('Home', () => {
-  describe('on iPhone X', () => {
-    it('verifies all links and content', () => {
-      cy.viewport('iphone-x');
-      cy.visit('/');
+  it('verifies all links and content', () => {
+    cy.viewport('iphone-x');
+    cy.visit('/');
+
+    cy.contains("Hi, I'm TK!").should('exist');
+
+    postsList.forEach((post) => {
+      cy.contains(post.title).should('exist');
+      cy.contains(post.title).click();
+      cy.get('a').first().click();
     });
   });
 
-  describe('on desktop', () => {
-    it('verifies all links and content', () => {
-      cy.visit('/');
+  it('verifies series content', () => {
+    seriesList.forEach((series) => {
+      cy.contains(series.title).should('exist');
+      cy.contains(series.title).click();
+      cy.get('a').first().click();
     });
   });
 });
