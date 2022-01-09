@@ -302,7 +302,7 @@ export const postsList: Post[] = [
   },
   {
     datetime: '2020-02-02',
-    link: '/series/data-structures/linked-list',
+    link: '/series/data-structures/linked-list-data-structure',
     title: 'Linked List',
     tags: ['python', 'algorithms', 'data structures'],
   },
