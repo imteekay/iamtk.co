@@ -1,432 +1,427 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://www.iamtk.co/</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/cv.pdf</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/writings</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/website-changelog/refactoring-setup</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/mastering-javascript</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/frontend-challenges/findhotel-frontend-challenge</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/frontend-challenges</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/how-i-received-4-salary-raises-in-2-years-of-quintoandar-as-a-software-engineer</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/on-leaving</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/on-distraction</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/building-an-interpreter/parser-part-1</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/building-an-interpreter/repl</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-3</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/rebuilding-mercaris-search/home-menu</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/rebuilding-mercaris-search</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/react-query-complex-dependent-queries</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/data-fetching-in-react-with-react-query</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-2</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/building-an-interpreter</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/dx-and-software-maintainability-in-frontend-engineering</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/performance-prefetch-next-pages-chunks</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/bookshelf/atomic-habits</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/bookshelf/the-effective-engineer</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/slow-living</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/building-an-individual-development-plan-with-notion</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/basic-recipes-for-react-testing-library</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/a-mental-model-to-think-in-typescript</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/designing-my-lifes-system</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/ux-studies-with-react-typescript-and-testing-library</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/data-structures</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/constant-feedback-driven-development-with-nodemon</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/react-hooks-context-api-and-pokemons</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/fun-with-dates</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/elixir-learnings</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/thinking-in-data-contracts</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/typescript-learnings</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/consistent-state-management-in-react-and-redux</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tdd-functions-and-react-components</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/closure-currying-and-cool-abstractions</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/data-structures/tree-data-structure</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/data-structures/queue-data-structure</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/data-structures/stack-data-structure</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/building-an-abstraction-for-react-internationalization-messages</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/designing-my-learning-experience</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/thoughts-on-my-productivity</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/functional-programming-principles-in-javascript</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/an-introduction-to-the-basic-principles-of-functional-programming</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/actionable-advice-to-start-learning-to-code</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/understanding-the-basics-of-ruby-on-rails-http-mvc-and-routes</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/learning-python-from-zero-to-hero</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/writing-idiomatic-beautiful-ruby-code</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/learning-ruby-from-zero-to-hero</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/support</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/javascript</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/typescript</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/web-development</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/website-changelog</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/lifestyle-design</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/career</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/learning</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/programming-language-design</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/bookshelf</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/typescript-learnings/interesting-types</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/algorithms-and-data-structures</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/python</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/data-structures/linked-list-data-structure</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/typescript-learnings/type-system</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/typescript-learnings/object-destructuring</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/elixir</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/elixir-learnings/div-and-rem</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/elixir-learnings/playing-around-with-lists</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/series/typescript-learnings/union-types-with-objects</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/functional-programming</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/clojure</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/tags/ruby</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.iamtk.co/pt-BR/actionable-advice-to-start-learning-to-code</loc>
-  <lastmod>2022-01-09T01:56:46+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-
-
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://www.iamtk.co/</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/cv.pdf</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/writings</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/website-changelog/refactoring-setup</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/mastering-javascript</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-challenges/findhotel-frontend-challenge</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-challenges</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/how-i-received-4-salary-raises-in-2-years-of-quintoandar-as-a-software-engineer</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/on-leaving</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/on-distraction</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/building-an-interpreter/parser-part-1</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/building-an-interpreter/repl</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-3</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/rebuilding-mercaris-search/home-menu</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/rebuilding-mercaris-search/setup-nextjs-with-typescript-prettier-and-jest</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/rebuilding-mercaris-search</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/react-query-complex-dependent-queries</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/data-fetching-in-react-with-react-query</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-2</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/building-an-interpreter/lexical-analysis-part-1</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/building-an-interpreter</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/dx-and-software-maintainability-in-frontend-engineering</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/performance-prefetch-next-pages-chunks</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/bookshelf/atomic-habits</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/bookshelf/the-effective-engineer</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/slow-living</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/building-an-individual-development-plan-with-notion</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/basic-recipes-for-react-testing-library</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/a-mental-model-to-think-in-typescript</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/designing-my-lifes-system</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/ux-studies-with-react-typescript-and-testing-library</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/data-structures</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/constant-feedback-driven-development-with-nodemon</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/publisher-a-tooling-to-automate-the-process-to-publish-my-blog-posts</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/react-hooks-context-api-and-pokemons</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/fun-with-dates</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/elixir-learnings</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/thinking-in-data-contracts</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/typescript-learnings</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/consistent-state-management-in-react-and-redux</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tdd-functions-and-react-components</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/closure-currying-and-cool-abstractions</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/data-structures/tree-data-structure</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/data-structures/queue-data-structure</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/data-structures/stack-data-structure</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/building-an-abstraction-for-react-internationalization-messages</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/designing-my-learning-experience</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/thoughts-on-my-productivity</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/functional-programming-principles-in-javascript</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/an-introduction-to-the-basic-principles-of-functional-programming</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/understanding-the-basics-of-ruby-on-rails-sql-databases-and-how-they-work</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/actionable-advice-to-start-learning-to-code</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/understanding-the-basics-of-ruby-on-rails-http-mvc-and-routes</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/learning-python-from-zero-to-hero</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/writing-idiomatic-beautiful-ruby-code</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/learning-ruby-from-zero-to-hero</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/support</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/javascript</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/typescript</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/web-development</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/website-changelog</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/lifestyle-design</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/career</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/learning</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/programming-language-design</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/bookshelf</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/typescript-learnings/interesting-types</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/algorithms-and-data-structures</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/python</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/data-structures/linked-list-data-structure</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/typescript-learnings/type-system</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/typescript-learnings/object-destructuring</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/elixir</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/elixir-learnings/div-and-rem</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/elixir-learnings/playing-around-with-lists</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/typescript-learnings/union-types-with-objects</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/functional-programming</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/clojure</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/tags/ruby</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/pt-BR/actionable-advice-to-start-learning-to-code</loc>
+    <lastmod>2022-01-09T01:56:46+00:00</lastmod>
+    <priority>0.64</priority>
+  </url>
 </urlset>
