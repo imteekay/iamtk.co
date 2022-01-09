@@ -11,7 +11,7 @@ describe('Home', () => {
     postsList.forEach((post) => {
       cy.contains(post.title).should('exist');
       cy.contains(post.title).click();
-      cy.get('a').first().click();
+      cy.get('[data-testid="home-link"]').click();
     });
   });
 
