@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { FC } from 'react';
+import { SearchResult } from 'minisearch';
 import { Title } from 'Base/components/Title';
+import { titleStyle } from 'Base/components/Title/style';
 import { Autocomplete, useSearch } from 'Base/components/Autocomplete';
 import { Post } from './Post';
 import { listStyle, titleLinkStyle } from './style';
 import { postsList } from './postsList';
-import { SearchResult } from 'minisearch';
 
 function byDatetime(item1: SearchResult, item2: SearchResult) {
   if (item1.datetime < item2.datetime) return 1;
@@ -17,7 +18,10 @@ function getPosts(searchedItems: SearchResult[]) {
   return searchedItems.length > 0 ? searchedItems.sort(byDatetime) : postsList;
 }
 
-export const Writings: FC = () => {
+type Header = 'h1' | 'h2';
+type WritingsPropTypes = { header?: Header };
+
+export const Writings: FC<WritingsPropTypes> = ({ header = 'h2' }) => {
   const { searchTerm, searchedItems, suggestions, setSearchTerm } = useSearch({
     fields: ['tags'],
     storeFields: ['datetime', 'title', 'link'],
@@ -28,11 +32,15 @@ export const Writings: FC = () => {
 
   return (
     <section id="writings">
-      <Link href="/writings" passHref>
-        <a style={titleLinkStyle}>
-          <Title text="writings" />
-        </a>
-      </Link>
+      {header === 'h1' ? (
+        <Title text="writings" />
+      ) : (
+        <Link href="/writings" passHref>
+          <a style={titleLinkStyle}>
+            <h2 style={titleStyle}>writings</h2>
+          </a>
+        </Link>
+      )}
       <Autocomplete
         searchTerm={searchTerm}
         suggestions={suggestions}

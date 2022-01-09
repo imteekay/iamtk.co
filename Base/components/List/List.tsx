@@ -1,7 +1,10 @@
 import { FC } from 'react';
 import { Title } from 'Base/components/Title';
+import { titleStyle } from 'Base/components/Title/style';
 import { Item, ItemProps } from './Item';
 import { titleLinkStyle, listStyle } from './style';
+
+type Header = 'h1' | 'h2';
 
 type ListPropType = {
   sectionId: string;
@@ -9,6 +12,7 @@ type ListPropType = {
   titleText: string;
   list: ItemProps[];
   openNewTab: boolean;
+  header?: Header;
 };
 
 export const List: FC<ListPropType> = ({
@@ -17,6 +21,7 @@ export const List: FC<ListPropType> = ({
   titleText,
   list,
   openNewTab,
+  header = 'h2',
 }) => {
   const linkAttr = openNewTab
     ? { target: '_blank', rel: 'noopener noreferrer' }
@@ -24,14 +29,18 @@ export const List: FC<ListPropType> = ({
 
   return (
     <section id={sectionId}>
-      <a
-        href={titleLink}
-        target={linkAttr.target}
-        rel={linkAttr.rel}
-        style={titleLinkStyle}
-      >
+      {header === 'h2' ? (
+        <a
+          href={titleLink}
+          target={linkAttr.target}
+          rel={linkAttr.rel}
+          style={titleLinkStyle}
+        >
+          <h2 style={titleStyle}>{titleText}</h2>
+        </a>
+      ) : (
         <Title text={titleText} />
-      </a>
+      )}
       <ul style={listStyle}>
         {list.map((item) => (
           <Item

@@ -64,6 +64,16 @@ export const Autocomplete: FC<AutocompletePropTypes> = ({
     `}
   >
     <Icon src="/search.svg" />
+    <label
+      htmlFor="test"
+      className={css`
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      `}
+    >
+      Search
+    </label>
     <ReactAutocomplete
       getItemValue={(item) => item.suggestion}
       items={suggestions}
@@ -87,6 +97,9 @@ export const Autocomplete: FC<AutocompletePropTypes> = ({
       wrapperStyle={{
         position: 'relative',
         display: 'flex',
+      }}
+      inputProps={{
+        id: 'test',
       }}
       menuStyle={{
         position: 'absolute',

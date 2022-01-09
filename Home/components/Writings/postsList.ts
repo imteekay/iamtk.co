@@ -8,10 +8,24 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-01-04',
+    link: '/series/website-changelog/refactoring-setup',
+    title:
+      'Refactoring Setup: NextJS, TypeScript, Prettier, and Testing Library',
+    tags: ['javascript', 'typescript'],
+  },
+  {
+    datetime: '2022-01-03',
+    link: '/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript',
+    title:
+      'Mastering JavaScript: Revisiting Conditionals in JavaScript and TypeScript',
+    tags: ['javascript', 'typescript'],
+  },
+  {
     datetime: '2022-01-01',
     link: '/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content',
     title: 'Building my Legacy through Accessible, Open, and Free content',
-    tags: ['reflaction'],
+    tags: ['reflection'],
   },
   {
     datetime: '2021-12-27',

@@ -5,4 +5,7 @@ module.exports = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
 };
