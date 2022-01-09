@@ -16,10 +16,16 @@ describe('Home', () => {
   });
 
   it('verifies series content', () => {
+    cy.viewport('iphone-x');
+    cy.visit('/');
+
     seriesList.forEach((series) => {
-      cy.contains(series.title).should('exist');
-      cy.contains(series.title).click();
-      cy.get('a').first().click();
+      cy.get('#series').within(() => {
+        cy.contains(series.title).should('exist');
+        cy.contains(series.title).click();
+      });
+
+      cy.get('[data-testid="home-link"]').click();
     });
   });
 });
