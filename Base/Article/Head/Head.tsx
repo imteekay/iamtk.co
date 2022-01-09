@@ -25,6 +25,11 @@ export const Head = ({ title, description, imageUrl }: HeadPropTypes) => {
         crossOrigin="anonymous"
       />
 
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.1/build/styles/night-owl.min.css"
+      />
+
       <link rel="canonical" href={canonicalURL} />
 
       <meta name="robots" content="index,follow" />

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { Head } from 'Base/components/Head';
+import { Head } from 'Base/Article/Head';
 import { Layout } from 'Base/Article/Layout';
 import { getPaths } from 'src/lib';
 import { getPostContent } from 'src/lib/getPostContent';
