@@ -86,6 +86,7 @@ article a {
   color: white;
   text-decoration-color: rgb(209 209 209);
   text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
 }
 
 article .series ul,

@@ -1,4 +1,18 @@
 import { FC } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faMugHot,
+  faEnvelope,
+  faStickyNote,
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
+  faTwitter,
+  faGithub,
+  faGoodreads,
+  faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
+
 import { socialLinks } from './style';
 
 export const About: FC = () => (
@@ -13,7 +27,7 @@ export const About: FC = () => (
         href="https://github.com/imteekay"
         title="github"
       >
-        building on github <span className="fab fa-github" />
+        building on github <FontAwesomeIcon icon={faGithub} />
       </a>
     </p>
     <p style={socialLinks}>
@@ -25,7 +39,7 @@ export const About: FC = () => (
         href="https://twitter.com/wordsofteekay"
         title="twitter"
       >
-        thoughts on twitter <span className="fab fa-twitter" />
+        thoughts on twitter <FontAwesomeIcon icon={faTwitter} />
       </a>
     </p>
     <p>
@@ -38,7 +52,7 @@ export const About: FC = () => (
         title="goodreads"
       >
         {' '}
-        goodreads <span className="fab fa-goodreads" />
+        goodreads <FontAwesomeIcon icon={faGoodreads} />
       </a>
     </p>
     <p className="no-margin">You can support my work on</p>
@@ -49,7 +63,7 @@ export const About: FC = () => (
       href="https://ko-fi.com/teekay"
       title="kofi"
     >
-      ko-fi <span className="fas fa-mug-hot" />
+      ko-fi <FontAwesomeIcon icon={faMugHot} />
     </a>
     , and
     <a
@@ -60,7 +74,7 @@ export const About: FC = () => (
       title="substack"
     >
       {' '}
-      substack <span className="fas fa-envelope" />
+      substack <FontAwesomeIcon icon={faEnvelope} />
     </a>
     <p className="no-margin-bottom">
       For work stuff:{' '}
@@ -71,7 +85,7 @@ export const About: FC = () => (
         href="https://www.linkedin.com/in/imtk"
         title="linkedin"
       >
-        linkedin <span className="fab fa-linkedin" />
+        linkedin <FontAwesomeIcon icon={faLinkedin} />
       </a>
     </p>
     <p className="no-margin">
@@ -84,7 +98,7 @@ export const About: FC = () => (
         title="cv"
       >
         {' '}
-        cv <span className="fas fa-sticky-note" />
+        cv <FontAwesomeIcon icon={faStickyNote} />
       </a>
     </p>
   </section>

@@ -1,11 +1,17 @@
 import '../styles/globals.css';
+import '../styles/night-owl.min.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
 import type { AppProps } from 'next/app';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { config } from '@fortawesome/fontawesome-svg-core';
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
+
+config.autoAddCss = false;
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
