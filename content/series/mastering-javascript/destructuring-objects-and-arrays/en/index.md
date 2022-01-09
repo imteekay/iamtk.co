@@ -134,7 +134,7 @@ name1; // 'Kazumi'
 name2; // 'TK'
 ```
 
-## Ignoreing values
+## Ignoring values
 
 We saw how we can use destructuring to get attributes from an object or elements from an array. But what if we want to ignore any attribute or element?
 
