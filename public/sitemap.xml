@@ -15,6 +15,11 @@
     <priority>0.80</priority>
   </url>
   <url>
+    <loc>https://www.iamtk.co/series/mastering-javascript/destructuring-objects-and-arrays</loc>
+    <lastmod>2022-01-10T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://www.iamtk.co/series/website-changelog/refactoring-setup</loc>
     <lastmod>2022-01-09T01:56:46+00:00</lastmod>
     <priority>0.80</priority>

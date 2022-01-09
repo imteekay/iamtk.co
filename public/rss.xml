@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Destructuring Arrays and Objects in JavaScript</title>
+    <link>https://www.iamtk.co/series/mastering-javascript/destructuring-objects-and-arrays</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/mastering-javascript/destructuring-objects-and-arrays</guid>
+    <description>The process to master JavaScript</description>
+  </item>
+  <item>
     <title>Refactoring Setup: NextJS, TypeScript, Prettier, and Testing Library</title>
     <link>https://iamtk.co/series/website-changelog/refactoring-setup</link>
     <guid isPermaLink="true">https://iamtk.co/series/website-changelog/refactoring-setup</guid>
