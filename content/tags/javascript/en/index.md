@@ -2,6 +2,7 @@
 
 ## 2022
 
+- <time class="date">2022-01-10</time> <span>[Destructuring Arrays and Objects in JavaScript](/series/mastering-javascript/destructuring-objects-and-arrays)</span>
 - <time class="date">2022-01-04</time> <span>[Refactoring Setup: NextJS, TypeScript, Prettier, and Testing Library](/series/website-changelog/refactoring-setup)</span>
 - <time class="date">2022-01-03</time> <span>[Mastering JavaScript: Revisiting Conditionals in JavaScript and TypeScript](/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript)</span>
 

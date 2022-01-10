@@ -8,6 +8,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-01-10',
+    link: '/series/mastering-javascript/destructuring-objects-and-arrays',
+    title: 'Destructuring Arrays and Objects in JavaScript',
+    tags: ['javascript', 'web'],
+  },
+  {
     datetime: '2022-01-04',
     link: '/series/website-changelog/refactoring-setup',
     title:
