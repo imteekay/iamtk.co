@@ -18,7 +18,7 @@ export const postsList = [
   },
   {
     datetime: '2021-12-27',
-    title: 'Frontend Challenges: FindHotel Front-end Engineer Assignment',
+    title: 'Frontend Challenges: Front-end Engineer Assignment',
   },
   {
     datetime: '2021-12-26',

@@ -42,7 +42,7 @@ export const postsList: Post[] = [
   {
     datetime: '2021-12-27',
     link: '/series/frontend-challenges/findhotel-frontend-challenge',
-    title: 'Frontend Challenges: FindHotel Front-end Engineer Assignment',
+    title: 'Frontend Challenges: Front-end Engineer Assignment',
     tags: ['javascript', 'typescript', 'react', 'web'],
   },
   {
