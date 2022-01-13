@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import '../styles/night-owl.min.css';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 
-import type { AppProps } from 'next/app';
+import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -12,6 +12,21 @@ import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
 
 config.autoAddCss = false;
+
+export function reportWebVitals({
+  id,
+  name,
+  label,
+  value,
+}: NextWebVitalsMetric) {
+  window.gtag('event', name, {
+    event_category:
+      label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
+    value: Math.round(name === 'CLS' ? value * 1000 : value), // values must be integers
+    event_label: id, // id unique to current page load
+    non_interaction: true, // avoids affecting bounce rate.
+  });
+}
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const router = useRouter();
