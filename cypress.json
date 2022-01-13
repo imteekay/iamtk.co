@@ -3,5 +3,6 @@
   "pluginsFile": false,
   "supportFile": false,
   "baseUrl": "http://localhost:3000",
-  "redirectionLimit": 1000
+  "redirectionLimit": 1000,
+  "video": false
 }
