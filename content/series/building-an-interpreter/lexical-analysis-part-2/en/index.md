@@ -292,7 +292,7 @@ Now we have the tests passing and an improved lexer. Our language is taking shap
 
 ## **Final words & Resources**
 
-If you didn't have the opportunity, take a look at the [first part of the Lexical Analysis](/series/building-an-interpreter/lexical-analysis-part-1.html). This is the second post about my journey learning compilers and studying programming language theory. And part of the [Building an Interpreter series](/series/building-an-interpreter).
+If you didn't have the opportunity, take a look at the [first part of the Lexical Analysis](/series/building-an-interpreter/lexical-analysis-part-1). This is the second post about my journey learning compilers and studying programming language theory. And part of the [Building an Interpreter series](/series/building-an-interpreter).
 
 These are the resources I'm using to learn more about this field:
 
