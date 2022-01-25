@@ -256,15 +256,13 @@ a:hover {
 }
 
 .footer {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  color: #666;
   font-size: 11px;
   max-width: 700px;
   width: 100%;
-  margin: 0 auto 1rem auto;
-  vertical-align: top;
-  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .footer ul {
@@ -298,22 +296,20 @@ a:hover {
   text-decoration: none;
 }
 
-.footer .footer-left {
-  height: 20px;
-  line-height: 20px;
-  vertical-align: middle;
-  color: white;
+.footer .footer-right {
+  margin-bottom: 20px;
 }
 
-@media (min-width: 39rem) {
+@media (min-width: 760px) {
   .footer {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: initial;
   }
-  .footer .footer-left {
-    float: left;
-  }
+
+  .footer .footer-left,
   .footer .footer-right {
-    float: right;
+    margin-bottom: 20px;
   }
 }
