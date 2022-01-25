@@ -6,7 +6,7 @@ const elements = [
     id: '1',
     type: 'input',
     data: { label: 'Input Node' },
-    position: { x: 250, y: 25 },
+    position: { x: 0, y: 0 },
   },
   {
     id: '2',
@@ -23,10 +23,6 @@ const elements = [
   { id: 'e2-3', source: '2', target: '3' },
 ];
 
-const Page: NextPage = () => (
-  <div style={{ height: 300 }}>
-    <ReactFlow elements={elements} />
-  </div>
-);
+const Page: NextPage = () => <ReactFlow elements={elements} />;
 
 export default Page;
