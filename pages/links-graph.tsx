@@ -261,8 +261,7 @@ const getElements = ({
 }) => [
   {
     id: '1',
-    type: 'input',
-    data: { label: 'Input Node' },
+    data: { label: 'Node 1' },
     position: { x: 0, y: 0 },
   },
   {
@@ -275,7 +274,7 @@ const getElements = ({
             setOpen(true);
           }}
         >
-          Default Node
+          Node 2
         </div>
       ),
     },
@@ -283,30 +282,33 @@ const getElements = ({
   },
   {
     id: '3',
-    type: 'output',
-    data: { label: 'Output Node' },
+    data: { label: 'Node 3' },
     position: { x: 250, y: 250 },
   },
   {
     id: '4',
-    type: 'output',
-    data: { label: 'Output Node' },
+    data: { label: 'Node 4' },
     position: { x: 200, y: 200 },
   },
   {
     id: '5',
-    type: 'output',
-    data: { label: 'Output Node' },
+    data: { label: 'Node 5' },
     position: { x: 300, y: 300 },
   },
   {
     id: '6',
-    type: 'output',
-    data: { label: 'Output Node' },
+    data: { label: 'Node 6' },
     position: { x: 400, y: 400 },
   },
   { id: 'e1-2', source: '1', target: '2', animated: true },
-  { id: 'e2-3', source: '2', target: '3' },
+  { id: 'e1-3', source: '1', target: '3', animated: true },
+  { id: 'e2-3', source: '2', target: '3', animated: true },
+  { id: 'e2-4', source: '2', target: '4', animated: true },
+  { id: 'e2-5', source: '2', target: '5', animated: true },
+  { id: 'e3-4', source: '3', target: '4', animated: true },
+  { id: 'e4-5', source: '4', target: '5', animated: true },
+  { id: 'e2-6', source: '2', target: '6', animated: true },
+  { id: 'e5-6', source: '5', target: '6', animated: true },
 ];
 
 const Page: NextPage = () => {
