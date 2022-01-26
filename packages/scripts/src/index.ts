@@ -1,1 +1,1 @@
-export { posts } from './posts';
+export { createPostsFile } from './posts';
