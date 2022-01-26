@@ -24,7 +24,7 @@ function setupHighlight() {
 }
 
 export function getPostContent(slug: string, locale: string = 'en') {
-  const postsDir = path.join(__dirname, '../..', 'content');
+  const postsDir = path.join(__dirname, '../../../..', 'content');
   const postPath = path.join(postsDir, slug, locale, 'index.md');
   const postContent = fs.readFileSync(postPath, 'utf8');
 

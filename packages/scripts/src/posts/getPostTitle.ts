@@ -32,7 +32,7 @@ export type PostMetadata = {
 };
 
 export function getPostTitle(slug: string, locale: Locale = 'en'): string {
-  const postsDir = path.join(__dirname, '../..', 'content');
+  const postsDir = path.join(__dirname, '../../../..', 'content');
   const postPath = path.join(postsDir, slug, locale, 'metadata.json');
   const postMetadata = fs.readFileSync(postPath, 'utf8');
 
