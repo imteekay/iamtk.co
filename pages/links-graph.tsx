@@ -12,7 +12,22 @@ const Layout: FC<LayoutPropTypes> = ({ children, title }) => (
       itemType="http://schema.org/BlogPosting"
     >
       <header>
-        <p>{title}</p>
+        <p
+          className={css`
+            letter-spacing: 0.01em;
+            font-size: 2em;
+            font-style: normal;
+            font-weight: 700;
+            color: white;
+            display: block;
+            margin-top: 0;
+            margin-bottom: 0;
+            text-transform: none;
+            line-height: 1.25;
+          `}
+        >
+          {title}
+        </p>
       </header>
       {children}
     </article>
@@ -25,6 +40,7 @@ import ReactFlow from 'react-flow-renderer';
 import { Dispatch, SetStateAction, useState } from 'react';
 import Dialog from '@mui/material/Dialog';
 import { styled } from '@mui/material/styles';
+import { css } from '@emotion/css';
 
 type SimpleDialogPropsType = {
   open: boolean;
@@ -39,7 +55,7 @@ const DarkDialog = styled(Dialog)(() => ({
     color: 'white',
     '& .content': {
       margin: 0,
-      padding: '20px 40px',
+      padding: '40px',
     },
   },
 }));
@@ -262,7 +278,7 @@ const getElements = ({
   {
     id: '1',
     data: { label: 'Node 1' },
-    position: { x: 0, y: 0 },
+    position: { x: 150, y: 350 },
   },
   {
     id: '2',
@@ -278,27 +294,27 @@ const getElements = ({
         </div>
       ),
     },
-    position: { x: 100, y: 125 },
+    position: { x: 450, y: 525 },
   },
   {
     id: '3',
     data: { label: 'Node 3' },
-    position: { x: 250, y: 250 },
+    position: { x: 350, y: 150 },
   },
   {
     id: '4',
     data: { label: 'Node 4' },
-    position: { x: 200, y: 200 },
+    position: { x: 800, y: 100 },
   },
   {
     id: '5',
     data: { label: 'Node 5' },
-    position: { x: 300, y: 300 },
+    position: { x: 1000, y: 300 },
   },
   {
     id: '6',
     data: { label: 'Node 6' },
-    position: { x: 400, y: 400 },
+    position: { x: 800, y: 650 },
   },
   { id: 'e1-2', source: '1', target: '2', animated: true },
   { id: 'e1-3', source: '1', target: '3', animated: true },
