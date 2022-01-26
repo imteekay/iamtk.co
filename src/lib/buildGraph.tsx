@@ -21,62 +21,49 @@ const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   </div>
 );
 
+const graph = {
+  nodes: [
+    { text: 'Node 0', position: { x: 150, y: 350 } },
+    { text: 'Node 1', position: { x: 450, y: 525 } },
+    { text: 'Node 2', position: { x: 350, y: 150 } },
+    { text: 'Node 3', position: { x: 800, y: 100 } },
+    { text: 'Node 4', position: { x: 1000, y: 300 } },
+    { text: 'Node 5', position: { x: 800, y: 650 } },
+  ],
+  edges: [
+    { source: '0', target: '1' },
+    { source: '0', target: '2' },
+    { source: '1', target: '2' },
+    { source: '1', target: '3' },
+    { source: '1', target: '4' },
+    { source: '2', target: '3' },
+    { source: '3', target: '4' },
+    { source: '1', target: '5' },
+    { source: '4', target: '5' },
+  ],
+};
+
 export const buildGraph = ({
   setId,
   setOpen,
 }: {
   setId: SetIdType;
   setOpen: SetOpenType;
-}) => [
-  {
-    id: '0',
+}) => {
+  const nodes = graph.nodes.map(({ text, position }, id) => ({
+    id: id.toString(),
     data: {
-      label: <Node setId={setId} setOpen={setOpen} text="Node 0" id={0} />,
+      label: <Node setId={setId} setOpen={setOpen} text={text} id={id} />,
     },
-    position: { x: 150, y: 350 },
-  },
-  {
-    id: '1',
-    data: {
-      label: <Node setId={setId} setOpen={setOpen} text="Node 1" id={1} />,
-    },
-    position: { x: 450, y: 525 },
-  },
-  {
-    id: '2',
-    data: {
-      label: <Node setId={setId} setOpen={setOpen} text="Node 2" id={2} />,
-    },
-    position: { x: 350, y: 150 },
-  },
-  {
-    id: '3',
-    data: {
-      label: <Node setId={setId} setOpen={setOpen} text="Node 3" id={3} />,
-    },
-    position: { x: 800, y: 100 },
-  },
-  {
-    id: '4',
-    data: {
-      label: <Node setId={setId} setOpen={setOpen} text="Node 4" id={4} />,
-    },
-    position: { x: 1000, y: 300 },
-  },
-  {
-    id: '5',
-    data: {
-      label: <Node setId={setId} setOpen={setOpen} text="Node 5" id={5} />,
-    },
-    position: { x: 800, y: 650 },
-  },
-  { id: 'e0-1', source: '0', target: '1', animated: true },
-  { id: 'e0-2', source: '0', target: '2', animated: true },
-  { id: 'e1-2', source: '1', target: '2', animated: true },
-  { id: 'e1-3', source: '1', target: '3', animated: true },
-  { id: 'e1-4', source: '1', target: '4', animated: true },
-  { id: 'e2-3', source: '2', target: '3', animated: true },
-  { id: 'e3-4', source: '3', target: '4', animated: true },
-  { id: 'e1-5', source: '1', target: '5', animated: true },
-  { id: 'e4-5', source: '4', target: '5', animated: true },
-];
+    position,
+  }));
+
+  const edges = graph.edges.map(({ source, target }) => ({
+    id: `${source}-${target}`,
+    source,
+    target,
+    animated: true,
+  }));
+
+  return [...nodes, ...edges];
+};
