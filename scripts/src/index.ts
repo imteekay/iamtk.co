@@ -1,4 +1,8 @@
+import { getPostTitle } from './getPostTitle';
 import { getPostContent } from './getPostContent';
+import { getPaths } from './getPaths';
 
-const content = getPostContent('a-mental-model-to-think-in-typescript');
-console.log('content', content);
+export const posts = getPaths().map((path) => ({
+  title: getPostTitle(path),
+  content: getPostContent(path),
+}));
