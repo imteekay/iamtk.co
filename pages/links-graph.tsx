@@ -1,77 +1,7 @@
-import { FC } from 'react';
-
-type LayoutPropTypes = {
-  title: string;
-};
-
-const Layout: FC<LayoutPropTypes> = ({ children, title }) => (
-  <div className="content">
-    <article
-      className="post"
-      itemScope
-      itemType="http://schema.org/BlogPosting"
-    >
-      <header>
-        <p
-          className={css`
-            letter-spacing: 0.01em;
-            font-size: 2em;
-            font-style: normal;
-            font-weight: 700;
-            color: white;
-            display: block;
-            margin-top: 0;
-            margin-bottom: 0;
-            text-transform: none;
-            line-height: 1.25;
-          `}
-        >
-          {title}
-        </p>
-      </header>
-      {children}
-    </article>
-  </div>
-);
-
 import type { NextPage } from 'next';
-import ReactFlow from 'react-flow-renderer';
-
 import { Dispatch, SetStateAction, useState } from 'react';
-import Dialog from '@mui/material/Dialog';
-import { styled } from '@mui/material/styles';
-import { css } from '@emotion/css';
-
-type SimpleDialogPropsType = {
-  open: boolean;
-  onClose: () => void;
-  title: string;
-  content: string;
-};
-
-const DarkDialog = styled(Dialog)(() => ({
-  '& .MuiPaper-root': {
-    'background-color': '#222222',
-    color: 'white',
-    '& .content': {
-      margin: 0,
-      padding: '40px',
-    },
-  },
-}));
-
-const SimpleDialog = ({
-  onClose,
-  open,
-  title,
-  content,
-}: SimpleDialogPropsType) => (
-  <DarkDialog fullWidth onClose={onClose} open={open}>
-    <Layout title={title}>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
-    </Layout>
-  </DarkDialog>
-);
+import ReactFlow from 'react-flow-renderer';
+import { Dialog } from 'Base/LinksGraph/Dialog';
 
 type Post = {
   title: string;
@@ -336,7 +266,7 @@ const Page: NextPage = () => {
   return (
     <>
       <ReactFlow elements={elements} />
-      <SimpleDialog
+      <Dialog
         open={open}
         onClose={() => setOpen(false)}
         title={title}
