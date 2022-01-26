@@ -1,105 +1,72 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
+
+type SetIdType = Dispatch<SetStateAction<number>>;
+type SetOpenType = Dispatch<SetStateAction<boolean>>;
+
+type NodePropTypes = {
+  setId: SetIdType;
+  setOpen: SetOpenType;
+  text: string;
+  id: number;
+};
+
+const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
+  <div
+    onClick={() => {
+      setId(id);
+      setOpen(true);
+    }}
+  >
+    {text}
+  </div>
+);
 
 export const buildGraph = ({
   setId,
   setOpen,
 }: {
-  setId: Dispatch<SetStateAction<number>>;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setId: SetIdType;
+  setOpen: SetOpenType;
 }) => [
   {
     id: '0',
     data: {
-      label: (
-        <div
-          onClick={() => {
-            setId(0);
-            setOpen(true);
-          }}
-        >
-          Node 1
-        </div>
-      ),
+      label: <Node setId={setId} setOpen={setOpen} text="Node 0" id={0} />,
     },
     position: { x: 150, y: 350 },
   },
   {
     id: '1',
     data: {
-      label: (
-        <div
-          onClick={() => {
-            setId(1);
-            setOpen(true);
-          }}
-        >
-          Node 2
-        </div>
-      ),
+      label: <Node setId={setId} setOpen={setOpen} text="Node 1" id={1} />,
     },
     position: { x: 450, y: 525 },
   },
   {
     id: '2',
     data: {
-      label: (
-        <div
-          onClick={() => {
-            setId(2);
-            setOpen(true);
-          }}
-        >
-          Node 3
-        </div>
-      ),
+      label: <Node setId={setId} setOpen={setOpen} text="Node 2" id={2} />,
     },
     position: { x: 350, y: 150 },
   },
   {
     id: '3',
     data: {
-      label: (
-        <div
-          onClick={() => {
-            setId(3);
-            setOpen(true);
-          }}
-        >
-          Node 4
-        </div>
-      ),
+      label: <Node setId={setId} setOpen={setOpen} text="Node 3" id={3} />,
     },
     position: { x: 800, y: 100 },
   },
   {
     id: '4',
     data: {
-      label: (
-        <div
-          onClick={() => {
-            setId(4);
-            setOpen(true);
-          }}
-        >
-          Node 5
-        </div>
-      ),
+      label: <Node setId={setId} setOpen={setOpen} text="Node 4" id={4} />,
     },
     position: { x: 1000, y: 300 },
   },
   {
     id: '5',
     data: {
-      label: (
-        <div
-          onClick={() => {
-            setId(5);
-            setOpen(true);
-          }}
-        >
-          Node 6
-        </div>
-      ),
+      label: <Node setId={setId} setOpen={setOpen} text="Node 5" id={5} />,
     },
     position: { x: 800, y: 650 },
   },
