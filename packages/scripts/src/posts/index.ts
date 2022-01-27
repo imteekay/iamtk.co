@@ -1,5 +1,4 @@
 import path from 'path';
-import { mkdirSync } from 'fs';
 import { writeFile } from 'fs/promises';
 import { getPostTitle } from './getPostTitle';
 import { getPostContent } from './getPostContent';
