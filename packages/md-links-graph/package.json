@@ -1,22 +1,30 @@
 {
-  "name": "scripts",
+  "name": "md-links-graph",
   "version": "1.0.0",
-  "description": "Scripts for TK",
+  "description": "Markdown Links Graph",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "repository": "git@github.com:imteekay/md-links-graph.git",
   "author": "TK <leandrotk100@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "build:posts": "esno src/posts/index.ts && prettier --write ../../data/posts.js && prettier --write ../../data/markdown-posts.js",
-    "build": "unbuild"
+    "build": "unbuild",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "mdast": "3.0.0",
+    "remark": "14.0.2",
+    "unist-util-visit": "4.1.0"
   },
   "devDependencies": {
     "esno": "0.14.0",
     "nodemon": "2.0.15",
     "prettier": "2.5.1",
     "typescript": "4.5.5",
-    "unbuild": "0.6.8"
+    "unbuild": "0.6.8",
+    "vite": "2.7.13",
+    "vitest": "0.2.0"
   }
 }

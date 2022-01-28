@@ -104,5 +104,5 @@ It has been the obvious solution for me when it comes to this specific data fetc
 ## Resources
 
 - [Doc: Dependent Queries](https://react-query.tanstack.com/guides/dependent-queries)
-- [DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering/)
+- [DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)
 - [Data Fetching in React with react-query](/data-fetching-in-react-with-react-query)
