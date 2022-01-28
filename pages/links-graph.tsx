@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 import { Dialog } from 'Base/LinksGraph/Dialog';
-import { idToPost } from 'data/idToPost';
+import { posts } from 'data/posts';
 import { buildGraph } from 'src/lib/buildGraph';
 
 const Page: NextPage = () => {
@@ -10,7 +10,7 @@ const Page: NextPage = () => {
   const [id, setId] = useState(0);
 
   const graph = buildGraph({ setId, setOpen });
-  const { title, content } = idToPost[id];
+  const { title, content } = posts[id];
 
   const onClose = () => setOpen(false);
 
