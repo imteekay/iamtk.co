@@ -23,12 +23,17 @@ export function createPostsFile() {
     content: getPostContent(path),
   }));
 
+  const seriesPages = getNestedPaths('series').map((series) => ({
+    title: getNestedPostMetadata('series', series),
+    content: getNestedPostContent('series', series),
+  }));
+
   const seriesPosts = getSeriesPaths().map(({ series, seriesItem }) => ({
     title: getSeriesPostTitle(series, seriesItem),
     content: getSeriesPostContent(series, seriesItem),
   }));
 
-  const allPosts = [...posts, ...seriesPosts];
+  const allPosts = [...posts, ...seriesPages, ...seriesPosts];
 
   writeFile(
     path.join(dataDir, 'posts.js'),

@@ -45,7 +45,10 @@ export class Graph {
       url,
       text: title,
       id: this._nodes.length,
-      position: { x: this._nodes.length * 50, y: this._nodes.length * 50 }
+      position: {
+        x: Math.random() * 1500,
+        y: Math.random() * 1500
+      }
     });
   }
 
