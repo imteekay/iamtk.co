@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { createGraph } from 'packages/md-links-graph/src';
+import { createGraph } from '@imtk/md-links-graph/dist';
 import { posts } from 'data/markdown-posts';
 
 type SetIdType = Dispatch<SetStateAction<number>>;
