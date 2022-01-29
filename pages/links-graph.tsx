@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { posts } from 'data/posts';
@@ -9,7 +9,7 @@ const Page: NextPage = () => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
 
-  const graph = buildGraph({ setId, setOpen });
+  const graph = useMemo(() => buildGraph({ setId, setOpen }), []);
   const { title, content } = posts[id];
 
   const onClose = () => setOpen(false);
