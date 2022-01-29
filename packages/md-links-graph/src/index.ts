@@ -4,32 +4,19 @@ import { visit } from 'unist-util-visit';
 import { Graph } from './Graph';
 import { PostMarkdown } from './PostMarkdown';
 
-const excludedPages = [
-  '',
-  '/',
-  '/writings',
-  '/support',
-  '/rss.xml',
-  undefined,
-  null
-];
+type IsAbleToAddEdge = (url: string) => boolean;
 
-function isInternalLink(url: string) {
-  return (
-    !url.startsWith('https') &&
-    !url.startsWith('http') &&
-    !url.startsWith('www') &&
-    !excludedPages.includes(url)
-  );
-}
-
-function buildLink(postMarkdown: PostMarkdown, graph: Graph) {
+function buildLink(
+  postMarkdown: PostMarkdown,
+  graph: Graph,
+  isAbleToAddEdge: IsAbleToAddEdge
+) {
   graph.addNode(postMarkdown);
 
   remark()
     .use(() => (mdast: Root) => {
       visit(mdast, 'link', (node) => {
-        if (isInternalLink(node.url)) {
+        if (isAbleToAddEdge(node.url)) {
           graph.addEdge(postMarkdown.url, node.url);
         }
       });
@@ -37,11 +24,14 @@ function buildLink(postMarkdown: PostMarkdown, graph: Graph) {
     .process(postMarkdown.content);
 }
 
-export function createGraph(postMarkdowns: PostMarkdown[]) {
+export function createGraph(
+  postMarkdowns: PostMarkdown[],
+  isAbleToAddEdge: IsAbleToAddEdge
+) {
   const graph = new Graph(postMarkdowns);
 
   for (let postMarkdown of postMarkdowns) {
-    buildLink(postMarkdown, graph);
+    buildLink(postMarkdown, graph, isAbleToAddEdge);
   }
 
   return graph;

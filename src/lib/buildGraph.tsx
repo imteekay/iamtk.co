@@ -23,7 +23,26 @@ const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   </div>
 );
 
-const graph = createGraph(posts);
+const excludedPages = [
+  '',
+  '/',
+  '/writings',
+  '/support',
+  '/rss.xml',
+  undefined,
+  null,
+];
+
+function isValidLink(url: string) {
+  return (
+    !url.startsWith('https') &&
+    !url.startsWith('http') &&
+    !url.startsWith('www') &&
+    !excludedPages.includes(url)
+  );
+}
+
+const graph = createGraph(posts, isValidLink);
 
 export const buildGraph = ({
   setId,
