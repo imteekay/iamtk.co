@@ -6,10 +6,6 @@ type Node = {
   id: number;
   text: string;
   url: Url;
-  position: {
-    x: number;
-    y: number;
-  };
 };
 
 type Edge = {
@@ -44,11 +40,7 @@ export class Graph {
     this._nodes.push({
       url,
       text: title,
-      id: this._nodes.length,
-      position: {
-        x: Math.random() * 1500,
-        y: Math.random() * 1500
-      }
+      id: this._nodes.length
     });
   }
 

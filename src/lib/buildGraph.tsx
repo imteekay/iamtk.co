@@ -51,12 +51,15 @@ export const buildGraph = ({
   setId: SetIdType;
   setOpen: SetOpenType;
 }) => {
-  const nodes = graph.nodes.map(({ text, position, id }) => ({
+  const nodes = graph.nodes.map(({ text, id }) => ({
     id: id.toString(),
     data: {
       label: <Node setId={setId} setOpen={setOpen} text={text} id={id} />,
     },
-    position,
+    position: {
+      x: Math.random() * 1500,
+      y: Math.random() * 1500,
+    },
   }));
 
   const edges = graph.edges.map(({ source, target }) => ({
