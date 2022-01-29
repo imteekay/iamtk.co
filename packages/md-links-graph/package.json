@@ -1,5 +1,5 @@
 {
-  "name": "md-links-graph",
+  "name": "@imtk/md-links-graph",
   "version": "1.0.0",
   "description": "Markdown Links Graph",
   "main": "./dist/index.cjs",
