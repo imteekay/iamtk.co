@@ -16,7 +16,11 @@ const Page: NextPage = () => {
 
   return (
     <>
-      <ReactFlow elements={graph} />
+      <ReactFlow
+        elements={graph}
+        defaultZoom={0.5}
+        onNodeDrag={(e, n) => console.log(n.position)}
+      />
       <Dialog open={open} onClose={onClose} title={title} content={content} />
     </>
   );
