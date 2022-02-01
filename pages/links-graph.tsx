@@ -13,6 +13,7 @@ const Page: NextPage = () => {
   const { title, content } = posts[id];
 
   const onClose = () => setOpen(false);
+  console.log('graph', graph);
 
   return (
     <>
