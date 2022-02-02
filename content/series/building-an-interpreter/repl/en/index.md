@@ -155,7 +155,7 @@ And now we can call it anywhere in our code to start the REPL.
 
 ## **Final words & Resources**
 
-If you didn't have the opportunity, take a look at the posts from the [Building an Interpreter series](/series/building-an-interpreter/):
+If you didn't have the opportunity, take a look at the posts from the [Building an Interpreter series](/series/building-an-interpreter):
 
 - [Building an Interpreter: Lexical Analysis - Part 1](/series/building-an-interpreter/lexical-analysis-part-1)
 - [Building an Interpreter: Lexical Analysis - Part 2](/series/building-an-interpreter/lexical-analysis-part-2)

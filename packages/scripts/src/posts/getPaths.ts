@@ -6,6 +6,12 @@ type SeriesParams = {
   seriesItem: string;
 };
 
+const folderMapper = {
+  series: 'series',
+};
+
+type FolderTypes = keyof typeof folderMapper;
+
 function removeSeries(postsNames: string[], filterList: string[]) {
   return postsNames.filter((post) => !filterList.includes(post));
 }
@@ -16,6 +22,11 @@ export function getPaths(locale: string = 'en') {
   return postsNames.filter((postName) =>
     fs.existsSync(path.join(postsDir, postName, locale)),
   );
+}
+
+export function getNestedPaths(folder: FolderTypes) {
+  const postsDir = path.join(__dirname, '../../../..', 'content', folder);
+  return fs.readdirSync(postsDir);
 }
 
 export function getSeriesPaths() {

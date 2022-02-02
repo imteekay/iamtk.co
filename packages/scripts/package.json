@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "nodemon",
-    "build:posts": "esno src/posts/index.ts && prettier --write ../../data/posts.js",
+    "build:posts": "esno src/posts/index.ts && prettier --write ../../data/posts.js && prettier --write ../../data/markdown-posts.js",
     "build": "unbuild"
   },
   "devDependencies": {

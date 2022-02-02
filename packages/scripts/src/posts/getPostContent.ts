@@ -33,6 +33,13 @@ export function getPostContent(slug: string, locale: string = 'en') {
   return marked.parse(postContent);
 }
 
+export function getMarkdownPostContent(slug: string, locale: string = 'en') {
+  const postsDir = path.join(__dirname, '../../../..', 'content');
+  const postPath = path.join(postsDir, slug, locale, 'index.md');
+
+  return fs.readFileSync(postPath, 'utf8');
+}
+
 export function getSeriesPostContent(
   series: string,
   seriesItem: string,
@@ -45,4 +52,26 @@ export function getSeriesPostContent(
   setupHighlight();
 
   return marked.parse(postContent);
+}
+
+export function getNestedPostContent(
+  folder: string,
+  post: string,
+  locale: string = 'en',
+) {
+  const postsDir = path.join(__dirname, '../../../..', 'content', folder);
+  const postPath = path.join(postsDir, post, locale, 'index.md');
+
+  return fs.readFileSync(postPath, 'utf8');
+}
+
+export function getMarkdownSeriesPostContent(
+  series: string,
+  seriesItem: string,
+  locale: string = 'en',
+) {
+  const postsDir = path.join(__dirname, '../../../..', 'content', 'series');
+  const postPath = path.join(postsDir, series, seriesItem, locale, 'index.md');
+
+  return fs.readFileSync(postPath, 'utf8');
 }

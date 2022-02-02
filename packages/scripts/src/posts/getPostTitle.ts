@@ -11,6 +11,18 @@ export function getPostTitle(slug: string, locale: Locale = 'en'): string {
   return JSON.parse(postMetadata).title;
 }
 
+export function getNestedPostMetadata(
+  folder: string,
+  post: string,
+  locale: Locale = 'en',
+): string {
+  const postsDir = path.join(__dirname, '../../../..', 'content', folder);
+  const postPath = path.join(postsDir, post, locale, 'metadata.json');
+  const postMetadata = fs.readFileSync(postPath, 'utf8');
+
+  return JSON.parse(postMetadata).title;
+}
+
 export function getSeriesPostTitle(
   series: string,
   seriesItem: string,
