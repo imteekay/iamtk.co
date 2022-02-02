@@ -18,8 +18,8 @@ const Page: NextPage = () => {
   return (
     <>
       <Head
-        title="TK —— Projects"
-        description="Learning & Improving with TK —— Projects"
+        title="TK —— Links Graph"
+        description="Learning & Improving with TK —— Links Graph"
         imageUrl="/logo.jpeg"
       />
       <ReactFlow elements={graph} defaultZoom={0.5} />
