@@ -31,15 +31,15 @@ type PositionCache = {
 const positionCache: PositionCache[] = [];
 
 function buildX() {
-  return Math.random() * 2600 + 30;
+  return Math.random() * 3500 + 30;
 }
 
 function buildY() {
-  return Math.random() * 1400 + 30;
+  return Math.random() * 3000 + 30;
 }
 
 function hasCollision(x: number, y: number, position: PositionCache) {
-  return Math.abs(x - position.x) < 150 || Math.abs(y - position.y) < 150;
+  return Math.abs(x - position.x) < 250 || Math.abs(y - position.y) < 250;
 }
 
 function hasPosition(x: number, y: number) {
@@ -59,7 +59,7 @@ function buildPosition() {
   let y = buildY();
   let counter = 0;
 
-  while (hasPosition(x, y) && counter < 20) {
+  while (hasPosition(x, y) && counter < 25) {
     x = buildX();
     y = buildY();
     counter += 1;
