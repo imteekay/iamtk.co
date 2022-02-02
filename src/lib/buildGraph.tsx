@@ -23,6 +23,53 @@ const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   </div>
 );
 
+type PositionCache = {
+  x: number;
+  y: number;
+};
+
+const positionCache: PositionCache[] = [];
+
+function buildX() {
+  return Math.random() * 2600 + 30;
+}
+
+function buildY() {
+  return Math.random() * 1400 + 30;
+}
+
+function hasCollision(x: number, y: number, position: PositionCache) {
+  return Math.abs(x - position.x) < 150 || Math.abs(y - position.y) < 150;
+}
+
+function hasPosition(x: number, y: number) {
+  let hasPositionInCache = false;
+
+  positionCache.forEach((position) => {
+    if (hasCollision(x, y, position)) {
+      hasPositionInCache = true;
+    }
+  });
+
+  return hasPositionInCache;
+}
+
+function buildPosition() {
+  let x = buildX();
+  let y = buildY();
+  let counter = 0;
+
+  while (hasPosition(x, y) && counter < 20) {
+    x = buildX();
+    y = buildY();
+    counter += 1;
+  }
+
+  positionCache.push({ x, y });
+
+  return { x, y };
+}
+
 const excludedPages = [
   '',
   '/',
@@ -51,12 +98,12 @@ export const buildGraph = ({
   setId: SetIdType;
   setOpen: SetOpenType;
 }) => {
-  const nodes = graph.nodes.map(({ text, url, id }) => ({
+  const nodes = graph.nodes.map(({ text, id }) => ({
     id: id.toString(),
     data: {
       label: <Node setId={setId} setOpen={setOpen} text={text} id={id} />,
     },
-    position: { x: Math.random() * 2200 + 100, y: Math.random() * 1400 + 50 },
+    position: buildPosition(),
   }));
 
   const edges = graph.edges.map(({ source, target }) => ({
