@@ -3308,10 +3308,10 @@ make-dir@^3.0.2:
   dependencies:
     semver "^6.0.0"
 
-marked@^4.0.6:
-  version "4.0.7"
-  resolved "https://registry.npmjs.org/marked/-/marked-4.0.7.tgz"
-  integrity sha512-mQrRvV2vRk7DHZsWsYJfAjmBo+lSYPhTJPThaaGpkEfmC+4oefeug2txZniQTieDS0CFpokfVhd7JuS5GtnHhA==
+marked@^4.0.10:
+  version "4.0.10"
+  resolved "https://registry.yarnpkg.com/marked/-/marked-4.0.10.tgz#423e295385cc0c3a70fa495e0df68b007b879423"
+  integrity sha512-+QvuFj0nGgO970fySghXGmuw+Fd0gD2x3+MqCWLIPf5oxdv1Ka6b2q+z9RP01P/IaKPMEramy+7cNy/Lw8c3hw==
 
 match-sorter@^6.3.0:
   version "6.3.1"
