@@ -697,7 +697,7 @@ This is one more step forward in my journey to learning and mastering algorithms
 
 Have fun, keep learning and coding.
 
-Here are my [Medium](https://www.medium.com/@leandrotk_), [Twitter](https://twitter.com/LeandroTk_), [GitHub](https://github.com/LeandroTk), and [LinkedIn](http://br.linkedin.com/in/leandrotk/) accounts.☺
+Here are my [Medium](https://www.medium.com/@leandrotk_), [Twitter](https://twitter.com/wordsofteekay), [GitHub](https://github.com/LeandroTk), and [LinkedIn](http://br.linkedin.com/in/leandrotk/) accounts.☺
 
 ### Additional resources
 
