@@ -21,7 +21,7 @@ const iconLink = css`
 export const ShareButtons: FC = () => {
   const router = useRouter();
   const path = 'https://iamtk.co' + router.asPath;
-  const text = `"${document.title}" by @leandrotk_`;
+  const text = `"${document.title}" by @wordsofteekay`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${path}`;
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${path}`;
   const facebookUrl = `https://www.facebook.com/sharer.php?u=${path}`;
