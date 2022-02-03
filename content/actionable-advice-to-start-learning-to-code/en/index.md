@@ -85,7 +85,7 @@ Another great site is [Hacker Rank](https://www.hackerrank.com/).The website has
 
 Another thing I’m really passionate about is Competitive Programming. I did it for two years at college, for competitions like [ACM ICPC](https://icpc.baylor.edu/).
 
-Basically, you have a bunch of problems, and you need to implement an algorithm to pass each one. Doing it helped me gain a lot of confidence in my coding skills, and I feel like I’m a stronger developer after my heavy training and participating in competitions. ([Here is my repo on GitHub](https://github.com/LeandroTk/algorithms) — I solved a lot of problems).
+Basically, you have a bunch of problems, and you need to implement an algorithm to pass each one. Doing it helped me gain a lot of confidence in my coding skills, and I feel like I’m a stronger developer after my heavy training and participating in competitions. ([Here is my repo on GitHub](https://github.com/imteekay/algorithms) — I solved a lot of problems).
 
 I’m a heavy user on Quora, and someday I read a great answer by [Veni Johanna](https://medium.com/u/f1962714b0f6) about “Does competitive programming really help in improving your knowledge and skill set as a developer?”
 

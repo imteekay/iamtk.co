@@ -697,7 +697,7 @@ This is one more step forward in my journey to learning and mastering algorithms
 
 Have fun, keep learning and coding.
 
-Here are my [Medium](https://www.medium.com/@leandrotk_), [Twitter](https://twitter.com/wordsofteekay), [GitHub](https://github.com/LeandroTk), and [LinkedIn](http://br.linkedin.com/in/leandrotk/) accounts.☺
+Here are my [Medium](https://www.medium.com/@leandrotk_), [Twitter](https://twitter.com/wordsofteekay), [GitHub](https://github.com/imteekay), and [LinkedIn](http://br.linkedin.com/in/leandrotk/) accounts.☺
 
 ### Additional resources
 
@@ -708,11 +708,11 @@ Here are my [Medium](https://www.medium.com/@leandrotk_), [Twitter](https://twit
 - [Intro to Trees, Lecture by Professor David Schmidt](http://people.cs.ksu.edu/~schmidt/300s05/Lectures/Week7b.html)
 - [Intro to Trees, Lecture by Professor Victor Adamchik](http://www.cs.cmu.edu/~clo/www/CMU/DataStructures/Lessons/lesson4_1.htm)
 - [Trees with Gayle Laakmann McDowell](https://www.youtube.com/watch?v=oSWTXtMglKE)
-- [Binary Tree Implementation](https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_tree/binary_tree.py) and [Tests](https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_tree/test_binary_tree.py) by [TK](https://medium.com/@leandrotk_)
+- [Binary Tree Implementation](https://github.com/imteekay/algorithms/blob/master/data_structures/binary_tree/binary_tree.py) and [Tests](https://github.com/imteekay/algorithms/blob/master/data_structures/binary_tree/test_binary_tree.py) by [TK](https://medium.com/@leandrotk_)
 - [Coursera Course: Data Structures by University of California, San Diego](https://www.coursera.org/learn/data-structures)
 - [Coursera Course: Data Structures and Performance by University of California, San Diego](https://www.coursera.org/learn/data-structures-optimizing-performance)
 - [Binary Search Tree concepts and Implementation by Paul Programming](https://www.youtube.com/playlist?list=PLTxllHdfUq4d-DE16EDkpeb8Z68DU7Z_Q)
-- [Binary Search Tree Implementation](https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_search_tree_without_node/binary_search_tree.py) and [Tests](https://github.com/LeandroTk/algorithms/blob/master/data_structures/binary_search_tree_without_node/test_binary_search_tree.py) by [TK](https://medium.com/@leandrotk_)
+- [Binary Search Tree Implementation](https://github.com/imteekay/algorithms/blob/master/data_structures/binary_search_tree_without_node/binary_search_tree.py) and [Tests](https://github.com/imteekay/algorithms/blob/master/data_structures/binary_search_tree_without_node/test_binary_search_tree.py) by [TK](https://medium.com/@leandrotk_)
 - [Tree Traversal by Wikipedia](https://en.wikipedia.org/wiki/Tree_traversal)
 - [Binary Search Tree Remove Node Algorithm by GeeksforGeeks](http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/)
 - [Binary Search Tree ](http://www.algolist.net/Data_structures/Binary_search_tree/Removal)[R](http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/)[emove ](http://www.algolist.net/Data_structures/Binary_search_tree/Removal)[N](http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/)[ode ](http://www.algolist.net/Data_structures/Binary_search_tree/Removal)[A](http://www.geeksforgeeks.org/binary-search-tree-set-2-delete/)[lgorithm by Algolist](http://www.algolist.net/Data_structures/Binary_search_tree/Removal)

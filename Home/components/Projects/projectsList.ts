@@ -38,7 +38,7 @@ export const projectsList = [
   {
     title: 'M2M',
     description: 'Transformation of a Medium post into a Markdown file',
-    link: 'https://github.com/LeandroTk/m2m',
+    link: 'https://github.com/imteekay/m2m',
     target: '_blank',
     rel: 'noopener noreferrer',
   },
