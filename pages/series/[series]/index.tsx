@@ -63,7 +63,6 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { series } = context.params!;
   const { postContent, minutes } = getNestedPostContent('series', series);
   const postMetadata = getNestedPostMetadata('series', series);
-  console.log('minutes', minutes);
 
   return {
     props: {
