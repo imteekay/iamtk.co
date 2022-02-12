@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -56,19 +55,11 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { tag } = context.params!;
   const { postContent, minutes } = getNestedPostContent('tags', tag);
   const postMetadata = getNestedPostMetadata('tags', tag);
-  const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
       postContent,
-      postMetadata: {
-        ...postMetadata,
-        coverImage: {
-          ...postMetadata.coverImage,
-          src: img.src,
-          blurDataURL: base64,
-        },
-      },
+      postMetadata,
       minutes,
     },
   };

@@ -14,7 +14,7 @@ export type CoverImage = {
   alt: string;
   authorHref: string;
   authorName: string;
-  blurDataURL: string;
+  blurDataURL?: string;
 };
 
 export type AlternativeArticle = {

@@ -13,7 +13,7 @@ type CoverImagePropTypes = {
   alt: string;
   authorHref: string;
   authorName: string;
-  blurDataURL: string;
+  blurDataURL?: string;
 };
 
 export const CoverImage: FC<CoverImagePropTypes> = ({
