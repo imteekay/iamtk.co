@@ -34,14 +34,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
         date={postMetadata.date}
         alternativeArticle={postMetadata.alternativeArticle}
         minutes={minutes}
-        coverImage={{
-          src: postMetadata.coverImage.src,
-          width: postMetadata.coverImage.width,
-          height: postMetadata.coverImage.height,
-          alt: postMetadata.coverImage.alt,
-          authorHref: postMetadata.coverImage.authorHref,
-          authorName: postMetadata.coverImage.authorName,
-        }}
+        coverImage={postMetadata.coverImage}
       >
         <div dangerouslySetInnerHTML={{ __html: postContent }} />
       </Layout>
