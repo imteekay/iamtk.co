@@ -57,6 +57,7 @@ export const Layout: FC<LayoutPropTypes> = ({
           alt={coverImage.alt}
           authorHref={coverImage.authorHref}
           authorName={coverImage.authorName}
+          blurDataURL={coverImage.blurDataURL}
         />
       )}
 

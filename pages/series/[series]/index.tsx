@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -35,14 +36,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
         alternativeArticle={postMetadata.alternativeArticle}
         minutes={minutes}
         showSocialLinks
-        coverImage={{
-          src: postMetadata.coverImage.src,
-          width: postMetadata.coverImage.width,
-          height: postMetadata.coverImage.height,
-          alt: postMetadata.coverImage.alt,
-          authorHref: postMetadata.coverImage.authorHref,
-          authorName: postMetadata.coverImage.authorName,
-        }}
+        coverImage={postMetadata.coverImage}
       >
         <div dangerouslySetInnerHTML={{ __html: postContent }} />
       </Layout>
@@ -63,11 +57,19 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { series } = context.params!;
   const { postContent, minutes } = getNestedPostContent('series', series);
   const postMetadata = getNestedPostMetadata('series', series);
+  const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
       postContent,
-      postMetadata,
+      postMetadata: {
+        ...postMetadata,
+        coverImage: {
+          ...postMetadata.coverImage,
+          src: img.src,
+          blurDataURL: base64,
+        },
+      },
       minutes,
     },
   };
