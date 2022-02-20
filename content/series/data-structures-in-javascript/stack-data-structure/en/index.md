@@ -1,0 +1,229 @@
+# Stack Data Structure
+
+The stack is a collection of items that follows the `last-in, first-out` concept.
+
+For the addition of new items, the stack only allows it to push the new item to the top. When it comes to removing items, it only allows us to remove the last added item, or commonly known as the top item.
+
+The main API methods are `push` (add) and `pop` (remove). But we can also add other methods as part of the API implementation: `size`, `top`, and `isEmpty`.
+
+## Stack Implementation
+
+We can create a `Stack` class as a wrapper and use the JavaScript list to store the stack data. This class will have the implementation of the `push`, `pop`, `size`, `top`, and `isEmpty` methods.
+
+The first step is to create a class definition and how we are gone store our items.
+
+```javascript
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+}
+```
+
+This is basically what we need for now. Just a class and its constructor. When the instance is created, it will have the `items` list to store the stack items.
+
+For the `push` method, we can just push the new item to the end of the list. The new item will be placed in the last index of this `items` list. So the top item from the stack will always be the last item.
+
+```javascript
+push(item) {
+  this.items.push(item);
+}
+```
+
+It receives the new item and push it to the list.
+
+The `size` method only counts the number of the stack items by using the `.length` attribute.
+
+```javascript
+size() {
+  return this.items.length;
+}
+```
+
+The idea of the `isEmpty` method is to verify if the list has or not items in it. If it has, returns `false`. Otherwise, `true`. To count the number of items in the stack, we can simply use the `size` method already implemented.
+
+```javascript
+isEmpty() {
+  return this.size() === 0;
+}
+```
+
+The `pop` method from the list data structure can also be used to pop the item from the stack. It pops the last element as it is expected for the stack. The last added item.
+
+```javascript
+pop() {
+  return this.items.pop();
+}
+```
+
+For the `top` method, we just need to get the last element of the list:
+
+```javascript
+top() {
+  return this.items[this.items.length - 1];
+}
+```
+
+If it has at least one item, we get the top, the last added item in the stack. Otherwise, it returns an `undefined` value.
+
+## Stack usage
+
+The usage would be something like:
+
+```javascript
+const stack = new Stack();
+
+stack.isEmpty(); // true
+
+stack.push(1);
+stack.items; // [1]
+stack.push(2);
+stack.items; // [1, 2]
+stack.push(3);
+stack.items; // [1, 2, 3]
+stack.push(4);
+stack.items; // [1, 2, 3, 4]
+stack.push(5);
+stack.items; // [1, 2, 3, 4, 5]
+
+stack.isEmpty(); // false
+stack.top(); // 5
+
+stack.pop();
+stack.items; // [1, 2, 3, 4]
+stack.pop();
+stack.items; // [1, 2, 3]
+stack.pop();
+stack.items; // [1, 2]
+stack.pop();
+stack.items; // [1]
+
+stack.isEmpty(); // false
+
+stack.pop();
+stack.items; // []
+
+stack.isEmpty(); // true
+stack.top(); // undefined
+```
+
+We first instantiate a new stack from the `Stack` class.
+
+- Verify emptiness: yes, it is!
+- Add 5 new items to the stack: `[1, 2, 3, 4, 5]`.
+- Verify emptiness: not anymore!
+- Get the top element: 5 because it was the last added item.
+- Remove 4 items: 5, 4, 3, and 2.
+- Verify emptiness: not empty yet!
+- Remove the remaining item.
+- Verify emptiness: it is empty now!
+
+The whole implementation
+
+```javascript
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  push(item) {
+    this.items.push(item);
+  }
+
+  pop() {
+    return this.items.pop();
+  }
+
+  top() {
+    return this.items[this.items.length - 1];
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+```
+
+---
+
+## Runtime and Space complexities
+
+Now about space and runtime complexities for each method implemented.
+
+The space is pretty simple. It's a list, so it's `O(n)` where `n` is the current number of items in the stack. The runtime for each method is `O(1)`, constant time.
+
+---
+
+## Reversing a list
+
+We can use the stack data structure for a diverse number of algorithms. An example is to reverse the items from a list.
+
+We want to reverse a list of books, a bookshelf.
+
+```javascript
+function reverse(list) {
+  const stack = new Stack();
+
+  for (item of list) {
+    stack.push(item);
+  }
+
+  const reversedList = [];
+
+  while (!stack.isEmpty()) {
+    reversedList.push(stack.pop());
+  }
+
+  return reversedList;
+}
+```
+
+- Create a stack instance
+- Push each list item to the stack
+- Create an empty reversed list
+- Pop each item until the stack is empty
+- For each popped item, append it to the reversed list
+- Return the reversed list
+
+The idea is to make the last list item the first to be popped from the stack.
+
+The function usage would be something like:
+
+```javascript
+const reversedBooks = reverse([
+  'Harry Potter',
+  'Atomic Habits',
+  'Leonardo da Vinci',
+  'Sapiens',
+  'Peak',
+]);
+
+reversedBooks;
+// [
+//   'Peak',
+//   'Sapiens',
+//   'Leonardo da Vinci',
+//   'Atomic Habits',
+//   'Harry Potter'
+// ]
+```
+
+---
+
+## Other examples
+
+We can also implement the stack concept in a `undo` command. Imagine our text editor. For each document change, we store the new document in the stack. If we want to `undo` the change, we just need to pop the last change and stay with the previous state of the document.
+
+Web Browsers can also use stacks to store the visited website. When the user visits a new website, it pushes the new URL to the stack. When the user goes back, using the "back" button, it pops the last visited website and uses the previous URL.
+
+---
+
+## Resources
+
+- [Stack Data Structure](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/)
+- [Basics of Stacks](https://www.hackerearth.com/pt-br/practice/data-structures/stacks/basics-of-stacks/tutorial/)
+- [CMU Stacks](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html)

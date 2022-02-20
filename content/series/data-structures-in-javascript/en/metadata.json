@@ -1,0 +1,23 @@
+{
+  "title": "Data Structures in JavaScript",
+  "description": "Solving algorithms problems with TK",
+  "date": "2022-02-20",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/data-structures/intro.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "A chain",
+    "authorHref": "https://unsplash.com/@fabioha",
+    "authorName": "fabio"
+  }
+}
