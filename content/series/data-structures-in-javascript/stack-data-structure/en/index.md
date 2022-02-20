@@ -118,6 +118,36 @@ We first instantiate a new stack from the `Stack` class.
 - Remove the remaining item.
 - Verify emptiness: it is empty now!
 
+The whole implementation
+
+```javascript
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  push(item) {
+    this.items.push(item);
+  }
+
+  pop() {
+    return this.items.pop();
+  }
+
+  top() {
+    return this.items[this.items.length - 1];
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+```
+
 ---
 
 ## Runtime and Space complexities
