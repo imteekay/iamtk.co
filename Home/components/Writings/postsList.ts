@@ -8,6 +8,18 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-02-20',
+    link: '/series/data-structures-in-javascript/stack-data-structure',
+    title: 'Stack Data Structure in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
+    datetime: '2022-02-20',
+    link: '/series/data-structures-in-javascript',
+    title: 'Data Structures in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
     datetime: '2022-01-10',
     link: '/series/mastering-javascript/destructuring-objects-and-arrays',
     title: 'Destructuring Arrays and Objects in JavaScript',

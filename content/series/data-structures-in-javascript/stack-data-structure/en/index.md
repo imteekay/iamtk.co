@@ -1,5 +1,3 @@
-# Stack Data Structure
-
 The stack is a collection of items that follows the `last-in, first-out` concept.
 
 For the addition of new items, the stack only allows it to push the new item to the top. When it comes to removing items, it only allows us to remove the last added item, or commonly known as the top item.

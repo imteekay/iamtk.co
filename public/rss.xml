@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Stack Data Structure in JavaScript</title>
+    <link>https://www.iamtk.co/series/data-structures-in-javascript/stack-data-structure</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/data-structures-in-javascript/stack-data-structure</guid>
+    <description>Solving algorithms problems with TK</description>
+  </item>
+  <item>
     <title>Destructuring Arrays and Objects in JavaScript</title>
     <link>https://www.iamtk.co/series/mastering-javascript/destructuring-objects-and-arrays</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/mastering-javascript/destructuring-objects-and-arrays</guid>
