@@ -34,6 +34,7 @@ This is live document and will be updated everytime I solve new problems.
 - <time class="date">2021-04-24</time> <span>[027: Truncate Sentence](https://leandrotk.github.io/series/algorithms-problem-solving/can-reach-end.html)</span>
 - <time class="date">2021-04-25</time> <span>[028: Minimum Operations](https://leandrotk.github.io/series/algorithms-problem-solving/truncate-sentence.html)</span>
 - <time class="date">2021-06-15</time> <span>[029: Check Permutation](https://leandrotk.github.io/series/algorithms-problem-solving/minimum-operations.html)</span>
+- <time class="date">2022-02-22</time> <span>[030: Decode String](/series/algorithms-problem-solving/decode-string)</span>
 
 Have fun, keep learning, and always keep coding!
 
