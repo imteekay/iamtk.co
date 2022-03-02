@@ -5,5 +5,6 @@ This is live document and will be updated everytime I solve new problems.
 
 ## Data Structures in JavaScript Series
 
-- <time class="date">2020-02-20</time> <span>[Stack Data Structure](/series/data-structures-in-javascript/stack-data-structure)</span>
+- <time class="date">2022-02-20</time> <span>[Stack Data Structure](/series/data-structures-in-javascript/stack-data-structure)</span>
+- <time class="date">2022-03-02</time> <span>[Queue Data Structure](/series/data-structures-in-javascript/queue-data-structure)</span>
 </div>

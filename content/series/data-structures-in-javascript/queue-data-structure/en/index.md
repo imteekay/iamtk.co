@@ -1,0 +1,178 @@
+The queue data structure is a collection of items that follow the `first-in first out` principle. The first added element will be the first element to be removed from the queue. So, elements are added in the back and removed from the front.
+
+An analogy would be a simple line of people waiting for the next train. In the software engineering context, an example is a web server receiving and responding requests.
+
+The main API methods are `enqueue` (add) and `dequeue` (remove). But we can also add other methods as part of the API implementation: `size`, `front`, `back`, and `isEmpty`.
+
+---
+
+## Queue Implementation
+
+We can create a `Queue` class as a wrapper and use the Python list to store the queue data. This class will have the implementation of the `enqueue`, `dequeue`, `size`, `front`, `back`, and `isEmpty` methods.
+
+The first step is to create a class definition and how we are gone store our items.
+
+```javascript
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+}
+```
+
+This is basically what we need for now. Just a class and its constructor. When the instance is created, it will have the `items` list to store the queue items.
+
+For the `enqueue` method, we just need to use the list `append` method to add new items. The new items will be placed in the last index of this `items`list. So the front item from the queue will always be the first item.
+
+```javascript
+enqueue(item) {
+  this.items.push(item);
+}
+```
+
+It receives the new item and appends it to the list.
+
+The `size` method only counts the number of the queue items by using the `length` attribute.
+
+```javascript
+size() {
+  return this.items.length;
+}
+```
+
+The idea of the `isEmpty` method is to verify if the list has or not items in it. If it has, returns `false`. Otherwise, `true`. To count the number of items in the queue, we can simply use the `size` method already implemented.
+
+```javascript
+isEmpty() {
+  return this.size() === 0;
+}
+```
+
+The `shift` method from the list data structure can also be used to dequeue the item from the queue. It dequeues the first element as it is expected for the queue. The first added item.
+
+```javascript
+dequeue() {
+  this.items.shift();
+}
+```
+
+For the `front` method, we can just access the first element in the `items` list.
+
+```javascript
+front() {
+  return this.items[0];
+}
+```
+
+If it has at least one item, we get the front, the first added item in the queue.
+
+For the `back` method, I used the `at` method to access the last element by passing a `-1`:
+
+```javascript
+back() {
+  return this.items.at(-1);
+}
+```
+
+This feature (`.at()`) is only available for NodeJS v17 or later. If using old versions, we can use the good-old `this.items[this.items.length - 1]`.
+
+If it has at least one item, we get the back item, the last added item in the queue.
+
+## Queue usage
+
+The usage would be something like:
+
+```javascript
+const queue = new Queue();
+
+queue.isEmpty(); // true
+queue.size(); // 0
+
+queue.enqueue(1); // [1]
+queue.enqueue(2); // [1, 2]
+queue.enqueue(3); // [1, 2, 3]
+queue.enqueue(4); // [1, 2, 3, 4]
+queue.enqueue(5); // [1, 2, 3, 4, 5]
+
+queue.isEmpty(); // false
+queue.size(); // 5;
+queue.front(); // 1;
+queue.back(); // 5;
+
+queue.items; // [1, 2, 3, 4, 5];
+
+queue.dequeue(); // [2, 3, 4, 5];
+queue.dequeue(); // [3, 4, 5];
+queue.dequeue(); // [4, 5];
+queue.dequeue(); // [5];
+queue.isEmpty(); // false
+queue.dequeue(); // []
+queue.isEmpty(); // true
+queue.size(); // 0;
+```
+
+We first instantiate a new queue from the `Queue` class.
+
+- So now we can verify its emptiness: yes, it is!
+- Verify size: 0.
+- Enqueue 5 new items to the queue: `[1, 2, 3, 4, 5]`.
+- Verify emptiness again: not anymore!
+- Verify size: 5.
+- Get the front element: 1 because it was the first added item.
+- Get the back element: 5 because it was the last added item.
+- Dequeue 4 items: 1, 2, 3, and 4.
+- Verify emptiness: it is not empty yet!
+- The size is 1 and the back and front are the same number: 5
+- Dequeue the remaining item.
+- Verify emptiness: it is empty now!
+- Size is back to 0.
+
+The whole implementation
+
+```javascript
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+
+  enqueue(item) {
+    this.items.push(item);
+  }
+
+  dequeue() {
+    this.items.shift();
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  front() {
+    return this.items[0];
+  }
+
+  back() {
+    return this.items.at(-1);
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+```
+
+## Runtime and Space complexities
+
+Now about space and runtime complexities for each method implemented.
+
+The space is pretty simple. It's a list, so it's `O(n)` where `n` is the current number of items in the stack.
+
+The runtime for each method is `O(1)`, constant time.
+
+---
+
+## Resources
+
+- [Queue Data Structure: implementation](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/queue/queue.js)
+- [Queue Data Structure: tests](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/queue/tests/queue.test.js)
+- [Data Structures in JavaScript](/series/data-structures-in-javascript)
