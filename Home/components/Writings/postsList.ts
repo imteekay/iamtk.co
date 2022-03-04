@@ -8,6 +8,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-03-04',
+    link: '/series/data-structures-in-javascript/linked-list-data-structure',
+    title: 'Linked List Data Structure in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
     datetime: '2022-03-02',
     link: '/series/data-structures-in-javascript/queue-data-structure',
     title: 'Queue Data Structure in JavaScript',
