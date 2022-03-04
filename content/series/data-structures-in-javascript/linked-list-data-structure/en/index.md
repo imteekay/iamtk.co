@@ -474,8 +474,10 @@ What do we do here?
 
 ## Resources
 
+- [Algorithms](https://github.com/imteekay/algorithms)
+- [Linked List Implementation](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/linked_list/linked-list.js)
+- [Linked List Tests](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/linked_list/tests/linked-list.test.js)
 - [Big-O Notation For Coding Interviews and Beyond](https://www.educative.io/courses/big-o-notation-for-interviews-and-beyond?aff=x8bV)
-  Structures-Algorithms-Python-Michael-Goodrich/dp/1118290275))
 - [HackerRank Linked List](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)
 - [Linked List Part 1](https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d)
 - [Linked List Part 2](https://medium.com/basecs/whats-a-linked-list-anyway-part-2-131d96f71996)
