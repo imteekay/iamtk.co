@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/frontend-infrastructure/infra.jpg",
+    "src": "/frontend-infrastructure/skills.jpg",
     "width": "640",
     "height": "427",
-    "alt": "City at night - infrastructure of the city",
-    "authorHref": "https://unsplash.com/@shawnanggg",
-    "authorName": "shawnanggg"
+    "alt": "man writing",
+    "authorHref": "https://unsplash.com/@dchuck",
+    "authorName": "Daniel Chekalov"
   }
 }

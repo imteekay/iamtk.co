@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/frontend-infrastructure/infra.jpg",
+    "src": "/frontend-infrastructure/books.jpg",
     "width": "640",
     "height": "427",
-    "alt": "City at night - infrastructure of the city",
-    "authorHref": "https://unsplash.com/@shawnanggg",
-    "authorName": "shawnanggg"
+    "alt": "books",
+    "authorHref": "https://unsplash.com/@ugur",
+    "authorName": "Ugur Akdemir"
   }
 }
