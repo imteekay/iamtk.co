@@ -27,6 +27,12 @@ The research and experiments I've been doing and documenting about frontend infr
 - <time class="date">2020-05-09</time> <span>[Interesting Types](/series/typescript-learnings/interesting-types)</span>
 - <time class="date">2020-05-23</time> <span>[Union Types with Objects](/series/typescript-learnings/union-types-with-objects)</span>
 
+### Frontend Architecture
+
+- <time class="date">2021-12-27</time> <span>[Frontend Challenges: Room Selector Dialog](/series/frontend-challenges/findhotel-frontend-challenge)</span>
+- <time class="date">2021-06-13</time> <span>[Rebuilding a Search product](/series/rebuilding-mercaris-search)</span>
+- <time class="date">2021-06-05</time> <span>[Data Fetching in React with react-query](/data-fetching-in-react-with-react-query)</span>
+
 ### Developer Experience
 
 - <time class="date">2021-04-04</time> <span>[DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)</span>
