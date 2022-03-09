@@ -33,6 +33,11 @@ The research and experiments I've been doing and documenting about frontend infr
 - <time class="date">2021-06-13</time> <span>[Rebuilding a Search product](/series/rebuilding-mercaris-search)</span>
 - <time class="date">2021-06-05</time> <span>[Data Fetching in React with react-query](/data-fetching-in-react-with-react-query)</span>
 
+### Web Performance
+
+- <time class="date">2021-04-04</time> <span>[Optimizing the Performance of a React Progressive Web App](/optimizing-the-performance-of-a-react-progressive-web-app)</span>
+- <time class="date">2021-01-19</time> <span>[Performance: Prefetch Next Pages Chunks](/performance-prefetch-next-pages-chunks)</span>
+
 ### Developer Experience
 
 - <time class="date">2021-04-04</time> <span>[DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)</span>
