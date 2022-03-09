@@ -102,7 +102,7 @@ article .tags ul {
 
 article .series ul li,
 article .tags ul li {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   display: flex;
 }
 

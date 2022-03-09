@@ -14,6 +14,19 @@ This introduction covers tools to build a mental model around frontend infrastru
 
 The research and experiments I've been doing and documenting about frontend infrastructure in posts format.
 
+### Mastering JavaScript
+
+- <time class="date">2022-01-03</time> <span>[Revisiting Conditionals in JavaScript and TypeScript](/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript)</span>
+- <time class="date">2022-01-10</time> <span>[Destructuring Arrays and Objects in JavaScript](/series/mastering-javascript/destructuring-objects-and-arrays)</span>
+
+### TypeScript Learnings
+
+- <time class="date">2020-07-19</time> <span>[A Mental Model to think in TypeScript](/a-mental-model-to-think-in-typescript)</span>
+- <time class="date">2020-04-05</time> <span>[Object Destruturing](/series/typescript-learnings/object-destructuring)</span>
+- <time class="date">2020-04-25</time> <span>[Type System](/series/typescript-learnings/type-system)</span>
+- <time class="date">2020-05-09</time> <span>[Interesting Types](/series/typescript-learnings/interesting-types)</span>
+- <time class="date">2020-05-23</time> <span>[Union Types with Objects](/series/typescript-learnings/union-types-with-objects)</span>
+
 ### Developer Experience
 
 - <time class="date">2021-04-04</time> <span>[DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)</span>
