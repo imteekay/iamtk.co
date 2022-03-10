@@ -30,6 +30,8 @@ The research and experiments I've been doing and documenting about frontend infr
 ### Modules and Bundlers
 
 - <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: JavaScript as Scripts](/series/frontend-infrastructure/javascript-as-scripts)</span>
+- <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: Scope & Closure](/series/frontend-infrastructure/scope-and-closure)</span>
+- <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: IIFE](/series/frontend-infrastructure/iife-immediately-invoked-function-expression)</span>
 
 ### Frontend Architecture
 
@@ -45,6 +47,8 @@ The research and experiments I've been doing and documenting about frontend infr
 ### Developer Experience
 
 - <time class="date">2021-04-04</time> <span>[DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)</span>
+
+## Keep up-to-date
 
 To keep up-to-date with the study and research, follow the experiments on the [Frontend Infrastructure](https://github.com/imteekay/frontend-infrastructure) github repository.
 

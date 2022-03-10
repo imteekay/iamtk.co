@@ -247,3 +247,4 @@ Understanding scope is the building block to deeply understand JavaScript. Under
 - [Frontend Infrastructure: Skills](/series/frontend-infrastructure/skills)
 - [Frontend Infrastructure: Resources](/series/frontend-infrastructure/resources)
 - [Frontend Infrastructure: JavaScript as Scripts](/series/frontend-infrastructure/javascript-as-scripts)
+- [Frontend Infrastructure: IIFE](/series/frontend-infrastructure/iife-immediately-invoked-function-expression)
