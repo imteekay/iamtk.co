@@ -33,6 +33,7 @@ The research and experiments I've been doing and documenting about frontend infr
 - <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: Scope & Closure](/series/frontend-infrastructure/scope-and-closure)</span>
 - <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: IIFE](/series/frontend-infrastructure/iife-immediately-invoked-function-expression)</span>
 - <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: Namespaces](/series/frontend-infrastructure/namespaces)</span>
+- <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: ESModules & CommonJS](/series/frontend-infrastructure/esmodules-and-commonjs)</span>
 
 ### Frontend Architecture
 

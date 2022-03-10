@@ -188,3 +188,13 @@ From ESModule:
 import { a } from './module';
 const { b } = a;
 ```
+
+## Resources
+
+- [Frontend Infrastructure Hub](/frontend-infrastructure)
+- [Frontend Infrastructure Repository](https://github.com/imteekay/frontend-infrastructure)
+- [Frontend Infrastructure: Techniques and Strategies](/series/frontend-infrastructure/techniques-and-strategies)
+- [Frontend Infrastructure: Skills](/series/frontend-infrastructure/skills)
+- [Frontend Infrastructure: Resources](/series/frontend-infrastructure/resources)
+- [Frontend Infrastructure: JavaScript as Scripts](/series/frontend-infrastructure/javascript-as-scripts)
+- [Frontend Infrastructure: Scope & Closure](/series/frontend-infrastructure/scope-and-closure)
