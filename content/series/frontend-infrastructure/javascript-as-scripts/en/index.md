@@ -159,4 +159,5 @@ With the script tag, we had some limitations:
 - [Frontend Infrastructure: Skills](/series/frontend-infrastructure/skills)
 - [Frontend Infrastructure: Resources](/series/frontend-infrastructure/resources)
 - [Frontend Infrastructure: Scope & Closure](/series/frontend-infrastructure/scope-and-closure)
+- [Frontend Infrastructure: Namespaces](/series/frontend-infrastructure/namespaces)
 - [Frontend Infrastructure: IIFE](/series/frontend-infrastructure/iife-immediately-invoked-function-expression)

@@ -108,5 +108,6 @@ In the [Scope & Closure](/series/frontend-infrastructure/scope-and-closure) post
 - [Frontend Infrastructure: Resources](/series/frontend-infrastructure/resources)
 - [Frontend Infrastructure: JavaScript as Scripts](/series/frontend-infrastructure/javascript-as-scripts)
 - [Frontend Infrastructure: Scope & Closure](/series/frontend-infrastructure/scope-and-closure)
+- [Frontend Infrastructure: Namespaces](/series/frontend-infrastructure/namespaces)
 - [Grouping Operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Grouping#using_the_grouping_operator)
 - [IIFE](https://developer.mozilla.org/en-US/docs/Glossary/IIFE)
