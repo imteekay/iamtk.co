@@ -1,0 +1,92 @@
+A collection of interesting resources to keep up-to-date in the frontend ecosystem and also build a foundational knowledge of modern frontend.
+
+**Scope, Closure, and Execution Context**
+
+- [MDN Scope](https://developer.mozilla.org/en-US/docs/Glossary/Scope)
+- [Closure, Scope & Execution Context](https://www.youtube.com/watch?v=XTAzsODSCsM)
+- [A Simple Explanation of Scope in JavaScript](https://dmitripavlutin.com/javascript-scope)
+- [Understanding Variables, Scope, and Hoisting in JavaScript](https://www.digitalocean.com/community/tutorials/understanding-variables-scope-hoisting-in-javascript)
+
+**Modules**
+
+- [JavaScript Modules: From IIFEs to CommonJS to ES6 Modules](https://www.youtube.com/watch?v=qJWALEoGge4)
+- [JavaScript Modules Past & Present](https://www.youtube.com/watch?v=GQ96b_u7rGc&list=TLPQMDYwMTIwMjK_dvV037lu7)
+- [History of Web Development: JavaScript Modules](https://lihautan.com/javascript-modules/)
+- [Brief history of JavaScript Modules](https://medium.com/sungthecoder/javascript-module-module-loader-module-bundler-es6-module-confused-yet-6343510e7bde)
+- [JavaScript Modules: A Brief History](https://objectpartners.com/2019/05/24/javascript-modules-a-brief-history)
+- [JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- [V8 JavaScript modules](https://v8.dev/features/modules)
+- [State of Modules in JavaScript](https://www.sitepen.com/blog/state-of-modules-in-javascript)
+- [CommonJS effort sets JavaScript on path for world domination](https://arstechnica.com/information-technology/2009/12/commonjs-effort-sets-javascript-on-path-for-world-domination)
+- [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive)
+- [CommonJS vs AMD vs RequireJS vs ES6 Modules](https://medium.com/computed-comparisons/commonjs-vs-amd-vs-requirejs-vs-es6-modules-2e814b114a0b)
+- [From CommonJS to ES Modules: How to modernize your Node.js app](https://electerious.medium.com/from-commonjs-to-es-modules-how-to-modernize-your-node-js-app-ad8cdd4fb662)
+- [Essential JavaScript Namespacing Patterns](https://addyosmani.com/blog/essential-js-namespacing)
+- [Native ES Modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+- [Node Modules at War: Why CommonJS and ES Modules Can’t Get Along](https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1)
+- [Publish ESM and CJS in a single package](https://antfu.me/posts/publish-esm-and-cjs)
+- [Exploring ES6: JavaScript Modules](https://exploringjs.com/es6/ch_modules.html)
+
+**Bundlers and Build Tools**
+
+- [Reduce JavaScript Payloads with Tree Shaking](https://developers.google.com/web/fundamentals/performance/optimizing-javascript/tree-shaking)
+- [Improving Site Performance With Webpack Tree Shaking](https://medium.com/coursera-engineering/improving-site-performance-with-tree-shaking-491b6a7e0708)
+- [Compilers are the New Frameworks](https://tomdale.net/2017/09/compilers-are-the-new-frameworks/)
+- [Vite is a next-generation frontend tool](https://patak.dev/web/vite-2.html)
+- [Module bundlers in 3 levels](https://www.youtube.com/watch?v=iOYO2dKBYow&ab_channel=lihautan)
+- [Module bundling](https://www.freecodecamp.org/news/javascript-modules-part-2-module-bundling-5020383cf306/)
+
+**JavaScript Spec**
+
+- [How to Read the ECMAScript Specification](https://timothygu.me/es-howto)
+- [Future Javascript: Javascript Pipeline Operators](https://dev.to/smpnjn/future-javascript-javascript-pipeline-operators-5jj)
+- [Future Javascript: Records and Tuples](https://dev.to/smpnjn/future-javascript-records-and-tuples-14fk)
+
+**Infrastructure for migrations and adoption**
+
+- [Migrating Large TypeScript Codebases To Project References](https://shopify.engineering/migrating-large-typescript-codebases-project-references)
+- [ts-migrate: A Tool for Migrating to TypeScript at Scale](https://medium.com/airbnb-engineering/ts-migrate-a-tool-for-migrating-to-typescript-at-scale-cd23bfeb5cc)
+- [Adopting Typescript at Scale](https://www.youtube.com/watch?v=P-J9Eg7hJwE&ab_channel=JSConf)
+- [The continual evolution of Airtable’s codebase: Migrating a million lines of code to TypeScript](https://medium.com/airtable-eng/the-continual-evolution-of-airtables-codebase-migrating-a-million-lines-of-code-to-typescript-612c008baf5c)
+- [TypeScript vs Flow](https://github.com/niieani/typescript-vs-flowtype)
+
+**Platform/Infra teams**
+
+- [Frontend At Scale: Designing Infra For Big Teams](https://www.youtube.com/watch?v=LrfSSAET6iY)
+- [Dealing with large-scale JavaScript application infrastructure](https://www.youtube.com/watch?v=1KUdbnlgh-s)
+- [The Case for Frontend Infrastructure](https://tech.smartling.com/the-case-for-front-end-infrastructure-15a2a9a203da)
+- [What is Platform Engineering](https://medium.com/@nodefortytwo/what-is-platform-engineering-a6e8bff1d9c6)
+- [Modelling Developer Infrastructure Teams](https://shopify.engineering/modelling-developer-infrastructure-teams)
+
+**Developer Experience**
+
+- [What is Developer Experience? a roundup of links and goodness](https://redmonk.com/jgovernor/2022/02/21/what-is-developer-experience-a-roundup-of-links-and-goodness)
+- [DX at Netlify](https://www.netlify.com/blog/2021/01/06/developer-experience-at-netlify)
+- [Developer Experience, beyond a single product.](https://twitter.com/sarah_edo/status/1488182123450142723)
+- [How To Prioritize The Developer Experience And Improve Output](https://harness.io/blog/developer-experience)
+- [Building for the 99% Developers](https://future.a16z.com/software-development-building-for-99-developers)
+- [The Developer Experience Gap](https://redmonk.com/sogrady/2020/10/06/developer-experience-gap)
+- [Developer experience is so much more than using the product itself](https://twitter.com/Dayhaysoos/status/1491814689759797249)
+- [A guide to coding accessible developer tools](https://increment.com/development/a-guide-to-coding-accessible-developer-tools)
+- [Developer Experience: Concept and Definition](pdfs/dx/developer-experience-concept-and-definition.pdf)
+
+**CI/CD**
+
+- [Keeping Developers Happy with a Fast CI](https://shopify.engineering/faster-shopify-ci)
+- [Spark Joy by Running Fewer Tests](https://shopify.engineering/spark-joy-by-running-fewer-tests)
+- [Test Budget: Time Constrained CI Feedback](https://shopify.engineering/test-budget-time-constrained-ci-feedback)
+
+**Tools: Bundlers**
+
+- [vite: Next Generation Frontend Tooling](https://github.com/vitejs/vite)
+- [esbuild: an extremely fast JavaScript bundler](https://github.com/evanw/esbuild)
+- [rollup.js: a module bundler for JavaScript](https://rollupjs.org)
+- [swc: Rust-based platform for the Web](https://swc.rs)
+- [parcel: The zero configuration build tool for the web](https://github.com/parcel-bundler/parcel)
+- [snowpack: The faster frontend build tool.](https://www.snowpack.dev)
+
+**Tools: Flow -> TS codemods**
+
+- [babel-plugin-flow-to-typescript](https://github.com/Kiikurage/babel-plugin-flow-to-typescript)
+- [flow-to-ts](https://github.com/Khan/flow-to-ts)
+- [Airtable’s TypeScript Migration Codemod](https://github.com/Airtable/typescript-migration-codemod)

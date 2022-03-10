@@ -4,9 +4,9 @@ Frontend Infrastructure teams empower product teams with the foundational fronte
 
 This introduction covers tools to build a mental model around frontend infrastructure: techniques and strategies, skills, and additional resources.
 
-- [Frontend Infrastructure: Techniques and Strategies](/frontend-infrastructure-techniques-and-strategies)
-- [Frontend Infrastructure: Skills](/frontend-infrastructure-skills)
-- [Frontend Infrastructure: Resources](/frontend-infrastructure-resources)
+- [Frontend Infrastructure: Techniques and Strategies](/series/frontend-infrastructure/techniques-and-strategies)
+- [Frontend Infrastructure: Skills](/series/frontend-infrastructure/skills)
+- [Frontend Infrastructure: Resources](/series/frontend-infrastructure/resources)
 
 <div class="series">
 
