@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Infrastructure: JavaScript as Scripts",
+  "description": "JavaScript as Scripts: when JavaScript was used for simple scripts to bring simple interactivity",
+  "date": "2022-03-10",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/frontend-infrastructure/strategy.jpg",
+    "width": "640",
+    "height": "423",
+    "alt": "Chess",
+    "authorHref": "https://unsplash.com/@hpzworkz",
+    "authorName": "Hassan Pasha"
+  }
+}
