@@ -27,6 +27,10 @@ The research and experiments I've been doing and documenting about frontend infr
 - <time class="date">2020-05-09</time> <span>[Interesting Types](/series/typescript-learnings/interesting-types)</span>
 - <time class="date">2020-05-23</time> <span>[Union Types with Objects](/series/typescript-learnings/union-types-with-objects)</span>
 
+### Modules and Bundlers
+
+- <time class="date">2022-03-10</time> <span>[Frontend Infrastructure: JavaScript as Scripts](/series/frontend-infrastructure/javascript-as-scripts)</span>
+
 ### Frontend Architecture
 
 - <time class="date">2021-12-27</time> <span>[Frontend Challenges: Room Selector Dialog](/series/frontend-challenges/findhotel-frontend-challenge)</span>
