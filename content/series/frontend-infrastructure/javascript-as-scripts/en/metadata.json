@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/frontend-infrastructure/strategy.jpg",
+    "src": "/series/frontend-infrastructure/javascript-as-scripts.jpg",
     "width": "640",
-    "height": "423",
-    "alt": "Chess",
-    "authorHref": "https://unsplash.com/@hpzworkz",
-    "authorName": "Hassan Pasha"
+    "height": "427",
+    "alt": "letters",
+    "authorHref": "https://unsplash.com/@jrkorpa",
+    "authorName": "Jr Korpa"
   }
 }
