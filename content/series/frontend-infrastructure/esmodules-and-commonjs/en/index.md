@@ -193,6 +193,12 @@ import { a } from './module';
 const { b } = a;
 ```
 
+## Final words
+
+With the development of JavaScript, we end up with two main module systems: ESModules (import syntax) and CommonJS (require syntax). Even though ECMAScript standard module system is ESModules, we currently have a lot of apps, libraries, and systems written using CommonJS.
+
+We still live in a world where the two module systems need to work together. In this piece we've learned the differences between the two, how to make them interop, and understand compatibility limitations between them.
+
 ## Resources
 
 - [Frontend Infrastructure Hub](/frontend-infrastructure)
