@@ -102,6 +102,10 @@ CJS can't import/require ESM. It throws an exception: `Must use import to load a
 
 ## Migration: from CommonJS to ESModule
 
+What are common patterns for migration from CommonJS to ESModule? We need to think about 4 main things: named export, default export, named import, and default import.
+
+We also have some caveats through this process, but most of the time, the focus is these 4 things. Let's see the patterns.
+
 ### Named exports
 
 From CommonJS:
