@@ -1,0 +1,21 @@
+{
+  "title": "Programação Funcional em JavaScript",
+  "description": "",
+  "date": "2022-03-12",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/functional-programming",
+      "name": "functional_programming"
+    }
+  ],
+  "coverImage": {
+    "src": "/functional-programming-principles-in-javascript/cover.png",
+    "width": "592",
+    "height": "148",
+    "alt": "Yellow lambda cover"
+  }
+}
