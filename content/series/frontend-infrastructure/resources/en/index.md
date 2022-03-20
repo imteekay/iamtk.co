@@ -26,6 +26,7 @@ A collection of interesting resources to keep up-to-date in the frontend ecosyst
 - [Node Modules at War: Why CommonJS and ES Modules Can’t Get Along](https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1)
 - [Publish ESM and CJS in a single package](https://antfu.me/posts/publish-esm-and-cjs)
 - [Exploring ES6: JavaScript Modules](https://exploringjs.com/es6/ch_modules.html)
+- [What the heck are CJS, AMD, UMD, and ESM in Javascript?](https://dev.to/iggredible/what-the-heck-are-cjs-amd-umd-and-esm-ikm)
 
 **Bundlers and Build Tools**
 
@@ -35,12 +36,21 @@ A collection of interesting resources to keep up-to-date in the frontend ecosyst
 - [Vite is a next-generation frontend tool](https://patak.dev/web/vite-2.html)
 - [Module bundlers in 3 levels](https://www.youtube.com/watch?v=iOYO2dKBYow&ab_channel=lihautan)
 - [Module bundling](https://www.freecodecamp.org/news/javascript-modules-part-2-module-bundling-5020383cf306/)
+- [Webpack — The Confusing Parts](https://rajaraodv.medium.com/webpack-the-confusing-parts-58712f8fcad9)
+- [Webpack loaders vs plugins: what's the difference?](https://stackoverflow.com/a/46176755/3159162)
+- [How To Make Tree Shakeable Libraries](https://blog.theodo.com/2021/04/library-tree-shaking)
+- [Tree-shaking? Let’s implement it!](https://medium.com/punching-performance/tree-shaking-lets-implement-it-8de1c29f49e9)
 
 **JavaScript Spec**
 
 - [How to Read the ECMAScript Specification](https://timothygu.me/es-howto)
 - [Future Javascript: Javascript Pipeline Operators](https://dev.to/smpnjn/future-javascript-javascript-pipeline-operators-5jj)
 - [Future Javascript: Records and Tuples](https://dev.to/smpnjn/future-javascript-records-and-tuples-14fk)
+
+**TypeScript**
+
+- [A Mental Model to Think in TypeScript](https://www.iamtk.co/a-mental-model-to-think-in-typescript)
+- [Advanced TypeScript Concepts](https://github.com/imteekay/advanced-typescript)
 
 **Infrastructure for migrations and adoption**
 
@@ -70,13 +80,28 @@ A collection of interesting resources to keep up-to-date in the frontend ecosyst
 - [A guide to coding accessible developer tools](https://increment.com/development/a-guide-to-coding-accessible-developer-tools)
 - [Developer Experience: Concept and Definition](pdfs/dx/developer-experience-concept-and-definition.pdf)
 
+**Frontend Architecture**
+
+- [A different approach to frontend architecture](https://dev.to/huytaquoc/a-different-approach-to-frontend-architecture-38d4)
+- [Design, Composition and Performance](https://www.infoq.com/presentations/Design-Composition-Performance)
+- [Clean Architecture on Frontend](https://dev.to/bespoyasov/clean-architecture-on-frontend-4311)
+- [System Design Architectures](https://www.youtube.com/c/FrontEndEngineer/videos)
+- [Building a Scalable and Modular Architecture for React-TS Applications](https://levelup.gitconnected.com/building-a-scalable-and-modular-architecture-for-react-ts-applications-e1d917250e04)
+- [Frontend Architecture at Scale for Large Organizations](https://medium.com/swlh/frontend-architecture-in-scale-for-large-organizations-593930ed10cd)
+- [Contemporary Front-end Architectures](https://blog.webf.zone/contemporary-front-end-architectures-fb5b500b0231)
+
 **CI/CD**
 
 - [Keeping Developers Happy with a Fast CI](https://shopify.engineering/faster-shopify-ci)
 - [Spark Joy by Running Fewer Tests](https://shopify.engineering/spark-joy-by-running-fewer-tests)
 - [Test Budget: Time Constrained CI Feedback](https://shopify.engineering/test-budget-time-constrained-ci-feedback)
+- [Modern Frontend CI/CD Architecture — The Missing Guide (Part. 1): The CI](https://medium.com/google-cloud/modern-frontend-ci-cd-architecture-the-missing-guide-part-1-8444001fadc)
+- [Modern Frontend CI/CD Architecture — The Missing Guide (Part. 2): The CD](https://medium.com/google-cloud/modern-frontend-ci-cd-architecture-the-missing-guide-part-2-d51875bd0e65)
+- [Modern Frontend CI/CD Architecture — The Missing Guide (Part. 3)](https://medium.com/google-cloud/modern-frontend-ci-cd-architecture-the-missing-guide-part-3-9a6be231d14)
 
-**Tools: Bundlers**
+## Tools
+
+**Bundlers**
 
 - [vite: Next Generation Frontend Tooling](https://github.com/vitejs/vite)
 - [esbuild: an extremely fast JavaScript bundler](https://github.com/evanw/esbuild)
@@ -85,8 +110,9 @@ A collection of interesting resources to keep up-to-date in the frontend ecosyst
 - [parcel: The zero configuration build tool for the web](https://github.com/parcel-bundler/parcel)
 - [snowpack: The faster frontend build tool.](https://www.snowpack.dev)
 
-**Tools: Flow -> TS codemods**
+**Flow -> TS codemods**
 
 - [babel-plugin-flow-to-typescript](https://github.com/Kiikurage/babel-plugin-flow-to-typescript)
 - [flow-to-ts](https://github.com/Khan/flow-to-ts)
 - [Airtable’s TypeScript Migration Codemod](https://github.com/Airtable/typescript-migration-codemod)
+- [ECMAScript 5 to ECMAScript 6 Codemod](https://github.com/5to6/5to6-codemod)
