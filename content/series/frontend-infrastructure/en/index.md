@@ -96,12 +96,6 @@ The research and experiments I've been doing and documenting about frontend infr
 
 - <time class="date">2021-04-04</time> <span>[DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)</span>
 
-## Keep up-to-date
-
-To keep up-to-date with the study and research, follow the experiments on the [Frontend Infrastructure](https://github.com/imteekay/frontend-infrastructure) github repository.
-
-Or follow me on social media below:
-
 </div>
 
 ## Resources
@@ -222,3 +216,9 @@ Or follow me on social media below:
 - [flow-to-ts](https://github.com/Khan/flow-to-ts)
 - [Airtable’s TypeScript Migration Codemod](https://github.com/Airtable/typescript-migration-codemod)
 - [ECMAScript 5 to ECMAScript 6 Codemod](https://github.com/5to6/5to6-codemod)
+
+## Keep up-to-date
+
+To keep up-to-date with the study and research, follow the experiments on the [Frontend Infrastructure](https://github.com/imteekay/frontend-infrastructure) github repository.
+
+Or follow me on social media below:
