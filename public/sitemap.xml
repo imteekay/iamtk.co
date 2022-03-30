@@ -10,6 +10,51 @@
     <priority>1.00</priority>
   </url>
   <url>
+    <loc>https://www.iamtk.co/frontend-infrastructure</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/techniques-and-strategies</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/skills</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/resources</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/javascript-as-scripts</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/scope-and-closure</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/iife-immediately-invoked-function-expression</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/namespaces</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.iamtk.co/series/frontend-infrastructure/esmodules-and-commonjs</loc>
+    <lastmod>2022-03-26T01:56:46+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
     <loc>https://www.iamtk.co/writings</loc>
     <lastmod>2022-01-09T01:56:46+00:00</lastmod>
     <priority>0.80</priority>
