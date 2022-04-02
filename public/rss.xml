@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Frontend Infrastructure</title>
+    <link>https://www.iamtk.co/frontend-infrastructure</link>
+    <guid isPermaLink="true">https://www.iamtk.co/frontend-infrastructure</guid>
+    <description>Empowering product teams with the foundational frontend ecosystem and reliable, performant, and developer-friendly tools to efficiently build great user experiences</description>
+  </item>
+  <item>
     <title>Linked List Data Structure in JavaScript</title>
     <link>https://www.iamtk.co/series/data-structures-in-javascript/linked-list-data-structure</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/data-structures-in-javascript/linked-list-data-structure</guid>
