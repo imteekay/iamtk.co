@@ -1,0 +1,19 @@
+{
+  "title": "Introduction to Static Analysis and Code Optimization",
+  "description": "The intro to the course",
+  "date": "2022-04-13",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/ufmg-compilers-course/cover.png",
+    "width": "607",
+    "height": "212",
+    "alt": "Compiler",
+    "authorHref": "",
+    "authorName": ""
+  }
+}
