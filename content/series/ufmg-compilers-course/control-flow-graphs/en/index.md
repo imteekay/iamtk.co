@@ -1,0 +1,55 @@
+The frontend uses a AST (Abstract Syntax Tree) to represent the source code. The middle-end uses a CFG (Control Flow Graphs) in the compiler optimization.
+
+Control Flow Graphs are directed graphs
+
+- Nodes or vertices are known as _basic blocks_
+- Edges represent the program execution flow from node X to node Y
+
+A basic block is a sequence of consecutive instructions.
+
+Leaders: the first instruction of a basic block.
+
+- The first instruction in the intermediate code is a leader
+- Any instruction that's a target of a conditional or unconditional jump is a leader
+- Any instruction that immediately follows a conditional or unconditional jump is a leader
+
+For each leader, its basic block consists of the leader itself, plus all the instructions until the next leader.
+
+Example: turning source code into a control flow graph
+
+```c
+int fact(int n) {
+	int ans = 1;
+	while (n > 1) {
+		ans *= n;
+		n--;
+	}
+	return ans;
+}
+```
+
+How each basic block is structured:
+
+```tsx
+// basic block 1
+entry:
+	int n;
+	int ans = 1;
+	while condition
+
+// basic block 2
+while condition:
+	n > 1
+	// Posibilities
+	// - True
+	// - False
+
+// basic block 3
+while body:
+	ans *= n;
+	n--;
+
+// basic block 4
+while end:
+	return ans;
+```
