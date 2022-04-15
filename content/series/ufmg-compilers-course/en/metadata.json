@@ -1,0 +1,19 @@
+{
+  "title": "UFMG Compilers Course: Static Program Analysis & Code Optimization",
+  "description": "Static Program analysis and Code Optimization",
+  "date": "2022-04-13",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/ufmg-compilers-course/cover.png",
+    "width": "607",
+    "height": "212",
+    "alt": "Compiler",
+    "authorHref": "",
+    "authorName": ""
+  }
+}
