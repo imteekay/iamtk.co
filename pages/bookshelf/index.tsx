@@ -1,20 +1,20 @@
 import type { NextPage } from 'next';
 import { Head } from 'Base/components/Head';
-import { Series } from 'Home/components/Series';
+import { Bookshelf } from 'Home/components/Bookshelf/Bookshelf';
 import { HomeLink } from 'Base/Article/HomeLink';
 
 const Page: NextPage = () => (
   <>
     <Head
-      title="TK —— Series"
-      description="Learning & Improving with TK —— Series"
+      title="TK —— Bookshelf"
+      description="Learning & Improving with TK —— Bookshelf"
       imageUrl="/logo.jpeg"
     />
 
     <main id="main">
       <div className="content">
         <HomeLink />
-        <Series header="h1" />
+        <Bookshelf header="h1" />
       </div>
     </main>
   </>
