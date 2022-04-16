@@ -6,8 +6,8 @@ import { HomeLink } from 'Base/Article/HomeLink';
 const Page: NextPage = () => (
   <>
     <Head
-      title="TK – Bookshelf"
-      description="Learning & Improving with TK – Bookshelf"
+      title="TK — Bookshelf"
+      description="Learning & Improving with TK — Bookshelf"
       imageUrl="/logo.jpeg"
     />
 
