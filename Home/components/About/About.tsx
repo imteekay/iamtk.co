@@ -1,9 +1,11 @@
 import { FC } from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMugHot,
   faEnvelope,
   faStickyNote,
+  faBook,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -42,7 +44,7 @@ export const About: FC = () => (
         thoughts on twitter <FontAwesomeIcon icon={faTwitter} />
       </a>
     </p>
-    <p>
+    <p className="no-margin-bottom">
       Find my books reviews on
       <a
         className="icon"
@@ -54,6 +56,14 @@ export const About: FC = () => (
         {' '}
         goodreads <FontAwesomeIcon icon={faGoodreads} />
       </a>
+    </p>
+    <p className="no-margin-top">
+      and the{' '}
+      <Link href="/bookshelf">
+        <a className="icon">
+          digital bookshelf <FontAwesomeIcon icon={faBook} />
+        </a>
+      </Link>
     </p>
     <p className="no-margin">You can support my work on</p>
     <a
