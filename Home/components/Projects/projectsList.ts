@@ -21,6 +21,20 @@ export const projectsList = [
     rel: 'noopener noreferrer',
   },
   {
+    title: 'Web Performance Research',
+    description: 'Research & Experiments in Web Performance',
+    link: 'https://github.com/imteekay/web-performance-research',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
+  {
+    title: 'Frontend Infrastructure',
+    description: 'Research & Experiments in Frontend Infrastructure',
+    link: 'https://github.com/imteekay/frontend-infrastructure',
+    target: '_blank',
+    rel: 'noopener noreferrer',
+  },
+  {
     title: 'Monkey TS',
     description:
       "The Monkey programming language's compiler written in TypeScript",
