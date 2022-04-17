@@ -6,6 +6,7 @@ import {
   faEnvelope,
   faStickyNote,
   faBook,
+  faBlog,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -33,7 +34,7 @@ export const About: FC = () => (
       </a>
     </p>
     <p style={socialLinks}>
-      and sharing my{' '}
+      sharing my{' '}
       <a
         className="icon"
         target="_blank"
@@ -43,6 +44,14 @@ export const About: FC = () => (
       >
         thoughts on twitter <FontAwesomeIcon icon={faTwitter} />
       </a>
+    </p>
+    <p style={socialLinks}>
+      and my{' '}
+      <Link href="/microblog">
+        <a className="icon">
+          microblog <FontAwesomeIcon icon={faBlog} />
+        </a>
+      </Link>
     </p>
     <p className="no-margin-bottom">
       Find my books reviews on
@@ -84,7 +93,7 @@ export const About: FC = () => (
       title="substack"
     >
       {' '}
-      substack <FontAwesomeIcon icon={faEnvelope} />
+      substack newsletter <FontAwesomeIcon icon={faEnvelope} />
     </a>
     <p className="no-margin-bottom">
       For work stuff:{' '}
