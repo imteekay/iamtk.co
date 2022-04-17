@@ -46,7 +46,7 @@ export const About: FC = () => (
       </a>
     </p>
     <p style={socialLinks}>
-      and my{' '}
+      and on my{' '}
       <Link href="/microblog">
         <a className="icon">
           microblog <FontAwesomeIcon icon={faBlog} />
