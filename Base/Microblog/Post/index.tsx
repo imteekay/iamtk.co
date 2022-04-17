@@ -1,9 +1,12 @@
 import { FC } from 'react';
 import Image from 'next/image';
+import { css } from '@emotion/css';
+import { ShareButtons } from 'Base/Article/SocialLinks';
 import { dateStyle, titleStyle } from './styles';
 
 type PostPropTypes = {
-  title?: string;
+  id: string;
+  title: string;
   date: string;
   description: string;
   image?: {
@@ -14,14 +17,19 @@ type PostPropTypes = {
   };
 };
 
+const postDescriptionStyle = css`
+  margin-bottom: 16px;
+`;
+
 export const Post: FC<PostPropTypes> = ({
+  id,
   title,
   date,
   description,
   image,
 }) => (
   <>
-    {title ? <h2 style={titleStyle}>{title}</h2> : null}
+    <h2 style={titleStyle}>{title}</h2>
     <p style={dateStyle}>{date}</p>
     {image ? (
       <Image
@@ -31,6 +39,10 @@ export const Post: FC<PostPropTypes> = ({
         height={image.height}
       />
     ) : null}
-    <div dangerouslySetInnerHTML={{ __html: description }} />
+    <div
+      className={postDescriptionStyle}
+      dangerouslySetInnerHTML={{ __html: description }}
+    />
+    <ShareButtons title={title} anchor={id} />
   </>
 );

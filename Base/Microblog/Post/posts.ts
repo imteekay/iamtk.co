@@ -1,5 +1,5 @@
 type PostTypes = {
-  title?: string;
+  title: string;
   date: string;
   description: string;
   image?: {
