@@ -20,7 +20,7 @@ export const Head = ({ title, description, imageUrl }: HeadPropTypes) => {
       />
 
       <link rel="canonical" href={canonicalURL} />
-      <link rel="icon" href="/favicon.jpeg" />
+      <link rel="icon" href="/favicon.ico" />
 
       <meta name="robots" content="index,follow" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
