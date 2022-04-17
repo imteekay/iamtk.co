@@ -1,5 +1,6 @@
 export const postWrapperStyle = {
-  marginBottom: '24px',
+  marginBottom: '30px',
+  marginTop: '10px',
 };
 
 export const titleStyle = {

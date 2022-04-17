@@ -24,7 +24,8 @@ const Page: NextPage = () => (
 
         {posts.map((post, index) => {
           const postTitleSlug = toSlug(post.title);
-          const id = `${postTitleSlug}-${index}`;
+          const position = posts.length - index;
+          const id = `${postTitleSlug}-${position}`;
 
           return (
             <div id={id} key={id} style={postWrapperStyle}>
