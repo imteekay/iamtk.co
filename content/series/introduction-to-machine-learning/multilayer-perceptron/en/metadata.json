@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/machine-learning/cover.jpg",
+    "src": "/series/machine-learning/multilayer-perceptron-cover.jpg",
     "width": "640",
     "height": "427",
     "alt": "notebook",
-    "authorHref": "https://unsplash.com/@dulhiier",
-    "authorName": "Nastya Dulhiier"
+    "authorHref": "https://unsplash.com/@zoltantasi",
+    "authorName": "Zoltan Tasi"
   }
 }
