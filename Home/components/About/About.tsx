@@ -14,6 +14,7 @@ import {
   faGithub,
   faGoodreads,
   faLinkedin,
+  faPatreon,
 } from '@fortawesome/free-brands-svg-icons';
 
 import { socialLinks } from './style';
@@ -79,22 +80,34 @@ export const About: FC = () => (
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
-      href="https://ko-fi.com/teekay"
-      title="kofi"
+      href="https://www.patreon.com/iamteekay"
+      title="patreon"
     >
-      ko-fi <FontAwesomeIcon icon={faMugHot} />
+      patreon <FontAwesomeIcon icon={faPatreon} />
     </a>
-    , and
+    ,{' '}
     <a
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
-      href="https://teekay.substack.com/"
-      title="substack"
+      href="https://ko-fi.com/teekay"
+      title="kofi"
     >
-      {' '}
-      substack newsletter <FontAwesomeIcon icon={faEnvelope} />
+      ko-fi <FontAwesomeIcon icon={faMugHot} />, and
     </a>
+    <p className="no-margin">
+      the
+      <a
+        className="icon"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://teekay.substack.com/"
+        title="substack"
+      >
+        {' '}
+        substack newsletter <FontAwesomeIcon icon={faEnvelope} />
+      </a>
+    </p>
     <p className="no-margin-bottom">
       For work stuff:{' '}
       <a
