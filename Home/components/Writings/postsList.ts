@@ -8,6 +8,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-07-06',
+    link: '/writing-a-memoization-function-from-scratch',
+    title: 'Writing a Memoization Function from Scratch',
+    tags: ['javascript'],
+  },
+  {
     datetime: '2022-04-25',
     link: '/series/introduction-to-machine-learning',
     title: 'Introduction to Machine Learning',

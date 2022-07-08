@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Writing a Memoization Function from Scratch</title>
+    <link>https://www.iamtk.co/writing-a-memoization-function-from-scratch</link>
+    <guid isPermaLink="true">https://www.iamtk.co/writing-a-memoization-function-from-scratch</guid>
+    <description>How to write a memoization function from scratch and improvement the performance of your functions with caching</description>
+  </item>
+  <item>
     <title>Frontend Infrastructure</title>
     <link>https://www.iamtk.co/frontend-infrastructure</link>
     <guid isPermaLink="true">https://www.iamtk.co/frontend-infrastructure</guid>
