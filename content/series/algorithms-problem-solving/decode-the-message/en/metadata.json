@@ -1,12 +1,8 @@
 {
-  "title": "Algorithms Problem Solving Series",
-  "description": "Solving algorithms problems",
-  "date": "2020-05-17",
+  "title": "Algorithms Problem Solving: Decode String",
+  "description": "Solving algorithms problems: decode string",
+  "date": "2022-02-22",
   "tags": [
-    {
-      "href": "/tags/python",
-      "name": "python"
-    },
     {
       "href": "/tags/javascript",
       "name": "javascript"

@@ -42,7 +42,7 @@ export const seriesList = [
     rel: '',
   },
   {
-    link: 'https://leandrotk.github.io/series/algorithms-problem-solving',
+    link: '/series/algorithms-problem-solving',
     title: 'Algorithms Problem Solving',
     description: 'Documenting algorithms problems I solved',
     target: '',
