@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Decode the Message</title>
+    <link>https://www.iamtk.co/series/algorithms-problem-solving/decode-the-message</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/algorithms-problem-solving/decode-the-message</guid>
+    <description>Solving algorithms problems: decode the message</description>
+  </item>
+  <item>
     <title>Writing a Memoization Function from Scratch</title>
     <link>https://www.iamtk.co/writing-a-memoization-function-from-scratch</link>
     <guid isPermaLink="true">https://www.iamtk.co/writing-a-memoization-function-from-scratch</guid>
