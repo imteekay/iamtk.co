@@ -2,6 +2,7 @@
 
 ## 2022
 
+- <time class="date">2022-07-10</time> <span>[Decode the Message](/series/algorithms-problem-solving/decode-the-message)</span>
 - <time class="date">2022-07-06</time> <span>[Writing a Memoization Function from Scratch](/writing-a-memoization-function-from-scratch)</span>
 - <time class="date">2022-03-04</time> <span>[Queue Data Structure](/series/data-structures-in-javascript/queue-data-structure)</span>
 - <time class="date">2022-03-02</time> <span>[Queue Data Structure](/series/data-structures-in-javascript/queue-data-structure)</span>
