@@ -12,6 +12,11 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Intellectual Freedom',
+    date: '2022-07-13 • 22:37',
+    description: `In the last micropost I talked about my independent research and a little about freedom. Intellectual freedom keeps coming into my head and it's definitely challenging to stop these thoughts. This is the next question I want to answer: "How can I balance intellectual freedom and financial independence?"`,
+  },
+  {
     title: 'Independent Research and Freedom',
     date: '2022-04-17 • 16:41',
     description: `I keep debating with myself what I want to do in my life. What's the next step. "Freedom" is one of the words that come to my mind. Freedom to be wherever I want. Freedom to do whaterver I want. And I started to imagine myself studying, learning, and sharing for a living. Doing a PhD is a possibility in the future but not for now. Independent research is one of the greater possibilities I have for now and my eyes light up when I think about it. I started three main projects: <a href="https://github.com/imteekay/web-performance-research">web performance</a>, <a href="https://github.com/imteekay/frontend-infrastructure">frontend infrastructure</a>, and <a href="https://github.com/imteekay/programming-language-theory">programming language theory</a>. Still figuring out how to push it forward in my life and how to do things. I truly want to make this works and I'll keep you up to date!`,
