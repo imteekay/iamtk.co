@@ -12,6 +12,11 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Discipline & Regret',
+    date: '2022-07-15 • 10:01',
+    description: `Whenever I have time to reflect, the thought of the relationship between discipline and regret always comes to my mind. Discipline is hard, it's painful but transitory. Regret is forever. For every decision in my life, I should keep asking if I choose discipline or regret.`,
+  },
+  {
     title: 'Intellectual Freedom',
     date: '2022-07-13 • 22:37',
     description: `In the last micropost I talked about my independent research and a little about freedom. Intellectual freedom keeps coming into my head and it's definitely challenging to stop these thoughts. This is the next question I want to answer: "How can I balance intellectual freedom and financial independence?"`,
