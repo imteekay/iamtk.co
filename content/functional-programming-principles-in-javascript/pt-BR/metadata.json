@@ -1,7 +1,7 @@
 {
   "title": "Programação Funcional em JavaScript",
-  "description": "",
-  "date": "2022-03-12",
+  "description": "Aprendendo conceitos de programação funcional em JavaScript como funções puras, imutabilidade e higher order functions.",
+  "date": "2022-07-16",
   "tags": [
     {
       "href": "/tags/javascript",
@@ -17,5 +17,9 @@
     "width": "592",
     "height": "148",
     "alt": "Yellow lambda cover"
+  },
+  "alternativeArticle": {
+    "url": "/functional-programming-principles-in-javascript",
+    "language": "en"
   }
 }

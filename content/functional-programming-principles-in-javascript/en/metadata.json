@@ -17,5 +17,9 @@
     "width": "592",
     "height": "148",
     "alt": "Yellow lambda cover"
+  },
+  "alternativeArticle": {
+    "url": "/pt-BR/functional-programming-principles-in-javascript",
+    "language": "pt-BR"
   }
 }
