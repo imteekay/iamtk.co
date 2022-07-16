@@ -1,7 +1,7 @@
 {
-  "title": "Functional Programming Principles in JavaScript",
-  "description": "In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples.",
-  "date": "2018-11-17",
+  "title": "Programação Funcional em JavaScript",
+  "description": "Aprendendo conceitos de programação funcional em JavaScript como funções puras, imutabilidade e higher order functions.",
+  "date": "2022-07-16",
   "tags": [
     {
       "href": "/tags/javascript",
@@ -19,7 +19,7 @@
     "alt": "Yellow lambda cover"
   },
   "alternativeArticle": {
-    "url": "/pt-BR/functional-programming-principles-in-javascript",
-    "language": "pt-BR"
+    "url": "/functional-programming-principles-in-javascript",
+    "language": "en"
   }
 }

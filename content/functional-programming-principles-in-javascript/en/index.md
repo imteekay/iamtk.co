@@ -4,7 +4,7 @@ After a long time learning and working with object-oriented programming, I took 
 
 Doing some research, I found functional programming concepts like immutability and pure function. Those concepts are big advantages to build side-effect-free functions, so it is easier to maintain systems — with some other [benefits](https://hackernoon.com/why-functional-programming-matters-c647f56a7691).
 
-In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples. In Javascript!
+In this post, I will tell you more about functional programming, and some important concepts, with a lot of code examples. In JavaScript!
 
 ### What is functional programming?
 
@@ -55,7 +55,6 @@ calculateArea(10, PI); // returns 314.0
 TA-DA 🎉! Now we’ll always pass the`PI` value as a parameter to the function. So now we are just accessing parameters passed to the function. No `external object`.
 
 - For the parameters `radius = 10` & `PI = 3.14`, we will always have the same the result: `314.0`
-
 - For the parameters `radius = 10` & `PI = 42`, we will always have the same the result: `4200`
 
 #### Reading Files
@@ -132,7 +131,6 @@ Pure functions are stable, consistent, and predictable. Given the same parameter
 The code’s definitely easier to test. We don’t need to mock anything. So we can unit test pure functions with different contexts:
 
 - Given a parameter `A` → expect the function to return value `B`
-
 - Given a parameter `C` → expect the function to return value `D`
 
 A simple example would be a function to receive a collection of numbers and expect it to increment each element of this collection.
@@ -159,9 +157,9 @@ For the `input` `[1, 2, 3, 4, 5]`, the expected `output` would be `[2, 3, 4, 5, 
 
 ![](https://cdn-images-1.medium.com/max/1600/0*MGlzHgISuw0dXwsf)
 
-**after it’s created. **If you want to change an immutable object, you can’t. Instead,** you create a new object with the new value.**
+When data is immutable, its state cannot change after it’s created. If you want to change an immutable object, you can’t. Instead,** you create a new object with the new value.**
 
-In Javascript we commonly use the `for` loop. This next `for` statement has some mutable variables.
+In JavaScript we commonly use the `for` loop. This next `for` statement has some mutable variables.
 
 ```javascript
 var values = [1, 2, 3, 4, 5];
@@ -195,7 +193,7 @@ accumulator; // 0
 
 So here we have the `sum` function that receives a vector of numerical values. The function calls itself until we get the list empty ([our recursion ](<https://en.wikipedia.org/wiki/Recursion_(computer_science)#Recursive_functions_and_algorithms>)`base case`). For each "iteration" we will add the value to the `total` accumulator.
 
-immutable. The `list` and the `accumulator` variables are not changed. It keeps the same value.
+With recursion, we keep our variables immutable. The `list` and the `accumulator` variables are not changed. It keeps the same value.
 
 **Observation**: Yes! We can use `reduce` to implement this function. We will cover this in the `Higher Order Functions` topic.
 
@@ -240,9 +238,7 @@ slugify(string); // i-will-be-a-url-slug
 Here we have:
 
 - `toLowerCase`: converts the string to all lower case
-
 - `trim`: removes whitespace from both ends of a string
-
 - `split` and `join`: replaces all instances of match with replacement in a given string
 
 We combine all these 4 functions and we can `"slugify"` our string.
@@ -294,7 +290,7 @@ The `sum(5, 8)` equals `13`. This function will always result in `13`. So we can
 sum(3, 13);
 ```
 
-And this expression will always result in `16`. We can replace the entire expression with a numerical constant and [memoize](https://en.wikipedia.org/wiki/Memoization) it.
+And this expression will always result in `16`. We can replace the entire expression with a numerical constant and [memoize](/writing-a-memoization-function-from-scratch) it.
 
 ### Functions as first-class entities
 
@@ -305,9 +301,7 @@ The idea of functions as first-class entities is that functions are **also** tre
 Functions as first-class entities can:
 
 - refer to it from constants and variables
-
 - pass it as a parameter to other functions
-
 - return it as result from other functions
 
 The idea is to treat functions as values and pass functions like data. This way we can combine different functions to create new functions with new behavior.
@@ -354,7 +348,6 @@ Done! Now we have an `f` argument, and use it to process `a` and `b`. We passed 
 When we talk about higher-order functions, we mean a function that either:
 
 - takes one or more functions as arguments, or
-
 - returns a function as its result
 
 The `doubleOperator` function we implemented above is a higher-order function because it takes an operator function as an argument and uses it.
@@ -369,12 +362,10 @@ A simple example is when we have a collection of integers and we want only the e
 
 **Imperative approach**
 
-An imperative way to do it with Javascript is to:
+An imperative way to do it with JavaScript is to:
 
 - create an empty array `evenNumbers`
-
 - iterate over the `numbers` array
-
 - push the even numbers to the `evenNumbers` array
 
 ```javascript
@@ -403,7 +394,7 @@ listOfNumbers.filter(even); // [0, 2, 4, 6, 8, 10]
 
 One interesting problem I solved on [Hacker Rank FP](https://www.hackerrank.com/domains/fp) Path was the [Filter Array problem](https://www.hackerrank.com/challenges/fp-filter-array/problem). The problem idea is to filter a given array of integers and output only those values that are less than a specified value `X`.
 
-An imperative Javascript solution to this problem is something like:
+An imperative JavaScript solution to this problem is something like:
 
 ```javascript
 var filterArray = function (x, coll) {
@@ -427,7 +418,7 @@ We say exactly what our function needs to do — iterate over the collection
 
 But we want a more declarative way to solve this problem, and using the `filter` higher order function as well.
 
-A declarative Javascript solution would be something like this:
+A declarative JavaScript solution would be something like this:
 
 ```javascript
 function smaller(number) {
@@ -487,7 +478,7 @@ The idea of map is to transform a collection.
 
 Let’s get the same `people` collection above. We don't want to filter by “over age” now. We just want a list of strings, something like `TK is 26 years old`. So the final string might be `:name is :age years old` where `:name` and `:age` are attributes from each element in the `people` collection.
 
-In a imperative Javascript way, it would be:
+In a imperative JavaScript way, it would be:
 
 ```javascript
 var people = [
@@ -506,7 +497,7 @@ for (var i = 0; i < people.length; i++) {
 console.log(peopleSentences); // ['TK is 26 years old', 'Kaio is 10 years old', 'Kazumi is 30 years old']
 ```
 
-In a declarative Javascript way, it would be:
+In a declarative JavaScript way, it would be:
 
 ```javascript
 function makeSentence(person) {
@@ -651,9 +642,7 @@ let shoppingCart = [
 We want the total amount of all books in our shopping cart. Simple as that. The algorithm?
 
 - **filter** by book type
-
 - transform the shopping cart into a collection of amount using **map**
-
 - combine all items by adding them up with **reduce**
 
 ```javascript
@@ -679,12 +668,12 @@ Done! 🎉
 
 ### Resources
 
-I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For more resources, visit my [Functional Programming Github repository](https://github.com/imteekay/learning-functional-programming).
+I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For more resources, visit my [Functional Programming Github repository](https://github.com/imteekay/functional-programming-learning-path).
 
 - [EcmaScript 6 course by Wes Bos](https://ES6.io/friend/LEANDRO)
-- [Ruby specific resources](https://github.com/imteekay/learning-functional-programming/tree/master/ruby)
-- [Javascript specific resources](https://github.com/imteekay/learning-functional-programming/tree/master/javascript)
-- [Clojure specific resources](https://github.com/imteekay/learning-functional-programming/tree/master/clojure)
+- [JavaScript specific resources](https://github.com/imteekay/functional-programming-learning-path/tree/master/javascript)
+- [Clojure specific resources](https://github.com/imteekay/functional-programming-learning-path/tree/master/clojure)
+- [Ruby specific resources](https://github.com/imteekay/functional-programming-learning-path/tree/master/ruby)
 
 #### Intros
 
@@ -728,8 +717,8 @@ Hey people, I hope you had fun reading this post, and I hope you learned a lot h
 
 [Here is the repository with all codes](https://github.com/tk-notes/fp-in-javascript-article-source-code) from this article.
 
-Come learn with me. I’m sharing resources and my code in this [Learning Functional Programming repository](https://github.com/imteekay/learning-functional-programming).
+Come learn with me. I’m sharing resources and my code in this [Learning Functional Programming repository](https://github.com/imteekay/functional-programming-learning-path).
 
-I also wrote an [FP post but using mainly Clojure](https://medium.freecodecamp.org/an-introduction-to-the-basic-principles-of-functional-programming-a2c2a15c84) ❤.
+I also wrote an [FP post but using mainly Clojure](/an-introduction-to-the-basic-principles-of-functional-programming) ❤.
 
 I hope you saw something useful to you here. And see you next time! :)
