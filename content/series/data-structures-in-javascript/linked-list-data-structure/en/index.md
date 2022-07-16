@@ -414,7 +414,7 @@ class LinkedList {
 ## Let's test it!
 
 ```javascript
-def princonst linkedList = new LinkedList();
+const linkedList = new LinkedList();
 linkedList.isEmpty(); // true
 linkedList.size(); // 0
 

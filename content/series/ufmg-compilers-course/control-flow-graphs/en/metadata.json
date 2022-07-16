@@ -1,0 +1,19 @@
+{
+  "title": "Program Representation: Control Flow Graphs",
+  "description": "Understanding the program representation with control flow graphs",
+  "date": "2022-04-15",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/ufmg-compilers-course/graph.jpg",
+    "width": "640",
+    "height": "340",
+    "alt": "Compiler",
+    "authorHref": "https://unsplash.com/@choys_",
+    "authorName": "Conny Schneider"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "title": "An overview of the contents of the course",
+  "description": "Course content overview - computer science theory, understanding programs, and static analysis",
+  "date": "2022-04-14",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/ufmg-compilers-course/city.jpg",
+    "width": "640",
+    "height": "425",
+    "alt": "Compiler",
+    "authorHref": "https://unsplash.com/@dnevozhai",
+    "authorName": "Denys Nevozhai"
+  }
+}

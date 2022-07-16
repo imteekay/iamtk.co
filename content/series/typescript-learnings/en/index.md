@@ -1,5 +1,5 @@
 <div class="series">
-This is part of my series on `TypeScript Learnings` Series, where I share micro posts about everything I'm learning related to TypeScript.
+This is part of my series on `TypeScript Learnings`, where I share micro posts about everything I'm learning related to TypeScript.
 
 This is live document and will be updated everytime I learn new things.
 

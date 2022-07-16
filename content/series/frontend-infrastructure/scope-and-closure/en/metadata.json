@@ -1,7 +1,7 @@
 {
   "title": "Frontend Infrastructure: Scope & Closure",
   "description": "Scope & Closure: understanding execution context, JS scope, modules patterns, private values, and the power of closures",
-  "date": "2022-03-10",
+  "date": "2022-03-23",
   "tags": [
     {
       "href": "/tags/javascript",

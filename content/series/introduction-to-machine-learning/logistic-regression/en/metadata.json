@@ -1,0 +1,23 @@
+{
+  "title": "Logistic Regression",
+  "description": "My research, learnings, and notes from my machine learning studies - Logistic Regression",
+  "date": "2022-04-26",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/machine-learning/logistic-regression-cover.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "notebook",
+    "authorHref": "https://unsplash.com/@halacious",
+    "authorName": "Hal Gatewood"
+  }
+}

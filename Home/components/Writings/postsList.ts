@@ -8,6 +8,24 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-07-06',
+    link: '/writing-a-memoization-function-from-scratch',
+    title: 'Writing a Memoization Function from Scratch',
+    tags: ['javascript'],
+  },
+  {
+    datetime: '2022-04-25',
+    link: '/series/introduction-to-machine-learning',
+    title: 'Introduction to Machine Learning',
+    tags: ['python', 'machine learning', 'data science'],
+  },
+  {
+    datetime: '2022-03-26',
+    link: '/frontend-infrastructure',
+    title: 'Frontend Infrastructure',
+    tags: ['javascript', 'typescript', 'web', 'dx', 'devtools'],
+  },
+  {
     datetime: '2022-03-04',
     link: '/series/data-structures-in-javascript/linked-list-data-structure',
     title: 'Linked List Data Structure in JavaScript',

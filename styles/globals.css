@@ -172,6 +172,10 @@ p.no-margin-bottom {
   margin-bottom: 0;
 }
 
+p.no-margin-top {
+  margin-top: 0;
+}
+
 .content {
   width: 100%;
   max-width: 39rem;

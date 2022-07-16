@@ -7,10 +7,28 @@
   <atom:link href="https://iamtk.co/rss.xml" rel="self" type="application/rss+xml" />
   <description>Software Engineering, Lifestyle, Books, Learning</description>
   <image>
-    <url>https://raw.githubusercontent.com/leandrotk/master/images/logo.jpg</url>
+    <url>https://raw.githubusercontent.com/imteekay/leandrotk.github.io/main/images/logo.jpg</url>
     <title>TK's Blog</title>
     <link>https://iamtk.co</link>
   </image>
+  <item>
+    <title>Decode the Message</title>
+    <link>https://www.iamtk.co/series/algorithms-problem-solving/decode-the-message</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/algorithms-problem-solving/decode-the-message</guid>
+    <description>Solving algorithms problems: decode the message</description>
+  </item>
+  <item>
+    <title>Writing a Memoization Function from Scratch</title>
+    <link>https://www.iamtk.co/writing-a-memoization-function-from-scratch</link>
+    <guid isPermaLink="true">https://www.iamtk.co/writing-a-memoization-function-from-scratch</guid>
+    <description>How to write a memoization function from scratch and improvement the performance of your functions with caching</description>
+  </item>
+  <item>
+    <title>Frontend Infrastructure</title>
+    <link>https://www.iamtk.co/frontend-infrastructure</link>
+    <guid isPermaLink="true">https://www.iamtk.co/frontend-infrastructure</guid>
+    <description>Empowering product teams with the foundational frontend ecosystem and reliable, performant, and developer-friendly tools to efficiently build great user experiences</description>
+  </item>
   <item>
     <title>Linked List Data Structure in JavaScript</title>
     <link>https://www.iamtk.co/series/data-structures-in-javascript/linked-list-data-structure</link>

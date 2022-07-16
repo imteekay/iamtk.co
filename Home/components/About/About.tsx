@@ -1,9 +1,12 @@
 import { FC } from 'react';
+import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMugHot,
   faEnvelope,
   faStickyNote,
+  faBook,
+  faBlog,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -11,6 +14,7 @@ import {
   faGithub,
   faGoodreads,
   faLinkedin,
+  faPatreon,
 } from '@fortawesome/free-brands-svg-icons';
 
 import { socialLinks } from './style';
@@ -31,7 +35,7 @@ export const About: FC = () => (
       </a>
     </p>
     <p style={socialLinks}>
-      and sharing my{' '}
+      sharing my{' '}
       <a
         className="icon"
         target="_blank"
@@ -42,7 +46,15 @@ export const About: FC = () => (
         thoughts on twitter <FontAwesomeIcon icon={faTwitter} />
       </a>
     </p>
-    <p>
+    <p style={socialLinks}>
+      and on my{' '}
+      <Link href="/microblog">
+        <a className="icon">
+          microblog <FontAwesomeIcon icon={faBlog} />
+        </a>
+      </Link>
+    </p>
+    <p className="no-margin-bottom">
       Find my books reviews on
       <a
         className="icon"
@@ -55,7 +67,25 @@ export const About: FC = () => (
         goodreads <FontAwesomeIcon icon={faGoodreads} />
       </a>
     </p>
+    <p className="no-margin-top">
+      and the{' '}
+      <Link href="/bookshelf">
+        <a className="icon">
+          digital bookshelf <FontAwesomeIcon icon={faBook} />
+        </a>
+      </Link>
+    </p>
     <p className="no-margin">You can support my work on</p>
+    <a
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.patreon.com/iamteekay"
+      title="patreon"
+    >
+      patreon <FontAwesomeIcon icon={faPatreon} />
+    </a>
+    ,{' '}
     <a
       className="icon"
       target="_blank"
@@ -63,19 +93,21 @@ export const About: FC = () => (
       href="https://ko-fi.com/teekay"
       title="kofi"
     >
-      ko-fi <FontAwesomeIcon icon={faMugHot} />
+      ko-fi <FontAwesomeIcon icon={faMugHot} />, and
     </a>
-    , and
-    <a
-      className="icon"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://teekay.substack.com/"
-      title="substack"
-    >
-      {' '}
-      substack <FontAwesomeIcon icon={faEnvelope} />
-    </a>
+    <p className="no-margin">
+      the
+      <a
+        className="icon"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://teekay.substack.com/"
+        title="substack"
+      >
+        {' '}
+        substack newsletter <FontAwesomeIcon icon={faEnvelope} />
+      </a>
+    </p>
     <p className="no-margin-bottom">
       For work stuff:{' '}
       <a
