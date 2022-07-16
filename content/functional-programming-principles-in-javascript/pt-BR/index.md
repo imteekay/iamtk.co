@@ -719,6 +719,6 @@ Oi pessoal, espero que tenham se divertido lendo esse post, e espero que tenham 
 
 Venha aprender comigo. Estou compartilhando recursos e meu código neste [repositório de programação funcional de aprendizado](https://github.com/imteekay/functional-programming-learning-path).
 
-Eu também escrevi um [post FP, mas usando principalmente Clojure](/an-introduction-to-the-basic-principles-of-functional-programming) ❤.
+Eu também escrevi um [post FP, mas usando principalmente Clojure](/an-introduction-to-the-basic-principles-of-functional-programming).
 
-Espero que tenha visto algo útil para você aqui. E até a próxima! :)
+Espero que tenha visto algo útil para você aqui. E até a próxima!
