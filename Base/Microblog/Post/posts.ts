@@ -12,6 +12,11 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Knowledge Sharing & Education',
+    date: '2022-07-17 • 11:32',
+    description: `One of the things that I want to keep doing in my life is knowledge sharing. The ability to share any experience, learnings, or failures that I had in the past. Knowledge and education are the way to keep evolving our society and I want to be part of this. When I get older, I want to look back and see everything I've done to contribute to this goal and leave my legacy for future generations.`,
+  },
+  {
     title: 'Discipline & Regret',
     date: '2022-07-15 • 10:01',
     description: `Whenever I have time to reflect, the thought of the relationship between discipline and regret always comes to my mind. Discipline is hard, it's painful but transitory. Regret is forever. For every decision in my life, I should keep asking if I choose discipline or regret.`,
