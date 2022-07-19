@@ -4,15 +4,16 @@ import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
-import { getPaths } from 'src/lib';
-import { getPostContent } from 'src/lib/getPostContent';
-import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
-import { Locale } from 'src/types/Locale';
 import { Language } from 'src/lib/languages';
+import {
+  getNestedPaths,
+  getNestedPostContent,
+  getNestedPostMetadata,
+  PostMetadata,
+} from 'src/lib';
 
 interface Params extends ParsedUrlQuery {
-  lang: Locale;
-  slug: string;
+  series: string;
 }
 
 type PageProps = {
@@ -46,7 +47,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getPaths(Language.PT_BR),
+    paths: getNestedPaths('series', Language.PT_BR),
     fallback: false,
   };
 }
@@ -54,9 +55,14 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
-  const { slug } = context.params!;
-  const { postContent, minutes } = getPostContent(slug, Language.PT_BR);
-  const postMetadata = getPostMetadata(slug, Language.PT_BR);
+  const { series } = context.params!;
+  const { postContent, minutes } = getNestedPostContent(
+    'series',
+    series,
+    Language.PT_BR,
+  );
+
+  const postMetadata = getNestedPostMetadata('series', series, Language.PT_BR);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
