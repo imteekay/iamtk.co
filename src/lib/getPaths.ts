@@ -16,6 +16,8 @@ const folderMapper = {
   tags: 'tag',
 };
 
+const Languages = ['en', 'pt-BR'];
+
 type FolderTypes = keyof typeof folderMapper;
 
 function removeSeries(postsNames: string[], filterList: string[]) {
@@ -37,30 +39,58 @@ export function getPaths(locale: string = 'en') {
   }));
 }
 
-export function getNestedPaths(folder: FolderTypes) {
+export function getNestedPaths(folder: FolderTypes, locale: string = 'en') {
   const postsDir = path.join(process.cwd(), 'content', folder);
   const fileNames = fs.readdirSync(postsDir);
+  const filessToGeneratePath = fileNames.filter((fileName) => {
+    const postsDir = path.join(
+      process.cwd(),
+      'content',
+      folder,
+      fileName,
+      locale,
+    );
+    return fs.existsSync(postsDir);
+  });
 
-  return fileNames.map((name) => ({
+  return filessToGeneratePath.map((name) => ({
     params: {
       [folderMapper[folder]]: name,
     },
   }));
 }
 
-export function getSeriesPaths() {
+export function getSeriesPaths(locale: string = 'en') {
   const seriesDir = path.join(process.cwd(), 'content', 'series');
   const seriesNames = fs.readdirSync(seriesDir);
 
   return seriesNames.reduce((acc: Params[], seriesName: string) => {
     const seriesDir = path.join(process.cwd(), 'content', 'series', seriesName);
     const seriesPosts = fs.readdirSync(seriesDir);
-    const series = removeSeries(seriesPosts, ['en', 'pt-BR']).map((series) => ({
-      params: {
-        series: seriesName,
-        seriesItem: series,
+
+    const filesToGeneratePath = removeSeries(seriesPosts, Languages).filter(
+      (seriesPost) => {
+        const postsDir = path.join(
+          process.cwd(),
+          'content',
+          'series',
+          seriesName,
+          seriesPost,
+          locale,
+        );
+
+        return fs.existsSync(postsDir);
       },
-    }));
+    );
+
+    const series = removeSeries(filesToGeneratePath, Languages).map(
+      (series) => ({
+        params: {
+          series: seriesName,
+          seriesItem: series,
+        },
+      }),
+    );
 
     return [...acc, ...series];
   }, []);

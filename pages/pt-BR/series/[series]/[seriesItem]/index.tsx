@@ -45,7 +45,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => (
 
 export async function getStaticPaths() {
   return {
-    paths: getSeriesPaths(),
+    paths: getSeriesPaths('pt-BR'),
     fallback: false,
   };
 }
