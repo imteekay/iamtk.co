@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
+import { Language } from 'src/lib/languages';
 import {
   getSeriesPostContent,
   getSeriesPostMetadata,
@@ -45,7 +46,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => (
 
 export async function getStaticPaths() {
   return {
-    paths: getSeriesPaths('pt-BR'),
+    paths: getSeriesPaths(Language.PT_BR),
     fallback: false,
   };
 }
@@ -57,10 +58,14 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { postContent, minutes } = getSeriesPostContent(
     series,
     seriesItem,
-    'pt-BR',
+    Language.PT_BR,
   );
 
-  const postMetadata = getSeriesPostMetadata(series, seriesItem, 'pt-BR');
+  const postMetadata = getSeriesPostMetadata(
+    series,
+    seriesItem,
+    Language.PT_BR,
+  );
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {

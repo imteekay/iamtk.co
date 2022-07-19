@@ -1,5 +1,6 @@
 import path from 'path';
 import fs from 'fs';
+import { Language, Languages } from './languages';
 
 type SeriesParams = {
   series: string;
@@ -16,15 +17,13 @@ const folderMapper = {
   tags: 'tag',
 };
 
-const Languages = ['en', 'pt-BR'];
-
 type FolderTypes = keyof typeof folderMapper;
 
 function removeSeries(postsNames: string[], filterList: string[]) {
   return postsNames.filter((post) => !filterList.includes(post));
 }
 
-export function getPaths(locale: string = 'en') {
+export function getPaths(locale: string = Language.EN) {
   const postsDir = path.join(process.cwd(), 'content');
   const postsNames = fs.readdirSync(postsDir);
   const postsToGeneratePath = postsNames.filter((postName) => {
@@ -39,7 +38,10 @@ export function getPaths(locale: string = 'en') {
   }));
 }
 
-export function getNestedPaths(folder: FolderTypes, locale: string = 'en') {
+export function getNestedPaths(
+  folder: FolderTypes,
+  locale: string = Language.EN,
+) {
   const postsDir = path.join(process.cwd(), 'content', folder);
   const fileNames = fs.readdirSync(postsDir);
   const filessToGeneratePath = fileNames.filter((fileName) => {
@@ -60,7 +62,7 @@ export function getNestedPaths(folder: FolderTypes, locale: string = 'en') {
   }));
 }
 
-export function getSeriesPaths(locale: string = 'en') {
+export function getSeriesPaths(locale: string = Language.EN) {
   const seriesDir = path.join(process.cwd(), 'content', 'series');
   const seriesNames = fs.readdirSync(seriesDir);
 

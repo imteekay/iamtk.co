@@ -4,6 +4,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
+import { Language } from 'src/lib/languages';
 import {
   getNestedPaths,
   getNestedPostContent,
@@ -46,7 +47,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getNestedPaths('series', 'pt-BR'),
+    paths: getNestedPaths('series', Language.PT_BR),
     fallback: false,
   };
 }
@@ -58,10 +59,10 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { postContent, minutes } = getNestedPostContent(
     'series',
     series,
-    'pt-BR',
+    Language.PT_BR,
   );
 
-  const postMetadata = getNestedPostMetadata('series', series, 'pt-BR');
+  const postMetadata = getNestedPostMetadata('series', series, Language.PT_BR);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
