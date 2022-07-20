@@ -4,22 +4,34 @@ import { HomeLink } from 'Base/Article/HomeLink';
 import { Post } from 'Base/Microblog/Post';
 import { posts } from 'Base/Microblog/Post/posts';
 import { postWrapperStyle } from 'Base/Microblog/Post/styles';
+import { useRouter } from 'next/router';
 
 function toSlug(str: string) {
   return str.toLocaleLowerCase().split(' ').join('-');
 }
 
-const Page: NextPage = () => (
-  <>
+const MicroblogHead = () => {
+  const router = useRouter();
+  const micropost = router.query?.micropost;
+  const imageUrl = micropost ? `/microblog/${micropost}.png` : '/logo.jpeg';
+
+  return (
     <Head
       title="TK – Microblog"
       description="Learning & Improving with TK – Microblog"
-      imageUrl="/logo.jpeg"
+      imageUrl={imageUrl}
     />
+  );
+};
+
+const Page: NextPage = () => (
+  <>
+    <MicroblogHead />
 
     <main id="main">
       <div className="content">
         <HomeLink />
+
         <h1>Microblog</h1>
 
         {posts.map((post, index) => {
