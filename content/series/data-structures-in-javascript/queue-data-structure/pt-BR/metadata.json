@@ -1,7 +1,7 @@
 {
-  "title": "Queue Data Structure",
-  "description": "Solving algorithms problems with TK",
-  "date": "2022-03-02",
+  "title": "Estrutura de dados: Fila",
+  "description": "O que é a estrutura de dado fila, conceitos teóricos de ciência da computação e implementação.",
+  "date": "2022-07-20",
   "tags": [
     {
       "href": "/tags/algorithms-and-data-structures",
@@ -21,7 +21,7 @@
     "authorName": "Ethan Hu"
   },
   "alternativeArticle": {
-    "url": "/pt-BR/series/data-structures-in-javascript/queue-data-structure",
-    "language": "pt-BR"
+    "url": "/series/data-structures-in-javascript/queue-data-structure",
+    "language": "en"
   }
 }
