@@ -12,6 +12,11 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Outcome vs Output',
+    date: '2022-07-20 • 14:46',
+    description: `In the "output" mindset, you focus on making things faster. The more, the better. In the "outcome" mindset, you focus on the impact of your decisions and the most important things. It all comes down to prioritization, strategy, and planning. After figuring out the most impactful outputs, you focus on making it faster. The more impactful output, the better.`,
+  },
+  {
     title: 'Knowledge Sharing & Education',
     date: '2022-07-17 • 11:32',
     description: `One of the things that I want to keep doing in my life is knowledge sharing. The ability to share any experience, learnings, or failures that I had in the past. Knowledge and education are the way to keep evolving our society and I want to be part of this. When I get older, I want to look back and see everything I've done to contribute to this goal and leave my legacy for future generations.`,
