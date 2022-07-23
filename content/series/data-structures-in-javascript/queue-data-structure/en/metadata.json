@@ -19,5 +19,9 @@
     "alt": "A narrow stree with a queue of people in the rain",
     "authorHref": "https://unsplash.com/@ethanhjy",
     "authorName": "Ethan Hu"
+  },
+  "alternativeArticle": {
+    "url": "/pt-BR/series/data-structures-in-javascript/queue-data-structure",
+    "language": "pt-BR"
   }
 }

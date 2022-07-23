@@ -19,5 +19,9 @@
     "alt": "An old man with piles of books",
     "authorHref": "https://unsplash.com/@katergaris",
     "authorName": "Aris Sfakianakis"
+  },
+  "alternativeArticle": {
+    "url": "/pt-BR/series/data-structures-in-javascript/stack-data-structure",
+    "language": "pt-BR"
   }
 }

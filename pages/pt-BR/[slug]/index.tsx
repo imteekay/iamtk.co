@@ -8,6 +8,7 @@ import { getPaths } from 'src/lib';
 import { getPostContent } from 'src/lib/getPostContent';
 import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
 import { Locale } from 'src/types/Locale';
+import { Language } from 'src/lib/languages';
 
 interface Params extends ParsedUrlQuery {
   lang: Locale;
@@ -45,7 +46,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getPaths('pt-BR'),
+    paths: getPaths(Language.PT_BR),
     fallback: false,
   };
 }
@@ -54,8 +55,8 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
   const { slug } = context.params!;
-  const { postContent, minutes } = getPostContent(slug, 'pt-BR');
-  const postMetadata = getPostMetadata(slug, 'pt-BR');
+  const { postContent, minutes } = getPostContent(slug, Language.PT_BR);
+  const postMetadata = getPostMetadata(slug, Language.PT_BR);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {

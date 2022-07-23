@@ -1,0 +1,23 @@
+{
+  "title": "Programming with Types — Chapter 1",
+  "description": "A series on type driven programming — Chapter 1",
+  "date": "2022-04-30",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/programming-with-types/chapter1.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "Reding book",
+    "authorHref": "https://unsplash.com/@tarpey",
+    "authorName": "Will Tarpey"
+  }
+}

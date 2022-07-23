@@ -18,10 +18,22 @@ const iconLink = css`
   }
 `;
 
-export const ShareButtons: FC = () => {
+type ShareButtonsPropTypes = {
+  title?: string;
+  anchor?: string;
+};
+
+export const ShareButtons: FC<ShareButtonsPropTypes> = ({ title, anchor }) => {
   const router = useRouter();
-  const path = 'https://iamtk.co' + router.asPath;
-  const text = `"${document.title}" by @wordsofteekay`;
+  const path = encodeURIComponent(
+    'https://iamtk.co' + router.asPath + (anchor ? `#${anchor}` : ''),
+  );
+
+  const tweetTitle = title
+    ? `"${title}" on ${document.title}`
+    : `"${document.title}"`;
+
+  const text = `${tweetTitle} by @wordsofteekay`;
   const twitterUrl = `https://twitter.com/intent/tweet?text=${text}&url=${path}`;
   const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${path}`;
   const facebookUrl = `https://www.facebook.com/sharer.php?u=${path}`;
