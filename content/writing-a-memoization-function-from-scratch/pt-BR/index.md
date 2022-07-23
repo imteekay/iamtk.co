@@ -1,0 +1,253 @@
+Hoje vamos aprender como escrever uma função de memoization e acelerar a performance de funções.
+
+Bora começar em como nós usaríamos. A API da função memoization deve ser assim:
+
+```javascript
+const memoizedFn = memoize(fn);
+```
+
+A função recebe uma função como entrada e retorna a função memoizada.
+
+Na primeira chamada de função, ainda está "cold", então cada chamada de função será executada e o valor de saída será armazenado em cache para as chamadas subsequentes.
+
+Em qualquer chamada de função subsequente, os valores são armazenados em cache, portanto, em vez de executar o corpo da função, ele apenas retornará o valor armazenado em cache.
+
+Vamos para a implementação primeiro e depois fazer uma comparação de desempenho e performance.
+
+A primeira coisa é que a função `memoize` deve receber uma função como entrada e retornar a função memoizada. Começando com passos simples:
+
+```javascript
+function memoize(fn) {
+  return fn;
+}
+```
+
+Então agora podemos apenas chamar a função `memoize` passando uma nova função e ela retornará a mesma função de entrada.
+
+```javascript
+const fn = (a, b) => a * b;
+const memoizedFn = memoize(fn);
+
+memoizedFn(1, 1); // 1 (first call: cold)
+memoizedFn(1, 1); // 1 (not memoized: it'll execute the function again)
+memoizedFn(1, 2); // 2 (first call: cold)
+```
+
+Você vê aqui que quando chamamos a função `memoizedFn` pela segunda vez, esperamos que ela retorne apenas o valor armazenado em cache, mas como nossa implementação ainda não foi concluída, ela chama a função `fn` novamente para os mesmos valores de entrada.
+
+Para memoizar a função, vamos usar o `Map` como objeto de cache. Assim, toda vez que a função é chamada, podemos acessar esse cache usando os argumentos como chave e obter a saída, que é o retorno da função.
+
+O objeto de cache fica assim:
+
+```javascript
+const cache = new Map();
+
+cache.set('1', 1);
+cache.get('1'); // 1
+
+cache.set('2', 2);
+cache.get('2', 2);
+```
+
+A chave do cache serão os argumentos da função e o valor será a saída da chamada da função. Assim, toda vez que chamamos a função memoized novamente, podemos acessar o objeto de cache antes de chamar a função.
+
+O algoritmo é bem simples:
+
+- obter todos os argumentos e fazer o "stringify" para construir a chave do objeto de cache
+- verifique se a chave existe no cache.
+  - Se isso acontecer
+    - retorna o valor de saída
+  - se não
+    - chamar a função
+    - armazena o valor de saída no cache
+    - e retornar o valor de saída
+
+Agora implementando cada parte:
+
+- obter os argumentos: uma função simples que devemos retornar e obter os argumentos usando o operador spread
+
+```javascript
+(...args) => {};
+```
+
+- Fazer o stringify dos argumentos para construir a chave do objeto de cache usando a API `JSON.stringify`
+
+```javascript
+const key = JSON.stringify(args);
+```
+
+- verificar se a chave existe no cache. Se isso acontecer, retorne o valor de saída
+
+```javascript
+if (cache.has(key)) {
+  return cache.get(key);
+}
+```
+
+- se não: chame a função, armazene o valor de saída no cache
+
+```javascript
+const result = fn(...args);
+cache.set(key, result);
+```
+
+E esta é a versão final:
+
+```javascript
+function memoize(fn) {
+  const cache = new Map();
+
+  return (...args) => {
+    const key = JSON.stringify(args);
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    const result = fn(...args);
+    cache.set(key, result);
+
+    return result;
+  };
+}
+```
+
+Para fazer a comparação de performance e garantir que nossa função de memoization funcione, vamos ver o exemplo das funções `sum` e `factorial`.
+
+A soma é uma função bem simples e não tem um custo muito alto, então não veríamos nenhuma melhoria tão significativa depois de armazenar em cache as chamadas de função.
+
+```javascript
+function sum(a, b) {
+  return a + b;
+}
+```
+
+E agora chamando:
+
+```javascript
+const memoizedSum = memoize(sum);
+
+memoizedSum(1, 1); // 2 (not cached)
+memoizedSum(1, 1); // 2 (cached)
+```
+
+Para fazer uma comparação melhor e garantir que a memoização realmente melhora as chamadas de funções, criei duas funções auxiliares simples para construir o caso de teste.
+
+- `getNumbers` é um gerador de todos os números que queremos testar como entradas para a função de memoization.
+
+```javascript
+function getNumbers(limit = 1000000) {
+  let numbers = [];
+
+  for (let i = 0; i < limit; i++) {
+    numbers.push(i);
+  }
+
+  return numbers;
+}
+```
+
+- `testSum` é uma função para testar o tempo de execução de uma determinada função de callback.
+
+```javascript
+function testSum(label, numbers, callback) {
+  console.time(label);
+  for (let number of numbers) {
+    callback(number, number);
+  }
+  console.timeEnd(label);
+}
+```
+
+Então vamos testar: Chamando o `getNumbers`, obtemos um array de 1.000.000 números.
+
+```javascript
+const numbers = getNumbers();
+```
+
+Chamando o `testSum` passando a função memoized:
+
+- chamada fria
+- chamada em cache
+
+```javascript
+testSum('cold', numbers, memoizedSum);
+testSum('cached', numbers, memoizedSum);
+```
+
+Rodando na minha máquina (MacBook Pro (13 polegadas, M1, 2020), Chip Apple M1, Memória 16GB), consegui essa comparação.
+
+```bash
+------- sum --------
+cold: 495.026ms
+cached: 371.011ms
+------- // --------
+```
+
+A versão memoizada é `1,33%` mais rápida que a versão pura.
+
+Como mencionei anteriormente, a função `sum` é uma função bem simples, portanto, sua execução não custa muito, então não veremos muitas melhorias de performance na versão em cache.
+
+Mas agora, vamos ver a função `factorial` sendo comparada com sua versão memoizada. Como é uma função um pouco mais complexa, provavelmente veremos a versão memoizada que performa muito melhor.
+
+```javascript
+function factorial(number) {
+  if (number < 0) return -1;
+  if (number === 0) return 1;
+  return number * factorial(number - 1);
+}
+```
+
+Sem um mecanismo de cache, podemos implementar a função `factorial` usando a técnica de recursão.
+
+- se o número for menor que zero: retorna `1`
+- se o número for zero: retorna `1`
+- caso contrário, retorne o número vezes o fatorial do `number - 1`
+
+Para o teste, esta é a nossa versão memorizada do fatorial:
+
+```javascript
+const memoizedFactorial = memoize(factorial);
+```
+
+Vamos chamá-lo e comparar as versões pura e em cache.
+
+Semelhante à função `testSum`, criei uma função `testFactorial` para lidar com o teste.
+
+```javascript
+function testFactorial(label, numbers, callback) {
+  console.time(label);
+  for (let number of numbers) {
+    callback(number);
+  }
+  console.timeEnd(label);
+}
+```
+
+É muito semelhante à função `testSum`, a única diferença é que o `callback` recebe apenas um parâmetro.
+
+Executando essas duas vezes:
+
+```javascript
+testFactorial('cold', numbers, memoizedFactorial);
+testFactorial('cached', numbers, memoizedFactorial);
+```
+
+Obtemos esta comparação de performance (executando em um MacBook Pro (13 polegadas, M1, 2020), Chip Apple M1, máquina de memória de 16 GB):
+
+```bash
+------ factorial ------
+cold: 572.349ms
+cached: 1.919ms
+--------- // ---------
+```
+
+A versão memoizada é `298%` mais rápida que a versão pura.
+
+## Palavras finais
+
+A memoização e outras abordagens de otimização de performance são sempre interessantes. E uma das melhores maneiras de entender profundamente qualquer coisa é construindo do zero.
+
+Implementamos o algoritmo de memoization passo a passo, testamos a função com a função `sum` e vimos algumas melhorias de performance, mas não tanto, porque a função `sum` é bastante simples.
+
+Também testamos com uma função mais complexa: a função `fatorial`. Neste teste de performance, pudemos ver muitas melhorias e como esse conceito é poderoso.

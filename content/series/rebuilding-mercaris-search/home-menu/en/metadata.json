@@ -1,6 +1,6 @@
 {
-  "title": "Rebuilding Mercari's Search: Setup NextJS with TypeScript, Prettier, and Jest",
-  "description": "Setting up the project with NextJS, TypeScript, Prettier, and Jest to rebuild the Mercari's Search.",
+  "title": "Rebuilding Mercari's Search: Home and Menu",
+  "description": "Building the Home page with NextJS, TypeScript, Prettier, and Jest to start rebuilding the Mercari's Search.",
   "date": "2021-06-20",
   "tags": [
     {

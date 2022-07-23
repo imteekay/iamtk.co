@@ -1,485 +1,237 @@
-A linked list is a collection of nodes that form a linear sequence. The difference between an array and a linked list is that the array has indexed elements, so we can get an element by constant time by just searching by its index. In the linked list, we need to go through the nodes to get the searched element and that takes linear time.
+The queue data structure is a collection of items that follow the `first-in, first out` principle. The first added element will be the first element to be removed from the queue. So, elements are added in the back and removed from the front.
 
-The advantage is that the linked lists can insert and remove items in constant time.
+An analogy would be a simple line of people waiting for the next train. In the software engineering context, an example is a web server receiving and responding requests.
 
-A Linked List is a sequence of nodes and each node has two `attributes`: the value it stores and the reference to the next node of the sequence.
+The main API methods are `enqueue` (add) and `dequeue` (remove). But we can also add other methods as part of the API implementation: `size`, `front`, `back`, and `is_empty`.
 
-The first and last nodes are called `head` and `tail` of the list, respectively. So to get to the tail of the last, we traverse the linked list by moving from one node to another using each node's next reference.
+---
 
-The Linked List having the `head` and the `tail` as attributes helps add new nodes to the start and the end of the list. But we can implement it with or without the `tail` attribute. We will dive into this implementation.
+We can create a `Queue` class as a wrapper and use the Python list to store the queue data. This class will have the implementation of the `enqueue`, `dequeue`, `size`, `front`, `back`, and `is_empty` methods.
 
-We can separate the linked list from its elements. Each element is a node and we can implement this representation with a `Node` class.
-
-```python
-class Node:
-    def __init__(self, value, next=None):
-        self.value = value
-        self.next = next
-```
-
-Basically, it has a value and the reference to the next node. We add a default value (`None`) to the `next` parameter to make it more flexible to use when creating new nodes.
-
-The simplest way to use it is:
+The first step is to create a class definition and how we are gone store our items.
 
 ```python
-new_node = Node(1)
-new_node.value  # 1
-new_node.next  # None
-```
-
-- Instantiate the new node.
-- We can access the `value` and the `next` attributes.
-
-But with the flexibility of the `next` parameter, we can also use it by passing the next node reference.
-
-```python
-next_node = Node(2)
-
-new_node = Node(1, next_node)
-new_node.value  # 1
-new_node.next.value  # 2
-```
-
-- Have the next node.
-- Instantiate the new node by passing the value and the reference to the next node (`next_node` in our case).
-- We can access the `value` and the `next` value.
-
-For the linked list, the first step is to create a class representing it. For now, we just want a `head` attribute when creating an empty list.
-
-```python
-class LinkedList:
+class Queue:
     def __init__(self):
-        self.head = None
+        self.items = []
 ```
 
-Simple as that. Just a class and initialize the `head` attribute with `None` for an empty list.
+This is basically what we need for now. Just a class and its constructor. When the instance is created, it will have the `items` list to store the queue items.
 
-Let's implement the easier method: `is_empty`. How do we know when a list is empty? If the `head` is `None`, we didn't add any node to this list. This is the logic behind the `is_empty` method.
+For the `enqueue` method, we just need to use the list `append` method to add new items. The new items will be placed in the last index of this `items` list. So the front item from the queue will always be the first item.
 
 ```python
-def is_empty(self):
-    return self.head is None
+def enqueue(self, item):
+    self.items.append(item)
 ```
 
-Pretty simple, huh?
+It receives the new item and appends it to the list.
 
-Now the `prepend` method. We basically need to create a new node, points the `next` attribute from this new node to the `head`, and assign this new node to be the new linked list `head`.
-
-Remember we have the `next` parameter when creating a new node? We can use it to assign the previous `head` when creating the new node. Something like this:
-
-```python
-Node(value, previous_head)
-```
-
-In the context of the linked list, we will have the `self.head`. So:
-
-```python
-Node(value, self.head)
-```
-
-The last step is to assign this new node to the `head` and we will prepend it.
-
-```python
-self.head = Node(value, self.head)
-```
-
-- Create new node
-- Assign the `next` attribute to the previous `head`
-- And assign the new node to the `head`
-
-The complete method will be like this:
-
-```python
-def prepend(self, value):
-    self.head = Node(value, self.head)
-```
-
-Just one line. Pretty good!
-
-For the `append`, it's a bit different, because, instead of adding a new node to the head of the list, we need to add to the tail. So basically we need to iterate through the list to be in the last node and point it's `next` attribute to the newly created node.
-
-The question is: How do we iterate through the list?
-
-The difference between the tail node and the rest is the `next` attribute. The tail has no `next`. It points to `None`. The rest always point to a different node.
-
-To iterate through the list to get the last node, we get the next node until the node has no `next` attribute. Start with the first node: the head.
-
-```python
-current_node = self.head
-```
-
-And then iterate.
-
-```python
-while current_node.next is not None:
-    current_node = current_node.next
-```
-
-We divide this code into two parts:
-
-- looping while the node's `next` attribute is not `None`
-- update the current node by assigning the next node
-
-When the `while` loop breaks, we have the last node, so we just need to update the last node `next` attribute.
-
-```python
-current_node.next = Node(value)
-```
-
-The complete code:
-
-```python
-current_node = self.head
-
-while current_node.next is not None:
-    current_node = current_node.next
-
-current_node.next = Node(value)
-```
-
-But this code will break if the linked list is empty, because the `head` is `None`, it can't have a `next` attribute.
-
-In this case, we just make a condition for emptiness. If it is empty, we just assign the new node to the `head`.
-
-```python
-def append(self, value):
-    if self.is_empty():
-        self.head = Node(value)
-        return
-
-    current_node = self.head
-
-    while current_node.next is not None:
-        current_node = current_node.next
-
-    current_node.next = Node(value)
-```
-
-For the `size` method is straightforward. We basically need to iterate through the whole list and count each node.
-
-To iterate is pretty simple. We just need to loop while the current node is not `None`.
-
-```python
-while current_node is not None:
-    current_node = current_node.next
-```
-
-And for each iteration, we need to increase our counter.
+The `size` method only counts the number of the queue items by using the `len` function.
 
 ```python
 def size(self):
-    list_length = 0
-    current_node = self.head
-
-    while current_node is not None:
-        list_length += 1
-        current_node = current_node.next
-
-    return list_length
+    return len(self.items)
 ```
 
-- Initialize the `list_length` with `0`.
-- Get the current node: the `head`.
-- Iterate through the list.
-- For each iteration, increase the counter.
-- Returns the `list_length`.
-
-For the `search` algorithm, we need to receive a value and return `True` or `False` if this value is in the linked list.
-
-So we basically need to iterate through the linked list searching for this value.
-
-The iteration is simple:
+The idea of the `is_empty` method is to verify if the list has or not items in it. If it has, returns `False`. Otherwise, `True`. To count the number of items in the queue, we can simply use the `size` method already implemented.
 
 ```python
-while current_node is not None:
-		current_node = current_node.next
+def is_empty(self):
+    return self.size() == 0
 ```
 
-Now, for each node, we see if the current node value is the same as the searched value.
+The `pop` method from the list data structure can also be used to dequeue the item from the queue. It dequeues the first element as it is expected for the queue. The first added item.
 
 ```python
-while current_node is not None:
-    if current_node.value == value:
-        return True
-
-    current_node = current_node.next
+def dequeue(self):
+    return self.items.pop(0)
 ```
 
-We can do this way to return `True` if the searched value is found. Or we can define a `found` variable and use it to set it to `True` when finding it and get out of the loop.
+But we need to handle the queue emptiness. For an empty list, the `pop` method raises an exception `IndexError: poop from empty list`. So we can create an exception class to handle this issue.
 
 ```python
-while not found and current_node is not None:
-    found = current_node.value == value
-    current_node = current_node.next
+class Emptiness(Exception):
+    pass
 ```
 
-- We will iterate while we didn't find the value and it is not the last node
-- Basically, the loop will stop when finding the searched value or finish the entire linked list
-- The `current_node.value == value` logic will store a `True` or `False` value for each current node value
-
-We define the `found` and `current_node` before iterating and return if we found the searched value or not.
+And uses it when the list is empty:
 
 ```python
-def search(self, value):
-    found = False
-    current_node = self.head
-
-    while not found and current_node is not None:
-        found = current_node.value == value
-        current_node = current_node.next
-
-    return found
-```
-
-The last method to be implemented is the `empty` method. We can think about this method in separated cases:
-
-- when the list is empty.
-- when we want to remove the head node.
-- when we want to remove a node from the middle or the last one.
-
-For the empty case is pretty simple. We just check the list with our `is_empty` method.
-
-```python
-if self.is_empty():
-    return
-```
-
-We can also throw an error exception or just print "The list is empty", for example.
-
-For the case when we want to remove the head node, we check it first and then remove it.
-
-```python
-if self.head.value == value:
-    self.head = self.head.next
-    return
-```
-
-To remove it, we just need to point the head to the its next node.
-
-The last case is when we want to remove a node in the middle or the last one. Let's draw it!
-
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fd50915-6d6b-43ee-9032-b0c85533d11d/20200202_201216.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3fd50915-6d6b-43ee-9032-b0c85533d11d/20200202_201216.jpg)
-
-For this algorithm, what we want is to get the previous node of the node to be removed and point to the next node of the node to be removed. So we need to have the previous node in each iteration. This is the fundamental part of our algorithm.
-
-```python
-while current_node.next is not None:
-    if current_node.next.value == value:
-        current_node.next = current_node.next.next
-        return
-
-    current_node = current_node.next
-```
-
-This is the algorithm.
-
-We will iterate through the list while the current node's next is not a `None` value. Why? Because we want to compare the next node value. Not the current one.
-
-```python
-if current_node.next.value == value:
-```
-
-This the logic we are searching for. Does the current node's next value is the value we want to remove?
-
-If it is `True`, we basically remove the current node's next node by pointing the `next` to the `next.next`, and returning the function.
-
-If it is `False`, we keep iterating until we find the value we want or when we finish the entire list.
-
-Joining all the parts, we have:
-
-```python
-def remove(self, value):
+def dequeue(self):
     if self.is_empty():
-        return
+        raise Emptiness('The Queue is empty')
 
-    if self.head.value == value:
-        self.head = self.head.next
-        return
-
-    current_node = self.head
-
-    while current_node.next is not None:
-        if current_node.next.value == value:
-            current_node.next = current_node.next.next
-            return
-
-        current_node = current_node.next
+    return self.items.dequeue()
 ```
 
-## The Linked List class
+If it is empty, we raise this exception. Otherwise, we can dequeue the front item from the queue.
 
-Joining all the parts we talked about and implemented, we have:
+We use this same emptiness strategy for the `front` method:
 
 ```python
-class Node:
-    def __init__(self, value, next=None):
-        self.value = value
-        self.next = next
+def front(self):
+    if self.is_empty():
+        raise Emptiness('The Queue is empty')
 
-class LinkedList:
-    def __init__(self):
-        self.head = None
-
-    def append(self, value):
-        if self.is_empty():
-            self.head = Node(value)
-            return
-
-        current_node = self.head
-
-        while current_node.next is not None:
-            current_node = current_node.next
-
-        current_node.next = Node(value)
-
-    def prepend(self, value):
-        self.head = Node(value, self.head)
-
-    def remove(self, value):
-        if self.is_empty():
-            return
-
-        if self.head.value == value:
-            self.head = self.head.next
-            return
-
-        current_node = self.head
-
-        while current_node.next is not None:
-            if current_node.next.value == value:
-                current_node.next = current_node.next.next
-                return
-
-            current_node = current_node.next
-
-    def search(self, value):
-        found = False
-        current_node = self.head
-
-        while not found and current_node is not None:
-            found = current_node.value == value
-            current_node = current_node.next
-
-        return found
-
-    def is_empty(self):
-        return self.head is None
-
-    def size(self):
-        list_length = 0
-        current_node = self.head
-
-        while current_node is not None:
-            list_length += 1
-            current_node = current_node.next
-
-        return list_length
+    return self.items[0]
 ```
 
-## Let's test it!
+If it has at least one item, we get the front, the first added item in the queue.
 
-I basically created three helper functions to help us to test our linked list.
+Also the same emptiness strategy for the `back` method:
 
 ```python
-def print_all(linked_list):
-    print('All values:', end=' ')
-    current_node = linked_list.head
+def back(self):
+    if self.is_empty():
+        raise Emptiness('The Queue is empty')
 
-    while current_node is not None:
-        print(current_node.value, end=' ')
-        current_node = current_node.next
-
-    print()
-
-def print_found(linked_list, value):
-    found = linked_list.search(value)
-    print('For value:', value, '-->', 'Found:', found, )
-
-def print_size(linked_list):
-    list_length = linked_list.size()
-    print('Size:', list_length)
+    return self.items[-1]
 ```
 
-They will print all the values, the found value, and the size of the list. So first we instantiate our list:
+If it has at least one item, we get the back item, the last added item in the queue.
+
+## Queue usage
+
+I created some helper functions to help test the queue usage.
 
 ```python
-linked_list = LinkedList()
+def test_enqueue(queue, item):
+    queue.enqueue(item)
+    print(queue.items)
+
+
+def test_dequeue(queue):
+    queue.dequeue()
+    print(queue.items)
+
+
+def test_emptiness(queue):
+    is_empty = queue.is_empty()
+    print(is_empty)
+
+
+def test_size(queue):
+    size = queue.size()
+    print(size)
+
+
+def test_front(queue):
+    front = queue.front()
+    print(front)
+
+
+def test_back(queue):
+    back = queue.back()
+    print(back)
 ```
 
-Let's see what we get when we try to print all the values and its size:
+They basically call a queue method and print the expected result from the method call.
+
+The usage will be something like:
 
 ```python
-print_all(linked_list)
-print_size(linked_list)  # 0
+queue = Queue()
+
+test_emptiness(queue)  # True
+test_size(queue)  # 0
+
+test_enqueue(queue, 1)  # [1]
+test_enqueue(queue, 2)  # [1, 2]
+test_enqueue(queue, 3)  # [1, 2, 3]
+test_enqueue(queue, 4)  # [1, 2, 3, 4]
+test_enqueue(queue, 5)  # [1, 2, 3, 4, 5]
+
+test_emptiness(queue)  # False
+test_size(queue)  # 5
+test_front(queue)  # 1
+test_back(queue)  # 5
+
+test_dequeue(queue)  # [2, 3, 4, 5]
+test_dequeue(queue)  # [3, 4, 5]
+test_dequeue(queue)  # [4, 5]
+test_dequeue(queue)  # [5]
+
+test_emptiness(queue)  # False
+test_size(queue)  # 1
+test_front(queue)  # 5
+test_back(queue)  # 5
+
+test_dequeue(queue)  # []
+
+test_emptiness(queue)  # True
+test_size(queue)  # 0
 ```
 
-Yes, no values and `0` elements.
+We first instantiate a new queue from the `Queue` class.
 
-We can append a node with value `1`, print the values, and see its size.
+- So now we can verify its emptiness: yes, it is!
+- Verify size: 0.
+- Enqueue 5 new items to the queue: `[1, 2, 3, 4, 5]`.
+- Verify emptiness again: not anymore!
+- Verify size: 5.
+- Get the front element: 1 because it was the first added item.
+- Get the back element: 5 because it was the last added item.
+- Dequeue 4 items: 1, 2, 3, and 4.
+- Verify emptiness: it is not empty yet!
+- The size is 1 and the back and front are the same number: 5
+- Dequeue the remaining item.
+- Verify emptiness: it is empty now!
+- Size is back to 0.
+
+---
+
+## Another way of testing it
+
+Enqueue 5 new items:
 
 ```python
-linked_list.append(1)
-print_all(linked_list)  # 1
-print_size(linked_list)  # 1
+queue = Queue()
+queue.enqueue(1)
+queue.enqueue(2)
+queue.enqueue(3)
+queue.enqueue(4)
+queue.enqueue(5)
 ```
 
-If we try to remove `0`, the `1` is still there. But if we remove `1`, we have no nodes anymore. The first line is cool: it doesn't break if we try to remove an element that doesn't exist in the linked list.
+Loop through the items and print each one.
 
 ```python
-linked_list.remove(0)
-print_all(linked_list)  # 1
-linked_list.remove(1)
-print_all(linked_list)
+for item in queue.items:
+    print(item)
 ```
 
-Adding new nodes and printing them:
+Test front and back.
 
 ```python
-linked_list.append(2)
-linked_list.append(3)
-print_all(linked_list)  # 2 3
-print_size(linked_list)  # 2
+test_front(queue) # 1
+test_back(queue) # 5
 ```
 
-Let's try out `found` method:
+Dequeue all.
 
 ```python
-print_found(linked_list, 1)  # False
-print_found(linked_list, 2)  # True
-print_found(linked_list, 3)  # True
+while not queue.is_empty():
+    queue.dequeue()
 ```
 
-That's cool! We really don't have the `1` node, but we have the `2` and the `3`.
-
-Now printing after removing each node:
+Test size.
 
 ```python
-linked_list.remove(1)
-print_all(linked_list)  # 2 3
-linked_list.remove(2)
-print_all(linked_list)  # 3
-linked_list.remove(3)
-print_all(linked_list)
+test_size(queue) # 0
 ```
 
-Let's try out `prepend` method:
+---
 
-```python
-linked_list.prepend(4)
-linked_list.prepend(3)
-linked_list.prepend(2)
-linked_list.prepend(1)
-print_all(linked_list)  # 1 2 3 4
-```
+## Runtime and Space complexities
 
-And remove the `3`.
+Now about space and runtime complexities for each method implemented.
 
-```python
-linked_list.remove(3)
-print_all(linked_list)  # 1 2 4
-```
+The space is pretty simple. It's a list, so it's `O(n)` where `n` is the current number of items in the stack.
 
-Works fine!
+The runtime for each method is `O(1)`, constant time.
+
+---
 
 ## Resources
 

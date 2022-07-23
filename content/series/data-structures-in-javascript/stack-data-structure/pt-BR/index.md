@@ -1,0 +1,228 @@
+A pilha é uma coleção de itens que segue o conceito de 'último a entrar, primeiro a sair' (também conhecido como `last-in, first-out` (LIFO) em inglês).
+
+Para a adição de novos itens, a pilha só permite adicionar o novo item para o topo. Quando se trata de remover itens, só nos permite remover o último item adicionado, ou também conhecido como o item do topo.
+
+Os principais métodos da API são `push` (adicionar) e `pop` (remover). Mas também podemos adicionar outros métodos como parte da implementação da API: `size`, `top` e `isEmpty`.
+
+## Implementação de pilha
+
+Podemos criar uma classe `Stack` como wrapper e usar a lista JavaScript para armazenar os dados da pilha. Esta classe terá a implementação dos métodos `push`, `pop`, `size`, `top` e `isEmpty`.
+
+O primeiro passo é criar uma definição de classe e como vamos armazenar nossos itens.
+
+```javascript
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+}
+```
+
+Isso é basicamente o que precisamos por enquanto. Apenas uma classe e seu construtor. Quando a instância for criada, ela terá a lista `items` para armazenar os itens da pilha.
+
+Para o método `push`, podemos simplesmente adicionar um novo item para o final da lista. O novo item será colocado no último índice desta lista de `itens`. Portanto, o item do topo da pilha sempre será o último item.
+
+```javascript
+push(item) {
+  this.items.push(item);
+}
+```
+
+Ele recebe o novo item e o adiciona na lista.
+
+O método `size` conta apenas o número de itens da pilha usando o atributo `.length`.
+
+```javascript
+size() {
+  return this.items.length;
+}
+```
+
+A ideia do método `isEmpty` é verificar se a lista contém ou não itens. Se tiver, retorna `false`. Caso contrário, `true`. Para contar o número de itens na pilha, podemos simplesmente usar o método `size` já implementado.
+
+```javascript
+isEmpty() {
+  return this.size() === 0;
+}
+```
+
+O método `pop` da estrutura de dados da lista também pode ser usado para remover o item da pilha. Ele exibe o último elemento como é esperado para a pilha. O último item adicionado.
+
+```javascript
+pop() {
+  return this.items.pop();
+}
+```
+
+Para o método `top`, precisamos apenas obter o último elemento da lista:
+
+```javascript
+top() {
+  return this.items[this.items.length - 1];
+}
+```
+
+Se tiver pelo menos um item, obtemos o topo, o último item adicionado na pilha. Caso contrário, ele retorna um valor `undefined`.
+
+## Uso da pilha
+
+O uso seria algo como:
+
+```javascript
+const stack = new Stack();
+
+stack.isEmpty(); // true
+
+stack.push(1);
+stack.items; // [1]
+stack.push(2);
+stack.items; // [1, 2]
+stack.push(3);
+stack.items; // [1, 2, 3]
+stack.push(4);
+stack.items; // [1, 2, 3, 4]
+stack.push(5);
+stack.items; // [1, 2, 3, 4, 5]
+
+stack.isEmpty(); // false
+stack.top(); // 5
+
+stack.pop();
+stack.items; // [1, 2, 3, 4]
+stack.pop();
+stack.items; // [1, 2, 3]
+stack.pop();
+stack.items; // [1, 2]
+stack.pop();
+stack.items; // [1]
+
+stack.isEmpty(); // false
+
+stack.pop();
+stack.items; // []
+
+stack.isEmpty(); // true
+stack.top(); // undefined
+```
+
+Primeiro instanciamos uma nova pilha da classe `Stack`.
+
+- Verificar vazio: sim, é!
+- Adicione 5 novos itens à pilha: `[1, 2, 3, 4, 5]`.
+- Verifique o vazio: não mais!
+- Obtenha o elemento superior: 5 porque foi o último item adicionado.
+- Remova 4 itens: 5, 4, 3 e 2.
+- Verifique se está vazio: ainda não está vazio!
+- Remova o item restante.
+- Verifique se está vazio: agora está vazio!
+
+Toda a implementação
+
+```javascript
+class Stack {
+  constructor() {
+    this.items = [];
+  }
+
+  push(item) {
+    this.items.push(item);
+  }
+
+  pop() {
+    return this.items.pop();
+  }
+
+  top() {
+    return this.items[this.items.length - 1];
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+```
+
+---
+
+## Complexidades de tempo de execução e espaço
+
+Agora sobre as complexidades de espaço e tempo de execução para cada método implementado.
+
+O espaço é bem simples. É uma lista, então é `O(n)` onde `n` é o número atual de itens na pilha. O tempo de execução para cada método é `O(1)`, tempo constante.
+
+---
+
+## Invertendo uma lista
+
+Podemos usar a estrutura de dados da pilha para um número diversificado de algoritmos. Um exemplo é reverter os itens de uma lista.
+
+Queremos inverter uma lista de livros, uma estante.
+
+```javascript
+function reverse(list) {
+  const stack = new Stack();
+
+  for (item of list) {
+    stack.push(item);
+  }
+
+  const reversedList = [];
+
+  while (!stack.isEmpty()) {
+    reversedList.push(stack.pop());
+  }
+
+  return reversedList;
+}
+```
+
+- Criar uma instância de pilha
+- Adiciona cada item da lista na pilha
+- Crie uma lista invertida vazia
+- Pop cada item até que a pilha esteja vazia
+- Para cada item exibido, anexe-o à lista invertida
+- Retornar a lista invertida
+
+A ideia é fazer com que o último item da lista seja o primeiro a ser retirado da pilha.
+
+O uso da função seria algo como:
+
+```javascript
+const reversedBooks = reverse([
+  'Harry Potter',
+  'Atomic Habits',
+  'Leonardo da Vinci',
+  'Sapiens',
+  'Peak',
+]);
+
+reversedBooks;
+// [
+//   'Peak',
+//   'Sapiens',
+//   'Leonardo da Vinci',
+//   'Atomic Habits',
+//   'Harry Potter'
+// ]
+```
+
+---
+
+## Outros exemplos
+
+Também podemos implementar o conceito de pilha em um comando `undo`. Imagine nosso editor de texto. Para cada alteração de documento, armazenamos o novo documento na pilha. Se quisermos 'desfazer' a alteração, precisamos apenas remover a última alteração e ficar com o estado anterior do documento.
+
+Os navegadores da Web também podem usar pilhas para armazenar o site visitado. Quando o usuário visita um novo site, ele envia o novo URL para a pilha. Quando o usuário volta, usando o botão "voltar", aparece o último site visitado e usa a URL anterior.
+
+---
+
+## Recursos
+
+- [Stack Data Structure](/series/data-structures-in-javascript/stack-data-structure)
+- [Geeks for geeks: Stack Data Structure](https://www.geeksforgeeks.org/stack-data-structure-introduction-program/)
+- [Basics of Stacks](https://www.hackerearth.com/pt-br/practice/data-structures/stacks/basics-of-stacks/tutorial/)
+- [CMU Stacks](https://www.cs.cmu.edu/~adamchik/15-121/lectures/Stacks%20and%20Queues/Stacks%20and%20Queues.html)

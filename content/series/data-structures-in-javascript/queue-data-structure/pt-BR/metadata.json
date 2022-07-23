@@ -1,0 +1,27 @@
+{
+  "title": "Estrutura de dado: Fila",
+  "description": "O que é a estrutura de dado fila, conceitos teóricos de ciência da computação e implementação.",
+  "date": "2022-07-23",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/data-structures/queue-of-people.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A narrow stree with a queue of people in the rain",
+    "authorHref": "https://unsplash.com/@ethanhjy",
+    "authorName": "Ethan Hu"
+  },
+  "alternativeArticle": {
+    "url": "/series/data-structures-in-javascript/queue-data-structure",
+    "language": "en"
+  }
+}

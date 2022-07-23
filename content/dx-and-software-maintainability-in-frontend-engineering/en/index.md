@@ -74,7 +74,7 @@ I was also working on some studies related to component tests with the testing-l
 
 As we didn't have much experience nor knowledge of the best way of how to use it, I started learning it, writing tests as examples, document all my learning, and improving our test setup.
 
-I started writing simple [recipes to use the testing-library](/basic-recipes-for-react-testing-library/) and about [testing-driven development in React](/tdd-functions-and-react-components). Then I wrote tests for different use cases: query elements, expecting content, user behavior (click, focus, etc), custom hooks, better setup for components using redux.
+I started writing simple [recipes to use the testing-library](/basic-recipes-for-react-testing-library) and about [testing-driven development in React](/tdd-functions-and-react-components). Then I wrote tests for different use cases: query elements, expecting content, user behavior (click, focus, etc), custom hooks, better setup for components using redux.
 
 The idea behind this was to make the tests very easy to implement and improve all the pain points. This study's final result was a set of tests as examples and a wiki in our Github project to guide `How to test the frontend` that covers integration tests, custom hooks, component tests, using the redux store, etc.
 

@@ -11,3 +11,5 @@ export const Projects: FC = () => (
     openNewTab
   />
 );
+
+export default Projects;

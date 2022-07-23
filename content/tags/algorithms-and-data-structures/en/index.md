@@ -1,5 +1,11 @@
 <div class="tags">
 
+## 2022
+
+- <time class="date">2022-07-10</time> <span>[Decode the Message](/series/algorithms-problem-solving/decode-the-message)</span>
+- <time class="date">2022-03-02</time> <span>[Queue Data Structure](/series/data-structures-in-javascript/queue-data-structure)</span>
+- <time class="date">2022-02-20</time> <span>[Stack Data Structure](/series/data-structures-in-javascript/stack-data-structure)</span>
+
 ## 2020
 
 - <time class="date">2020-02-10</time> <span>[Tree Data Structure](/series/data-structures/tree-data-structure)</span>

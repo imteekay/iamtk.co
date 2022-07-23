@@ -82,7 +82,7 @@ Outro ótimo site é [Hacker Rank](https://www.hackerrank.com/). O site tem vár
 
 Outra coisa que realmente me apaixona é a Programação Competitiva. Fiz isso por dois anos na faculdade, para competições como [ACM ICPC](https://icpc.baylor.edu/).
 
-Basicamente, você tem um monte de problemas e precisa implementar um algoritmo para passar em cada um. Fazer isso me ajudou a ganhar muita confiança em minhas habilidades de codificação e me sinto um desenvolvedor mais forte depois do meu treinamento pesado e da participação em competições. ([Aqui está meu repositório no GitHub](https://github.com/LeandroTk/algorithms) - Resolvi muitos problemas).
+Basicamente, você tem um monte de problemas e precisa implementar um algoritmo para passar em cada um. Fazer isso me ajudou a ganhar muita confiança em minhas habilidades de codificação e me sinto um desenvolvedor mais forte depois do meu treinamento pesado e da participação em competições. ([Aqui está meu repositório no GitHub](https://github.com/imteekay/algorithms) - Resolvi muitos problemas).
 
 Sou um grande usuário do Quora e, algum dia, li uma ótima resposta de [Veni Johanna](https://medium.com/u/f1962714b0f6) sobre “A programação competitiva realmente ajuda a melhorar seu conhecimento e conjunto de habilidades como um desenvolvedor?"
 

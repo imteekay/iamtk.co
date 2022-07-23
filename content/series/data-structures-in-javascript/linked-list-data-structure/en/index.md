@@ -1,0 +1,484 @@
+A linked list is a collection of nodes that form a linear sequence. The difference between an array and a linked list is that the array has indexed elements, so we can get an element by constant time by just searching by its index. In the linked list, we need to go through the nodes to get the searched element and that takes linear time.
+
+The advantage is that the linked lists can insert and remove items in constant time.
+
+A Linked List is a sequence of nodes and each node has two `attributes`: the value it stores and the reference to the next node of the sequence.
+
+The first and last nodes are called `head` and `tail` of the list, respectively. So to get to the tail of the last, we traverse the linked list by moving from one node to another using each node's next reference.
+
+The Linked List having the `head` and the `tail` as attributes helps add new nodes to the start and the end of the list. But we can implement it with or without the `tail` attribute. We will dive into this implementation.
+
+We can separate the linked list from its elements. Each element is a node and we can implement this representation with a `Node` class.
+
+```javascript
+class Node {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+```
+
+Basically, it has a value and the reference to the next node. We add a default value (`null`) to the `next` parameter to make it more flexible to use when creating new nodes.
+
+The simplest way to use it is:
+
+```javascript
+new_node = new Node(1);
+new_node.value; // 1
+new_node.next; // null
+```
+
+- Instantiate the new node.
+- We can access the `value` and the `next` attributes.
+
+But with the flexibility of the `next` parameter, we can also use it by passing the next node reference.
+
+```javascript
+const nextNode = new Node(2);
+const newNode = new Node(1);
+
+newNode.next = nextNode;
+newNode.value; // 1
+newNode.next.value; // 2
+```
+
+- Have the next node.
+- Instantiate the new node by passing the value and then assigning the reference to the next node (`nextNode` in our case).
+- We can access the `value` and the `next` value.
+
+For the linked list, the first step is to create a class representing it. For now, we just want a `head` attribute when creating an empty list.
+
+```javascript
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+}
+```
+
+Simple as that. Just a class and initialize the `head` attribute with `null` for an empty list.
+
+Let's implement the easier method: `is_empty`. How do we know when a list is empty? If the `head` is `null`, we didn't add any node to this list. This is the logic behind the `is_empty` method.
+
+```javascript
+isEmpty() {
+  return this.head === null;
+}
+```
+
+Pretty simple, huh?
+
+Now the `pushFront` method. We basically need to create a new node, points the `next` attribute from this new node to the `head`, and assign this new node to be the new linked list `head`.
+
+Remember we have the `next` parameter when creating a new node? We can use it to assign the previous `head` when creating the new node. Something like this:
+
+```javascript
+new Node(value, previousHead);
+```
+
+In the context of the linked list, we will have the `self.head`. So:
+
+```javascript
+new Node(value, this.head);
+```
+
+The last step is to assign this new node to the `head` and we will prepend it.
+
+```javascript
+this.head = new Node(value, this.head);
+```
+
+- Create new node
+- Assign the `next` attribute to the previous `head`
+- And assign the new node to the `head`
+
+The complete method will be like this:
+
+```javascript
+pushFront(value) {
+  this.head = new Node(value, this.head);
+}
+```
+
+Just one line. Pretty good!
+
+For the `pushBack`, it's a bit different, because, instead of adding a new node to the head of the list, we need to add to the tail. So basically we need to iterate through the list to be in the last node and point it's `next` attribute to the newly created node.
+
+The question is: How do we iterate through the list?
+
+The difference between the tail node and the rest is the `next` attribute. The tail has no `next`. It points to `null`. The rest always point to a different node.
+
+To iterate through the list to get the last node, we get the next node until the node has no `next` attribute. Start with the first node: the head.
+
+```javascript
+let currentNode = this.head;
+```
+
+And then iterate.
+
+```javascript
+while (currentNode && currentNode.next) {
+  currentNode = currentNode.next;
+}
+```
+
+We divide this code into two parts:
+
+- looping while the node is not `null` and the node's `next` attribute is also not `null`
+- update the current node by assigning the next node
+
+When the `while` loop breaks, we have the last node, so we just need to update the last node `next` attribute.
+
+```javascript
+currentNode.next = new Node(value);
+```
+
+The complete code:
+
+```javascript
+pushBack(value) {
+  let currentNode = this.head;
+
+  while (currentNode && currentNode.next) {
+    currentNode = currentNode.next;
+  }
+
+  currentNode.next = new Node(value);
+}
+```
+
+The `size` method implementation is straightforward. We basically need to iterate through the whole list and count each node.
+
+To iterate is pretty simple. We just need to loop while the current node is not `null`.
+
+```javascript
+while (currentNode) {
+  currentNode = currentNode.next;
+}
+```
+
+And for each iteration, we need to increase our counter.
+
+```javascript
+size() {
+  let count = 0;
+  let currentNode = this.head;
+
+  while (currentNode) {
+    count += 1;
+    currentNode = currentNode.next;
+  }
+
+  return count;
+}
+```
+
+- Initialize the `count` with `0`.
+- Get the current node: the `head`.
+- Iterate through the list.
+- For each iteration, increase the counter.
+- Returns the `count`.
+
+For the `search` algorithm, we need to receive a value and return `true` or `false` if this value is in the linked list.
+
+So we basically need to iterate through the linked list searching for this value.
+
+The iteration is simple:
+
+```javascript
+while (currentNode) {
+  currentNode = currentNode.next;
+}
+```
+
+Now, for each node, we see if the current node value is the same as the searched value.
+
+```javascript
+while (currentNode) {
+  if (currentNode.value === value) {
+    return true;
+  }
+
+  currentNode = currentNode.next;
+}
+```
+
+We can do this way to return `true` if the searched value is found. Or we can do this verification only after the loop stops. So we would need to stop the loop if we find the value.
+
+```javascript
+while (currentNode && currentNode.value !== value) {
+  currentNode = currentNode.next;
+}
+```
+
+- We will iterate while we didn't find the value and it is not the last node
+- Basically, the loop will stop when finding the searched value or finish the entire linked list
+
+To return the value, we can use the `Boolean` function.
+
+```javascript
+return Boolean(currentNode && currentNode.value === value);
+```
+
+With this, we cover all possibilities:
+
+- When `currentNode` is `null`: `Boolean` transform `null` into `false`
+- When `currentNode` is not `null` and the value is equal to the searched value
+
+To simplify, we could also write the statement like this:
+
+```javascript
+return Boolean(currentNode);
+```
+
+Because if we have the `currentNode`, it's because we found the searched value. If it doesn't have the `currentNode` (node is `null`), it's because we didn't find the searched value.
+
+```javascript
+search(value) {
+  let currentNode = this.head;
+
+  while (currentNode && currentNode.value !== value) {
+    currentNode = currentNode.next;
+  }
+
+  return Boolean(currentNode);
+}
+```
+
+The last method to be implemented is the `remove` method. We can think about this method in separated cases:
+
+- when the list is empty.
+- when we want to remove the head node.
+- when we want to remove a node from the middle or the last one.
+
+For the empty case is pretty simple. We just check the list with our `isEmpty` method.
+
+```javascript
+if (this.isEmpty()) {
+  return;
+}
+```
+
+We can also throw an error exception or just print "The list is empty", for example.
+
+For the case when we want to remove the head node, we check it first and then remove it.
+
+```javascript
+if (this.head.value === value) {
+  this.head = this.head.next;
+  return;
+}
+```
+
+To remove it, we just need to point the head to the its next node.
+
+The last case is when we want to remove a node in the middle or the last one. Let's draw it!
+
+![](/series/data-structures/linked-list-remove.jpeg)
+
+For this algorithm, what we want is to get the previous node of the node to be removed and point to the next node of the node to be removed. So we need to have the previous node in each iteration. This is the fundamental part of our algorithm.
+
+```javascript
+let currentNode = this.head;
+
+while (currentNode.next) {
+  if (currentNode.next.value === value) {
+    currentNode.next = currentNode.next.next;
+  }
+
+  currentNode = currentNode.next;
+}
+```
+
+This is the algorithm.
+
+We will iterate through the list while the current node's next is not a `null` value. Why? Because we want to compare the next node value. Not the current one.
+
+```javascript
+currentNode.next.value === value;
+```
+
+This the logic we are searching for. Does the current node's next value is the value we want to remove?
+
+If it is `true`, we basically remove the current node's next node by pointing the `next` to the `next.next`, and returning the function.
+
+If it is `false`, we keep iterating until we find the value we want or when we finish the entire list.
+
+Joining all the parts, we have:
+
+```javascript
+remove(value) {
+  if (this.isEmpty()) {
+    return;
+  }
+
+  if (this.head.value === value) {
+    this.head = this.head.next;
+    return;
+  }
+
+  let currentNode = this.head;
+
+  while (currentNode.next) {
+    if (currentNode.next.value === value) {
+      currentNode.next = currentNode.next.next;
+    }
+
+    currentNode = currentNode.next;
+  }
+}
+```
+
+## The Linked List class
+
+Joining all the parts we talked about and implemented, we have:
+
+```javascript
+class Node {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  pushFront(value) {
+    this.head = new Node(value, this.head);
+  }
+
+  pushBack(value) {
+    let currentNode = this.head;
+
+    while (currentNode && currentNode.next) {
+      currentNode = currentNode.next;
+    }
+
+    currentNode.next = new Node(value);
+  }
+
+  size() {
+    let count = 0;
+    let currentNode = this.head;
+
+    while (currentNode) {
+      count += 1;
+      currentNode = currentNode.next;
+    }
+
+    return count;
+  }
+
+  search(value) {
+    let currentNode = this.head;
+
+    while (currentNode && currentNode.value !== value) {
+      currentNode = currentNode.next;
+    }
+
+    return Boolean(currentNode);
+  }
+
+  remove(value) {
+    if (this.isEmpty()) {
+      return;
+    }
+
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let currentNode = this.head;
+
+    while (currentNode.next) {
+      if (currentNode.next.value === value) {
+        currentNode.next = currentNode.next.next;
+        return;
+      }
+
+      currentNode = currentNode.next;
+    }
+  }
+
+  isEmpty() {
+    return this.head === null;
+  }
+}
+```
+
+## Let's test it!
+
+```javascript
+const linkedList = new LinkedList();
+linkedList.isEmpty(); // true
+linkedList.size(); // 0
+
+linkedList.pushFront(1);
+linkedList.isEmpty(); // false
+linkedList.size(); // 1
+linkedList.head; // new Node(1)
+
+linkedList.pushBack(2);
+linkedList.pushBack(3);
+linkedList.pushBack(4);
+linkedList.size(); // 4
+
+linkedList.pushFront(0);
+linkedList.size(); // 5
+
+linkedList.search(0); // true
+linkedList.search(1); // true
+linkedList.search(2); // true
+linkedList.search(3); // true
+linkedList.search(4); // true
+linkedList.search(5); // false
+
+linkedList.remove(5);
+linkedList.size(); // 5
+
+linkedList.remove(0);
+linkedList.size(); // 4
+
+linkedList.remove(4);
+linkedList.size(); // 3
+
+linkedList.remove(2);
+linkedList.size(); // 2
+
+linkedList.remove(1);
+linkedList.size(); // 1
+
+linkedList.remove(3);
+linkedList.size(); // 0
+linkedList.isEmpty(); // true
+```
+
+What do we do here?
+
+- Create the linked list
+- Verify if it is empty
+- Verify the size of the list
+- Push a new item to the front
+- Now it's not empty anymore, have size of 1, and the head is the node with value 1
+- Push new values to the end of the list: 2, 3, 4. And now the size of the list is 4
+- Push a new value to the beginning of the list: 0. Size: 5
+- Search for 0 to 4: all return `true`, we found the value
+- Search for 5: it returns `false` as we don't have this value in the list
+- Remove 5 and the list keeps the size of 5
+- Remove values 4 to 0, the list is empty, and with size 0
+
+## Resources
+
+- [Algorithms](https://github.com/imteekay/algorithms)
+- [Linked List Implementation](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/linked_list/linked-list.js)
+- [Linked List Tests](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/linked_list/tests/linked-list.test.js)
+- [Big-O Notation For Coding Interviews and Beyond](https://www.educative.io/courses/big-o-notation-for-interviews-and-beyond?aff=x8bV)
+- [HackerRank Linked List](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)
+- [Linked List Part 1](https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d)
+- [Linked List Part 2](https://medium.com/basecs/whats-a-linked-list-anyway-part-2-131d96f71996)
+- [Data Structures: Linked Lists](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)

@@ -1,19 +1,16 @@
 import { FC } from 'react';
-import { css } from '@emotion/css';
-import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
 import { HomeLink } from 'Base/Article/HomeLink';
 import { CoverImage } from 'Base/Article/CoverImage';
-import { SocialLinks, ShareButtons } from 'Base/Article/SocialLinks';
-import { Tags } from 'Base/Article/Tags';
-import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
-import { mediaQuery } from 'Base/mediaQuery';
+import { SocialLinks } from 'Base/Article/SocialLinks';
 import {
   Tag,
   AlternativeArticle as AlternativeArticleType,
   CoverImage as CoverImageType,
 } from 'src/lib/getPostMetadata';
+
+import { Footer } from './Footer';
 
 type LayoutPropTypes = {
   tags: Tag[];
@@ -22,6 +19,7 @@ type LayoutPropTypes = {
   showSocialLinks?: boolean;
   alternativeArticle: AlternativeArticleType;
   coverImage: CoverImageType;
+  minutes: number;
 };
 
 export const Layout: FC<LayoutPropTypes> = ({
@@ -32,6 +30,7 @@ export const Layout: FC<LayoutPropTypes> = ({
   showSocialLinks = false,
   coverImage,
   alternativeArticle,
+  minutes,
 }) => (
   <div className="content">
     <HomeLink />
@@ -42,7 +41,12 @@ export const Layout: FC<LayoutPropTypes> = ({
     >
       <header>
         <Title text={title} />
-        <Meta date={date} tags={tags} alternativeArticle={alternativeArticle} />
+        <Meta
+          date={date}
+          tags={tags}
+          alternativeArticle={alternativeArticle}
+          minutes={minutes}
+        />
       </header>
 
       {coverImage.src && (
@@ -53,31 +57,13 @@ export const Layout: FC<LayoutPropTypes> = ({
           alt={coverImage.alt}
           authorHref={coverImage.authorHref}
           authorName={coverImage.authorName}
+          blurDataURL={coverImage.blurDataURL}
         />
       )}
 
       {children}
       {showSocialLinks && <SocialLinks />}
     </article>
-
-    <SubstackEmbed />
-
-    <div
-      className={css`
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
-        gap: 20px;
-
-        ${mediaQuery['sm']} {
-          flex-direction: row;
-        }
-      `}
-    >
-      <Tags tags={tags} />
-      <ShareButtons />
-    </div>
-
-    <Sponsorship />
+    <Footer tags={tags} />
   </div>
 );

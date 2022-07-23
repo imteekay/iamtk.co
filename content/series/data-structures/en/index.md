@@ -1,5 +1,5 @@
 <div class="series">
-This is part of my series on `Data Structures`, where I document posts about algorithms problems I solved.
+This is part of my series on <code>Data Structures</code>, where I document posts about algorithms problems I solved.
 
 This is live document and will be updated everytime I solve new problems.
 

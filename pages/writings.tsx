@@ -15,7 +15,7 @@ const Page: NextPage = () => {
       <main id="main">
         <div className="content">
           <HomeLink />
-          <Writings />
+          <Writings header="h1" />
         </div>
       </main>
     </>

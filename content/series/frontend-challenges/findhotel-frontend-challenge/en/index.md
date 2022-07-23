@@ -2,7 +2,7 @@ This is part of the [Frontend Challenges Series](/series/frontend-challenges).
 
 Today I finished a frontend challenge and I had a blast working on it. There were so many interesting concepts I debated with myself while designing and implementing the feature, so I was eager to document and share everything I learned through this entire journey.
 
-The challenge was a `Front-end Engineer Assignment` from [FindHotel](https://www.linkedin.com/company/findhotel/). It's actually a public challenge and you can find it on their GitHub: **[FindHotel Front-end Engineer Assignment](https://github.com/FindHotel/fh-fe-assignment)**.
+The challenge was a `Front-end Engineer Assignment`. It's actually a public challenge and you can find it on their GitHub: **Front-end Engineer Assignment**.
 
 Let's talk about the challenge:
 
@@ -901,7 +901,7 @@ It expects the state and the URL. Passing the `pushState` as a callback for the 
 
 Building a lot of different React apps, ones with pure React others with NextJS, made me experience different approaches to CSS styles. Even though it's simple to use inline CSS on React components, I didn't really like the experience as it lacks a lot of “features” like pseudo-classes, selectors.
 
-So in this challenge, I was open to learning and applying a new CSS tool. I’ve heard about emotion-js before but never really tried. This is a tool FindHotel uses, so I started taking a look at the docs and it surprised me. It seemed very simple, just CSS styles that you could attach to components. It's like the old days when you just write pure CSS but now with the power of making it modular.
+So in this challenge, I was open to learning and applying a new CSS tool. I’ve heard about emotion-js before but never really tried. This is a tool the company uses, so I started taking a look at the docs and it surprised me. It seemed very simple, just CSS styles that you could attach to components. It's like the old days when you just write pure CSS but now with the power of making it modular.
 
 I didn't want to use styled components, so I just installed `@emotion/css`.
 
@@ -1748,7 +1748,6 @@ See ya!
 ## Resources
 
 - [Frontend Challenges](https://github.com/imteekay/frontend-challenges)
-- [FindHotel Front-end Engineer Assignment](https://github.com/imteekay/frontend-challenges/blob/master/findhotel-frontend-assignment/INSTRUCTIONS.md)
 - [A Mental Model to think in TypeScript](/a-mental-model-to-think-in-typescript)
 - [Basic Recipes for React Testing Library](/basic-recipes-for-react-testing-library)
 - [React Hooks, Context API, and Pokemons](/react-hooks-context-api-and-pokemons)

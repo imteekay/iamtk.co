@@ -13,6 +13,7 @@ type CoverImagePropTypes = {
   alt: string;
   authorHref: string;
   authorName: string;
+  blurDataURL?: string;
 };
 
 export const CoverImage: FC<CoverImagePropTypes> = ({
@@ -22,9 +23,17 @@ export const CoverImage: FC<CoverImagePropTypes> = ({
   alt,
   authorHref,
   authorName,
+  blurDataURL,
 }) => (
   <div style={coverImageStyle}>
-    <Image src={src} width={width} height={height} alt={alt} />
+    <Image
+      src={src}
+      width={width}
+      height={height}
+      alt={alt}
+      blurDataURL={blurDataURL}
+      placeholder="blur"
+    />
     {authorName ? (
       <span style={figcaptionStyle}>
         Photo by{' '}
