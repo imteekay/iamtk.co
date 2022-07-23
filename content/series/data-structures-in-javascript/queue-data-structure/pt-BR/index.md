@@ -1,4 +1,4 @@
-A estrutura de dados da fila é uma coleção de itens que seguem o princípio "primeiro a entrar, primeiro a sair". O primeiro elemento adicionado será o primeiro elemento a ser removido da fila. Assim, os elementos são adicionados na parte de trás e removidos da frente.
+A estrutura de dados fila é uma coleção de itens que seguem o princípio "primeiro a entrar, primeiro a sair". O primeiro elemento adicionado será o primeiro elemento a ser removido da fila. Assim, os elementos são adicionados na parte de trás e removidos da frente.
 
 Uma analogia seria uma simples fila de pessoas esperando o próximo trem. No contexto de engenharia de software, um exemplo é um servidor web recebendo e respondendo solicitações.
 
