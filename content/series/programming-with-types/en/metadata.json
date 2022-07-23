@@ -1,0 +1,23 @@
+{
+  "title": "Programming with Types Series",
+  "description": "A series on type driven programming",
+  "date": "2022-04-30",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/programming-with-types/central.jpg",
+    "width": "592",
+    "height": "375",
+    "alt": "types",
+    "authorHref": "https://unsplash.com/@florianklauer",
+    "authorName": "Florian Klauer"
+  }
+}

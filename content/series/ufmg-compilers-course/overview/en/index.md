@@ -1,0 +1,41 @@
+Compilers are backed up by a lot of computer science theories: `type systems`, `parsing theory`, `graph theory`, `algebra`, `algorithms`, `fixed-point computing`, etc
+
+- `Algorithms`: graphs, union-find, dynamic programming
+- `Artificial Intelligence`: greedy algorithm, machine learning
+- `Automata Theory`: DFAs for scanning, parser generators, context free grammars
+- `Algebra`: lattices, fixed point theory, galois connections, type systems
+- `Architecture`: pipeline management, memory hierarchy, instruction sets
+- `Combinatorial Optimization`: operations research, load balancing, packing
+
+### Understanding programs
+
+`Static Analysis`: discover information about programs without running it
+
+- `Dataflow Analysis`: propagate information based on the dependencies between program elements, which are given by the syntax of the program
+- `Constraint-based Analysis`: derive constraints from the program. Relations between these constraints are not determined explicitly by the program syntax
+- `Type analysis`: propagate information as type annotations. This information lets us prove properties about the program, such as progress and preservation
+
+`Dynamic Analysis`: run the program and collect information about the events that took place at runtime
+
+- `Profiling`: run the program and log the events that happened at runtime
+- `Test generation`: generate tests that cover most of the program code or that produce some event
+- `Emulation`: run the program in a virtual machine, that takes care of collecting and analyzing data
+- `Instrumentation`: augment the program with a meta-program, that monitors its behavior
+
+### Compiler optimization
+
+Use many different algorithms to optimize the compiler
+
+- `Graphs`: control flow graphs, constraints graphs, dependence graphs, strongly connected components, graph coloring
+- Lattices and the Fixed-Point Theory
+- Many different types of Induction: structural induction (proofs are based on induction)
+- Dynamic programming techniques
+- Type Theory
+- Integer Linear Programming
+
+### Programs representation
+
+- Abstract Syntax Trees
+- Control Flow Graphs
+- Program Dependence Graphs
+- Constraint Systems

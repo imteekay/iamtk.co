@@ -1,12 +1,14 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import { getPaths } from 'src/lib';
 import { getPostContent } from 'src/lib/getPostContent';
 import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
 import { Locale } from 'src/types/Locale';
+import { Language } from 'src/lib/languages';
 
 interface Params extends ParsedUrlQuery {
   lang: Locale;
@@ -16,9 +18,10 @@ interface Params extends ParsedUrlQuery {
 type PageProps = {
   postContent: string;
   postMetadata: PostMetadata;
+  minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
+const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
   return (
     <>
       <Head
@@ -31,15 +34,9 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
         title={postMetadata.title}
         date={postMetadata.date}
         alternativeArticle={postMetadata.alternativeArticle}
+        minutes={minutes}
         showSocialLinks
-        coverImage={{
-          src: postMetadata.coverImage.src,
-          width: postMetadata.coverImage.width,
-          height: postMetadata.coverImage.height,
-          alt: postMetadata.coverImage.alt,
-          authorHref: postMetadata.coverImage.authorHref,
-          authorName: postMetadata.coverImage.authorName,
-        }}
+        coverImage={postMetadata.coverImage}
       >
         <div dangerouslySetInnerHTML={{ __html: postContent }} />
       </Layout>
@@ -49,7 +46,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata }) => {
 
 export async function getStaticPaths() {
   return {
-    paths: getPaths('pt-BR'),
+    paths: getPaths(Language.PT_BR),
     fallback: false,
   };
 }
@@ -58,13 +55,22 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   context,
 ) => {
   const { slug } = context.params!;
-  const postContent = getPostContent(slug, 'pt-BR');
-  const postMetadata = getPostMetadata(slug, 'pt-BR');
+  const { postContent, minutes } = getPostContent(slug, Language.PT_BR);
+  const postMetadata = getPostMetadata(slug, Language.PT_BR);
+  const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
       postContent,
-      postMetadata,
+      postMetadata: {
+        ...postMetadata,
+        coverImage: {
+          ...postMetadata.coverImage,
+          src: img.src,
+          blurDataURL: base64,
+        },
+      },
+      minutes,
     },
   };
 };

@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Infrastructure: Scope & Closure",
+  "description": "Scope & Closure: understanding execution context, JS scope, modules patterns, private values, and the power of closures",
+  "date": "2022-03-23",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/frontend-infrastructure/scope-and-closures.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "letters",
+    "authorHref": "https://unsplash.com/@max_thehuman",
+    "authorName": "Max Böhme"
+  }
+}

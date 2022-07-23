@@ -1,5 +1,12 @@
 export const seriesList = [
   {
+    link: '/series/data-structures-in-javascript',
+    title: 'Data Structure in JavaScript',
+    description: 'Theory and implementation of data structures in JavaScript',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/mastering-javascript',
     title: 'Mastering JavaScript',
     description: 'The process to master JavaScript',
@@ -35,7 +42,7 @@ export const seriesList = [
     rel: '',
   },
   {
-    link: 'https://leandrotk.github.io/series/algorithms-problem-solving',
+    link: '/series/algorithms-problem-solving',
     title: 'Algorithms Problem Solving',
     description: 'Documenting algorithms problems I solved',
     target: '',

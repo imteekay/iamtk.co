@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Infrastructure: Namespaces",
+  "description": "Namespaces: separating functionalities with flexibility - module pattern",
+  "date": "2022-03-25",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/frontend-infrastructure/namespace.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "letters",
+    "authorHref": "https://unsplash.com/@roxannedesgagnes",
+    "authorName": "Roxanne Desgagnés"
+  }
+}

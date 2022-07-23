@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Infrastructure: Skills",
+  "description": "Empowering product teams with the foundational frontend ecosystem and reliable, performant, and developer-friendly tools to efficiently build great user experiences",
+  "date": "2022-03-26",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/frontend-infrastructure/skills.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "man writing",
+    "authorHref": "https://unsplash.com/@dchuck",
+    "authorName": "Daniel Chekalov"
+  }
+}

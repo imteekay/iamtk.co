@@ -5,5 +5,5 @@ This is live document and will be updated everytime I design and implement a new
 
 ## Frontend Challenges Series
 
-- <time class="date">2021-12-27</time> <span>[FindHotel Front-end Engineer Assignment](/series/frontend-challenges/findhotel-frontend-challenge)</span>
+- <time class="date">2021-12-27</time> <span>[Front-end Engineer Assignment](/series/frontend-challenges/findhotel-frontend-challenge)</span>
 </div>

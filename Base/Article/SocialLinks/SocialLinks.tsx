@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export const SocialLinks: FC = () => (
   <p>
@@ -10,7 +12,7 @@ export const SocialLinks: FC = () => (
       title="twitter"
       rel="noreferrer"
     >
-      Twitter <span className="fab fa-twitter" />
+      Twitter <FontAwesomeIcon icon={faTwitter} />
     </a>{' '}
     and{' '}
     <a
@@ -20,7 +22,7 @@ export const SocialLinks: FC = () => (
       title="github"
       rel="noreferrer"
     >
-      Github <span className="fab fa-github" />
+      Github <FontAwesomeIcon icon={faGithub} />
     </a>
   </p>
 );

@@ -1,0 +1,23 @@
+{
+  "title": "Algorithms Problem Solving: Decode String",
+  "description": "Solving algorithms problems: decode string",
+  "date": "2022-02-22",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/algorithms-problem-solving/jewel.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "a diamond",
+    "authorHref": "https://unsplash.com/@fakurian",
+    "authorName": "Milad Fakurian"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Infrastructure: IIFE — Immediately Invoked Function Expression",
+  "description": "IIFE: Immediately Invoked Function Expression",
+  "date": "2022-03-24",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/frontend-infrastructure/iife.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "letters",
+    "authorHref": "https://unsplash.com/@fw_rodrigues",
+    "authorName": "Fernando Rodrigues"
+  }
+}

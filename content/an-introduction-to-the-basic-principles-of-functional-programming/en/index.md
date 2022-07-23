@@ -650,11 +650,11 @@ Done! 🎉
 
 ### Resources
 
-I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For more resources, visit my [Functional Programming Github repository](https://github.com/LeandroTk/learning-functional-programming).
+I’ve organised some resources I read and studied. I’m sharing the ones that I found really interesting. For more resources, visit my [Functional Programming Github repository](https://github.com/imteekay/learning-functional-programming).
 
-- [Ruby specific resources](https://github.com/LeandroTk/learning-functional-programming/tree/master/ruby)
-- [Javascript specific resources](https://github.com/LeandroTk/learning-functional-programming/tree/master/javascript)
-- [Clojure specific resources](https://github.com/LeandroTk/learning-functional-programming/tree/master/clojure)
+- [Ruby specific resources](https://github.com/imteekay/learning-functional-programming/tree/master/ruby)
+- [Javascript specific resources](https://github.com/imteekay/learning-functional-programming/tree/master/javascript)
+- [Clojure specific resources](https://github.com/imteekay/learning-functional-programming/tree/master/clojure)
 
 #### Intros
 
@@ -703,8 +703,8 @@ I’ve organised some resources I read and studied. I’m sharing the ones that 
 
 Hey people, I hope you had fun reading this post, and I hope you learned a lot here! This was my attempt to share what I’m learning.
 
-[Here is the repository with all codes](https://github.com/LeandroTk/functional-programming-article-source-code) from this article.
+[Here is the repository with all codes](https://github.com/imteekay/functional-programming-article-source-code) from this article.
 
-Come learn with me. I’m sharing resources and my code in this [Learning Functional Programming repository](https://github.com/LeandroTk/learning-functional-programming).
+Come learn with me. I’m sharing resources and my code in this [Learning Functional Programming repository](https://github.com/imteekay/learning-functional-programming).
 
 I hope you saw something useful to you here. And see you next time! :)

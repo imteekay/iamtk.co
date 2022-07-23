@@ -1,0 +1,178 @@
+A estrutura de dados da fila é uma coleção de itens que seguem o princípio "primeiro a entrar, primeiro a sair". O primeiro elemento adicionado será o primeiro elemento a ser removido da fila. Assim, os elementos são adicionados na parte de trás e removidos da frente.
+
+Uma analogia seria uma simples fila de pessoas esperando o próximo trem. No contexto de engenharia de software, um exemplo é um servidor web recebendo e respondendo solicitações.
+
+Os principais métodos da API são `enqueue` (adicionar) e `dequeue` (remover). Mas também podemos adicionar outros métodos como parte da implementação da API: `size`, `front`, `back` e `isEmpty`.
+
+---
+
+## Implementação de fila
+
+Podemos criar uma classe `Queue` como um wrapper e usar a lista Python para armazenar os dados da fila. Esta classe terá a implementação dos métodos `enqueue`, `dequeue`, `size`, `front`, `back` e `isEmpty`.
+
+O primeiro passo é criar uma definição de classe e como vamos armazenar nossos itens.
+
+```javascript
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+}
+```
+
+Isso é basicamente o que precisamos por enquanto. Apenas uma classe e seu construtor. Quando a instância for criada, ela terá a lista `items` para armazenar os itens da fila.
+
+Para o método `enqueue`, só precisamos usar o método list `append` para adicionar novos itens. Os novos itens serão colocados no último índice desta lista de `items`. Portanto, o item da frente da fila sempre será o primeiro item.
+
+```javascript
+enqueue(item) {
+  this.items.push(item);
+}
+```
+
+Ele recebe o novo item e o anexa à lista.
+
+O método `size` conta apenas o número de itens da fila usando o atributo `length`.
+
+```javascript
+size() {
+  return this.items.length;
+}
+```
+
+A ideia do método `isEmpty` é verificar se a lista contém ou não itens. Se tiver, retorna `false`. Caso contrário, `true`. Para contar o número de itens na fila, podemos simplesmente usar o método `size` já implementado.
+
+```javascript
+isEmpty() {
+  return this.size() === 0;
+}
+```
+
+O método `shift` da estrutura de dados da lista também pode ser usado para retirar o item da fila. Ele desenfileira o primeiro elemento como é esperado para a fila. O primeiro item adicionado.
+
+```javascript
+dequeue() {
+  this.items.shift();
+}
+```
+
+Para o método `front`, podemos apenas acessar o primeiro elemento da lista `items`.
+
+```javascript
+front() {
+  return this.items[0];
+}
+```
+
+Se tiver pelo menos um item, obtemos a frente, o primeiro item adicionado na fila.
+
+Para o método `back`, usei o método `at` para acessar o último elemento passando um `-1`:
+
+```javascript
+back() {
+  return this.items.at(-1);
+}
+```
+
+Este recurso (`.at()`) está disponível apenas para NodeJS v17 ou posterior. Se estiver usando versões antigas, podemos usar o bom e velho `this.items[this.items.length - 1]`.
+
+Se tiver pelo menos um item, obtemos o item de volta, o último item adicionado na fila.
+
+## Uso da fila
+
+O uso seria algo como:
+
+```javascript
+const queue = new Queue();
+
+queue.isEmpty(); // true
+queue.size(); // 0
+
+queue.enqueue(1); // [1]
+queue.enqueue(2); // [1, 2]
+queue.enqueue(3); // [1, 2, 3]
+queue.enqueue(4); // [1, 2, 3, 4]
+queue.enqueue(5); // [1, 2, 3, 4, 5]
+
+queue.isEmpty(); // false
+queue.size(); // 5;
+queue.front(); // 1;
+queue.back(); // 5;
+
+queue.items; // [1, 2, 3, 4, 5];
+
+queue.dequeue(); // [2, 3, 4, 5];
+queue.dequeue(); // [3, 4, 5];
+queue.dequeue(); // [4, 5];
+queue.dequeue(); // [5];
+queue.isEmpty(); // false
+queue.dequeue(); // []
+queue.isEmpty(); // true
+queue.size(); // 0;
+```
+
+Primeiro instanciamos uma nova fila da classe `Queue`.
+
+- Então agora podemos verificar o seu vazio: sim, é!
+- Verifique o tamanho: 0.
+- Enfileirar 5 novos itens na fila: `[1, 2, 3, 4, 5]`.
+- Verifique novamente o vazio: não mais!
+- Verifique o tamanho: 5.
+- Obtenha o elemento da frente: 1 porque foi o primeiro item adicionado.
+- Obter o elemento de volta: 5 porque foi o último item adicionado.
+- Desenforme 4 itens: 1, 2, 3 e 4.
+- Verifique se está vazio: ainda não está vazio!
+- O tamanho é 1 e a parte de trás e a frente são o mesmo número: 5
+- Retire o item restante.
+- Verifique se está vazio: agora está vazio!
+- O tamanho está de volta a 0.
+
+Toda a implementação
+
+```javascript
+class Queue {
+  constructor() {
+    this.items = [];
+  }
+
+  enqueue(item) {
+    this.items.push(item);
+  }
+
+  dequeue() {
+    this.items.shift();
+  }
+
+  isEmpty() {
+    return this.size() === 0;
+  }
+
+  front() {
+    return this.items[0];
+  }
+
+  back() {
+    return this.items.at(-1);
+  }
+
+  size() {
+    return this.items.length;
+  }
+}
+```
+
+## Complexidades de tempo de execução e espaço
+
+Agora sobre as complexidades de espaço e tempo de execução para cada método implementado.
+
+O espaço é bem simples. É uma lista, então é `O(n)` onde `n` é o número atual de itens na pilha.
+
+O tempo de execução para cada método é `O(1)`, tempo constante.
+
+---
+
+## Recursos
+
+- [Queue Data Structure: implementation](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/queue/queue.js)
+- [Queue Data Structure: tests](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/queue/tests/queue.test.js)
+- [Data Structures in JavaScript](/series/data-structures-in-javascript)

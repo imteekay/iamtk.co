@@ -8,10 +8,72 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-07-06',
+    link: '/writing-a-memoization-function-from-scratch',
+    title: 'Writing a Memoization Function from Scratch',
+    tags: ['javascript'],
+  },
+  {
+    datetime: '2022-04-25',
+    link: '/series/introduction-to-machine-learning',
+    title: 'Introduction to Machine Learning',
+    tags: ['python', 'machine learning', 'data science'],
+  },
+  {
+    datetime: '2022-03-26',
+    link: '/frontend-infrastructure',
+    title: 'Frontend Infrastructure',
+    tags: ['javascript', 'typescript', 'web', 'dx', 'devtools'],
+  },
+  {
+    datetime: '2022-03-04',
+    link: '/series/data-structures-in-javascript/linked-list-data-structure',
+    title: 'Linked List Data Structure in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
+    datetime: '2022-03-02',
+    link: '/series/data-structures-in-javascript/queue-data-structure',
+    title: 'Queue Data Structure in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
+    datetime: '2022-02-20',
+    link: '/series/data-structures-in-javascript/stack-data-structure',
+    title: 'Stack Data Structure in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
+    datetime: '2022-02-20',
+    link: '/series/data-structures-in-javascript',
+    title: 'Data Structures in JavaScript',
+    tags: ['javascript', 'data structures', 'algorithms'],
+  },
+  {
+    datetime: '2022-01-10',
+    link: '/series/mastering-javascript/destructuring-objects-and-arrays',
+    title: 'Destructuring Arrays and Objects in JavaScript',
+    tags: ['javascript', 'web'],
+  },
+  {
+    datetime: '2022-01-04',
+    link: '/series/website-changelog/refactoring-setup',
+    title:
+      'Refactoring Setup: NextJS, TypeScript, Prettier, and Testing Library',
+    tags: ['javascript', 'typescript'],
+  },
+  {
+    datetime: '2022-01-03',
+    link: '/series/mastering-javascript/revisiting-conditionals-in-javascript-and-typescript',
+    title:
+      'Mastering JavaScript: Revisiting Conditionals in JavaScript and TypeScript',
+    tags: ['javascript', 'typescript'],
+  },
+  {
     datetime: '2022-01-01',
     link: '/series/website-changelog/building-my-legacy-through-accessible-open-and-free-content',
     title: 'Building my Legacy through Accessible, Open, and Free content',
-    tags: ['reflaction'],
+    tags: ['reflection'],
   },
   {
     datetime: '2021-12-27',
@@ -22,7 +84,7 @@ export const postsList: Post[] = [
   {
     datetime: '2021-12-27',
     link: '/series/frontend-challenges/findhotel-frontend-challenge',
-    title: 'Frontend Challenges: FindHotel Front-end Engineer Assignment',
+    title: 'Frontend Challenges: Front-end Engineer Assignment',
     tags: ['javascript', 'typescript', 'react', 'web'],
   },
   {
@@ -288,7 +350,7 @@ export const postsList: Post[] = [
   },
   {
     datetime: '2020-02-02',
-    link: '/series/data-structures/linked-list',
+    link: '/series/data-structures/linked-list-data-structure',
     title: 'Linked List',
     tags: ['python', 'algorithms', 'data structures'],
   },

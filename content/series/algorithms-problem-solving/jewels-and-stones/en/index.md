@@ -1,0 +1,85 @@
+This post is part of the `Algorithms Problem Solving` series.
+
+## Problem description
+
+This is the [Jewels and Stones](https://leetcode.com/problems/jewels-and-stones/description/) problem. The description looks like this:
+
+You're given strings `J` representing the types of stones that are jewels, and `S` representing the stones you have. Each character in `S` is a type of stone you have. You want to know how many of the stones you have are also jewels.
+
+The letters in `J` are guaranteed distinct, and all characters in `J` and `S` are letters. Letters are case sensitive, so `"a"` is considered a different type of stone from `"A"`.
+
+## Examples
+
+```python
+# input: J = "aA" | S = "aAAbbbb"
+# output: 3
+
+# input: J = "z", S = "ZZ"
+# output: 0
+```
+
+## Solution
+
+At first, I tried to understand some corner cases. For example, what should I return if the `J` or the `S` are an empty string?
+
+As my first solution, the brute force solution, I needed to look through the string. So I didn't need to care about the empty strings. For empty strings, it doesn't loop, it just return the default counter, in this case, `0`.
+
+I just needed to loop through the `J` and for each character in the `J` string, I need to compare to each character of `S`. If they match, I increment the counter.
+
+After looping through each character, just return the final counter.
+
+```python
+def num_jewels_in_stones(J, S):
+    jewels = 0
+
+    for j in J:
+        for s in S:
+            if s == j:
+                jewels += 1
+
+    return jewels
+
+print(num_jewels_in_stones("aA", "aAAbbbb")) # 3
+print(num_jewels_in_stones("z", "ZZ")) # 0
+```
+
+This is a `O(N^2)` solution in terms of time complexity. Or more precisaly: `O(len(J) * len(S))`. For the space complexity, it is `O(1)` as we just store the value in a counter. If `len(J)` or `len(S)` increase, the used space keeps constant.
+
+Just to iterate this solution, we can make it `O(N)` in terms of time complexity by using a hash table to store all characters as key and the counter as value.
+
+```python
+def num_jewels_in_stones_opt(J, S):
+    chars_counter = {}
+    counter = 0
+
+    for char in J:
+        if char in chars_counter:
+            chars_counter[char] += 1
+        else:
+            chars_counter[char] = 1
+
+    for char in S:
+        if char in chars_counter:
+            counter += chars_counter[char]
+
+    return counter
+
+print(num_jewels_in_stones_opt("aA", "aAAbbbb")) # 3
+print(num_jewels_in_stones_opt("z", "ZZ")) # 0
+```
+
+So, for each `J`'s character. Verify if it is already in the `chars_counter`. If it is, just increment it. If not, initialize the counter.
+
+Then, for each `S`'s character, verify if this character is in the `chars_counter`. If it is, get it and add to the `counter` variable. If not, do nothing.
+
+After this iteration, we need the final value to the `counter`. Just return it.
+
+As we said before, it runs in `O(N)`. Better than the first solution. But, for the worse case scenario, the space complexity is `O(N)`, worse than the first approach.
+
+---
+
+For more stories and posts about my journey learning & mastering software engineering, take a look at what [I've been writing and documenting](https://iamtk.co).
+
+## Resources
+
+- [Learning Python: From Zero to Hero](https://iamtk.co/learning-python-from-zero-to-hero)

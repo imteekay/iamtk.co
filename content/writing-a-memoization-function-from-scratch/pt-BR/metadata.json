@@ -1,0 +1,23 @@
+{
+  "title": "Implementando uma função de memoization em JavaScript",
+  "description": "Como implementar uma função de memoization em JavaScript para otimizar a performance de funções",
+  "date": "2022-07-10",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/writing-a-memoization-function-from-scratch/cover.jpg",
+    "width": "640",
+    "height": "600",
+    "alt": "storage",
+    "authorHref": "https://unsplash.com/@thoousands",
+    "authorName": "Juan Pablo Daniel"
+  },
+  "alternativeArticle": {
+    "url": "/writing-a-memoization-function-from-scratch",
+    "language": "en"
+  }
+}
