@@ -9,11 +9,8 @@ describe('Home', () => {
     cy.contains("Hi, I'm TK!").should('exist');
 
     postsList.forEach((post) => {
-      cy.get('#writings').within(() => {
-        cy.contains(post.title).should('exist');
-        cy.contains(post.title).click();
-      });
-
+      cy.contains(post.title).should('exist');
+      cy.contains(post.title).click();
       cy.get('[data-testid="home-link"]').click();
     });
   });
