@@ -6,12 +6,14 @@ import { About } from 'Home/components/About';
 import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
+import { Bookshelf } from 'Home/components/Bookshelf';
+import { Experiments } from 'Home/components/Experiments';
 
 const Page: NextPage = () => (
   <>
     <Head
-      title="TK"
-      description="Learning & Improving with TK"
+      title="TK's website about software engineering, web development, and career in tech"
+      description="Learning & Improving with TK: a website about software engineering, web development, and career in tech"
       imageUrl="/logo.jpeg"
     />
 
@@ -24,6 +26,8 @@ const Page: NextPage = () => (
         <Writings />
         <Series />
         <Projects />
+        <Bookshelf />
+        <Experiments />
       </div>
     </main>
   </>

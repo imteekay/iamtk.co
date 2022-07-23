@@ -1,0 +1,25 @@
+{
+  "title": "Algorithms Problem Solving Series",
+  "description": "Solving algorithms problems",
+  "date": "2020-05-17",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/logo.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": ""
+  }
+}

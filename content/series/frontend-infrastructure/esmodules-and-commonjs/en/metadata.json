@@ -1,0 +1,27 @@
+{
+  "title": "Frontend Infrastructure: ESModules & CommonJS",
+  "description": "ESModules & CommonJS: differences, features, interoperability, compatibility, and migration",
+  "date": "2022-03-26",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/frontend-infrastructure/esmodules-and-commonjs.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "connections",
+    "authorHref": "https://unsplash.com/@alinnnaaaa",
+    "authorName": "Alina Grubnyak"
+  }
+}

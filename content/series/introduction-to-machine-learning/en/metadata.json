@@ -1,0 +1,23 @@
+{
+  "title": "Introduction to Machine Learning",
+  "description": "My research, learnings, and notes from my machine learning studies",
+  "date": "2022-04-25",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/machine-learning/cover.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "notebook",
+    "authorHref": "https://unsplash.com/@dulhiier",
+    "authorName": "Nastya Dulhiier"
+  }
+}

@@ -12,5 +12,5 @@ export const timeWrapperStyle = {
 };
 
 export const linkStyle = {
-  textDecoration: 'none',
+  // textDecoration: 'none',
 };

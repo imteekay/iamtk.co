@@ -564,7 +564,7 @@ This project was a lot of fun! I learned some cool things through this process. 
 
 - As I'm [learning Typescript](/series/typescript-learnings), I wanted to quickly validate the code I was writing. So I configured `nodemon` to compile and run the code on every file save. It is cool to make the development process so dynamic.
 - I tried to use the new node `fs`'s `promises`: `readFile`, `mkdir`, `writeFile`, and `copyFile`. It is on `Stability: 2`.
-- I did a lot of [currying](/series/closure-currying-and-cool-abstractions) for some function to make it reusable.
+- I did a lot of [currying](/closure-currying-and-cool-abstractions) for some function to make it reusable.
 - Enums and [Types](/series/typescript-learnings/type-system) are good ways to make the state consistent in Typescript, but also make a good representation and documentation of all the project's data. [Data contracts](/thinking-in-data-contracts) is a really nice thing.
 - The tooling mindset. This is one of the things I really love about programming. Build toolings to automate repetitive tasks and make life easier.
 

@@ -1,0 +1,181 @@
+This post is part of the [Algorithms Problem Solving](/series/algorithms-problem-solving) series.
+
+## Problem description
+
+This is the [Decode String](https://leetcode.com/problems/decode-string/) problem. The description looks like this:
+
+Given an encoded string, return its decoded string.
+
+The encoding rule is: `k[encoded_string]`, where the `encoded_string` inside the square brackets is being repeated exactly `k` times. Note that `k` is guaranteed to be a positive integer.
+
+You may assume that the input string is always valid; there are no extra white spaces, square brackets are well-formed, etc.
+
+Furthermore, you may assume that the original data does not contain any digits and that digits are only for those repeat numbers, `k`. For example, there will not be input like `3a` or `2[4]`.
+
+Constraints**:**
+
+- `1 <= s.length <= 30`
+- `s` consists of lowercase English letters, digits, and square brackets `'[]'`.
+- `s` is guaranteed to be **a valid** input.
+- All the integers in `s` are in the range `[1, 300]`.
+
+## Examples
+
+**Example 1:**
+
+```bash
+Input: s = "3[a]2[bc]"
+Output: "aaabcbc"
+```
+
+**Example 2:**
+
+```bash
+Input: s = "3[a2[c]]"
+Output: "accaccacc"
+```
+
+**Example 3:**
+
+```bash
+Input: s = "2[abc]3[cd]ef"
+Output: "abcabccdcdcdef"
+```
+
+## Solution
+
+One of the possible solutions I came up with was to use a [stack data structure](/series/data-structures/stack-data-structure) to handle the data within the brackets. The basic idea is to iterate through all characters for each character, verify if it's a number, a `]` (closing bracket), or a normal string character (`[` included).
+
+To iterate through the entire string, we can use a `while` with an index:
+
+```tsx
+while (index < encodedString.length) {
+  index++;
+}
+```
+
+To verify if the character is a number, I built a simple function:
+
+```tsx
+const isNum = (char) => !isNaN(Number(char));
+```
+
+So if the character is a number, we push it to the stack. But the number can be more than just one digit, so we need to move to the next index until the character isn’t a number anymore.
+
+```tsx
+if (isNum(char)) {
+  const number = [];
+
+  while (isNum(encodedString[index])) {
+    number.push(encodedString[index]);
+    index++;
+  }
+
+  stack.push(Number(number.join('')));
+  continue;
+}
+```
+
+I created a `number` array and push each number character into this list. After we get the whole number, we push it to the stack.
+
+But if the character is a `]`, we need to get the whole string that was inside the brackets and we do it by using the `pop` method from the stack. We do it until it gets to the `[` character. Then we can `pop` it again to remove the `[` character. And finally, repeat the string x times and push it to the stack.
+
+```tsx
+if (char === ']') {
+  let str = '';
+
+  while (stack[stack.length - 1] !== '[') {
+    str = stack.pop() + str;
+  }
+
+  stack.pop();
+  stack.push(str.repeat(stack.pop()));
+  index++;
+  continue;
+}
+```
+
+The `repeat` method is very interesting. I didn’t know about this method, so I usually do a loop that works fine too:
+
+```tsx
+const repeatedString = [];
+const str = 'hey';
+let num = 3;
+
+while (num > 0) {
+  repeatedString.push(str);
+  num--;
+}
+
+repeatedString.join(''); // 'heyheyhey'
+```
+
+Using repeat is so much simpler and more convenient for this problem.
+
+```tsx
+const str = 'hey';
+const num = 3;
+
+str.repeat(num); // 'heyheyhey'
+```
+
+And finally, if it isn't a `]` and number, just push the character to the stack and increment the index:
+
+```tsx
+stack.push(char);
+index++;
+```
+
+The whole implementation looks like this:
+
+```tsx
+const isNum = (char) => !isNaN(Number(char));
+
+function decodeString(encodedString) {
+  const stack = [];
+  let index = 0;
+
+  while (index < encodedString.length) {
+    const char = encodedString[index];
+
+    if (isNum(char)) {
+      const number = [];
+
+      while (isNum(encodedString[index])) {
+        number.push(encodedString[index]);
+        index++;
+      }
+
+      stack.push(Number(number.join('')));
+      continue;
+    }
+
+    if (char === ']') {
+      let str = '';
+
+      while (stack[stack.length - 1] !== '[') {
+        str = stack.pop() + str;
+      }
+
+      stack.pop();
+      stack.push(str.repeat(stack.pop()));
+      index++;
+      continue;
+    }
+
+    stack.push(char);
+    index++;
+  }
+
+  return stack.join('');
+}
+```
+
+## Resources
+
+- [Algorithms Problem Solving Series](/series/algorithms-problem-solving)
+- [Stack Data Structure in JavaScript](/series/data-structures/stack-data-structure)
+- [Stack Data Structure](/series/data-structures/stack-data-structure)
+- [Queue Data Structure](/series/data-structures/queue-data-structure)
+- [Linked List](/series/data-structures/linked-list-data-structure)
+- [Tree Data Structure](/series/data-structures/tree-data-structure)

@@ -1,0 +1,23 @@
+{
+  "title": "Algorithms Problem Solving: Jewels and Stones",
+  "description": "Solving algorithms problems: jewels and stones",
+  "date": "2020-05-17",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/algorithms-problem-solving/jewel.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "a diamond",
+    "authorHref": "https://unsplash.com/@fakurian",
+    "authorName": "Milad Fakurian"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Algorithms Problem Solving: Decode the Message",
+  "description": "Solving algorithms problems: decode the message",
+  "date": "2022-07-10",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/logo.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": ""
+  }
+}

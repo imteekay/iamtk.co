@@ -1,0 +1,27 @@
+{
+  "title": "Stack Data Structure",
+  "description": "Solving algorithms problems with TK",
+  "date": "2022-02-20",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/data-structures/books.jpg",
+    "width": "592",
+    "height": "592",
+    "alt": "An old man with piles of books",
+    "authorHref": "https://unsplash.com/@katergaris",
+    "authorName": "Aris Sfakianakis"
+  },
+  "alternativeArticle": {
+    "url": "/pt-BR/series/data-structures-in-javascript/stack-data-structure",
+    "language": "pt-BR"
+  }
+}
