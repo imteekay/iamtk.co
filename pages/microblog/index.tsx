@@ -43,6 +43,7 @@ const Page: NextPage = () => (
             <div id={id} key={id} style={postWrapperStyle}>
               <Post
                 title={post.title}
+                slug={post.slug}
                 date={post.date}
                 description={post.description}
                 image={post.image}
