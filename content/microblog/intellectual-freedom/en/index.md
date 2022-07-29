@@ -1,0 +1,1 @@
+In the last micropost I talked about my independent research and a little about freedom. Intellectual freedom keeps coming into my head and it's definitely challenging to stop these thoughts. This is the next question I want to answer: "How can I balance intellectual freedom and financial independence?"
