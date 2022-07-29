@@ -1,7 +1,6 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { getPlaiceholder } from 'plaiceholder';
 import { Head } from 'Base/components/Head';
 import { MicroblogLayout } from 'Base/Article/Layout/MicroblogLayout';
 import {
@@ -54,19 +53,11 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { microblog } = context.params!;
   const { postContent, minutes } = getNestedPostContent('microblog', microblog);
   const postMetadata = getNestedPostMetadata('microblog', microblog);
-  const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
       postContent,
-      postMetadata: {
-        ...postMetadata,
-        coverImage: {
-          ...postMetadata.coverImage,
-          src: img.src,
-          blurDataURL: base64,
-        },
-      },
+      postMetadata,
       minutes,
     },
   };
