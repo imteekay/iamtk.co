@@ -244,7 +244,7 @@ To understand what works and what doesn't, I needed to try different methods as 
 
 So here we have a ton of resources and ways of learning. Basically my mindset is like a laboratory. Make experiments, try new things. But understanding what works for me. Asking myself how do I learn best? Which resources I really engage in and get the most of it? Keep in mind it doesn't have any rules. Actually, you make the rules. You understand yourself, you understand the resources, and make the decision to keep it up with the best way of (your) learning.
 
-> _“Be curious. Read widely. Try new things. What people call intelligence just boils down to curiosity.” _— \_ \_Aaron Swartz
+> “Be curious. Read widely. Try new things. What people call intelligence just boils down to curiosity.” — Aaron Swartz
 
 Now I divide my time in my three main resources: articles, projects, and books.
 I have my own time to keep reading books, as I told you my experiment to read three books at the same time with different topics. I read daily now, like 30 minutes to 1 hour. My goal is to make it consistent.
@@ -263,7 +263,7 @@ I wanted to make this process simple to focus on sharing knowledge. This is the 
 
 In the future, I want to try different media. Do livestream on Twitch, Youtube videos, podcasts, and so on. But now I want to focus on my writing.
 
-These days I came across an interesting video about [_Should You Specialize or Be a Generalist?_](https://www.youtube.com/watch?v=wCPbPMRNnvk)\_ \_ by Tim Ferriss. He talks about the idea of a Specialized Generalist. Combine a handful of skills that are rarely combined.
+These days I came across an interesting video about [_Should You Specialize or Be a Generalist?_](https://www.youtube.com/watch?v=wCPbPMRNnvk) by Tim Ferriss. He talks about the idea of a Specialized Generalist. Combine a handful of skills that are rarely combined.
 
 I also read an interesting idea from the book Originals where he talks about the concept of building a unique combination of broad and deep experiences and how this is critical to creativity. He tells about this study:
 
