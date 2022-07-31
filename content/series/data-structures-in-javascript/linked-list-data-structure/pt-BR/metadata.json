@@ -1,7 +1,7 @@
 {
-  "title": "Linked List Data Structure",
-  "description": "Solving algorithm problems with TK",
-  "date": "2022-03-04",
+  "title": "Estrutura de dado: Lista Ligada",
+  "description": "O que é a estrutura de dado lista ligada, conceitos teóricos de ciência da computação e implementação.",
+  "date": "2022-07-31",
   "tags": [
     {
       "href": "/tags/algorithms-and-data-structures",
@@ -21,7 +21,7 @@
     "authorName": "Sandy Millar"
   },
   "alternativeArticle": {
-    "url": "/pt-BR/series/data-structures-in-javascript/linked-list-data-structure",
-    "language": "pt-BR"
+    "url": "/series/data-structures-in-javascript/linked-list-data-structure",
+    "language": "en"
   }
 }

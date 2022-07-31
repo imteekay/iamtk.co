@@ -59,7 +59,7 @@ class LinkedList {
 
 Simple as that. Just a class and initialize the `head` attribute with `null` for an empty list.
 
-Let's implement the easier method: `is_empty`. How do we know when a list is empty? If the `head` is `null`, we didn't add any node to this list. This is the logic behind the `is_empty` method.
+Let's implement the easier method: `isEmpty`. How do we know when a list is empty? If the `head` is `null`, we didn't add any node to this list. This is the logic behind the `isEmpty` method.
 
 ```javascript
 isEmpty() {
@@ -77,7 +77,7 @@ Remember we have the `next` parameter when creating a new node? We can use it to
 new Node(value, previousHead);
 ```
 
-In the context of the linked list, we will have the `self.head`. So:
+In the context of the linked list, we will have the `this.head`. So:
 
 ```javascript
 new Node(value, this.head);
