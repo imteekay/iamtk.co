@@ -1,0 +1,484 @@
+Uma Lista Ligada é uma coleção de nós que formam uma sequência linear. A diferença entre um array e uma Lista Ligada é que o array possui elementos indexados, então podemos obter um elemento por tempo constante apenas pesquisando pelo seu índice. Na Lista Ligada, precisamos percorrer os nós para obter o elemento pesquisado e isso leva um tempo linear.
+
+A vantagem é que as listas vinculadas podem inserir e remover itens em tempo constante.
+
+Uma Lista Ligada é uma sequência de nós e cada nó possui dois `attributes`: o valor que ele armazena e a referência ao próximo nó da sequência.
+
+O primeiro e o último nós são chamados de `head` e `tail` da lista, respectivamente. Então, para chegar ao final do último, percorremos a Lista Ligada movendo de um nó para outro usando a próxima referência de cada nó.
+
+A Lista ligaga tendo o `head` e o `tail` como atributos ajuda a adicionar novos nós ao início e ao final da lista. Mas podemos implementá-lo com ou sem o atributo `tail`. Vamos mergulhar nesta implementação.
+
+Podemos separar a Lista Ligada de seus elementos. Cada elemento é um nó e podemos implementar essa representação com uma classe `Node`.
+
+```javascript
+class Node {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+```
+
+Basicamente, tem um valor e a referência ao próximo nó. Adicionamos um valor padrão (`null`) ao parâmetro `next` para torná-lo mais flexível ao criar novos nós.
+
+A maneira mais simples de usar é:
+
+```javascript
+new_node = new Node(1);
+new_node.value; // 1
+new_node.next; // null
+```
+
+- Instanciar o novo nó.
+- Podemos acessar os atributos `value` e `next`.
+
+Mas com a flexibilidade do parâmetro `next`, também podemos usá-lo passando a próxima referência de nó.
+
+```javascript
+const nextNode = new Node(2);
+const newNode = new Node(1);
+
+newNode.next = nextNode;
+newNode.value; // 1
+newNode.next.value; // 2
+```
+
+- Tenha o próximo nó.
+- Instancie o novo nó passando o valor e então atribuindo a referência ao próximo nó (`nextNode` no nosso caso).
+- Podemos acessar o valor `value` e o valor `next`.
+
+Para a lista ligada, o primeiro passo é criar uma classe que a represente. Por enquanto, queremos apenas um atributo `head` ao criar uma lista vazia.
+
+```javascript
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+}
+```
+
+Simples assim. Apenas uma classe e inicialize o atributo `head` com `null` para uma lista vazia.
+
+Vamos implementar o método mais fácil: `isEmpty`. Como sabemos quando uma lista está vazia? Se o `head` for `null`, não adicionamos nenhum nó a esta lista. Esta é a lógica por trás do método `isEmpty`.
+
+```javascript
+isEmpty() {
+  return this.head === null;
+}
+```
+
+Bem simples, hein?
+
+Agora o método `pushFront`. Basicamente, precisamos criar um novo nó, apontar o atributo `next` deste novo nó para o `head` e atribuir este novo nó para ser a nova lista ligada `head`.
+
+Lembra que temos o parâmetro `next` ao criar um novo nó? Podemos usá-lo para atribuir o `head` anterior ao criar o novo nó. Algo assim:
+
+```javascript
+new Node(value, previousHead);
+```
+
+No contexto da lista ligada, teremos o `this.head`. Então:
+
+```javascript
+new Node(value, this.head);
+```
+
+O último passo é atribuir este novo nó ao `head` e nós o precederemos.
+
+```javascript
+this.head = new Node(value, this.head);
+```
+
+- Criar novo nó
+- Atribua o atributo `next` ao `head` anterior
+- E atribua o novo nó ao `head`
+
+O método completo será assim:
+
+```javascript
+pushFront(value) {
+  this.head = new Node(value, this.head);
+}
+```
+
+Apenas uma linha. Muito bom!
+
+Para o `pushBack`, é um pouco diferente, pois, em vez de adicionar um novo nó ao início da lista, precisamos adicionar ao final. Então, basicamente, precisamos percorrer a lista para estar no último nó e apontar o atributo `next` para o nó recém-criado.
+
+A questão é: como iteramos a lista?
+
+A diferença entre o nó de cauda e o resto é o atributo `next`. A cauda não tem 'próximo'. Ele aponta para `null`. O resto sempre aponta para um nó diferente.
+
+Para percorrer a lista para obter o último nó, obtemos o próximo nó até que o nó não tenha o atributo `next`. Comece com o primeiro nó: a cabeça.
+
+```javascript
+let currentNode = this.head;
+```
+
+E então iterar.
+
+```javascript
+while (currentNode && currentNode.next) {
+  currentNode = currentNode.next;
+}
+```
+
+Dividimos este código em duas partes:
+
+- loop enquanto o nó não é `null` e o atributo `next` do nó também não é `null`
+- atualizar o nó atual atribuindo o próximo nó
+
+Quando o loop `while` é interrompido, temos o último nó, então só precisamos atualizar o atributo `next` do último nó.
+
+```javascript
+currentNode.next = new Node(value);
+```
+
+O código completo:
+
+```javascript
+pushBack(value) {
+  let currentNode = this.head;
+
+  while (currentNode && currentNode.next) {
+    currentNode = currentNode.next;
+  }
+
+  currentNode.next = new Node(value);
+}
+```
+
+A implementação do método `size` é direta. Basicamente, precisamos percorrer toda a lista e contar cada nó.
+
+Para iterar é bem simples. Nós só precisamos fazer um loop enquanto o nó atual não for `null`.
+
+```javascript
+while (currentNode) {
+  currentNode = currentNode.next;
+}
+```
+
+E para cada iteração, precisamos aumentar nosso contador.
+
+```javascript
+size() {
+  let count = 0;
+  let currentNode = this.head;
+
+  while (currentNode) {
+    count += 1;
+    currentNode = currentNode.next;
+  }
+
+  return count;
+}
+```
+
+- Inicialize o `count` com `0`.
+- Obter o nó atual: o `head`.
+- Iterar através da lista.
+- Para cada iteração, aumente o contador.
+- Retorna a 'contagem'.
+
+Para o algoritmo `search`, precisamos receber um valor e retornar `true` ou `false` se este valor estiver na lista ligada.
+
+Então, basicamente, precisamos percorrer a lista ligada procurando por esse valor.
+
+A iteração é simples:
+
+```javascript
+while (currentNode) {
+  currentNode = currentNode.next;
+}
+```
+
+Agora, para cada nó, vemos se o valor do nó atual é o mesmo que o valor pesquisado.
+
+```javascript
+while (currentNode) {
+  if (currentNode.value === value) {
+    return true;
+  }
+
+  currentNode = currentNode.next;
+}
+```
+
+Podemos fazer desta forma para retornar `true` se o valor pesquisado for encontrado. Ou podemos fazer essa verificação somente depois que o loop parar. Então, precisaríamos parar o loop se encontrarmos o valor.
+
+```javascript
+while (currentNode && currentNode.value !== value) {
+  currentNode = currentNode.next;
+}
+```
+
+- Iremos iterar enquanto não encontramos o valor e não é o último nó
+- Basicamente, o loop irá parar ao encontrar o valor pesquisado ou finalizar toda a lista ligada
+
+Para retornar o valor, podemos usar a função `Boolean`.
+
+```javascript
+return Boolean(currentNode && currentNode.value === value);
+```
+
+Com isso, cobrimos todas as possibilidades:
+
+- Quando `currentNode` é `null`: `Boolean` transforma `null` em `false`
+- Quando `currentNode` não é `null` e o valor é igual ao valor pesquisado
+
+Para simplificar, também poderíamos escrever a declaração assim:
+
+```javascript
+return Boolean(currentNode);
+```
+
+Porque se temos o `currentNode`, é porque encontramos o valor pesquisado. Se não tiver o `currentNode` (o nó é `null`), é porque não encontramos o valor pesquisado.
+
+```javascript
+search(value) {
+  let currentNode = this.head;
+
+  while (currentNode && currentNode.value !== value) {
+    currentNode = currentNode.next;
+  }
+
+  return Boolean(currentNode);
+}
+```
+
+O último método a ser implementado é o método `remove`. Podemos pensar neste método em casos separados:
+
+- quando a lista está vazia.
+- quando queremos remover o nó principal.
+- quando queremos remover um nó do meio ou do último.
+
+Para o caso vazio é bastante simples. Nós apenas verificamos a lista com nosso método `isEmpty`.
+
+```javascript
+if (this.isEmpty()) {
+  return;
+}
+```
+
+Também podemos lançar uma exceção de erro ou apenas imprimir "A lista está vazia", por exemplo.
+
+Para o caso em que queremos remover o nó principal, verificamos primeiro e depois o removemos.
+
+```javascript
+if (this.head.value === value) {
+  this.head = this.head.next;
+  return;
+}
+```
+
+Para removê-lo, basta apontar a cabeça para o próximo nó.
+
+O último caso é quando queremos remover um nó do meio ou o último. Vamos desenhá-lo!
+
+![](/series/data-structures/linked-list-remove.jpeg)
+
+Para este algoritmo, o que queremos é obter o nó anterior do nó a ser removido e apontar para o próximo nó do nó a ser removido. Portanto, precisamos ter o nó anterior em cada iteração. Esta é a parte fundamental do nosso algoritmo.
+
+```javascript
+let currentNode = this.head;
+
+while (currentNode.next) {
+  if (currentNode.next.value === value) {
+    currentNode.next = currentNode.next.next;
+  }
+
+  currentNode = currentNode.next;
+}
+```
+
+Este é o algoritmo.
+
+Iremos percorrer a lista enquanto o próximo nó atual não for um valor `null`. Por quê? Porque queremos comparar o próximo valor do nó. Não o atual.
+
+```javascript
+currentNode.next.value === value;
+```
+
+Esta é a lógica que procuramos. O próximo valor do nó atual é o valor que queremos remover?
+
+Se for `true`, basicamente removemos o próximo nó do nó atual apontando o `next` para o `next.next` e retornando a função.
+
+Se for `false`, continuamos iterando até encontrarmos o valor que queremos ou quando terminarmos a lista inteira.
+
+Juntando todas as partes, temos:
+
+```javascript
+remove(value) {
+  if (this.isEmpty()) {
+    return;
+  }
+
+  if (this.head.value === value) {
+    this.head = this.head.next;
+    return;
+  }
+
+  let currentNode = this.head;
+
+  while (currentNode.next) {
+    if (currentNode.next.value === value) {
+      currentNode.next = currentNode.next.next;
+    }
+
+    currentNode = currentNode.next;
+  }
+}
+```
+
+## A classe Linked List
+
+Juntando todas as partes que falamos e implementamos, temos:
+
+```javascript
+class Node {
+  constructor(value, next = null) {
+    this.value = value;
+    this.next = next;
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null;
+  }
+
+  pushFront(value) {
+    this.head = new Node(value, this.head);
+  }
+
+  pushBack(value) {
+    let currentNode = this.head;
+
+    while (currentNode && currentNode.next) {
+      currentNode = currentNode.next;
+    }
+
+    currentNode.next = new Node(value);
+  }
+
+  size() {
+    let count = 0;
+    let currentNode = this.head;
+
+    while (currentNode) {
+      count += 1;
+      currentNode = currentNode.next;
+    }
+
+    return count;
+  }
+
+  search(value) {
+    let currentNode = this.head;
+
+    while (currentNode && currentNode.value !== value) {
+      currentNode = currentNode.next;
+    }
+
+    return Boolean(currentNode);
+  }
+
+  remove(value) {
+    if (this.isEmpty()) {
+      return;
+    }
+
+    if (this.head.value === value) {
+      this.head = this.head.next;
+      return;
+    }
+
+    let currentNode = this.head;
+
+    while (currentNode.next) {
+      if (currentNode.next.value === value) {
+        currentNode.next = currentNode.next.next;
+        return;
+      }
+
+      currentNode = currentNode.next;
+    }
+  }
+
+  isEmpty() {
+    return this.head === null;
+  }
+}
+```
+
+## Vamos testar!
+
+```javascript
+const linkedList = new LinkedList();
+linkedList.isEmpty(); // true
+linkedList.size(); // 0
+
+linkedList.pushFront(1);
+linkedList.isEmpty(); // false
+linkedList.size(); // 1
+linkedList.head; // new Node(1)
+
+linkedList.pushBack(2);
+linkedList.pushBack(3);
+linkedList.pushBack(4);
+linkedList.size(); // 4
+
+linkedList.pushFront(0);
+linkedList.size(); // 5
+
+linkedList.search(0); // true
+linkedList.search(1); // true
+linkedList.search(2); // true
+linkedList.search(3); // true
+linkedList.search(4); // true
+linkedList.search(5); // false
+
+linkedList.remove(5);
+linkedList.size(); // 5
+
+linkedList.remove(0);
+linkedList.size(); // 4
+
+linkedList.remove(4);
+linkedList.size(); // 3
+
+linkedList.remove(2);
+linkedList.size(); // 2
+
+linkedList.remove(1);
+linkedList.size(); // 1
+
+linkedList.remove(3);
+linkedList.size(); // 0
+linkedList.isEmpty(); // true
+```
+
+O que fazemos aqui?
+
+- Crie a lista ligada
+- Verifique se está vazio
+- Verifique o tamanho da lista
+- Empurre um novo item para a frente
+- Agora não está mais vazio, tem tamanho 1, e a cabeça é o nó com valor 1
+- Empurre novos valores para o final da lista: 2, 3, 4. E agora o tamanho da lista é 4
+- Empurre um novo valor para o início da lista: 0. Tamanho: 5
+- Procure por 0 a 4: todos retornam `true`, encontramos o valor
+- Procure por 5: retorna `false` pois não temos esse valor na lista
+- Remova 5 e a lista mantém o tamanho de 5
+- Remova os valores de 4 a 0, a lista está vazia e com tamanho 0
+
+## Recursos
+
+- [Algorithms](https://github.com/imteekay/algorithms)
+- [Linked List Implementation](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/linked_list/linked-list.js)
+- [Linked List Tests](https://github.com/imteekay/algorithms/blob/master/computer_science/data_structures/linked_list/tests/linked-list.test.js)
+- [Big-O Notation For Coding Interviews and Beyond](https://www.educative.io/courses/big-o-notation-for-interviews-and-beyond?aff=x8bV)
+- [HackerRank Linked List](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)
+- [Linked List Part 1](https://medium.com/basecs/whats-a-linked-list-anyway-part-1-d8b7e6508b9d)
+- [Linked List Part 2](https://medium.com/basecs/whats-a-linked-list-anyway-part-2-131d96f71996)
+- [Data Structures: Linked Lists](https://www.youtube.com/watch?v=njTh_OwMljA&feature=youtu.be)
