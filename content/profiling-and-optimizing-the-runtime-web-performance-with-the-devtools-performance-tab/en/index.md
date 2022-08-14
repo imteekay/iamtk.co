@@ -140,7 +140,7 @@ Now that we know that reflow, repaint, and DOM manipulation like adding and upda
 
 One common pattern for lists is to use List Virtualization.
 
-<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif">
+<img class="small" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif">
 
 With List virtualization, only a small subset of the list will be rendered in the DOM. When the user scrolls down, the list virtualization will remove and recycle the first items and replace them with newer and subsequent items in the list.
 

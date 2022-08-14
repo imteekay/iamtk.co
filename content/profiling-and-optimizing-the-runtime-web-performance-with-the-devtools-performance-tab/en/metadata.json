@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/performance-prefetch-next-pages-chunks/cover.jpeg",
-    "width": "592",
-    "height": "444",
+    "src": "/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cover.jpg",
+    "width": "640",
+    "height": "1001",
     "alt": "",
-    "authorHref": "",
-    "authorName": ""
+    "authorHref": "https://unsplash.com/@alex_andrews",
+    "authorName": "Alexander Andrews"
   }
 }

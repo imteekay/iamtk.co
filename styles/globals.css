@@ -157,6 +157,12 @@ article.post .side-by-side img {
   article.post video {
     width: auto;
   }
+
+  article.post img.small {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 h1 a,
