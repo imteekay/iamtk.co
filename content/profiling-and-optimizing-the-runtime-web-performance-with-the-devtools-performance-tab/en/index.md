@@ -183,4 +183,11 @@ Things on my To Do list:
 - Investigate the most expensive components and hooks: re-architect, memorize, reduce the re-renders
 - Getting only attributes from object references to reduce re-renders
 - Code split parts of the page like login dialog, banners, and footer to reduce the size of JavaScript in the final bundle: less JS, less cost for the main thread
+- Measure runtime performance with automated tests like Playwright
 - And many other investigations and experiments I want to do
+
+## Resources
+
+There are many resources about web performance out there. If you are interested in this topic, you should definitely follow the [Web Performance Research repository](https://github.com/imteekay/web-performance-research).
+
+There I'll be updating with new resources, doing more research, and writing my findings.
