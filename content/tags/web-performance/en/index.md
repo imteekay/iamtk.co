@@ -1,0 +1,12 @@
+<div class="tags">
+
+## 2022
+
+- <time class="date">2022-08-14</time> <span>[Profiling & Optimizing the runtime web performance with the DevTools Performance tab](/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab)</span>
+
+## 2021
+
+- <time class="date">2021-01-21</time> <span>[Optimizing the Performance of a React Progressive Web App](/optimizing-the-performance-of-a-react-progressive-web-app)</span>
+- <time class="date">2021-01-19</time> <span>[Performance: Prefetch Next Page Chunk](/performance-prefetch-next-pages-chunks)</span>
+
+</div>
