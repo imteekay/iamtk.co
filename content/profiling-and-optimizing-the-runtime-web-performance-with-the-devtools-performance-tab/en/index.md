@@ -38,7 +38,7 @@ And finally, the render tree is ready to be “painted". It renders the pixels t
 
 Gecko, the engine used by Mozilla Firefox has a pretty interesting video about how Reflow works
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/dndeRnzkJDU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/dndeRnzkJDU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Reflows are extremely computationally expensive in terms of performance and can cause render speeds to slow down significantly. This is why DOM manipulation (inserting, deleting, updating the DOM) has a high cost as it causes the browser to reflow.
 
