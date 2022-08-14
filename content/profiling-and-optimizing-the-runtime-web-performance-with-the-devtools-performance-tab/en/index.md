@@ -1,22 +1,36 @@
-A couple of weeks ago I was developing a new authentication feature for the FindHotel website and after finishing the implementation, I started testing the changes. One thing that I noticed was how laggy the scrolling experience was and how much I should wait until I was able to click elements of the page and receive feedback. The page's interactivity was slow and [jank](https://developer.mozilla.org/en-US/docs/Glossary/Jank). So I started investigating this problem. And I knew it was a "performance" problem.
+A couple of weeks ago I was developing a new authentication feature for the FindHotel website and after finishing the implementation, I started testing the changes.
+
+One thing that I noticed was how laggy the scrolling experience was and how much I should wait until I was able to click elements of the page and receive feedback. The page's interactivity was slow and [jank](https://developer.mozilla.org/en-US/docs/Glossary/Jank). So I started investigating this problem. And I knew it was a "performance" problem.
 
 To have a good comprehension of this problem, let's start with how the browsers work.
 
-## Browsers & Rendering Process
+## Browsers & the Rendering Process
 
 It won't be a complete, exhaustive description of how browsers work but the idea is to give an idea about the rendering process and talk a bit about some moving parts of this process.
 
 The first two steps are about building the DOM and the CSSOM. The HTML document is downloaded from the server and parsed into the DOM (Document Object Model).
 
-<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png">
-<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png">
+<div class="side-by-side">
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png">
+  </figure>
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png">
+  </figure>
+</div>
 
 And the CSS sources are also downloaded and parsed into the CSSOM (CSS Object Model).
 
 Together, they are combined into a rendering tree. This tree contains only the nodes required to render the page.
 
-<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png">
-<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png">
+<div class="side-by-side">
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png">
+  </figure>
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png">
+  </figure>
+</div>
 
 The Layout is a big part of this process. It computes the size and position of each object. Layout is also called Reflow in some browsers.
 
@@ -24,11 +38,7 @@ And finally, the render tree is ready to be “painted". It renders the pixels t
 
 Gecko, the engine used by Mozilla Firefox has a pretty interesting video about how Reflow works
 
-<div style="margin: auto; text-align: center;">
-  <video controls="true" allowfullscreen="true">
-    <source src="https://www.youtube.com/watch?v=dndeRnzkJDU&ab_channel=Ponime">
-  </video>
-</div>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dndeRnzkJDU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Reflows are extremely computationally expensive in terms of performance and can cause render speeds to slow down significantly. This is why DOM manipulation (inserting, deleting, updating the DOM) has a high cost as it causes the browser to reflow.
 
@@ -41,7 +51,7 @@ It could be a variety set of reasons the page had this problem. But without meas
 With the DevTools, I was able to have an overview of the UI using the Performance Monitor.
 
 <div style="margin: auto; text-align: center;">
-  <video controls="true" allowfullscreen="true">
+  <video class="full" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/performance-monitor.mov">
   </video>
 </div>
@@ -62,7 +72,7 @@ The DOM nodes were big but the attribute that caught my attention was the CPU us
 The Chrome devtools is a nice tool to investigate possible performance issues.
 
 <div style="margin: auto; text-align: center;">
-  <video controls="true" allowfullscreen="true">
+  <video class="full" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/devtools-performance-tab.mov">
   </video>
 </div>
@@ -80,7 +90,7 @@ With that in mind, a new concept comes up: Long Tasks.
 A Long Task is “_any uninterrupted period where the main UI thread is busy for 50 ms or longer_". As we all know, JavaScript is single threaded and every time the main thread is busy, we are blocking any user interactions leading to a very bad user experience.
 
 <div style="margin: auto; text-align: center;">
-  <video controls="true" allowfullscreen="true">
+  <video class="full" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/long-tasks.mov">
   </video>
 </div>
@@ -89,7 +99,7 @@ We can go deep into each Long Task and see all related tasks it’s computing. W
 
 Another interesting piece of information from the DevTools is the `Bottom-Up` tab.
 
-![](/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/bottom-up-tab.png)
+<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/bottom-up-tab.png">
 
 We can click the Long Task and see a bunch of information about the activities in the task. It's a bit different from the flame chart because you can sort the activities based on the cost (Total Time) and also filter the activities related to your application code because it shows other information like cost of garbage collector, time to compile code and evaluate the script, and so on.
 
@@ -99,7 +109,7 @@ It's powerful to investigate the tasks using the flame chart together with the i
 
 Profiling the page's performance I was working on, I found the long tasks and tried to match these tasks with the frames (components that were rendering/re-rendering).
 
-![](/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/main-thread.png)
+<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/main-thread.png">
 
 In the Main Thread, I could see a lot of Long Tasks. Not only the number of Long Tasks was a problem, but also the cost of each task. An important part of the whole process of profiling is to find the portion of your codebase in the long task flame chart. At first sight, I could see things like `onOffersReceived`, `onComplete`, and `onHotelReceived` which are callback actions after fetching data through an API.
 
@@ -135,7 +145,7 @@ One common pattern for lists is to use List Virtualization.
 With List virtualization, only a small subset of the list will be rendered in the DOM. When the user scrolls down, the list virtualization will remove and recycle the first items and replace them with newer and subsequent items in the list.
 
 <div style="margin: auto; text-align: center;">
-  <video controls="true" allowfullscreen="true">
+  <video class="full" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-dom-elements.mov">
   </video>
 </div>
@@ -146,7 +156,7 @@ We have a set of nice windowing libraries that do this job very well for us. I c
 
 Recording both the current approach we use to render the list and the solution with list virtualization, I could see improvements in the latter.
 
-<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-main-thread-comparison.png">
+<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-main-thread-comparison.png">
 
 **localhost #2** — current search page without list virtualization: more long tasks, long tasks costing more, more CPU usage, and laggy scrolling experience
 
