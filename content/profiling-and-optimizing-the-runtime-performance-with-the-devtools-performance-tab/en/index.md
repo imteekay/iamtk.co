@@ -6,7 +6,7 @@ To have a good comprehension of this problem, let's start with how the browsers 
 
 ## Browsers & the Rendering Process
 
-It won't be a complete, exhaustive description of how browsers work but the idea is to give an idea about the rendering process and talk a bit about some moving parts of this process.
+It won't be a complete, exhaustive description of how browsers work but my thought is to give an idea about the rendering process and talk a bit about some moving parts of this process.
 
 The first two steps are about building the DOM and the CSSOM. The HTML document is downloaded from the server and parsed into the DOM (Document Object Model).
 
