@@ -1,0 +1,27 @@
+{
+  "title": "Profiling & Optimizing the runtime performance with the DevTools Performance tab",
+  "description": "Investigating performance problems with the devtools performance tab and improving the web performance of the React runtime application",
+  "date": "2022-08-15",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cover.jpg",
+    "width": "640",
+    "height": "1001",
+    "alt": "",
+    "authorHref": "https://unsplash.com/@alex_andrews",
+    "authorName": "Alexander Andrews"
+  }
+}

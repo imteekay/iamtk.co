@@ -10,6 +10,10 @@
     {
       "href": "/tags/web-development",
       "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
     }
   ],
   "coverImage": {

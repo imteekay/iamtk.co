@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Profiling & Optimizing the runtime performance with the DevTools Performance tab</title>
+    <link>https://www.iamtk.co/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab</link>
+    <guid isPermaLink="true">https://www.iamtk.co/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab</guid>
+    <description>Investigating performance problems with the devtools performance tab and improving the web performance of the React runtime application</description>
+  </item>
+  <item>
     <title>Decode the Message</title>
     <link>https://www.iamtk.co/series/algorithms-problem-solving/decode-the-message</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/algorithms-problem-solving/decode-the-message</guid>
