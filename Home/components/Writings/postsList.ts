@@ -8,7 +8,7 @@ type Post = {
 
 export const postsList: Post[] = [
   {
-    datetime: '2022-06-14',
+    datetime: '2022-08-15',
     link: '/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab',
     title:
       'Profiling & Optimizing the runtime performance with the DevTools Performance tab',

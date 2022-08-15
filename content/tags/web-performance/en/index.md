@@ -2,7 +2,7 @@
 
 ## 2022
 
-- <time class="date">2022-08-14</time> <span>[Profiling & Optimizing the runtime web performance with the DevTools Performance tab](/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab)</span>
+- <time class="date">2022-08-15</time> <span>[Profiling & Optimizing the runtime web performance with the DevTools Performance tab](/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab)</span>
 
 ## 2021
 
