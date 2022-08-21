@@ -12,10 +12,10 @@ The first two steps are about building the DOM and the CSSOM. The HTML document 
 
 <div class="side-by-side">
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png">
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png" loading="lazy">
   </figure>
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png">
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png" loading="lazy">
   </figure>
 </div>
 
@@ -25,10 +25,10 @@ Together, they are combined into a rendering tree. This tree contains only the n
 
 <div class="side-by-side">
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png">
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png" loading="lazy">
   </figure>
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png">
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png" loading="lazy">
   </figure>
 </div>
 
@@ -99,7 +99,7 @@ We can go deep into each Long Task and see all related tasks it’s computing. W
 
 Another interesting piece of information from the DevTools is the `Bottom-Up` tab.
 
-<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/bottom-up-tab.png">
+<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/bottom-up-tab.png" loading="lazy">
 
 We can click the Long Task and see a bunch of information about the activities in the task. It's a bit different from the flame chart because you can sort the activities based on the cost (Total Time) and also filter the activities related to your application code because it shows other information like cost of garbage collector, time to compile code and evaluate the script, and so on.
 
@@ -109,7 +109,7 @@ It's powerful to investigate the tasks using the flame chart together with the i
 
 Profiling the page's performance I was working on, I found the long tasks and tried to match these tasks with the frames (components that were rendering/re-rendering).
 
-<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/main-thread.png">
+<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/main-thread.png" loading="lazy">
 
 In the Main Thread, I could see a lot of Long Tasks. Not only the number of Long Tasks was a problem, but also the cost of each task. An important part of the whole process of profiling is to find the portion of your codebase in the long task flame chart. At first sight, I could see things like `onOffersReceived`, `onComplete`, and `onHotelReceived` which are callback actions after fetching data through an API.
 
@@ -117,10 +117,10 @@ I dug deeper into one of the Long Tasks and I could see Redux dispatching an act
 
 <div class="side-by-side">
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png"  class="side-by-side-img">
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png"  class="side-by-side-img" loading="lazy">
   </figure>
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png"  class="side-by-side-img">
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png"  class="side-by-side-img" loading="lazy">
   </figure>
 </div>
 
@@ -140,7 +140,7 @@ Now that we know that reflow, repaint, and DOM manipulation like adding and upda
 
 One common pattern for lists is to use List Virtualization.
 
-<img class="small" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif">
+<img class="small" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif" loading="lazy">
 
 With List virtualization, only a small subset of the list will be rendered in the DOM. When the user scrolls down, the list virtualization will remove and recycle the first items and replace them with newer and subsequent items in the list.
 
@@ -156,7 +156,7 @@ We have a set of nice windowing libraries that do this job very well for us. I c
 
 Recording both the current approach we use to render the list and the solution with list virtualization, I could see improvements in the latter.
 
-<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-main-thread-comparison.png">
+<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-main-thread-comparison.png" loading="lazy">
 
 **localhost #2** — current search page without list virtualization: more long tasks, long tasks costing more, more CPU usage, and laggy scrolling experience
 
