@@ -180,7 +180,7 @@ This post is just the first optimization I did to improve the performance and th
 
 Things on my To Do list:
 
-- Investigate the most expensive components and hooks: re-architect, memorize, reduce the re-renders
+- Investigate the most expensive components and hooks: re-architect, memoize, reduce the re-renders
 - Getting only attributes from object references to reduce re-renders
 - Code split parts of the page like login dialog, banners, and footer to reduce the size of JavaScript in the final bundle: less JS, less cost for the main thread
 - Measure runtime performance with automated tests like Playwright

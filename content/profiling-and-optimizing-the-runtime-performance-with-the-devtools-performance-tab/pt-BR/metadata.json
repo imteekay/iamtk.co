@@ -1,7 +1,7 @@
 {
-  "title": "Profiling & Optimizing the runtime performance with the DevTools Performance tab",
-  "description": "Investigating performance problems with the devtools performance tab and improving the web performance of the React runtime application",
-  "date": "2022-08-15",
+  "title": "Investigação e Otimização de web performance com o DevTools",
+  "description": "Investigando problemas de performandce com a tab performance do DevTools and otimizando a performance de uma aplicação react",
+  "date": "2022-08-22",
   "tags": [
     {
       "href": "/tags/javascript",
@@ -25,7 +25,7 @@
     "authorName": "Alexander Andrews"
   },
   "alternativeArticle": {
-    "url": "/pt-BR/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab",
-    "language": "pt-BR"
+    "url": "/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab",
+    "language": "en"
   }
 }
