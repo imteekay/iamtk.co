@@ -2,7 +2,7 @@ People always tell me: "you're a really good developer", "you're a talented engi
 
 > "It's not talent, I just spend more time thinking about art than most people... To say I have talent is to ignore all my effort."
 
-I feel the same way as her. I spend so much time on my own craft, improving, learning, doing research, writing, sharing. "But why?", they ask, "Why spending so much time on it?". And I need to quote Masako Saeki, Yatori's teacher:
+I feel the same way as her. I spend so much time on my own craft, improving, learning, doing research, writing, sharing. "But why?", they ask, "Why spend so much time on it?". And I need to quote Masako Saeki, Yatori's teacher:
 
 > "Doesn't it make sense to dedicate yourself to the maximum in the search for what you really like? When a person does what he likes, he is unbeatable."
 

@@ -20,7 +20,7 @@ export const posts: PostTypes[] = [
     <br><br>
     "It's not talent, I just spend more time thinking about art than most people... To say I have talent is to ignore all my effort."
     <br><br>
-    I feel the same way as her. I spend so much time on my own craft, improving, learning, doing research, writing, sharing. "But why?", they ask, "Why spending so much time on it?". And I need to quote Masako Saeki, Yatori's teacher:
+    I feel the same way as her. I spend so much time on my own craft, improving, learning, doing research, writing, sharing. "But why?", they ask, "Why spend so much time on it?". And I need to quote Masako Saeki, Yatori's teacher:
     <br><br>
     "Doesn't it make sense to dedicate yourself to the maximum in the search for what you really like? When a person does what he likes, he is unbeatable."
     <br><br>
