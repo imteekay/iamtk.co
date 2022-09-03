@@ -13,6 +13,14 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Bigger than me',
+    slug: 'bigger-than-me',
+    date: '2022-09-02 • 21:44',
+    description: `I plan, I plan, and I plan. But I never know what are the next steps for me. This is something I feel I can control. But sometimes it's not that way.
+    <br><br>
+    I dream about something bigger than me. This legacy should be bigger than me.`,
+  },
+  {
     title: 'Different Perspectives',
     slug: 'different-perspectives',
     date: '2022-08-28 • 20:02',
