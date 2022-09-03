@@ -6,7 +6,7 @@ Using the `<script>` tag to let browsers load and execute JavaScript code. It wa
 
 jQuery made it easier and more accessible to build interactivity on web pages. We had two ways of using it on browsers. The first one was to download the jQuery script, add it to the project, and point the `<script>` tag to load and execute it. The second one is also using the `<script>` tag but now pointing to a CDN url for the jQuery library.
 
-At the time, we didn't have an organized approach to install and use libraries. We didn't have npm. And now we have npm, yarn, pnpm to help us manage our dependencies, making easier to install and mantain the libraries we want to use in a project.
+At the time, we didn't have an organized approach to installing and using libraries. We didn't have npm. And now we have npm, yarn, pnpm to help us manage our dependencies, making it easier to install and maintain the libraries we want to use in a project.
 
 To illustrate the approach we had in the past, and that still works Today, I want to show a simple example.
 
