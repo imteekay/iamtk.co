@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { Head } from 'Base/components/Head';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
-import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
 import { HomeLink } from 'Base/Article/HomeLink';
 
 const Page: NextPage = () => {
@@ -42,10 +41,6 @@ const Page: NextPage = () => {
             </Link>
             . Every post will continue to be open and free. But I‘ll send early
             access to{' '}
-            <Link href="https://www.patreon.com/iamteekay">
-              <a target="_blank">patrons</a>
-            </Link>{' '}
-            and{' '}
             <Link href="https://teekay.substack.com">
               <a target="_blank">paid Substack subscribers</a>
             </Link>
@@ -56,11 +51,6 @@ const Page: NextPage = () => {
             future projects. I want to scale the content creation while keeping,
             or improving, the high-quality work.
           </p>
-          <p>Want to help?</p>
-          <Sponsorship />
-
-          <br></br>
-
           <p>You can also</p>
           <ul>
             <li>
