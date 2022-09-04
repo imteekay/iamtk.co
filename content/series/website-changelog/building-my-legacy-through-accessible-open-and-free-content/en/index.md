@@ -12,7 +12,7 @@ This is the architecture of the new process I'm following:
 
 ![My new content creation process and distribution](/series/website-changelog/content-creation.png)
 
-I'll write and publish first on [my Substack (paid subscribers)](https://teekay.substack.com). This content will available as early access for paid subscribers and patrons-only.
+I'll write and publish first on [my Substack (paid subscribers)](https://teekay.substack.com). This content will be available as early access for paid subscribers and patrons-only.
 
 After X days or weeks, I’ll publish on [my website](/) and [Substack (free subscribers)](https://teekay.substack.com) and distribute via [RSS](/rss.xml) and [my Twitter](https://twitter.com/wordsofteekay).
 
