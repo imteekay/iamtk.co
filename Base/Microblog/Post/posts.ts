@@ -13,6 +13,16 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Blogging as an excuse',
+    slug: 'blogging-as-an-excuse',
+    date: '2022-09-03 • 16:50',
+    description: `The process of writing is so fun. But I think it's not the writing part that I find most interesting.
+    <br><br>
+    Yes, writing is fun too, but the most interesting part for me is the research, learning, taking notes, getting data, reflecting on the topics, doing a lot of drafts, and then, writing the actual article.
+    <br><br>
+    I guess I use writing as an excuse (or a tool) to learn and think.`,
+  },
+  {
     title: 'Bigger than me',
     slug: 'bigger-than-me',
     date: '2022-09-02 • 21:44',
