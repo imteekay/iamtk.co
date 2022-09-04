@@ -3,7 +3,6 @@ import { css } from '@emotion/css';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { ShareButtons } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';
-import { Sponsorship } from 'Base/Article/Sponsorship/Sponsorship';
 import { mediaQuery } from 'Base/mediaQuery';
 import { Tag } from 'src/lib/getPostMetadata';
 
@@ -30,8 +29,6 @@ const Footer: FC<FooterPropTypes> = ({ tags }) => (
       <Tags tags={tags} />
       <ShareButtons />
     </div>
-
-    <Sponsorship />
   </>
 );
 

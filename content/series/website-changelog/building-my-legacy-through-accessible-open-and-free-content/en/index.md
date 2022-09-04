@@ -12,15 +12,15 @@ This is the architecture of the new process I'm following:
 
 ![My new content creation process and distribution](/series/website-changelog/content-creation.png)
 
-I'll write and publish first on [my Substack (paid subscribers)](https://teekay.substack.com/) and [Patreon (patrons only)](https://www.patreon.com/iamteekay). This content will available as early access for paid subscribers and patrons-only.
+I'll write and publish first on [my Substack (paid subscribers)](https://teekay.substack.com). This content will be available as early access for paid subscribers.
 
-After X days or weeks, I’ll publish on [my website](/) and [Substack (free subscribers)](https://teekay.substack.com/) and distribute via [RSS](/rss.xml) and [my Twitter](https://twitter.com/wordsofteekay).
+After X days or weeks, I’ll publish on [my website](/) and [Substack (free subscribers)](https://teekay.substack.com) and distribute via [RSS](/rss.xml) and [my Twitter](https://twitter.com/wordsofteekay).
 
 Then I'll also share on other platforms like [dev.to](https://dev.to/teekay), [Medium](https://leandrotk.medium.com/), and [Hashnode](https://tk.hashnode.dev/).
 
 In summary, the idea is to:
 
-- give early access to paid Substack subscribers and patrons-only
+- give early access to paid Substack subscribers
 - keep everything open and free in the long term
 - cross-post on other platforms as people prefer to access their favorite website
 
@@ -28,8 +28,8 @@ To be compensated for my work and still make it available for everybody is the b
 
 You can support my work by
 
+- being a [free newsletter subscriber on Substack](https://teekay.substack.com)
 - being a [paid subscriber on Substack](https://teekay.substack.com)
-- being a [patron on Patreon](https://www.patreon.com/iamteekay)
 - or make a one-time donation on [Ko-Fi](https://ko-fi.com/teekay)
 
 By the way, you can take a look at the [Support page](/support).

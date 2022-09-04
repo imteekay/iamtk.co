@@ -76,32 +76,13 @@ export const About: FC = () => (
       </Link>
     </p>
     <p className="no-margin">You can support my work on</p>
-    <a
-      className="icon"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://www.patreon.com/iamteekay"
-      title="patreon"
-    >
-      patreon <FontAwesomeIcon icon={faPatreon} />
-    </a>
-    ,{' '}
-    <a
-      className="icon"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://ko-fi.com/teekay"
-      title="kofi"
-    >
-      ko-fi <FontAwesomeIcon icon={faMugHot} />, and
-    </a>
     <p className="no-margin">
       the
       <a
         className="icon"
         target="_blank"
         rel="noopener noreferrer"
-        href="https://teekay.substack.com/"
+        href="https://teekay.substack.com"
         title="substack"
       >
         {' '}
