@@ -1,0 +1,121 @@
+In the [early days of the internet & JavaScript](/series/frontend-infrastructure/javascript-as-scripts), web developers usually handled user interactions with simple JavaScript scripts.
+
+Using the `<script>` tag to let browsers load and execute JavaScript code. It was very useful to handle form validations in the frontend and make the pages a little bit more interactive.
+
+jQuery made it easier and more accessible to build interactivity on web pages. We had two ways of using it on browsers. The first one was to download the jQuery script, add it to the project, and point the `<script>` tag to load and execute it. The second one also uses the `<script>` tag but now points to a CDN url for the jQuery library.
+
+At the time, we didn't have an organized approach to installing and using libraries. We didn't have npm. And now we have npm, yarn, pnpm to help us manage our dependencies, making it easier to install and maintain the libraries we want to use in a project.
+
+Not only dependency managers but also build tools are used in modern frontend applications nowadays. Tools like webpack, vite, esbuild, rollup, and so many more interesting "bundlers".
+
+In the end, these bundlers will produce a final "bundle" and sometimes multiple JavaScript chunks too. In SPAs is usual to have a tiny HTML file served by the server and a script tag to download your entire frontend application, or at least a big part of it.
+
+If we don't manage this well, this final bundle can be huge in size (think >10mb). The 1993 research by Jakob Nielsen, [“Response Times: The 3 Important Limits”](https://www.nngroup.com/articles/response-times-3-important-limits), explains the importance of performance from the perspective of users. He talks about the three "time limits":
+
+- **0.1 second** is about the limit for having the user feel that the system is **reacting instantaneously**, meaning that no special feedback is necessary except to display the result.
+- **1.0 second** is about the limit for the **user's flow of thought** to stay uninterrupted, even though the user will notice the delay. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second, but the user does lose the feeling of operating directly on the data.
+- **10 seconds** is about the limit for **keeping the user's attention** focused on the dialogue. For longer delays, users will want to perform other tasks while waiting for the computer to finish, so they should be given feedback indicating when the computer expects to be done. Feedback during the delay is especially important if the response time is likely to be highly variable, since users will then not know what to expect.
+
+This research is interesting because it puts performance not only as an engineering endeavor but also gives a user-centric perspective of how performance has a close relationship with UX.
+
+Now, going back to web development, the growing use of JavaScript in the frontend is making it more and more complex, not only in the engineering/codebase perspective but also in web performance. In general, we can say that, if we ship more JavaScript to the final bundle, the size of the file gets bigger, and the download time increases.
+
+## Code splitting strategies
+
+In this post, I want to talk about one of the techniques we can take to reduce JavaScript in the final bundle: Code splitting.
+
+Code splitting is the process of splitting the bundle into multiple, smaller bundles (also known as JavaScript chunks).
+
+<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png" loading="lazy">
+
+But splitting into smaller bundles can have no effect on performance and UX improvements. We can use this technique together with some strategies to optimize web performance and improve the perceived performance from the user's perspective.
+
+In this post, we'll talk about three of them: code splitting by page (or route), split below-the-fold code, and conditional content like modals, popups, side menus, etc.
+
+### Code splitting: by page
+
+Imagine you have a Home page and a Search page. Every time you load the Home page, the bundle will also contain code from the Search page. It's not ideal as we are making the user downloads JavaScript (and other assets) that are not necessary to render the Home page.
+
+What if we could split the Home page into a `Home.js` bundle and the Search page into a `Search.js` bundle? This way we would load only the `Home.js` bundle when the user reaches the Home page. The same for the Search page and the `Search.js` bundle.
+
+<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy">
+
+This is exactly what code splitting by page (or by route) is. We use routes as entry points to create new smaller bundles that will be served only when we need to serve them.
+
+When you split your app's bundle into separate bundles by page, you are drastically reducing the size of your final bundle and you're serving only the necessary JavaScript per page.
+
+In the illustrated image above, we can see that we potentially are reducing 3.5mb of JavaScript on the home page and 1.5mb on the search page. And that's a huge improvement!
+
+Code splitting by page is pretty common and I would guess that most of the frontend engineers know about this strategy and use it in their favor to improve their app's performance and UX.
+
+### Code splitting: below the fold
+
+In the same idea as downloading only the necessary JavaScript, we want to use a strategy of splitting the bundle into an "above the fold" bundle and a "below the fold" bundle.
+
+Imagine you are working on a landing page. The visible section after loading the page is showing the page header, the form, and a big hero image. We can call it the "above the fold" section. Everything that's not in this fold, it's "below the fold".
+
+<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png" loading="lazy">
+
+The user doesn't care about the "below the fold" sections because the most important section in the _first load_ is the "above the fold" section. The strategy here is to split the "below the fold" sections into a new bundle and download this JavaScript when the user scrolls down and reaches this section.
+
+How would you do it? The answer is pretty much using the Intersection Observer API. This API "provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's viewport". We can use it to detect the visibility of a given element, in this case, the "below the fold" sections.
+
+Imagine we wrap the "below the fold" sections into a div that has the id "below-the-fold". With the Intersection Observer API, we can make it observe this target element and when it's intersecting with the viewport, we make it download the new separate bundle.
+
+```javascript
+const callback = (entries, observer) => {
+  entries.forEach((entry) => {
+    // entry.isIntersecting
+  });
+};
+
+const options = { threshold: 1.0 };
+const observer = new IntersectionObserver(callback, options);
+const target = document.querySelector('#below-the-fold');
+
+observer.observe(target);
+```
+
+The API is pretty straightforward:
+
+- `callback`: for each entry, we want to know if the target element is intersecting with the viewport
+- `options`: the threshold represents the percentage of visibility of the target.
+- `target`: the element we want to observe
+
+With this code, we can pretty much download any new JavaScript bundle if the target element is intersecting with the viewport, and then reduce the app's bundle and download subsequent bundles on demand. That's powerful.
+
+### Code splitting: conditional content
+
+Again, we are still following the same concept here: loading only the necessary JavaScript code and splitting the other parts into separate smaller bundles.
+
+Conditional content we can think of as side menus (doesn't appear in the first render), popups (like ads, promotional content, etc), or dialogs (like login dialogs if you click the login button).
+
+<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/4.conditional-splitting.png" loading="lazy">
+
+We only want to download these JavaScripts if the condition evaluates to `true`. In the illustrated image above, we have `App.js`, `SideMenu.js`, `LoginDialog.js`, and `AdsPopup.js`. If not code split, the page would download 5mb but with the conditional code splitting strategy, we can reduce by ~40% the size of the JavaScript bundle (~2mb less JavaScript in this case). It would be a huge improvement in the load and execution time.
+
+<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/5.conditional-splitting-flow.png" loading="lazy">
+
+In the first render, the app will only download, parse, compile and execute the `App.js` bundle, reducing it from 5mb to a total of 3mb. If the user clicks the side menu icon, it needs to download the `SideMenu.js` bundle to open it. The same thing for the `LoginDialog.js` and the `AdsPopup.js`.
+
+We can see that we only download (parse, compile, and execute) the separate bundles on demand, when the user requires the app to have the code.
+
+### Code splitting: browser caching
+
+One of the cool things we get for free when we do code splitting is the browser caching capability. As you already know, when we do code splitting, we create a separate bundle and the browser downloads it, the bundle will be cached for further downloads.
+
+To do this experiment, get your app now, or any other website you use, open the DevTools, and select the network tab.
+
+Select the `JS` to filter only this type of file in the network tab list. Reload the page for the first time and you'll see all the JavaScript that's being downloaded. Reload the page one more time (not a hard reload, nor a "clean cache and reload") and you'll see the size of some of the JavaScript in the Devtools, and they don't show the size anymore. They show a `(disk cache)` text. If you hover over this text, it will show a tooltip saying `"Served from disk cache"`.
+
+<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/6.disk-cache.png" loading="lazy">
+
+This caching strategy is nice to be used for the code splitting we talked about before, but also for other types of code splitting. One of the most common is code splitting big libraries or dependencies into their own separate bundle.
+
+So, imagine that you like functional programming and you use `ramda`, you can code split this library into a new bundle. Every time a page needs this library, it will try to download this new bundle. After the first time, it will be cached in the browser, so if the user accesses the page again, it won't download the bundle anymore, it gets from the cache. The cost will be probably ~1ms/2ms.
+
+This is interesting because the library can be used on different pages of the product and as it's already cached, it won't penalize the user again. We, engineers, don't bump libraries versions that often, so the probability of this library being cached for the users for a long time is very high.
+
+If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: \***\*[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
+
+## Code splitting in React applications
