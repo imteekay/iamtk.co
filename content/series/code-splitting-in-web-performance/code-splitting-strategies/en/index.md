@@ -1,25 +1,3 @@
-In the [early days of the internet & JavaScript](/series/frontend-infrastructure/javascript-as-scripts), web developers usually handled user interactions with simple JavaScript scripts.
-
-Using the `<script>` tag to let browsers load and execute JavaScript code. It was very useful to handle form validations in the frontend and make the pages a little bit more interactive.
-
-jQuery made it easier and more accessible to build interactivity on web pages. We had two ways of using it on browsers. The first one was to download the jQuery script, add it to the project, and point the `<script>` tag to load and execute it. The second one also uses the `<script>` tag but now points to a CDN url for the jQuery library.
-
-At the time, we didn't have an organized approach to installing and using libraries. We didn't have npm. And now we have npm, yarn, pnpm to help us manage our dependencies, making it easier to install and maintain the libraries we want to use in a project.
-
-Not only dependency managers but also build tools are used in modern frontend applications nowadays. Tools like webpack, vite, esbuild, rollup, and so many more interesting "bundlers".
-
-In the end, these bundlers will produce a final "bundle" and sometimes multiple JavaScript chunks too. In SPAs is usual to have a tiny HTML file served by the server and a script tag to download your entire frontend application, or at least a big part of it.
-
-If we don't manage this well, this final bundle can be huge in size (think >10mb). The 1993 research by Jakob Nielsen, [“Response Times: The 3 Important Limits”](https://www.nngroup.com/articles/response-times-3-important-limits), explains the importance of performance from the perspective of users. He talks about the three "time limits":
-
-- **0.1 second** is about the limit for having the user feel that the system is **reacting instantaneously**, meaning that no special feedback is necessary except to display the result.
-- **1.0 second** is about the limit for the **user's flow of thought** to stay uninterrupted, even though the user will notice the delay. Normally, no special feedback is necessary during delays of more than 0.1 but less than 1.0 second, but the user does lose the feeling of operating directly on the data.
-- **10 seconds** is about the limit for **keeping the user's attention** focused on the dialogue. For longer delays, users will want to perform other tasks while waiting for the computer to finish, so they should be given feedback indicating when the computer expects to be done. Feedback during the delay is especially important if the response time is likely to be highly variable, since users will then not know what to expect.
-
-This research is interesting because it puts performance not only as an engineering endeavor but also gives a user-centric perspective of how performance has a close relationship with UX.
-
-Now, going back to web development, the growing use of JavaScript in the frontend is making it more and more complex, not only in the engineering/codebase perspective but also in web performance. In general, we can say that, if we ship more JavaScript to the final bundle, the size of the file gets bigger, and the download time increases.
-
 ## Code splitting strategies
 
 In this post, I want to talk about one of the techniques we can take to reduce JavaScript in the final bundle: Code splitting.
@@ -117,5 +95,3 @@ So, imagine that you like functional programming and you use `ramda`, you can co
 This is interesting because the library can be used on different pages of the product and as it's already cached, it won't penalize the user again. We, engineers, don't bump libraries versions that often, so the probability of this library being cached for the users for a long time is very high.
 
 If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
-
-## Code splitting in React applications

@@ -1,0 +1,27 @@
+{
+  "title": "Code Splitting in Web Performance",
+  "description": "",
+  "date": "2022-09-23",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/building-an-interpreter/intro.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "Glasses on top of a notebook",
+    "authorHref": "https://unsplash.com/@sigmund",
+    "authorName": "Sigmund"
+  }
+}
