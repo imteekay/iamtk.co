@@ -119,3 +119,41 @@ This is interesting because the library can be used on different pages of the pr
 If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
 
 ## Code splitting in React applications
+
+In React applications, we have different approaches to do code splitting. The most common ones are: using `React.lazy`, using `loadable-components`, and using `react-loadable`.
+
+All three are very similar in syntax and the result is pretty much the same. Or [almost the same](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d). I have used `react-loadable` before but it's not maintained anymore, so I won't focus on that. In this post, we'll see examples using `loadable-components` as I have never used `React.lazy` before.
+
+### Code splitting: by page
+
+Let's say we have a product with a Home page and a Search, the same way we talked before:
+
+![](/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png)
+
+We want our app to be split into two separate bundles, one for the home and the other for the search.
+
+To do this using the `loadable-components` lib, we can just create loadable components and dynamically import both search and home components.
+
+```jsx
+import loadable from '@loadable/component';
+
+const Home = loadable(() => import('./Home'));
+const Search = loadable(() => import('./Search'));
+```
+
+One caveat: both `Home` and `Search` components need to be default exported. If they are only exported using named export, it won't work (not only in `loadable-components`, but also in `react-loadable` and `React.lazy`).
+
+After creating these components, we can use them on our routes. As we want to code split them per page.
+
+If you are using `react-router`, the code would look like this:
+
+```jsx
+<Switch>
+  <Route exact path="/" component={Home} />
+  <Route exact path="/search" component={Search} />
+</Switch>
+```
+
+Now, when the user accesses `https://domain.com`, it will download only the home bundle and not the search one. If the user accesses `https://domain.com/search`, it will be the other way around: downloading the search bundle but not the home.
+
+We can make sure this works by looking at the network tab on the DevTools. There, you'll see all JavaScript being downloaded. Don't forget to filter by `JS` to make it easier to see JavaScript-related bundles only.
