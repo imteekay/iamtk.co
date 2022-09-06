@@ -1,5 +1,3 @@
-## Code splitting strategies
-
 In this post, I want to talk about one of the techniques we can take to reduce JavaScript in the final bundle: Code splitting.
 
 Code splitting is the process of splitting the bundle into multiple, smaller bundles (also known as JavaScript chunks).

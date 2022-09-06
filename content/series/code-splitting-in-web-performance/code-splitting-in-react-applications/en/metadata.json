@@ -1,0 +1,27 @@
+{
+  "title": "Code splitting in React applications",
+  "description": "Build a parser and the fundamental parts of the Abstract Syntax Tree",
+  "date": "2021-10-17",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/building-an-interpreter/fire.jpg",
+    "width": "592",
+    "height": "886",
+    "alt": "Fire",
+    "authorHref": "https://unsplash.com/@andrewcoop",
+    "authorName": "Andrew Coop"
+  }
+}
