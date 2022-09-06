@@ -157,3 +157,98 @@ If you are using `react-router`, the code would look like this:
 Now, when the user accesses `https://domain.com`, it will download only the home bundle and not the search one. If the user accesses `https://domain.com/search`, it will be the other way around: downloading the search bundle but not the home.
 
 We can make sure this works by looking at the network tab on the DevTools. There, you'll see all JavaScript being downloaded. Don't forget to filter by `JS` to make it easier to see JavaScript-related bundles only.
+
+### Code splitting: below the fold
+
+Cutting JavaScript that is below the fold and putting it in a separate bundle is a pretty nice strategy to reduce the bundle and serve only the necessary JavaScript to the user.
+
+As we already talked about, we can implement that using the Intersection Observer API. I have already shown a simple code snippet on how to use the API but now I want to show an example in React. The concept is pretty much the same though.
+
+I will show an example using a nice library called `react-intersection-observer`. The API is super simple to use and reason about. Take a look at it:
+
+```jsx
+import { useInView } from 'react-intersection-observer';
+
+const Component = () => {
+  const { ref, inView } = useInView();
+  // ...
+};
+```
+
+For any component, we can use this hook and get interesting information from the observer. But the most important ones, at least for our performance case now, are the `ref` and the `inView`.
+
+They have a pretty good naming and you can get from it. The `ref` is the reference of the component or element you want to observe. We can call it your target element as you need to assign this ref to the DOM element you want to monitor. And the `inView` is just a boolean telling you if this target element is in the intersection with the viewport or not.
+
+If you want to try this out, consider creating a new component, and logging the `inView` in the console to see if it's working correctly. Try this out:
+
+```jsx
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+
+const Component = () => {
+  const { ref, inView, entry } = useInView();
+  console.log({ inView });
+
+  return <div ref={ref}></div>;
+};
+```
+
+Now, every time you reach this component when scrolling down (or up) the page, you see a `{ inView: true }` in the DevTools console. Pretty nice, uh?
+
+Now, back to the code splitting strategy. Imagine you have this "below the fold” component:
+
+```jsx
+const Component = () => {
+  return (
+    <div>
+      <h2>Below the fold title</h2>
+      <p>Another code splitting strategy</p>
+      // ...
+    </div>
+  );
+};
+```
+
+We want to download the JavaScript only when the user reaches this component that's below the fold, right? The first step is to extract this component into a separate bundle. We do that the same way we did for the code splitting by page strategy, using the `loadable-components`.
+
+Extract the component into a new file and default export it:
+
+```jsx
+const Component = () => {
+  return (
+    <div>
+      <h2>Below the fold title</h2>
+      <p>Another code splitting strategy</p>
+      // ...
+    </div>
+  );
+};
+
+export default Component;
+```
+
+Create a loadable component that will dynamically import it
+
+```jsx
+import loadable from '@loadable/component';
+
+const LoadableComponent = loadable(() => import('./Component'));
+```
+
+With that, we can now use it in the target element we will be monitoring.
+
+```jsx
+import React from 'react';
+import { useInView } from 'react-intersection-observer';
+import { LoadableComponent } from './LoadableComponent';
+
+const Component = () => {
+  const { ref, inView } = useInView();
+
+  return <div ref={ref}>{inView && <LoadableComponent />}</div>;
+};
+```
+
+Again using the `useInView` hook, assigning the `ref` to the target DOM element, and using the `inView` boolean to know if the component is in the intersection with the viewport or not. If it's, it will evaluate to `true` and render the `LoadableComponent`. Now the loadable will dynamically import the "below the fold" component, the browser will download the separate bundle, and it will be rendered for the user.
+
+It's just a small example but it shows the whole concept. We can use it for any other type of component that's below the fold. We can make the bundle more granular or put everything in the same "below the fold" bundle.
