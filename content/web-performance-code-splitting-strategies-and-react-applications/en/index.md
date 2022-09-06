@@ -252,3 +252,49 @@ const Component = () => {
 Again using the `useInView` hook, assigning the `ref` to the target DOM element, and using the `inView` boolean to know if the component is in the intersection with the viewport or not. If it's, it will evaluate to `true` and render the `LoadableComponent`. Now the loadable will dynamically import the "below the fold" component, the browser will download the separate bundle, and it will be rendered for the user.
 
 It's just a small example but it shows the whole concept. We can use it for any other type of component that's below the fold. We can make the bundle more granular or put everything in the same "below the fold" bundle.
+
+### Code splitting: conditional content
+
+The conditional content is very similar to the below the fold strategy. The concept is to code split components that are not visible in the first render, create a new separate bundle for them, and download them when the user wants to see this content.
+
+One common example is Modals (or overlays, or dialogs, … so many names for the same thing❓). In the first load, the modal shouldn't be downloaded together with the main bundle. The user doesn't even know if exists yet. So we separate it into a new bundle and when the user clicks something to open this modal, we download it, and render it to the screen.
+
+To the code! We start separating the modal component into a new file:
+
+```jsx
+const Modal = ({ isOpen }) => (
+  <Container isOpen={isOpen}>
+    <Header />
+    <Content />
+  </Container>
+);
+
+export default Modal;
+```
+
+Now we create the loadable:
+
+```jsx
+import loadable from '@loadable/component';
+
+export const Modal = loadable(() => import('./Modal'));
+```
+
+With the two components created, now we should just render this modal when it should be open. If it's not open, we don't want to penalize the user with more JavaScript being downloaded. We can even use the `isOpen` flag to handle this condition for when to load and render the modal or not.
+
+```jsx
+import { Modal } from './Modal';
+
+const Page = () => {
+  // get the isOpen somehow
+
+  return (
+    <div>
+      // ...
+      {isOpen && <Modal isOpen={isOpen} />}
+    </div>
+  );
+};
+```
+
+Simple as that.
