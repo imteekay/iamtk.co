@@ -116,7 +116,7 @@ So, imagine that you like functional programming and you use `ramda`, you can co
 
 This is interesting because the library can be used on different pages of the product and as it's already cached, it won't penalize the user again. We, engineers, don't bump libraries versions that often, so the probability of this library being cached for the users for a long time is very high.
 
-If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
+If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
 
 ## Code splitting in React applications
 
@@ -298,3 +298,15 @@ const Page = () => {
 ```
 
 Simple as that.
+
+## React application case study
+
+I'm currently working on an almost-5-year-old codebase, so you can probably imagine the complexities, the number of features, and the number of engineers who have worked on it.
+
+Thanks to my colleagues, we have a very healthy codebase. But we saw a lot of potential for improvements. This was collected from an internal engineering survey.
+
+When growing complexities and features on a codebase, it gets really easy to have performance regressions if you are not focused on that.
+
+When I started working on this codebase, I also saw a lot of potentials when it comes to web performance. I started [profiling and optimizing some runtime performance issues](/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab). Seeing core web vitals metrics and the final webpack bundle, it was easy to understand some problems.
+
+In this case study, I want to show one part of the strategies I'm taking to optimize the performance of this product. As code splitting is the topic of this article, in this case study, I will cover code splitting related optimizations only. But there are many other things on the roadmap to improve and I can talk more about them in a future post.
