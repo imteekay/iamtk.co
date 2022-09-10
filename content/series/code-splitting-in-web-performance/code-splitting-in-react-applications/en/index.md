@@ -1,12 +1,12 @@
 In React applications, we have different approaches to do code splitting. The most common ones are: using `React.lazy`, using `loadable-components`, and using `react-loadable`.
 
-All three are very similar in syntax and the result is pretty much the same. Or [almost the same](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d). I have used `react-loadable` before but it's not maintained anymore, so I won't focus on that. In this post, we'll see examples using `loadable-components` as I have never used `React.lazy` before.
+All three are very similar in syntax and the result is pretty much the same. Or [almost the same](https://loadable-components.com/docs/loadable-vs-react-lazy). I have used `react-loadable` before but it's not maintained anymore, so I won't focus on that. In this post, we'll see examples using `loadable-components` as I have never used `React.lazy` before.
 
 ### Code splitting: by page
 
 Let's say we have a product with a Home page and a Search, the same way we talked before:
 
-![](/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png)
+<img src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy" />
 
 We want our app to be split into two separate bundles, one for the home and the other for the search.
 

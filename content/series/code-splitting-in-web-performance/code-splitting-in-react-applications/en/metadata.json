@@ -1,7 +1,7 @@
 {
   "title": "Code splitting in React applications",
-  "description": "Build a parser and the fundamental parts of the Abstract Syntax Tree",
-  "date": "2021-10-17",
+  "description": "Code splitting as a strategy to optimize web performance and a case study of a React application",
+  "date": "2022-09-11",
   "tags": [
     {
       "href": "/tags/javascript",
@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/building-an-interpreter/fire.jpg",
-    "width": "592",
-    "height": "886",
-    "alt": "Fire",
-    "authorHref": "https://unsplash.com/@andrewcoop",
-    "authorName": "Andrew Coop"
+    "src": "/web-performance-code-splitting-strategies-and-react-applications/cover.jpg",
+    "width": "640",
+    "height": "853",
+    "alt": "ice patterns",
+    "authorHref": "https://unsplash.com/@truvisions",
+    "authorName": "Orane Thomas"
   }
 }

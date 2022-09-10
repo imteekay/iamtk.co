@@ -122,13 +122,13 @@ If you apply this same strategy to a list of the biggest libraries in your codeb
 
 In React applications, we have different approaches to do code splitting. The most common ones are: using `React.lazy`, using `loadable-components`, and using `react-loadable`.
 
-All three are very similar in syntax and the result is pretty much the same. Or [almost the same](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d). I have used `react-loadable` before but it's not maintained anymore, so I won't focus on that. In this post, we'll see examples using `loadable-components` as I have never used `React.lazy` before.
+All three are very similar in syntax and the result is pretty much the same. Or [almost the same](https://loadable-components.com/docs/loadable-vs-react-lazy). I have used `react-loadable` before but it's not maintained anymore, so I won't focus on that. In this post, we'll see examples using `loadable-components` as I have never used `React.lazy` before.
 
 ### Code splitting: by page
 
 Let's say we have a product with a Home page and a Search, the same way we talked before:
 
-![](/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png)
+<img src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy" />
 
 We want our app to be split into two separate bundles, one for the home and the other for the search.
 
@@ -371,19 +371,19 @@ For this post, the articles that helped me doing these improvements are down bel
 
 **On bundling**
 
-- [Bundle/code splitting revised](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
-- [3 Code Splitting Patterns For Vue.js and Webpack](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
-- [Bundle Splitting](https://www.patterns.dev/posts/bundle-splitting/)
-- [The 100% correct way to split your chunks with Webpack](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [Bundle/code splitting revised](https://medium.com/@kimgysen/bundle-code-splitting-revised-d9719e9219c1)
+- [3 Code Splitting Patterns For Vue.js and Webpack](https://dzone.com/articles/3-code-splitting-patterns-for-vuejs-and-webpack)
+- [Bundle Splitting](https://www.patterns.dev/posts/bundle-splitting)
+- [The 100% correct way to split your chunks with Webpack](https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758)
 
 **On react**
 
-- [Comparison with React.lazy](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [Comparison with React.lazy](https://loadable-components.com/docs/loadable-vs-react-lazy)
 - [Improved Next.js and Gatsby page load performance with granular chunking](https://web.dev/granular-chunking-nextjs/)
 
 **Issues with splitting into many JavaScript bundles**
 
-- [The Right Way to Bundle Your Assets for Faster Sites over HTTP/2](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
-- [Bundling JavaScript files](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [The Right Way to Bundle Your Assets for Faster Sites over HTTP/2](https://medium.com/@asyncmax/the-right-way-to-bundle-your-assets-for-faster-sites-over-http-2-437c37efe3ff)
+- [Bundling JavaScript files](https://blog.khanacademy.org/forgo-js-packaging-not-so-fast)
 
 Well, this is it for today. I hope it can be helpful for you. Keep studying and coding! Until next time.

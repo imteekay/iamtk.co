@@ -2,7 +2,7 @@ In this post, I want to talk about one of the techniques we can take to reduce J
 
 Code splitting is the process of splitting the bundle into multiple, smaller bundles (also known as JavaScript chunks).
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png" loading="lazy">
 
 But splitting into smaller bundles can have no effect on performance and UX improvements. We can use this technique together with some strategies to optimize web performance and improve the perceived performance from the user's perspective.
 
@@ -14,7 +14,7 @@ Imagine you have a Home page and a Search page. Every time you load the Home pag
 
 What if we could split the Home page into a `Home.js` bundle and the Search page into a `Search.js` bundle? This way we would load only the `Home.js` bundle when the user reaches the Home page. The same for the Search page and the `Search.js` bundle.
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy">
 
 This is exactly what code splitting by page (or by route) is. We use routes as entry points to create new smaller bundles that will be served only when we need to serve them.
 
@@ -30,7 +30,7 @@ In the same idea as downloading only the necessary JavaScript, we want to use a 
 
 Imagine you are working on a landing page. The visible section after loading the page is showing the page header, the form, and a big hero image. We can call it the "above the fold" section. Everything that's not in this fold, it's "below the fold".
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png" loading="lazy">
 
 The user doesn't care about the "below the fold" sections because the most important section in the _first load_ is the "above the fold" section. The strategy here is to split the "below the fold" sections into a new bundle and download this JavaScript when the user scrolls down and reaches this section.
 
@@ -92,4 +92,4 @@ So, imagine that you like functional programming and you use `ramda`, you can co
 
 This is interesting because the library can be used on different pages of the product and as it's already cached, it won't penalize the user again. We, engineers, don't bump libraries versions that often, so the probability of this library being cached for the users for a long time is very high.
 
-If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](https://www.iamtk.co/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
+If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
