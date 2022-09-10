@@ -143,9 +143,18 @@ article.post .side-by-side img {
     justify-content: center;
   }
 
+  article.post .text-img-side-by-side {
+    display: flex;
+    gap: 24px;
+  }
+
+  article.post .text-img-side-by-side img {
+    width: 200px;
+  }
+
   article.post img.full {
     margin: 30px 0;
-    margin-left: calc(-1 * (75vw - 800px) / 2);
+    margin-left: calc(-1 * (75vw - 815px) / 2);
     width: 60vw;
   }
 

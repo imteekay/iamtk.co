@@ -54,7 +54,7 @@ In the same idea as downloading only the necessary JavaScript, we want to use a 
 
 Imagine you are working on a landing page. The visible section after loading the page is showing the page header, the form, and a big hero image. We can call it the "above the fold" section. Everything that's not in this fold, it's "below the fold".
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png" loading="lazy">
 
 The user doesn't care about the "below the fold" sections because the most important section in the _first load_ is the "above the fold" section. The strategy here is to split the "below the fold" sections into a new bundle and download this JavaScript when the user scrolls down and reaches this section.
 
@@ -334,3 +334,21 @@ Using the _intersection observer_, we can track if the user reached the end of t
 <img src="/web-performance-code-splitting-strategies-and-react-applications/footer.png" class="round" loading="lazy">
 
 Another great benefit is caching. After the first download, the new separate chunk is cached in the browser, so every time the user goes to another page that uses the footer, it’s already cached in the browser and it doesn’t need to download again.
+
+### Conditional content code splitting
+
+<div class="text-img-side-by-side">
+<div>The most impactful result I had was code splitting the login dialog. This component is only shown to guest users (unlogged users) who click on the login button to open it.
+
+This code split reduced the bundle by ~126.81 KB, gzipped. It is a huge component because it handles a lot of cases: sign up, sign in, and the unlocking flow.
+
+For the authenticated users, it's even better because they don't need to download this whole component again.
+
+</div>
+
+<img src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png" class="round" loading="lazy">
+</div>
+
+I used the very same strategy for all other conditional content that we show to the user on the search page.
+
+It includes components like the **hotel details overlay** (it's shown when the user clicks the hotel card), the **search filters popup** (it's shown when the user interacts with the search filters to select deals that fit their need), **language and currency selectors** (it's shown when the user needs to run the website in different currencies or language), and some other smaller components.
