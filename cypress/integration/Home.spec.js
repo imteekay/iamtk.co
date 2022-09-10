@@ -2,7 +2,7 @@ import { postsList } from 'cypress/helpers/postsList';
 import { seriesList } from 'cypress/helpers/seriesList';
 
 describe('Home', () => {
-  it.only('verifies all links and content', () => {
+  it('verifies all links and content', () => {
     cy.viewport('iphone-x');
     cy.visit('/');
 
