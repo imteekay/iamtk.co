@@ -362,3 +362,28 @@ Reduced `430.11 KB` in the final bundle. It is around ~30% less JavaScript we ar
 - Business metrics: our custom engagement and conversion metrics
 
 I can also look at other metrics here but this is a good start for these improvements. Let's see how it goes and I can update this article in the future.
+
+## Resources
+
+If I need to go to one place to learn web performance, it's the [web performance research repository](https://github.com/imteekay/web-performance-research). It's a compilation of all articles, videos, courses, and any other resources I'm researching.
+
+For this post, the articles that helped me doing these improvements are down below:
+
+**On bundling**
+
+- [Bundle/code splitting revised](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [3 Code Splitting Patterns For Vue.js and Webpack](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [Bundle Splitting](https://www.patterns.dev/posts/bundle-splitting/)
+- [The 100% correct way to split your chunks with Webpack](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+
+**On react**
+
+- [Comparison with React.lazy](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [Improved Next.js and Gatsby page load performance with granular chunking](https://web.dev/granular-chunking-nextjs/)
+
+**Issues with splitting into many JavaScript bundles**
+
+- [The Right Way to Bundle Your Assets for Faster Sites over HTTP/2](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+- [Bundling JavaScript files](https://www.notion.so/30131c5df6584c5dac90c9a056c5e38d)
+
+Well, this is it for today. I hope it can be helpful for you. Keep studying and coding! Until next time.
