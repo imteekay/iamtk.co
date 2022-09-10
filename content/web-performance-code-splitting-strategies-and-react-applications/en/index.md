@@ -324,3 +324,13 @@ Some of the pages were not code split so it was an easy win to separate them int
 All the pages that needed code splitting were the home, search, account, membership, and some other places but not much difference in the final bundle.
 
 As we already talked about in this post, I just needed to create loadables and use them in each route. Simple as that.
+
+### Below the fold code splitting
+
+The footer is a section used in all packages, it can be code split and this chunk would be downloaded only when the user scrolls down the page and reach the end of the page.
+
+Using the _intersection observer_, we can track if the user reached the end of the page the same way explained here.
+
+<img src="/web-performance-code-splitting-strategies-and-react-applications/footer.png" class="round" loading="lazy">
+
+Another great benefit is caching. After the first download, the new separate chunk is cached in the browser, so every time the user goes to another page that uses the footer, it’s already cached in the browser and it doesn’t need to download again.
