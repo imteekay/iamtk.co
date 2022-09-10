@@ -4,5 +4,6 @@
   "supportFile": false,
   "baseUrl": "http://localhost:3000",
   "redirectionLimit": 1000,
-  "video": false
+  "video": false,
+  "defaultCommandTimeout": 10000
 }
