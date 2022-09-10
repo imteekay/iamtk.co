@@ -352,3 +352,13 @@ For the authenticated users, it's even better because they don't need to downloa
 I used the very same strategy for all other conditional content that we show to the user on the search page.
 
 It includes components like the **hotel details overlay** (it's shown when the user clicks the hotel card), the **search filters popup** (it's shown when the user interacts with the search filters to select deals that fit their need), **language and currency selectors** (it's shown when the user needs to run the website in different currencies or language), and some other smaller components.
+
+### Improvements and Results
+
+Reduced `430.11 KB` in the final bundle. It is around ~30% less JavaScript we are shipping in the main bundle. Huge improvement. As I'm still running this experiment, I want to gather more data to have a clear view of the optimizations. But the metrics I'm focusing on are:
+
+- Largest Contentful Paint / Loading time: tracking load time
+- First Input Delay / Total Blocking Time: tracking user interactivity
+- Business metrics: our custom engagement and conversion metrics
+
+I can also look at other metrics here but this is a good start for these improvements. Let's see how it goes and I can update this article in the future.
