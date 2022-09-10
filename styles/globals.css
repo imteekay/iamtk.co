@@ -59,6 +59,10 @@ article img {
   width: 100%;
 }
 
+article img.round {
+  border-radius: 8px;
+}
+
 article blockquote {
   margin: 1rem 10px;
   padding: 0.5em 10px;
@@ -141,7 +145,7 @@ article.post .side-by-side img {
 
   article.post img.full {
     margin: 30px 0;
-    margin-left: calc(-1 * (75vw - 860px) / 2);
+    margin-left: calc(-1 * (75vw - 800px) / 2);
     width: 60vw;
   }
 
