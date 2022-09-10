@@ -26,7 +26,7 @@ In this post, I want to talk about one of the techniques we can take to reduce J
 
 Code splitting is the process of splitting the bundle into multiple, smaller bundles (also known as JavaScript chunks).
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png" loading="lazy">
 
 But splitting into smaller bundles can have no effect on performance and UX improvements. We can use this technique together with some strategies to optimize web performance and improve the perceived performance from the user's perspective.
 
@@ -38,7 +38,7 @@ Imagine you have a Home page and a Search page. Every time you load the Home pag
 
 What if we could split the Home page into a `Home.js` bundle and the Search page into a `Search.js` bundle? This way we would load only the `Home.js` bundle when the user reaches the Home page. The same for the Search page and the `Search.js` bundle.
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy">
 
 This is exactly what code splitting by page (or by route) is. We use routes as entry points to create new smaller bundles that will be served only when we need to serve them.
 
@@ -310,3 +310,17 @@ When growing complexities and features on a codebase, it gets really easy to hav
 When I started working on this codebase, I also saw a lot of potentials when it comes to web performance. I started [profiling and optimizing some runtime performance issues](/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab). Seeing core web vitals metrics and the final webpack bundle, it was easy to understand some problems.
 
 In this case study, I want to show one part of the strategies I'm taking to optimize the performance of this product. As code splitting is the topic of this article, in this case study, I will cover code splitting related optimizations only. But there are many other things on the roadmap to improve and I can talk more about them in a future post.
+
+The optimizations done are for:
+
+- **Code splitting — by page**: search, home, account, membership, and other pages
+- **Code splitting — below the fold**: footer
+- **Code splitting — conditional content**: login dialog, hotel details overlay
+
+### Code splitting by page
+
+Some of the pages were not code split so it was an easy win to separate them into their own bundle and serve it only when they are in need. No more home-related code being downloaded when the user reaches the search page, and vice versa, and for other pages too.
+
+All the pages that needed code splitting were the home, search, account, membership, and some other places but not much difference in the final bundle.
+
+As we already talked about in this post, I just needed to create loadables and use them in each route. Simple as that.
