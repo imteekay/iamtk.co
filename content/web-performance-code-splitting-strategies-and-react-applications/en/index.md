@@ -44,7 +44,7 @@ This is exactly what code splitting by page (or by route) is. We use routes as e
 
 When you split your app's bundle into separate bundles by page, you are drastically reducing the size of your final bundle and you're serving only the necessary JavaScript per page.
 
-In the illustrated image above, we can see that we potentially are reducing 3.5mb of JavaScript on the home page and 1.5mb on the search page. And that's a huge improvement!
+In the illustrated image above, we can see that we are potentially reducing 3.5mb of JavaScript on the home page and 1.5mb on the search page. And that's a huge improvement!
 
 Code splitting by page is pretty common and I would guess that most of the frontend engineers know about this strategy and use it in their favor to improve their app's performance and UX.
 
@@ -92,7 +92,7 @@ Conditional content we can think of as side menus (doesn't appear in the first r
 
 <img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/4.conditional-splitting.png" loading="lazy">
 
-We only want to download these JavaScripts if the condition evaluates to `true`. In the illustrated image above, we have `App.js`, `SideMenu.js`, `LoginDialog.js`, and `AdsPopup.js`. If not code split, the page would download 5mb but with the conditional code splitting strategy, we can reduce by ~40% the size of the JavaScript bundle (~2mb less JavaScript in this case). It would be a huge improvement in the load and execution time.
+We only want to download these JavaScripts if the condition evaluates to `true`. In the illustrated image above, we have `App.js`, `SideMenu.js`, `LoginDialog.js`, and `AdsPopup.js`. If not code split, the page would download 5mb but with the conditional code splitting strategy, we can reduce by around 40% the size of the JavaScript bundle (~2mb less JavaScript in this case). It would be a huge improvement in the load and execution time.
 
 <img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/5.conditional-splitting-flow.png" loading="lazy">
 
