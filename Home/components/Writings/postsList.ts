@@ -8,7 +8,7 @@ type Post = {
 
 export const postsList: Post[] = [
   {
-    datetime: '2022-09-11',
+    datetime: '2022-09-12',
     link: '/web-performance-code-splitting-strategies-and-react-applications',
     title: 'Web performance, code splitting strategies, and a React case study',
     tags: ['performance'],
