@@ -1,0 +1,27 @@
+{
+  "title": "Why Web Performance",
+  "description": "Web performance as a great tool to make the internet, our greatest digital infrastructure, better",
+  "date": "2022-09-11",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/why-web-performance/cover.jpg",
+    "width": "640",
+    "height": "434",
+    "alt": "Train tracks in a sunset",
+    "authorHref": "https://unsplash.com/@jan_huber",
+    "authorName": "Jan Huber"
+  }
+}
