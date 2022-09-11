@@ -2,7 +2,8 @@
 
 ## 2022
 
-- <time class="date">2022-09-11</time> <span>[Web performance, code splitting strategies, and a React case study](/web-performance-code-splitting-strategies-and-react-applications)</span>
+- <time class="date">2022-09-12</time> <span>[Web performance, code splitting strategies, and a React case study](/web-performance-code-splitting-strategies-and-react-applications)</span>
+- <time class="date">2022-09-11</time> <span>[Why Web Performance](/why-web-performance)</span>
 - <time class="date">2022-08-15</time> <span>[Profiling & Optimizing the runtime web performance with the DevTools Performance tab](/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab)</span>
 - <time class="date">2022-07-06</time> <span>[Writing a Memoization Function from Scratch](/writing-a-memoization-function-from-scratch)</span>
 
