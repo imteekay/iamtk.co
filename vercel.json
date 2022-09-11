@@ -1,23 +1,5 @@
 {
   "github": {
     "silent": true
-  },
-  "redirects": [
-    {
-      "source": "/github",
-      "destination": "https://github.com/imteekay"
-    },
-    {
-      "source": "/linkedin",
-      "destination": "https://www.linkedin.com/in/imtk"
-    },
-    {
-      "source": "/twitter",
-      "destination": "https://twitter.com/wordsofteekay"
-    },
-    {
-      "source": "/newsletter",
-      "destination": "https://teekay.substack.com"
-    }
-  ]
+  }
 }
