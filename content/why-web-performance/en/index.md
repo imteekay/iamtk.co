@@ -1,0 +1,13 @@
+I ask myself why study, research, and do web performance projects. The short and not-so-deep answer is that I find it interesting and challenging. The long answer comes from asking "why" many times.
+
+I see web performance as a means to an end. It's not only an interesting engineering optimization for me. There are three outcomes that always come to my mind when I ask "why" I focus my time on web performance, besides it being an "interesting and challenging thing to do".
+
+The first one is its close relationship with UX. When I think about performance, I think about user experience. When I see the performance of tools like [ESBuild](https://esbuild.github.io/), [SWC](https://swc.rs/), and [vite](https://vitejs.dev/) and how they are so much faster than the alternatives, I think it's all about developer experience (DX). When I see [bun](https://bun.sh/) making so much progress in the JavaScript runtime performance landscape, it's all about DX. When I see metrics like the core web vitals (LCP, FID, CLS, and now INP), I think they are a good proxy (or they try to be a good proxy) to measure user experience.
+
+The second is about accessibility. Imagine a person using a website on a 2015 device on a 3G network commuting on public transportation. Now imagine the same website being used by a person using a MacBook m2 connected to a fiber optic network. How different they are experiencing the very same website? The former is even able to use the website? Is it accessible for both of them?
+
+And the third is about sustainability. The web uses a great amount of electricity and the electricity is produced, in most countries, by burning fossil fuels. So, what's the real cost of the web's carbon footprint? There are different contributors to it: user devices, the energy used to power all consumer devices; networks, the energy to transfer data around the world; and data centers, the energy required to power servers (host websites, backend servers, databases, etc). Web performance can be a great tool to reduce the carbon emissions of websites. For sure we always need to be measuring the impact of these improvements but there's a close relationship between web performance (optimizations of JS, CSS, HTML, images, fonts, caching, etc) and carbon emissions.
+
+If you think the web is the digital infrastructure for people and you have the possibility to make it better for everyone to use it, I definitely want to be part of it.
+
+Join me in this purpose of making the web faster and better for everyone. Follow the [research of Web performance](https://github.com/imteekay/web-performance-research)
