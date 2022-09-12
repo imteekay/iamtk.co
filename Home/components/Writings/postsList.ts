@@ -16,8 +16,7 @@ export const postsList: Post[] = [
   {
     datetime: '2022-09-11',
     link: '/why-web-performance',
-    title:
-      'Web performance as a great tool to make the internet, our greatest digital infrastructure, better',
+    title: 'Why Web Performance',
     tags: ['performance'],
   },
   {
