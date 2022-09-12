@@ -8,6 +8,19 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2022-09-12',
+    link: '/web-performance-code-splitting-strategies-and-react-applications',
+    title: 'Web performance, code splitting strategies, and a React case study',
+    tags: ['performance'],
+  },
+  {
+    datetime: '2022-09-11',
+    link: '/why-web-performance',
+    title:
+      'Web performance as a great tool to make the internet, our greatest digital infrastructure, better',
+    tags: ['performance'],
+  },
+  {
     datetime: '2022-08-15',
     link: '/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab',
     title:

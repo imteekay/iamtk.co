@@ -1,0 +1,20 @@
+If I need to go to one place to learn web performance, it's the [web performance research repository](https://github.com/imteekay/web-performance-research). It's a compilation of all articles, videos, courses, and any other resources I'm researching.
+
+For this post, the articles that helped me doing these improvements are down below:
+
+**On bundling**
+
+- [Bundle/code splitting revised](https://medium.com/@kimgysen/bundle-code-splitting-revised-d9719e9219c1)
+- [3 Code Splitting Patterns For Vue.js and Webpack](https://dzone.com/articles/3-code-splitting-patterns-for-vuejs-and-webpack)
+- [Bundle Splitting](https://www.patterns.dev/posts/bundle-splitting)
+- [The 100% correct way to split your chunks with Webpack](https://medium.com/hackernoon/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758)
+
+**On react**
+
+- [Comparison with React.lazy](https://loadable-components.com/docs/loadable-vs-react-lazy)
+- [Improved Next.js and Gatsby page load performance with granular chunking](https://web.dev/granular-chunking-nextjs/)
+
+**Issues with splitting into many JavaScript bundles**
+
+- [The Right Way to Bundle Your Assets for Faster Sites over HTTP/2](https://medium.com/@asyncmax/the-right-way-to-bundle-your-assets-for-faster-sites-over-http-2-437c37efe3ff)
+- [Bundling JavaScript files](https://blog.khanacademy.org/forgo-js-packaging-not-so-fast)

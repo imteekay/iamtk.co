@@ -1,0 +1,27 @@
+{
+  "title": "Code Splitting in Web Performance",
+  "description": "Code splitting as a strategy to optimize web performance and a case study of a React application",
+  "date": "2022-09-12",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/web-performance-code-splitting-strategies-and-react-applications/cover.jpg",
+    "width": "640",
+    "height": "853",
+    "alt": "ice patterns",
+    "authorHref": "https://unsplash.com/@truvisions",
+    "authorName": "Orane Thomas"
+  }
+}
