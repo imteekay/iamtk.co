@@ -174,6 +174,15 @@ Other benefits include faster user interactivity (Time To Interactive), fewer im
 
 One thing to mention and consider in this analysis is that we are downloading a new library in the final bundle. This is the cost of the [download time of react-virtuoso: 347ms (slow 3g) / 20ms (emerging 4g)](https://bundlephobia.com/package/react-virtuoso@2.16.6).
 
+## Improvements and Results
+
+- Better FID: https://app.datadoghq.com/dashboard/z56-xit-bek/tks-dashboard?from_ts=1655495916478&to_ts=1663444716478&live=true
+  - talk about what's fid: https://web.dev/fid
+- better conversion: 2.4% better
+- better engagement: 2.2% improvement in our custom engagement metric
+  - what we measure
+  - user interaction: more search? more hotel details overlay interaction? more anything else?
+
 ## Future optimizations and experiments
 
 This post is just the first optimization I did to improve the performance and thus the user experience. There are other experiments and investigations I want to do and share in the next blog posts.
