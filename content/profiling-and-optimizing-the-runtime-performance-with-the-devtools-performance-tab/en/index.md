@@ -178,6 +178,17 @@ One thing to mention and consider in this analysis is that we are downloading a 
 
 - Better FID: https://app.datadoghq.com/dashboard/z56-xit-bek/tks-dashboard?from_ts=1655495916478&to_ts=1663444716478&live=true
   - talk about what's fid: https://web.dev/fid
+  - FID - p75: improvements
+    - dive into devices
+  - FID - p95: improvements
+    - dive into devices
+  - FID grouped by continents
+  - FID in histogram: 0s -> 1s
+  - FID in histogram: 0ms -> 100ms
+  - geomap
+- performance by geographic region: https://almanac.httparchive.org/en/2021/performance#by-geographic-region
+  - Regions in parts of Asia and Europe continued to have higher performance
+    - This may be due to higher network speeds, wealthier populations with faster devices, and closer edge-caching locations
 - better conversion: 2.4% better
 - better engagement: 2.2% improvement in our custom engagement metric
   - what we measure
