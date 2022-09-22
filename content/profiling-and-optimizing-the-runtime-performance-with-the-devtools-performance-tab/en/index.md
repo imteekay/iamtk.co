@@ -234,12 +234,15 @@ On the left, we can see the FID scores from 0s to 1s. Most of the scores are wit
 
 On the right, we can see a more focus vision of the same data but from 0ms to 100ms, the threshold for a good FID score. The p75 is 48ms, that's great too.
 
-- Better FID: https://app.datadoghq.com/dashboard/z56-xit-bek/tks-dashboard?from_ts=1655495916478&to_ts=1663444716478&live=true
-  - FID grouped by continents
-  - geomap
-- performance by geographic region: https://almanac.httparchive.org/en/2021/performance#by-geographic-region
-  - Regions in parts of Asia and Europe continued to have higher performance
-    - This may be due to higher network speeds, wealthier populations with faster devices, and closer edge-caching locations
+But if you look close to the 0s-1s histogram, we can still see people experiencing bad interactivity as the FID score go up to 1s. Datadog still doesn't allow us to group by network connection (3g, 4g, etc) so I grouped by country and continent as a proxy to understand how network connection influences the interactivity metric.
+
+I think it's still not the best way to understand how it influences this metric but I found this data from the HTTP Archive's Almanac:
+
+> Regions in parts of Asia and Europe continued to have higher performance. This may be due to higher network speeds, wealthier populations with faster devices, and closer edge-caching locations. — [link](https://almanac.httparchive.org/en/2021/performance#by-geographic-region)
+
+In the "FID geomap", I see the poor experiences are from South America and more especifically from Africa. And in the FID p75 grouped by continent and device type, all continents had the same pattern. But I could see Africa on mobile was more sensitive to this improvement. It went from 450ms to onlly 35ms. The others had the same pattern but less sensitve. Still significant improvement though.
+
+I still am trying to figure out why some people are experiencing this FID score. My guess is still "poor network connection" as the main factor here but as people still have this experience, there're more things to optimize.
 
 ## Future optimizations and experiments
 
