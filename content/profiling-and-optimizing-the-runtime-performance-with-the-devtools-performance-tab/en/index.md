@@ -180,10 +180,10 @@ After 3 weeks running this performance optimizations as an A/B test experiment, 
 
 The best two results are the conversion and engagement metrics.
 
-- All users that used the search page and booked a hotel offer is considered a conversion for us. This metric increased in 2.4% comparing the users who used the list virtualization and the users who didn't.
-- Our engagement metric measures different ways our users interact with the page, and we consider it the best proxy to predict the likelihood of future booking. This metric improved in 2.2%.
+- All users that used the search page and booked a hotel offer is considered a conversion for us. This metric increased by 2.4% comparing the users who used the list virtualization and the users who didn't.
+- Our engagement metric measures different ways our users interact with the page, and we consider it the best proxy to predict the likelihood of future bookings. This metric improved by 2.2%.
 
-I also wanted to understand which performance metrics drove these improvements. Before launching the A/B test, my assumption was that the loading time performance like FCP and LCP wouldn't change and user interactivity metrics like FID, TTI, and TBT would be improved.
+I also wanted to understand which performance metrics drove these conversion improvements. Before launching the A/B test, my assumption was that the loading performance like FCP and LCP wouldn't change and user interactivity metrics like FID, TTI, and TBT would be improved.
 
 It's pretty much what happened. FCP and LCP stayed still, no much difference. And the user interactivity metrics improved.
 
@@ -236,13 +236,15 @@ On the right, we can see a more focus vision of the same data but from 0ms to 10
 
 But if you look close to the 0s-1s histogram, we can still see people experiencing bad interactivity as the FID score go up to 1s. Datadog still doesn't allow us to group by network connection (3g, 4g, etc) so I grouped by country and continent as a proxy to understand how network connection influences the interactivity metric.
 
-I think it's still not the best way to understand how it influences this metric but I found this data from the HTTP Archive's Almanac:
+I think it's still not the best way to understand how it influences this metric but I found this info from the HTTP Archive's Almanac:
 
 > Regions in parts of Asia and Europe continued to have higher performance. This may be due to higher network speeds, wealthier populations with faster devices, and closer edge-caching locations. — [link](https://almanac.httparchive.org/en/2021/performance#by-geographic-region)
 
-In the "FID geomap", I see the poor experiences are from South America and more especifically from Africa. And in the FID p75 grouped by continent and device type, all continents had the same pattern. But I could see Africa on mobile was more sensitive to this improvement. It went from 450ms to onlly 35ms. The others had the same pattern but less sensitve. Still significant improvement though.
+In the "FID geomap", I see the poor experiences are from South America and more especifically from Africa. And in the FID p75 grouped by continent and device type, all continents had the same pattern. But I could see Africa on mobile was more sensitive to this improvement. It went from 450ms to only 35ms. The others had the same pattern but less sensitve. Still significant improvements though.
 
-I still am trying to figure out why some people are experiencing this FID score. My guess is still "poor network connection" as the main factor here but as people still have this experience, there're more things to optimize.
+I am still trying to figure out why some people are experiencing this FID score. My guess is still "poor network connection" and less powerful devices as the main factor for bad FID scores.
+
+As people still have these bad experiences, there're more things to optimize.
 
 ## Future optimizations and experiments
 
