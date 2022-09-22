@@ -174,6 +174,78 @@ Other benefits include faster user interactivity (Time To Interactive), fewer im
 
 One thing to mention and consider in this analysis is that we are downloading a new library in the final bundle. This is the cost of the [download time of react-virtuoso: 347ms (slow 3g) / 20ms (emerging 4g)](https://bundlephobia.com/package/react-virtuoso@2.16.6).
 
+## Improvements and Results
+
+After 3 weeks running this performance optimizations as an A/B test experiment, I came across interesting results.
+
+The best two results are the conversion and engagement metrics.
+
+- All users that used the search page and booked a hotel offer is considered a conversion for us. This metric increased by 2.4% comparing the users who used the list virtualization and the users who didn't.
+- Our engagement metric measures different ways our users interact with the page, and we consider it the best proxy to predict the likelihood of future bookings. This metric improved by 2.2%.
+
+I also wanted to understand which performance metrics drove these conversion improvements. Before launching the A/B test, my assumption was that the loading performance like FCP and LCP wouldn't change and user interactivity metrics like FID, TTI, and TBT would be improved.
+
+It's pretty much what happened. FCP and LCP stayed still, no much difference. And the user interactivity metrics improved.
+
+<img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75.png" loading="lazy">
+
+If we see the FID for the p75 before the A/B test, it was around 140ms. With the A/B test, it went down to 50ms. And now that we went 100% with the list virtualization solution, it went down, even more, to 25ms-30ms.
+
+Digging more deep into the data, I wanted to understand how the device type influenced FID. If you think about, as mobile devices are less powerful than desktop and tablet devices, this makes them more "sensitive" to any performance improvement. Let's see this in practice.
+
+<div class="side-by-side">
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75-desktop.png"  class="side-by-side-img" loading="lazy">
+  </figure>
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75-mobile.png"  class="side-by-side-img" loading="lazy">
+  </figure>
+</div>
+
+The p75 for desktop (the above picture in the left) was around 30ms and went down to 12ms-17ms. The p75 for mobile (the above picture in the right) was around 200ms and went down to 30ms.
+
+Mobile devices were more sensitive to this improvement, it reduced by 85%. Huge gain and now it's running within the threshold (a [good FID score](https://web.dev/fid/#what-is-a-good-fid-score) is between 0ms and 100ms for p75).
+
+The p95 also followed the same pattern.
+
+<div class="side-by-side">
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-95-desktop.png"  class="side-by-side-img" loading="lazy">
+  </figure>
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-95-mobile.png"  class="side-by-side-img" loading="lazy">
+  </figure>
+</div>
+
+The desktop is in the left and the right is the mobile.
+
+As we all know that performance is not a single number/score, it's a range of experiences, it becomes easier to read performance data showing a range of scores. A great way to read performance metrics like that are histograms.
+
+<div class="side-by-side">
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-histogram-0-1.png"  class="side-by-side-img" loading="lazy">
+  </figure>
+  <figure>
+    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-histogram-0-01.png"  class="side-by-side-img" loading="lazy">
+  </figure>
+</div>
+
+On the left, we can see the FID scores from 0s to 1s. Most of the scores are within the p75, that's great.
+
+On the right, we can see a more focus vision of the same data but from 0ms to 100ms, the threshold for a good FID score. The p75 is 48ms, that's great too.
+
+But if you look close to the 0s-1s histogram, we can still see people experiencing bad interactivity as the FID score go up to 1s. Datadog still doesn't allow us to group by network connection (3g, 4g, etc) so I grouped by country and continent as a proxy to understand how network connection influences the interactivity metric.
+
+I think it's still not the best way to understand how it influences this metric but I found this info from the HTTP Archive's Almanac:
+
+> Regions in parts of Asia and Europe continued to have higher performance. This may be due to higher network speeds, wealthier populations with faster devices, and closer edge-caching locations. — [link](https://almanac.httparchive.org/en/2021/performance#by-geographic-region)
+
+In the "FID geomap", I see the poor experiences are from South America and more especifically from Africa. And in the FID p75 grouped by continent and device type, all continents had the same pattern. But I could see Africa on mobile was more sensitive to this improvement. It went from 450ms to only 35ms. The others had the same pattern but less sensitve. Still significant improvements though.
+
+I am still trying to figure out why some people are experiencing this FID score. My guess is still "poor network connection" and less powerful devices as the main factor for bad FID scores.
+
+As people still have these bad experiences, there're more things to optimize.
+
 ## Future optimizations and experiments
 
 This post is just the first optimization I did to improve the performance and thus the user experience. There are other experiments and investigations I want to do and share in the next blog posts.
