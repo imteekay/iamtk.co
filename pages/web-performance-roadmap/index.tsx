@@ -44,39 +44,39 @@ enum SubTopics {
 const topicPosition = {
   [Topics.General]: { y: 100, x: 500 },
 
-  [Topics.MetricsAndMeasurements]: { y: 200, x: 500 },
-  [SubTopics.CoreWebVitals]: { y: 100, x: 600 },
-  [SubTopics.PerformanceBudget]: { y: 200, x: 600 },
-  [SubTopics.MeasuringPerformance]: { y: 300, x: 600 },
+  [Topics.MetricsAndMeasurements]: { y: 300, x: 500 },
+  [SubTopics.CoreWebVitals]: { y: 200, x: 700 },
+  [SubTopics.PerformanceBudget]: { y: 300, x: 700 },
+  [SubTopics.MeasuringPerformance]: { y: 400, x: 700 },
 
-  [Topics.Web]: { y: 300, x: 500 },
-  [SubTopics.CSS]: { y: 300, x: 600 },
-  [SubTopics.Images]: { y: 300, x: 600 },
-  [SubTopics.JavaScript]: { y: 300, x: 600 },
-  [SubTopics.Fonts]: { y: 300, x: 600 },
-  [SubTopics.WebAPIs]: { y: 300, x: 600 },
-  [SubTopics.Browser]: { y: 300, x: 600 },
-  [SubTopics.Infrastructure]: { y: 300, x: 600 },
+  [Topics.Web]: { y: 500, x: 500 },
+  [SubTopics.CSS]: { y: 200, x: 0 },
+  [SubTopics.Images]: { y: 300, x: 0 },
+  [SubTopics.JavaScript]: { y: 400, x: 0 },
+  [SubTopics.Fonts]: { y: 500, x: 0 },
+  [SubTopics.WebAPIs]: { y: 600, x: 0 },
+  [SubTopics.Browser]: { y: 700, x: 0 },
+  [SubTopics.Infrastructure]: { y: 800, x: 0 },
 
-  [Topics.CaseStudies]: { y: 400, x: 500 },
+  [Topics.CaseStudies]: { y: 650, x: 500 },
 
-  [Topics.FrameworksAndTools]: { y: 500, x: 500 },
-  [SubTopics.BuildTools]: { y: 300, x: 600 },
-  [SubTopics.React]: { y: 300, x: 600 },
-  [SubTopics.Architecture]: { y: 300, x: 600 },
+  [Topics.FrameworksAndTools]: { y: 750, x: 500 },
+  [SubTopics.BuildTools]: { y: 650, x: 750 },
+  [SubTopics.React]: { y: 750, x: 800 },
+  [SubTopics.Architecture]: { y: 850, x: 750 },
 
-  [Topics.Strategies]: { y: 600, x: 500 },
-  [SubTopics.Prefetch]: { y: 300, x: 600 },
-  [SubTopics.CacheAndMemoization]: { y: 300, x: 600 },
+  [Topics.Strategies]: { y: 950, x: 500 },
+  [SubTopics.Prefetch]: { y: 880, x: 300 },
+  [SubTopics.CacheAndMemoization]: { y: 1020, x: 300 },
 
-  [Topics.Extra]: { y: 700, x: 500 },
-  [SubTopics.UX]: { y: 700, x: 600 },
-  [SubTopics.Sustainability]: { y: 700, x: 600 },
-  [SubTopics.Backend]: { y: 700, x: 600 },
-  [SubTopics.Books]: { y: 700, x: 600 },
-  [SubTopics.Tweets]: { y: 700, x: 600 },
+  [Topics.Extra]: { y: 1200, x: 500 },
+  [SubTopics.UX]: { y: 1000, x: 800 },
+  [SubTopics.Sustainability]: { y: 1100, x: 800 },
+  [SubTopics.Backend]: { y: 1200, x: 800 },
+  [SubTopics.Books]: { y: 1300, x: 800 },
+  [SubTopics.Tweets]: { y: 1400, x: 800 },
 
-  [Topics.Community]: { y: 800, x: 500 },
+  [Topics.Community]: { y: 1400, x: 500 },
 };
 
 function slugify(string: string) {
@@ -107,6 +107,7 @@ const edges = [
     source: SlugifiedTopics.General,
     target: SlugifiedTopics.MetricsAndMeasurements,
   },
+
   {
     source: SlugifiedTopics.MetricsAndMeasurements,
     target: SlugifiedTopics.Web,
@@ -116,24 +117,118 @@ const edges = [
     target: SlugifiedTopics.CoreWebVitals,
   },
   {
+    source: SlugifiedTopics.MetricsAndMeasurements,
+    target: SlugifiedTopics.PerformanceBudget,
+  },
+  {
+    source: SlugifiedTopics.MetricsAndMeasurements,
+    target: SlugifiedTopics.MeasuringPerformance,
+  },
+
+  {
+    source: SlugifiedTopics.MetricsAndMeasurements,
+    target: SlugifiedTopics.CoreWebVitals,
+  },
+
+  {
     source: SlugifiedTopics.Web,
     target: SlugifiedTopics.CaseStudies,
   },
   {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.CaseStudies,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.CaseStudies,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.CSS,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.Images,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.JavaScript,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.Fonts,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.WebAPIs,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.Browser,
+  },
+  {
+    source: SlugifiedTopics.Web,
+    target: SlugifiedTopics.Infrastructure,
+  },
+
+  {
     source: SlugifiedTopics.CaseStudies,
     target: SlugifiedTopics.FrameworksAndTools,
   },
+
   {
     source: SlugifiedTopics.FrameworksAndTools,
     target: SlugifiedTopics.Strategies,
   },
   {
+    source: SlugifiedTopics.FrameworksAndTools,
+    target: SlugifiedTopics.BuildTools,
+  },
+  {
+    source: SlugifiedTopics.FrameworksAndTools,
+    target: SlugifiedTopics.React,
+  },
+  {
+    source: SlugifiedTopics.FrameworksAndTools,
+    target: SlugifiedTopics.Architecture,
+  },
+
+  {
     source: SlugifiedTopics.Strategies,
     target: SlugifiedTopics.Extra,
   },
   {
+    source: SlugifiedTopics.Strategies,
+    target: SlugifiedTopics.Prefetch,
+  },
+  {
+    source: SlugifiedTopics.Strategies,
+    target: SlugifiedTopics.CacheAndMemoization,
+  },
+
+  {
     source: SlugifiedTopics.Extra,
     target: SlugifiedTopics.Community,
+  },
+  {
+    source: SlugifiedTopics.Extra,
+    target: SlugifiedTopics.UX,
+  },
+  {
+    source: SlugifiedTopics.Extra,
+    target: SlugifiedTopics.Sustainability,
+  },
+  {
+    source: SlugifiedTopics.Extra,
+    target: SlugifiedTopics.Backend,
+  },
+  {
+    source: SlugifiedTopics.Extra,
+    target: SlugifiedTopics.Books,
+  },
+  {
+    source: SlugifiedTopics.Extra,
+    target: SlugifiedTopics.Tweets,
   },
 ];
 
@@ -204,7 +299,7 @@ const Page: NextPage = () => {
         description="Learning & Improving with TK —— Web Performance Roadmap"
         imageUrl="/logo.jpeg"
       />
-      <ReactFlow elements={graph} defaultZoom={0.5} />
+      <ReactFlow elements={graph} defaultZoom={0.7} />
       <Dialog open={open} onClose={onClose} title={title} content={content} />
     </>
   );
