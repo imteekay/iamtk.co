@@ -1,11 +1,12 @@
 import type { NextPage } from 'next';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { posts } from 'data/posts';
 
 import { Dispatch, FC, SetStateAction } from 'react';
+import { requestRepoContents } from 'src/lib/repoContents';
 
 enum Topics {
   General = 'General',
@@ -330,6 +331,10 @@ const Page: NextPage = () => {
   const { title, content } = posts[id];
 
   const onClose = () => setOpen(false);
+
+  useEffect(() => {
+    requestRepoContents();
+  }, []);
 
   return (
     <>
