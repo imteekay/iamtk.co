@@ -41,42 +41,81 @@ enum SubTopics {
   CacheAndMemoization = 'Cache and Memoization',
 }
 
+const GeneralY = 50;
+const MetricsAndMeasurementsY = GeneralY + 200;
+const WebY = MetricsAndMeasurementsY + 200;
+const CaseStudiesY = WebY + 150;
+const FrameworksAndToolsY = CaseStudiesY + 100;
+const StrategiesY = FrameworksAndToolsY + 200;
+const ExtraY = StrategiesY + 250;
+const CommunityY = ExtraY + 200;
+
+const GeneralX = 1000;
+const MetricsAndMeasurementsX = GeneralX;
+const WebX = GeneralX;
+const CaseStudiesX = GeneralX;
+const FrameworksAndToolsX = GeneralX;
+const StrategiesX = GeneralX;
+const ExtraX = GeneralX;
+const CommunityX = GeneralX;
+
 const topicPosition = {
-  [Topics.General]: { y: 100, x: 500 },
+  [Topics.General]: { y: GeneralY, x: GeneralX },
 
-  [Topics.MetricsAndMeasurements]: { y: 300, x: 500 },
-  [SubTopics.CoreWebVitals]: { y: 200, x: 700 },
-  [SubTopics.PerformanceBudget]: { y: 300, x: 700 },
-  [SubTopics.MeasuringPerformance]: { y: 400, x: 700 },
+  [Topics.MetricsAndMeasurements]: {
+    y: MetricsAndMeasurementsY,
+    x: MetricsAndMeasurementsX,
+  },
+  [SubTopics.CoreWebVitals]: {
+    y: MetricsAndMeasurementsY - 100,
+    x: MetricsAndMeasurementsX + 200,
+  },
+  [SubTopics.PerformanceBudget]: {
+    y: MetricsAndMeasurementsY,
+    x: MetricsAndMeasurementsX + 200,
+  },
+  [SubTopics.MeasuringPerformance]: {
+    y: MetricsAndMeasurementsY + 100,
+    x: MetricsAndMeasurementsX + 200,
+  },
 
-  [Topics.Web]: { y: 500, x: 500 },
-  [SubTopics.CSS]: { y: 200, x: 0 },
-  [SubTopics.Images]: { y: 300, x: 0 },
-  [SubTopics.JavaScript]: { y: 400, x: 0 },
-  [SubTopics.Fonts]: { y: 500, x: 0 },
-  [SubTopics.WebAPIs]: { y: 600, x: 0 },
-  [SubTopics.Browser]: { y: 700, x: 0 },
-  [SubTopics.Infrastructure]: { y: 800, x: 0 },
+  [Topics.Web]: { y: WebY, x: WebX },
+  [SubTopics.CSS]: { y: WebY - 300, x: WebX - 400 },
+  [SubTopics.Images]: { y: WebY - 200, x: WebX - 400 },
+  [SubTopics.JavaScript]: { y: WebY - 100, x: WebX - 400 },
+  [SubTopics.Fonts]: { y: WebY, x: WebX - 400 },
+  [SubTopics.WebAPIs]: { y: WebY + 100, x: WebX - 400 },
+  [SubTopics.Browser]: { y: WebY + 200, x: WebX - 400 },
+  [SubTopics.Infrastructure]: { y: WebY + 300, x: WebX - 400 },
 
-  [Topics.CaseStudies]: { y: 650, x: 500 },
+  [Topics.CaseStudies]: { y: CaseStudiesY, x: CaseStudiesX },
 
-  [Topics.FrameworksAndTools]: { y: 750, x: 500 },
-  [SubTopics.BuildTools]: { y: 650, x: 750 },
-  [SubTopics.React]: { y: 750, x: 800 },
-  [SubTopics.Architecture]: { y: 850, x: 750 },
+  [Topics.FrameworksAndTools]: {
+    y: FrameworksAndToolsY,
+    x: FrameworksAndToolsX,
+  },
+  [SubTopics.BuildTools]: {
+    y: FrameworksAndToolsY - 100,
+    x: FrameworksAndToolsX + 250,
+  },
+  [SubTopics.React]: { y: FrameworksAndToolsY, x: FrameworksAndToolsX + 300 },
+  [SubTopics.Architecture]: {
+    y: FrameworksAndToolsY + 100,
+    x: FrameworksAndToolsX + 250,
+  },
 
-  [Topics.Strategies]: { y: 950, x: 500 },
-  [SubTopics.Prefetch]: { y: 880, x: 300 },
-  [SubTopics.CacheAndMemoization]: { y: 1020, x: 300 },
+  [Topics.Strategies]: { y: StrategiesY, x: StrategiesX },
+  [SubTopics.CacheAndMemoization]: { y: StrategiesY - 100, x: ExtraX - 200 },
+  [SubTopics.Prefetch]: { y: StrategiesY + 100, x: ExtraX - 200 },
 
-  [Topics.Extra]: { y: 1200, x: 500 },
-  [SubTopics.UX]: { y: 1000, x: 800 },
-  [SubTopics.Sustainability]: { y: 1100, x: 800 },
-  [SubTopics.Backend]: { y: 1200, x: 800 },
-  [SubTopics.Books]: { y: 1300, x: 800 },
-  [SubTopics.Tweets]: { y: 1400, x: 800 },
+  [Topics.Extra]: { y: ExtraY, x: ExtraX },
+  [SubTopics.UX]: { y: ExtraY - 200, x: ExtraX + 300 },
+  [SubTopics.Sustainability]: { y: ExtraY - 100, x: ExtraX + 300 },
+  [SubTopics.Backend]: { y: ExtraY, x: ExtraX + 300 },
+  [SubTopics.Books]: { y: ExtraY + 100, x: ExtraX + 300 },
+  [SubTopics.Tweets]: { y: ExtraY + 200, x: ExtraX + 300 },
 
-  [Topics.Community]: { y: 1400, x: 500 },
+  [Topics.Community]: { y: CommunityY, x: CommunityX },
 };
 
 function slugify(string: string) {
