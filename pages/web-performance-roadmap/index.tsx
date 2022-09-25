@@ -7,6 +7,30 @@ import { topics } from 'data/web-performance-topics-content';
 
 import { Dispatch, FC, SetStateAction } from 'react';
 
+type SlugifiedTopics =
+  | 'general'
+  | 'performance-budget'
+  | 'measuring-performance'
+  | 'core-web-vitals'
+  | 'browser'
+  | 'case-studies'
+  | 'cache-and-memoization'
+  | 'prefetching'
+  | 'images'
+  | 'ux'
+  | 'build-tools'
+  | 'react'
+  | 'javascript'
+  | 'web-apis'
+  | 'css'
+  | 'fonts'
+  | 'sustainability'
+  | 'backend'
+  | 'architecture'
+  | 'infrastructure'
+  | 'books'
+  | 'tweets';
+
 enum Topics {
   General = 'General',
   MetricsAndMeasurements = 'Metrics and Measurements',
@@ -67,7 +91,10 @@ const StrategiesX = GeneralX;
 const ExtraX = GeneralX;
 const CommunityX = GeneralX;
 
-const topicPosition = {
+type Position = { x: number; y: number };
+type TopicPosition = Record<Topics | SubTopics, Position>;
+
+const topicPosition: TopicPosition = {
   [Topics.General]: { y: GeneralY, x: GeneralX },
 
   [Topics.MetricsAndMeasurements]: {
@@ -132,7 +159,7 @@ function slugify(string: string) {
 
 const nodes = [...Object.values(Topics), ...Object.values(SubTopics)].map(
   (topic) => ({
-    id: slugify(topic),
+    id: slugify(topic) as SlugifiedTopics,
     text: topic,
     position: topicPosition[topic],
   }),
@@ -284,20 +311,20 @@ const graph = {
   edges,
 };
 
-type SetIdType = Dispatch<SetStateAction<string>>;
+type SetIdType = Dispatch<SetStateAction<SlugifiedTopics>>;
 type SetOpenType = Dispatch<SetStateAction<boolean>>;
 
 type NodePropTypes = {
   setId: SetIdType;
   setOpen: SetOpenType;
-  text: string;
-  id: string;
+  text: Topics | SubTopics;
+  id: SlugifiedTopics;
 };
 
 const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   <div
     onClick={() => {
-      if (!EmptyNodes.includes(text)) {
+      if (!(EmptyNodes as string[]).includes(text)) {
         setId(id);
         setOpen(true);
       }
@@ -334,7 +361,7 @@ const buildGraph = ({
 
 const Page: NextPage = () => {
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState<string>('');
+  const [id, setId] = useState<SlugifiedTopics>('general');
 
   const graph = useMemo(() => buildGraph({ setId, setOpen }), []);
   const content = topics[id];

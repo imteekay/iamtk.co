@@ -91,8 +91,34 @@ async function createWebPerformanceTopicsFile() {
   const content = await requestRepoContents();
 
   writeFile(
-    path.join(dataDir, 'web-performance-topics-content.js'),
-    'export const topics = ' + JSON.stringify(content),
+    path.join(dataDir, 'web-performance-topics-content.ts'),
+    `type SlugifiedTopics =
+    | 'general'
+    | 'performance-budget'
+    | 'measuring-performance'
+    | 'core-web-vitals'
+    | 'browser'
+    | 'case-studies'
+    | 'cache-and-memoization'
+    | 'prefetching'
+    | 'images'
+    | 'ux'
+    | 'build-tools'
+    | 'react'
+    | 'javascript'
+    | 'web-apis'
+    | 'css'
+    | 'fonts'
+    | 'sustainability'
+    | 'backend'
+    | 'architecture'
+    | 'infrastructure'
+    | 'books'
+    | 'tweets';
+  
+  type Topics = Record<SlugifiedTopics, string>;
+  
+    export const topics: Topics = ${JSON.stringify(content)}`,
   );
 }
 
