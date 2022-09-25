@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { css } from '@emotion/css';
 
 type LayoutPropTypes = {
-  title: string;
+  title?: string;
 };
 
 export const Layout: FC<LayoutPropTypes> = ({ children, title }) => (
@@ -12,24 +12,26 @@ export const Layout: FC<LayoutPropTypes> = ({ children, title }) => (
       itemScope
       itemType="http://schema.org/BlogPosting"
     >
-      <header>
-        <p
-          className={css`
-            letter-spacing: 0.01em;
-            font-size: 2em;
-            font-style: normal;
-            font-weight: 700;
-            color: white;
-            display: block;
-            margin-top: 0;
-            margin-bottom: 0;
-            text-transform: none;
-            line-height: 1.25;
-          `}
-        >
-          {title}
-        </p>
-      </header>
+      {title ? (
+        <header>
+          <p
+            className={css`
+              letter-spacing: 0.01em;
+              font-size: 2em;
+              font-style: normal;
+              font-weight: 700;
+              color: white;
+              display: block;
+              margin-top: 0;
+              margin-bottom: 0;
+              text-transform: none;
+              line-height: 1.25;
+            `}
+          >
+            {title}
+          </p>
+        </header>
+      ) : null}
       {children}
     </article>
   </div>

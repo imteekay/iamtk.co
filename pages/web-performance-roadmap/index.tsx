@@ -1,12 +1,11 @@
 import type { NextPage } from 'next';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
-import { posts } from 'data/posts';
+import { topics } from 'data/web-performance-topics-content';
 
 import { Dispatch, FC, SetStateAction } from 'react';
-import { requestRepoContents } from 'src/lib/repoContents';
 
 enum Topics {
   General = 'General',
@@ -27,7 +26,7 @@ enum SubTopics {
   Images = 'Images',
   JavaScript = 'JavaScript',
   Fonts = 'Fonts',
-  WebAPIs = 'WebAPIs',
+  WebAPIs = 'Web APIs',
   BuildTools = 'Build Tools',
   React = 'React',
   Architecture = 'Architecture',
@@ -38,9 +37,17 @@ enum SubTopics {
   Backend = 'Backend',
   UX = 'UX',
   Sustainability = 'Sustainability',
-  Prefetch = 'Prefetch',
+  Prefetching = 'Prefetching',
   CacheAndMemoization = 'Cache and Memoization',
 }
+
+const EmptyNodes = [
+  Topics.MetricsAndMeasurements,
+  Topics.Web,
+  Topics.FrameworksAndTools,
+  Topics.Strategies,
+  Topics.Extra,
+];
 
 const GeneralY = 50;
 const MetricsAndMeasurementsY = GeneralY + 200;
@@ -107,7 +114,7 @@ const topicPosition = {
 
   [Topics.Strategies]: { y: StrategiesY, x: StrategiesX },
   [SubTopics.CacheAndMemoization]: { y: StrategiesY - 100, x: ExtraX - 200 },
-  [SubTopics.Prefetch]: { y: StrategiesY + 100, x: ExtraX - 200 },
+  [SubTopics.Prefetching]: { y: StrategiesY + 100, x: ExtraX - 200 },
 
   [Topics.Extra]: { y: ExtraY, x: ExtraX },
   [SubTopics.UX]: { y: ExtraY - 200, x: ExtraX + 300 },
@@ -239,7 +246,7 @@ const edges = [
   },
   {
     source: SlugifiedTopics.Strategies,
-    target: SlugifiedTopics.Prefetch,
+    target: SlugifiedTopics.Prefetching,
   },
   {
     source: SlugifiedTopics.Strategies,
@@ -277,21 +284,23 @@ const graph = {
   edges,
 };
 
-type SetIdType = Dispatch<SetStateAction<number>>;
+type SetIdType = Dispatch<SetStateAction<string>>;
 type SetOpenType = Dispatch<SetStateAction<boolean>>;
 
 type NodePropTypes = {
   setId: SetIdType;
   setOpen: SetOpenType;
   text: string;
-  id: number;
+  id: string;
 };
 
 const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   <div
     onClick={() => {
-      setId(id);
-      setOpen(true);
+      if (!EmptyNodes.includes(text)) {
+        setId(id);
+        setOpen(true);
+      }
     }}
   >
     {text}
@@ -306,7 +315,7 @@ const buildGraph = ({
   setOpen: SetOpenType;
 }) => {
   const nodes = graph.nodes.map(({ id, text, position }) => ({
-    id: id.toString(),
+    id,
     data: {
       label: <Node setId={setId} setOpen={setOpen} text={text} id={id} />,
     },
@@ -325,16 +334,12 @@ const buildGraph = ({
 
 const Page: NextPage = () => {
   const [open, setOpen] = useState(false);
-  const [id, setId] = useState(0);
+  const [id, setId] = useState<string>('');
 
   const graph = useMemo(() => buildGraph({ setId, setOpen }), []);
-  const { title, content } = posts[id];
+  const content = topics[id];
 
   const onClose = () => setOpen(false);
-
-  useEffect(() => {
-    requestRepoContents();
-  }, []);
 
   return (
     <>
@@ -344,7 +349,7 @@ const Page: NextPage = () => {
         imageUrl="/logo.jpeg"
       />
       <ReactFlow elements={graph} defaultZoom={0.7} />
-      <Dialog open={open} onClose={onClose} title={title} content={content} />
+      <Dialog open={open} onClose={onClose} content={content} />
     </>
   );
 };

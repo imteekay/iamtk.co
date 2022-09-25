@@ -5,7 +5,7 @@ import { Layout } from 'Base/LinksGraph/Layout';
 type DialogPropsType = {
   open: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   content: string;
 };
 
