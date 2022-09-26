@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
+
+import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { posts } from 'data/posts';
@@ -15,9 +17,7 @@ const Page: NextPage = () => {
 
   const onClose = () => setOpen(false);
 
-  useEffect(() => {
-    document.querySelector('.react-flow__attribution')?.remove();
-  }, []);
+  useReactFlowAttributionRemoval();
 
   return (
     <>

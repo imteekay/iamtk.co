@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
-import { useEffect, useMemo, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
+
+import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { topics } from 'data/web-performance-topics-content';
-
-import { Dispatch, FC, SetStateAction } from 'react';
 
 type SlugifiedTopics =
   | 'general'
@@ -368,9 +368,7 @@ const Page: NextPage = () => {
 
   const onClose = () => setOpen(false);
 
-  useEffect(() => {
-    document.querySelector('.react-flow__attribution')?.remove();
-  }, []);
+  useReactFlowAttributionRemoval();
 
   return (
     <>
