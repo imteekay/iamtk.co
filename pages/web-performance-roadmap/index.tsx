@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
@@ -356,17 +356,21 @@ const buildGraph = ({
     animated: true,
   }));
 
-  return [...nodes, ...edges];
+  return { nodes, edges };
 };
 
 const Page: NextPage = () => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState<SlugifiedTopics>('general');
 
-  const graph = useMemo(() => buildGraph({ setId, setOpen }), []);
+  const { nodes, edges } = useMemo(() => buildGraph({ setId, setOpen }), []);
   const content = topics[id];
 
   const onClose = () => setOpen(false);
+
+  useEffect(() => {
+    document.querySelector('.react-flow__attribution')?.remove();
+  }, []);
 
   return (
     <>
@@ -375,7 +379,7 @@ const Page: NextPage = () => {
         description="Learning & Improving with TK —— Web Performance Roadmap"
         imageUrl="/logo.jpeg"
       />
-      <ReactFlow elements={graph} defaultZoom={0.7} />
+      <ReactFlow nodes={nodes} edges={edges} defaultZoom={0.7} fitView />
       <Dialog open={open} onClose={onClose} content={content} />
     </>
   );

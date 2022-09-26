@@ -113,5 +113,5 @@ export const buildGraph = ({
     animated: true,
   }));
 
-  return [...nodes, ...edges];
+  return { nodes, edges };
 };
