@@ -38,6 +38,7 @@ const topics = [
   'build-tools',
   'books',
   'tweets',
+  'community',
 ];
 
 function highlight(code: string, lang: string) {
@@ -114,7 +115,8 @@ async function createWebPerformanceTopicsFile() {
     | 'architecture'
     | 'infrastructure'
     | 'books'
-    | 'tweets';
+    | 'tweets'
+    | 'community';
   
   type Topics = Record<SlugifiedTopics, string>;
   
