@@ -36,6 +36,7 @@ This is live document and will be updated everytime I solve new problems.
 - <time class="date">2021-06-15</time> <span>[029: Check Permutation](https://leandrotk.github.io/series/algorithms-problem-solving/minimum-operations.html)</span>
 - <time class="date">2022-02-22</time> <span>[030: Decode String](/series/algorithms-problem-solving/decode-string)</span>
 - <time class="date">2022-07-10</time> <span>[031: Decode the Message](/series/algorithms-problem-solving/decode-the-message)</span>
+- <time class="date">2022-09-30</time> <span>[032: Convert Sorted Array to Binary Search Tree](/series/algorithms-problem-solving/convert-sorted-array-to-binary-search-tree)</span>
 
 Have fun, keep learning, and always keep coding!
 
