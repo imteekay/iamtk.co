@@ -1,0 +1,23 @@
+{
+  "title": "Algorithms Problem Solving: Convert Sorted Array to Binary Search Tree",
+  "description": "Solving algorithms problems: decode string",
+  "date": "2022-09-30",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/algorithms-problem-solving/jewel.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "a diamond",
+    "authorHref": "https://unsplash.com/@fakurian",
+    "authorName": "Milad Fakurian"
+  }
+}
