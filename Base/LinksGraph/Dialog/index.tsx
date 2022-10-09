@@ -5,17 +5,27 @@ import { Layout } from 'Base/LinksGraph/Layout';
 type DialogPropsType = {
   open: boolean;
   onClose: () => void;
-  title: string;
+  title?: string;
   content: string;
 };
 
-const DarkDialog = styled(MuiDialog)(() => ({
+const DarkDialog = styled(MuiDialog)(({ theme }) => ({
   '& .MuiPaper-root': {
     'background-color': '#222222',
+    'max-width': '700px',
     color: 'white',
     '& .content': {
       margin: 0,
-      padding: '40px',
+      padding: '40px 20px',
+      [theme.breakpoints.up('md')]: {
+        padding: '40px',
+      },
+      '& ul': {
+        'padding-left': '4px',
+      },
+      '& li': {
+        display: 'block',
+      },
     },
   },
 }));

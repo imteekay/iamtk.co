@@ -1,6 +1,8 @@
 import type { NextPage } from 'next';
 import { useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
+
+import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { posts } from 'data/posts';
@@ -10,10 +12,12 @@ const Page: NextPage = () => {
   const [open, setOpen] = useState(false);
   const [id, setId] = useState(0);
 
-  const graph = useMemo(() => buildGraph({ setId, setOpen }), []);
+  const { nodes, edges } = useMemo(() => buildGraph({ setId, setOpen }), []);
   const { title, content } = posts[id];
 
   const onClose = () => setOpen(false);
+
+  useReactFlowAttributionRemoval();
 
   return (
     <>
@@ -22,7 +26,7 @@ const Page: NextPage = () => {
         description="Learning & Improving with TK —— Links Graph"
         imageUrl="/logo.jpeg"
       />
-      <ReactFlow elements={graph} defaultZoom={0.5} />
+      <ReactFlow nodes={nodes} edges={edges} defaultZoom={0.5} fitView />
       <Dialog open={open} onClose={onClose} title={title} content={content} />
     </>
   );

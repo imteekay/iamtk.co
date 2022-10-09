@@ -33,6 +33,19 @@ div#__next {
   height: 100%;
 }
 
+article h1 {
+  letter-spacing: 0.01em;
+  font-size: 2em;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-transform: none;
+  line-height: 1.25;
+}
+
 article h2 {
   position: relative;
   font-size: 1.7rem;
