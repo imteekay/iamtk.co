@@ -375,7 +375,7 @@ const Page: NextPage = () => {
       <Head
         title="TK —— Web Performance Roadmap"
         description="Learning & Improving with TK —— Web Performance Roadmap"
-        imageUrl="/logo.jpeg"
+        imageUrl="/web-performance-roadmap.png"
       />
       <ReactFlow nodes={nodes} edges={edges} defaultZoom={0.7} fitView />
       <Dialog open={open} onClose={onClose} content={content} />
