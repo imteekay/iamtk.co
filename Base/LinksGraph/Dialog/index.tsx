@@ -1,6 +1,5 @@
 import MuiDialog from '@mui/material/Dialog';
 import { styled } from '@mui/material/styles';
-import {} from '@mui/material/useMediaQuery';
 import { Layout } from 'Base/LinksGraph/Layout';
 
 type DialogPropsType = {
@@ -13,6 +12,7 @@ type DialogPropsType = {
 const DarkDialog = styled(MuiDialog)(({ theme }) => ({
   '& .MuiPaper-root': {
     'background-color': '#222222',
+    'max-width': '700px',
     color: 'white',
     '& .content': {
       margin: 0,
