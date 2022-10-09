@@ -386,4 +386,6 @@ For this post, the articles that helped me doing these improvements are down bel
 - [The Right Way to Bundle Your Assets for Faster Sites over HTTP/2](https://medium.com/@asyncmax/the-right-way-to-bundle-your-assets-for-faster-sites-over-http-2-437c37efe3ff)
 - [Bundling JavaScript files](https://blog.khanacademy.org/forgo-js-packaging-not-so-fast)
 
+If you are a visual person, I created this visual roadmap to learn web performance based on the webperf research repo: [Web Performance Roadmap](/web-performance-roadmap).
+
 Well, this is it for today. I hope it can be helpful for you. Keep studying and coding! Until next time.

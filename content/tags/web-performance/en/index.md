@@ -1,5 +1,7 @@
 <div class="tags">
 
+Follow the [Web Performance Research repo](https://github.com/imteekay/web-performance-research) and the [Web Performance Roadmap](/web-performance-roadmap).
+
 ## 2022
 
 - <time class="date">2022-09-12</time> <span>[Web performance, code splitting strategies, and a React case study](/web-performance-code-splitting-strategies-and-react-applications)</span>

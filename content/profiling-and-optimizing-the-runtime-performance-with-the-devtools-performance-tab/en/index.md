@@ -263,3 +263,5 @@ Things on my To Do list:
 There are many resources about web performance out there. If you are interested in this topic, you should definitely follow the [Web Performance Research repository](https://github.com/imteekay/web-performance-research).
 
 There I'll be updating with new resources, doing more research, and writing my findings.
+
+If you are a visual person, I created this visual roadmap to learn web performance based on the webperf research repo: [Web Performance Roadmap](/web-performance-roadmap).

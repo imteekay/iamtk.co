@@ -10,4 +10,6 @@ And the third is about sustainability. The web uses a great amount of electricit
 
 If you think the web is the digital infrastructure for people and you have the possibility to make it better for everyone to use it, I definitely want to be part of it.
 
-Join me in this purpose of making the web faster and better for everyone. Follow the [research of Web performance](https://github.com/imteekay/web-performance-research)
+Join me in this purpose of making the web faster and better for everyone. Follow the [research of Web performance](https://github.com/imteekay/web-performance-research).
+
+If you are a visual person, I created this visual roadmap to learn web performance based on the webperf research repo: [Web Performance Roadmap](/web-performance-roadmap).
