@@ -21,7 +21,10 @@ const DarkDialog = styled(MuiDialog)(({ theme }) => ({
         padding: '40px',
       },
       '& ul': {
-        'padding-left': '25px',
+        'padding-left': '4px',
+      },
+      '& li': {
+        display: 'block',
       },
     },
   },
