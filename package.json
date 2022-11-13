@@ -53,6 +53,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "husky": ">=6",
     "lint-staged": ">=10",
+    "next-mdx-remote": "^4.2.0",
     "prettier": "^2.4.1",
     "typescript": "4.6.3"
   },

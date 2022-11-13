@@ -46,7 +46,7 @@ export function getNestedPostContent(
   locale: Locale = Language.EN,
 ) {
   const postsDir = path.join(process.cwd(), 'content', folder);
-  const postPath = path.join(postsDir, post, locale, 'index.md');
+  const postPath = path.join(postsDir, post, locale, 'index.mdx');
   const postContent = fs.readFileSync(postPath, 'utf8');
   const { minutes } = readingTime(postContent);
 

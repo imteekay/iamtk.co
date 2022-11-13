@@ -2,6 +2,9 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -15,34 +18,39 @@ interface Params extends ParsedUrlQuery {
   series: string;
 }
 
+type Content = MDXRemoteSerializeResult<
+  Record<string, unknown>,
+  Record<string, string>
+>;
+
 type PageProps = {
-  postContent: string;
+  content: Content;
   postMetadata: PostMetadata;
   minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
-  return (
-    <>
-      <Head
-        title={postMetadata.title}
-        description={postMetadata.description}
-        imageUrl={postMetadata.coverImage.src}
-      />
-      <Layout
-        tags={postMetadata.tags}
-        title={postMetadata.title}
-        date={postMetadata.date}
-        alternativeArticle={postMetadata.alternativeArticle}
-        minutes={minutes}
-        showSocialLinks
-        coverImage={postMetadata.coverImage}
-      >
-        <div dangerouslySetInnerHTML={{ __html: postContent }} />
-      </Layout>
-    </>
-  );
-};
+const components = {};
+
+const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
+  <>
+    <Head
+      title={postMetadata.title}
+      description={postMetadata.description}
+      imageUrl={postMetadata.coverImage.src}
+    />
+    <Layout
+      tags={postMetadata.tags}
+      title={postMetadata.title}
+      date={postMetadata.date}
+      alternativeArticle={postMetadata.alternativeArticle}
+      minutes={minutes}
+      showSocialLinks
+      coverImage={postMetadata.coverImage}
+    >
+      <MDXRemote {...content} components={components} />
+    </Layout>
+  </>
+);
 
 export async function getStaticPaths() {
   return {
@@ -57,11 +65,12 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { series } = context.params!;
   const { postContent, minutes } = getNestedPostContent('series', series);
   const postMetadata = getNestedPostMetadata('series', series);
+  const content = await serialize(postContent);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
-      postContent,
+      content,
       postMetadata: {
         ...postMetadata,
         coverImage: {
