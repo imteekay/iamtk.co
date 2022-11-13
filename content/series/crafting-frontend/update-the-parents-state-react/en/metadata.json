@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: React — Update the Parent's State",
+  "description": "How can I update the parent's state in React?",
+  "date": "2022-11-13",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/cover.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "A person crafting a tool with a hammer",
+    "authorHref": "https://unsplash.com/@mlightbody",
+    "authorName": "Malcolm Lightbody"
+  }
+}
