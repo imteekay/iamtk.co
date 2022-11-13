@@ -5,6 +5,7 @@ import { getPlaiceholder } from 'plaiceholder';
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 
+import { PostAndDate } from 'Base/components/PostAndDate';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -29,7 +30,9 @@ type PageProps = {
   minutes: number;
 };
 
-const components = {};
+const components = {
+  PostAndDate,
+};
 
 const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
   <>
