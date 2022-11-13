@@ -7,6 +7,13 @@ export const seriesList = [
     rel: '',
   },
   {
+    link: '/series/crafting-frontend',
+    title: 'Crafting Frontend',
+    description: 'Research, studies, and practice on the craft of frontend',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/mastering-javascript',
     title: 'Mastering JavaScript',
     description: 'The process to master JavaScript',
