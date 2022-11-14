@@ -58,7 +58,7 @@ This is also interesting because we can map the user-centric metrics to the perf
 
 I built a simple table to map the performance metrics to the user-centric metrics to be easier to understand each acronym.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/metrics-table.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/metrics-table.png" />
 
 As I said earlier, this relation is very interesting and makes us focus not only on bits and bytes but also on the user experience as a whole.
 
@@ -133,7 +133,7 @@ We started with our landing page. The first action was to analyze the JavaScript
 
 And this is what we got:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/react-on-lp.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/react-on-lp.png" />
 
 We can analyze a lot of things here, but one that got our attention was the React library in our landing page bundle. As I wrote above, in the side note, React is not being used in production, and we are unintentionally serving it in production making our users download the library without the need to do this.
 
@@ -169,7 +169,7 @@ import { A_CONSTANT } from 'components/XYZ/constants';
 
 Let's see the bundle size impact after this change:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/befor-after-react.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/befor-after-react.png" />
 
 We reduced 95KB! It's interesting to think we can have a huge impact on a small change after carefully analyzing our bundles. This will be the process behind each improvement we did for the rest of this article:
 
@@ -179,7 +179,7 @@ We reduced 95KB! It's interesting to think we can have a huge impact on a small 
 
 We run again the bundle analyzer and we got this:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/lp-with-appboy.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/lp-with-appboy.png" />
 
 The first things that got our attention were the `appboy.min.js` and the `transit.js` libraries. The `appboy` is the Braze, a library we use for communication, and the `transit` is a library to transform JSON format data into our app state.
 
@@ -205,7 +205,7 @@ export const aFunction = (brazeInstance) => {
 
 Running the bundle analyzer again, we got an astonishing result.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/before-after-appboy.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/before-after-appboy.png" />
 
 The AnnounceYourHouse landing page was reduced to 90 KB. We could remove almost 50% of the main landing bundle.
 
@@ -215,7 +215,7 @@ For the `transit` library, we did a temporary workaround solution. It was import
 
 The temporary solution was to verify if the string included the info we wanted and remove the need to use the `transit` library.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/befor-after-transit-js.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/befor-after-transit-js.png" />
 
 We could improved a lot the bundle size of the main landing. Removing almost 50% of the bundle.
 
@@ -223,21 +223,21 @@ As we saw in the metrics section, we had set up the Speed Curve to track the per
 
 The total size of the landing page reduced drastically: -2.16 MB.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-total-size.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-total-size.png" />
 
 The Lighthouse Performance score was from 73 to 97:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-lighthouse-score.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-lighthouse-score.png" />
 
 The Largest Contentful Paint was improved in 1s:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-lcp.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-lcp.png" />
 
 ### Vendor Chunk
 
 When running `npm run bundle:analyzer`, we also notice a big dependency in our vendor chunk.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/vendor-icons.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/vendor-icons.png" />
 
 In the vendor chunk, we noticed all the icons from Material UI. Every time a user enters the website, and if the chunk is not cached in the browser, it would need to download the whole chunk. If it's a big chunk to download, it has an impact on the performance and consequently on the user experience.
 
@@ -274,11 +274,11 @@ We basically needed to add this new babel plugin `babel-plugin-transform-imports
 
 And with it, we prevent the full import of the library in the vendor chunk.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/before-after-material-ui.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/before-after-material-ui.png" />
 
 The vendor became way smaller. We also had some impact in the main chunk (the next chunk will talk soon).
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/results-material-ui.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/results-material-ui.png" />
 
 With this simple analysis and configuration, we could reduce the vendor chunk by more than 50% (it's still 2.83 MB and could be improved. We will see later!) and the main chunk by 28%.
 
@@ -288,7 +288,7 @@ A huge improvement for the whole app as these chunks were downloaded on each pag
 
 The main chunk has some common modules among all parts of the application. But after running the bundle analyzer, we got this:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/main-chunk-before.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/main-chunk-before.png" />
 
 The main chunk is the bottom-left block in the bundle. One thing that got our attention was some containers and components in the bundle. Why are there some components that are specific to only one page but we are making our users download the whole main chunk?
 
@@ -311,11 +311,11 @@ And use them for each route entry point.
 
 Running bundle analyzer, we got this:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/main-chunk-after.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/main-chunk-after.png" />
 
 The main chunk is way smaller and Webpack created more page-specific chunks as well.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/results-code-splitting.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/results-code-splitting.png" />
 
 The result was huge. The main chunk got more than 50% smaller and the vendor chunk also decreased by 29%.
 
@@ -333,7 +333,7 @@ As we were using Webpack 3 at that time, we needed to use the `CommonsChunkPlugi
 
 We created a list of all biggest dependencies:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/biggest-deps-table.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/biggest-deps-table.png" />
 
 It was mapped as a list data structure in our Webpack config as well:
 
@@ -376,17 +376,17 @@ const VENDOR_LIBRARIES = [
 
 Along with `CommonsChunkPlugin`, we just needed to iterate through this list to create each chunk.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/biggest-deps-later.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/biggest-deps-later.png" />
 
 We can see that the vendor chunk got way smaller and some new chunks were created.
 
 Running the application, we can also test the download of each separate chunk.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/biggest-deps-network.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/biggest-deps-network.png" />
 
 And we got a really cool result:
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/results-biggest-deps.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/results-biggest-deps.png" />
 
 The user still needs to download the dependencies, but after download the first time, the browser will cache them and they won't need to be downloaded again until we bump their version. If we change the vendor chunk, Webpack only generates a new hash for the vendor and doesn't change the other dependencies.
 
@@ -394,19 +394,19 @@ We saw some nice improvements in the Speed Curve dashboard:
 
 As expected, we saw a huge improvement in the JavaScript size: -1.43 MB
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-total-size-home.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-total-size-home.png" />
 
 Decreasing the JavaScript size also had an impact on the total time the user is blocked to interact with the page: -1.2s
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-js-total-blocking-time-home.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-js-total-blocking-time-home.png" />
 
 The speed index is a metric to show how quickly the contents of a page are visibly populated. We improved the page to load 2.2s faster.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-speed-index-home.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-speed-index-home.png" />
 
 And the largest contentful paint went from 6s to 3.75s.
 
-<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-lcp-home.png">
+<img src="/optimizing-the-performance-of-a-react-progressive-web-app/speed-curve-lcp-home.png" />
 
 ## Recap
 

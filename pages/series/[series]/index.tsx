@@ -3,9 +3,9 @@ import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import { PostAndDate } from 'Base/components/PostAndDate';
+import { MDX } from 'Base/components/MDX';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -30,10 +30,6 @@ type PageProps = {
   minutes: number;
 };
 
-const components = {
-  PostAndDate,
-};
-
 const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
   <>
     <Head
@@ -50,7 +46,7 @@ const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
       showSocialLinks
       coverImage={postMetadata.coverImage}
     >
-      <MDXRemote {...content} components={components} />
+      <MDX content={content} />
     </Layout>
   </>
 );

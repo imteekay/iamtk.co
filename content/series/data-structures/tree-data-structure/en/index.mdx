@@ -9,11 +9,8 @@ This post is to help you better understand the Tree Data Structure and to clarif
 In this article, we will learn:
 
 - What is a tree
-
 - Examples of trees
-
 - Its terminology and how it works
-
 - How to implement tree structures in code.
 
 Let’s start this learning journey. :)
@@ -75,17 +72,11 @@ The `depth` of a `node` is the length of the path to its `root`.
 ### Terminology summary
 
 - **Root **is the topmost `node` of the `tree`
-
 - **Edge **is the link between two `nodes`
-
 - **Child **is a `node` that has a `parent node`
-
 - **Parent **is a `node` that has an `edge` to a `child node`
-
 - **Leaf **is a `node` that does not have a `child node` in the `tree`
-
 - **Height **is the length of the longest path to a `leaf`
-
 - **Depth **is the length of the path to its `root`
 
 ### Binary trees
@@ -142,7 +133,6 @@ We will implement a method to insert a new `node` to the `right` and to the `lef
 Here are the rules:
 
 - If the current `node` doesn’t have a `left child`, we just create a new `node`and set it to the current node’s `left_child`.
-
 - If it does have the `left child`, we create a new node and put it in the current `left child`’s place. Allocate this `left child node` to the new node’s `left child`.
 
 Let’s draw it out. :)
@@ -186,17 +176,11 @@ Let’s build the following`tree`:
 To summarize the illustration of this tree:
 
 - `a` `node` will be the `root` of our `binary Tree`
-
 - `a` `left child` is `b` `node`
-
 - `a` `right child` is `c` `node`
-
 - `b` `right child` is `d` `node` (`b` `node` doesn’t have a `left child`)
-
 - `c` `left child` is `e` `node`
-
 - `c` `right child` is `f` `node`
-
 - both `e` and `f` `nodes` do not have children
 
 So here is the code for the `tree`:
@@ -232,7 +216,6 @@ Now we have to think about `tree` traversal.
 We have **two options** here: **Depth-First Search (DFS)** and **Breadth-First Search (BFS)**.
 
 - [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
-
 - [Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
 
 So let’s dive into each tree traversal type.
@@ -250,17 +233,11 @@ Why?
 Let’s break it down.
 
 2. Go to the `left child` (2). Print it.
-
 3. Then go to the `left child` (3). Print it. (This `node` doesn’t have any children)
-
 4. Backtrack and go the `right child` (4). Print it. (This `node` doesn’t have any children)
-
 5. Backtrack to the `root` `node` and go to the `right child` (5). Print it.
-
 6. Go to the `left child` (6). Print it. (This `node` doesn’t have any children)
-
 7. Backtrack and go to the `right child` (7). Print it. (This `node` doesn’t have any children)
-
 8. Done.
 
 When we go deep to the leaf and backtrack, this is called **DFS** algorithm.
@@ -337,9 +314,7 @@ Here is an example that helps to better explain this algorithm:
 So we traverse level by level. In this example, the result is 1–2–5–3–4–6–7.
 
 - Level/Depth 0: only `node` with value 1
-
 - Level/Depth 1: `nodes` with values 2 and 5
-
 - Level/Depth 2: `nodes` with values 3, 4, 6, and 7
 
 Now let’s code it.
@@ -379,9 +354,7 @@ An important property of a `Binary Search Tree` is that the value of a `Binary S
 Here is a breakdown of the above illustration:
 
 - **A **is inverted. The `subtree` 7–5–8–6 needs to be on the right side, and the `subtree` 2–1–3 needs to be on the left.
-
 - **B **is the only correct option. It satisfies the `Binary Search Tree` property.
-
 - **C **has one problem: the `node` with the value 4. It needs to be on the left side of the `root` because it is smaller than 5.
 
 ### Let’s code a Binary Search Tree!
@@ -403,17 +376,11 @@ The first thing we need to know is if 50 is the `root` of our tree.
 We can now start inserting `node` by `node`.
 
 - 76 is greater than 50, so insert 76 on the right side.
-
 - 21 is smaller than 50, so insert 21 on the left side.
-
 - 4 is smaller than 50. `Node` with value 50 has a `left child` 21. Since 4 is smaller than 21, insert it on the left side of this `node`.
-
 - 32 is smaller than 50. `Node` with value 50 has a `left child` 21. Since 32 is greater than 21, insert 32 on the right side of this `node`.
-
 - 100 is greater than 50. `Node` with value 50 has a `right child` 76. Since 100 is greater than 76, insert 100 on the right side of this `node`.
-
 - 64 is greater than 50. `Node` with value 50 has a `right child `76. Since 64 is smaller than 76, insert 64 on the left side of this `node`.
-
 - 52 is greater than 50. `Node` with value 50 has a `right child `76. Since 52 is smaller than 76, `node` with value 76 has a `left child` 64. 52 is smaller than 64, so insert 54 on the left side of this `node`.
 
 ![](https://cdn-images-1.medium.com/max/1600/1*LlLDNx7wgJfH6VAGnyAbIQ.jpeg)
@@ -485,9 +452,7 @@ class BinarySearchTree:
 Let’s beak down the code:
 
 - Lines 8 and 9 fall under rule #1.
-
 - Lines 10 and 11 fall under rule #2.
-
 - Line 13 falls under rule #3.
 
 How do we test it?
