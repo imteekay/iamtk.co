@@ -2,7 +2,7 @@ This is part of my series on [Elixir Learnings](/series/elixir-learnings), where
 
 `div` and `rem` stand for `division` and `remainder`. We can get the result of a division between two numbers.
 
-```elixir
+```ruby
 div 10, 2 # 5
 div 10, 3 # 3
 div 10, 4 # 2
@@ -11,7 +11,7 @@ div 10, 5 # 2
 
 And the remaining:
 
-```elixir
+```ruby
 rem 10, 2 # 0
 rem 10, 3 # 1
 rem 10, 4 # 2
@@ -24,7 +24,7 @@ The big box can be filled with 50 matchsticks. The medium: 20. And the small: 5.
 
 To solve this problem, I start with the big box. For a number `N`, how many big boxes I can use? I can use the `div` function to get this information: `div(N, 50)`. As I filled the big boxes, I need to get the remaining matchsticks to do the same thing with the medium and small boxes.
 
-```elixir
+```ruby
 big = div(matchsticks, 50)
 remaining_after_big = rem(matchsticks, 50)
 
@@ -37,7 +37,7 @@ remaining_matchsticks = rem(remaining_after_medium, 5)
 
 With this, I have the `big`, the `medium`, the `small`, and the `remaining_matchsticks`. And I can return this whole information with a map object.
 
-```elixir
+```ruby
 def boxes(matchsticks) do
   big = div(matchsticks, 50)
   remaining_after_big = rem(matchsticks, 50)
@@ -59,7 +59,7 @@ end
 
 I can also build this function inside a module:
 
-```elixir
+```ruby
 defmodule MatchstickFactory do
   def boxes(matchsticks) do
     big = div(matchsticks, 50)
@@ -83,7 +83,7 @@ end
 
 And test it:
 
-```elixir
+```ruby
 MatchstickFactory.boxes(98) # %{big: 1, medium: 2, remaining_matchsticks: 3, small: 1}
 MatchstickFactory.boxes(39) # %{big: 0, medium: 1, remaining_matchsticks: 4, small: 3}
 ```
