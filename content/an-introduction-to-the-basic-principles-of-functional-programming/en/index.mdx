@@ -29,7 +29,7 @@ So how do we know if a function is `pure` or not? Here is a very strict definiti
 
 Imagine we want to implement a function that calculates the area of a circle. An impure function would receive `radius` as the parameter, and then calculate `radius * radius * PI`. In Clojure, the operator comes first, so `radius * radius * PI` becomes `(* radius radius PI)`:
 
-```clojure
+```cjs
 (def PI 3.14)
 
 (defn calculate-area
@@ -45,7 +45,7 @@ Now imagine some mathematicians argue that the `PI` value is actually `42` and c
 
 Our impure function will now result in `10 * 10 * 42` = `4200`. For the same parameter (`radius = 10`), we have a different result. Let's fix it!
 
-```clojure
+```cjs
 (def PI 3.14)
 
 (defn calculate-area
@@ -65,7 +65,7 @@ TA-DA 🎉! Now we’ll always pass the`PI` value as a parameter to the function
 
 If our function reads external files, it’s not a pure function — the file’s contents can change.
 
-```clojure
+```cjs
 (defn characters-counter
   [text]
   (str "Character count: " (count text)))
@@ -81,7 +81,7 @@ If our function reads external files, it’s not a pure function — the file’
 
 Any function that relies on a random number generator cannot be pure.
 
-```clojure
+```cjs
 (defn year-end-evaluation
   []
   (if (> (rand) 0.5)
@@ -95,7 +95,7 @@ Examples of observable side effects include modifying a global object or a param
 
 Now we want to implement a function to receive an integer value and return the value increased by 1.
 
-```clojure
+```cjs
 (def counter 1)
 
 (defn increase-counter
@@ -112,7 +112,7 @@ We have the `counter` value. Our impure function receives that value and re-assi
 
 We are modifying the global object. But how would we make it `pure`? Just return the value increased by 1. Simple as that.
 
-```clojure
+```cjs
 (def counter 1)
 
 (defn increase-counter
@@ -140,7 +140,7 @@ unit test pure functions with different contexts:
 
 A simple example would be a function to receive a collection of numbers and expect it to increment each element of this collection.
 
-```clojure
+```cjs
 (defn increment-numbers
   [numbers]
   (map inc numbers))
@@ -148,7 +148,7 @@ A simple example would be a function to receive a collection of numbers and expe
 
 We receive the `numbers` collection, use `map` with the `inc` function to increment each number, and return a new list of incremented numbers.
 
-```clojure
+```cjs
 (= [2 3 4 5 6] (increment-numbers [1 2 3 4 5])) ;; true
 ```
 
@@ -176,7 +176,7 @@ sumOfValues; // 15
 
 For each iteration, we are changing the `i` and the `sumOfValue` **state**. But how do we handle mutability in iteration? Recursion! Back to Clojure!
 
-```clojure
+```cjs
 (defn sum
   [values]
   (loop [vals values
@@ -222,7 +222,7 @@ But we are mutating the input state in this process.
 
 We can handle this mutation by doing function composition, or function chaining. In other words, the result of a function will be used as an input for the next function, without modifying the original input string.
 
-```clojure
+```cjs
 (defn slugify
   [string]
   (clojure.string/replace
@@ -244,7 +244,7 @@ We combine all three functions and we can `"slugify"` our string.
 
 Speaking of **combining functions**, we can use the `comp` function to compose all three functions. Let's take a look:
 
-```clojure
+```cjs
 (defn slugify
   [string]
   ((comp #(clojure.string/replace % #" " "-")
@@ -259,7 +259,7 @@ Speaking of **combining functions**, we can use the `comp` function to compose a
 
 Let’s implement a `square function`:
 
-```clojure
+```cjs
 (defn square
   [n]
   (* n n))
@@ -267,7 +267,7 @@ Let’s implement a `square function`:
 
 This (pure) function will always have the same output, given the same input.
 
-```clojure
+```cjs
 (square 2) ;; 4
 (square 2) ;; 4
 (square 2) ;; 4
@@ -282,13 +282,13 @@ Basically, if a function consistently yields the same result for the same input,
 
 With this concept, a cool thing we can do is to memoize the function. Imagine we have this function:
 
-```clojure
+```cjs
 (+ 3 (+ 5 8))
 ```
 
 The `(+ 5 8)` equals `13`. This function will always result in `13`. So we can do this:
 
-```clojure
+```cjs
 (+ 3 13)
 ```
 
@@ -312,7 +312,7 @@ The idea is to treat functions as values and pass functions like data. This way 
 
 Imagine we have a function that sums two values and then doubles the value. Something like this:
 
-```clojure
+```cjs
 (defn double-sum
   [a b]
   (* 2 (+ a b)))
@@ -320,7 +320,7 @@ Imagine we have a function that sums two values and then doubles the value. Some
 
 Now a function that subtracts values and the returns the double:
 
-```clojure
+```cjs
 (defn double-subtraction
   [a b]
   (* 2 (- a b)))
@@ -328,7 +328,7 @@ Now a function that subtracts values and the returns the double:
 
 These functions have similar logic, but the difference is the operators functions. If we can treat functions as values and pass these as arguments, we can build a function that receives the operator function and use it inside our function. Let’s build it!
 
-```clojure
+```cjs
 (defn double-operator
   [f a b]
   (* 2 (f a b)))
@@ -382,7 +382,7 @@ console.log(evenNumbers); // (6) [0, 2, 4, 6, 8, 10]
 
 We can use the `filter` higher order function to receive the `even?` function, and return a list of even numbers:
 
-```clojure
+```cjs
 (defn even-numbers
   [coll]
   (filter even? coll))
@@ -418,7 +418,7 @@ But we want a more declarative way to solve this problem, and using the `filter`
 
 A declarative Clojure solution would be something like this:
 
-```clojure
+```cjs
 (defn filter-array
   [x coll]
   (filter #(> x %) coll))
@@ -432,7 +432,7 @@ This syntax seems a bit strange in the first place, but is easy to understand.
 
 We can also do this with maps. Imagine we have a map of people with their `name` and `age`. And we want to filter only people over a specified value of age, in this example people who are more than 21 years old.
 
-```clojure
+```cjs
 (def people [{:name "TK" :age 26}
              {:name "Kaio" :age 10}
              {:name "Kazumi" :age 30}])
@@ -483,7 +483,7 @@ console.log(peopleSentences); // ['TK is 26 years old', 'Kaio is 10 years old', 
 
 In a declarative Clojure way, it would be:
 
-```clojure
+```cjs
 (def people [{:name "TK" :age 26}
              {:name "Kaio" :age 10}
              {:name "Kazumi" :age 30}])
@@ -525,7 +525,7 @@ Second, why not use `map` here to "transform" all data?
 
 My first idea was to build a `to-absolute` function to handle only one value.
 
-```clojure
+```cjs
 (defn to-absolute
   [n]
   (if (neg? n)
@@ -542,7 +542,7 @@ If it is negative, we want to transform it in a positive value (the absolute val
 
 Now that we know how to do `absolute` for one value, we can use this function to pass as an argument to the `map` function. Do you remember that a `higher order function` can receive a function as an argument and use it? Yes, map can do it!
 
-```clojure
+```cjs
 (defn update-list-map
   [coll]
   (map to-absolute coll))
@@ -582,7 +582,7 @@ console.log(totalAmount); // 120
 
 Using `reduce`, we can build a function to handle the `amount sum` and pass it as an argument to the `reduce` function.
 
-```clojure
+```cjs
 (def shopping-cart
   [{ :product-title "Product 1" :amount 10 },
    { :product-title "Product 2" :amount 30 },
@@ -606,7 +606,7 @@ The `get-total-amount` function is used to `reduce` the `shopping-cart` by using
 
 Another way to get the total amount is to compose `map` and `reduce`. What do I mean by that? We can use `map` to transform the `shopping-cart` into a collection of `amount` values, and then just use the `reduce` function with `+` function.
 
-```clojure
+```cjs
 (def shopping-cart
   [{ :product-title "Product 1" :amount 10 },
    { :product-title "Product 2" :amount 30 },
@@ -630,7 +630,7 @@ We took a look at how each higher-order function works. I want to show you an ex
 
 Talking about `shopping cart`, imagine we have this list of products in our order:
 
-```clojure
+```cjs
 (def shopping-cart
   [{ :product-title "Functional Programming" :type "books"      :amount 10 },
    { :product-title "Kindle"                 :type "eletronics" :amount 30 },
