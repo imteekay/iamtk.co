@@ -2,10 +2,9 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
-import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import { MDX } from 'Base/components/MDX';
+import { MDX, serializeMDX } from 'Base/components/MDX';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -64,7 +63,7 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { series } = context.params!;
   const { postContent, minutes } = getNestedPostContent('series', series);
   const postMetadata = getNestedPostMetadata('series', series);
-  const content = await serialize(postContent);
+  const content = await serializeMDX(postContent);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
