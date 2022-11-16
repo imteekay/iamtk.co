@@ -1,38 +1,14 @@
 import path from 'path';
 import fs from 'fs';
-import { marked } from 'marked';
 import readingTime from 'reading-time';
 import { Locale } from 'src/types/Locale';
 import { Language } from './languages';
-
-function highlight(code: string, lang: string) {
-  const hljs = require('highlight.js');
-  const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-  return hljs.highlight(code, { language }).value;
-}
-
-function setupHighlight() {
-  marked.setOptions({
-    renderer: new marked.Renderer(),
-    highlight,
-    langPrefix: 'hljs language-',
-    pedantic: false,
-    gfm: true,
-    breaks: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    xhtml: false,
-  });
-}
 
 export function getPostContent(slug: string, locale: string = Language.EN) {
   const postsDir = path.join(process.cwd(), 'content');
   const postPath = path.join(postsDir, slug, locale, 'index.mdx');
   const postContent = fs.readFileSync(postPath, 'utf8');
   const { minutes } = readingTime(postContent);
-
-  setupHighlight();
 
   return {
     postContent,
@@ -50,8 +26,6 @@ export function getNestedPostContent(
   const postContent = fs.readFileSync(postPath, 'utf8');
   const { minutes } = readingTime(postContent);
 
-  setupHighlight();
-
   return {
     postContent,
     minutes: Math.round(minutes),
@@ -67,8 +41,6 @@ export function getSeriesPostContent(
   const postPath = path.join(postsDir, series, seriesItem, locale, 'index.mdx');
   const postContent = fs.readFileSync(postPath, 'utf8');
   const { minutes } = readingTime(postContent);
-
-  setupHighlight();
 
   return {
     postContent,
