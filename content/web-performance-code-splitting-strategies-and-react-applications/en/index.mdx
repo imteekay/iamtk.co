@@ -26,7 +26,10 @@ In this post, I want to talk about one of the techniques we can take to reduce J
 
 Code splitting is the process of splitting the bundle into multiple, smaller bundles (also known as JavaScript chunks).
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png" loading="lazy">
+<img
+  src="/web-performance-code-splitting-strategies-and-react-applications/1.code-splitting-basics.png"
+  loading="lazy"
+/>
 
 But splitting into smaller bundles can have no effect on performance and UX improvements. We can use this technique together with some strategies to optimize web performance and improve the perceived performance from the user's perspective.
 
@@ -38,7 +41,10 @@ Imagine you have a Home page and a Search page. Every time you load the Home pag
 
 What if we could split the Home page into a `Home.js` bundle and the Search page into a `Search.js` bundle? This way we would load only the `Home.js` bundle when the user reaches the Home page. The same for the Search page and the `Search.js` bundle.
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy">
+<img
+  src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png"
+  loading="lazy"
+/>
 
 This is exactly what code splitting by page (or by route) is. We use routes as entry points to create new smaller bundles that will be served only when we need to serve them.
 
@@ -54,7 +60,10 @@ In the same idea as downloading only the necessary JavaScript, we want to use a 
 
 Imagine you are working on a landing page. The visible section after loading the page is showing the page header, the form, and a big hero image. We can call it the "above the fold" section. Everything that's not in this fold, it's "below the fold".
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png" loading="lazy">
+<img
+  src="/web-performance-code-splitting-strategies-and-react-applications/3.above-below-the-fold.png"
+  loading="lazy"
+/>
 
 The user doesn't care about the "below the fold" sections because the most important section in the _first load_ is the "above the fold" section. The strategy here is to split the "below the fold" sections into a new bundle and download this JavaScript when the user scrolls down and reaches this section.
 
@@ -90,11 +99,19 @@ Again, we are still following the same concept here: loading only the necessary 
 
 Conditional content we can think of as side menus (doesn't appear in the first render), popups (like ads, promotional content, etc), or dialogs (like login dialogs if you click the login button).
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/4.conditional-splitting.png" loading="lazy">
+<img
+  class="full"
+  src="/web-performance-code-splitting-strategies-and-react-applications/4.conditional-splitting.png"
+  loading="lazy"
+/>
 
 We only want to download these JavaScripts if the condition evaluates to `true`. In the illustrated image above, we have `App.js`, `SideMenu.js`, `LoginDialog.js`, and `AdsPopup.js`. If not code split, the page would download 5mb but with the conditional code splitting strategy, we can reduce by around 40% the size of the JavaScript bundle (~2mb less JavaScript in this case). It would be a huge improvement in the load and execution time.
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/5.conditional-splitting-flow.png" loading="lazy">
+<img
+  class="full"
+  src="/web-performance-code-splitting-strategies-and-react-applications/5.conditional-splitting-flow.png"
+  loading="lazy"
+/>
 
 In the first render, the app will only download, parse, compile and execute the `App.js` bundle, reducing it from 5mb to a total of 3mb. If the user clicks the side menu icon, it needs to download the `SideMenu.js` bundle to open it. The same thing for the `LoginDialog.js` and the `AdsPopup.js`.
 
@@ -108,7 +125,11 @@ To do this experiment, get your app now, or any other website you use, open the 
 
 Select the `JS` to filter only this type of file in the network tab list. Reload the page for the first time and you'll see all the JavaScript that's being downloaded. Reload the page one more time (not a hard reload, nor a "clean cache and reload") and you'll see the size of some of the JavaScript in the Devtools, and they don't show the size anymore. They show a `(disk cache)` text. If you hover over this text, it will show a tooltip saying `"Served from disk cache"`.
 
-<img class="full" src="/web-performance-code-splitting-strategies-and-react-applications/6.disk-cache.png" loading="lazy">
+<img
+  class="full"
+  src="/web-performance-code-splitting-strategies-and-react-applications/6.disk-cache.png"
+  loading="lazy"
+/>
 
 This caching strategy is nice to be used for the code splitting we talked about before, but also for other types of code splitting. One of the most common is code splitting big libraries or dependencies into their own separate bundle.
 
@@ -128,7 +149,10 @@ All three are very similar in syntax and the result is pretty much the same. Or 
 
 Let's say we have a product with a Home page and a Search, the same way we talked before:
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png" loading="lazy" />
+<img
+  src="/web-performance-code-splitting-strategies-and-react-applications/2.code-splitting-by-page.png"
+  loading="lazy"
+/>
 
 We want our app to be split into two separate bundles, one for the home and the other for the search.
 
@@ -331,22 +355,27 @@ The footer is a section used in all packages, it can be code split and this chun
 
 Using the _intersection observer_, we can track if the user reached the end of the page the same way explained here.
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/footer.png" class="round" loading="lazy">
+<img
+  src="/web-performance-code-splitting-strategies-and-react-applications/footer.png"
+  class="round"
+  loading="lazy"
+/>
 
 Another great benefit is caching. After the first download, the new separate chunk is cached in the browser, so every time the user goes to another page that uses the footer, it’s already cached in the browser and it doesn’t need to download again.
 
 ### Conditional content code splitting
 
 <div class="text-img-side-by-side">
-<div>The most impactful result I had was code splitting the login dialog. This component is only shown to guest users (unlogged users) who click on the login button to open it.
+  <div>
+  The most impactful result I had was code splitting the login dialog. This component is only shown to guest users (unlogged users) who click on the login button to open it.
 
 This code split reduced the bundle by ~126.81 KB, gzipped. It is a huge component because it handles a lot of cases: sign up, sign in, and the unlocking flow.
 
 For the authenticated users, it's even better because they don't need to download this whole component again.
 
-</div>
+  </div>
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png" class="round" loading="lazy">
+  <img src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png" class="round" loading="lazy" />
 </div>
 
 I used the very same strategy for all other conditional content that we show to the user on the search page.
