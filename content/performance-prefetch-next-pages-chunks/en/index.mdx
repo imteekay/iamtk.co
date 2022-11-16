@@ -112,11 +112,11 @@ So I made a script to build first and then analyze:
 
 Now we can run it and see the stats:
 
-<img src="/performance-prefetch-next-pages-chunks/full-bundle-pre.png">
+<img src="/performance-prefetch-next-pages-chunks/full-bundle-pre.png" />
 
 The biggest chunk is about some libraries in the `node_modules`. But if we look closely, we can see the main chunk:
 
-<img src="/performance-prefetch-next-pages-chunks/main-chunk-pre.png">
+<img src="/performance-prefetch-next-pages-chunks/main-chunk-pre.png" />
 
 This is the main component we created for the routes.
 
@@ -244,11 +244,11 @@ $ yarn analyze:bundle
 
 And the generated stats is:
 
-<img src="/performance-prefetch-next-pages-chunks/full-bundle-post.png">
+<img src="/performance-prefetch-next-pages-chunks/full-bundle-post.png" />
 
 We can some small chunks created there. Let's look closely:
 
-<img src="/performance-prefetch-next-pages-chunks/code-splitting.png">
+<img src="/performance-prefetch-next-pages-chunks/code-splitting.png" />
 
 We have the `Step1`, `Step2`, `Step3`, and the `Home` chunks created. Now we are sure the code splitting worked for our routes.
 
@@ -285,7 +285,7 @@ import(/* webpackPrefetch: true */ 'Pages/Step1/Step1');
 
 But when I add this `import` to the home page, we'll get all the chunks downloaded:
 
-<img src="/performance-prefetch-next-pages-chunks/all-chunks-prefetched.png">
+<img src="/performance-prefetch-next-pages-chunks/all-chunks-prefetched.png" />
 
 And if we see the `head` tag, we'll get this:
 
@@ -321,7 +321,7 @@ const Home = () => {
 
 If we go to the `Home` page and open the Network tab, we'll see the download of the `Home.chunk.js` as expected, but we also see the `Step1.chunk.js`.
 
-<img src="/performance-prefetch-next-pages-chunks/home-prefetch.png">
+<img src="/performance-prefetch-next-pages-chunks/home-prefetch.png" />
 
 And in the `head` tag, we'll find the following code:
 

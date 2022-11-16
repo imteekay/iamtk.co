@@ -12,10 +12,16 @@ As duas primeiras etapas são sobre a construção do DOM e do CSSOM. O document
 
 <div class="side-by-side">
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png" loading="lazy">
+    <img
+      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png"
+      loading="lazy"
+    />
   </figure>
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png" loading="lazy">
+    <img
+      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png"
+      loading="lazy"
+    />
   </figure>
 </div>
 
@@ -25,10 +31,16 @@ Juntos, eles são combinados em uma árvore de renderização. Esta árvore cont
 
 <div class="side-by-side">
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png" loading="lazy">
+    <img
+      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png"
+      loading="lazy"
+    />
   </figure>
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png" loading="lazy">
+    <img
+      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png"
+      loading="lazy"
+    />
   </figure>
 </div>
 
@@ -38,7 +50,14 @@ E por fim, a árvore de renderização está pronta para ser “pintada”, rend
 
 Gecko, a engine usado pelo Mozilla Firefox tem um vídeo bem interessante sobre como funciona o Reflow
 
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/dndeRnzkJDU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/dndeRnzkJDU"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen
+></iframe>
 
 Os Reflows são extremamente caros em termos de performance e podem fazer com que as velocidades de renderização diminuam significativamente. É por isso que a manipulação do DOM (inserção, exclusão, atualização do DOM) tem um alto custo, pois faz com que o navegador faz o reflow.
 
@@ -50,9 +69,9 @@ Pode ser uma variedade de razões pelas quais a página teve esse problema. Mas 
 
 Com o DevTools, consegui ter uma visão geral da interface do usuário usando o Performance Monitor.
 
-<div style="margin: auto; text-align: center;">
+<div style={{ margin: 'auto', textAlign: 'center' }}>
   <video class="full" controls="true" allowfullscreen="true">
-    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/performance-monitor.mov">
+    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/performance-monitor.mov" />
   </video>
 </div>
 
@@ -71,9 +90,9 @@ Os nós do DOM eram grandes, mas o atributo que me chamou a atenção foi o uso 
 
 O Chrome devtools é uma boa ferramenta para investigar possíveis problemas de performance.
 
-<div style="margin: auto; text-align: center;">
+<div style={{ margin: 'auto', textAlign: 'center' }}>
   <video class="full" controls="true" allowfullscreen="true">
-    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/devtools-performance-tab.mov">
+    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/devtools-performance-tab.mov" />
   </video>
 </div>
 
@@ -89,9 +108,9 @@ Pensando nisso, surge um novo conceito: Long Tasks.
 
 Uma Long Task é "_qualquer período ininterrupto em que o main thread da interface do usuário esteja ocupado por 50 ms ou mais_". Como sabemos, JavaScript é single threaded e toda vez que o main thread está ocupada, estamos bloqueando qualquer interação do usuário, levando a uma experiência muito ruim.
 
-<div style="margin: auto; text-align: center;">
+<div style={{ margin: 'auto', textAlign: 'center' }}>
   <video class="full" controls="true" allowfullscreen="true">
-    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/long-tasks.mov">
+    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/long-tasks.mov" />
   </video>
 </div>
 
@@ -99,7 +118,11 @@ Podemos aprofundar cada Long Task e ver todas as tasks relacionadas que ela est�
 
 Outra informação interessante do DevTools é a aba `Bottom-Up`.
 
-<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/bottom-up-tab.png" loading="lazy">
+<img
+  class="full"
+  src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/bottom-up-tab.png"
+  loading="lazy"
+/>
 
 e ver um monte de informações sobre as atividades na task. É um pouco diferente do flamechart porque você pode classificar as atividades com base no custo (Tempo Total) e também filtrar as atividades relacionadas ao código da sua aplicação, pois mostra outras informações como custo do garbage collector, tempo para compilar o código e avaliar o script, e assim por diante.
 
@@ -109,7 +132,11 @@ e ver um monte de informações sobre as atividades na task. É um pouco diferen
 
 Fazendo o profiling da performance da página em que estava trabalhando, encontrei as long tasks e tentei combinar essas tasks com os quadros (componentes que estavam renderizando/re-renderizando).
 
-<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/main-thread.png" loading="lazy">
+<img
+  class="full"
+  src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/main-thread.png"
+  loading="lazy"
+/>
 
 Na Main Thread, pude ver muitas Long Tasks. Não apenas o número de Long Tasks era um problema, mas também o custo de cada task. Uma parte importante de todo o processo de criação de perfil é encontrar a parte de sua base de código no flamechart de task longa. À primeira vista, pude ver coisas como `onOffersReceived`, `onComplete` e `onHotelReceived` que são ações de retorno de chamada após buscar dados por meio de uma API.
 
@@ -117,10 +144,18 @@ Eu me aprofundei em uma das Long Tasks e pude ver o Redux despachando uma ação
 
 <div class="side-by-side">
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png"  class="side-by-side-img" loading="lazy">
+    <img
+      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png"
+      class="side-by-side-img"
+      loading="lazy"
+    />
   </figure>
   <figure>
-    <img src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png"  class="side-by-side-img" loading="lazy">
+    <img
+      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png"
+      class="side-by-side-img"
+      loading="lazy"
+    />
   </figure>
 </div>
 
@@ -140,13 +175,17 @@ Agora que sabemos que reflow, repaint e manipulação do DOM, como adicionar e a
 
 Um padrão comum para listas é usar a virtualização de listas.
 
-<img class="small" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif" loading="lazy">
+<img
+  class="small"
+  src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif"
+  loading="lazy"
+/>
 
 Com a virtualização de lista, apenas um pequeno subconjunto da lista será renderizado no DOM. Quando o usuário rolar para baixo, a virtualização de lista removerá e reciclará os primeiros itens e os substituirá por itens mais recentes e subsequentes na lista.
 
-<div style="margin: auto; text-align: center;">
+<div style={{ margin: 'auto', textAlign: 'center' }}>
   <video class="full" controls="true" allowfullscreen="true">
-    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-dom-elements.mov">
+    <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-dom-elements.mov" />
   </video>
 </div>
 
@@ -156,7 +195,11 @@ Temos um conjunto de bibliotecas de janelas que fazem esse trabalho muito bem pa
 
 Gravando tanto a abordagem atual que usamos para renderizar a lista quanto a solução com virtualização de lista, pude ver melhorias na última.
 
-<img class="full" src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-main-thread-comparison.png" loading="lazy">
+<img
+  class="full"
+  src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-main-thread-comparison.png"
+  loading="lazy"
+/>
 
 **localhost #2** — página de pesquisa atual sem virtualização de lista: tasks mais longas, long tasks custando mais, mais uso da CPU e experiência de rolagem lenta
 

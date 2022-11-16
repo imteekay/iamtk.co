@@ -28,7 +28,11 @@ The footer is a section used in all packages, it can be code split and this chun
 
 Using the _intersection observer_, we can track if the user reached the end of the page the same way explained here.
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/footer.png" class="round" loading="lazy">
+<img
+  src="/web-performance-code-splitting-strategies-and-react-applications/footer.png"
+  class="round"
+  loading="lazy"
+/>
 
 Another great benefit is caching. After the first download, the new separate chunk is cached in the browser, so every time the user goes to another page that uses the footer, it’s already cached in the browser and it doesn’t need to download again.
 
@@ -43,7 +47,7 @@ For the authenticated users, it's even better because they don't need to downloa
 
 </div>
 
-<img src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png" class="round" loading="lazy">
+<img src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png" class="round" loading="lazy" />
 </div>
 
 I used the very same strategy for all other conditional content that we show to the user on the search page.

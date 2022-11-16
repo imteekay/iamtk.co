@@ -35,7 +35,11 @@ Output: [3,1]
 
 To construct a height-balanced binary search tree, we can break down the array into the middle, create a new node based on the middle number, go to the left, do the same process, go to the right, and also do the same process.
 
-<img class="full" src="/series/algorithms-problem-solving/break-down-array.png" loading="lazy">
+<img
+  class="full"
+  src="/series/algorithms-problem-solving/break-down-array.png"
+  loading="lazy"
+/>
 
 This picture illustrates the process:
 
@@ -43,14 +47,14 @@ This picture illustrates the process:
 2. create a new node based on this middle number
 3. go to the left
 
-   3.1. cut the array from the start to the middle - 1<br>
-   3.2. create a new node based on this middle number<br>
+   3.1. cut the array from the start to the middle - 1<br />
+   3.2. create a new node based on this middle number<br />
    3.3. go to the right and the left
 
 4. go to the right
 
-   4.1. cut the array from the middle + 1 to the end<br>
-   4.2. create a new node based on this middle number<br>
+   4.1. cut the array from the middle + 1 to the end<br />
+   4.2. create a new node based on this middle number<br />
    4.3. go to the right and the left
 
 You can see that the third and forth steps we can implement by recursively call the function. We just need to adjust the data structure.
@@ -72,7 +76,11 @@ function sortedArrayToBST(nums) {
 
 And this is the generated binary search tree with balanced height:
 
-<img class="full" src="/series/algorithms-problem-solving/binary-search-tree.png" loading="lazy">
+<img
+  class="full"
+  src="/series/algorithms-problem-solving/binary-search-tree.png"
+  loading="lazy"
+/>
 
 ## Resources
 
