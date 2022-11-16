@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
+
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import { Language } from 'src/lib/languages';
@@ -18,12 +20,12 @@ interface Params extends ParsedUrlQuery {
 }
 
 type PageProps = {
-  postContent: string;
+  content: Content;
   postMetadata: PostMetadata;
   minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => (
+const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
   <>
     <Head
       title={postMetadata.title}
@@ -39,7 +41,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => (
       showSocialLinks
       coverImage={postMetadata.coverImage}
     >
-      <div dangerouslySetInnerHTML={{ __html: postContent }} />
+      <MDX content={content} />
     </Layout>
   </>
 );
@@ -66,11 +68,12 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
     seriesItem,
     Language.PT_BR,
   );
+  const content = await serializeMDX(postContent);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
-      postContent,
+      content,
       postMetadata: {
         ...postMetadata,
         coverImage: {

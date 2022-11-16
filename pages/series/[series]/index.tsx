@@ -2,9 +2,8 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
-import { MDX, serializeMDX } from 'Base/components/MDX';
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -17,11 +16,6 @@ import {
 interface Params extends ParsedUrlQuery {
   series: string;
 }
-
-type Content = MDXRemoteSerializeResult<
-  Record<string, unknown>,
-  Record<string, string>
->;
 
 type PageProps = {
   content: Content;

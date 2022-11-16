@@ -3,7 +3,7 @@ import rehypeHighlight from 'rehype-highlight';
 import { PostAndDate } from 'Base/components/PostAndDate';
 import { serialize } from 'next-mdx-remote/serialize';
 
-type Content = MDXRemoteSerializeResult<
+export type Content = MDXRemoteSerializeResult<
   Record<string, unknown>,
   Record<string, string>
 >;
