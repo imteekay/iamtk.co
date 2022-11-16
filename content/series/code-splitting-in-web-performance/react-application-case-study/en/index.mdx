@@ -39,15 +39,24 @@ Another great benefit is caching. After the first download, the new separate chu
 ### Conditional content code splitting
 
 <div class="text-img-side-by-side">
-  <div>The most impactful result I had was code splitting the login dialog. This component is only shown to guest users (unlogged users) who click on the login button to open it.
+  <div>
+    The most impactful result I had was code splitting the login dialog. This
+    component is only shown to guest users (unlogged users) who click on the
+    login button to open it.
 
-This code split reduced the bundle by ~126.81 KB, gzipped. It is a huge component because it handles a lot of cases: sign up, sign in, and the unlocking flow.
+    This code split reduced the bundle by ~126.81 KB, gzipped. It is a huge
+    component because it handles a lot of cases: sign up, sign in, and the
+    unlocking flow.
 
-For the authenticated users, it's even better because they don't need to download this whole component again.
+    For the authenticated users, it's even better because they don't need to
+    download this whole component again.
 
   </div>
-
-  <img src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png" class="round" loading="lazy" />
+  <img
+    src="/web-performance-code-splitting-strategies-and-react-applications/login-dialog.png"
+    class="round"
+    loading="lazy"
+  />
 </div>
 
 I used the very same strategy for all other conditional content that we show to the user on the search page.
