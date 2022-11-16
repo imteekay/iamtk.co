@@ -83,7 +83,7 @@ export class Program {
 
 Now that we have the foundation for our AST, we can build more specific statements. And we'll start with the `LetStatement`.
 
-![Screen Shot 2021-10-16 at 21.52.02.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ede20de3-879f-49b1-be3d-b89bce7652f5/Screen_Shot_2021-10-16_at_21.52.02.png)
+<img src="/series/building-an-interpreter/let-statement.png" />
 
 This is how I'm visualizing the relationship between the `LetStatement` and the other interfaces.
 
@@ -448,7 +448,7 @@ Running the tests again, they pass, and we have a way to communicate to the user
 
 The `return` is also a `Statement`. Let's illustrate it:
 
-<img src="/series/building-an-interpreter/ast-2.png">
+<img src="/series/building-an-interpreter/ast-2.png" />
 
 The `ReturnStatement` will implement this `Statement` interface and it has these two attributes: `token` and `returnValue`.
 
