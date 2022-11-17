@@ -28,7 +28,6 @@
     "@octokit/core": "^4.0.5",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
-    "marked": "^4.0.10",
     "minisearch": "^3.2.0",
     "next": "12.1.0",
     "plaiceholder": "2.2.0",
@@ -43,7 +42,6 @@
   "devDependencies": {
     "@types/gtag.js": "^0.0.8",
     "@types/loadable__component": "^5.13.4",
-    "@types/marked": "^4.0.1",
     "@types/node": "16.11.6",
     "@types/react": "17.0.39",
     "@types/react-autocomplete": "^1.8.6",
