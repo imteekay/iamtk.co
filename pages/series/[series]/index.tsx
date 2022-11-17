@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
+
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
 import {
@@ -16,33 +18,31 @@ interface Params extends ParsedUrlQuery {
 }
 
 type PageProps = {
-  postContent: string;
+  content: Content;
   postMetadata: PostMetadata;
   minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => {
-  return (
-    <>
-      <Head
-        title={postMetadata.title}
-        description={postMetadata.description}
-        imageUrl={postMetadata.coverImage.src}
-      />
-      <Layout
-        tags={postMetadata.tags}
-        title={postMetadata.title}
-        date={postMetadata.date}
-        alternativeArticle={postMetadata.alternativeArticle}
-        minutes={minutes}
-        showSocialLinks
-        coverImage={postMetadata.coverImage}
-      >
-        <div dangerouslySetInnerHTML={{ __html: postContent }} />
-      </Layout>
-    </>
-  );
-};
+const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
+  <>
+    <Head
+      title={postMetadata.title}
+      description={postMetadata.description}
+      imageUrl={postMetadata.coverImage.src}
+    />
+    <Layout
+      tags={postMetadata.tags}
+      title={postMetadata.title}
+      date={postMetadata.date}
+      alternativeArticle={postMetadata.alternativeArticle}
+      minutes={minutes}
+      showSocialLinks
+      coverImage={postMetadata.coverImage}
+    >
+      <MDX content={content} />
+    </Layout>
+  </>
+);
 
 export async function getStaticPaths() {
   return {
@@ -57,11 +57,12 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { series } = context.params!;
   const { postContent, minutes } = getNestedPostContent('series', series);
   const postMetadata = getNestedPostMetadata('series', series);
+  const content = await serializeMDX(postContent);
   const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
-      postContent,
+      content,
       postMetadata: {
         ...postMetadata,
         coverImage: {

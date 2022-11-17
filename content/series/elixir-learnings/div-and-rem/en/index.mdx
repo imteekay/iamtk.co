@@ -1,0 +1,89 @@
+This is part of my series on [Elixir Learnings](/series/elixir-learnings), where I share micro posts about everything I'm learning related to Elixir.
+
+`div` and `rem` stand for `division` and `remainder`. We can get the result of a division between two numbers.
+
+```ruby
+div 10, 2 # 5
+div 10, 3 # 3
+div 10, 4 # 2
+div 10, 5 # 2
+```
+
+And the remaining:
+
+```ruby
+rem 10, 2 # 0
+rem 10, 3 # 1
+rem 10, 4 # 2
+rem 10, 5 # 0
+```
+
+While learning Elixir, I came across an exercise: I needed to build a function that returns the how many boxes of each type (big, medium, and small) I need to use to organize a number of matchsticks. And I also needed to return the remaining matchsticks.
+
+The big box can be filled with 50 matchsticks. The medium: 20. And the small: 5.
+
+To solve this problem, I start with the big box. For a number `N`, how many big boxes I can use? I can use the `div` function to get this information: `div(N, 50)`. As I filled the big boxes, I need to get the remaining matchsticks to do the same thing with the medium and small boxes.
+
+```ruby
+big = div(matchsticks, 50)
+remaining_after_big = rem(matchsticks, 50)
+
+medium = div(remaining_after_big, 20)
+remaining_after_medium = rem(remaining_after_big, 20)
+
+small = div(remaining_after_medium, 5)
+remaining_matchsticks = rem(remaining_after_medium, 5)
+```
+
+With this, I have the `big`, the `medium`, the `small`, and the `remaining_matchsticks`. And I can return this whole information with a map object.
+
+```ruby
+def boxes(matchsticks) do
+  big = div(matchsticks, 50)
+  remaining_after_big = rem(matchsticks, 50)
+
+  medium = div(remaining_after_big, 20)
+  remaining_after_medium = rem(remaining_after_big, 20)
+
+  small = div(remaining_after_medium, 5)
+  remaining_matchsticks = rem(remaining_after_medium, 5)
+
+  %{
+    big: big,
+    medium: medium,
+    small: small,
+    remaining_matchsticks: remaining_matchsticks
+  }
+end
+```
+
+I can also build this function inside a module:
+
+```ruby
+defmodule MatchstickFactory do
+  def boxes(matchsticks) do
+    big = div(matchsticks, 50)
+    remaining_after_big = rem(matchsticks, 50)
+
+    medium = div(remaining_after_big, 20)
+    remaining_after_medium = rem(remaining_after_big, 20)
+
+    small = div(remaining_after_medium, 5)
+    remaining_matchsticks = rem(remaining_after_medium, 5)
+
+    %{
+      big: big,
+      medium: medium,
+      small: small,
+      remaining_matchsticks: remaining_matchsticks
+    }
+  end
+end
+```
+
+And test it:
+
+```ruby
+MatchstickFactory.boxes(98) # %{big: 1, medium: 2, remaining_matchsticks: 3, small: 1}
+MatchstickFactory.boxes(39) # %{big: 0, medium: 1, remaining_matchsticks: 4, small: 3}
+```

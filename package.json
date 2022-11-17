@@ -28,7 +28,6 @@
     "@octokit/core": "^4.0.5",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
-    "marked": "^4.0.10",
     "minisearch": "^3.2.0",
     "next": "12.1.0",
     "plaiceholder": "2.2.0",
@@ -43,9 +42,8 @@
   "devDependencies": {
     "@types/gtag.js": "^0.0.8",
     "@types/loadable__component": "^5.13.4",
-    "@types/marked": "^4.0.1",
     "@types/node": "16.11.6",
-    "@types/react": "17.0.33",
+    "@types/react": "17.0.39",
     "@types/react-autocomplete": "^1.8.6",
     "cypress": "^9.2.0",
     "eslint": "8.6.0",
@@ -53,11 +51,16 @@
     "eslint-plugin-cypress": "^2.12.1",
     "husky": ">=6",
     "lint-staged": ">=10",
+    "next-mdx-remote": "^4.2.0",
     "prettier": "^2.4.1",
+    "rehype-highlight": "6.0.0",
     "typescript": "4.6.3"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": "eslint --cache --fix",
     "*.{js,ts,tsx,css,md}": "prettier --write"
+  },
+  "resolutions": {
+    "**/@types/react": "17.0.39"
   }
 }

@@ -1,8 +1,10 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+
 import { Head } from 'Base/components/Head';
 import { MicroblogLayout } from 'Base/Article/Layout/MicroblogLayout';
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import {
   getNestedPaths,
   getNestedPostContent,
@@ -15,12 +17,12 @@ interface Params extends ParsedUrlQuery {
 }
 
 type PageProps = {
-  postContent: string;
+  content: Content;
   postMetadata: PostMetadata;
   minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => (
+const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
   <>
     <Head
       title={postMetadata.title}
@@ -35,7 +37,7 @@ const Page: NextPage<PageProps> = ({ postContent, postMetadata, minutes }) => (
       minutes={minutes}
       showSocialLinks
     >
-      <div dangerouslySetInnerHTML={{ __html: postContent }} />
+      <MDX content={content} />
     </MicroblogLayout>
   </>
 );
@@ -53,10 +55,11 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { microblog } = context.params!;
   const { postContent, minutes } = getNestedPostContent('microblog', microblog);
   const postMetadata = getNestedPostMetadata('microblog', microblog);
+  const content = await serializeMDX(postContent);
 
   return {
     props: {
-      postContent,
+      content,
       postMetadata,
       minutes,
     },

@@ -1,0 +1,108 @@
+A few months ago I wrote a blog post about my latest project working on [developer experience and software maintainability in frontend engineering](/dx-and-software-maintainability-in-frontend-engineering). I started exploring many problems and opportunities in our current frontend application and one of my focuses was how we currently build the frontend and improve the foundation. Things like error handling, data fetching, state management, web performance, and so on.
+
+Among all these topics, I started [exploring data fetching solutions](/data-fetching-in-react-with-react-query) and got to build PoCs (Proofs-of-Concept) for react-query to test various use cases in our application. Together with a colleague, we wrote an ADR (Architecture Design Record) to spread the adoption idea and how it would change our current architecture (our apps heavily use Redux for client state management and server cache).
+
+After the adoption, we are now in a phase that different use cases are showing up. The idea is to help architect solutions for these different challenges and write down documents to guide the entire organization.
+
+## A simple Dependent Query
+
+react-query has a simple declarative way to handle dependent queries: a parameter called `enabled`. The react-query doc shows an example:
+
+```jsx
+// Get the user
+const { data: user } = useQuery(['user', email], getUserByEmail);
+const userId = user?.id;
+
+// Then get the user's projects
+const { data: projects } = useQuery(['projects', userId], getProjectsByUser, {
+  // The query will not execute until the userId exists
+  enabled: !!userId,
+});
+```
+
+The first query requests the user based on the email. And the query that requests the projects depends on the user id, got from the previous request. The query will only request if the `userId` exists.
+
+We can use these two hooks in the same component and make the later triggers only if the first succeeds and return the user data to be used later on.
+
+## A more complex Dependent Query
+
+The Landlord Landing Page has a complex form and it requires dependent queries for its requests. It looks like this:
+
+<img src="/react-query-complex-dependent-queries/diagram.png" />
+
+When the user fills the CEP/Zipcode, it requests the CEP data in the BFF (Backend For Frontend) service to get the address-related data and use it to request the GooglePlace API.
+
+The GooglePlace API requests more data related to the address, specifically the latitude and longitude to query the region's data in the BFF's API.
+
+The form fields component declares all these three queries:
+
+```jsx
+const { data } = useCEP(cep);
+const { data: googleData } = useGooglePlaceAPI(data);
+
+useRegion({
+  lat: googleData?.latitude,
+  lng: googleData?.longitude,
+});
+```
+
+We first query the CEP data and pass it to the `useGooglePlaceAPI` hook and there you can enable or disable the google place API query:
+
+```jsx
+const requestGoogleAPI =
+  (completeAddress, { language, GOOGLE_LIBRARIES }) =>
+  async () => {
+    const googleAPI = await loadGoogleApi(
+      GOOGLE_API_KEY,
+      language,
+      GOOGLE_LIBRARIES,
+    );
+
+    return parseAddress(await googleAPI.getPlaceFromAddress(completeAddress));
+  };
+
+export const isGoogleQueryEnabled = (completeAddress = '') =>
+  completeAddress.length > 0;
+
+export const useGooglePlaceAPI = (
+  data = { completeAddress: '' },
+  { language, googleLibraries: GOOGLE_LIBRARIES } = defaultGoogleAPIConfig,
+) =>
+  useQuery(
+    [QUERY_KEY, PLACE_KEY, data.completeAddress],
+    requestGoogleAPI(data.completeAddress, { language, GOOGLE_LIBRARIES }),
+    {
+      enabled: isGoogleQueryEnabled(data.completeAddress),
+    },
+  );
+```
+
+The google place API request only triggers if it has the `completeAddress`.
+
+After getting the latitude and longitude, we can request the region API:
+
+```jsx
+const fetchRegion = (lat, lng) => () => getRegion(lat, lng);
+
+export const isRegionFetchEnabled = (lat, lng) =>
+  lat !== undefined && lng !== undefined;
+
+export const useRegion = ({ lat, lng }) =>
+  useQuery([REGION_KEY, lat, lng], fetchRegion(lat, lng), {
+    enabled: isRegionFetchEnabled(lat, lng),
+  });
+```
+
+It works very similarly to the previous hook. To trigger the `fetchRegion` request, it needs to have the `lat` and `lng` parameters. We verify them to enable the query.
+
+## Final words
+
+react-query solves data fetching in a very simple way with a nice API. It makes complex topics live revalidation, server cache, and dependent queries easier to implement.
+
+It has been the obvious solution for me when it comes to this specific data fetching challenge.
+
+## Resources
+
+- [Doc: Dependent Queries](https://react-query.tanstack.com/guides/dependent-queries)
+- [DX & Software Maintainability in Frontend Engineering](/dx-and-software-maintainability-in-frontend-engineering)
+- [Data Fetching in React with react-query](/data-fetching-in-react-with-react-query)
