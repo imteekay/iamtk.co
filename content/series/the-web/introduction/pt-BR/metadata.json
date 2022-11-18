@@ -1,6 +1,6 @@
 {
-  "title": "The Web: Introduction",
-  "description": "The web is our digital infrastructure",
+  "title": "A Web: Introdução",
+  "description": "A Web é a nossa infrastrutura digital dos tempos modernos",
   "date": "2022-11-18",
   "tags": [
     {
@@ -17,7 +17,7 @@
     "authorName": "israel palacio"
   },
   "alternativeArticle": {
-    "url": "/pt-BR/series/the-web/introduction",
-    "language": "pt-BR"
+    "url": "/series/the-web/introduction",
+    "language": "en"
   }
 }
