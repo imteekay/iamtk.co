@@ -1,0 +1,23 @@
+{
+  "title": "A Web: Introdução",
+  "description": "A Web é a nossa infrastrutura digital dos tempos modernos",
+  "date": "2022-11-18",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/the-web/cover.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "Internet connection",
+    "authorHref": "https://unsplash.com/@othentikisra",
+    "authorName": "israel palacio"
+  },
+  "alternativeArticle": {
+    "url": "/series/the-web/introduction",
+    "language": "en"
+  }
+}

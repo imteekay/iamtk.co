@@ -42,6 +42,13 @@ export const seriesList = [
     rel: '',
   },
   {
+    link: '/series/the-web',
+    title: 'The Web',
+    description: 'The past, the present, and the future of the web',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/typescript-learnings',
     title: 'TypeScript Learnings',
     description: 'Everything about TS',
