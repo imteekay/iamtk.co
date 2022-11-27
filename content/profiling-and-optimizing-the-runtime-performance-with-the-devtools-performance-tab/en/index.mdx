@@ -10,39 +10,23 @@ It won't be a complete, exhaustive description of how browsers work but my thoug
 
 The first two steps are about building the DOM and the CSSOM. The HTML document is downloaded from the server and parsed into the DOM (Document Object Model).
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png',
+  ]}
+/>
 
 And the CSS sources are also downloaded and parsed into the CSSOM (CSS Object Model).
 
 Together, they are combined into a rendering tree. This tree contains only the nodes required to render the page.
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png',
+  ]}
+/>
 
 The Layout is a big part of this process. It computes the size and position of each object. Layout is also called Reflow in some browsers.
 
@@ -142,22 +126,12 @@ In the Main Thread, I could see a lot of Long Tasks. Not only the number of Long
 
 I dug deeper into one of the Long Tasks and I could see Redux dispatching an action and React "performing units of work" (aka re-rendering the components that use the Redux state).
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png',
+  ]}
+/>
 
 The whole workflow of this page looks like this:
 
@@ -239,22 +213,12 @@ If we see the FID for the p75 before the A/B test, it was around 140ms. With the
 
 Digging more deep into the data, I wanted to understand how the device type influenced FID. If you think about, as mobile devices are less powerful than desktop and tablet devices, this makes them more "sensitive" to any performance improvement. Let's see this in practice.
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75-desktop.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75-mobile.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75-desktop.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-75-mobile.png',
+  ]}
+/>
 
 The p75 for desktop (the above picture in the left) was around 30ms and went down to 12ms-17ms. The p75 for mobile (the above picture in the right) was around 200ms and went down to 30ms.
 
@@ -262,43 +226,23 @@ Mobile devices were more sensitive to this improvement, it reduced by 85%. Huge 
 
 The p95 also followed the same pattern.
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-95-desktop.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-95-mobile.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-95-desktop.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-95-mobile.png',
+  ]}
+/>
 
 The desktop is in the left and the right is the mobile.
 
 As we all know that performance is not a single number/score, it's a range of experiences, it becomes easier to read performance data showing a range of scores. A great way to read performance metrics like that are histograms.
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-histogram-0-1.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-histogram-0-01.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-histogram-0-1.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/fid-histogram-0-01.png',
+  ]}
+/>
 
 On the left, we can see the FID scores from 0s to 1s. Most of the scores are within the p75, that's great.
 

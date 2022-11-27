@@ -1,0 +1,1 @@
+export { SideBySideImages } from './SideBySideImages';

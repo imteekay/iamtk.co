@@ -1,7 +1,9 @@
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import rehypeHighlight from 'rehype-highlight';
-import { PostAndDate } from 'Base/components/PostAndDate';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+
+import { PostAndDate } from 'Base/components/PostAndDate';
+import { SideBySideImages } from 'Base/components/SideBySideImages';
 
 export type Content = MDXRemoteSerializeResult<
   Record<string, unknown>,
@@ -19,6 +21,7 @@ export const serializeMDX = (content: string) =>
 
 const components = {
   PostAndDate,
+  SideBySideImages,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
