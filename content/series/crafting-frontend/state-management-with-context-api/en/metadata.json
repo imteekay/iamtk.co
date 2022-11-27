@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/crafting-frontend/cover.jpg",
+    "src": "/series/crafting-frontend/state-management-with-context-api.jpg",
     "width": "592",
     "height": "394",
-    "alt": "A person crafting a tool with a hammer",
-    "authorHref": "https://unsplash.com/@mlightbody",
-    "authorName": "Malcolm Lightbody"
+    "alt": "a Kindle together with a notebook placed on a leather sofa",
+    "authorHref": "https://unsplash.com/@benceboros",
+    "authorName": "BENCE BOROS"
   }
 }
