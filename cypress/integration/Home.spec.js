@@ -9,7 +9,7 @@ describe('Home', () => {
     cy.contains("Hi, I'm TK!").should('exist');
 
     postsList.forEach((post) => {
-      cy.contains(post.title).click();
+      cy.waitUntil(() => cy.contains(post.title)).click();
       cy.get('[data-testid="home-link"]').click();
     });
   });
