@@ -10,39 +10,23 @@ Não será uma descrição completa e exaustiva de como os navegadores funcionam
 
 As duas primeiras etapas são sobre a construção do DOM e do CSSOM. O documento HTML é baixado do servidor e analisado no DOM (Document Object Model).
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/dom-tree.png',
+  ]}
+/>
 
 E as fontes CSS também são baixadas e parseadas no CSSOM (CSS Object Model).
 
 Juntos, eles são combinados em uma árvore de renderização. Esta árvore contém apenas os nós necessários para renderizar a página.
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cssom.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/rendering-tree.png',
+  ]}
+/>
 
 O Layout é uma grande parte deste processo. Ele calcula o tamanho e a posição de cada objeto. Layout também é chamado de Reflow em alguns navegadores.
 
@@ -142,22 +126,12 @@ Na Main Thread, pude ver muitas Long Tasks. Não apenas o número de Long Tasks 
 
 Eu me aprofundei em uma das Long Tasks e pude ver o Redux despachando uma ação e o React "realizando unidades de trabalho" (também conhecido como renderizando novamente os componentes que usam o estado Redux).
 
-<div class="side-by-side">
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-  <figure>
-    <img
-      src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png"
-      class="side-by-side-img"
-      loading="lazy"
-    />
-  </figure>
-</div>
+<SideBySideImages
+  images={[
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/redux-dispatch.png',
+    '/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/react-commit.png',
+  ]}
+/>
 
 Todo o fluxo de trabalho desta página se parece com isso:
 
