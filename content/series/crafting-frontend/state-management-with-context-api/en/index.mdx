@@ -1,0 +1,48 @@
+This post is part of the series [`Crafting Frontend`](/series/crafting-frontend), the React version.
+
+This will be a very simple post about one of the fundamental concepts in React. Using and updating the state from a parent component in React is pretty straightforward. To use a simple example, we need to first create the parent's state.
+
+```jsx
+const Parent = () => {
+  const [state, setState] = useState(0);
+  return null;
+};
+```
+
+Now let's just render the state in the UI:
+
+```jsx
+const Parent = () => {
+  const [state, setState] = useState(0);
+  return <div>{state}</div>;
+};
+```
+
+If we need to update from the child component, it should receive the state setter as a prop and use it accordingly.
+
+```jsx
+import { useState } from 'react';
+
+const Child = ({ updateState }) => (
+  <button onClick={() => updateState((state) => state + 1)}>+</button>
+);
+
+const Parent = () => {
+  const [state, setState] = useState(0);
+
+  return (
+    <div>
+      {state}
+      <Child updateState={setState} />
+    </div>
+  );
+};
+
+export default Parent;
+```
+
+This is just a simple example of rendering a counter and using a child component to update the counter. The parent component should pass the setter to the child and let it update the state for the parent to render the new updated value.
+
+One of the problems that start to emerge is the infamous prop drilling. We can use the [Context API to “transport” data, logic, and setter functions](/react-hooks-context-api-and-pokemons) to any component that's wrapped in the context provider.
+
+Or we start to think about using a state management tool such as mobx, jotai, redux, recoil, etc. Apparently, we have [quite a lot of options](https://github.com/olegrjumin/awesome-react-state-management) out there.
