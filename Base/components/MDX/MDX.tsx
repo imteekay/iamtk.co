@@ -1,6 +1,7 @@
 import rehypeHighlight from 'rehype-highlight';
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import TweetEmbed from 'react-tweet-embed';
 
 import { PostAndDate } from 'Base/components/PostAndDate';
 import { SideBySideImages } from 'Base/components/SideBySideImages';
@@ -22,6 +23,7 @@ export const serializeMDX = (content: string) =>
 const components = {
   PostAndDate,
   SideBySideImages,
+  TweetEmbed,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
