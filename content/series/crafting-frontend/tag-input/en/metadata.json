@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: React — Tag Input",
+  "description": "How can I build a tag input in React?",
+  "date": "2022-12-02",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/tag-input-cover.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "selective focus photography of mixing console",
+    "authorHref": "https://unsplash.com/@alexkixa",
+    "authorName": "Alexandre Debiève"
+  }
+}
