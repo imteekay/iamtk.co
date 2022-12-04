@@ -20,10 +20,33 @@ export const serializeMDX = (content: string) =>
     mdxOptions: { rehypePlugins: [rehypeHighlight] },
   });
 
+import { useState } from 'react';
+
+const SmoothlyRender = ({ children }) => {
+  const [loading, setLoading] = useState(false);
+
+  return (
+    <>
+      <button onClick={() => setLoading((l) => !l)}>test</button>
+      <div
+        style={{
+          opacity: loading ? '1' : '0',
+          'transition-timing-function': 'ease',
+          'transition-duration': '0.6s',
+          'transition-delay': '0.124927s',
+        }}
+      >
+        {children}
+      </div>
+    </>
+  );
+};
+
 const components = {
   PostAndDate,
   SideBySideImages,
   TweetEmbed,
+  SmoothlyRender,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
