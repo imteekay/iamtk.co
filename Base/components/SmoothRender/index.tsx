@@ -1,0 +1,1 @@
+export { SmoothRender } from './SmoothRender';
