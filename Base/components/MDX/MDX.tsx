@@ -5,6 +5,7 @@ import TweetEmbed from 'react-tweet-embed';
 
 import { PostAndDate } from 'Base/components/PostAndDate';
 import { SideBySideImages } from 'Base/components/SideBySideImages';
+import { SmoothRender } from 'Base/components/SmoothRender';
 
 export type Content = MDXRemoteSerializeResult<
   Record<string, unknown>,
@@ -24,8 +25,10 @@ const components = {
   PostAndDate,
   SideBySideImages,
   TweetEmbed,
+  SmoothRender,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
+  // @ts-expect-error: components render correctly
   <MDXRemote {...content} components={components} />
 );

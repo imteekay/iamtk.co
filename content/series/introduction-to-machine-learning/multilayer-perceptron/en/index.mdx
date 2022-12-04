@@ -1,3 +1,5 @@
+<SmoothRender>
+
 In logistic regression, the predictive model does a multiplication of each feature with parameters, sum all together with a constant value (bias) and use this result as the input for the sigmoid function to have the probability outcome.
 
 In the multilayer perceptron, the predictive model does this same process K times.
@@ -49,3 +51,5 @@ In this case, the topics are the filters. And let's say these filters can be "Sp
 Moving "deeper" in the model, we do the same process again. Pass the outcome from the first layer to a new series of filters. These filters are "meta topics", or the combination of each topic we saw in the first layer. e.g. "Sports + Math", "Sports + History", "Math + History". And the outcome of this second layer is the probability of the document to be each meta-topic (measured again from 0 to 1).
 
 Finally, at the top, we do a logistic regression, meaning pass the second layer's outcome to a sigmoid function to have the probability of the person of interest is gonna like the document or not (measured from 0 to 1).
+
+</SmoothRender>
