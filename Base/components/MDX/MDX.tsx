@@ -21,16 +21,16 @@ export const serializeMDX = (content: string) =>
   });
 
 import { useState } from 'react';
+import { InView } from 'react-intersection-observer';
 
-const SmoothlyRender = ({ children }) => {
-  const [loading, setLoading] = useState(false);
+const Test = ({ children }) => {
+  const [render, setRender] = useState(false);
 
   return (
-    <>
-      <button onClick={() => setLoading((l) => !l)}>test</button>
+    <InView as="div" onChange={(inView) => inView && setRender(inView)}>
       <div
         style={{
-          opacity: loading ? '1' : '0',
+          opacity: render ? '1' : '0',
           'transition-timing-function': 'ease',
           'transition-duration': '0.6s',
           'transition-delay': '0.124927s',
@@ -38,9 +38,17 @@ const SmoothlyRender = ({ children }) => {
       >
         {children}
       </div>
-    </>
+    </InView>
   );
 };
+
+const SmoothlyRender = ({ children }) => (
+  <>
+    {children.map((child, id) => (
+      <Test key={id}>{child}</Test>
+    ))}
+  </>
+);
 
 const components = {
   PostAndDate,
