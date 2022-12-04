@@ -29,5 +29,6 @@ const components = {
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
+  // @ts-expect-error: components render correctly
   <MDXRemote {...content} components={components} />
 );
