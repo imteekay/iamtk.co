@@ -1,0 +1,306 @@
+<SmoothRender>
+
+This post is part of the series [`Crafting Frontend`](/series/crafting-frontend), the JavaScript version.
+
+---
+
+This is a coding interview I had in the past. To implement an event emitter. Let's see the API and we should use it.
+
+## API & Usage
+
+This is the API:
+
+- `.on`: subscribe to an event
+- `.emit`: emit an event
+- `.off`: unsubscribe from an event
+- `.once`: subscribe an event to be emitted only one time
+
+And we can use it like this.
+
+First we instantiate the event emitter:
+
+```jsx
+const eventEmitter = new EventEmitter();
+```
+
+We can subscribe a function to an event to be called once (using the `once` API):
+
+```jsx
+const fn1 = (param1, param2) => console.log('test 1', param1, param2);
+
+eventEmitter.once('test', fn1);
+eventEmitter.emit('test', 'param1', 'param2'); // log param1, param2
+eventEmitter.emit('test', 'param1', 'param2'); // doesn't log anything
+```
+
+We can subscribe a function to an event to be called multiple times (using the `on` API):
+
+```jsx
+const fn2 = (param) => console.log('test 2', param);
+
+eventEmitter.on('test2', fn2);
+eventEmitter.emit('test2', 'param1'); // log param1
+eventEmitter.emit('test2', 'param2'); // log param2
+```
+
+And we can unsubscribe a function from an event (using the `off` API):
+
+```jsx
+eventEmitter.off('test2', fn2);
+eventEmitter.emit('test2', 'param1'); // log param1
+```
+
+Notice that to call all the functions that are subscribed to an event, we need call the `emit` API.
+
+So that's what we should implement. Let's go!
+
+## EventEmitter implementation
+
+To be able to instantiate the `EventEmitter`, we need to create a JavaScript class for it:
+
+```jsx
+class EventEmitter {}
+```
+
+Before implementing the APIs, we should design the data structure responsible for holding each event and subscribed functions.
+
+The data format will be an object where the key is the event and the value is an array of functions subscribed to that event. So for example, if we have a function subscribed to an event called `test`, we should look like this:
+
+```jsx
+{
+  test: [
+    { subscriber: 'on', fn: [Function: fn2] }
+  ]
+}
+```
+
+The `test` is the event with a list of the subscribed functions. In this case, it's the function `fn2` and it was subscribed using the `on` API. It's important for this type of subscriber because we can differentiate the `on` from the `once` when emitting the event.
+
+The first implementation is the `once` API. It should receive an event name and the function to be subscribed.
+
+```jsx
+class EventEmitter {
+  events = new Map();
+}
+```
+
+As the `events` are a map object, we need to always check if the event exists before subscribing the new function to it.
+
+With a `Map`, we can simply use `.has()`, `.get()`, and `.set()` to check, get, and update a given event.
+
+```jsx
+if (this.events.has(eventName)) {
+  this.events.set(eventName, [
+    ...this.events.get(eventName),
+    { subscriber: 'once', fn },
+  ]);
+}
+```
+
+If the `events` has the event name that's processing a subscription, we can set the function to it. But as it already exists, we need to get the existing functions first, destructure them, and add the new function to it.
+
+Super simple. Notice that we need a type of “subscriber” that can be `once` or `on`.
+
+If it hasn't the event in the `events` object, we just set the new function to the event.
+
+```jsx
+this.events.set(eventName, [{ subscriber: 'once', fn }]);
+```
+
+Everything together will look like this:
+
+```jsx
+once(eventName, fn) {
+  if (this.events.has(eventName)) {
+    this.events.set(eventName, [
+      ...this.events.get(eventName),
+      { subscriber: 'once', fn },
+    ]);
+  } else {
+    this.events.set(eventName, [{ subscriber: 'once', fn }]);
+  }
+}
+```
+
+If you notice, the `on` API will look very similar. The only difference is the type of subscriber.
+
+```jsx
+on(eventName, fn) {
+  if (this.events.has(eventName)) {
+    this.events.set(eventName, [
+      ...this.events.get(eventName),
+      { subscriber: 'on', fn },
+    ]);
+  } else {
+    this.events.set(eventName, [{ subscriber: 'on', fn }]);
+  }
+}
+```
+
+We can even abstract this logic into a “private” method called `_subscribe` and call it from the `once` and `on` APIs.
+
+The only difference is that it needs to receive the type of the subscriber. Besides that, it looks exactly the same. Let's refactor it.
+
+```jsx
+class EventEmitter {
+  events = new Map();
+
+  once(eventName, fn) {
+    this._subscribe(eventName, fn, 'once');
+  }
+
+  on(eventName, fn) {
+    this._subscribe(eventName, fn, 'on');
+  }
+
+  _subscribe(eventName, fn, type) {
+    if (this.events.has(eventName)) {
+      this.events.set(eventName, [
+        ...this.events.get(eventName),
+        { subscriber: type, fn },
+      ]);
+    } else {
+      this.events.set(eventName, [{ subscriber: type, fn }]);
+    }
+  }
+}
+```
+
+Cool, much better now. Without proceeding to the rest of the implementation, let's test it a bit.
+
+```jsx
+const eventEmitter = new EventEmitter();
+
+const fn1 = (param1, param2) => console.log('test 1', param1, param2);
+eventEmitter.once('test', fn1);
+
+const fn2 = (param) => console.log('test 2', param);
+eventEmitter.on('test2', fn2);
+
+eventEmitter.events; /*
+Map(2) {
+  'test' => [ { subscriber: 'once', fn: [Function: fn1] } ],
+  'test2' => [ { subscriber: 'on', fn: [Function: fn2] } ]
+} */
+```
+
+We have the `fn1` and `fn2` functions and we'll subscribe them to the `test` and the `test2` events with the `once` and `on` APIs. Now we can get the events and see if they are subscribed correctly.
+
+After the subscription, we want to test if they are able to be emitted. So let's go and implement the `emit` API.
+
+First, we verify if the event to be triggered is available on the `events` object, and if so, we can just iterate through all the functions in the list and call them with parameters passed in the `emit` API. If the function was subscribed via the `once` API, we should turn it off to not be called it later on. But we can talk about it later.
+
+```jsx
+emit(eventName, ...args) {
+  if (this.events.has(eventName)) {
+    for (let fnObject of this.events.get(eventName)) {
+      fnObject.fn(...args);
+    }
+  }
+}
+```
+
+- Check if the event is in the `events` object
+- Iterate through the list of all functions and call each one of them
+- We use the spread operator (`…args`) to pass all the arguments to the functions
+
+Now let's test the `emit` API.
+
+```jsx
+const eventEmitter = new EventEmitter();
+
+const fn1 = (param1, param2) => console.log('test 1', param1, param2);
+
+// subscribe the fn1 to the `test` event but it should run only once
+eventEmitter.once('test', fn1);
+eventEmitter.emit('test', 'param1', 'param2'); // log param1, param2
+eventEmitter.emit('test', 'param1', 'param2'); // doesn't log anything
+
+const fn2 = (param) => console.log('test 2', param);
+
+// subscribe the fn2 to the `test2` event and it can be called multiple times
+eventEmitter.on('test2', fn2);
+eventEmitter.emit('test2', 'param1'); // log param1
+eventEmitter.emit('test2', 'param2'); // log param2
+```
+
+If using the `on`, we can emit it every time.
+
+When using the `once`, if we call the `emit` two times, only the first one will be triggered.
+
+To make it happen, we need to turn off the function, so let's implement the `off` method.
+
+```jsx
+off(eventName, fn) {
+  if (this.events.has(eventName)) {
+    this.events.set(
+      eventName,
+      this.events.get(eventName).filter((event) => event.fn !== fn)
+    );
+  }
+}
+```
+
+And call it for the `once` method.
+
+```jsx
+emit(eventName, ...args) {
+  if (this.events.has(eventName)) {
+    for (let fnObject of this.events.get(eventName)) {
+      fnObject.fn(...args);
+
+      if (fnObject.subscriber === 'once') {
+        this.off(eventName, fnObject.fn);
+      }
+    }
+  }
+}
+```
+
+It's important to notice that it should be exclusive to the “once” subscriber because the “on” subscribers can be emitted multiple times until we manually use the `off` API to unsubscribe it from the event.
+
+Let's test it now:
+
+```jsx
+const eventEmitter = new EventEmitter();
+
+const fn1 = (param1, param2) => console.log('test 1', param1, param2);
+
+// subscribe the fn1 to the `test` event but it should run only once
+eventEmitter.once('test', fn1);
+eventEmitter.emit('test', 'param1', 'param2'); // log param1, param2
+eventEmitter.emit('test', 'param1', 'param2'); // doesn't log anything
+```
+
+The second time we emit the `test` event, the `fn1` function should now be called anymore. It's emitted only once.
+
+Now testing a manual use of the `off` API:
+
+```jsx
+const eventEmitter = new EventEmitter();
+
+const fn2 = (param) => console.log('test 2', param);
+
+// subscribe the fn2 to the `test2` event and it can be called multiple times
+eventEmitter.on('test2', fn2);
+eventEmitter.emit('test2', 'param1'); // log param1
+eventEmitter.emit('test2', 'param2'); // log param2
+
+// unsubscribe the fn2 to the `test2` event so it shouldn't be called anymore
+eventEmitter.off('test2', fn2);
+eventEmitter.emit('test2', 'param1'); // doesn't log anything
+```
+
+- We subscribe the `fn2` function to the `test2` event
+- We can emit it multiple times with different params
+- When we use the `off` to unsubscribe the `fn2` from the `test2`, it shouldn't be able to emit it anymore
+
+And with that, we finish the implementation of our Event Emitter. Keep in mind this is a very rudimentary, simplistic implementation of a real event emitter. A good practice is to go even deeper and implement more APIs and handle other use cases for an event emitter.
+
+---
+
+[`Crafting Frontend`](/series/crafting-frontend) is a series of posts and experiments I'm doing to craft the art of frontend engineering. To see all the experiments I've been doing, follow the [Crafting Frontend github repo](https://github.com/imteekay/crafting-frontend).
+
+---
+
+</SmoothRender>
