@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import { useState, createContext, useContext, ChangeEvent } from 'react';
+import { Head } from 'Base/components/Head';
 
 interface Comment {
   text: string;
@@ -233,9 +234,16 @@ const Wrapper = () => {
 };
 
 const Page: NextPage = () => (
-  <CommentsProvider initialComments={initialComments}>
-    <Wrapper />
-  </CommentsProvider>
+  <>
+    <Head
+      title="TK —— Crafting Frontend — Nested Comments"
+      description="Learning & Improving with TK —— Crafting Frontend — Nested Comments"
+      imageUrl="/logo.jpeg"
+    />
+    <CommentsProvider initialComments={initialComments}>
+      <Wrapper />
+    </CommentsProvider>
+  </>
 );
 
 export default Page;
