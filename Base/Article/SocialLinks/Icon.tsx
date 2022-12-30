@@ -1,20 +1,25 @@
 import Image from 'next/image';
-import { FC, CSSProperties } from 'react';
+import { FC } from 'react';
+import { css } from '@emotion/css';
 
-const iconStyle: CSSProperties = {
-  border: '1px solid white',
-  borderRadius: '50px',
-  padding: '8px',
-  display: 'flex',
-  color: 'white',
-};
+const iconStyle = css`
+  border: 1px solid white;
+  borderradius: 50px;
+  padding: 8px;
+  display: flex;
+  color: white;
+
+  @media (prefers-color-scheme: light) {
+    color: black;
+  }
+`;
 
 type IconPropTypes = {
   src: string;
 };
 
 export const Icon: FC<IconPropTypes> = ({ src }) => (
-  <div style={iconStyle}>
+  <div className={iconStyle}>
     <Image src={src} width={14} height={14} alt="" />
   </div>
 );
