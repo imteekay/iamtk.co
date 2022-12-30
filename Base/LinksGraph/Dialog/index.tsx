@@ -15,10 +15,11 @@ const DarkDialog = styled(MuiDialog)<{ prefersDarkMode: boolean }>(
     '& .MuiPaper-root': {
       'background-color': prefersDarkMode ? '#222222' : 'white',
       'max-width': '700px',
-      color: 'white',
+      color: prefersDarkMode ? 'white' : 'black',
       '& .content': {
         margin: 0,
         padding: '40px 20px',
+        'max-width': 'none',
         [theme.breakpoints.up('md')]: {
           padding: '40px',
         },
