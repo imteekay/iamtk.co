@@ -53,6 +53,12 @@ article h1 {
   line-height: 1.25;
 }
 
+@media (prefers-color-scheme: light) {
+  article h1 {
+    color: black;
+  }
+}
+
 article h2 {
   position: relative;
   font-size: 1.7rem;
@@ -66,6 +72,12 @@ article h2 {
   line-height: 40px;
 }
 
+@media (prefers-color-scheme: light) {
+  article h2 {
+    color: black;
+  }
+}
+
 article h3 {
   margin-top: 0.9rem;
   margin-bottom: 0.5rem;
@@ -73,6 +85,12 @@ article h3 {
   font-weight: bold;
   color: #eee;
   line-height: 30px;
+}
+
+@media (prefers-color-scheme: light) {
+  article h3 {
+    color: black;
+  }
 }
 
 article img {
@@ -99,6 +117,12 @@ article blockquote {
   line-height: 30px;
 }
 
+@media (prefers-color-scheme: light) {
+  article blockquote {
+    color: black;
+  }
+}
+
 article blockquote::before {
   color: #eee;
   content: '\201C';
@@ -108,6 +132,12 @@ article blockquote::before {
   vertical-align: -0.4em;
   position: absolute;
   left: -15px;
+}
+
+@media (prefers-color-scheme: light) {
+  article blockquote::before {
+    color: black;
+  }
 }
 
 a,
@@ -350,6 +380,12 @@ code {
   border-radius: 2px;
   padding: 1px 5px;
   background-color: #303e80;
+}
+
+@media (prefers-color-scheme: light) {
+  code {
+    background-color: #9fb3ff;
+  }
 }
 
 pre code {

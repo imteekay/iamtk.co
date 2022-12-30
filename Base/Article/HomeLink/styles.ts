@@ -1,11 +1,17 @@
-export const homeLinkStyle = {
-  textDecoration: 'none',
-  background: 'none',
-  color: 'white',
-  marginBottom: '20px',
-  display: 'block',
-};
+import { css } from '@emotion/css';
 
-export const iconStyle = {
-  marginRight: '8px',
-};
+export const homeLinkStyle = css`
+  text-decoration: none;
+  background: none;
+  color: white;
+  margin-bottom: 20px;
+  display: block;
+
+  @media (prefers-color-scheme: light) {
+    color: black;
+  }
+`;
+
+export const iconStyle = css`
+  margin-right: 8px;
+`;
