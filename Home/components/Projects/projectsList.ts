@@ -35,10 +35,9 @@ export const projectsList = [
     rel: 'noopener noreferrer',
   },
   {
-    title: 'Monkey TS',
-    description:
-      "The Monkey programming language's compiler written in TypeScript",
-    link: 'https://github.com/imteekay/monkey-ts',
+    title: 'Crafting an Interpreter',
+    description: 'Crafting an interpreter/compiler with TypeScript',
+    link: 'https://github.com/imteekay/crafting-an-interpreter',
     target: '_blank',
     rel: 'noopener noreferrer',
   },
