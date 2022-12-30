@@ -13,18 +13,8 @@ const iconLink = css`
   display: inline-block;
   background: none;
 
-  @media (prefers-color-scheme: light) {
-    background: black;
-  }
-
   &:hover {
     background: none;
-  }
-
-  @media (prefers-color-scheme: light) {
-    &:hover {
-      background: black;
-    }
   }
 `;
 

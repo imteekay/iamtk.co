@@ -4,13 +4,18 @@ import { css } from '@emotion/css';
 
 const iconStyle = css`
   border: 1px solid white;
-  borderradius: 50px;
+  border-radius: 50px;
   padding: 8px;
   display: flex;
   color: white;
 
   @media (prefers-color-scheme: light) {
     color: black;
+    background: black;
+
+    &:hover {
+      background: black;
+    }
   }
 `;
 
