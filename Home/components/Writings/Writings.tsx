@@ -16,7 +16,7 @@ export const Writings: FC<WritingsPropTypes> = ({ header = 'h2' }) => (
     ) : (
       <Link href="/writings" passHref>
         <a style={titleLinkStyle}>
-          <h2 style={titleStyle}>writings</h2>
+          <h2 className={titleStyle}>writings</h2>
         </a>
       </Link>
     )}

@@ -1,21 +1,16 @@
-type Title = {
-  letterSpacing: string;
-  fontSize: string;
-  fontStyle: string;
-  fontWeight: number;
-  color: string;
-  marginTop: string;
-  marginBottom: string;
-  display: string;
-};
+import { css } from '@emotion/css';
 
-export const titleStyle: Title = {
-  letterSpacing: '0.01em',
-  fontSize: '2em',
-  fontStyle: 'normal',
-  fontWeight: 700,
-  color: 'white',
-  marginTop: '3rem',
-  marginBottom: '1rem',
-  display: 'block',
-};
+export const titleStyle = css`
+  letter-spacing: 0.01em;
+  font-size: 2em;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+
+  @media (prefers-color-scheme: light) {
+    color: black;
+  }
+`;

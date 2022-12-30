@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: #000;
+  background: black;
   color: white;
   font-size: 15px;
   font-family: 'Menlo', monospace;
@@ -27,6 +27,13 @@ body {
   flex-direction: column;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: white;
+    color: black;
+  }
 }
 
 div#__next {
@@ -109,6 +116,24 @@ article a {
   text-decoration-color: rgb(209 209 209);
   text-decoration-thickness: 2px;
   text-decoration-skip-ink: none;
+}
+
+a:hover {
+  text-decoration-color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  a,
+  article a {
+    color: black;
+    text-decoration-color: rgb(165 165 165);
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+  }
+
+  a:hover {
+    text-decoration-color: black;
+  }
 }
 
 article .series ul,
@@ -223,9 +248,37 @@ a.icon:hover {
   );
 }
 
+@media (prefers-color-scheme: light) {
+  h1 a:hover,
+  h2 a:hover,
+  h3 a:hover,
+  h4 a:hover,
+  h5 a:hover,
+  h6 a:hover,
+  p a.icon:hover,
+  a.icon:hover {
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 100% 6px;
+    background-image: linear-gradient(
+      transparent,
+      transparent 6px,
+      black 6px,
+      black
+    );
+  }
+}
+
 p a.icon:hover,
 a.icon:hover {
   color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  p a.icon:hover,
+  a.icon:hover {
+    color: black;
+  }
 }
 
 p.no-margin {
@@ -319,10 +372,6 @@ a.link {
   );
 }
 
-a:hover {
-  text-decoration-color: white;
-}
-
 .footer {
   font-size: 11px;
   max-width: 700px;
@@ -362,6 +411,12 @@ a:hover {
 .footer a {
   color: white;
   text-decoration: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .footer a {
+    color: black;
+  }
 }
 
 .footer .footer-right {
