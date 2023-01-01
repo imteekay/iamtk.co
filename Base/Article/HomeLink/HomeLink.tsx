@@ -6,8 +6,8 @@ import { homeLinkStyle, iconStyle } from './styles';
 
 export const HomeLink: FC = () => (
   <Link href="/">
-    <a id="menu-icon" data-testid="home-link" style={homeLinkStyle}>
-      <FontAwesomeIcon icon={faLongArrowAltLeft} style={iconStyle} />
+    <a id="menu-icon" data-testid="home-link" className={homeLinkStyle}>
+      <FontAwesomeIcon icon={faLongArrowAltLeft} className={iconStyle} />
       Home
     </a>
   </Link>

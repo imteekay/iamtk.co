@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: #000;
+  background: black;
   color: white;
   font-size: 15px;
   font-family: 'Menlo', monospace;
@@ -27,6 +27,13 @@ body {
   flex-direction: column;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background: white;
+    color: black;
+  }
 }
 
 div#__next {
@@ -46,6 +53,12 @@ article h1 {
   line-height: 1.25;
 }
 
+@media (prefers-color-scheme: light) {
+  article h1 {
+    color: black;
+  }
+}
+
 article h2 {
   position: relative;
   font-size: 1.7rem;
@@ -59,6 +72,12 @@ article h2 {
   line-height: 40px;
 }
 
+@media (prefers-color-scheme: light) {
+  article h2 {
+    color: black;
+  }
+}
+
 article h3 {
   margin-top: 0.9rem;
   margin-bottom: 0.5rem;
@@ -66,6 +85,12 @@ article h3 {
   font-weight: bold;
   color: #eee;
   line-height: 30px;
+}
+
+@media (prefers-color-scheme: light) {
+  article h3 {
+    color: black;
+  }
 }
 
 article img {
@@ -92,6 +117,12 @@ article blockquote {
   line-height: 30px;
 }
 
+@media (prefers-color-scheme: light) {
+  article blockquote {
+    color: black;
+  }
+}
+
 article blockquote::before {
   color: #eee;
   content: '\201C';
@@ -103,12 +134,36 @@ article blockquote::before {
   left: -15px;
 }
 
+@media (prefers-color-scheme: light) {
+  article blockquote::before {
+    color: black;
+  }
+}
+
 a,
 article a {
   color: white;
   text-decoration-color: rgb(209 209 209);
   text-decoration-thickness: 2px;
   text-decoration-skip-ink: none;
+}
+
+a:hover {
+  text-decoration-color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  a,
+  article a {
+    color: black;
+    text-decoration-color: rgb(165 165 165);
+    text-decoration-thickness: 2px;
+    text-decoration-skip-ink: none;
+  }
+
+  a:hover {
+    text-decoration-color: black;
+  }
 }
 
 article .series ul,
@@ -223,9 +278,37 @@ a.icon:hover {
   );
 }
 
+@media (prefers-color-scheme: light) {
+  h1 a:hover,
+  h2 a:hover,
+  h3 a:hover,
+  h4 a:hover,
+  h5 a:hover,
+  h6 a:hover,
+  p a.icon:hover,
+  a.icon:hover {
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 100% 6px;
+    background-image: linear-gradient(
+      transparent,
+      transparent 6px,
+      black 6px,
+      black
+    );
+  }
+}
+
 p a.icon:hover,
 a.icon:hover {
   color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  p a.icon:hover,
+  a.icon:hover {
+    color: black;
+  }
 }
 
 p.no-margin {
@@ -299,6 +382,12 @@ code {
   background-color: #303e80;
 }
 
+@media (prefers-color-scheme: light) {
+  code {
+    background-color: #9fb3ff;
+  }
+}
+
 pre code {
   border: none;
   display: block;
@@ -317,10 +406,6 @@ a.link {
     white 5px,
     white
   );
-}
-
-a:hover {
-  text-decoration-color: white;
 }
 
 .footer {
@@ -362,6 +447,12 @@ a:hover {
 .footer a {
   color: white;
   text-decoration: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .footer a {
+    color: black;
+  }
 }
 
 .footer .footer-right {

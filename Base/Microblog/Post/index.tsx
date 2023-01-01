@@ -29,6 +29,10 @@ const linkStyle = css`
   color: white;
   margin-bottom: 20px;
   display: block;
+
+  @media (prefers-color-scheme: light) {
+    color: black;
+  }
 `;
 
 export const Post: FC<PostPropTypes> = ({
