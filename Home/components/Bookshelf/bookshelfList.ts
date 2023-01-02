@@ -1,5 +1,12 @@
 export const bookshelfList = [
   {
+    link: '/bookshelf/the-intelligence-trap',
+    title: 'The Intelligence Trap',
+    description: 'Notes from The Intelligence Trap book',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/bookshelf/atomic-habits',
     title: 'Atomic Habits',
     description: 'Notes from the Atomic Habits book',
