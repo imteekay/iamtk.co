@@ -11,6 +11,6 @@ export const titleStyle = css`
   display: block;
 
   @media (prefers-color-scheme: light) {
-    color: black;
+    color: #333;
   }
 `;

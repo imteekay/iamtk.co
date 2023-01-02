@@ -31,7 +31,7 @@ const linkStyle = css`
   display: block;
 
   @media (prefers-color-scheme: light) {
-    color: black;
+    color: #333;
   }
 `;
 

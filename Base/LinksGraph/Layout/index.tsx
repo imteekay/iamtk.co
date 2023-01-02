@@ -18,7 +18,7 @@ const titleStyle = css`
   line-height: 1.25;
 
   @media (prefers-color-scheme: light) {
-    color: black;
+    color: #333;
   }
 `;
 

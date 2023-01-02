@@ -10,11 +10,11 @@ const iconStyle = css`
   color: white;
 
   @media (prefers-color-scheme: light) {
-    color: black;
-    background: black;
+    color: #333;
+    background: #333;
 
     &:hover {
-      background: black;
+      background: #333;
     }
   }
 `;
