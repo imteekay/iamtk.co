@@ -325,7 +325,7 @@ p.no-margin-top {
 
 .content {
   width: 100%;
-  max-width: 39rem;
+  max-width: 680px;
   flex: 1;
   padding-left: 1rem;
   padding-right: 1rem;
