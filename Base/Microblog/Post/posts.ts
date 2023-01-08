@@ -13,6 +13,14 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Getting Better',
+    slug: 'getting-better',
+    date: '2022-09-07 • 15:32',
+    description: `You're not gonna get better by doing things that are easy, this is why I want to take the hard way, that's when you build the character, that's when you become resilient, is going through tough times.
+    <br><br>
+    Comfort is good. But constant comfort is not what I'm looking for. I want the next step. I want to become better. Tiny improvements every single day.`,
+  },
+  {
     title: 'Blogging as an excuse',
     slug: 'blogging-as-an-excuse',
     date: '2022-09-03 • 16:50',
