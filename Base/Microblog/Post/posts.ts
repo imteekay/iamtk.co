@@ -13,6 +13,22 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Writing & The Promise of Living Forever',
+    slug: 'writing-and-the-promise-of-living-forever',
+    date: '2023-01-20 • 21:23',
+    description: `Leonardo da Vinci, Ramanujan, and Aaron Swartz.
+    <br><br>
+    They are all eternalized in their writings.
+    <br><br>
+    <a href="https://www.amazon.com/Leonardo-Vinci-Walter-Isaacson/dp/1501139150">Leonardo da Vinci</a> wrote about his ideas, thoughts, and illustrations in his notebooks. He is eternalized in history through his writings, art, and biographies.
+    <br><br>
+    <a href="https://www.youtube.com/watch?v=8WwLPep9xNg&ab_channel=HOLLYWOODWORLD">Ramanujan</a> didn't want his ideas to die with himself and publishing was his own goal to spread all the work he did. He is eternalized in history through his publication.
+    <br><br>
+    <a href="https://www.youtube.com/watch?v=9vz06QO3UkQ&ab_channel=moviemaniacsDE">Aaron Swartz</a> wrote software and his idea about the open web and open knowledge. He is eternalized in history through his writings and his work on knowledge freedom.
+    <br><br>
+    And this, I write to you TK. Do you want to be eternalized in history through your writings and ideas? Keep asking yourself this and you'll find answers and more answers throughout your life.`,
+  },
+  {
     title: 'Getting Better',
     slug: 'getting-better',
     date: '2022-09-07 • 15:32',
