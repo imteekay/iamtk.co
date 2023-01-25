@@ -8,5 +8,12 @@
       "name": "webperf"
     }
   ],
-  "coverImage": {}
+  "coverImage": {
+    "src": "/notes/starting-a-dedicated-web-performance-team.png",
+    "width": "640",
+    "height": "334",
+    "alt": "The cover of sarah's talk",
+    "authorHref": "",
+    "authorName": ""
+  }
 }

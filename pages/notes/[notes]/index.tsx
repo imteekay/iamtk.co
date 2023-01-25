@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
+import { getPlaiceholder } from 'plaiceholder';
 
 import { Head } from 'Base/components/Head';
 import { Content, MDX, serializeMDX } from 'Base/components/MDX';
@@ -57,11 +58,19 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { postContent, minutes } = getNestedPostContent('notes', notes);
   const postMetadata = getNestedPostMetadata('notes', notes);
   const content = await serializeMDX(postContent);
+  const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
 
   return {
     props: {
       content,
-      postMetadata,
+      postMetadata: {
+        ...postMetadata,
+        coverImage: {
+          ...postMetadata.coverImage,
+          src: img.src,
+          blurDataURL: base64,
+        },
+      },
       minutes,
     },
   };
