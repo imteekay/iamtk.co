@@ -1,0 +1,81 @@
+<SmoothRender>
+
+_My notes on the "Starting a Dedicated Web Performance Team" tech talk by Sarah Dapul-Weberman_
+
+---
+
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/ne_UYfDmDYc"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+## First Dedicated Performance Team
+
+- Migration to react
+  - better performance gains: 20% improvement in performance and 10-20% engagement increase
+  - 30% improvement in performance in unauth pages
+  - 15% increase in signups
+  - 10% increase in SEO traffic
+  - 5-7% increase in logins
+- They started to think about performance, because people were excited about the performance gains
+- Engineers didn't know if the performance metrics were accurate. No documentation of improvements. No ownership of performance problems.
+- They started with a client-focused performance team because it was the biggest bottleneck
+
+## Data Confidence
+
+- They had an internal metric: Pinner Wait Time (PWT)
+  - image and the meta data are the most important things in the surface that users engage with
+  - it's a composite metric of how long it takes for each of these to load
+- They noticed that there was no correlation between this performance metric and business and engagement metrics. So they changed to a different metric: they changed it to TTI.
+- They wanted to show to the rest of the company that, when a metric changed, it would affect engagement, and it was extremly important to get buy-in from other people
+- Fighting doubt
+  1. Set Baselines: validate performance metrics, confidence tests implemented, graphs reflect real user experience
+  2. Tie performance metrics to business goals: performance tied to engagement wins and better trust in performance
+  3. Run PR Campaign: teams know about the performance team and come to them for help
+  4. Fight Regressions: regression prevention could actually be more impactful than shipping optimizations. Better trust in performance, people more willing to do optimizations, and more regressions caught
+
+## Regressions
+
+- Make regression testing painless: they called it Perf Watch
+  - Commits that are regressing performance in Pinterest
+    - They do in a batch of commits
+  - Run tests for each critical page: run several times to reduce bias
+  - Calculate the 90th percentile of Pinner Wait Time
+  - Detecting a regression: they are imediately alerted
+    - Engineers can fix it
+    - Or revert the PR
+- Perf Detective
+  - They do in a batch of commits
+  - Binary search in the batch of commits to find the commit that caused the regression
+
+## Optimization Strategy
+
+- Analysis and braimstorming: a lot of projects that they could work on
+- Line of sight: only three people so they needed to prioritize
+  - log each project in a doc
+  - see the impact
+  - see the effort
+  - and choose projects
+- Prototyping
+  - testing to see the possible impact and effort that each project would take
+- Expertimenting
+  - A/B experiments
+
+## Vision
+
+- A team that works on optimizations? A team that focuses on tools?
+- Five pillars
+  - Scalability: not the only people working on optimizations. They wanted to any product team be able to work on performance optimizations
+  - Ownership: want the teams to own their own surfaces, they wanted product teams to find performance as one of the key metrics they want to monitor
+  - Knowledge: share performance knowledge with the rest of the teams
+  - Tools: create the tools that developers can use for Pinterest -specific performance and make sure that they understand how to improve performance at Pinterest, and they can do it quickly and without issue
+  - Strategy: continue to be the strategy performance team for Pinterest. How the tooking works, figure out what critical surgace areas they might need to improve in the future
+
+---
+
+</SmoothRender>
