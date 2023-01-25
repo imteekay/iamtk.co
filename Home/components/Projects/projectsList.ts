@@ -69,4 +69,9 @@ export const projectsList = [
     target: '_blank',
     rel: 'noopener noreferrer',
   },
+  {
+    title: 'Notes',
+    description: 'My notes from tech talks',
+    link: '/notes',
+  },
 ];
