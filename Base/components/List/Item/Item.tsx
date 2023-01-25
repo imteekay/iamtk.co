@@ -5,8 +5,8 @@ export type ItemProps = {
   link: string;
   title: string;
   description: string;
-  target: string;
-  rel: string;
+  target?: string;
+  rel?: string;
 };
 
 export const Item: FC<ItemProps> = ({
