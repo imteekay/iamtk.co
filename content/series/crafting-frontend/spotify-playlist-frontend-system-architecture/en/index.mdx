@@ -218,7 +218,7 @@ So let's discuss them by topics.
 
 When thinking about loading time, part of the “performance optimization” we deal with while working on the loading experience with skeletons. It's called perceived performance, or the users' notion they are having a faster application even though it's just an intermediate state.
 
-But we can also think about [code splitting](https://www.iamtk.co/web-performance-code-splitting-strategies-and-react-applications) the application to deliver the bundle the user really needs.
+But we can also think about [code splitting](/web-performance-code-splitting-strategies-and-react-applications) the application to deliver the bundle the user really needs.
 
 And maybe one of the most impactful decisions is the rendering architecture. Should it be an SPA, SSR, ISP, etc?
 
@@ -234,7 +234,7 @@ Talking about rendering, what we definitely can think about is virtualizing the 
 
 [add gif of list virtualization]
 
-Using this technique can [hugely impact user experience](https://www.iamtk.co/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab), not only the loading time but mostly user interaction metrics like [First Input Delay (FID)](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals#first-input-delay-fid) and [Interaction to Next Paint (INP)](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals#interaction-to-next-paint-inp). Having a faster rendering mechanism helps reduce the work of the browser's main thread and the browser being less busy, responds to the user more quickly.
+Using this technique can [hugely impact user experience](/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab), not only the loading time but mostly user interaction metrics like [First Input Delay (FID)](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals#first-input-delay-fid) and [Interaction to Next Paint (INP)](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals#interaction-to-next-paint-inp). Having a faster rendering mechanism helps reduce the work of the browser's main thread and the browser being less busy, responds to the user more quickly.
 
 Another technique that could help render data in the UI faster is the usage of the stale-while-revalidate cache. The simpler definition of this mechanism is: we load the cached content right away while updating the cached content to make it fresh for the future. It only updates the cache if it's stale, this is why “stale” (get the cached content that's “stale”) while “revalidate” (update the stale cache to make it fresh).
 
@@ -252,7 +252,7 @@ We can also generate different image formats like WebP and AviF for better perfo
 
 The size of images is also important. We need to make sure we won't load a 1mb image for a mobile phone (or even for desktop), or in the words, make our images responsive. To do that, we can use the help of `srcset`. We provide a bunch of different sizes so the browser can pick the right one. If we don't use an image tool like Cloudinary, we probably need to host the images and generate all possible sizes we expect that can be rendered on the page.
 
-Another image perf technique to improve perceived performance is to request a low-quality image with blur, download a high-quality image in the background and [smoothly transition](https://www.iamtk.co/ux-studies-with-react-typescript-and-testing-library) from the low-quality to the high-quality image with the ease-in/ease-out transition.
+Another image perf technique to improve perceived performance is to request a low-quality image with blur, download a high-quality image in the background and [smoothly transition](/ux-studies-with-react-typescript-and-testing-library) from the low-quality to the high-quality image with the ease-in/ease-out transition.
 
 [insert video: smooth image transition]
 
