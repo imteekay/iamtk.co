@@ -258,6 +258,10 @@ Another image perf technique to improve perceived performance is to request a lo
 
 To do image caching, we can rely on browser caching or setup a service worker to handle the image cache if we need more fine-grained control over the network request. Service workers are interesting because they also provide other benefits like offline experience and more memory and storage space for our origin
 
+Another type of file we can optimize in this particular case is audio files. One way of doing this is to store them in the “file system” if it has access, or in a “client database” like [IndexedDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API). The audio files would be stored in the browser and if the user has the possibility to download them, we need to think about security and probably implement file encryption which I think starts to get more and more complex for a simple file cache.
+
+Another approach is to use service workers the same way we did for images so we don't need to handle what is stored in the browser.
+
 ---
 
 [`Crafting Frontend`](/series/crafting-frontend) is a series of posts and experiments I'm doing to craft the art of frontend engineering. To see all the experiments I've been doing, follow the [Crafting Frontend github repo](https://github.com/imteekay/crafting-frontend).
