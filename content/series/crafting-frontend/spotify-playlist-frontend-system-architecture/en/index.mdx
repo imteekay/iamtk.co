@@ -8,7 +8,7 @@ These are my notes from a frontend architecture interview I had in the past. Her
 
 Let's do it!
 
----
+## Requirements & Clarifications
 
 The challenge is the following: we should design a music playlist, similar to Spotify. It needs to list the list of songs, play a song, go to the next one, go to the previous one, and stop the song.
 
@@ -232,7 +232,11 @@ There are a lot of discussions around this, new frameworks were created, and a l
 
 Talking about rendering, what we definitely can think about is virtualizing the list of songs. With List virtualization, only a small subset of the list will be rendered in the DOM. When the user scrolls down, the list virtualization will remove and recycle the first items and replace them with newer and subsequent items in the list.
 
-[add gif of list virtualization]
+<img
+  class="small"
+  src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization.gif"
+  loading="lazy"
+/>
 
 Using this technique can [hugely impact user experience](/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab), not only the loading time but mostly user interaction metrics like [First Input Delay (FID)](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals#first-input-delay-fid) and [Interaction to Next Paint (INP)](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals#interaction-to-next-paint-inp). Having a faster rendering mechanism helps reduce the work of the browser's main thread and the browser being less busy, responds to the user more quickly.
 
@@ -254,7 +258,11 @@ The size of images is also important. We need to make sure we won't load a 1mb i
 
 Another image perf technique to improve perceived performance is to request a low-quality image with blur, download a high-quality image in the background and [smoothly transition](/ux-studies-with-react-typescript-and-testing-library) from the low-quality to the high-quality image with the ease-in/ease-out transition.
 
-[insert video: smooth image transition]
+<div style={{ margin: 'auto', textAlign: 'center' }}>
+  <video controls="true" allowfullscreen="true">
+    <source src="/series/crafting-frontend/spotify-playlist-frontend-system-architecture/smooth-image-transition.mov" />
+  </video>
+</div>
 
 To do image caching, we can rely on browser caching or setup a service worker to handle the image cache if we need more fine-grained control over the network request. Service workers are interesting because they also provide other benefits like offline experience and more memory and storage space for our origin
 
