@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: Spotify Playlist — Frontend System Architecture",
+  "description": "Frontend System Design of the Spotify Playlist",
+  "date": "2023-01-28",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/data-fetching.jpg",
+    "width": "648",
+    "height": "394",
+    "alt": "a dark picture",
+    "authorHref": "https://unsplash.com/@jeremybishop",
+    "authorName": "Jeremy Bishop"
+  }
+}
