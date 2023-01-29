@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: Spotify Playlist — Frontend System Architecture",
+  "description": "Frontend System Design of the Spotify Playlist",
+  "date": "2023-01-30",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/spotify-playlist-frontend-system-architecture/cover.jpg",
+    "width": "648",
+    "height": "427",
+    "alt": "concert",
+    "authorHref": "https://unsplash.com/@dannyhowe",
+    "authorName": "Danny Howe"
+  }
+}
