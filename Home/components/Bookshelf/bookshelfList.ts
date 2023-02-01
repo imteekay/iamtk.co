@@ -1,5 +1,12 @@
 export const bookshelfList = [
   {
+    link: '/bookshelf/discipline-is-destiny',
+    title: 'Discipline is Destiny',
+    description: 'Notes from Discipline is Destiny book',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/bookshelf/what-i-talk-about-when-i-talk-about-running',
     title: 'What I Talk about When I Talk about Running',
     description: 'Notes from What I Talk about When I Talk about Running book',
