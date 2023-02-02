@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-01-30',
+    link: '/series/crafting-frontend/spotify-playlist-frontend-system-architecture',
+    title: 'Spotify Playlist — Frontend System Architecture',
+  },
+  {
     datetime: '2022-11-12',
     link: '/series/crafting-frontend',
     title: 'Crafting Frontend',
