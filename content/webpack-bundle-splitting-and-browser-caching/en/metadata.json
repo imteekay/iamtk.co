@@ -1,0 +1,27 @@
+{
+  "title": "Webpack Bundle Splitting & Browser Caching",
+  "description": "How to use webpack code splitting and browser caching to improve performance",
+  "date": "2023-02-02",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/webpack-bundle-splitting-and-browser-caching/cover.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "Waterfalls in the dark",
+    "authorHref": "https://unsplash.com/@mischievous_penguins",
+    "authorName": "Casey Horner"
+  }
+}
