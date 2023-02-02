@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-02-02',
+    link: '/webpack-bundle-splitting-and-browser-caching',
+    title: 'Webpack Bundle Splitting & Browser Caching',
+  },
+  {
     datetime: '2023-01-30',
     link: '/series/crafting-frontend/spotify-playlist-frontend-system-architecture',
     title: 'Spotify Playlist — Frontend System Architecture',
