@@ -1,6 +1,6 @@
 export const bookshelfList = [
   {
-    link: '',
+    link: '/series/building-an-interpreter',
     title: 'Writing An Interpreter In Go',
     author: 'Thorsten Ball',
     reviewLink: 'https://www.goodreads.com/review/show/3726022060',
