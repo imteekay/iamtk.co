@@ -64,6 +64,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Steve Jobs',
+    author: 'Walter Isaacson',
+    reviewLink: '',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Leonardo da Vinci',
     author: 'Walter Isaacson',
     reviewLink: 'https://www.goodreads.com/review/show/3049823070',
