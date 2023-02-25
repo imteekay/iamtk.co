@@ -184,6 +184,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'The One Thing',
+    author: 'Gary Keller, Jay Papasan',
+    reviewLink: 'https://www.goodreads.com/review/show/3092808135',
+    stars: '⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Originals: How Non-Conformists Move the World',
     author: 'Adam M. Grant',
     reviewLink: 'https://www.goodreads.com/review/show/3108749087',
