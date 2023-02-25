@@ -191,6 +191,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Dom Casmurro',
+    author: 'Machado de Assis',
+    reviewLink: '',
+    stars: '⭐️⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Originals: How Non-Conformists Move the World',
     author: 'Adam M. Grant',
     reviewLink: 'https://www.goodreads.com/review/show/3108749087',
