@@ -64,6 +64,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Leonardo da Vinci',
+    author: 'Walter Isaacson',
+    reviewLink: 'https://www.goodreads.com/review/show/3049823070',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'The Facebook Effect',
     author: 'David Kirkpatrick',
     reviewLink: 'https://www.goodreads.com/review/show/3027464727',
