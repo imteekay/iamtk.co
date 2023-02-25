@@ -64,9 +64,16 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Delivering Happiness: A Path to Profits, Passion, and Purpose',
+    author: 'Tony Hsieh',
+    reviewLink: '',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Rework',
     author: 'Jason Fried, David Heinemeier Hansson',
-    reviewLink: 'https://www.goodreads.com/review/show/3050869779',
+    reviewLink: '',
     stars: '⭐️⭐️⭐️⭐️',
   },
   {
@@ -95,14 +102,14 @@ export const bookshelfList = [
     link: '',
     title: 'The Facebook Effect',
     author: 'David Kirkpatrick',
-    reviewLink: 'https://www.goodreads.com/review/show/3027464727',
+    reviewLink: '',
     stars: '⭐️⭐️⭐️⭐️',
   },
   {
     link: '',
     title: 'Outliers: The Story of Success',
     author: 'Malcolm Gladwell',
-    reviewLink: 'https://www.goodreads.com/review/show/2971021138',
+    reviewLink: '',
     stars: '⭐️⭐️⭐️',
   },
   {
