@@ -42,6 +42,13 @@ export const bookshelfList = [
     stars: '⭐️⭐️⭐️⭐️',
   },
   {
+    link: '/bookshelf/what-i-talk-about-when-i-talk-about-running',
+    title: 'Range: Why Generalists Triumph in a Specialized World',
+    author: 'David Epstein',
+    reviewLink: '',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
     link: '',
     title: "Don't Make Me Think",
     author: 'Steve Krug',
