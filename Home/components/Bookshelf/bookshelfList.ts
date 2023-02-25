@@ -64,6 +64,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Mastery',
+    author: 'Robert Greene',
+    reviewLink: '',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Peak: Secrets from the New Science of Expertise',
     author: 'K. Anders Ericsson, Robert Pool',
     reviewLink: 'https://www.goodreads.com/review/show/2873292200',
