@@ -63,6 +63,13 @@ export const bookshelfList = [
     stars: '⭐️⭐️⭐️⭐️',
   },
   {
+    link: '',
+    title: 'Peak: Secrets from the New Science of Expertise',
+    author: 'K. Anders Ericsson, Robert Pool',
+    reviewLink: 'https://www.goodreads.com/review/show/2873292200',
+    stars: '⭐️⭐️⭐️⭐️⭐️',
+  },
+  {
     link: '/bookshelf/the-effective-engineer',
     title: 'The Effective Engineer',
     author: 'Edmond Lau',
