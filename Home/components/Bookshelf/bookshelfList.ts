@@ -21,6 +21,27 @@ export const bookshelfList = [
     stars: '⭐️⭐️⭐️⭐️',
   },
   {
+    link: '',
+    title: 'Build: An Unorthodox Guide to Making Things Worth Making',
+    author: 'Tony Fadell',
+    reviewLink: 'https://www.goodreads.com/review/show/5088953911',
+    stars: '⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'High Output Management',
+    author: 'Andrew S. Grove',
+    reviewLink: 'https://www.goodreads.com/review/show/5324937643',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'That Will Never Work',
+    author: 'Marc Randolph',
+    reviewLink: 'https://www.goodreads.com/review/show/4657319942',
+    stars: '⭐️⭐️⭐️',
+  },
+  {
     link: '/bookshelf/atomic-habits',
     title: 'Atomic Habits',
     author: 'James Clear',
