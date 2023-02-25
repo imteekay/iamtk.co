@@ -65,5 +65,3 @@ export const Bookshelf: FC<BookshelfPropTypes> = () => (
     </Table>
   </>
 );
-
-export default Bookshelf;
