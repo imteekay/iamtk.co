@@ -182,4 +182,18 @@ export const bookshelfList = [
     reviewLink: 'https://www.goodreads.com/review/show/2744133686',
     stars: '⭐️⭐️⭐️⭐️',
   },
+  {
+    link: '',
+    title: 'Originals: How Non-Conformists Move the World',
+    author: 'Adam M. Grant',
+    reviewLink: 'https://www.goodreads.com/review/show/3108749087',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'Refactoring TypeScript',
+    author: 'James Hickey',
+    reviewLink: '',
+    stars: '⭐️⭐️',
+  },
 ];
