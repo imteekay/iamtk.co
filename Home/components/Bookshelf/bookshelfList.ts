@@ -64,10 +64,17 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'The Facebook Effect',
+    author: 'David Kirkpatrick',
+    reviewLink: 'https://www.goodreads.com/review/show/3027464727',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Outliers: The Story of Success',
     author: 'Malcolm Gladwell',
     reviewLink: 'https://www.goodreads.com/review/show/2971021138',
-    stars: '⭐️⭐️⭐️⭐️',
+    stars: '⭐️⭐️⭐️',
   },
   {
     link: '',
