@@ -64,6 +64,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Rework',
+    author: 'Jason Fried, David Heinemeier Hansson',
+    reviewLink: 'https://www.goodreads.com/review/show/3050869779',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title:
       'The Compound Effect: Jumpstart Your Income, Your Life, Your Success',
     author: 'Darren Hardy',
