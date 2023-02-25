@@ -64,6 +64,13 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Outliers: The Story of Success',
+    author: 'Malcolm Gladwell',
+    reviewLink: 'https://www.goodreads.com/review/show/2971021138',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Mastery',
     author: 'Robert Greene',
     reviewLink: '',
