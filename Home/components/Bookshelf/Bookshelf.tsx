@@ -23,7 +23,7 @@ export const Bookshelf: FC<BookshelfPropTypes> = ({ header }) =>
   //   header={header}
   // />
   bookshelfList.map((book) => (
-    <Item>
+    <Item key={book.link}>
       <span>
         <a href={book.link}>{book.title}</a>
       </span>
