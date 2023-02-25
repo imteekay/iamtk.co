@@ -8,7 +8,7 @@ const Page: NextPage = () => (
     <Head
       title="TK —— Bookshelf"
       description="Learning & Improving with TK —— Bookshelf"
-      imageUrl="/logo.jpeg"
+      imageUrl="/bookshelf.jpg"
     />
 
     <main id="main">
