@@ -1,6 +1,13 @@
 export const bookshelfList = [
   {
     link: '',
+    title: 'Writing An Interpreter In Go',
+    author: 'Thorsten Ball',
+    reviewLink: 'https://www.goodreads.com/review/show/3726022060',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'High Output Management',
     author: 'Andrew S. Grove',
     reviewLink: 'https://www.goodreads.com/review/show/5324937643',
