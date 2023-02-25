@@ -64,6 +64,14 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title:
+      'The Compound Effect: Jumpstart Your Income, Your Life, Your Success',
+    author: 'Darren Hardy',
+    reviewLink: 'https://www.goodreads.com/review/show/3050869779',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Steve Jobs',
     author: 'Walter Isaacson',
     reviewLink: '',
