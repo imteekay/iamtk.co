@@ -52,9 +52,13 @@ export const Bookshelf: FC<BookshelfPropTypes> = () => (
           </Td>
           <Td>{book.author}</Td>
           <Td>
-            <NoTextDecorationLink href={book.reviewLink} target="_blank">
-              {book.stars}
-            </NoTextDecorationLink>
+            {book.reviewLink ? (
+              <NoTextDecorationLink href={book.reviewLink} target="_blank">
+                {book.stars}
+              </NoTextDecorationLink>
+            ) : (
+              book.stars
+            )}
           </Td>
         </Tr>
       ))}

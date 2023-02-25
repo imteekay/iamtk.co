@@ -36,6 +36,20 @@ export const bookshelfList = [
   },
   {
     link: '',
+    title: 'Elon Musk: Tesla, SpaceX, and the Quest for a Fantastic Future',
+    author: 'Ashlee Vance',
+    reviewLink: 'https://www.goodreads.com/review/show/4335923794',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'Deep Work',
+    author: 'Cal Newport',
+    reviewLink: '',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'That Will Never Work',
     author: 'Marc Randolph',
     reviewLink: 'https://www.goodreads.com/review/show/4657319942',
