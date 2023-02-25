@@ -28,15 +28,19 @@ const NoTextDecorationLink = styled.a`
   text-decoration: none;
 `;
 
+const Columns = () => (
+  <colgroup>
+    <col style={{ width: '58%' }} />
+    <col style={{ width: '27%' }} />
+    <col style={{ width: '15%' }} />
+  </colgroup>
+);
+
 export const Bookshelf: FC = () => (
   <>
     <h1>Bookshelf</h1>
+    <Columns />
     <Table>
-      <colgroup>
-        <col style={{ width: '58%' }} />
-        <col style={{ width: '27%' }} />
-        <col style={{ width: '15%' }} />
-      </colgroup>
       <Tr>
         <Th>Title</Th>
         <Th>Author</Th>
