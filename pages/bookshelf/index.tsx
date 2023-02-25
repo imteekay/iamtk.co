@@ -14,7 +14,7 @@ const Page: NextPage = () => (
     <main id="main">
       <div className="content">
         <HomeLink />
-        <Bookshelf header="h1" />
+        <Bookshelf />
       </div>
     </main>
   </>

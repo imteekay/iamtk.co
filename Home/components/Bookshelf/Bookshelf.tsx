@@ -2,9 +2,6 @@ import { FC } from 'react';
 import styled from '@emotion/styled';
 import { bookshelfList } from './bookshelfList';
 
-type Header = 'h1' | 'h2';
-type BookshelfPropTypes = { header?: Header };
-
 const Table = styled.table`
   border-radius: 1px;
 `;
@@ -31,7 +28,7 @@ const NoTextDecorationLink = styled.a`
   text-decoration: none;
 `;
 
-export const Bookshelf: FC<BookshelfPropTypes> = () => (
+export const Bookshelf: FC = () => (
   <>
     <h1>Bookshelf</h1>
     <Table>
