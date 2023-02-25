@@ -6,7 +6,6 @@ import { About } from 'Home/components/About';
 import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
-import { Bookshelf } from 'Home/components/Bookshelf';
 import { Experiments } from 'Home/components/Experiments';
 
 const Page: NextPage = () => (
@@ -26,7 +25,6 @@ const Page: NextPage = () => (
         <Writings />
         <Series />
         <Projects />
-        <Bookshelf />
         <Experiments />
       </div>
     </main>
