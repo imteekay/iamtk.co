@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-02-27',
+    link: '/a-high-level-architecture-of-the-typescript-compiler',
+    title: 'A High Level Architecture of the TypeScript compiler',
+  },
+  {
     datetime: '2023-02-02',
     link: '/webpack-bundle-splitting-and-browser-caching',
     title: 'Webpack Bundle Splitting & Browser Caching',
