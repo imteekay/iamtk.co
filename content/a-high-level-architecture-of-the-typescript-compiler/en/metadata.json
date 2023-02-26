@@ -6,6 +6,10 @@
     {
       "href": "/tags/typescript",
       "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
     }
   ],
   "coverImage": {
