@@ -1,5 +1,5 @@
 {
-  "title": "The High Level Architecture of the TypeScript compiler",
+  "title": "A High Level Architecture of the TypeScript compiler",
   "description": "Understand how the TypeScript compiler works: source code, scanner, parser, tokenization, binder, type checking, emitting files",
   "date": "2023-02-23",
   "tags": [
@@ -17,7 +17,7 @@
     }
   ],
   "coverImage": {
-    "src": "/the-high-level-architecture-of-the-typescript-compiler/cover.jpg",
+    "src": "/a-high-level-architecture-of-the-typescript-compiler/cover.jpg",
     "width": "640",
     "height": "394",
     "alt": "grayscale photo of person running in panel paintings",
