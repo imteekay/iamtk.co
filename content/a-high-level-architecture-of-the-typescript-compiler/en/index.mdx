@@ -165,6 +165,8 @@ And so on.
 
 The `binder` transforms the syntax into symbols: syntax -> symbols
 
+It produces symbols in the form of symbol tables. It keeps track of the declaration(s) of identifiers, so if the checker wants to find the type of an expression, it can look up the identifier in the symbol table, get the declaration, and find its type annotation or initial value.
+
 Processing code, there're different scopes. Let's see an example
 
 ```typescript
