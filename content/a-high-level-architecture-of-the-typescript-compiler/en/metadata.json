@@ -4,16 +4,12 @@
   "date": "2023-02-27",
   "tags": [
     {
-      "href": "/tags/javascript",
-      "name": "javascript"
-    },
-    {
       "href": "/tags/typescript",
       "name": "typescript"
     },
     {
-      "href": "/tags/web-development",
-      "name": "web_development"
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
     }
   ],
   "coverImage": {
