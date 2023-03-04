@@ -1,0 +1,19 @@
+{
+  "title": "Math Symbols on MacOS",
+  "description": "How I use Math Symbols on MacOS",
+  "date": "2023-03-04",
+  "tags": [
+    {
+      "href": "/tags/math",
+      "name": "math"
+    }
+  ],
+  "coverImage": {
+    "src": "/math-symbols-on-macos/cover.jpg",
+    "width": "640",
+    "height": "394",
+    "alt": "math symbols",
+    "authorHref": "https://unsplash.com/@dancristianpaduret",
+    "authorName": "Dan Cristian Pădureț"
+  }
+}
