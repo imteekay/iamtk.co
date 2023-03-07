@@ -1,5 +1,12 @@
 export const bookshelfList = [
   {
+    link: '',
+    title: 'Harry Potter and the Philosopher’s Stone',
+    author: 'J.K. Rowling',
+    reviewLink: 'https://www.goodreads.com/review/show/5394735709',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
     link: '/series/building-an-interpreter',
     title: 'Writing An Interpreter In Go',
     author: 'Thorsten Ball',
