@@ -1,5 +1,12 @@
 export const bookshelfList = [
   {
+    link: '/bookshelf/14-habits-of-highly-productive-developers',
+    title: '14 Habits of Highly Productive Developers',
+    author: 'Zeno Rocha',
+    reviewLink: 'https://www.goodreads.com/review/show/5404576455',
+    stars: '⭐️⭐️⭐️',
+  },
+  {
     link: '',
     title: 'Harry Potter and the Philosopher’s Stone',
     author: 'J.K. Rowling',
