@@ -257,7 +257,7 @@ It's important to notice that Suspense is not a feature exclusive to Streaming S
 
 There's a collection of interesting [performance case studies](https://github.com/imteekay/web-performance-research/tree/master/case-studies), and here I list ones that talk about rendering architectures and how they optimized performance for their app.
 
-- [Optimizing Core Web Vitals on a Next.js app](https://web.archive.org/web/20221201233650/https://www.patterns.dev/posts/nextjs-casestudy?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported 73% and 51% improvements for FCP and LCP, respectively when migrating the app to Next.js SSR.
+- [Optimizing Core Web Vitals on a Next.js app](https://www.patterns.dev/posts/nextjs-casestudy?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported 73% and 51% improvements for FCP and LCP, respectively when migrating the app to Next.js SSR.
 - [Dan Shappir - The Challenges and Pitfalls of Server Side Rendering](https://www.youtube.com/watch?v=O1wBZviW7yI&t=385s&ab_channel=YouGottaLoveFrontend&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported 60% improvements on Time to visible (it’s similar to Start render and FCP metrics)
 - [Improving The Performance Of Wix Websites (Case Study) — Smashing Magazine](https://www.smashingmagazine.com/2021/11/improving-performance-wix-websites-case-study/#summary?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported an improvement from 17.55s to 2.55 in rendering the complete page. It doesn’t rely only on SSR though.
 - [How QuintoAndar increased conversion rates and pages per session by improving page performance](https://web.dev/quintoandar/#results?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — 39% improvement on LCP & 39% improvement on TTI
@@ -266,29 +266,31 @@ There's a collection of interesting [performance case studies](https://github.co
 
 ### Rendering Architecture
 
-- [https://deno.com/blog/the-future-and-past-is-server-side-rendering](https://deno.com/blog/the-future-and-past-is-server-side-rendering)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8](https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://www.debugbear.com/blog/server-side-rendering](https://www.debugbear.com/blog/server-side-rendering)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://shopify.github.io/hydrogen-v1/tutorials/streaming-ssr](https://shopify.github.io/hydrogen-v1/tutorials/streaming-ssr)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://web.dev/rendering-on-the-web](https://web.dev/rendering-on-the-web/)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://www.youtube.com/watch?v=PN1HgvAOmi8](https://www.youtube.com/watch?v=PN1HgvAOmi8&ab_channel=RealWorldReact)&utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://www.youtube.com/watch?v=95B8mnhzoCM](https://www.youtube.com/watch?v=95B8mnhzoCM)&utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://blog.logrocket.com/streaming-ssr-with-react-18](https://blog.logrocket.com/streaming-ssr-with-react-18/)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://beta.nextjs.org/docs/data-fetching/streaming-and-suspense](https://beta.nextjs.org/docs/data-fetching/streaming-and-suspense)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
+- [The Future (and the Past) of the Web is Server Side Rendering](https://deno.com/blog/the-future-and-past-is-server-side-rendering?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [The Benefits of Server Side Rendering Over Client Side Rendering](https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [What Is Server-side Rendering And How Does It Improve Site Speed?](https://www.debugbear.com/blog/server-side-rendering?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Streaming server-side rendering (SSR)](https://shopify.github.io/hydrogen-v1/tutorials/streaming-ssr?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Rendering on the Web](https://web.dev/rendering-on-the-web?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Advanced Rendering Patterns](https://www.youtube.com/watch?v=PN1HgvAOmi8&ab_channel=RealWorldReact&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
 
 ### React
 
-- [https://github.com/reactwg/react-18/discussions/37](https://github.com/reactwg/react-18/discussions/37)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://github.com/facebook/react/pull/14717](https://github.com/facebook/react/pull/14717)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://prateeksurana.me/blog/future-of-rendering-in-react](https://prateeksurana.me/blog/future-of-rendering-in-react/)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://beta.reactjs.org/reference/react/Suspense](https://beta.reactjs.org/reference/react/Suspense)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://www.youtube.com/watch?v=h_vVsPwvcsg](https://www.youtube.com/watch?v=h_vVsPwvcsg)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
+- [New Suspense SSR Architecture in React 18](https://github.com/reactwg/react-18/discussions/37?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Partial Hydration](https://github.com/facebook/react/pull/14717?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [The future of rendering in React](https://prateeksurana.me/blog/future-of-rendering-in-react?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Suspense: React Doc](https://beta.reactjs.org/reference/react/Suspense?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Suspense and Error Boundaries in React 18](https://www.youtube.com/watch?v=h_vVsPwvcsg?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [When To Fetch: Remixing React Router](https://www.youtube.com/watch?v=95B8mnhzoCM&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A guide to streaming SSR with React 18](https://blog.logrocket.com/streaming-ssr-with-react-18?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Streaming and Suspense](https://beta.nextjs.org/docs/data-fetching/streaming-and-suspense?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
 
 ### Web Performance
 
-- [https://github.com/imteekay/web-performance-research](https://github.com/imteekay/web-performance-research)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://web.dev/quintoandar/#results](https://web.dev/quintoandar/#results)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
-- [https://www.patterns.dev/posts/nextjs-casestudy](https://www.patterns.dev/posts/nextjs-casestudy)?utm_source=[iamtk.co](http://iamtk.co/)&utm_medium=referral&utm_campaign=tk_newsletter
+- [Web Performance Research](https://github.com/imteekay/web-performance-research?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Optimizing Core Web Vitals on a Next.js app](https://www.patterns.dev/posts/nextjs-casestudy?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Dan Shappir - The Challenges and Pitfalls of Server Side Rendering](https://www.youtube.com/watch?v=O1wBZviW7yI&t=385s&ab_channel=YouGottaLoveFrontend&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Improving The Performance Of Wix Websites (Case Study) — Smashing Magazine](https://www.smashingmagazine.com/2021/11/improving-performance-wix-websites-case-study/#summary?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [How QuintoAndar increased conversion rates and pages per session by improving page performance](https://web.dev/quintoandar/#results?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
 
 ---
 
