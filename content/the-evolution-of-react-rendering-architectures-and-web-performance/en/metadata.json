@@ -1,5 +1,5 @@
 {
-  "title": "The Evolution of React Rendering Architectures & Web Performance Impact",
+  "title": "The Evolution of React Rendering Architectures & Web Performance",
   "description": "",
   "date": "2023-03-12",
   "tags": [
@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/cover.jpg",
+    "src": "/the-evolution-of-react-rendering-architectures-and-web-performance/cover.jpg",
     "width": "640",
     "height": "1001",
     "alt": "",
-    "authorHref": "https://unsplash.com/@alex_andrews",
-    "authorName": "Alexander Andrews"
+    "authorHref": "https://unsplash.com/@mullyadii",
+    "authorName": "Mulyadi"
   }
 }

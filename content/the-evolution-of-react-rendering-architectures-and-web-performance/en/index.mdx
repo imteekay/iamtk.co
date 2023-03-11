@@ -44,7 +44,7 @@ This is the backbone of a Client-Side Rendering architecture. A small HTML file 
 This is how it works under the hood:
 
 <img
-  src="/the-evolution-of-react-rendering-architectures-and-web-performance-impact/csr.png"
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/csr.png"
   class="full"
   loading="lazy"
 />
@@ -82,7 +82,7 @@ Some of the benefits of Client-Side Rendering is that it doesn't really need a s
 Different than Client-Side Rendering, SSR handles rendering on the server, so everything (data fetching, generated HTML, etc) is done on the server and not on the client anymore. This is how it works under the hood:
 
 <img
-  src="/the-evolution-of-react-rendering-architectures-and-web-performance-impact/ssr.png"
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/ssr.png"
   class="full"
   loading="lazy"
 />
@@ -139,8 +139,8 @@ Streaming is all about parallelizing operations. The idea is to send HTML in chu
 
 <SideBySideImages
   images={[
-    '/the-evolution-of-react-rendering-architectures-and-web-performance-impact/ssr-without-streaming.png',
-    '/the-evolution-of-react-rendering-architectures-and-web-performance-impact/ssr-with-streaming.png',
+    '/the-evolution-of-react-rendering-architectures-and-web-performance/ssr-without-streaming.png',
+    '/the-evolution-of-react-rendering-architectures-and-web-performance/ssr-with-streaming.png',
   ]}
 />
 
@@ -181,7 +181,7 @@ In terms of implementation, we use a nice abstraction called â€œReact Suspenseâ€
 Let's think about an example to illustrate how this would work. Imagine an e-commerce.
 
 <img
-  src="/the-evolution-of-react-rendering-architectures-and-web-performance-impact/e-commerce.png"
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/e-commerce.png"
   loading="lazy"
 />
 
@@ -227,21 +227,21 @@ The Streaming SSR with the Suspense boundary would look like this:
 While the data fetching for the user and the products are running on the server, everything besides the `<Avatar />` and the `<Products />` components will be rendered. For `<Avatar />` and `<Products />` the server will fall back to the placeholder. In this case, they are skeleton loaders.
 
 <img
-  src="/the-evolution-of-react-rendering-architectures-and-web-performance-impact/static-rendered.png"
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/static-rendered.png"
   loading="lazy"
 />
 
 And then the client can already work on the hydration of the components rendered on the browser while the data fetching is still running on the server. It doesn't need to wait for the data fetching to be finished.
 
 <img
-  src="/the-evolution-of-react-rendering-architectures-and-web-performance-impact/static-hydrated.png"
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/static-hydrated.png"
   loading="lazy"
 />
 
 And finally, when the data fetch is done, the products and the avatar are rendered and hydrated on the client.
 
 <img
-  src="/the-evolution-of-react-rendering-architectures-and-web-performance-impact/dynamic-rendered-hydrated.png"
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/dynamic-rendered-hydrated.png"
   loading="lazy"
 />
 
