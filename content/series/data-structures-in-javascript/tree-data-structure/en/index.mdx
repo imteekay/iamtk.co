@@ -112,7 +112,7 @@ When we instantiate an object, we pass the `value` (the data of the node) as a p
 
 Why?
 
-Because when we create our `node`, it doesn't have any children. We just have the `node data`.
+Because when we create our `node`, it doesn't have any children. We just have the `node` data.
 
 Let's test it:
 
@@ -133,8 +133,8 @@ We will implement a method to insert a new `node` to the `right` and to the `lef
 
 Here are the rules:
 
-- If the current `node` doesn't have a `left child`, we just create a new `node`and set it to the current node’s `left`.
-- If it does have the `left child`, we create a new node and put it in the current `left child`’s place. Allocate this `left child node` to the new node’s `left child`.
+- If the current `node` doesn't have a `left child`, we just create a new `node` and set it to the current node's `left`.
+- If it does have the `left child`, we create a new node and put it in the current `left child`'s place. Allocate this `left child node` to the new node's `left child`.
 
 Let's draw it out. :)
 
@@ -152,7 +152,7 @@ def insert_left(self, value):
         self.left_child = new_node
 ```
 
-Again, if the current node doesn't have a `left child`, we just create a new node and set it to the current node’s `left`. Or else we create a new node and put it in the current `left child`’s place. Allocate this `left child node` to the new node’s `left child`.
+Again, if the current node doesn't have a `left child`, we just create a new node and set it to the current node's `left`. Or else we create a new node and put it in the current `left child`'s place. Allocate this `left child node` to the new node's `left child`.
 
 And we do the same thing to insert a `right child node`.
 
