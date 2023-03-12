@@ -12,7 +12,7 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
-    <title>The Evolution of React Rendering Architectures & Web Performance</title>
+    <title>The Evolution of React Rendering Architectures &amp; Web Performance</title>
     <link>https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</link>
     <guid isPermaLink="true">https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</guid>
     <description>Understanding diffeerent rendering architectures in react.js and how they impact performance on the web: Client-Side Rendering, Server-Side Rendering, and Streaming SSR</description>
@@ -30,7 +30,7 @@
     <description>Frontend System Design of the Spotify Playlist</description>
   </item>
   <item>
-    <title>Webpack Bundle Splitting & Browser Caching</title>
+    <title>Webpack Bundle Splitting &amp; Browser Caching</title>
     <link>https://www.iamtk.co/webpack-bundle-splitting-and-browser-caching</link>
     <guid isPermaLink="true">https://www.iamtk.co/webpack-bundle-splitting-and-browser-caching</guid>
     <description>How to use webpack code splitting and browser caching to improve performance</description>
