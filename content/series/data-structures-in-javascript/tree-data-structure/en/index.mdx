@@ -1,8 +1,8 @@
 <SmoothRender>
 
-When you first learn to code, it's common to learn arrays as the “main data structure.”
+When you first learn to code, it's common to learn arrays as the "main data structure."
 
-Eventually, you will learn about `hash tables` too. If you are pursuing a Computer Science degree, you have to take a class on data structure. You will also learn about `linked lists`, `queues`, and `stacks`. Those data structures are called “linear” data structures because they all have a logical start and a logical end.
+Eventually, you will learn about `hash tables` too. If you are pursuing a Computer Science degree, you have to take a class on data structure. You will also learn about [`linked lists`](/series/data-structures-in-javascript/linked-list-data-structure), [`queues`](/series/data-structures-in-javascript/queue-data-structure), and [`stacks`](/series/data-structures-in-javascript/stack-data-structure). Those data structures are called “linear” data structures because they all have a logical start and a logical end.
 
 When we start learning about `trees` and `graphs`, it can get really confusing. We don't store data in a linear way. Both data structures store data in a specific way.
 
@@ -15,7 +15,7 @@ In this article, we will learn:
 - Its terminology and how it works
 - How to implement tree structures in code.
 
-Let's start this learning journey.:)
+Let's start this learning journey. :)
 
 ### Definition
 
@@ -33,7 +33,7 @@ Imagine a family tree with relationships from all generation: grandparents, pare
 
 The above drawing is is my family tree. `Tossico, Akikazu, Hitomi,` and `Takemi` are my grandparents.
 
-`Toshiaki` and `Juliana `are my parents.
+`Toshiaki` and `Juliana` are my parents.
 
 `TK, Yuji, Bruno`, and `Kaio` are the children of my parents (me and my brothers).
 
@@ -137,7 +137,7 @@ Here are the rules:
 - If the current `node` doesn’t have a `left child`, we just create a new `node`and set it to the current node’s `left_child`.
 - If it does have the `left child`, we create a new node and put it in the current `left child`’s place. Allocate this `left child node` to the new node’s `left child`.
 
-Let’s draw it out.:)
+Let’s draw it out. :)
 
 ![](https://cdn-images-1.medium.com/max/1600/1*ofbwuz4inpf2OlB-l9gtHw.jpeg)
 
@@ -167,7 +167,7 @@ def insert_right(self, value):
         self.right_child = new_node
 ```
 
-Done.:)
+Done. :)
 
 But not entirely. We still need to test it.
 
@@ -349,7 +349,7 @@ Here’s the explanation.
 
 > “A Binary Search Tree is sometimes called ordered or sorted binary trees, and it keeps its values in sorted order, so that lookup and other operations can use the principle of binary search” — Wikipedia
 
-An important property of a `Binary Search Tree` is that the value of a `Binary Search Tree` `node`is larger than the value of the offspring of its `left child`, but smaller than the value of the offspring of its `right child.`”
+An important property of a `Binary Search Tree` is that the value of a `Binary Search Tree` `node`is larger than the value of the offspring of its `left child`, but smaller than the value of the offspring of its `right child.`"
 
 ![](https://cdn-images-1.medium.com/max/1600/1*mslH9VtVUN9Hs983XxUN5A.jpeg)
 
@@ -652,13 +652,13 @@ bst.pre_order_traversal()
 #        |12|     |25|
 ```
 
-The tests are now done.:)
+The tests are now done. :)
 
 ### That’s all for now!
 
 We learned a lot here.
 
-Congrats on finishing this dense content. It’s really tough to understand a concept that we do not know. But you did it.:)
+Congrats on finishing this dense content. It’s really tough to understand a concept that we do not know. But you did it. :)
 
 This is one more step forward in my journey to learning and mastering algorithms and data structures. You can see the documentation of my complete journey here on my [Renaissance Developer publication](https://medium.com/the-renaissance-developer).
 
