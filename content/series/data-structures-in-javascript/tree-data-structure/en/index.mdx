@@ -170,18 +170,18 @@ Done. :)
 
 But not entirely. We still need to test it.
 
-Let's build the following`tree`:
+Let's build the following `tree`:
 
 ![](https://cdn-images-1.medium.com/max/1600/1*V_EUgNXVc8Wy9H1-JoqT3g.jpeg)
 
 To summarize the illustration of this tree:
 
 - `a` `node` will be the `root` of our `binary Tree`
-- `a` `left child` is `b` `node`
-- `a` `right child` is `c` `node`
-- `b` `right child` is `d` `node` (`b` `node` doesn't have a `left child`)
-- `c` `left child` is `e` `node`
-- `c` `right child` is `f` `node`
+- `a`'s `left child` is `b` `node`
+- `a`'s `right child` is `c` `node`
+- `b`'s `right child` is `d` `node` (`b` `node` doesn't have a `left child`)
+- `c`'s `left child` is `e` `node`
+- `c`'s `right child` is `f` `node`
 - both `e` and `f` `nodes` do not have children
 
 So here is the code for the `tree`:
@@ -216,12 +216,12 @@ Now we have to think about `tree` traversal.
 
 We have **two options** here: **Depth-First Search (DFS)** and **Breadth-First Search (BFS)**.
 
-- [Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
-- [Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
+- [Depth-First Search (DFS) — Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
+- [Breadth-First Search (BFS) — Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
 
-So let’s dive into each tree traversal type.
+So let's dive into each tree traversal type.
 
-#### Depth-First Search (DFS)
+#### Depth-First Search (DFS)
 
 **DFS** explores a path all the way to a leaf before **backtracking** and exploring another path. Let's take a look at an example with this type of traversal.
 
@@ -268,7 +268,7 @@ The result of the in-order algorithm for this `tree` example is 3–2–4–1–
 
 The left first, the middle second, and the right last.
 
-Now let’s code it.
+Now let's code it.
 
 ```python
 def in_order(self):
@@ -318,7 +318,7 @@ So we traverse level by level. In this example, the result is 1–2–5–3–4�
 - Level/Depth 1: `nodes` with values 2 and 5
 - Level/Depth 2: `nodes` with values 3, 4, 6, and 7
 
-Now let’s code it.
+Now let's code it.
 
 ```python
 def bfs(self):
@@ -390,7 +390,7 @@ Do you notice a pattern here?
 
 Let's break it down.
 
-Now let’s code it.
+Now let's code it.
 
 ```python
 class BinarySearchTree:
@@ -432,7 +432,7 @@ Now we want to know if we have a node based on value 52.
 
 Let's break it down.
 
-Now let’s code it.
+Now let's code it.
 
 ```python
 class BinarySearchTree:
@@ -596,7 +596,7 @@ def find_minimum_value(self):
         return self.value
 ```
 
-Now let’s test it.
+Now let's test it.
 
 We will use this `tree` to test our `remove_node` algorithm.
 
@@ -625,7 +625,7 @@ bst.pre_order_traversal()
 #          |19|
 ```
 
-Now let’s remove the `node` with the `value` 17. It’s a `node` with just one child.
+Now let's remove the `node` with the `value` 17. It’s a `node` with just one child.
 
 ```python
 print(bst.remove_node(17, None)) # True
