@@ -302,7 +302,7 @@ def post_order(self):
     print(self.value)
 ```
 
-#### Breadth-First Search (BFS)
+#### Breadth-First Search (BFS)
 
 **BFS** algorithm traverses the `tree` level by level and depth by depth.
 
@@ -336,7 +336,7 @@ def bfs(self):
             queue.put(current_node.right_child)
 ```
 
-To implement a **BFS** algorithm, we use the `queue` data structure to help.
+To implement a **BFS** algorithm, we use the [`queue`](/series/data-structures-in-javascript/queue-data-structure) data structure to help.
 
 How does it work?
 
@@ -344,9 +344,9 @@ Here's the explanation.
 
 ![](https://cdn-images-1.medium.com/max/1600/1*A4yGfEoiqcZ-COvAfr2CWQ.jpeg)
 
-### Binary Search tree
+### Binary Search tree
 
-> “A Binary Search Tree is sometimes called ordered or sorted binary trees, and it keeps its values in sorted order, so that lookup and other operations can use the principle of binary search” — Wikipedia
+> “A Binary Search Tree is sometimes called ordered or sorted binary trees, and it keeps its values in sorted order, so that lookup and other operations can use the principle of binary search” — Wikipedia
 
 An important property of a `Binary Search Tree` is that the value of a `Binary Search Tree` `node`is larger than the value of the offspring of its `left child`, but smaller than the value of the offspring of its `right child.`"
 
@@ -354,19 +354,19 @@ An important property of a `Binary Search Tree` is that the value of a `Binary S
 
 Here is a breakdown of the above illustration:
 
-- **A **is inverted. The `subtree` 7–5–8–6 needs to be on the right side, and the `subtree` 2–1–3 needs to be on the left.
-- **B **is the only correct option. It satisfies the `Binary Search Tree` property.
-- **C **has one problem: the `node` with the value 4. It needs to be on the left side of the `root` because it is smaller than 5.
+- **A** is inverted. The `subtree` 7-5-8-6 needs to be on the right side, and the `subtree` 2-1-3 needs to be on the left.
+- **B** is the only correct option. It satisfies the `Binary Search Tree` property.
+- **C** has one problem: the `node` with the value 4. It needs to be on the left side of the `root` because it is smaller than 5.
 
-### Let's code a Binary Search Tree!
+### Let's code a Binary Search Tree!
 
-Now it’s time to code!
+Now it's time to code!
 
 What will we see here? We will insert new nodes, search for a value, delete nodes, and the balance of the `tree`.
 
 Let's start.
 
-#### Insertion: adding new nodes to our tree
+#### Insertion: adding new nodes to our tree
 
 Imagine that we have an empty `tree` and we want to add new `nodes` with the following values in this order: 50, 76, 21, 4, 32, 100, 64, 52.
 
@@ -412,13 +412,13 @@ class BinarySearchTree:
 
 It seems very simple.
 
-The powerful part of this algorithm is the recursion part, which is on line 9 and line 13. Both lines of code call the `insert_node` method, and use it for its `left` and `right` `children`, respectively. Lines `11` and `15` are the ones that do the insertion for each `child`.
+The powerful part of this algorithm is the recursion part, which is on line 9 and line 13. Both lines of code call the `insertNode` method, and use it for its `left` and `right` `children`, respectively. Lines `11` and `15` are the ones that do the insertion for each `child`.
 
-#### Let's search for the node value… Or not…
+#### Let's search for the node value... Or not...
 
 The algorithm that we will build now is about doing searches. For a given value (integer number), we will say if our `Binary Search Tree` does or does not have that value.
 
-An important item to note is how we defined the tree **insertion algorithm**. First we have our `root` `node`. All the left `subtree` `nodes `will have smaller values than the `root` `node`. And all the right `subtree` `nodes `will have values greater than the `root` `node`.
+An important item to note is how we defined the tree **insertion algorithm**. First we have our `root` `node`. All the left `subtree` `nodes` will have smaller values than the `root` `node`. And all the right `subtree` `nodes `will have values greater than the `root` `node`.
 
 Let's take a look at an example.
 
