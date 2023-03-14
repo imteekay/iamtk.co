@@ -197,27 +197,37 @@ To summarize the illustration of this tree:
 So here is the code for the `tree`:
 
 ```javascript
-a_node = BinaryTree('a')
-a_node.insert_left('b')
-a_node.insert_right('c')
+describe('inserts a left node', () => {
+  it('with a left child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.left = new BinarySearchTree('b');
+    tree.insertLeft('c');
+    expect(tree.left.value).toEqual('c');
+    expect(tree.left.left.value).toEqual('b');
+  });
 
-b_node = a_node.left_child
-b_node.insert_right('d')
+  it('without a left child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.insertLeft('b');
+    expect(tree.left.value).toEqual('b');
+  });
+});
 
-c_node = a_node.right_child
-c_node.insert_left('e')
-c_node.insert_right('f')
+describe('inserts a right node', () => {
+  it('with a right child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.right = new BinarySearchTree('b');
+    tree.insertRight('c');
+    expect(tree.right.value).toEqual('c');
+    expect(tree.right.right.value).toEqual('b');
+  });
 
-d_node = b_node.right_child
-e_node = c_node.left_child
-f_node = c_node.right_child
-
-print(a_node.value) # a
-print(b_node.value) # b
-print(c_node.value) # c
-print(d_node.value) # d
-print(e_node.value) # e
-print(f_node.value) # f
+  it('without a right child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.insertRight('b');
+    expect(tree.right.value).toEqual('b');
+  });
+});
 ```
 
 Insertion is done.
@@ -260,14 +270,11 @@ Now that we are familiar with this traversal algorithm, we will discuss types of
 This is exactly what we did in the above example.
 
 ```javascript
-def pre_order(self):
-    print(self.value)
-
-    if self.left_child:
-        self.left_child.pre_order()
-
-    if self.right_child:
-        self.right_child.pre_order()
+preOrder() {
+  console.log(this.value);
+  if (this.left) this.left.preOrder();
+  if (this.right) this.right.preOrder();
+}
 ```
 
 #### In-order
@@ -281,14 +288,11 @@ The left first, the middle second, and the right last.
 Now let's code it.
 
 ```javascript
-def in_order(self):
-    if self.left_child:
-        self.left_child.in_order()
-
-    print(self.value)
-
-    if self.right_child:
-        self.right_child.in_order()
+inOrder() {
+  if (this.left) this.left.inOrder();
+  console.log(this.value);
+  if (this.right) this.right.inOrder();
+}
 ```
 
 #### Post-order
@@ -302,14 +306,11 @@ The left first, the right second, and the middle last.
 Let's code this.
 
 ```javascript
-def post_order(self):
-    if self.left_child:
-        self.left_child.post_order()
-
-    if self.right_child:
-        self.right_child.post_order()
-
-    print(self.value)
+postOrder() {
+  if (this.left) this.left.postOrder();
+  if (this.right) this.right.postOrder();
+  console.log(this.value);
+}
 ```
 
 #### Breadth-First Search (BFS)
@@ -331,19 +332,17 @@ So we traverse level by level. In this example, the result is 1–2–5–3–4�
 Now let's code it.
 
 ```javascript
-def bfs(self):
-    queue = Queue()
-    queue.put(self)
+bfs() {
+  const queue = new Queue();
+  queue.enqueue(this);
 
-    while not queue.empty():
-        current_node = queue.get()
-        print(current_node.value)
-
-        if current_node.left_child:
-            queue.put(current_node.left_child)
-
-        if current_node.right_child:
-            queue.put(current_node.right_child)
+  while (!queue.isEmpty()) {
+    const node = queue.dequeue();
+    console.log(node.value);
+    if (node.left) queue.enqueue(node.left);
+    if (node.right) queue.enqueue(node.right);
+  }
+}
 ```
 
 To implement a **BFS** algorithm, we use the [`queue`](/series/data-structures-in-javascript/queue-data-structure) data structure to help.
@@ -403,21 +402,17 @@ Let's break it down.
 Now let's code it.
 
 ```javascript
-class BinarySearchTree:
-    def __init__(self, value):
-        self.value = value
-        self.left_child = None
-        self.right_child = None
-
-    def insert_node(self, value):
-        if value <= self.value and self.left_child:
-            self.left_child.insert_node(value)
-        elif value <= self.value:
-            self.left_child = BinarySearchTree(value)
-        elif value > self.value and self.right_child:
-            self.right_child.insert_node(value)
-        else:
-            self.right_child = BinarySearchTree(value)
+insertNode(value) {
+  if (value <= this.value && this.left) {
+    this.left.insertNode(value);
+  } else if (value <= this.value) {
+    this.left = new BinarySearchTree(value);
+  } else if (value > this.value && this.right) {
+    this.right.insertNode(value);
+  } else {
+    this.right = new BinarySearchTree(value);
+  }
+}
 ```
 
 It seems very simple.
@@ -445,19 +440,17 @@ Let's break it down.
 Now let's code it.
 
 ```javascript
-class BinarySearchTree:
-    def __init__(self, value):
-        self.value = value
-        self.left_child = None
-        self.right_child = None
+findNode(value) {
+  if (value < this.value && this.left) {
+    return this.left.findNode(value);
+  }
 
-    def find_node(self, value):
-        if value < self.value and self.left_child:
-            return self.left_child.find_node(value)
-        if value > self.value and self.right_child:
-            return self.right_child.find_node(value)
+  if (value > this.value && this.right) {
+    return this.right.findNode(value);
+  }
 
-        return value == self.value
+  return this.value === value;
+}
 ```
 
 Let's beak down the code:
@@ -468,41 +461,46 @@ Let's beak down the code:
 
 How do we test it?
 
-Let's create our `Binary Search Tree` by initializing the `root` `node` with the value 15.
+Let's create our `Binary Search Tree` by initializing the `root` `node` with the value 50.
 
 ```javascript
-bst = BinarySearchTree(15);
+const tree = new BinarySearchTree(50);
 ```
 
 And now we will insert many new `nodes`.
 
 ```javascript
-bst.insert_node(10);
-bst.insert_node(8);
-bst.insert_node(12);
-bst.insert_node(20);
-bst.insert_node(17);
-bst.insert_node(25);
-bst.insert_node(19);
+tree.insertNode(21);
+tree.insertNode(4);
+tree.insertNode(32);
+tree.insertNode(76);
+tree.insertNode(64);
+tree.insertNode(52);
+tree.insertNode(100);
 ```
 
 For each inserted `node`, we will test if our `findNode` method really works.
 
 ```javascript
-print(bst.find_node(15)) # True
-print(bst.find_node(10)) # True
-print(bst.find_node(8)) # True
-print(bst.find_node(12)) # True
-print(bst.find_node(20)) # True
-print(bst.find_node(17)) # True
-print(bst.find_node(25)) # True
-print(bst.find_node(19)) # True
+describe('findNode', () => {
+  it('finds the node in the tree', () => {
+    expect(tree.findNode(50)).toEqual(true);
+    expect(tree.findNode(21)).toEqual(true);
+    expect(tree.findNode(4)).toEqual(true);
+    expect(tree.findNode(32)).toEqual(true);
+    expect(tree.findNode(76)).toEqual(true);
+    expect(tree.findNode(64)).toEqual(true);
+    expect(tree.findNode(52)).toEqual(true);
+    expect(tree.findNode(100)).toEqual(true);
+  });
+});
 ```
 
 Yeah, it works for these given values! Let's test for a value that doesn't exist in our `Binary Search Tree`.
 
 ```javascript
-print(bst.find_node(0)) # False
+expect(tree.findNode(0)).toEqual(false);
+expect(tree.findNode(999)).toEqual(false);
 ```
 
 Oh yeah.
@@ -552,58 +550,82 @@ When the `node` has 2 children, we need to find the `node` with the minimum valu
 It's time to code.
 
 ```javascript
-def remove_node(self, value, parent):
-    if value < self.value and self.left_child:
-        return self.left_child.remove_node(value, self)
-    elif value < self.value:
-        return False
-    elif value > self.value and self.right_child:
-        return self.right_child.remove_node(value, self)
-    elif value > self.value:
-        return False
-    else:
-        if self.left_child is None and self.right_child is None and self == parent.left_child:
-            parent.left_child = None
-            self.clear_node()
-        elif self.left_child is None and self.right_child is None and self == parent.right_child:
-            parent.right_child = None
-            self.clear_node()
-        elif self.left_child and self.right_child is None and self == parent.left_child:
-            parent.left_child = self.left_child
-            self.clear_node()
-        elif self.left_child and self.right_child is None and self == parent.right_child:
-            parent.right_child = self.left_child
-            self.clear_node()
-        elif self.right_child and self.left_child is None and self == parent.left_child:
-            parent.left_child = self.right_child
-            self.clear_node()
-        elif self.right_child and self.left_child is None and self == parent.right_child:
-            parent.right_child = self.right_child
-            self.clear_node()
-        else:
-            self.value = self.right_child.find_minimum_value()
-            self.right_child.remove_node(self.value, self)
+removeNode(value, parent) {
+  if (value < this.value && this.left) {
+    return this.left.removeNode(value, this);
+  }
 
-        return True
+  if (value < this.value) {
+    return false;
+  }
+
+  if (value > this.value && this.right) {
+    return this.right.removeNode(value, this);
+  }
+
+  if (value > this.value) {
+    return false;
+  }
+
+  if (this.left === null && this.right === null && this == parent.left) {
+    parent.left = null;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.left === null && this.right === null && this == parent.right) {
+    parent.right = null;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.left && this.right === null && this == parent.left) {
+    parent.left = this.left;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.left && this.right === null && this == parent.right) {
+    parent.right = this.left;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.right && this.left === null && this == parent.left) {
+    parent.left = this.right;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.right && this.left === null && this == parent.right) {
+    parent.right = this.right;
+    this.clearNode();
+    return true;
+  }
+
+  this.value = this.right.findMinimumValue();
+  this.right.removeNode(this.value, this);
+  return true;
+}
 ```
 
 - To use the `clearNode` method: set the `null` value to all three attributes — (`value`, `left`, and `right`)
 
 ```javascript
-def clear_node(self):
-    self.value = None
-    self.left_child = None
-    self.right_child = None
+clearNode() {
+  this.value = null;
+  this.left = null;
+  this.right = null;
+}
 ```
 
 - To use the `findMinimumValue` method: go way down to the left. If we can't find anymore nodes, we found the smallest one.
 
 ```javascript
-def find_minimum_value(self):
-    if self.left_child:
-        return self.left_child.find_minimum_value()
-    else:
-        return self.value
+findMinimumValue() {
+  if (this.left) return this.left.findMinimumValue();
+  return this.value;
+}
 ```
 
 Now let's test it.
@@ -623,8 +645,11 @@ We will use this `tree` to test our `removeNode` algorithm.
 Let's remove the `node` with the `value` 8. It's a `node` with no child.
 
 ```javascript
-print(bst.remove_node(8, None)) # True
-bst.pre_order_traversal()
+expect(tree.findNode(8)).toEqual(true);
+expect(tree.removeNode(8)).toEqual(true);
+expect(tree.findNode(8)).toEqual(false);
+
+tree.preOrder()
 
 #     |15|
 #   /      \
@@ -638,8 +663,11 @@ bst.pre_order_traversal()
 Now let's remove the `node` with the `value` 17. It's a `node` with just one child.
 
 ```javascript
-print(bst.remove_node(17, None)) # True
-bst.pre_order_traversal()
+expect(tree.findNode(17)).toEqual(true);
+expect(tree.removeNode(17)).toEqual(true);
+expect(tree.findNode(17)).toEqual(false);
+
+tree.preOrder()
 
 #        |15|
 #      /      \
@@ -651,8 +679,11 @@ bst.pre_order_traversal()
 Finally, we will remove a `node` with two children. This is the `root` of our `tree`.
 
 ```javascript
-print(bst.remove_node(15, None)) # True
-bst.pre_order_traversal()
+expect(tree.findNode(15)).toEqual(true);
+expect(tree.removeNode(15)).toEqual(true);
+expect(tree.findNode(15)).toEqual(false);
+
+tree.preOrder()
 
 #        |19|
 #      /      \
