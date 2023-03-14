@@ -537,9 +537,9 @@ In this case, our algorithm needs to make the parent of the `node` point to the 
 # |20|   |40|                        |20|
 ```
 
-When the `node` has 2 children, we need to find the `node` with the minimum value, starting from the `node`’s`right child`. We will put this `node` with minimum value in the place of the `node` we want to remove.
+When the `node` has 2 children, we need to find the `node` with the minimum value, starting from the `node`'s `right child`. We will put this `node` with minimum value in the place of the `node` we want to remove.
 
-It’s time to code.
+It's time to code.
 
 ```python
 def remove_node(self, value, parent):
@@ -577,7 +577,7 @@ def remove_node(self, value, parent):
         return True
 ```
 
-- To use the `clear_node` method: set the `null` value to all three attributes — (`value`, `left`, and `right`)
+- To use the `clear_node` method: set the `null` value to all three attributes — (`value`, `left`, and `right`)
 
 ```python
 def clear_node(self):
@@ -586,7 +586,7 @@ def clear_node(self):
     self.right_child = None
 ```
 
-- To use the `find_minimum_value` method: go way down to the left. If we can’t find anymore nodes, we found the smallest one.
+- To use the `findMinimumValue` method: go way down to the left. If we can't find anymore nodes, we found the smallest one.
 
 ```python
 def find_minimum_value(self):
@@ -598,7 +598,7 @@ def find_minimum_value(self):
 
 Now let's test it.
 
-We will use this `tree` to test our `remove_node` algorithm.
+We will use this `tree` to test our `removeNode` algorithm.
 
 ```python
 #        |15|
@@ -610,7 +610,7 @@ We will use this `tree` to test our `remove_node` algorithm.
 #              |19|
 ```
 
-Let's remove the `node` with the `value` 8. It’s a `node` with no child.
+Let's remove the `node` with the `value` 8. It's a `node` with no child.
 
 ```python
 print(bst.remove_node(8, None)) # True
@@ -625,7 +625,7 @@ bst.pre_order_traversal()
 #          |19|
 ```
 
-Now let's remove the `node` with the `value` 17. It’s a `node` with just one child.
+Now let's remove the `node` with the `value` 17. It's a `node` with just one child.
 
 ```python
 print(bst.remove_node(17, None)) # True
@@ -657,7 +657,7 @@ The tests are now done. :)
 
 We learned a lot here.
 
-Congrats on finishing this dense content. It’s really tough to understand a concept that we do not know. But you did it. :)
+Congrats on finishing this dense content. It's really tough to understand a concept that we do not know. But you did it. :)
 
 This is one more step forward in my journey to learning and mastering algorithms and data structures. You can see the documentation of my complete journey here on my [Renaissance Developer publication](https://medium.com/the-renaissance-developer).
 
