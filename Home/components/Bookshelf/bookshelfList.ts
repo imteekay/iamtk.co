@@ -1,5 +1,12 @@
 export const bookshelfList = [
   {
+    link: '',
+    title: 'Harry Potter and the Chamber of Secrets',
+    author: 'J.K. Rowling',
+    reviewLink: 'https://www.goodreads.com/review/show/3059911024',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
     link: '/bookshelf/14-habits-of-highly-productive-developers',
     title: '14 Habits of Highly Productive Developers',
     author: 'Zeno Rocha',
