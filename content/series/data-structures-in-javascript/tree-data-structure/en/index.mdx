@@ -98,7 +98,7 @@ How do we implement a simple `binary tree` that initializes with these three pro
 
 Let's take a look.
 
-```python
+```javascript
 class BinaryTree:
     def __init__(self, value):
         self.value = value
@@ -116,7 +116,7 @@ Because when we create our `node`, it doesn't have any children. We just have th
 
 Let's test it:
 
-```python
+```javascript
 tree = BinaryTree('a')
 print(tree.value) # a
 print(tree.left_child) # None
@@ -142,7 +142,7 @@ Let's draw it out. :)
 
 Here's the code:
 
-```python
+```javascript
 def insert_left(self, value):
     if self.left_child == None:
         self.left_child = BinaryTree(value)
@@ -156,7 +156,7 @@ Again, if the current node doesn't have a `left child`, we just create a new nod
 
 And we do the same thing to insert a `right child node`.
 
-```python
+```javascript
 def insert_right(self, value):
     if self.right_child == None:
         self.right_child = BinaryTree(value)
@@ -186,7 +186,7 @@ To summarize the illustration of this tree:
 
 So here is the code for the `tree`:
 
-```python
+```javascript
 a_node = BinaryTree('a')
 a_node.insert_left('b')
 a_node.insert_right('c')
@@ -249,7 +249,7 @@ Now that we are familiar with this traversal algorithm, we will discuss types of
 
 This is exactly what we did in the above example.
 
-```python
+```javascript
 def pre_order(self):
     print(self.value)
 
@@ -270,7 +270,7 @@ The left first, the middle second, and the right last.
 
 Now let's code it.
 
-```python
+```javascript
 def in_order(self):
     if self.left_child:
         self.left_child.in_order()
@@ -291,7 +291,7 @@ The left first, the right second, and the middle last.
 
 Let's code this.
 
-```python
+```javascript
 def post_order(self):
     if self.left_child:
         self.left_child.post_order()
@@ -320,7 +320,7 @@ So we traverse level by level. In this example, the result is 1–2–5–3–4�
 
 Now let's code it.
 
-```python
+```javascript
 def bfs(self):
     queue = Queue()
     queue.put(self)
@@ -392,7 +392,7 @@ Let's break it down.
 
 Now let's code it.
 
-```python
+```javascript
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -434,7 +434,7 @@ Let's break it down.
 
 Now let's code it.
 
-```python
+```javascript
 class BinarySearchTree:
     def __init__(self, value):
         self.value = value
@@ -460,25 +460,25 @@ How do we test it?
 
 Let's create our `Binary Search Tree` by initializing the `root` `node` with the value 15.
 
-```python
-bst = BinarySearchTree(15)
+```javascript
+bst = BinarySearchTree(15);
 ```
 
 And now we will insert many new `nodes`.
 
-```python
-bst.insert_node(10)
-bst.insert_node(8)
-bst.insert_node(12)
-bst.insert_node(20)
-bst.insert_node(17)
-bst.insert_node(25)
-bst.insert_node(19)
+```javascript
+bst.insert_node(10);
+bst.insert_node(8);
+bst.insert_node(12);
+bst.insert_node(20);
+bst.insert_node(17);
+bst.insert_node(25);
+bst.insert_node(19);
 ```
 
 For each inserted `node`, we will test if our `findNode` method really works.
 
-```python
+```javascript
 print(bst.find_node(15)) # True
 print(bst.find_node(10)) # True
 print(bst.find_node(8)) # True
@@ -491,7 +491,7 @@ print(bst.find_node(19)) # True
 
 Yeah, it works for these given values! Let's test for a value that doesn't exist in our `Binary Search Tree`.
 
-```python
+```javascript
 print(bst.find_node(0)) # False
 ```
 
@@ -505,7 +505,7 @@ Deletion is a more complex algorithm because we need to handle different cases. 
 
 - **Scenario #1**: A `node` with no `children` (`leaf` `node`).
 
-```python
+```javascript
 #        |50|                              |50|
 #      /      \                           /    \
 #    |30|     |70|   (DELETE 20) --->   |30|   |70|
@@ -517,7 +517,7 @@ If the `node` we want to delete has no children, we simply delete it. The algori
 
 - **Scenario #2**: A `node` with just one child (`left` or `right` child).
 
-```python
+```javascript
 #        |50|                              |50|
 #      /      \                           /    \
 #    |30|     |70|   (DELETE 30) --->   |20|   |70|
@@ -529,7 +529,7 @@ In this case, our algorithm needs to make the parent of the `node` point to the 
 
 - **Scenario #3**: A `node` with two children.
 
-```python
+```javascript
 #        |50|                              |50|
 #      /      \                           /    \
 #    |30|     |70|   (DELETE 30) --->   |40|   |70|
@@ -541,7 +541,7 @@ When the `node` has 2 children, we need to find the `node` with the minimum valu
 
 It's time to code.
 
-```python
+```javascript
 def remove_node(self, value, parent):
     if value < self.value and self.left_child:
         return self.left_child.remove_node(value, self)
@@ -577,9 +577,9 @@ def remove_node(self, value, parent):
         return True
 ```
 
-- To use the `clear_node` method: set the `null` value to all three attributes — (`value`, `left`, and `right`)
+- To use the `clearNode` method: set the `null` value to all three attributes — (`value`, `left`, and `right`)
 
-```python
+```javascript
 def clear_node(self):
     self.value = None
     self.left_child = None
@@ -588,7 +588,7 @@ def clear_node(self):
 
 - To use the `findMinimumValue` method: go way down to the left. If we can't find anymore nodes, we found the smallest one.
 
-```python
+```javascript
 def find_minimum_value(self):
     if self.left_child:
         return self.left_child.find_minimum_value()
@@ -600,7 +600,7 @@ Now let's test it.
 
 We will use this `tree` to test our `removeNode` algorithm.
 
-```python
+```javascript
 #        |15|
 #      /      \
 #    |10|     |20|
@@ -612,7 +612,7 @@ We will use this `tree` to test our `removeNode` algorithm.
 
 Let's remove the `node` with the `value` 8. It's a `node` with no child.
 
-```python
+```javascript
 print(bst.remove_node(8, None)) # True
 bst.pre_order_traversal()
 
@@ -627,7 +627,7 @@ bst.pre_order_traversal()
 
 Now let's remove the `node` with the `value` 17. It's a `node` with just one child.
 
-```python
+```javascript
 print(bst.remove_node(17, None)) # True
 bst.pre_order_traversal()
 
@@ -640,7 +640,7 @@ bst.pre_order_traversal()
 
 Finally, we will remove a `node` with two children. This is the `root` of our `tree`.
 
-```python
+```javascript
 print(bst.remove_node(15, None)) # True
 bst.pre_order_traversal()
 
@@ -653,17 +653,15 @@ bst.pre_order_traversal()
 
 The tests are now done. :)
 
-### That's all for now!
+### That's all for now!
 
 We learned a lot here.
 
 Congrats on finishing this dense content. It's really tough to understand a concept that we do not know. But you did it. :)
 
-This is one more step forward in my journey to learning and mastering algorithms and data structures. You can see the documentation of my complete journey here on my [Renaissance Developer publication](https://medium.com/the-renaissance-developer).
+This is one more step forward in my journey to learning and mastering algorithms and data structures.
 
 Have fun, keep learning and coding.
-
-Here are my [Medium](https://www.medium.com/@leandrotk_), [Twitter](https://twitter.com/wordsofteekay), [GitHub](https://github.com/imteekay), and [LinkedIn](http://br.linkedin.com/in/leandrotk/) accounts.☺
 
 ### Additional resources
 
