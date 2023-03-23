@@ -1,6 +1,13 @@
 export const bookshelfList = [
   {
     link: '',
+    title: 'The Almanack of Naval Ravikant',
+    author: 'Eric Jorgenson',
+    reviewLink: 'https://www.goodreads.com/review/show/5430743328',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'Harry Potter and the Chamber of Secrets',
     author: 'J.K. Rowling',
     reviewLink: 'https://www.goodreads.com/review/show/3059911024',
