@@ -7,6 +7,17 @@ import { Writings } from 'Home/components/Writings';
 import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
 import { Experiments } from 'Home/components/Experiments';
+import styled from '@emotion/styled';
+
+const LayoutFade = styled.div`
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, #0e0e16);
+  pointer-events: none;
+`;
 
 const Page: NextPage = () => (
   <>
@@ -27,6 +38,7 @@ const Page: NextPage = () => (
         <Projects />
         <Experiments />
       </div>
+      <LayoutFade />
     </main>
   </>
 );

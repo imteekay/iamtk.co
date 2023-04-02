@@ -11,5 +11,3 @@ export const Experiments: FC = () => (
     openNewTab={false}
   />
 );
-
-export default Experiments;
