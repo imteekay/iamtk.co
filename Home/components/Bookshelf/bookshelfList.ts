@@ -1,6 +1,13 @@
 export const bookshelfList = [
   {
     link: '',
+    title: "Man's Search for Meaning",
+    author: 'Viktor E. Frankl',
+    reviewLink: 'https://www.goodreads.com/review/show/3049811915',
+    stars: '⭐️⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
     title: 'The Almanack of Naval Ravikant',
     author: 'Eric Jorgenson',
     reviewLink: 'https://www.goodreads.com/review/show/5430743328',
