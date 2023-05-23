@@ -7,6 +7,16 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-03-17',
+    link: '/series/data-structures-in-javascript/tree-data-structure',
+    title: 'Tree Data Structure in JavaScript',
+  },
+  {
+    datetime: '2023-03-12',
+    link: '/the-evolution-of-react-rendering-architectures-and-web-performance',
+    title: 'The Evolution of React Rendering Architectures & Web Performance',
+  },
+  {
     datetime: '2023-02-27',
     link: '/a-high-level-architecture-of-the-typescript-compiler',
     title: 'A High Level Architecture of the TypeScript compiler',

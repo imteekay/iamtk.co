@@ -1,5 +1,40 @@
 export const bookshelfList = [
   {
+    link: '',
+    title: "Man's Search for Meaning",
+    author: 'Viktor E. Frankl',
+    reviewLink: 'https://www.goodreads.com/review/show/3049811915',
+    stars: '⭐️⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'The Almanack of Naval Ravikant',
+    author: 'Eric Jorgenson',
+    reviewLink: 'https://www.goodreads.com/review/show/5430743328',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'Harry Potter and the Chamber of Secrets',
+    author: 'J.K. Rowling',
+    reviewLink: 'https://www.goodreads.com/review/show/3059911024',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
+    link: '/bookshelf/14-habits-of-highly-productive-developers',
+    title: '14 Habits of Highly Productive Developers',
+    author: 'Zeno Rocha',
+    reviewLink: 'https://www.goodreads.com/review/show/5404576455',
+    stars: '⭐️⭐️⭐️',
+  },
+  {
+    link: '',
+    title: 'Harry Potter and the Philosopher’s Stone',
+    author: 'J.K. Rowling',
+    reviewLink: 'https://www.goodreads.com/review/show/5394735709',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
     link: '/series/building-an-interpreter',
     title: 'Writing An Interpreter In Go',
     author: 'Thorsten Ball',

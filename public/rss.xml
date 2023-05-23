@@ -12,6 +12,30 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>The Evolution of React Rendering Architectures &amp; Web Performance</title>
+    <link>https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</link>
+    <guid isPermaLink="true">https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</guid>
+    <description>Understanding diffeerent rendering architectures in react.js and how they impact performance on the web: Client-Side Rendering, Server-Side Rendering, and Streaming SSR</description>
+  </item>
+  <item>
+    <title>A High Level Architecture of the TypeScript compiler</title>
+    <link>https://www.iamtk.co/a-high-level-architecture-of-the-typescript-compiler</link>
+    <guid isPermaLink="true">https://www.iamtk.co/a-high-level-architecture-of-the-typescript-compiler</guid>
+    <description>Understand how the TypeScript compiler works: source code, scanner, parser, tokenization, binder, type checking, emitting files</description>
+  </item>
+  <item>
+    <title>Spotify Playlist — Frontend System Architecture</title>
+    <link>https://www.iamtk.co/series/crafting-frontend/spotify-playlist-frontend-system-architecture</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/crafting-frontend/spotify-playlist-frontend-system-architecture</guid>
+    <description>Frontend System Design of the Spotify Playlist</description>
+  </item>
+  <item>
+    <title>Webpack Bundle Splitting &amp; Browser Caching</title>
+    <link>https://www.iamtk.co/webpack-bundle-splitting-and-browser-caching</link>
+    <guid isPermaLink="true">https://www.iamtk.co/webpack-bundle-splitting-and-browser-caching</guid>
+    <description>How to use webpack code splitting and browser caching to improve performance</description>
+  </item>
+  <item>
     <title>Profiling &amp; Optimizing the runtime performance with the DevTools Performance tab</title>
     <link>https://www.iamtk.co/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab</link>
     <guid isPermaLink="true">https://www.iamtk.co/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab</guid>
