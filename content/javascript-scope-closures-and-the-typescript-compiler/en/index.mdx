@@ -1,0 +1,252 @@
+<SmoothRender>
+
+I've been studying [Programming Language Design](https://github.com/imteekay/programming-language-research) & [Compilers](https://github.com/imteekay/crafting-an-interpreter) and my current research target is the TypeScript compiler. I've been implementing the exercises on the [mini-typescript](https://github.com/imteekay/mini-typescript) (TypeScript Compiler miniature) posted by Nathan Sanders, the Compiler Engineer working on the TS compiler, and I was, maybe surprised by the extensive usage of closures in the compiler, so I decided to write about these learnings.
+
+Here, I will briefly talk about JavaScript types of scope and closure and then show how the TypeScript compiler uses this technique.
+
+## JavaScript scope
+
+In general, we can think of scopes in JavaScript as global and local. Variables and functions defined in the global scope can be reached in any scope of the program, global or local.
+
+```jsx
+let name = 'TK';
+
+function sayMyName() {
+  return name;
+}
+
+sayMyName(); // 'TK'
+name; // 'TK'
+```
+
+In the example above, we can see the `name` variable is declared in the global scope of the program, and then, it can be reached in the global scope and in a local scope, like inside a function block.
+
+Declaring variables and functions in a local scope can only be reached in that scope and not in the global scope anymore. You'll get the famous `"Uncaught ReferenceError: name is not defined."`. Let's see this example below:
+
+```jsx
+function sayMyName() {
+  let name = 'TK';
+  return name;
+}
+
+sayMyName(); // 'TK'
+name; // Uncaught ReferenceError: name is not defined
+```
+
+The name is only reachable inside the function block, or the “local scope” and when trying to access it outside of that scope, we get an “Uncaught ReferenceError”.
+
+This works the same way for other “blocks” like `for` loops, if statements, and block statements (when using `let` or `const` statements).
+
+## Closures
+
+Closures are a common topic and a powerful technique in JavaScript. As MDN web docs define it:
+
+> "A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment)."
+> 
+
+Basically, every time a function is created, a closure is also created and it gives access to all states (variables, constants, functions, etc). The surrounding state is known as the `lexical environment`.
+
+Let's show a simple example:
+
+```jsx
+function makeFunction() {
+  const name = 'TK';
+  function displayName() {
+    console.log(name);
+  }
+  return displayName;
+}
+```
+
+What do we have here?
+
+- Our main function called `makeFunction`
+- A constant named `name` assigned with a string `'TK'`
+- The definition of the `displayName` function (that just logs the `name` constant)
+- And finally, the `makeFunction` returns the `displayName` function
+
+This is just a definition of a function. When we call the `makeFunction`, it will create everything within it: the constant and the function in this case.
+
+As we know, when the `displayName` function is created, the closure is also created and it makes the function aware of the environment, in this case, the `name` constant. This is why we can `console.log` the `name` without breaking anything. The function knows about the lexical environment.
+
+```jsx
+const myFunction = makeFunction();
+myFunction(); // TK
+```
+
+Great! It works as expected! The return of the `makeFunction` is a function that we store in the `myFunction` constant, call it later, and display `TK`.
+
+We can also make it work as an arrow function:
+
+```jsx
+const makeFunction = () => {
+  const name = 'TK';
+  return () => console.log(name);
+};
+```
+
+But what if we want to pass the name and display it? A parameter!
+
+```jsx
+const makeFunction = (name = 'TK') => {
+  return () => console.log(name);
+};
+
+// Or a one-liner
+const makeFunction = (name = 'TK') => () => console.log(name);
+```
+
+Now we can play with the name:
+
+```jsx
+const myFunction = makeFunction();
+myFunction(); // TK
+
+const myFunction = makeFunction('Dan');
+myFunction(); // Dan
+```
+
+Our `myFunction` is aware of the arguments passed: default or dynamic value.
+The closure does make the created function not only aware of constants/variables but also of other functions within the function.
+
+So this also works:
+
+```jsx
+const makeFunction = (name = 'TK') => {
+  const display = () => console.log(name);
+  return () => display();
+};
+
+const myFunction = makeFunction();
+myFunction(); // TK
+```
+
+The returned function knows about the `display` function and it is able to call it.
+
+One powerful technique is to use closures to build "private" functions and variables.
+
+## The TypeScript compiler
+
+You can read [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler) post but I'll just give you a brief intro to the inner parts of the TS compiler.
+
+TypeScript compiler contains the same steps as a common compiler: tokenizer (or lexer, or scanner), parser, and typechecker. It has also other interesting steps like the binder and the transformer, but in general, it looks very similar to a common compiler.
+
+The scanner will read the source code as a string and output tokens. So tokens are the first representation of the source code. Let's a simple example:
+
+```jsx
+const msg: string = 'Hello World';
+```
+
+The scanner will turn this source code into these tokens:
+
+- `ConstKeyword`
+- `Identifier`
+- `ColonToken`
+- `StringKeyword`
+- `EqualsToken`
+- `StringLiteral`
+- `SemicolonToken`
+
+With that, the compiler can use them to parse and build the abstract syntax tree (AST)
+
+For this example:
+
+```jsx
+const num = 10;
+```
+
+For each token, it will build the AST node and form the entire tree representation of the source code:
+
+```jsx
+SourceFile
+  - VariableStatement
+    - VariableDeclarationList
+      - VariableDeclaration
+        - Identifier
+        - NumericLiteral
+  - EndOfFileToken
+```
+
+With an AST data structure, it gets easier to understand a variable type, which values an identifier holds, if it's a list of variables declaration, etc.
+
+The typechecker will use this data structure to build the types for each node and check if the code doesn't have type errors in variable declarations (comparing the identifier type with the variable value), variable reassignment (again comparing the identifier type with the new variable value), function arguments passing (comparing arguments type with the values being passed), etc.
+
+Now that you get the idea of the compiler, how do closures fit it?
+
+The scanner is a big singleton function (like the parser and the checker) and it holds variables like `pos` (the position of a character), `token` (the current token), etc and functions like `scan` (the way the scanner transforms characters into tokens), `scanForward`, etc.
+
+`pos` and `token` are treated as the scanner's “private” variables. They are defined and used there but only accessible through “public” functions. For example, the position of the character can be accessed via the `pos` function and the current token via the `token` function.
+
+The `scan` is a public function and can be used by the parser. But the other functions are “private” and only used within the scanner.
+
+A simple implementation based on the [mini-typescript](https://github.com/imteekay/mini-typescript) is something like
+
+```jsx
+function scanner(sourceCode: string): Scanner {
+  let pos = 0;
+  let token = Token.BOF;
+
+  return {
+    scan,
+    token: () => token,
+    pos: () => pos,
+  };
+
+  function scan() {
+    // ...implementation
+  }
+
+  function scanForward(pred: (x: string) => boolean) {
+    // ...implementation
+  }
+}
+```
+
+The `scanner` function returns the “public” functions and uses “private” variables and functions only internally. Each function forms a closure and it can access the lexical environment, in other words, it can access the variables and functions defined within the `scanner`. So it doesn't really need to pass variables and functions to be used, it directly uses each defined value.
+
+The parser and the typechecker work using the same approach. They are big singleton functions that hold variables and functions but these values are used only internally unless the function returns a “public” API for the outside world to use it.
+
+This implementation is based on the mini-ts too just for the sake of illustrations on how closures are used on the parser:
+
+```jsx
+function parser(scanner: Scanner): Module {
+  scanner.scan();
+  return parseModule();
+
+  function parseModule(): Module { /** implementation */ }
+  function parseExpression(): Expression { /** implementation */ }
+  function parseIdentifierOrLiteral(): Expression { /** implementation */ }
+  function parseIdentifier(): Identifier { /** implementation */ }
+  function parseStatement(): Statement { /** implementation */ }
+}
+```
+
+The `scanner` is passed to the `parser` so every function can use this singleton instance. The function just returns the `parseModule` and all the other functions are “private” and used only internally.
+
+And this is how a typechecker is illustrated:
+
+```jsx
+function checker(module: Module) {
+  return module.statements.map(checkStatement);
+
+  function checkStatement(statement: Statement): Type { /** implementation */ }
+  function checkExpression(expression: Expression): Type { /** implementation */ }
+  function checkType(name: Identifier): Type { /** implementation */ }
+}
+```
+
+This is super similar to the `parser`. All functions are used only internally.
+
+In this post I just shared about JavaScript scope, how closures work, and the TypeScript compiler making use of this technique.
+
+## Resources
+
+- [TypeScript codebase](https://github.com/microsoft/typescript)
+- [How the TypeScript Compiler Compiles](https://www.youtube.com/watch?v=X8k_4tZ16qU)
+- [mini-typescript](https://github.com/imteekay/mini-typescript)
+- [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+
+---
+
+</SmoothRender>
