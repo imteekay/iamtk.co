@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-06-04',
+    link: '/javascript-scope-closures-and-the-typescript-compiler',
+    title: 'JavaScript scope, Closures, and the TypeScript compiler',
+  },
+  {
     datetime: '2023-03-17',
     link: '/series/data-structures-in-javascript/tree-data-structure',
     title: 'Tree Data Structure in JavaScript',
