@@ -134,23 +134,23 @@ We did some [benchmarks to compare the PWA with and without Immutable.js](https:
 
 **[Get - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/get.js)**: getting the first attribute of an object is way more costly for the Immutable.js API. 7 times (in milliseconds) running with 1 million cycles and 5 million cycles. Getting the first element of an array is closer compared to those APIs.
 
-![Object.get results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/get.png)
+![Object.get results](https://raw.githubusercontent.com/imteekay/javascript-immutable-data-benchmarks/master/results/get.png)
 
 **[Get-In - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/getin.js)**: getting a nested attribute for an object or a nested element of an array is way more costly for the Immutable.js API than the native one. For both 1 and 5 million cycles.
 
-![Object.getIn results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/getin.png)
+![Object.getIn results](https://raw.githubusercontent.com/imteekay/javascript-immutable-data-benchmarks/master/results/getin.png)
 
 **[Set - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/set.js)**: setting a new value to an object attribute is way more costly for the native JavaScript API. But using the set method, we can still work with native Objects and drastically decrease the milliseconds. For the array, it's closer, but it can be better with the set method.
 
-![Object.set results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/set.png)
+![Object.set results](https://raw.githubusercontent.com/imteekay/javascript-immutable-data-benchmarks/master/results/set.png)
 
 **[Set-In - Object and Array](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/setin.js)**: for both objects and arrays, it's better to use the native JavaScript API instead of the Immutable.js data structures and methods.
 
-![Object.setIn results](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/setin.png)
+![Object.setIn results](https://raw.githubusercontent.com/imteekay/javascript-immutable-data-benchmarks/master/results/setin.png)
 
 **[fromJS](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/fromJS.js) & [toJS](https://github.com/imteekay/javascript-immutable-data-benchmarks/blob/master/src/toJS.js)**: we can see that the fromJS function can be costly when transforming native JavaScript data structures to Immutable DS. toJS is way less costly, but every time we need to get a value, in the selector, for example, we use toJS and it can influence performance.
 
-![fromJS toJS](https://raw.githubusercontent.com/leandrotk/javascript-immutable-data-benchmarks/master/results/transformation.png)
+![fromJS toJS](https://raw.githubusercontent.com/imteekay/javascript-immutable-data-benchmarks/master/results/transformation.png)
 
 # Typed State Management: The lifecycle
 
