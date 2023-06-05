@@ -19,6 +19,8 @@ const LayoutFade = styled.div`
   pointer-events: none;
 `;
 
+const SubstackForm = () => <div id="custom-substack-embed"></div>;
+
 const Page: NextPage = () => (
   <>
     <Head
@@ -33,6 +35,7 @@ const Page: NextPage = () => (
       <div className="content">
         <Title text="TK" />
         <About />
+        <SubstackForm />
         <Writings />
         <Series />
         <Projects />
