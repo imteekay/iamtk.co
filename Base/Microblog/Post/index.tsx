@@ -44,23 +44,21 @@ export const Post: FC<PostPropTypes> = ({
   image,
 }) => (
   <>
-    <Link href={`/microblog/${slug}`} passHref>
-      <a className={linkStyle}>
-        <h2 style={titleStyle}>{title}</h2>
-        <p style={dateStyle}>{date}</p>
-        {image ? (
-          <Image
-            src={image.url}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-          />
-        ) : null}
-        <div
-          className={postDescriptionStyle}
-          dangerouslySetInnerHTML={{ __html: description }}
+    <Link href={`/microblog/${slug}`} passHref className={linkStyle}>
+      <h2 style={titleStyle}>{title}</h2>
+      <p style={dateStyle}>{date}</p>
+      {image ? (
+        <Image
+          src={image.url}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
         />
-      </a>
+      ) : null}
+      <div
+        className={postDescriptionStyle}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
     </Link>
     <ShareButtons title={title} anchor={id} />
   </>

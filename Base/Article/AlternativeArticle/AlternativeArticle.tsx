@@ -21,7 +21,10 @@ export const AlternativeArticle: FC<AlternativeArticlePropTypes> = ({
 
   return (
     <div style={alternativeArticleStyle}>
-      • <Link href={alternativeArticle.url}>{linkText}</Link>
+      •{' '}
+      <Link href={alternativeArticle.url} legacyBehavior>
+        {linkText}
+      </Link>
     </div>
   );
 };

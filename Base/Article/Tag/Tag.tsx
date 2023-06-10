@@ -8,7 +8,7 @@ export type TagPropTypes = {
 };
 
 export const Tag: FC<TagPropTypes> = ({ href, name }) => (
-  <Link href={href}>
-    <a style={tagStyle}>{`#${name}`}</a>
+  <Link href={href} style={tagStyle}>
+    {`#${name}`}
   </Link>
 );

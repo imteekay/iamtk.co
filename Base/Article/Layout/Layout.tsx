@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { motion } from 'framer-motion';
 import { Title } from 'Base/Article/Title';
 import { Meta } from 'Base/Article/Meta';
 import { HomeLink } from 'Base/Article/HomeLink';
@@ -11,7 +10,8 @@ import {
   CoverImage as CoverImageType,
 } from 'src/lib/getPostMetadata';
 
-import { Footer } from './Footer';
+import { Footer } from 'Base/components/Footer';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 
 type LayoutPropTypes = {
   tags: Tag[];
@@ -33,16 +33,7 @@ export const Layout: FC<LayoutPropTypes> = ({
   alternativeArticle,
   minutes,
 }) => (
-  <motion.div
-    initial={{ x: 300, opacity: 0 }}
-    animate={{ x: 0, opacity: 1 }}
-    exit={{ x: 300, opacity: 0 }}
-    transition={{
-      type: 'spring',
-      stiffness: 260,
-      damping: 20,
-    }}
-  >
+  <AnimationLayout>
     <div className="content">
       <HomeLink />
       <article
@@ -77,5 +68,5 @@ export const Layout: FC<LayoutPropTypes> = ({
       </article>
       <Footer tags={tags} />
     </div>
-  </motion.div>
+  </AnimationLayout>
 );
