@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/gtag.js": "^0.0.8",
     "@types/loadable__component": "^5.13.4",
-    "@types/node": "16.11.6",
+    "@types/node": "18.16.0",
     "@types/react": "17.0.39",
     "@types/react-autocomplete": "^1.8.6",
     "cypress": "^9.2.0",

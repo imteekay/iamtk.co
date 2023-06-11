@@ -10,7 +10,7 @@ import {
   CoverImage as CoverImageType,
 } from 'src/lib/getPostMetadata';
 
-import { Footer } from 'Base/components/Footer';
+import { Footer } from 'Base/Article/Layout/Footer';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 
 type LayoutPropTypes = {

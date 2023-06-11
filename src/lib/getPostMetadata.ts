@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 import { Locale } from 'src/types/Locale';
 import { Language } from './languages';
+import { ImageProps } from 'next/image';
 
 export type Tag = {
   href: '/tags/javascript';
@@ -10,8 +11,8 @@ export type Tag = {
 
 export type CoverImage = {
   src: string;
-  width: string;
-  height: string;
+  width?: ImageProps['width'];
+  height?: ImageProps['height'];
   alt: string;
   authorHref: string;
   authorName: string;
