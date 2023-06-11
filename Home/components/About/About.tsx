@@ -14,7 +14,6 @@ import {
   faGithub,
   faGoodreads,
   faLinkedin,
-  faPatreon,
 } from '@fortawesome/free-brands-svg-icons';
 
 import { socialLinks } from './style';
