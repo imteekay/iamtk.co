@@ -48,10 +48,8 @@ export const About: FC = () => (
     </p>
     <p style={socialLinks}>
       and on my{' '}
-      <Link href="/microblog">
-        <a className="icon">
-          microblog <FontAwesomeIcon icon={faBlog} />
-        </a>
+      <Link href="/microblog" className="icon">
+        microblog <FontAwesomeIcon icon={faBlog} />
       </Link>
     </p>
     <p className="no-margin-bottom">
@@ -69,10 +67,8 @@ export const About: FC = () => (
     </p>
     <p className="no-margin-top">
       and the{' '}
-      <Link href="/bookshelf">
-        <a className="icon">
-          digital bookshelf <FontAwesomeIcon icon={faBook} />
-        </a>
+      <Link href="/bookshelf" className="icon">
+        digital bookshelf <FontAwesomeIcon icon={faBook} />
       </Link>
     </p>
     <p className="no-margin">You can support my work on</p>

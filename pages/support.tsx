@@ -41,8 +41,8 @@ const Page: NextPage = () => {
             </Link>
             . Every post will continue to be open and free. But I‘ll send early
             access to{' '}
-            <Link href="https://teekay.substack.com">
-              <a target="_blank">paid Substack subscribers</a>
+            <Link href="https://teekay.substack.com" target="_blank">
+              paid Substack subscribers
             </Link>
             .
           </p>
