@@ -1,0 +1,23 @@
+{
+  "title": "Solving Algorithmic problems using the Two Pointers technique",
+  "description": "Solving algorithmic problems, algorithmic techniques, two pointers",
+  "date": "2023-06-09",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/solving-algorithmic-problems-using-the-two-pointers-technique/cover.jpg",
+    "width": "640",
+    "height": "480",
+    "alt": "a diamond",
+    "authorHref": "https://unsplash.com/@possessedphotography",
+    "authorName": "Possessed Photography"
+  }
+}

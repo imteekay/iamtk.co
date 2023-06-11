@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { styled } from '@mui/material/styles';
 import { figcaptionStyle, figcaptionLinkStyle } from './styles';
 
@@ -12,15 +12,13 @@ const ImageWrapper = styled('div')`
   gap: 12px;
 `;
 
-type CoverImagePropTypes = {
+interface CoverImagePropTypes extends ImageProps {
   src: string;
-  width: string;
-  height: string;
   alt: string;
   authorHref: string;
   authorName: string;
   blurDataURL?: string;
-};
+}
 
 export const CoverImage: FC<CoverImagePropTypes> = ({
   src,

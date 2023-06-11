@@ -1,0 +1,193 @@
+<SmoothRender>
+
+In this post, I want to share some ideas on how to use the “Two Pointers” technique and I bring some examples of problems and how to solve them using this technique.
+
+The whole idea of the “Two Pointers” technique is to hold indices in two variables. Usually, one points to the start of the list, or stores the value `0`, and the other points to the end of the list, or stores the value `list.length - 1`.
+
+And you iterate the list using these pointers. The “start pointer” goes to the right or increases the value, from `0` to `1`, from `1` to `2`, and so on. And the “end pointer” goes to the left or decreases the value, from `list.length - 1` to `list.length - 2`, and so on.
+
+You usually solve most of the problems with the pointers using the same “speed”, meaning, if the “start pointer” increases in one, the “end pointer” decreases in one too.
+
+But you can also find other problems you need the pointers to have different speeds. Something like the “start pointer” walking from three to three indices and the “end pointer” walking from one to one.
+
+Now that we understand the fundamentals of this technique, let's dive deep into three problems and experiment with it.
+
+## Reverse String
+
+The first problem is the [reverse string](https://leetcode.com/problems/reverse-string/). This is the problem description
+
+```jsx
+Write a function that reverses a string. The input string is given as an array of characters s.
+You must do this by modifying the input array in-place with O(1) extra memory.
+```
+
+The whole idea is that we need to reverse the given string, but we need to do it in-place, or with no extra memory — O(1). With extra memory, we could probably use an array, add every character there from the last char to the first one, and then join all characters into a single string.
+
+Implementing the algorithm without extra memory means we need to update each character in-place and the idea is to swap characters.
+
+To do it, we need to have two pointers, swap the characters, and then move to the next characters.
+
+```jsx
+function reverseString(string) {
+  let startPointer = 0;
+  let endPointer = string.length - 1;
+  let char;
+
+  while (startPointer < endPointer) {
+    char = string[startPointer];
+    string[startPointer] = string[endPointer];
+    string[endPointer] = char;
+    startPointer++;
+    endPointer--;
+  }
+}
+```
+
+This is the whole implementation.
+
+- We start storing the `startPointer` and the `endPointer`
+- We also use a `char` variable to hold a temporary value for each swap
+- The swap is pretty simple
+  - Store a temporary value of the `startPointer`
+  - Update the `startPointer`'s value with the value from the `endPointer`
+  - Update the `endPointer`'s with the temporary value from `char`
+- Move the pointers
+  - Increase `startPointer`
+  - Decrease `endPointer`
+- We keep doing this while the `startPointer` is smaller than the `endPointer`. If they cross each other, we stop the loop
+
+That way we don't use extra memory — O(1) — and the runtime complexity is O(N / 2), which translates to O(N) at the end, where N is the number of characters.
+
+## **Valid Palindrome**
+
+The second problem here is the [valid palindrome](https://leetcode.com/problems/valid-palindrome/). The problem statement is
+
+```jsx
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters,
+it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+Given a string s, return true if it is a palindrome, or false otherwise.
+```
+
+If you think about the problem, you need to solve two minor problem
+
+1. Remove all non-alphanumeric characters and use lowercase chars only
+2. Check if the string is a palindrome
+
+Removing non-alphanumeric is easy and can be done by a simple regular expression.
+
+```jsx
+s.toLowerCase().replace(/[^a-z0-9]/gi, '');
+```
+
+Just replace non-alphanumeric characters with an empty char using regex with the `replace` string method.
+
+Using lowercase only can be easily done by using the `toLowerCase()` method.
+
+And then we can focus on solving the “palindrome” problem.
+
+As you already know, we will be using the “Two Pointers” technique and it looks very similar to the previous algorithm. One pointing to the start and the other to the end.
+
+But rather than performing the swap, we just compare the characters. If they are different, we already know that it's not a palindrome and we can return `false`.
+
+If they are equal, we move the pointers and keep performing the comparison. We stop this loop when the pointers cross each other.
+
+If the loop is stopped and we didn't return `false`, it means the string is a palindrome, and so, we can return `true`.
+
+```jsx
+function isPalindrome(s) {
+  let string = s.toLowerCase().replace(/[^a-z0-9]/gi, '');
+  let start = 0;
+  let end = string.length - 1;
+
+  while (start <= end) {
+    if (string[start] !== string[end]) {
+      return false;
+    }
+
+    start++;
+    end--;
+  }
+
+  return true;
+}
+```
+
+## **Two Sum**
+
+The third and final problem is the [two sum](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/). This is the problem statement:
+
+```jsx
+Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order,
+find two numbers such that they add up to a specific target number.
+Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 < numbers.length.
+
+Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+The tests are generated such that there is exactly one solution. You may not use the same element twice.
+
+Your solution must use only constant extra space.
+```
+
+The classical algorithm to solve this problem is to use a hash map and find the two numbers that added up to the target number. But the statement says it should only use constant extra space, so no hash maps here.
+
+One important piece of information it gives is the fact that the array is sorted. This is crucial for the algorithm. Let's take a look at the implementation first and then the explanation.
+
+```jsx
+function twoSum(numbers, target) {
+  let start = 0;
+  let end = numbers.length - 1;
+  let result = [];
+
+  while (start < end) {
+    let sum = numbers[start] + numbers[end];
+
+    if (sum === target) {
+      result.push(start + 1);
+      result.push(end + 1);
+      break;
+    }
+
+    if (sum > target) end--;
+    else start++;
+  }
+
+  return result;
+}
+```
+
+The idea is to have two pointers, the `start` and the `end`. It tries to sum the two numbers and if they match the target, that's nice! Just push the two indices to the `result` array, break the loop, and return it as the problem's answer.
+
+If it didn't match, we need to move the pointers.
+
+- if the `sum` is greater than the `target`, we need to move the `end` pointer to the left, or decrease it
+- if the `sum` is smaller than the `target`, we need to move the `start` pointer to the right, or increase it
+
+We keep this logic in a loop until we find an answer or if the pointers cross each other.
+
+The fact that the array is sorted is crucial because we know that we can move the `end` to left to decrease the sum and move the `start` to the right to increase the sum and try to find a sum that matches the `target`.
+
+## Final words
+
+In this post, we've learned an interesting technique called “Two Pointers” that can be used to solve many algorithmic problems. We've viewed three problems: reverse a reversing strings, checking palindrome, and two sum.
+
+This technique permits us to go from O(N) in terms of memory complexity to O(1).
+
+## Resources
+
+- [Algorithms Problem Solving Series](/series/algorithms-problem-solving)
+- [Algorithms & Data Structures studies](https://github.com/imteekay/algorithms)
+- [Data Structures in JavaScript Series](/series/data-structures-in-javascript)
+- [Stack Data Structure in JavaScript](/series/data-structures-in-javascript/stack-data-structure)
+- [Queue Data Structure in JavaScript](/series/data-structures-in-javascript/queue-data-structure)
+- [Linked List Data Structure in JavaScript](/series/data-structures-in-javascript/linked-list-data-structure)
+- [Stack Data Structure](/series/data-structures/stack-data-structure)
+- [Queue Data Structure](/series/data-structures/queue-data-structure)
+- [Linked List](/series/data-structures/linked-list-data-structure)
+- [Tree Data Structure](/series/data-structures/tree-data-structure)
+- Two Pointers problems
+  - [reverse string](https://leetcode.com/problems/reverse-string/)
+  - [valid palindrome](https://leetcode.com/problems/valid-palindrome/)
+  - [two sum](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+
+---
+
+</SmoothRender>

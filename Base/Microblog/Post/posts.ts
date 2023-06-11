@@ -1,3 +1,5 @@
+import { ImageProps } from 'next/image';
+
 type PostTypes = {
   title: string;
   slug: string;
@@ -5,8 +7,8 @@ type PostTypes = {
   description: string;
   image?: {
     url: string;
-    width: string;
-    height: string;
+    width: ImageProps['width'];
+    height: ImageProps['height'];
     alt: string;
   };
 };

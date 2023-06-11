@@ -8,6 +8,7 @@ import { Series } from 'Home/components/Series';
 import { Projects } from 'Home/components/Projects';
 import { Experiments } from 'Home/components/Experiments';
 import styled from '@emotion/styled';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 
 const LayoutFade = styled.div`
   position: fixed;
@@ -22,7 +23,7 @@ const LayoutFade = styled.div`
 const SubstackForm = () => <div id="custom-substack-embed"></div>;
 
 const Page: NextPage = () => (
-  <>
+  <AnimationLayout>
     <Head
       title="TK's website about software engineering, web development, and career in tech"
       description="Learning & Improving with TK: a website about software engineering, web development, and career in tech"
@@ -43,7 +44,7 @@ const Page: NextPage = () => (
       </div>
       <LayoutFade />
     </main>
-  </>
+  </AnimationLayout>
 );
 
 export default Page;

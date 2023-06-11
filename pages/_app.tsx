@@ -6,6 +6,7 @@ import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
@@ -72,7 +73,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Script src="https://substackapi.com/widget.js" async></Script>
       <SearchBar>
         <Layout>
-          <Component {...pageProps} />
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} />
+          </AnimatePresence>
         </Layout>
       </SearchBar>
     </>
