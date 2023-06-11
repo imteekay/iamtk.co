@@ -1,5 +1,4 @@
 import Image from 'next/image';
-
 import { FC, CSSProperties } from 'react';
 
 const iconStyle: CSSProperties = {

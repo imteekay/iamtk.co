@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { FC } from 'react';
 
 import { AlternativeArticle as AlternativeArticleType } from 'src/lib/getPostMetadata';

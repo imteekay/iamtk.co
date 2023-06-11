@@ -2,7 +2,7 @@
   "singleQuote": true,
   "trailingComma": "all",
   "importOrder": [
-    "^(react|next)/(.*)$",
+    "^(react|next/(.*))$",
     "<THIRD_PARTY_MODULES>",
     "^(Base|src|Home|data|./)(.*)$"
   ],

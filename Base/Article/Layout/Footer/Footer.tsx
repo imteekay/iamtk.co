@@ -1,5 +1,6 @@
-import { css } from '@emotion/css';
 import { FC } from 'react';
+
+import { css } from '@emotion/css';
 
 import { ShareButtons } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';

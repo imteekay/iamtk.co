@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { FC, CSSProperties } from 'react';
 
 import {
   KBarAnimator,
@@ -7,7 +8,6 @@ import {
   KBarPositioner,
   KBarSearch,
 } from 'kbar';
-import { FC, CSSProperties } from 'react';
 
 import { Icon } from './Icon';
 import { RenderResults } from './RenderResults';

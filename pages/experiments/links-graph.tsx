@@ -1,5 +1,6 @@
-import type { NextPage } from 'next';
 import { useMemo, useState } from 'react';
+
+import type { NextPage } from 'next';
 import ReactFlow from 'react-flow-renderer';
 
 import { Dialog } from 'Base/LinksGraph/Dialog';

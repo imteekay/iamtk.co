@@ -1,5 +1,6 @@
-import { useMatches, KBarResults } from 'kbar';
 import { FC, CSSProperties } from 'react';
+
+import { useMatches, KBarResults } from 'kbar';
 
 import { ResultItem } from './ResultItem';
 

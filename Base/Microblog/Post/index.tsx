@@ -1,8 +1,8 @@
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
+import { FC } from 'react';
 
 import { css } from '@emotion/css';
-import { FC } from 'react';
 
 import { dateStyle, titleStyle } from './styles';
 import { ShareButtons } from 'Base/Article/SocialLinks';

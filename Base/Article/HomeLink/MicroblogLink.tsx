@@ -1,8 +1,8 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
 import { faLongArrowAltLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
 
 import { homeLinkStyle, iconStyle } from './styles';
 

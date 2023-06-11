@@ -1,5 +1,6 @@
-import { css } from '@emotion/css';
 import { FC } from 'react';
+
+import { css } from '@emotion/css';
 
 import { metaStyle } from './styles';
 import { AlternativeArticle } from 'Base/Article/AlternativeArticle';

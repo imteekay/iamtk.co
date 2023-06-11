@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FC } from 'react';
 
 import {
   faTwitter,
@@ -15,7 +16,6 @@ import {
   faBlog,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC } from 'react';
 
 import { socialLinks } from './style';
 
