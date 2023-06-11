@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { FC } from 'react';
+
+import { Post } from './Post';
+import { postsList } from './postsList';
+import { listStyle, titleLinkStyle } from './style';
 import { Title } from 'Base/components/Title';
 import { titleStyle } from 'Base/components/Title/style';
-import { Post } from './Post';
-import { listStyle, titleLinkStyle } from './style';
-import { postsList } from './postsList';
 
 type Header = 'h1' | 'h2';
 type WritingsPropTypes = { header?: Header };

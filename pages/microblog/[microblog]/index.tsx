@@ -2,8 +2,8 @@ import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 
-import { Head } from 'Base/components/Head';
 import { MicroblogLayout } from 'Base/Article/Layout/MicroblogLayout';
+import { Head } from 'Base/components/Head';
 import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import {
   getNestedPaths,

@@ -1,5 +1,7 @@
-import type { NextPage } from 'next';
 import { useState, createContext, useContext, ChangeEvent } from 'react';
+
+import type { NextPage } from 'next';
+
 import { Head } from 'Base/components/Head';
 
 interface Comment {

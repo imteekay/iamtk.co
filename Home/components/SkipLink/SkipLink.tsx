@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { skipLink } from './style';
 
 export const SkipLink: FC = () => (

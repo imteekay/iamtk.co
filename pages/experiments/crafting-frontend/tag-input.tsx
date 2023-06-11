@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+
 import { Head } from 'Base/components/Head';
 import { TagInput } from 'Base/components/TagInput';
 

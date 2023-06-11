@@ -1,7 +1,8 @@
 import { FC } from 'react';
+
+import FooterLoadable from './Loadable';
 import { IntersectionObserver } from 'Base/components/IntersectionObserver';
 import { Tag } from 'src/lib/getPostMetadata';
-import FooterLoadable from './Loadable';
 
 type FooterPropTypes = {
   tags: Tag[];

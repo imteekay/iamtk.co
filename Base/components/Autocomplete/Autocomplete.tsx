@@ -1,7 +1,9 @@
 import { FC, useState, Dispatch, SetStateAction } from 'react';
+
 import { css } from '@emotion/css';
 import MiniSearch, { Suggestion } from 'minisearch';
 import ReactAutocomplete from 'react-autocomplete';
+
 import { Icon } from './Icon';
 
 type Options = {

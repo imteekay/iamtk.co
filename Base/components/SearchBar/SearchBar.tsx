@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { FC, CSSProperties } from 'react';
+
 import {
   KBarAnimator,
   KBarProvider,
@@ -8,8 +9,8 @@ import {
   KBarSearch,
 } from 'kbar';
 
-import { RenderResults } from './RenderResults';
 import { Icon } from './Icon';
+import { RenderResults } from './RenderResults';
 
 const positionerStyle: CSSProperties = {
   position: 'fixed',

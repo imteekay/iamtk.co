@@ -1,8 +1,10 @@
-import path from 'path';
-import fs from 'fs';
-import { Locale } from 'src/types/Locale';
-import { Language } from './languages';
 import { ImageProps } from 'next/image';
+
+import fs from 'fs';
+import path from 'path';
+
+import { Language } from './languages';
+import { Locale } from 'src/types/Locale';
 
 export type Tag = {
   href: '/tags/javascript';

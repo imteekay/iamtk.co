@@ -1,4 +1,10 @@
 {
   "singleQuote": true,
-  "trailingComma": "all"
+  "trailingComma": "all",
+  "importOrder": [
+    "^(react|next/(.*))$",
+    "<THIRD_PARTY_MODULES>",
+    "^(Base|src|Home|data|./)(.*)$"
+  ],
+  "importOrderSeparation": true
 }

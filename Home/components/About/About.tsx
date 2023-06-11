@@ -1,13 +1,5 @@
-import { FC } from 'react';
 import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faMugHot,
-  faEnvelope,
-  faStickyNote,
-  faBook,
-  faBlog,
-} from '@fortawesome/free-solid-svg-icons';
+import { FC } from 'react';
 
 import {
   faTwitter,
@@ -16,6 +8,14 @@ import {
   faLinkedin,
   faPatreon,
 } from '@fortawesome/free-brands-svg-icons';
+import {
+  faMugHot,
+  faEnvelope,
+  faStickyNote,
+  faBook,
+  faBlog,
+} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { socialLinks } from './style';
 
