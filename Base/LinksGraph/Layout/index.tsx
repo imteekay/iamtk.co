@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { css } from '@emotion/css';
+import { FC } from 'react';
 
 type LayoutPropTypes = {
   title?: string;

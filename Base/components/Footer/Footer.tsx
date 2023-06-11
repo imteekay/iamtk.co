@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
-import { FC } from 'react';
 import Link from 'next/link';
+
+import { FC } from 'react';
 
 export const Footer: FC = () => (
   <footer id="footer" className="footer">

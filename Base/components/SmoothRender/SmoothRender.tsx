@@ -1,6 +1,6 @@
+import { css } from '@emotion/css';
 import { useState } from 'react';
 import { InView } from 'react-intersection-observer';
-import { css } from '@emotion/css';
 
 interface SmoothRenderPropTypes {
   children: JSX.Element[];

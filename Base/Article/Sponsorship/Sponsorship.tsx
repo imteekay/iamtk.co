@@ -1,5 +1,7 @@
 import Image, { ImageProps } from 'next/image';
+
 import { FC } from 'react';
+
 import { patreonImageBase64, kofiImageBase64 } from './constants';
 import {
   sponsorshipWrapperStyle,

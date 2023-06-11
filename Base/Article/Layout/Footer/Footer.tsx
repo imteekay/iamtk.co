@@ -1,8 +1,9 @@
-import { FC } from 'react';
 import { css } from '@emotion/css';
-import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
+import { FC } from 'react';
+
 import { ShareButtons } from 'Base/Article/SocialLinks';
 import { Tags } from 'Base/Article/Tags';
+import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { mediaQuery } from 'Base/mediaQuery';
 import { Tag } from 'src/lib/getPostMetadata';
 

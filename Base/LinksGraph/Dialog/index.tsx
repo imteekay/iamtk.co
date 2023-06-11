@@ -1,6 +1,7 @@
 import { useMediaQuery } from '@mui/material';
 import MuiDialog from '@mui/material/Dialog';
 import { styled } from '@mui/material/styles';
+
 import { Layout } from 'Base/LinksGraph/Layout';
 
 type DialogPropsType = {

@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import { css } from '@emotion/css';
+import { FC } from 'react';
+
 import { itemStyle } from './style';
 
 type PostPropType = { datetime: string; link: string; title: string };

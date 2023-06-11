@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { dateStyle } from './styles';
 
 type DatePropTypes = {

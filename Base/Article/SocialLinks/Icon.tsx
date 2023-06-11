@@ -1,6 +1,7 @@
 import Image from 'next/image';
-import { FC } from 'react';
+
 import { css } from '@emotion/css';
+import { FC } from 'react';
 
 const iconStyle = css`
   border: 1px solid white;

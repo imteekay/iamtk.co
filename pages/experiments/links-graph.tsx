@@ -2,9 +2,9 @@ import type { NextPage } from 'next';
 import { useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 
-import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
-import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
+import { Head } from 'Base/components/Head';
+import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { posts } from 'data/posts';
 import { buildGraph } from 'src/lib/buildGraph';
 

@@ -2,9 +2,9 @@ import type { NextPage } from 'next';
 import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
 import ReactFlow from 'react-flow-renderer';
 
-import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
-import { Head } from 'Base/components/Head';
 import { Dialog } from 'Base/LinksGraph/Dialog';
+import { Head } from 'Base/components/Head';
+import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { topics } from 'data/web-performance-topics-content';
 
 type SlugifiedTopics =

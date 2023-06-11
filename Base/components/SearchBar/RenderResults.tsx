@@ -1,5 +1,6 @@
-import { FC, CSSProperties } from 'react';
 import { useMatches, KBarResults } from 'kbar';
+import { FC, CSSProperties } from 'react';
+
 import { ResultItem } from './ResultItem';
 
 const groupNameStyle: CSSProperties = {

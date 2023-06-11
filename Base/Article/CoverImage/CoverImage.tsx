@@ -1,6 +1,8 @@
-import { FC } from 'react';
 import Image, { ImageProps } from 'next/image';
+
 import { styled } from '@mui/material/styles';
+import { FC } from 'react';
+
 import { figcaptionStyle, figcaptionLinkStyle } from './styles';
 
 const ImageWrapper = styled('div')`

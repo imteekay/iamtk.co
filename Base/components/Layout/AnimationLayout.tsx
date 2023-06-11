@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import { motion } from 'framer-motion';
+import { FC } from 'react';
 
 export const AnimationLayout: FC = ({ children }) => (
   <motion.div

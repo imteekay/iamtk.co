@@ -1,17 +1,17 @@
 import { FC } from 'react';
-import { Title } from 'Base/Article/Title';
-import { Meta } from 'Base/Article/Meta';
-import { HomeLink } from 'Base/Article/HomeLink';
+
 import { CoverImage } from 'Base/Article/CoverImage';
+import { HomeLink } from 'Base/Article/HomeLink';
+import { Footer } from 'Base/Article/Layout/Footer';
+import { Meta } from 'Base/Article/Meta';
 import { SocialLinks } from 'Base/Article/SocialLinks';
+import { Title } from 'Base/Article/Title';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 import {
   Tag,
   AlternativeArticle as AlternativeArticleType,
   CoverImage as CoverImageType,
 } from 'src/lib/getPostMetadata';
-
-import { Footer } from 'Base/Article/Layout/Footer';
-import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 
 type LayoutPropTypes = {
   tags: Tag[];

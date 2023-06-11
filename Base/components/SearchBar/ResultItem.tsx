@@ -1,5 +1,5 @@
-import { CSSProperties, forwardRef } from 'react';
 import { ActionImpl } from 'kbar';
+import { CSSProperties, forwardRef } from 'react';
 
 type ResultItemProps = {
   action: ActionImpl;

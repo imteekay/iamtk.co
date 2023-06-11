@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
-import { Head } from 'Base/components/Head';
+
 import { HomeLink } from 'Base/Article/HomeLink';
+import { Head } from 'Base/components/Head';
 import { List } from 'Base/components/List';
 
 const notes = [

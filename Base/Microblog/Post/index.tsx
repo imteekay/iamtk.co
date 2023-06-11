@@ -1,9 +1,11 @@
-import { FC } from 'react';
 import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
+
 import { css } from '@emotion/css';
-import { ShareButtons } from 'Base/Article/SocialLinks';
+import { FC } from 'react';
+
 import { dateStyle, titleStyle } from './styles';
+import { ShareButtons } from 'Base/Article/SocialLinks';
 
 type PostPropTypes = {
   id: string;

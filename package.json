@@ -41,6 +41,7 @@
     "sharp": "^0.30.5"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/gtag.js": "^0.0.8",
     "@types/loadable__component": "^5.13.4",
     "@types/node": "18.16.0",
