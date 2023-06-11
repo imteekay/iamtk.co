@@ -35,8 +35,8 @@ const Page: NextPage = () => (
     <main id="main">
       <div className="content">
         <Title text="TK" />
-        <About />
         <SubstackForm />
+        <About />
         <Writings />
         <Series />
         <Projects />

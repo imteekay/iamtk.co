@@ -63,6 +63,13 @@ export const seriesList = [
     rel: '',
   },
   {
+    link: '/bookshelf',
+    title: 'Digital Bookshelf',
+    description: "Documenting the books I've read",
+    target: '',
+    rel: '',
+  },
+  {
     link: '/series/rebuilding-mercaris-search',
     title: "Rebuilding Mercari's Search",
     description: 'A Frontend Search Experience Challenge',
