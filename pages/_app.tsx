@@ -58,7 +58,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       </Script>
       <SearchBar>
         <Layout>
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <Component {...pageProps} />
           </AnimatePresence>
         </Layout>
