@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FC } from 'react';
 
 import { css } from '@emotion/css';
@@ -24,7 +25,7 @@ export const Post: FC<PostPropType> = ({ datetime, link, title }) => (
       <time>{datetime}</time>
     </div>
     <span>
-      <a href={link}>{title}</a>
+      <Link href={link}>{title}</Link>
     </span>
   </li>
 );
