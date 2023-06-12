@@ -1,7 +1,7 @@
 import { Input } from './Input';
 import { Tags } from './Tags';
-import { TagsType } from './types';
 import { Wrapper } from './Wrapper';
+import { TagsType } from './types';
 
 interface TagInputPropTypes {
   defaultTags: TagsType;

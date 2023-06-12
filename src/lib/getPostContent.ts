@@ -1,8 +1,9 @@
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
 import readingTime from 'reading-time';
-import { Locale } from 'src/types/Locale';
+
 import { Language } from './languages';
+import { Locale } from 'src/types/Locale';
 
 export function getPostContent(slug: string, locale: string = Language.EN) {
   const postsDir = path.join(process.cwd(), 'content');

@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FC } from 'react';
+
 import { tagStyle } from './styles';
 
 export type TagPropTypes = {

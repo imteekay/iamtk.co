@@ -41,6 +41,7 @@
     "sharp": "^0.30.5"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/gtag.js": "^0.0.8",
     "@types/loadable__component": "^5.13.4",
     "@types/node": "18.16.0",
@@ -51,6 +52,7 @@
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.1",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": ">=6",
     "lint-staged": ">=10",
     "next-mdx-remote": "^4.2.0",
@@ -60,8 +62,10 @@
     "typescript": "4.6.3"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --cache --fix",
-    "*.{js,ts,tsx,css,md}": "prettier --write"
+    "*.{js,ts,tsx,css,md}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "resolutions": {
     "**/@types/react": "17.0.39"

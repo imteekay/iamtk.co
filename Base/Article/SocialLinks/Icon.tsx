@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { FC } from 'react';
+
 import { css } from '@emotion/css';
 
 const iconStyle = css`

@@ -1,10 +1,12 @@
+import { useRouter } from 'next/router';
+
 import type { NextPage } from 'next';
-import { Head } from 'Base/components/Head';
+
 import { HomeLink } from 'Base/Article/HomeLink';
 import { Post } from 'Base/Microblog/Post';
 import { posts } from 'Base/Microblog/Post/posts';
 import { postWrapperStyle } from 'Base/Microblog/Post/styles';
-import { useRouter } from 'next/router';
+import { Head } from 'Base/components/Head';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 
 function toSlug(str: string) {

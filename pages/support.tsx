@@ -1,11 +1,13 @@
-import type { NextPage } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Head } from 'Base/components/Head';
-import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { NextPage } from 'next';
+
 import { HomeLink } from 'Base/Article/HomeLink';
+import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
+import { Head } from 'Base/components/Head';
 
 const Page: NextPage = () => {
   return (

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { Resource, ResourcePropType } from './Resource';
 
 type ResourcesListPropType = {

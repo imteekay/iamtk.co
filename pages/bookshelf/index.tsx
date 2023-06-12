@@ -1,8 +1,9 @@
 import type { NextPage } from 'next';
-import { Head } from 'Base/components/Head';
-import { Bookshelf } from 'Home/components/Bookshelf/Bookshelf';
+
 import { HomeLink } from 'Base/Article/HomeLink';
+import { Head } from 'Base/components/Head';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
+import { Bookshelf } from 'Home/components/Bookshelf/Bookshelf';
 
 const Page: NextPage = () => (
   <AnimationLayout>

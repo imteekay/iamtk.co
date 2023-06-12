@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { titleStyle } from './style';
 
 type TitleProps = {

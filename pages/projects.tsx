@@ -1,7 +1,8 @@
 import type { NextPage } from 'next';
+
+import { HomeLink } from 'Base/Article/HomeLink';
 import { Head } from 'Base/components/Head';
 import { Projects } from 'Home/components/Projects';
-import { HomeLink } from 'Base/Article/HomeLink';
 
 const Page: NextPage = () => {
   return (

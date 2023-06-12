@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { motion } from 'framer-motion';
 
 export const AnimationLayout: FC = ({ children }) => (

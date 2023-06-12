@@ -1,14 +1,15 @@
-import type { NextPage } from 'next';
-import { Head } from 'Base/components/Head';
-import { Title } from 'Base/components/Title';
-import { SkipLink } from 'Home/components/SkipLink';
-import { About } from 'Home/components/About';
-import { Writings } from 'Home/components/Writings';
-import { Series } from 'Home/components/Series';
-import { Projects } from 'Home/components/Projects';
-import { Experiments } from 'Home/components/Experiments';
 import styled from '@emotion/styled';
+import type { NextPage } from 'next';
+
+import { Head } from 'Base/components/Head';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
+import { Title } from 'Base/components/Title';
+import { About } from 'Home/components/About';
+import { Experiments } from 'Home/components/Experiments';
+import { Projects } from 'Home/components/Projects';
+import { Series } from 'Home/components/Series';
+import { SkipLink } from 'Home/components/SkipLink';
+import { Writings } from 'Home/components/Writings';
 
 const LayoutFade = styled.div`
   position: fixed;

@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router';
 import { FC } from 'react';
-import { css } from '@emotion/css';
+
 import { Icon } from '../Icon';
+import { css } from '@emotion/css';
 
 const shareButtonsStyle = css`
   display: flex;

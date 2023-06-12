@@ -1,4 +1,5 @@
 import { useContext } from 'react';
+
 import { TagInputContext } from './Wrapper';
 
 interface ButtonPropTypes {

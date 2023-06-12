@@ -1,12 +1,14 @@
 import { FC } from 'react';
+
 import { css } from '@emotion/css';
+
+import { metaStyle } from './styles';
+import { AlternativeArticle } from 'Base/Article/AlternativeArticle';
 import { Author } from 'Base/Article/Author';
 import { Date } from 'Base/Article/Date';
-import { Tags } from 'Base/Article/Tags';
 import { TagPropTypes } from 'Base/Article/Tag';
-import { AlternativeArticle } from 'Base/Article/AlternativeArticle';
+import { Tags } from 'Base/Article/Tags';
 import { AlternativeArticle as AlternativeArticleType } from 'src/lib/getPostMetadata';
-import { metaStyle } from './styles';
 
 type MetaPropTypes = {
   date: string;

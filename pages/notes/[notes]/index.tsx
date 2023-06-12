@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
+import { ParsedUrlQuery } from 'querystring';
 
+import { Layout } from 'Base/Article/Layout';
 import { Head } from 'Base/components/Head';
 import { Content, MDX, serializeMDX } from 'Base/components/MDX';
-import { Layout } from 'Base/Article/Layout';
 import {
   getNestedPaths,
   getNestedPostContent,
