@@ -1,5 +1,5 @@
 {
-  "title": "A High Level Architecture of the TypeScript compiler",
+  "title": "Understanding the TypeScript Compiler Miniature",
   "description": "Understand how the TypeScript compiler works: source code, scanner, parser, tokenization, binder, type checking, emitting files",
   "date": "2023-02-27",
   "tags": [
