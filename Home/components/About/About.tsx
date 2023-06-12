@@ -8,7 +8,6 @@ import {
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
 import {
-  faMugHot,
   faEnvelope,
   faStickyNote,
   faBook,
@@ -18,9 +17,78 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { socialLinks } from './style';
 
+const SubstackForm = () => <div id="custom-substack-embed"></div>;
+
 export const About: FC = () => (
   <section id="about">
-    <p>Hi, I&apos;m TK!</p>
+    {/* <p>Hi, I&apos;m TK!</p> */}
+    <p className="no-margin">
+      Subscribe to my
+      <a
+        className="icon"
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://teekay.substack.com"
+        title="substack"
+      >
+        {' '}
+        newsletter
+      </a>
+    </p>
+    <SubstackForm />
+
+    <a
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/imteekay"
+      title="github"
+    >
+      <FontAwesomeIcon icon={faGithub} />
+    </a>
+
+    <a
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://twitter.com/wordsofteekay"
+      title="twitter"
+    >
+      <FontAwesomeIcon icon={faTwitter} />
+    </a>
+
+    <a
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.goodreads.com/iamteekay"
+      title="goodreads"
+    >
+      {' '}
+      <FontAwesomeIcon icon={faGoodreads} />
+    </a>
+
+    <a
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.linkedin.com/in/imtk"
+      title="linkedin"
+    >
+      <FontAwesomeIcon icon={faLinkedin} />
+    </a>
+
+    <a
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="./cv.pdf"
+      title="cv"
+    >
+      {' '}
+      <FontAwesomeIcon icon={faStickyNote} />
+    </a>
+
     <p style={socialLinks}>
       Find me{' '}
       <a
@@ -72,7 +140,6 @@ export const About: FC = () => (
     </p>
     <p className="no-margin">You can support my work on</p>
     <p className="no-margin">
-      the
       <a
         className="icon"
         target="_blank"
@@ -81,7 +148,7 @@ export const About: FC = () => (
         title="substack"
       >
         {' '}
-        substack newsletter <FontAwesomeIcon icon={faEnvelope} />
+        substack <FontAwesomeIcon icon={faEnvelope} />
       </a>
     </p>
     <p className="no-margin-bottom">
