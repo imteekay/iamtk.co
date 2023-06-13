@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import styled from '@emotion/styled';
 import type { NextPage } from 'next';
 
@@ -21,6 +23,19 @@ const LayoutFade = styled.div`
   pointer-events: none;
 `;
 
+const Header = styled.header`
+  padding: 24px 16px;
+`;
+
+const Logo = styled(Link)`
+  font-weight: 700;
+  font-size: 16px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 1px solid;
+  padding: 8px 10px;
+`;
+
 const Page: NextPage = () => (
   <AnimationLayout>
     <Head
@@ -28,6 +43,10 @@ const Page: NextPage = () => (
       description="Learning & Improving with TK: a website about software engineering, web development, and career in tech"
       imageUrl="/logo.jpeg"
     />
+
+    <Header>
+      <Logo href="/">TK</Logo>
+    </Header>
 
     <SkipLink />
 
