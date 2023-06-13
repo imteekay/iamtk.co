@@ -56,10 +56,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           gtag('config', '${GA_TRACKING_ID}');
         `}
       </Script>
-      <Script id="custom-substack-widget">
+      <Script id="custom-substack-widget" strategy="lazyOnload">
         {`window.CustomSubstackWidget = {
           substackUrl: "teekay.substack.com",
-          placeholder: "example@gmail.com",
+          placeholder: "tk@gmail.com",
           buttonText: "Subscribe",
           theme: "custom",
           colors: {
@@ -71,7 +71,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         };
         `}
       </Script>
-      <Script src="https://substackapi.com/widget.js" async></Script>
+      <Script
+        src="https://substackapi.com/widget.js"
+        strategy="lazyOnload"
+      ></Script>
       <SearchBar>
         <Layout>
           <AnimatePresence>
