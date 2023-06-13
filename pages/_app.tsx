@@ -74,7 +74,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <Script src="https://substackapi.com/widget.js" async></Script>
       <SearchBar>
         <Layout>
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <Component {...pageProps} />
           </AnimatePresence>
         </Layout>
