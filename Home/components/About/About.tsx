@@ -1,180 +1,101 @@
-import Link from 'next/link';
 import { FC } from 'react';
 
+import styled from '@emotion/styled';
 import {
   faTwitter,
   faGithub,
   faGoodreads,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
-import {
-  faEnvelope,
-  faStickyNote,
-  faBook,
-  faBlog,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStickyNote } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { socialLinks } from './style';
+import { Divider } from 'Base/components/Divider';
 
-const SubstackForm = () => <div id="custom-substack-embed"></div>;
+const SubstackFormWrapper = styled.div`
+  // margin-bottom: 16px;
+`;
 
-export const About: FC = () => (
-  <section id="about">
-    {/* <p>Hi, I&apos;m TK!</p> */}
-    <p className="no-margin">
-      Subscribe to my
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://teekay.substack.com"
-        title="substack"
-      >
-        {' '}
-        newsletter
-      </a>
-    </p>
-    <SubstackForm />
+const SubstackForm = () => (
+  <SubstackFormWrapper id="custom-substack-embed"></SubstackFormWrapper>
+);
 
-    <a
+const Wrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const Link = styled.a`
+  display: inline-block;
+  height: 19.98px;
+  width: 19.98px;
+`;
+
+const Socials = () => (
+  <Wrapper>
+    <Link
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
       href="https://github.com/imteekay"
       title="github"
     >
-      <FontAwesomeIcon icon={faGithub} />
-    </a>
+      <FontAwesomeIcon icon={faGithub} size="lg" />
+    </Link>
 
-    <a
+    <Link
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
       href="https://twitter.com/wordsofteekay"
       title="twitter"
     >
-      <FontAwesomeIcon icon={faTwitter} />
-    </a>
+      <FontAwesomeIcon icon={faTwitter} size="lg" />
+    </Link>
 
-    <a
+    <Link
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
       href="https://www.goodreads.com/iamteekay"
       title="goodreads"
     >
-      {' '}
-      <FontAwesomeIcon icon={faGoodreads} />
-    </a>
+      <FontAwesomeIcon icon={faGoodreads} size="lg" />
+    </Link>
 
-    <a
+    <Link
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
       href="https://www.linkedin.com/in/imtk"
       title="linkedin"
     >
-      <FontAwesomeIcon icon={faLinkedin} />
-    </a>
+      <FontAwesomeIcon icon={faLinkedin} size="lg" />
+    </Link>
 
-    <a
+    <Link
       className="icon"
       target="_blank"
       rel="noopener noreferrer"
       href="./cv.pdf"
       title="cv"
     >
-      {' '}
-      <FontAwesomeIcon icon={faStickyNote} />
-    </a>
+      <FontAwesomeIcon icon={faStickyNote} size="lg" />
+    </Link>
+  </Wrapper>
+);
 
-    <p style={socialLinks}>
-      Find me{' '}
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/imteekay"
-        title="github"
-      >
-        building on github <FontAwesomeIcon icon={faGithub} />
-      </a>
-    </p>
-    <p style={socialLinks}>
-      sharing my{' '}
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://twitter.com/wordsofteekay"
-        title="twitter"
-      >
-        thoughts on twitter <FontAwesomeIcon icon={faTwitter} />
-      </a>
-    </p>
-    <p style={socialLinks}>
-      and on my{' '}
-      <Link href="/microblog" className="icon">
-        microblog <FontAwesomeIcon icon={faBlog} />
-      </Link>
-    </p>
-    <p className="no-margin-bottom">
-      Find my books reviews on
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.goodreads.com/iamteekay"
-        title="goodreads"
-      >
-        {' '}
-        goodreads <FontAwesomeIcon icon={faGoodreads} />
-      </a>
-    </p>
-    <p className="no-margin-top">
-      and the{' '}
-      <Link href="/bookshelf" className="icon">
-        digital bookshelf <FontAwesomeIcon icon={faBook} />
-      </Link>
-    </p>
-    <p className="no-margin">You can support my work on</p>
-    <p className="no-margin">
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://teekay.substack.com"
-        title="substack"
-      >
-        {' '}
-        substack <FontAwesomeIcon icon={faEnvelope} />
-      </a>
-    </p>
-    <p className="no-margin-bottom">
-      For work stuff:{' '}
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.linkedin.com/in/imtk"
-        title="linkedin"
-      >
-        linkedin <FontAwesomeIcon icon={faLinkedin} />
-      </a>
-    </p>
-    <p className="no-margin">
-      <span> or my</span>
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="./cv.pdf"
-        title="cv"
-      >
-        {' '}
-        cv <FontAwesomeIcon icon={faStickyNote} />
-      </a>
-    </p>
-  </section>
+const AboutSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+export const About: FC = () => (
+  <AboutSection id="about">
+    <p className="no-margin">software engineer . writer . researcher</p>
+    <SubstackForm />
+    <Socials />
+    <Divider />
+  </AboutSection>
 );
