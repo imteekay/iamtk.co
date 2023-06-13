@@ -33,7 +33,7 @@ const Page: NextPage = () => (
 
     <main id="main">
       <div className="content">
-        <Title text="TK" />
+        <Title text="TK Kinoshita" />
         <About />
         <Writings />
         <Series />
