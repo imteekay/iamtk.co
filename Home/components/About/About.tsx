@@ -12,8 +12,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Divider } from 'Base/components/Divider';
 
-const SubstackForm = () => <div id="custom-substack-embed"></div>;
-
 const Wrapper = styled.div`
   display: flex;
   gap: 16px;
@@ -87,8 +85,13 @@ const AboutSection = styled.section`
 
 export const About: FC = () => (
   <AboutSection id="about">
-    <p className="no-margin">software engineer . writer . researcher</p>
-    <SubstackForm />
+    <div>
+      <p className="no-margin-top">software engineer . writer . researcher</p>
+      <p className="no-margin">
+        Documenting my learning notes: frontend architecture & infrastracture,
+        compilers & programming language theory.
+      </p>
+    </div>
     <Socials />
     <Divider />
   </AboutSection>
