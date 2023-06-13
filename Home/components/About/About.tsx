@@ -7,7 +7,7 @@ import {
   faGoodreads,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
-import { faStickyNote } from '@fortawesome/free-solid-svg-icons';
+import { faStickyNote, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Divider } from 'Base/components/Divider';
@@ -74,6 +74,16 @@ const Socials = () => (
     >
       <FontAwesomeIcon icon={faStickyNote} size="lg" />
     </Link>
+
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://teekay.substack.com"
+      title="substack"
+    >
+      <FontAwesomeIcon icon={faEnvelope} size="lg" />
+    </Link>
   </Wrapper>
 );
 
@@ -83,14 +93,21 @@ const AboutSection = styled.section`
   gap: 16px;
 `;
 
+const Topics = styled.p`
+  color: #c1c1c1;
+`;
+
 export const About: FC = () => (
   <AboutSection id="about">
     <div>
-      <p className="no-margin-top">software engineer . writer . researcher</p>
-      <p className="no-margin">
-        Documenting my learning notes: frontend architecture & infrastracture,
-        compilers & programming language theory.
+      <p className="no-margin-top">
+        🇯🇵🇧🇷 . software engineer . writer . researcher
       </p>
+      <Topics className="no-margin">
+        frontend architecture . infrastracture,
+        <br />
+        compilers . programming language theory.
+      </Topics>
     </div>
     <Socials />
     <Divider />
