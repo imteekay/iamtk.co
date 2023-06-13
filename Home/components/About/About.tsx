@@ -12,13 +12,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Divider } from 'Base/components/Divider';
 
-const SubstackFormWrapper = styled.div`
-  // margin-bottom: 16px;
-`;
-
-const SubstackForm = () => (
-  <SubstackFormWrapper id="custom-substack-embed"></SubstackFormWrapper>
-);
+const SubstackForm = () => <div id="custom-substack-embed"></div>;
 
 const Wrapper = styled.div`
   display: flex;
