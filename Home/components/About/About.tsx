@@ -104,7 +104,7 @@ export const About: FC = () => (
         🇯🇵🇧🇷 . software engineer . writer . researcher
       </p>
       <Topics className="no-margin">
-        frontend architecture . infrastracture .
+        frontend architecture . infrastructure .
         <br />
         compilers . programming language theory
       </Topics>
