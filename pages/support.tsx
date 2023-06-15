@@ -8,16 +8,18 @@ import type { NextPage } from 'next';
 import { HomeLink } from 'Base/Article/HomeLink';
 import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
 import { Head } from 'Base/components/Head';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
+import { Navbar } from 'Base/components/Navbar';
 
-const Page: NextPage = () => {
-  return (
-    <>
-      <Head
-        title="TK —— Support"
-        description="Learning & Improving with TK —— Support"
-        imageUrl="/logo.jpeg"
-      />
-
+const Page: NextPage = () => (
+  <>
+    <Head
+      title="TK —— Support"
+      description="Learning & Improving with TK —— Support"
+      imageUrl="/logo.jpeg"
+    />
+    <Navbar />
+    <AnimationLayout>
       <main id="main">
         <div className="content">
           <HomeLink />
@@ -95,8 +97,8 @@ const Page: NextPage = () => {
           </p>
         </div>
       </main>
-    </>
-  );
-};
+    </AnimationLayout>
+  </>
+);
 
 export default Page;
