@@ -2,7 +2,9 @@ import type { NextPage } from 'next';
 
 import { HomeLink } from 'Base/Article/HomeLink';
 import { Head } from 'Base/components/Head';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 import { List } from 'Base/components/List';
+import { Navbar } from 'Base/components/Navbar';
 
 const notes = [
   {
@@ -21,20 +23,22 @@ const Page: NextPage = () => (
       description="Learning & Improving with TK —— Notes"
       imageUrl="/logo.jpeg"
     />
-
-    <main id="main">
-      <div className="content">
-        <HomeLink />
-        <List
-          sectionId="notes"
-          titleLink="/notes"
-          titleText="notes"
-          list={notes}
-          openNewTab={false}
-          header="h1"
-        />
-      </div>
-    </main>
+    <Navbar />
+    <AnimationLayout>
+      <main id="main">
+        <div className="content">
+          <HomeLink />
+          <List
+            sectionId="notes"
+            titleLink="/notes"
+            titleText="notes"
+            list={notes}
+            openNewTab={false}
+            header="h1"
+          />
+        </div>
+      </main>
+    </AnimationLayout>
   </>
 );
 
