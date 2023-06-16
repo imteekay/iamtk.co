@@ -71,7 +71,7 @@ The time it takes to handle this whole process is relied on the user's device. I
 
 It's challenging to optimize LCP on a CSR application as it needs to have all these steps one after another to finally render the LCP element.
 
-The time between the start of JavaScript download to rendering the LCP can be huge, in some cases, it can even reach 16s on mobile 4g. Even if you optimize the application with [code-splitting](https://www.iamtk.co/web-performance-code-splitting-strategies-and-react-applications) and [browser caching](https://www.iamtk.co/webpack-bundle-splitting-and-browser-caching), it's challenging to get better Core Web Vitals (CWV). The problem increases the bigger your final bundle is. The more your application's bundle size increases, the more you hurt the final users’ experience.
+The time between the start of JavaScript download to rendering the LCP can be huge, in some cases, it can even reach 16s on mobile 4g. Even if you optimize the application with [code-splitting](/web-performance-code-splitting-strategies-and-react-applications) and [browser caching](/webpack-bundle-splitting-and-browser-caching), it's challenging to get better Core Web Vitals (CWV). The problem increases the bigger your final bundle is. The more your application's bundle size increases, the more you hurt the final users’ experience.
 
 > “CSR cannot get good performance as measured by Core Web Vitals (CWV). SSR / SSG can, but it's not a guarantee. If good performance is important in your use-case then you will need to move beyond CSR.” — [Dan Shappir](https://twitter.com/DanShappir/status/1621646702066245634)
 
