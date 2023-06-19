@@ -12,6 +12,24 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Solving Algorithmic problems using the Two Pointers technique</title>
+    <link>https://www.iamtk.co/solving-algorithmic-problems-using-the-two-pointers-technique</link>
+    <guid isPermaLink="true">https://www.iamtk.co/solving-algorithmic-problems-using-the-two-pointers-technique</guid>
+    <description>Solving algorithmic problems, algorithmic techniques, two pointers"</description>
+  </item>
+  <item>
+    <title>JavaScript scope, Closures, and the TypeScript compiler</title>
+    <link>https://www.iamtk.co/javascript-scope-closures-and-the-typescript-compiler</link>
+    <guid isPermaLink="true">https://www.iamtk.co/javascript-scope-closures-and-the-typescript-compiler</guid>
+    <description>Understand how the TypeScript compiler uses closures</description>
+  </item>
+  <item>
+    <title>Tree Data Structure in JavaScript</title>
+    <link>https://www.iamtk.co/series/data-structures-in-javascript/tree-data-structure</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/data-structures-in-javascript/tree-data-structure</guid>
+    <description>Data Structures and Algorithms — Trees, Binary Trees, Binary Search Trees</description>
+  </item>
+  <item>
     <title>The Evolution of React Rendering Architectures &amp; Web Performance</title>
     <link>https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</link>
     <guid isPermaLink="true">https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</guid>

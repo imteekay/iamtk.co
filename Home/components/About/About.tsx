@@ -1,114 +1,115 @@
-import Link from 'next/link';
 import { FC } from 'react';
 
+import styled from '@emotion/styled';
 import {
   faTwitter,
   faGithub,
   faGoodreads,
   faLinkedin,
-  faPatreon,
 } from '@fortawesome/free-brands-svg-icons';
-import {
-  faMugHot,
-  faEnvelope,
-  faStickyNote,
-  faBook,
-  faBlog,
-} from '@fortawesome/free-solid-svg-icons';
+import { faStickyNote, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { socialLinks } from './style';
+import { Divider } from 'Base/components/Divider';
+
+const Wrapper = styled.div`
+  display: flex;
+  gap: 16px;
+`;
+
+const Link = styled.a`
+  display: inline-block;
+  height: 19.98px;
+  width: 19.98px;
+`;
+
+const Socials = () => (
+  <Wrapper>
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://github.com/imteekay"
+      title="github"
+    >
+      <FontAwesomeIcon icon={faGithub} size="lg" />
+    </Link>
+
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://twitter.com/wordsofteekay"
+      title="twitter"
+    >
+      <FontAwesomeIcon icon={faTwitter} size="lg" />
+    </Link>
+
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.goodreads.com/iamteekay"
+      title="goodreads"
+    >
+      <FontAwesomeIcon icon={faGoodreads} size="lg" />
+    </Link>
+
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://www.linkedin.com/in/imtk"
+      title="linkedin"
+    >
+      <FontAwesomeIcon icon={faLinkedin} size="lg" />
+    </Link>
+
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="./cv.pdf"
+      title="cv"
+    >
+      <FontAwesomeIcon icon={faStickyNote} size="lg" />
+    </Link>
+
+    <Link
+      className="icon"
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://teekay.substack.com"
+      title="substack"
+    >
+      <FontAwesomeIcon icon={faEnvelope} size="lg" />
+    </Link>
+  </Wrapper>
+);
+
+const AboutSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+`;
+
+const Topics = styled.p`
+  color: #c1c1c1;
+`;
 
 export const About: FC = () => (
-  <section id="about">
-    <p>Hi, I&apos;m TK!</p>
-    <p style={socialLinks}>
-      Find me{' '}
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://github.com/imteekay"
-        title="github"
-      >
-        building on github <FontAwesomeIcon icon={faGithub} />
-      </a>
-    </p>
-    <p style={socialLinks}>
-      sharing my{' '}
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://twitter.com/wordsofteekay"
-        title="twitter"
-      >
-        thoughts on twitter <FontAwesomeIcon icon={faTwitter} />
-      </a>
-    </p>
-    <p style={socialLinks}>
-      and on my{' '}
-      <Link href="/microblog" className="icon">
-        microblog <FontAwesomeIcon icon={faBlog} />
-      </Link>
-    </p>
-    <p className="no-margin-bottom">
-      Find my books reviews on
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.goodreads.com/iamteekay"
-        title="goodreads"
-      >
-        {' '}
-        goodreads <FontAwesomeIcon icon={faGoodreads} />
-      </a>
-    </p>
-    <p className="no-margin-top">
-      and the{' '}
-      <Link href="/bookshelf" className="icon">
-        digital bookshelf <FontAwesomeIcon icon={faBook} />
-      </Link>
-    </p>
-    <p className="no-margin">You can support my work on</p>
-    <p className="no-margin">
-      the
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://teekay.substack.com"
-        title="substack"
-      >
-        {' '}
-        substack newsletter <FontAwesomeIcon icon={faEnvelope} />
-      </a>
-    </p>
-    <p className="no-margin-bottom">
-      For work stuff:{' '}
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="https://www.linkedin.com/in/imtk"
-        title="linkedin"
-      >
-        linkedin <FontAwesomeIcon icon={faLinkedin} />
-      </a>
-    </p>
-    <p className="no-margin">
-      <span> or my</span>
-      <a
-        className="icon"
-        target="_blank"
-        rel="noopener noreferrer"
-        href="./cv.pdf"
-        title="cv"
-      >
-        {' '}
-        cv <FontAwesomeIcon icon={faStickyNote} />
-      </a>
-    </p>
-  </section>
+  <AboutSection id="about">
+    <div>
+      <p className="no-margin-top">
+        🇯🇵🇧🇷 . software engineer . writer . researcher
+      </p>
+      <Topics className="no-margin">
+        frontend architecture . infrastructure .
+        <br />
+        compilers . programming language theory
+      </Topics>
+    </div>
+    <Socials />
+    <Divider />
+  </AboutSection>
 );
