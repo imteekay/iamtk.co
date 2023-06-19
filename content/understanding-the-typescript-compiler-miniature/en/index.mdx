@@ -23,6 +23,35 @@ Before going into each feature, I just want to illustrate how the compiler struc
 
 ## Representing tokens
 
+The idea of a lexer is to go through character by character and produce a new token. It receives the source code as a string and starts from position `0`. In this simplest version, it has states like `pos` as the position of the current character it's analyzing, `token` as the token type of the produced token, and `text` that could be the name of an identifier (e.g. `age` from `var age = 1;`), a number value (e.g. `1`), a keyword (e.g. `var`), or a string value (e.g. `"string"`).
+
+As an example, if we have this source code
+
+```jsx
+var age = 1;
+```
+
+The lexer will produce this list of tokens
+
+- `var`:
+  - `text`: “var”
+  - `token`: “Var”
+- `age`:
+  - `text`: “age”
+  - `token`: “Identifier”
+- `=`:
+  - `text`: undefined
+  - `token`: “Equals”
+- `1`:
+  - `text`: “1”
+  - `token`: “NumericLiteral”
+
+In a visible way, it should look like this
+
+[Add illustration: from source code to tokens using this example above]
+
+## Representing AST nodes
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
