@@ -52,6 +52,193 @@ In a visible way, it should look like this
 
 ## Representing AST nodes
 
+AST nodes are basically `Statement`s. They can be `ExpressionStatement`, `Var`, `TypeAlias`, or `EmptyStatement`.
+
+The type looks like a union of all these types
+
+```tsx
+type Statement = ExpressionStatement | Var | TypeAlias | EmptyStatement;
+```
+
+To have an idea of how AST nodes can be structured, let's take `ExpressionsStatement` as an example and see its data types and the transformation from source code to AST node.
+
+The `ExpressionStatement` can be different expressions: `Identifier`, `NumericLiteral`, `Assignment`, or `StringLiteral`.
+
+```tsx
+type Expression = Identifier | NumericLiteral | Assignment | StringLiteral;
+```
+
+Each node can have different “attributes”. For example,
+
+- `NumericLiteral` and `StringLiteral` can have a `value` attribute. For `NumericLiteral`, it's a number and for `StringLiteral`, it's a string.
+- The `Identifier` has a `text` attribute, that's its name.
+- The `Assignment` has the `name` and the `value`.
+
+Let's see how we can represent each of these nodes — their data types
+
+```tsx
+interface Identifier {
+  kind: Node.Identifier;
+  text: string;
+  pos: number;
+}
+
+interface Assignment {
+  kind: Node.Assignment;
+  name: Expression;
+  value: Expression;
+  pos: number;
+}
+
+interface NumericLiteral {
+  kind: Node.NumericLiteral;
+  value: number;
+  pos: number;
+}
+
+interface StringLiteral {
+  kind: Node.StringLiteral;
+  value: string;
+  pos: number;
+}
+```
+
+This is already a good node representation for each.
+
+Let's now see examples of each node:
+
+An identifier with name `name`:
+
+```tsx
+// source code:
+// name;
+
+const identifier = {
+  kind: 'Identifier',
+  text: 'name',
+  pos: 0,
+};
+```
+
+An assignment with name `age` and value `1`:
+
+```tsx
+// source code:
+// age = 1;
+
+const assignment = {
+  kind: 'Assignment',
+  name: {
+    // an identifier is an expression
+    kind: 'Identifier',
+    text: 'age',
+    pos: 0,
+  },
+  value: {
+    // a numeric literal is an expression
+    kind: 'NumericLiteral',
+    value: 1,
+    pos: 1,
+  },
+  pos: 0,
+};
+```
+
+A numeric literal:
+
+```tsx
+// source code:
+// 1;
+
+const numericLiteral = {
+  kind: 'NumericLiteral',
+  value: 1,
+  pos: 0,
+};
+```
+
+A string literal:
+
+```tsx
+// source code:
+// 'hello';
+
+const stringLiteral = {
+  kind: 'StringLiteral',
+  value: 'hello',
+  pos: 0,
+};
+```
+
+This already gives us a nice overview of how we can represent the source code in AST nodes. In the following sections, we will dive deeper into each feature and see how this is used in the following steps like the binder and the type checker.
+
+## Binder: storing the type and variable declarations
+
+Here in the binder, one of its responsibilities is storing declarations of types and variables. The compiler stores in a data structure and the statements or AST nodes can be “fetched” later on.
+
+The data structure the compiler uses to store these declarations is a `Map`, a key-value data structure, where the key is the name of the identifier (name of the type or the variable) and the value is a list of statements.
+
+The value is a list of statements because we can do this:
+
+```tsx
+type test = string;
+var test = 'string';
+```
+
+For the same `test` identifier's name, we can have two different statements, and the best way to do it is to store them in a list of declarations. Later on, if we want to access one of the declarations, we need to pass the type of statement we're looking for, if it's a type or a variable.
+
+For the above example, we would have the statements stored like this in the `Map`:
+
+```tsx
+Map(1) {
+  'test' => [
+		// The Variable AST node
+    {
+      kind: Node.Var,
+      name: {
+        kind: 'Identifier',
+        text: 'test',
+      },
+      init: {
+        kind: 'StringLiteral',
+        value: 'string',
+      },
+    },
+		// The Type Alias AST node
+    {
+      kind: Node.TypeAlias,
+      name: {
+        kind: 'Identifier',
+        text: 'test',
+      },
+      init: {
+        kind: 'Identifier',
+        text: 'string',
+      },
+    }
+  ]
+}
+```
+
+So now, the compiler can use this data structure and query the statements. To resolve it, we pass the name and the type of the statement we are looking for.
+
+```tsx
+const symbol = locals.get(name);
+
+if (symbol?.declarations.some((d) => d.kind === type)) {
+  return symbol;
+}
+```
+
+What's happening here?
+
+- It gets the symbol based on the `name`
+- and then it tries to find the declaration statement based on the `type`
+
+For every AST node created from the parser, the binder will handle them and figure out if it should add or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types.
+
+## Values in the type checker
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
