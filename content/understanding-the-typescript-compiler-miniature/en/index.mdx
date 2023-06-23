@@ -383,6 +383,14 @@ And now we have the full AST node for the expression statement.
 
 The binder doesn't do anything regarding the number as we learned that one of its responsibilities is to store the variable and type declarations.
 
+The type checker just produces a number type as we've seen early on. This part is super straightforward. It checks every statement, so when it gets to the expressions and the current expression is a `Node.NumericLiteral`, it just returns a `numberType`, which is this structure
+
+```tsx
+const numberType: Type = { id: 'number' };
+```
+
+As we've seen before. This is an important type as it will be used for the comparison of types in other checks.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
