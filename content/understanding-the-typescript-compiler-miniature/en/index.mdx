@@ -192,7 +192,7 @@ For the above example, we would have the statements stored like this in the `Map
 ```tsx
 Map(1) {
   'test' => [
-		// The Variable AST node
+    // The Variable AST node
     {
       kind: Node.Var,
       name: {
@@ -204,7 +204,7 @@ Map(1) {
         value: 'string',
       },
     },
-		// The Type Alias AST node
+    // The Type Alias AST node
     {
       kind: Node.TypeAlias,
       name: {
@@ -238,6 +238,41 @@ What's happening here?
 For every AST node created from the parser, the binder will handle them and figure out if it should add or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types.
 
 ## Values in the type checker
+
+In general, the type checker will do two things: one is to generate a type structure for each node and the second is to compare these types.
+
+For expressions like strings and numbers, it should return the `stringType` and `numberType`. The shape of these types is simple:
+
+```tsx
+const stringType: Type = { id: 'string' };
+const numberType: Type = { id: 'number' };
+```
+
+For statements like variable declaration and assignment, it will compare the returned type from the value and the identifier's type. If you have this variable declaration example:
+
+```tsx
+var num: number = '123';
+     ⎸
+     ↳ Type 'string' is not assignable to type 'number'.
+```
+
+It should provide a type error like it was illustrated above, right? The type checker should only compare these two nodes: the identifier `num` with the type `NumericLiteral` and the expression `'123'` with the type `StringLiteral`. We clearly see a mismatch between these two types and the compiler attaches this new error to the “store of errors”.
+
+For assignments, it works pretty much the same way:
+
+```tsx
+var num: number = 123;
+
+num = '123';
+ ⎸
+ ↳ Type 'string' is not assignable to type 'number'.
+```
+
+But now it needs to go to the binder and ask for the identifier `num`. It will try to resolve it, get the symbol, and generate the related type. Then it just compares the generated type with the value type.
+
+We are going to see more of this in-depth later on.
+
+## `NumericLiteral`: handling numbers
 
 ## Resources
 
