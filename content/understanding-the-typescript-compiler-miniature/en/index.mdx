@@ -280,6 +280,109 @@ We go from the lexer, passing to the parser and binder, and ending in the type c
 
 ## `NumericLiteral`: handling numbers
 
+We first start with the lexer. There it will scan characters and transform them into a token. For `NumericLiteral`s, it needs to read numbers from the source code. This is what we'll be looking for.
+
+The first part is to check if the current character is a possible number.
+
+```tsx
+if (/[0-9]/.test(s.charAt(pos))) {
+  // ...
+}
+```
+
+Using regular expressions, we can accomplish this. Check if the character in the position `pos` passes the regex test for any number from 0 to 9. If this character is the one, we know it's a `NumericLiteral`.
+
+Numbers can be just one digit or more. To make sure it gets the entire number, we should keep scanning until we “finish” the number. Now I want to present to you the function `scanForward`. It keeps scanning the source code and moving forward if the predicate is true.
+
+```tsx
+function scanForward(pred: (x: string) => boolean) {
+  while (pos < s.length && pred(s.charAt(pos))) pos++;
+}
+```
+
+We also make sure we stop the loop if it reaches the end of the source code. The `pred` is just a predicate function, it will receive the current character and return a boolean, if the character passes the check or not.
+
+In this case, the predicate is if the current character is a number.
+
+```tsx
+function isNumber(c: string) {
+  return /[0-9]/.test(c);
+}
+```
+
+So if we run this code:
+
+```tsx
+scanForward(isNumber);
+```
+
+It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finished scanning the entire number, the position `pos` went to the last index of the number. To get the `text`, we should just slice that:
+
+```tsx
+text = s.slice(start, pos);
+```
+
+And to finish it, the token should be a `NumericLiteral`
+
+```tsx
+token = Token.NumericLiteral;
+```
+
+Now that the compiler finished the “tokenization”, we are now in the parsing process.
+
+Remember that the parser has an instance of the lexer? The instance has functions like `scan`, `token`, `text`, and `pos`.
+
+Before start understanding the parser, let's recall the structure we want to generate for the `NumericLiteral`. You should remember that a number is an expression, so the structure will look like this:
+
+```tsx
+{
+  kind: Node.ExpressionStatement;
+  pos: number;
+  expr: {
+    kind: Node.NumericLiteral;
+    value: number;
+    pos: number;
+  }
+}
+```
+
+We should have a statement, more specifically, an expression statement, and the expression is a number. The number will have `NumericLiteral` as its `kind`, the value (e.g. the number `1` will be the `value` if the source code is `1;`), and the position `pos` of the statement.
+
+The parser tries to parse all kinds of statements before an expression, if it doesn't parse anything, it tries parsing the expression. This is the returned value when parsing the statements:
+
+```tsx
+{ kind: Node.ExpressionStatement, expr: parseExpression(), pos };
+```
+
+When parsing the expression, we want to see if it can parse a number, so it uses a function called `tryParseToken`. That's a very interesting function:
+
+```tsx
+function tryParseToken(expected: Token) {
+  const ok = lexer.token() === expected;
+  if (ok) {
+    lexer.scan();
+  }
+  return ok;
+}
+```
+
+If it's the expected token, in this case, the `Token.NumericLiteral`, it will scan and return if it's the expected one. That's interesting because it can be used like this:
+
+```tsx
+if (tryParseToken(Token.NumericLiteral)) {
+  return { kind: Node.NumericLiteral, value: +lexer.text(), pos };
+}
+```
+
+That's exactly what we need to create the number AST node.
+
+- It tries to parse the token `Token.NumericLiteral` and the current token is the expected one
+- It just returns the `NumericLiteral` AST node: take a look that it “cast” the text into a number with the `+` sign (take a look at [unary plus +](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus))
+
+And now we have the full AST node for the expression statement.
+
+The binder doesn't do anything regarding the number as we learned that one of its responsibilities is to store the variable and type declarations.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
