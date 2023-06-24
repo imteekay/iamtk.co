@@ -681,6 +681,23 @@ For variable declarations, we are always comparing and checking if the types mat
 
 ## `Assignment`: handling assignment operations
 
+Let's first see an example of an assignment:
+
+```tsx
+var num: number = 1;
+
+// assigning `2` to `num`
+num = 2;
+```
+
+If we separate the tokens that are part of this source code, we get:
+
+- `num`: an `Identifier`
+- `=`: an `Equals`
+- `2`: an `Expression`, more specifically a `NumericLiteral`
+
+You probably noticed we don't need to implement anything new in the lexer as we already have all the tokens in place, and that's great! Let's go straight to the parser then.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
