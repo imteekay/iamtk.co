@@ -469,6 +469,83 @@ And that's it, the lexer part for the whole variable declaration is done.
 
 [add illustration for the source code to tokens transformation - `var num: number = 1;` - var is keyword, num is identifier, : is Colon, number is identifier, = is Equal, 1 is Numeric Literal, ; is Semicolon]
 
+Now that we have all the tokens for the variable declaration, let's parse them into an AST node. In the end, it will look like this:
+
+```tsx
+{
+  "kind": "Var",
+  "name": {
+    "kind": "Identifier",
+    "text": "num"
+  },
+  "typename": {
+    "kind": "Identifier",
+    "text": "number"
+  },
+  "init": {
+    "kind": "NumericLiteral",
+    "value": 1
+  }
+}
+```
+
+This is an AST node with type `Var`, the name is an identifier `num`, the typename is also an identifier but a `number`, and the init is the initial value expression, in this case, a `NumericLiteral` with value `1`.
+
+This is the main logic to parse a variable declaration:
+
+```tsx
+if (tryParseToken(Token.Var)) {
+  const name = parseIdentifier();
+  const typename = tryParseToken(Token.Colon)
+    ? parseIdentifier()
+    : undefined;
+  parseExpected(Token.Equals);
+  const init = parseExpression();
+  return { kind: Node.Var, name, typename, init, pos };
+}
+```
+
+There are a lot of things going on here, let's unpack it all.
+
+First, we use `tryParseToken` to see if it's an actual `Token.Var` token. If it's, we know how this structure should be. The first part of this node is the `name`. It should be an identifier, so it calls the `parseIdentifier` function to parse it.
+
+To create the AST node regarding the identifier, it tries to parse the token `Token.Identifier` and it returns the whole structure, like this:
+
+```tsx
+if (tryParseToken(Token.Identifier)) {
+  return { kind: Node.Identifier, text: lexer.text(), pos };
+}
+```
+
+The second part of the `Var` node is the typename. But types are optional in TypeScript, so it tries to parse the `Token.Colon` token, if it passes, we expect to parse the type, which's an identifier too, so it just calls `parseIdentifier` again. If it doesn't have the `Token.Colon` token, the `typename` will be `undefined`. This gives the optionality feature for TypeScript.
+
+The third part is the `=` token. In JavaScript, it is totally possible to write variable declarations without an initial value, like this:
+
+```tsx
+var num;
+```
+
+But in this initial implementation of the compiler miniature, it'll require it to have the assignment and the initial value.
+
+To make it a requirement, it just needs to expect the `=` token. We'll use a function called `parseExpected`:
+
+```tsx
+function parseExpected(expected: Token) {
+  if (!tryParseToken(expected)) {
+    error(
+      lexer.pos(),
+      `parseToken: Expected ${Token[expected]} but got ${Token[lexer.token()]}`,
+    );
+  }
+}
+```
+
+If it doesn't parse the expected token, the `=` token in this case, it will add a new error to the compiler's map of errors. If it parses, it just moves forward to the next token. And the next token is an expression.
+
+An expression being a `NumericLiteral` is already implemented so we covered everything for that specific source code. We can see the implementation of different types of expressions like `StringLiteral`s and `Identifier`s, but this will be a topic for future posts in this series.
+
+We're now missing the implementation of the binder and the type checker for variables.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
