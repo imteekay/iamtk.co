@@ -397,6 +397,78 @@ Let's see another statement that's even more interesting. We'll be talking about
 var num: number = 1;
 ```
 
+In the tokenization process, let's start with the simplest tokens: Equals (`=`), Semicolon (`;`), and Colon (`:`).
+
+This part is straightforward. If the current character is one of these mentioned earlier, we just assign the right token for that. The code will look pretty much like this:
+
+```tsx
+case '=':
+  token = Token.Equals;
+  break;
+case ';':
+  token = Token.Semicolon;
+  break;
+case ':':
+  token = Token.Colon;
+  break;
+```
+
+These tokens will be helpful to parse the entire variable declaration. For example, at least in the first version, the declaration will always expect the `Equals` token after the identifier or the typename.
+
+Now we need to create tokens for the `var`, the name identifier (the name of the variable), and the typename identifier (the name of the type).
+
+All of them are “alphabetical characters” and this is the first hint. Whenever the current character is an alphabetical char, we know we can be scanning a keyword or an identifier. Both will be implemented in the same way.
+
+This looks pretty similar to the `NumericLiteral` we've seen before:
+
+```tsx
+if (/[_a-zA-Z]/.test(s.charAt(pos))) {
+  // ...
+}
+```
+
+But now we are looking at alphabetical characters rather than numbers. We even do scanning the same way using the `scanForward` we used before. Identifier can have numbers in its name, so the predicate will be if the character is an alphanumeric char. Here it's:
+
+```tsx
+function isAlphanumerical(c: string) {
+  return /[_a-zA-Z0-9]/.test(c);
+}
+```
+
+Let's scan forward all the way to the end of the keyword or the identifier:
+
+```tsx
+scanForward(isAlphanumerical);
+```
+
+The `text` will be a simple slice between the start position to the end position:
+
+```tsx
+text = s.slice(start, pos);
+```
+
+And the token is when we separate what's a keyword and what's an identifier. The whole idea is: if the `text` belongs to the “keywords” list, it's a keyword, if not, it's an identifier. This is the “list”, or better, the object:
+
+```tsx
+const keywords = {
+  function: Token.Function,
+  var: Token.Var,
+  type: Token.Type,
+  return: Token.Return,
+};
+```
+
+To handle this logic, we use a simple ternary together with the `[in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in):
+
+```tsx
+token =
+  text in keywords ? keywords[text as keyof typeof keywords] : Token.Identifier;
+```
+
+And that's it, the lexer part for the whole variable declaration is done.
+
+[add illustration for the source code to tokens transformation - `var num: number = 1;` - var is keyword, num is identifier, : is Colon, number is identifier, = is Equal, 1 is Numeric Literal, ; is Semicolon]
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
