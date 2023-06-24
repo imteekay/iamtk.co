@@ -626,6 +626,61 @@ If we couldn't find it, the binder just follows the same flow: add the new state
 
 I won't talk too much about `valueDeclaration` but this will be super useful in the type checking process for identifier and assignment expressions.
 
+When we talked about the type checker early on, I wrote that expressions return their own type, so we can use them to compare, see if it has any type mismatch, and report an error if that's the case.
+
+In variable declarations, we also should return their own type, but we can have two different scenarios:
+
+```tsx
+// variable without a typename
+var num = 1;
+
+// variable with a typename
+var num: number = 1;
+```
+
+Variables with and without the typename. The logic is very simple.
+
+- If it doesn't have the typename, it should just return the type related to the value expression. In the above example, it should return the type related to `1`, in other words, it should return the `numberType`
+- If it does have the typename, it should return the typename's type. In the above example, it should return the type related to `number`, in other words, it should return the `numberType`
+
+Here's the implementation of this logic
+
+```tsx
+function checkStatement(statement: Statement): Type {
+  switch (statement.kind) {
+    case Node.Var:
+      const i = checkExpression(statement.init);
+      if (!statement.typename) {
+        return i;
+      }
+      const t = checkType(statement.typename);
+      if (t !== i && t !== errorType)
+        error(
+          statement.init.pos,
+          `Cannot assign initialiser of type '${typeToString(
+            i,
+          )}' to variable with declared type '${typeToString(t)}'.`,
+        );
+      return t;
+    // ...
+  }
+}
+```
+
+Let's unpack this code:
+
+- First, it checks the `init` expression. It can be related to any expression. One example is if the expression is `1`, it will return the `numberType`
+- Then it checks if there's a typename. If not, it should just return the type related to the `init` expression
+- If there's a typename, it will get the type related to it. In the case of an identifier like `number`, it will check its type and return the `numberType`
+- If the types produced before don't match, we have a “type error” and it reports the error to the `Map` of errors
+- In the end, it will return the type related to the typename
+
+If there's no typename, it favors the value or expression type. If there's a typename, it favors the typename type.
+
+For variable declarations, we are always comparing and checking if the types match and return the favored type.
+
+## `Assignment`: handling assignment operations
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
