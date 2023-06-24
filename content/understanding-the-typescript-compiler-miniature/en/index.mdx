@@ -546,6 +546,84 @@ An expression being a `NumericLiteral` is already implemented so we covered ever
 
 We're now missing the implementation of the binder and the type checker for variables.
 
+The binder can be intimidating at first but the code is super simple. If you've already practiced and solved [algorithm problems](https://www.iamtk.co/series/algorithms-problem-solving), you probably already came across algorithms that you need to add values to a `Map`. The binder is pretty similar:
+
+- Get a symbol from the `Map`
+- If it has, add a new value to the list
+- If it doesn't, add the first value to the list
+
+Let's see the whole code first:
+
+```tsx
+if (statement.kind === Node.Var || statement.kind === Node.TypeAlias) {
+  const symbol = locals.get(statement.name.text);
+  if (symbol) {
+    const other = symbol.declarations.find((d) => d.kind === statement.kind);
+    if (other) {
+      error(
+        statement.pos,
+        `Cannot redeclare ${statement.name.text}; first declared at ${other.pos}`,
+      );
+    } else {
+      symbol.declarations.push(statement);
+      if (statement.kind === Node.Var) {
+        symbol.valueDeclaration = statement;
+      }
+    }
+  } else {
+    locals.set(statement.name.text, {
+      declarations: [statement],
+      valueDeclaration: statement.kind === Node.Var ? statement : undefined,
+    });
+  }
+}
+```
+
+Let's unpack the idea of the statement binding.
+
+In this initial implementation, we are handling only `Node.Var` and `Node.TypeAlias`.
+
+The first step is to try to get a symbol from the `Map`. It queries the symbol based on the statement name.
+
+```tsx
+const symbol = locals.get(statement.name.text);
+```
+
+- If it does have a symbol in the `Map`, we should add a new statement to the declarations list (a couple more things we are going to see)
+- If it doesn't, we should just set the statement as the first declaration in the declarations list
+
+Before adding a new statement to a given symbol, we should see if the source code is trying to redeclare the same variable or the same type again because we should get an error if we write code like this:
+
+```tsx
+var a = 1;
+var a = 2;
+```
+
+In real JavaScript, `var` allows us to redeclare the same name. In the following posts of the series, we'll see a new implementation of the `Let` statement and how it shouldn't allow redeclaring the same statement. But in this first implementation, `var` won't allow it.
+
+To add this rule to the statement binding, the binder needs to look at the declarations list of the current symbol and check if there's a statement with the same kind as the current statement.
+
+In the source code above, it adds the first statement to the declarations list with the key as `a`. When it goes to the second statement, it tries to find any other statement with the same kind, “var” in this case, and it finds it. We do it using the Array's `find` method.
+
+```tsx
+const other = symbol.declarations.find((d) => d.kind === statement.kind);
+```
+
+If we find it, we know we should report an error. And this is done:
+
+```tsx
+if (other) {
+  error(
+    statement.pos,
+    `Cannot redeclare ${statement.name.text}; first declared at ${other.pos}`,
+  );
+}
+```
+
+If we couldn't find it, the binder just follows the same flow: add the new statement to the list of declarations.
+
+I won't talk too much about `valueDeclaration` but this will be super useful in the type checking process for identifier and assignment expressions.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
