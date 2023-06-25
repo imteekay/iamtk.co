@@ -4,24 +4,22 @@ As you may know, I've been studying compilers. A lot. For the past month, I've b
 
 In this post, I want to cover some of my learnings while reading the TypeScript compiler miniature's source code and implementing the exercises.
 
-I divided this series into three parts and the following posts to cover everything about the TypeScript compiler. The first two are already published and you can take a look at them here:
+I divided this [series](/series/the-typescript-compiler) into three parts and the following posts to cover everything about the TypeScript compiler. The first two were already published and you can take a look at them here:
 
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 
-And now, in this post, I will cover different features of the [mini-typescript](https://github.com/imteekay/mini-typescript) and how they are implemented. For the exercises I implemented in the project, I will write new articles in the following posts of the series.
+And now, in this post, I will cover different features of the [mini-typescript](https://github.com/imteekay/mini-typescript) and how they are implemented. For the exercises I implemented in the project, I will write new articles in the following posts of the [series](/series/the-typescript-compiler).
 
-By the way, I think it's a good idea to read the first two posts before reading this if you don't know how compilers work and how the TypeScript compiler works. The first one will give a good overview of the steps of the compiler and how each piece fits together. The second one will talk about closures and how they are used to make the compiler more modular and easier to change.
+By the way, I think it's a good idea to read the first two posts before reading this if you don't know how compilers and the TypeScript compiler work. The first one will give a good overview of the steps of the compiler and how each piece fits together. The second one will talk about closures and how they are used to make the compiler more modular and easier to change and manage its state.
 
 With the two pieces, I think you'll be ready to read how some of the features of the TypeScript miniature are implemented.
 
-- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
-- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
-  Let's go!
+Let's go!
 
 ---
 
-Before going into each feature, I just want to illustrate how the compiler structures each step. Basically, how it represents tokens in the lexer step, AST nodes in the parser, variable and type declarations in the binder, and types in the type checker.
+Before going into each feature, I just wanted to illustrate how the compiler structures each step. Basically, how it represents tokens in the lexer step, AST nodes in the parser, variable and type declarations in the binder, and types in the type checker.
 
 ## Representing tokens
 
@@ -30,7 +28,7 @@ The idea of a lexer is to go through character by character and produce a new to
 As an example, if we have this source code
 
 ```jsx
-var age = 1;
+var age: number = 1;
 ```
 
 The lexer will produce this list of tokens
@@ -41,16 +39,29 @@ The lexer will produce this list of tokens
 - `age`:
   - `text`: “age”
   - `token`: “Identifier”
+- `:`:
+  - `text`: undefined
+  - `token`: “Colon”
+- `number`:
+  - `text`: “number”
+  - `token`: “Identifier”
 - `=`:
   - `text`: undefined
   - `token`: “Equals”
 - `1`:
   - `text`: “1”
   - `token`: “NumericLiteral”
+- `;`:
+  - `text`: undefined
+  - `token`: ”Semicolon”
 
 In a visible way, it should look like this
 
-[Add illustration: from source code to tokens using this example above]
+<img
+  src="/a-deep-dive-into-the-typescript-compiler-miniature/lexer-variable-declaration.png"
+  class="full"
+  loading="lazy"
+/>
 
 ## Representing AST nodes
 
@@ -105,9 +116,9 @@ interface StringLiteral {
 }
 ```
 
-This is already a good node representation for each.
+This is already a good node representation of each.
 
-Let's now see examples of each node:
+Let's now see examples of each node.
 
 An identifier with name `name`:
 
@@ -172,11 +183,11 @@ const stringLiteral = {
 };
 ```
 
-This already gives us a nice overview of how we can represent the source code in AST nodes. In the following sections, we will dive deeper into each feature and see how this is used in the following steps like the binder and the type checker.
+This already gives us a nice overview of how we can represent the source code in AST nodes. In the feature sections, we will dive deeper into each feature and see how this is used in the following steps like the binder and the type checker.
 
 ## Binder: storing the type and variable declarations
 
-Here in the binder, one of its responsibilities is storing declarations of types and variables. The compiler stores in a data structure and the statements or AST nodes can be “fetched” later on.
+Here in the binder, one of its responsibilities is storing declarations of types and variables. The compiler stores it in a data structure and the statements or AST nodes can be “fetched” later on.
 
 The data structure the compiler uses to store these declarations is a `Map`, a key-value data structure, where the key is the name of the identifier (name of the type or the variable) and the value is a list of statements.
 
@@ -222,6 +233,8 @@ Map(1) {
 }
 ```
 
+For the same identifier name `test`, it has a list of declarations, a variable statement and a type alias statement,
+
 So now, the compiler can use this data structure and query the statements. To resolve it, we pass the name and the type of the statement we are looking for.
 
 ```tsx
@@ -235,9 +248,9 @@ if (symbol?.declarations.some((d) => d.kind === type)) {
 What's happening here?
 
 - It gets the symbol based on the `name`
-- and then it tries to find the declaration statement based on the `type`
+- and then it tries to find the declaration statement based on the `type`, where `type` can be either `Var` or `TypeAlias`.
 
-For every AST node created from the parser, the binder will handle them and figure out if it should add or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types.
+For every AST node created from the parser, the binder will handle them and figure out if it should add it or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types. This is valuable when the type checker reaches the
 
 ## Values in the type checker
 
@@ -258,7 +271,7 @@ var num: number = '123';
      ↳ Type 'string' is not assignable to type 'number'.
 ```
 
-It should provide a type error like it was illustrated above, right? The type checker should only compare these two nodes: the identifier `num` with the type `NumericLiteral` and the expression `'123'` with the type `StringLiteral`. We clearly see a mismatch between these two types and the compiler attaches this new error to the “store of errors”.
+It should provide a type error like it was illustrated above, right? The type checker should only compare these two nodes: the identifier `num` with the type `NumericLiteral` and the expression `'123'` with the type `StringLiteral`. We clearly see a mismatch between these two types and the compiler attaches this new error to the “store of errors” or a `Map` of errors.
 
 For assignments, it works pretty much the same way:
 
@@ -272,7 +285,7 @@ num = '123';
 
 But now it needs to go to the binder and ask for the identifier `num`. It will try to resolve it, get the symbol, and generate the related type. Then it just compares the generated type with the value type.
 
-We are going to see more of this in-depth later on.
+We are going to see more of this in-depth later on in cases like variable declarations and assignments.
 
 ---
 
@@ -282,7 +295,7 @@ We go from the lexer, passing to the parser and binder, and ending in the type c
 
 ## `NumericLiteral`: handling numbers
 
-We first start with the lexer. There it will scan characters and transform them into a token. For `NumericLiteral`s, it needs to read numbers from the source code. This is what we'll be looking for.
+We first start with the lexer. There it will scan characters and transform them into tokens. For `NumericLiteral`s, it needs to read numbers from the source code. This is what we'll be looking for.
 
 The first part is to check if the current character is a possible number.
 
@@ -294,7 +307,9 @@ if (/[0-9]/.test(s.charAt(pos))) {
 
 Using regular expressions, we can accomplish this. Check if the character in the position `pos` passes the regex test for any number from 0 to 9. If this character is the one, we know it's a `NumericLiteral`.
 
-Numbers can be just one digit or more. To make sure it gets the entire number, we should keep scanning until we “finish” the number. Now I want to present to you the function `scanForward`. It keeps scanning the source code and moving forward if the predicate is true.
+Numbers can be just one digit or more. To make sure it gets the entire number, we should keep scanning until we “finish” the number.
+
+Now I want to present to you the function `scanForward`. It keeps scanning the source code and moving forward if the predicate is true.
 
 ```tsx
 function scanForward(pred: (x: string) => boolean) {
@@ -318,13 +333,13 @@ So if we run this code:
 scanForward(isNumber);
 ```
 
-It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finished scanning the entire number, the position `pos` went to the last index of the number. To get the `text`, we should just slice that:
+It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finishes scanning the entire number, the position `pos` goes to the last index of the number. To get the `text`, we should just slice that:
 
 ```tsx
 text = s.slice(start, pos);
 ```
 
-And to finish it, the token should be a `NumericLiteral`
+And to finish it, the token should be a `NumericLiteral`.
 
 ```tsx
 token = Token.NumericLiteral;
@@ -385,11 +400,13 @@ And now we have the full AST node for the expression statement.
 
 The binder doesn't do anything regarding the number as we learned that one of its responsibilities is to store the variable and type declarations.
 
-The type checker just produces a number type as we've seen early on. This part is super straightforward. It checks every statement, so when it gets to the expressions and the current expression is a `Node.NumericLiteral`, it just returns a `numberType`, which is this structure
+The type checker just produces a number type as we've seen early on. This part is super straightforward. It checks every statement, so when it gets to the expressions and the current expression is a `Node.NumericLiteral`, it just returns a `numberType`, which is this structure:
 
 ```tsx
 const numberType: Type = { id: 'number' };
 ```
+
+This type will be helpful and used to compare the types between statements and check if we have any type mismatch, or as we usually say a "type error".
 
 ## Var: handling variable declarations
 
@@ -462,16 +479,35 @@ const keywords = {
 };
 ```
 
-To handle this logic, we use a simple ternary together with the `[in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in):
+To handle this logic, we use a simple ternary together with the [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in):
 
 ```tsx
 token =
   text in keywords ? keywords[text as keyof typeof keywords] : Token.Identifier;
 ```
 
+That's the whole implementation:
+
+```ts
+if (/[_a-zA-Z]/.test(s.charAt(pos))) {
+  scanForward(isAlphanumerical);
+  text = s.slice(start, pos);
+  token =
+    text in keywords
+      ? keywords[text as keyof typeof keywords]
+      : Token.Identifier;
+}
+```
+
 And that's it, the lexer part for the whole variable declaration is done.
 
-[add illustration for the source code to tokens transformation - `var num: number = 1;` - var is keyword, num is identifier, : is Colon, number is identifier, = is Equal, 1 is Numeric Literal, ; is Semicolon]
+Again, this is how it looks like:
+
+<img
+  src="/a-deep-dive-into-the-typescript-compiler-miniature/lexer-variable-declaration.png"
+  class="full"
+  loading="lazy"
+/>
 
 Now that we have all the tokens for the variable declaration, let's parse them into an AST node. In the end, it will look like this:
 
@@ -509,7 +545,7 @@ if (tryParseToken(Token.Var)) {
 }
 ```
 
-There are a lot of things going on here, let's unpack it all.
+There are a lot of things going on here, let's unpack it.
 
 First, we use `tryParseToken` to see if it's an actual `Token.Var` token. If it's, we know how this structure should be. The first part of this node is the `name`. It should be an identifier, so it calls the `parseIdentifier` function to parse it.
 
@@ -544,16 +580,16 @@ function parseExpected(expected: Token) {
 }
 ```
 
-If it doesn't parse the expected token, the `=` token in this case, it will add a new error to the compiler's map of errors. If it parses, it just moves forward to the next token. And the next token is an expression.
+If it doesn't parse the expected token, the `=` token in this case, it will add a new error to the compiler's `Map` of errors. If it parses, it just moves forward to the next token. And the next token is an expression.
 
-An expression being a `NumericLiteral` is already implemented so we covered everything for that specific source code. We can see the implementation of different types of expressions like `StringLiteral`s and `Identifier`s, but this will be a topic for future posts in this series.
+An expression being a `NumericLiteral` is already implemented so we covered everything for that specific source code. We can see the implementation of different types of expressions like `StringLiteral`s and `Identifier`s, but this will be a topic for future posts in this [series](/series/the-typescript-compiler).
 
 We're now missing the implementation of the binder and the type checker for variables.
 
 The binder can be intimidating at first but the code is super simple. If you've already practiced and solved [algorithm problems](/series/algorithms-problem-solving), you probably already came across algorithms that you need to add values to a `Map`. The binder is pretty similar:
 
 - Get a symbol from the `Map`
-- If it has, add a new value to the list
+- If it has the key, add a new value to the list
 - If it doesn't, add the first value to the list
 
 Let's see the whole code first:
@@ -603,7 +639,7 @@ var a = 1;
 var a = 2;
 ```
 
-In real JavaScript, `var` allows us to redeclare the same name. In the following posts of the series, we'll see a new implementation of the `Let` statement and how it shouldn't allow redeclaring the same statement. But in this first implementation, `var` won't allow it.
+In real JavaScript, `var` allows us to redeclare the same name. In the following posts of the [series](/series/the-typescript-compiler), we'll see a new implementation of the `Let` statement and how it shouldn't allow redeclaring the same statement. But in this first implementation, `var` won't allow it.
 
 To add this rule to the statement binding, the binder needs to look at the declarations list of the current symbol and check if there's a statement with the same kind as the current statement.
 
@@ -683,7 +719,7 @@ For variable declarations, we are always comparing and checking if the types mat
 
 ## `Assignment`: handling assignment operations
 
-Let's first see an example of an assignment:
+Let's first see a simple example of an assignment:
 
 ```tsx
 var num: number = 1;
@@ -769,9 +805,11 @@ n = num;
 
 And that's it! We have a working AST node for the `Assignment`.
 
-In the binder, the compiler just handles `Var` and `TypeAlias` nodes, so we don't need to do anything there.
+In the binder, the compiler just handles `Var` and `TypeAlias` nodes, so we don't need to do anything else there.
 
 The whole idea of type checking the assignment expression is to type check expressions in general because it should get the type related to the identifier and related to the value expression, and then compare them.
+
+This is how we translate the logic above into code.
 
 ```tsx
 const v = checkExpression(expression.value);
@@ -786,7 +824,7 @@ if (t !== v)
 return t;
 ```
 
-This is how we translated the logic above into code.
+What does it do?
 
 - check the value expression
 - check the identifier expression
@@ -846,7 +884,7 @@ var n: number = num;
 - The second line falls down into the name being an identifier and the value expression a string literal
 - The third line falls down into the name being an identifier and the value expression also an identifier
 
-The most interesting part of the expression type checking is the identifier expression.
+The most interesting part of the expression type checking is the case of an identifier expression.
 
 Whenever it needs to type check an identifier, it first uses the `resolve` function to query a symbol from the binder's `Map`.
 
@@ -969,7 +1007,7 @@ In this piece of content, my goal was to show two main things:
 
 I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This was a full dump of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
 
-This is a series of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
 
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)

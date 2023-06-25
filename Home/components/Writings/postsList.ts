@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-06-25',
+    link: '/a-deep-dive-into-the-typescript-compiler-miniature',
+    title: 'A Deep Dive into the TypeScript Compiler Miniature',
+  },
+  {
     datetime: '2023-06-09',
     link: '/solving-algorithmic-problems-using-the-two-pointers-technique',
     title: 'Solving Algorithmic problems using the Two Pointers technique',

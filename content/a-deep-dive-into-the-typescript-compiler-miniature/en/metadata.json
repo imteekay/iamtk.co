@@ -1,7 +1,7 @@
 {
-  "title": "Understanding the TypeScript Compiler Miniature",
+  "title": "A Deep Dive into the TypeScript Compiler Miniature",
   "description": "Understand how the TypeScript compiler works: source code, scanner, parser, tokenization, binder, type checking, emitting files",
-  "date": "2023-06-24",
+  "date": "2023-06-25",
   "tags": [
     {
       "href": "/tags/typescript",
@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/a-high-level-architecture-of-the-typescript-compiler/cover.jpg",
+    "src": "/a-deep-dive-into-the-typescript-compiler-miniature/cover-image.jpg",
     "width": "640",
-    "height": "394",
+    "height": "426",
     "alt": "grayscale photo of person running in panel paintings",
-    "authorHref": "https://unsplash.com/@bigkids",
-    "authorName": "David Werbrouck"
+    "authorHref": "https://unsplash.com/@jeztimms",
+    "authorName": "Jez Timms"
   }
 }

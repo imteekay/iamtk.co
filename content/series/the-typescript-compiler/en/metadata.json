@@ -1,0 +1,23 @@
+{
+  "title": "The TypeScript Compiler Series",
+  "description": "The process to understand the TypeScript compiler",
+  "date": "2023-02-27",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mastering-javascript/cover.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "notebook",
+    "authorHref": "https://unsplash.com/@blakeconnally",
+    "authorName": "Blake Connally"
+  }
+}
