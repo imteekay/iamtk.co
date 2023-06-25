@@ -4,12 +4,12 @@ As you may know, I've been studying compilers. A lot. For the past month, I've b
 
 In this post, I want to cover some of my learnings while reading the TypeScript compiler miniature's source code and implementing the exercises.
 
-I divided this series into three parts and the following posts to cover everything about the TypeScript compiler. The first two are already published and you can take a look at them here:
+I divided this [series](/series/the-typescript-compiler) into three parts and the following posts to cover everything about the TypeScript compiler. The first two are already published and you can take a look at them here:
 
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 
-And now, in this post, I will cover different features of the [mini-typescript](https://github.com/imteekay/mini-typescript) and how they are implemented. For the exercises I implemented in the project, I will write new articles in the following posts of the series.
+And now, in this post, I will cover different features of the [mini-typescript](https://github.com/imteekay/mini-typescript) and how they are implemented. For the exercises I implemented in the project, I will write new articles in the following posts of the [series](/series/the-typescript-compiler).
 
 By the way, I think it's a good idea to read the first two posts before reading this if you don't know how compilers work and how the TypeScript compiler works. The first one will give a good overview of the steps of the compiler and how each piece fits together. The second one will talk about closures and how they are used to make the compiler more modular and easier to change.
 
@@ -546,7 +546,7 @@ function parseExpected(expected: Token) {
 
 If it doesn't parse the expected token, the `=` token in this case, it will add a new error to the compiler's map of errors. If it parses, it just moves forward to the next token. And the next token is an expression.
 
-An expression being a `NumericLiteral` is already implemented so we covered everything for that specific source code. We can see the implementation of different types of expressions like `StringLiteral`s and `Identifier`s, but this will be a topic for future posts in this series.
+An expression being a `NumericLiteral` is already implemented so we covered everything for that specific source code. We can see the implementation of different types of expressions like `StringLiteral`s and `Identifier`s, but this will be a topic for future posts in this [series](/series/the-typescript-compiler).
 
 We're now missing the implementation of the binder and the type checker for variables.
 
@@ -603,7 +603,7 @@ var a = 1;
 var a = 2;
 ```
 
-In real JavaScript, `var` allows us to redeclare the same name. In the following posts of the series, we'll see a new implementation of the `Let` statement and how it shouldn't allow redeclaring the same statement. But in this first implementation, `var` won't allow it.
+In real JavaScript, `var` allows us to redeclare the same name. In the following posts of the [series](/series/the-typescript-compiler), we'll see a new implementation of the `Let` statement and how it shouldn't allow redeclaring the same statement. But in this first implementation, `var` won't allow it.
 
 To add this rule to the statement binding, the binder needs to look at the declarations list of the current symbol and check if there's a statement with the same kind as the current statement.
 
@@ -969,7 +969,7 @@ In this piece of content, my goal was to show two main things:
 
 I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This was a full dump of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
 
-This is a series of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
 
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
