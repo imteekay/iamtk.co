@@ -544,7 +544,7 @@ if (tryParseToken(Token.Var)) {
 }
 ```
 
-There are a lot of things going on here, let's unpack it all.
+There are a lot of things going on here, let's unpack it.
 
 First, we use `tryParseToken` to see if it's an actual `Token.Var` token. If it's, we know how this structure should be. The first part of this node is the `name`. It should be an identifier, so it calls the `parseIdentifier` function to parse it.
 
@@ -579,7 +579,7 @@ function parseExpected(expected: Token) {
 }
 ```
 
-If it doesn't parse the expected token, the `=` token in this case, it will add a new error to the compiler's map of errors. If it parses, it just moves forward to the next token. And the next token is an expression.
+If it doesn't parse the expected token, the `=` token in this case, it will add a new error to the compiler's `Map` of errors. If it parses, it just moves forward to the next token. And the next token is an expression.
 
 An expression being a `NumericLiteral` is already implemented so we covered everything for that specific source code. We can see the implementation of different types of expressions like `StringLiteral`s and `Identifier`s, but this will be a topic for future posts in this [series](/series/the-typescript-compiler).
 
