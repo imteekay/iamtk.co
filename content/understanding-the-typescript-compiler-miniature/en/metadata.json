@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/a-high-level-architecture-of-the-typescript-compiler/cover.jpg",
+    "src": "/understanding-the-typescript-compiler-miniature/cover.jpg",
     "width": "640",
     "height": "394",
     "alt": "grayscale photo of person running in panel paintings",
-    "authorHref": "https://unsplash.com/@bigkids",
-    "authorName": "David Werbrouck"
+    "authorHref": "https://unsplash.com/@yipleonardo",
+    "authorName": "Leonardo Yip"
   }
 }
