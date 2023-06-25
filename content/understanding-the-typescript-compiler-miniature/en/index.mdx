@@ -6,8 +6,8 @@ In this post, I want to cover some of my learnings while reading the TypeScript 
 
 I divided this series into three parts and the following posts to cover everything about the TypeScript compiler. The first two are already published and you can take a look at them here:
 
-- [A High Level Architecture of the TypeScript compiler](https://www.iamtk.co/a-high-level-architecture-of-the-typescript-compiler)
-- [JavaScript scope, Closures, and the TypeScript compiler](https://iamtk.co/javascript-scope-closures-and-the-typescript-compiler)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 
 And now, in this post, I will cover different features of the [mini-typescript](https://github.com/imteekay/mini-typescript) and how they are implemented. For the exercises I implemented in the project, I will write new articles in the following posts of the series.
 
@@ -15,7 +15,9 @@ By the way, I think it's a good idea to read the first two posts before reading 
 
 With the two pieces, I think you'll be ready to read how some of the features of the TypeScript miniature are implemented.
 
-Let's go!
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+  Let's go!
 
 ---
 
@@ -548,7 +550,7 @@ An expression being a `NumericLiteral` is already implemented so we covered ever
 
 We're now missing the implementation of the binder and the type checker for variables.
 
-The binder can be intimidating at first but the code is super simple. If you've already practiced and solved [algorithm problems](https://www.iamtk.co/series/algorithms-problem-solving), you probably already came across algorithms that you need to add values to a `Map`. The binder is pretty similar:
+The binder can be intimidating at first but the code is super simple. If you've already practiced and solved [algorithm problems](/series/algorithms-problem-solving), you probably already came across algorithms that you need to add values to a `Map`. The binder is pretty similar:
 
 - Get a symbol from the `Map`
 - If it has, add a new value to the list
@@ -967,12 +969,19 @@ In this piece of content, my goal was to show two main things:
 
 I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This was a full dump of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
 
+This is a series of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
 - [How the TypeScript Compiler Compiles](https://www.youtube.com/watch?v=X8k_4tZ16qU&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
 - [mini-typescript](https://github.com/imteekay/mini-typescript)
 - [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 
 ---
 
