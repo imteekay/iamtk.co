@@ -252,9 +252,9 @@ if (symbol?.declarations.some((d) => d.kind === type)) {
 What's happening here?
 
 - It gets the symbol based on the `name`
-- and then it tries to find the declaration statement based on the `type`
+- and then it tries to find the declaration statement based on the `type`, where `type` can be either `Var` or `TypeAlias`.
 
-For every AST node created from the parser, the binder will handle them and figure out if it should add or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types.
+For every AST node created from the parser, the binder will handle them and figure out if it should add it or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types. This is valuable when the type checker reaches the 
 
 ## Values in the type checker
 
@@ -275,7 +275,7 @@ var num: number = '123';
      ↳ Type 'string' is not assignable to type 'number'.
 ```
 
-It should provide a type error like it was illustrated above, right? The type checker should only compare these two nodes: the identifier `num` with the type `NumericLiteral` and the expression `'123'` with the type `StringLiteral`. We clearly see a mismatch between these two types and the compiler attaches this new error to the “store of errors”.
+It should provide a type error like it was illustrated above, right? The type checker should only compare these two nodes: the identifier `num` with the type `NumericLiteral` and the expression `'123'` with the type `StringLiteral`. We clearly see a mismatch between these two types and the compiler attaches this new error to the “store of errors” or a `Map` of errors.
 
 For assignments, it works pretty much the same way:
 
