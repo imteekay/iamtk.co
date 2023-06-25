@@ -289,7 +289,7 @@ num = '123';
 
 But now it needs to go to the binder and ask for the identifier `num`. It will try to resolve it, get the symbol, and generate the related type. Then it just compares the generated type with the value type.
 
-We are going to see more of this in-depth later on.
+We are going to see more of this in-depth later on in cases like variable declarations and assignments.
 
 ---
 
@@ -299,7 +299,7 @@ We go from the lexer, passing to the parser and binder, and ending in the type c
 
 ## `NumericLiteral`: handling numbers
 
-We first start with the lexer. There it will scan characters and transform them into a token. For `NumericLiteral`s, it needs to read numbers from the source code. This is what we'll be looking for.
+We first start with the lexer. There it will scan characters and transform them into tokens. For `NumericLiteral`s, it needs to read numbers from the source code. This is what we'll be looking for.
 
 The first part is to check if the current character is a possible number.
 
@@ -311,7 +311,9 @@ if (/[0-9]/.test(s.charAt(pos))) {
 
 Using regular expressions, we can accomplish this. Check if the character in the position `pos` passes the regex test for any number from 0 to 9. If this character is the one, we know it's a `NumericLiteral`.
 
-Numbers can be just one digit or more. To make sure it gets the entire number, we should keep scanning until we “finish” the number. Now I want to present to you the function `scanForward`. It keeps scanning the source code and moving forward if the predicate is true.
+Numbers can be just one digit or more. To make sure it gets the entire number, we should keep scanning until we “finish” the number.
+
+Now I want to present to you the function `scanForward`. It keeps scanning the source code and moving forward if the predicate is true.
 
 ```tsx
 function scanForward(pred: (x: string) => boolean) {
@@ -335,7 +337,7 @@ So if we run this code:
 scanForward(isNumber);
 ```
 
-It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finished scanning the entire number, the position `pos` went to the last index of the number. To get the `text`, we should just slice that:
+It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finishes scanning the entire number, the position `pos` went to the last index of the number. To get the `text`, we should just slice that:
 
 ```tsx
 text = s.slice(start, pos);
