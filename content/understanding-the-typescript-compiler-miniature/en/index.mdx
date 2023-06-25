@@ -958,6 +958,15 @@ type Num = N;
 
 It will fall into the third possibility, where `N` is a `TypeAlias` and we should query it in the `Map` of declarations we built in the binder. Resolving it, we find that its `typename` is `number` and then it returns `numberType` for the `Num` type alias.
 
+## Final words
+
+In this piece of content, my goal was to show two main things:
+
+- The data structures used in each phase of the compiler
+- How some features are implemented to understand each phrase more in-depth
+
+I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This was a full dump of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
