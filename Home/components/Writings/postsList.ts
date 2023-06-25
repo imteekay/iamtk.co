@@ -8,8 +8,8 @@ type Post = {
 export const postsList: Post[] = [
   {
     datetime: '2023-06-25',
-    link: '/understanding-the-typescript-compiler-miniature',
-    title: 'Understanding the TypeScript Compiler Miniature',
+    link: '/a-deep-dive-into-the-typescript-compiler-miniature',
+    title: 'A Deep Dive into the TypeScript Compiler Miniature',
   },
   {
     datetime: '2023-06-09',

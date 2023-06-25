@@ -58,7 +58,7 @@ The lexer will produce this list of tokens
 In a visible way, it should look like this
 
 <img
-  src="/understanding-the-typescript-compiler-miniature/lexer-variable-declaration.png"
+  src="/a-deep-dive-into-the-typescript-compiler-miniature/lexer-variable-declaration.png"
   class="full"
   loading="lazy"
 />
@@ -70,11 +70,7 @@ AST nodes are basically `Statement`s. They can be `ExpressionStatement`, `Var`, 
 The type looks like a union of all these types
 
 ```tsx
-type Statement = 
-  | ExpressionStatement
-  | Var
-  | TypeAlias
-  | EmptyStatement;
+type Statement = ExpressionStatement | Var | TypeAlias | EmptyStatement;
 ```
 
 To have an idea of how AST nodes can be structured, let's take `ExpressionsStatement` as an example and see its data types and the transformation from source code to AST node.
@@ -82,11 +78,7 @@ To have an idea of how AST nodes can be structured, let's take `ExpressionsState
 The `ExpressionStatement` can be different expressions: `Identifier`, `NumericLiteral`, `Assignment`, or `StringLiteral`.
 
 ```tsx
-type Expression = 
-  | Identifier
-  | NumericLiteral
-  | Assignment
-  | StringLiteral;
+type Expression = Identifier | NumericLiteral | Assignment | StringLiteral;
 ```
 
 Each node can have different “attributes”. For example,
@@ -258,7 +250,7 @@ What's happening here?
 - It gets the symbol based on the `name`
 - and then it tries to find the declaration statement based on the `type`, where `type` can be either `Var` or `TypeAlias`.
 
-For every AST node created from the parser, the binder will handle them and figure out if it should add it or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types. This is valuable when the type checker reaches the 
+For every AST node created from the parser, the binder will handle them and figure out if it should add it or not to the `Map`. And then the type checker can resolve the statement whenever it needs to check the types. This is valuable when the type checker reaches the
 
 ## Values in the type checker
 
@@ -490,9 +482,8 @@ const keywords = {
 To handle this logic, we use a simple ternary together with the [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in):
 
 ```tsx
-token = text in keywords
-  ? keywords[text as keyof typeof keywords]
-  : Token.Identifier;
+token =
+  text in keywords ? keywords[text as keyof typeof keywords] : Token.Identifier;
 ```
 
 That's the whole implementation:
@@ -513,7 +504,7 @@ And that's it, the lexer part for the whole variable declaration is done.
 Again, this is how it looks like:
 
 <img
-  src="/understanding-the-typescript-compiler-miniature/lexer-variable-declaration.png"
+  src="/a-deep-dive-into-the-typescript-compiler-miniature/lexer-variable-declaration.png"
   class="full"
   loading="lazy"
 />
