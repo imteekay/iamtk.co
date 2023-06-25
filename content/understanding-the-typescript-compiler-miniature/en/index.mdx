@@ -588,7 +588,7 @@ We're now missing the implementation of the binder and the type checker for vari
 The binder can be intimidating at first but the code is super simple. If you've already practiced and solved [algorithm problems](/series/algorithms-problem-solving), you probably already came across algorithms that you need to add values to a `Map`. The binder is pretty similar:
 
 - Get a symbol from the `Map`
-- If it has, add a new value to the list
+- If it has the key, add a new value to the list
 - If it doesn't, add the first value to the list
 
 Let's see the whole code first:
@@ -718,7 +718,7 @@ For variable declarations, we are always comparing and checking if the types mat
 
 ## `Assignment`: handling assignment operations
 
-Let's first see an example of an assignment:
+Let's first see a simple example of an assignment:
 
 ```tsx
 var num: number = 1;
@@ -804,9 +804,11 @@ n = num;
 
 And that's it! We have a working AST node for the `Assignment`.
 
-In the binder, the compiler just handles `Var` and `TypeAlias` nodes, so we don't need to do anything there.
+In the binder, the compiler just handles `Var` and `TypeAlias` nodes, so we don't need to do anything else there.
 
 The whole idea of type checking the assignment expression is to type check expressions in general because it should get the type related to the identifier and related to the value expression, and then compare them.
+
+This is how we translate the logic above into code.
 
 ```tsx
 const v = checkExpression(expression.value);
@@ -821,7 +823,7 @@ if (t !== v)
 return t;
 ```
 
-This is how we translated the logic above into code.
+What does it do?
 
 - check the value expression
 - check the identifier expression
@@ -881,7 +883,7 @@ var n: number = num;
 - The second line falls down into the name being an identifier and the value expression a string literal
 - The third line falls down into the name being an identifier and the value expression also an identifier
 
-The most interesting part of the expression type checking is the identifier expression.
+The most interesting part of the expression type checking is the case of an identifier expression.
 
 Whenever it needs to type check an identifier, it first uses the `resolve` function to query a symbol from the binder's `Map`.
 
