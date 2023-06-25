@@ -28,7 +28,7 @@ The idea of a lexer is to go through character by character and produce a new to
 As an example, if we have this source code
 
 ```jsx
-var age = 1;
+var age: number = 1;
 ```
 
 The lexer will produce this list of tokens
@@ -39,12 +39,21 @@ The lexer will produce this list of tokens
 - `age`:
   - `text`: “age”
   - `token`: “Identifier”
+- `:`:
+  - `text`: undefined
+  - `token`: “Colon”
+- `number`:
+  - `text`: “number”
+  - `token`: “Identifier”
 - `=`:
   - `text`: undefined
   - `token`: “Equals”
 - `1`:
   - `text`: “1”
   - `token`: “NumericLiteral”
+- `;`:
+  - `text`: undefined
+  - `token`: ”Semicolon”
 
 In a visible way, it should look like this
 
