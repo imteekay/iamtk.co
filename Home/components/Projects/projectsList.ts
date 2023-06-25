@@ -79,4 +79,9 @@ export const projectsList = [
     description: "My digital bookshelf — all the books I've read",
     link: '/bookshelf',
   },
+  {
+    title: 'Microblog',
+    description: 'Micro posts about thoughts & reflections',
+    link: '/microblog',
+  },
 ];
