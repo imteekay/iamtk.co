@@ -698,6 +698,160 @@ If we separate the tokens that are part of this source code, we get:
 
 You probably noticed we don't need to implement anything new in the lexer as we already have all the tokens in place, and that's great! Let's go straight to the parser then.
 
+As you already know, the `Assignment` node is an expression statement. For this source code:
+
+```tsx
+num = 2;
+```
+
+We get this AST node:
+
+```tsx
+{
+  "kind": "ExpressionStatement",
+  "expr": {
+    "kind": "Assignment",
+    "name": {
+      "kind": "Identifier",
+      "text": "num"
+    },
+    "value": {
+      "kind": "NumericLiteral",
+      "value": 2
+    }
+  }
+}
+```
+
+It's
+
+- An expression statement
+- The expression is an `Assignment`
+- The assignment is separated into two pieces:
+  - `name`: usually an identifier, in this case, the text `num`
+  - `value`: usually an expression, in this case, the numeric literal `2`
+
+Let's parse it then.
+
+When parsing an expression, we have a function to handle that. It's called `parseExpression`:
+
+```tsx
+function parseExpression(): Expression {
+  const pos = lexer.pos();
+  const e = parseIdentifierOrLiteral();
+  if (e.kind === Node.Identifier && tryParseToken(Token.Equals)) {
+    return { kind: Node.Assignment, name: e, value: parseExpression(), pos };
+  }
+  return e;
+}
+```
+
+The first step is to parse an identifier or a literal (it can be a numeric or a string literal). It will always return an expression. If it returns an identifier and then the current token is the `Equals`, we know that's an `Assignment` expression.
+
+Now we know it's an assignment and we have the identifier. The only thing missing is the value expression. And we just need to call `parseExpression` again and it will parse it for us.
+
+That's interesting because it covers both possible scenarios:
+
+- when the value expression is a literal, e.g. `1` or `'string'`
+- and when the value expression is an identifier, e.g. `num`, as you may know, we can assign the value of a variable to another, like the following example
+
+```tsx
+var num = 1;
+var n = 2;
+
+// assigning the value of
+// an identifier (variable)
+// into another identifier (another variable)
+n = num;
+```
+
+And that's it! We have a working AST node for the `Assignment`.
+
+In the binder, the compiler just handles `Var` and `TypeAlias` nodes, so we don't need to do anything there.
+
+The whole idea of type checking the assignment expression is to type check expressions in general because it should get the type related to the identifier and related to the value expression, and then compare them.
+
+```tsx
+const v = checkExpression(expression.value);
+const t = checkExpression(expression.name);
+if (t !== v)
+  error(
+    expression.value.pos,
+    `Cannot assign value of type '${typeToString(
+      v,
+    )}' to variable of type '${typeToString(t)}'.`,
+  );
+return t;
+```
+
+This is how we translated the logic above into code.
+
+- check the value expression
+- check the identifier expression
+- compare them and see if they match. If not, report an error to the `Map` of errors
+- and return the identifier type
+
+But what's this `checkExpression` function? This is the whole function
+
+```tsx
+function checkExpression(expression: Expression): Type {
+  switch (expression.kind) {
+    case Node.Identifier:
+      const symbol = resolve(module.locals, expression.text, Node.Var);
+      if (symbol) {
+        return checkStatement(symbol.valueDeclaration!);
+      }
+      error(expression.pos, 'Could not resolve ' + expression.text);
+      return errorType;
+    case Node.NumericLiteral:
+      return numberType;
+    case Node.StringLiteral:
+      return stringType;
+    case Node.Assignment:
+      const v = checkExpression(expression.value);
+      const t = checkExpression(expression.name);
+      if (t !== v)
+        error(
+          expression.value.pos,
+          `Cannot assign value of type '${typeToString(
+            v,
+          )}' to variable of type '${typeToString(t)}'.`,
+        );
+      return t;
+  }
+}
+```
+
+It seems a bit intimidating but it's not that hard to understand. Let's unpack it.
+
+`NumericLiteral` and `StringLiteral` aren’t difficult to understand. We've seen them before. They just return simple types: `numberType` and `stringType`.
+
+When calling the `checkExpression` in the assignment block, we can fall into three possibilities:
+
+- `Identifier`
+- `NumericLiteral`
+- `StringLiteral`
+
+The type for the expression's name will probably be an identifier type. And the type of the expression's value can fall into these three categories. Let's see some examples:
+
+```tsx
+var num: number = 1;
+var s: string = 'string';
+var n: number = num;
+```
+
+- The first line falls down into the name being an identifier and the value expression a numeric literal
+- The second line falls down into the name being an identifier and the value expression a string literal
+- The third line falls down into the name being an identifier and the value expression also an identifier
+
+The most interesting part of the expression type checking is the identifier expression.
+
+Whenever it needs to type check an identifier, it first uses the `resolve` function to query a symbol from the binder's `Map`.
+
+If it finds the symbol, it checks the value declaration and returns its related type.
+
+If it doesn't find any symbol, it couldn't resolve it and it should report a new error to the `Map` of errors.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
