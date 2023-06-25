@@ -66,7 +66,11 @@ AST nodes are basically `Statement`s. They can be `ExpressionStatement`, `Var`, 
 The type looks like a union of all these types
 
 ```tsx
-type Statement = ExpressionStatement | Var | TypeAlias | EmptyStatement;
+type Statement = 
+  | ExpressionStatement
+  | Var
+  | TypeAlias
+  | EmptyStatement;
 ```
 
 To have an idea of how AST nodes can be structured, let's take `ExpressionsStatement` as an example and see its data types and the transformation from source code to AST node.
@@ -74,7 +78,11 @@ To have an idea of how AST nodes can be structured, let's take `ExpressionsState
 The `ExpressionStatement` can be different expressions: `Identifier`, `NumericLiteral`, `Assignment`, or `StringLiteral`.
 
 ```tsx
-type Expression = Identifier | NumericLiteral | Assignment | StringLiteral;
+type Expression = 
+  | Identifier
+  | NumericLiteral
+  | Assignment
+  | StringLiteral;
 ```
 
 Each node can have different “attributes”. For example,
@@ -112,9 +120,9 @@ interface StringLiteral {
 }
 ```
 
-This is already a good node representation for each.
+This is already a good node representation of each.
 
-Let's now see examples of each node:
+Let's now see examples of each node.
 
 An identifier with name `name`:
 
@@ -179,7 +187,7 @@ const stringLiteral = {
 };
 ```
 
-This already gives us a nice overview of how we can represent the source code in AST nodes. In the following sections, we will dive deeper into each feature and see how this is used in the following steps like the binder and the type checker.
+This already gives us a nice overview of how we can represent the source code in AST nodes. In the feature sections, we will dive deeper into each feature and see how this is used in the following steps like the binder and the type checker.
 
 ## Binder: storing the type and variable declarations
 
