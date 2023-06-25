@@ -13,9 +13,9 @@
     }
   ],
   "coverImage": {
-    "src": "/understanding-the-typescript-compiler-miniature/cover.jpg",
+    "src": "/understanding-the-typescript-compiler-miniature/cover-image.jpg",
     "width": "640",
-    "height": "473",
+    "height": "426",
     "alt": "grayscale photo of person running in panel paintings",
     "authorHref": "https://unsplash.com/@jeztimms",
     "authorName": "Jez Timms"
