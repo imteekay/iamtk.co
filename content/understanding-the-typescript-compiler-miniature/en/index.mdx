@@ -483,11 +483,25 @@ const keywords = {
 };
 ```
 
-To handle this logic, we use a simple ternary together with the `[in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in):
+To handle this logic, we use a simple ternary together with the [`in` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in):
 
 ```tsx
-token =
-  text in keywords ? keywords[text as keyof typeof keywords] : Token.Identifier;
+token = text in keywords
+  ? keywords[text as keyof typeof keywords]
+  : Token.Identifier;
+```
+
+That's the whole implementation:
+
+```ts
+if (/[_a-zA-Z]/.test(s.charAt(pos))) {
+  scanForward(isAlphanumerical);
+  text = s.slice(start, pos);
+  token =
+    text in keywords
+      ? keywords[text as keyof typeof keywords]
+      : Token.Identifier;
+}
 ```
 
 And that's it, the lexer part for the whole variable declaration is done.
