@@ -510,7 +510,13 @@ if (/[_a-zA-Z]/.test(s.charAt(pos))) {
 
 And that's it, the lexer part for the whole variable declaration is done.
 
-[add illustration for the source code to tokens transformation - `var num: number = 1;` - var is keyword, num is identifier, : is Colon, number is identifier, = is Equal, 1 is Numeric Literal, ; is Semicolon]
+Again, this is how it looks like:
+
+<img
+  src="/understanding-the-typescript-compiler-miniature/lexer-variable-declaration.png"
+  class="full"
+  loading="lazy"
+/>
 
 Now that we have all the tokens for the variable declaration, let's parse them into an AST node. In the end, it will look like this:
 
