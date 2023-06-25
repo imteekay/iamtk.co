@@ -337,13 +337,13 @@ So if we run this code:
 scanForward(isNumber);
 ```
 
-It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finishes scanning the entire number, the position `pos` went to the last index of the number. To get the `text`, we should just slice that:
+It will keep scanning forward until it reaches the end of the number or the end of the source code. That's it. Before any operation starts in the lexer, we store the `start` position. When it finishes scanning the entire number, the position `pos` goes to the last index of the number. To get the `text`, we should just slice that:
 
 ```tsx
 text = s.slice(start, pos);
 ```
 
-And to finish it, the token should be a `NumericLiteral`
+And to finish it, the token should be a `NumericLiteral`.
 
 ```tsx
 token = Token.NumericLiteral;
@@ -404,11 +404,13 @@ And now we have the full AST node for the expression statement.
 
 The binder doesn't do anything regarding the number as we learned that one of its responsibilities is to store the variable and type declarations.
 
-The type checker just produces a number type as we've seen early on. This part is super straightforward. It checks every statement, so when it gets to the expressions and the current expression is a `Node.NumericLiteral`, it just returns a `numberType`, which is this structure
+The type checker just produces a number type as we've seen early on. This part is super straightforward. It checks every statement, so when it gets to the expressions and the current expression is a `Node.NumericLiteral`, it just returns a `numberType`, which is this structure:
 
 ```tsx
 const numberType: Type = { id: 'number' };
 ```
+
+This type will be helpful and used to compare the types between statements and check if we have any type mismatch, or as we usually say a "type error".
 
 ## Var: handling variable declarations
 
