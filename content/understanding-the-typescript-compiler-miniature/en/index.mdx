@@ -191,7 +191,7 @@ This already gives us a nice overview of how we can represent the source code in
 
 ## Binder: storing the type and variable declarations
 
-Here in the binder, one of its responsibilities is storing declarations of types and variables. The compiler stores in a data structure and the statements or AST nodes can be “fetched” later on.
+Here in the binder, one of its responsibilities is storing declarations of types and variables. The compiler stores it in a data structure and the statements or AST nodes can be “fetched” later on.
 
 The data structure the compiler uses to store these declarations is a `Map`, a key-value data structure, where the key is the name of the identifier (name of the type or the variable) and the value is a list of statements.
 
@@ -236,6 +236,8 @@ Map(1) {
   ]
 }
 ```
+
+For the same identifier name `test`, it has a list of declarations, a variable statement and a type alias statement,
 
 So now, the compiler can use this data structure and query the statements. To resolve it, we pass the name and the type of the statement we are looking for.
 
