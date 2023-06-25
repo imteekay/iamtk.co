@@ -852,6 +852,112 @@ If it finds the symbol, it checks the value declaration and returns its related 
 
 If it doesn't find any symbol, it couldn't resolve it and it should report a new error to the `Map` of errors.
 
+## `TypeAlias`: handling named types
+
+If we untangle the type alias, we can see we already implemented everything about it in the lexer phase.
+
+```tsx
+type age = number;
+```
+
+- `type`: it's part of the keywords
+- `age`: it's an identifier
+- `number`: also an identifier
+
+That's the structure of a type alias: the `type` keyword, the name of the type (identifier), the equals token, and the typename (identifier).
+
+```tsx
+if (tryParseToken(Token.Type)) {
+  const name = parseIdentifier();
+  parseExpected(Token.Equals);
+  const typename = parseIdentifier();
+  return { kind: Node.TypeAlias, name, typename, pos };
+}
+```
+
+We only start creating the type alias AST node if we can parse the `Token.Type` token.
+
+And this is an example of a node created in the parsing phrase:
+
+```tsx
+{
+  "kind": "TypeAlias",
+  "name": {
+    "kind": "Identifier",
+    "text": "age"
+  },
+  "typename": {
+    "kind": "Identifier",
+    "text": "number"
+  }
+}
+```
+
+This is the structure of the source code we saw above.
+
+In the binder, we don't really need to implement anything else because it was already taken care of as it handles `Var` and `TypeAlias` statements. Type alias statements will follow the same flow and logic as the variable declarations.
+
+One interesting point here is that we can't redeclare variables or redeclare types, but we can have a type and a variable with the same name. And it's already implemented the binder.
+
+Because we already implemented most of the type checker, checking type aliases became super easy. One of the things we need to do is to add this line of code:
+
+```tsx
+case Node.TypeAlias:
+  return checkType(statement.typename);
+```
+
+If the statement is a `TypeAlias`, we should check the type of `typename`. Calling `checkType`, it will fall into three possibilities:
+
+- `typename` as `NumericLiteral`: it should return a `numberType`
+- `typename` as `StringLiteral`: it should return a `stringType`
+- `typename` as `TypeAlias`: it should resolve a type alias symbol from the `Map` of declarations. If it finds the symbol, it calls `checkType` again but now with the `typename` of the declaration it found in the `Map` built in the binder
+
+This is the whole code:
+
+```tsx
+function checkType(name: Identifier): Type {
+  switch (name.text) {
+    case 'string':
+      return stringType;
+    case 'number':
+      return numberType;
+    default:
+      const symbol = resolve(module.locals, name.text, Node.TypeAlias);
+      if (symbol) {
+        return checkType(
+          (
+            symbol.declarations.find(
+              (d) => d.kind === Node.TypeAlias,
+            ) as TypeAlias
+          ).typename,
+        );
+      }
+      error(name.pos, 'Could not resolve type ' + name.text);
+      return errorType;
+  }
+}
+```
+
+Just a tiny additional piece of info: if the `resolve` couldn't find the type alias typename in the `Map` of declarations, it should report an error in the `Map` of errors.
+
+If the source code is like this:
+
+```tsx
+type N = number;
+type S = string;
+```
+
+It will fall into the two first possibilities: it returns the type for typename and they are `numberType` and `stringType`.
+
+For a source code like this:
+
+```tsx
+type N = number;
+type Num = N;
+```
+
+It will fall into the third possibility, where `N` is a `TypeAlias` and we should query it in the `Map` of declarations we built in the binder. Resolving it, we find that its `typename` is `number` and then it returns `numberType` for the `Num` type alias.
+
 ## Resources
 
 - [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
