@@ -1,7 +1,7 @@
 {
   "title": "Implementing StringLiterals for the TypeScript Compiler",
   "description": "Understand how the TypeScript compiler uses closures",
-  "date": "2023-07-02",
+  "date": "2023-07-03",
   "tags": [
     {
       "href": "/tags/typescript",
