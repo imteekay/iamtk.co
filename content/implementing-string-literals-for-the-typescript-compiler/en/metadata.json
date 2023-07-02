@@ -1,6 +1,6 @@
 {
   "title": "Implementing StringLiterals for the TypeScript Compiler",
-  "description": "Understand how the TypeScript compiler uses closures",
+  "description": "Understanding how string literals are implemented in the TypeScript compiler",
   "date": "2023-07-03",
   "tags": [
     {
@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/javascript-scope-closures-and-the-typescript-compiler/cover.jpg",
+    "src": "/implementing-string-literals-for-the-typescript-compiler/cover.jpg",
     "width": "640",
-    "height": "959",
-    "alt": "grayscale photo of person running in panel paintings",
-    "authorHref": "https://unsplash.com/@raphi_rawr",
-    "authorName": "Raphael Renter"
+    "height": "426",
+    "alt": "lights in the tree in the dark",
+    "authorHref": "https://unsplash.com/@jarispics",
+    "authorName": "Jari Hytönen"
   }
 }
