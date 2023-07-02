@@ -14,9 +14,9 @@ Before starting, let's see some examples to get familiar with possible strings w
 
 ```tsx
 var singleQuote = 'singleQuote';
-var doubleQuote = 'doubleQuote';
-var escapedSingleQuote = "escapedSingle'Quote";
-var escapedDoubleQuote = 'escapedDouble"Quote';
+var doubleQuote = "doubleQuote";
+var escapedSingleQuote = 'escapedSingle\'Quote';
+var escapedDoubleQuote = "escapedDouble\"Quote";
 var escapedB = 'escaped\bB';
 var escapedT = 'escaped\tT';
 var escapedN = 'escaped\nN';
@@ -27,8 +27,8 @@ It should handle
 
 - single quote strings
 - double quote strings
-- escaping single quote
-- escaping double quote
+- escaping single quote `\'`
+- escaping double quote `\"`
 - escaping `\b`
 - escaping `\t`
 - escaping `\n`
@@ -97,8 +97,8 @@ Now we need to figure out how to implement the `scanString` function.
 
 The first rule to scan the string is:
 
-- if the string starts with a single quote (`’`) character, it should with a single quote character
-- if the string starts with a double quote (`”`) character, it should with a double quote character
+- if the string starts with a single quote (`’`) character, it should end with a single quote character
+- if the string starts with a double quote (`”`) character, it should end with a double quote character
 
 So let's store the first character to be used later on.
 
@@ -174,7 +174,7 @@ The `error` is just a function to add the new error to the `Map` of errors. We s
 
 We also return the unterminated string value and break the loop.
 
-This logic makes this example passes our tests:
+This logic makes this example below passes our tests:
 
 ```tsx
 var string = "a-string-literal-but-unterminated;
@@ -280,7 +280,7 @@ function scanString() {
 }
 ```
 
-We now have the entire string implementation in the lexer phase. But before moving to the parser, there's a small thing we need to do in the lexer to be used in the future in the emit phase. We should have a value called `firstChar`.
+We now have the entire string implementation in the lexer phase. But before moving to the parser, there's a small thing we need to do in the lexer to be used in the future in the emitting phase. We should have a value called `firstChar`.
 
 ```tsx
 let firstChar: string;
@@ -294,13 +294,13 @@ if (['"', "'"].includes(s.charAt(pos))) {
 }
 ```
 
-That way, we know if the string is single quote based or double quote. This will be used in the “public” function called `isSingleQuote` returned from the lexer.
+That way, we know if the string is single quote based or double quote. This will be used in the “public” function called `isSingleQuote` returned by the lexer.
 
 ```tsx
 isSingleQuote: () => firstChar === "'";
 ```
 
-That will be used in the parser to create the right AST node and is crucial for the emit phase. We'll look into that later on.
+That will be used in the parser to create the right AST node and is crucial for the emitting phase. We'll look into that later on.
 
 ## `Parsing`: creating AST nodes for string literals
 
@@ -353,7 +353,7 @@ Simple as that.
 
 ## `Emitter`: emitting JavaScript string literals
 
-The emit phase is a new concept in this series. This is basically the act of outputting JavaScript from a TypeScript code, depending on your configuration.
+The emitting phase is a new concept in this series. This is basically the act of outputting JavaScript from a TypeScript code, depending on your configuration.
 
 If you did run `tsc` in your project before and saw JavaScript files being generated, this is what the emitting phase is.
 
