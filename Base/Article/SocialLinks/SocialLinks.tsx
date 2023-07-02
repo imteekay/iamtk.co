@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SocialLinks: FC = () => (
   <p>
-    My{' '}
     <a
       className="icon"
       target="_blank"
@@ -13,9 +12,8 @@ export const SocialLinks: FC = () => (
       title="twitter"
       rel="noreferrer"
     >
-      Twitter <FontAwesomeIcon icon={faTwitter} />
+      <FontAwesomeIcon icon={faTwitter} /> Twitter
     </a>{' '}
-    and{' '}
     <a
       className="icon"
       target="_blank"
@@ -23,7 +21,7 @@ export const SocialLinks: FC = () => (
       title="github"
       rel="noreferrer"
     >
-      Github <FontAwesomeIcon icon={faGithub} />
+      <FontAwesomeIcon icon={faGithub} /> Github
     </a>
   </p>
 );
