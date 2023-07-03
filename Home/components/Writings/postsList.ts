@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-07-03',
+    link: '/implementing-string-literals-for-the-typescript-compiler',
+    title: 'Implementing StringLiterals for the TypeScript Compiler',
+  },
+  {
     datetime: '2023-06-25',
     link: '/a-deep-dive-into-the-typescript-compiler-miniature',
     title: 'A Deep Dive into the TypeScript Compiler Miniature',

@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Implementing StringLiterals for the TypeScript Compiler</title>
+    <link>https://www.iamtk.co/implementing-string-literals-for-the-typescript-compiler</link>
+    <guid isPermaLink="true">https://www.iamtk.co/implementing-string-literals-for-the-typescript-compiler</guid>
+    <description>Understanding how string literals are implemented in the TypeScript compiler</description>
+  </item>
+  <item>
     <title>A Deep Dive into the TypeScript Compiler Miniature</title>
     <link>https://www.iamtk.co/a-deep-dive-into-the-typescript-compiler-miniature</link>
     <guid isPermaLink="true">https://www.iamtk.co/a-deep-dive-into-the-typescript-compiler-miniature</guid>
