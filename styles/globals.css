@@ -147,6 +147,7 @@ article a {
   text-decoration-color: rgb(209 209 209);
   text-decoration-thickness: 2px;
   text-decoration-skip-ink: none;
+  text-underline-offset: 2px;
 }
 
 a:hover {
@@ -160,6 +161,7 @@ a:hover {
     text-decoration-color: rgb(165 165 165);
     text-decoration-thickness: 2px;
     text-decoration-skip-ink: none;
+    text-underline-offset: 2px;
   }
 
   a:hover {
