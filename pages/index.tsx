@@ -11,6 +11,7 @@ import { Projects } from 'Home/components/Projects';
 import { Series } from 'Home/components/Series';
 import { SkipLink } from 'Home/components/SkipLink';
 import { Writings } from 'Home/components/Writings';
+import { readContent } from 'src/lib/rss';
 
 const LayoutFade = styled.div`
   position: fixed;
@@ -48,3 +49,8 @@ const Page: NextPage = () => (
 );
 
 export default Page;
+
+export const getStaticProps = async () => {
+  readContent();
+  return { props: {} };
+};
