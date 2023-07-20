@@ -348,10 +348,10 @@ That way, all statements finish with the semicolon and a line break.
 
 ## Final words
 
-In this piece of content, my goal was to show the whole implementation of string literals:
+In this piece of content, my goal was to show the whole implementation of empty statements and use semicolons as statement enders:
 
 - What's required to implement in each phase of the compiler (lexer, parser, type checker, and emitter)
-- How to handle regular, unterminated, and escaped strings
+- How to refactor the parser to handle semicolons as terminators
 
 I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
 
@@ -360,6 +360,7 @@ This is a [series](/series/the-typescript-compiler) of posts about compilers and
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 - [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
 
 For additional content on compilers and programming language theory, have a look at the [Programming Language Design](/tags/programming-language-design) tag and the [Programming Language Research](https://github.com/imteekay/programming-language-research) repo.
 
@@ -374,16 +375,16 @@ For additional content on compilers and programming language theory, have a look
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 - [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
 
 ---
 
-### PRs & Helped the implementation
+### PRs & What helped the implementation
 
-- [Ecmascript SingleEscapeCharacter](https://262.ecma-international.org/13.0/#prod-SingleEscapeCharacter)
-- [Clarification on String literals issue](https://github.com/sandersn/mini-typescript/issues/15)
-- [Implementing String literals](https://github.com/imteekay/mini-typescript-fork/pull/4)
-- [Handling unterminated strings](https://github.com/imteekay/mini-typescript-fork/pull/12)
-- [Fix string literal test](https://github.com/imteekay/mini-typescript-fork/pull/14)
+- [EmptyStatement](https://github.com/imteekay/mini-typescript-fork/pull/2)
+- [Fix empty statement in the transformer](https://github.com/imteekay/mini-typescript-fork/pull/10)
+- [Semicolon as statement ender](https://github.com/imteekay/mini-typescript-fork/pull/7)
+- [ECMAScript EmptyStatement spec](https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-empty-statement)
 
 ---
 
