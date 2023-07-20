@@ -1,5 +1,5 @@
 {
-  "title": "Building EmptyStatement and Semicolon as statement ender for the TypeScript compiler",
+  "title": "Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler",
   "description": "Understanding how empty statement and semicolon as statement ender are implemented in the TypeScript compiler",
   "date": "2023-07-21",
   "tags": [
