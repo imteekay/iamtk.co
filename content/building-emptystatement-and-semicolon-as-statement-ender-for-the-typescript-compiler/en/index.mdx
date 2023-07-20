@@ -149,6 +149,35 @@ Let's go to the type checker.
 
 ## `Type Checker`: checking empty statements
 
+As we created a new AST node for statements, we need to return a new type for it in the type checking process. This is the new type for empty statements:
+
+```tsx
+const empty: Type = { id: 'empty' };
+```
+
+And when the compiler is checking the empty statement, we just need to return this new type.
+
+```tsx
+case Node.EmptyStatement:
+	return empty;
+```
+
+## Transforming and emitting JS
+
+In the transformation process, we don't need to do anything extra in terms of transformation, it should just return the actual empty statement.
+
+```tsx
+case Node.EmptyStatement:
+  return [statement];
+```
+
+The emitting process is pretty similar. When handling the emit for empty statements, the compiler will return an empty string so it doesn't return anything.
+
+```tsx
+case Node.EmptyStatement:
+	return '';
+```
+
 ## Final words
 
 In this piece of content, my goal was to show the whole implementation of string literals:
