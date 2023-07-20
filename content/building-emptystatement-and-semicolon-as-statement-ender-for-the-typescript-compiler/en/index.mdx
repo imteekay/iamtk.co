@@ -182,6 +182,170 @@ That's it! We've finished the implementation of empty statements. To complement 
 
 The process will look very similar to what we did for empty statements: examples, AST nodes, JS output, and the whole compiler steps.
 
+Before, we were using semicolons as separators, but now we are going to use semicolons as statement enders. So, every time we parse a new statement, we expect a “terminator”, in this case, a semicolon.
+
+As semicolons are optional in JavaScript, it doesn't break the parser if after the statement is parsed, it doesn't have a semicolon as the terminator. If it does, it just moves the pointer to the next token.
+
+In general, this change is more like a refactoring than a new feature of the language. The behavior shouldn't change.
+
+Let's see an example:
+
+```tsx
+var x = 1;
+var y = 2;
+var z = 3;
+x;y;z;
+```
+
+For this example, we generate these AST nodes
+
+```tsx
+[
+  {
+    "kind": "Var",
+    "name": {
+      "kind": "Identifier",
+      "text": "x"
+    },
+    "init": {
+      "kind": "NumericLiteral",
+      "value": 1
+    }
+  },
+  {
+    "kind": "Var",
+    "name": {
+      "kind": "Identifier",
+      "text": "y"
+    },
+    "init": {
+      "kind": "NumericLiteral",
+      "value": 2
+    }
+  },
+  {
+    "kind": "Var",
+    "name": {
+      "kind": "Identifier",
+      "text": "z"
+    },
+    "init": {
+      "kind": "NumericLiteral",
+      "value": 3
+    }
+  },
+  {
+    "kind": "ExpressionStatement",
+    "expr": {
+      "kind": "Identifier",
+      "text": "x"
+    }
+  },
+  {
+    "kind": "ExpressionStatement",
+    "expr": {
+      "kind": "Identifier",
+      "text": "y"
+    }
+  },
+  {
+    "kind": "ExpressionStatement",
+    "expr": {
+      "kind": "Identifier",
+      "text": "z"
+    }
+  }
+]
+```
+
+Nothing new here, we just have three variable declarations and three expressions for each variable declared.
+
+The JS output is pretty much the same as the source code:
+
+```tsx
+var x = 1;
+var y = 2;
+var z = 3;
+x;
+y;
+z;
+```
+
+Or in a string format, it should look like this:
+
+```tsx
+"var x = 1;\nvar y = 2;\nvar z = 3;\nx;\ny;\nz;\n"
+```
+
+As we’re refactoring the compiler, we are going to modify only the parser and the emitter. So all of the other steps won't change. We don't need to do anything for the lexer, the binder, the type checker, and the transformer.
+
+## `Parser`: parsing statement enders
+
+As we've seen before, every time the parser parses a new statement, it needs to parse the terminator, in this case, the semicolon (`;`). And we also know the parser won't break if the terminator is not there because semicolons are optional in JavaScript.
+
+The algorithm for this is pretty simple. This is what we need to do:
+
+- Parse a statement
+- Parse the terminator (terminator is optional)
+- Peek if the next token is not the “end of file” (`EOF`) token. If not, loop and continue the same algorithm
+
+Here it's:
+
+```tsx
+function parseStatements<T>(
+  element: () => T,
+  terminator: () => boolean,
+  peek: () => boolean,
+) {
+  const list = [];
+  while (peek()) {
+    list.push(element());
+    terminator();
+  }
+  return list;
+}
+```
+
+Every time it parses a new statement, it pushes it to the list. At the end of the function, it just returns the list of statements (AST nodes).
+
+And this is who it's used:
+
+```tsx
+parseStatements(
+  parseStatement,
+  () => tryParseToken(Token.Semicolon),
+  () => lexer.token() !== Token.EOF,
+)
+```
+
+- `element` → `parseStatement`
+- `terminator` → `tryParseToken` for semicolon
+- `peek` → is the current token the `Token.EOF`?
+
+I really liked this design and how it simplifies the parsing.
+
+## `Emitter`: emitting JS code
+
+Before, semicolons were handled as separators, so the emitting phase was done by just joining the statements with the `';\n'` string and that was fine.
+
+But now that semicolons are terminators, we should always have this `';\n'` string at the end of each statement in the JS output.
+
+Before, the emitting code was like this:
+
+```tsx
+statements.map(emitStatement).join(';\n');
+```
+
+Joining was enough. But now we should move this string to the end of each statement. One way of doing that is to just concatenate it to the end of the emitted statement in the mapping, and then join the statements:
+
+```tsx
+statements
+  .map((statement) => `${emitStatement(statement)};\n`)
+  .join('');
+```
+
+That way, all statements finish with the semicolon and a line break.
+
 ## Final words
 
 In this piece of content, my goal was to show the whole implementation of string literals:
