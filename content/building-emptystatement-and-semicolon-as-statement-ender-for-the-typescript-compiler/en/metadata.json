@@ -1,0 +1,23 @@
+{
+  "title": "Building EmptyStatement and Semicolon as statement ender for the TypeScript compiler",
+  "description": "Understanding how empty statement and semicolon as statement ender are implemented in the TypeScript compiler",
+  "date": "2023-07-21",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/implementing-string-literals-for-the-typescript-compiler/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "lights in the tree in the dark",
+    "authorHref": "https://unsplash.com/@jarispics",
+    "authorName": "Jari Hytönen"
+  }
+}
