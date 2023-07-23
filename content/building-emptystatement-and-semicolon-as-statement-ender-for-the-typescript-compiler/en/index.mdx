@@ -1,6 +1,6 @@
 <SmoothRender>
 
-This is the 4th post of the **[TypeScript Compiler Series](https://www.notion.so/series/the-typescript-compiler)**. Before, we had an [overview of the TypeScript architecture](https://www.notion.so/a-high-level-architecture-of-the-typescript-compiler), [how it uses the closure technique](https://www.notion.so/javascript-scope-closures-and-the-typescript-compiler), a [deep dive into the compiler and its features](https://www.notion.so/a-deep-dive-into-the-typescript-compiler-miniature), and [how to implement string literals in the compiler](https://iamtk.co/implementing-string-literals-for-the-typescript-compiler).
+This is the 4th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)**. Before, we had an [overview of the TypeScript architecture](/a-high-level-architecture-of-the-typescript-compiler), [how it uses the closure technique](/javascript-scope-closures-and-the-typescript-compiler), a [deep dive into the compiler and its features](/a-deep-dive-into-the-typescript-compiler-miniature), and [how to implement string literals in the compiler](https://iamtk.co/implementing-string-literals-for-the-typescript-compiler).
 
 Now we are going to learn how to implement empty statements and use the semicolon as the statement ender for the compiler.
 
@@ -194,7 +194,9 @@ Let's see an example:
 var x = 1;
 var y = 2;
 var z = 3;
-x;y;z;
+x;
+y;
+z;
 ```
 
 For this example, we generate these AST nodes
@@ -202,60 +204,60 @@ For this example, we generate these AST nodes
 ```tsx
 [
   {
-    "kind": "Var",
-    "name": {
-      "kind": "Identifier",
-      "text": "x"
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'x',
     },
-    "init": {
-      "kind": "NumericLiteral",
-      "value": 1
-    }
-  },
-  {
-    "kind": "Var",
-    "name": {
-      "kind": "Identifier",
-      "text": "y"
+    init: {
+      kind: 'NumericLiteral',
+      value: 1,
     },
-    "init": {
-      "kind": "NumericLiteral",
-      "value": 2
-    }
   },
   {
-    "kind": "Var",
-    "name": {
-      "kind": "Identifier",
-      "text": "z"
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'y',
     },
-    "init": {
-      "kind": "NumericLiteral",
-      "value": 3
-    }
+    init: {
+      kind: 'NumericLiteral',
+      value: 2,
+    },
   },
   {
-    "kind": "ExpressionStatement",
-    "expr": {
-      "kind": "Identifier",
-      "text": "x"
-    }
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'z',
+    },
+    init: {
+      kind: 'NumericLiteral',
+      value: 3,
+    },
   },
   {
-    "kind": "ExpressionStatement",
-    "expr": {
-      "kind": "Identifier",
-      "text": "y"
-    }
+    kind: 'ExpressionStatement',
+    expr: {
+      kind: 'Identifier',
+      text: 'x',
+    },
   },
   {
-    "kind": "ExpressionStatement",
-    "expr": {
-      "kind": "Identifier",
-      "text": "z"
-    }
-  }
-]
+    kind: 'ExpressionStatement',
+    expr: {
+      kind: 'Identifier',
+      text: 'y',
+    },
+  },
+  {
+    kind: 'ExpressionStatement',
+    expr: {
+      kind: 'Identifier',
+      text: 'z',
+    },
+  },
+];
 ```
 
 Nothing new here, we just have three variable declarations and three expressions for each variable declared.
@@ -274,7 +276,7 @@ z;
 Or in a string format, it should look like this:
 
 ```tsx
-"var x = 1;\nvar y = 2;\nvar z = 3;\nx;\ny;\nz;\n"
+'var x = 1;\nvar y = 2;\nvar z = 3;\nx;\ny;\nz;\n';
 ```
 
 As we’re refactoring the compiler, we are going to modify only the parser and the emitter. So all of the other steps won't change. We don't need to do anything for the lexer, the binder, the type checker, and the transformer.
@@ -315,7 +317,7 @@ parseStatements(
   parseStatement,
   () => tryParseToken(Token.Semicolon),
   () => lexer.token() !== Token.EOF,
-)
+);
 ```
 
 - `element` → `parseStatement`
@@ -339,9 +341,7 @@ statements.map(emitStatement).join(';\n');
 Joining was enough. But now we should move this string to the end of each statement. One way of doing that is to just concatenate it to the end of the emitted statement in the mapping, and then join the statements:
 
 ```tsx
-statements
-  .map((statement) => `${emitStatement(statement)};\n`)
-  .join('');
+statements.map((statement) => `${emitStatement(statement)};\n`).join('');
 ```
 
 That way, all statements finish with the semicolon and a line break.
