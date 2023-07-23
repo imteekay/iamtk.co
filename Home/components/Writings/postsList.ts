@@ -7,7 +7,7 @@ type Post = {
 
 export const postsList: Post[] = [
   {
-    datetime: '2023-07-21',
+    datetime: '2023-07-23',
     link: '/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler',
     title:
       'Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler',
