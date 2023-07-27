@@ -207,7 +207,7 @@ if (tryParseToken(Token.Var)) {
 }
 ```
 
-With the `parseVariableStatement`, we are going to create the `VariableStatement` node. It has a `declarationList` attribute and that is a `VariableDeclarationList` node.
+With the `parseVariableStatement`, we are going to create the `VariableStatement` node. It has a `declarationList` attribute which is a `VariableDeclarationList` node.
 
 ```tsx
 function parseVariableStatement(): VariableStatement {
@@ -248,7 +248,9 @@ function parseVariableDeclarations() {
 }
 ```
 
-First we need to create a `declarations` list that will be returned from this function. It parses the first variable declaration and pushes it to the `declarations` list. If the next token is a `Token.Comma` (`,`), it loops and creates a new variable declaration. If there are no more commas, it breaks the loop and returns the `declarations` list.
+First we need to create a `declarations` list that will be returned from this function.
+
+It parses the first variable declaration and pushes it to the `declarations` list. If the next token is a `Token.Comma` (`,`), it loops and creates a new variable declaration. If there are no more commas, it breaks the loop and returns the `declarations` list.
 
 And that's the whole parsing phase for multiple variable declarations.
 
