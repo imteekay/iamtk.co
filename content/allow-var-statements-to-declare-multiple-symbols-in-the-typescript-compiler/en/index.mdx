@@ -538,18 +538,21 @@ We just need to iterate through the declarations, generate the JS output and joi
 
 ## Final words
 
-In this piece of content, my goal was to show the whole implementation of string literals:
+In this piece of content, my goal was to show the whole implementation declaring multiple symbols for variables:
 
-- What's required to implement in each phase of the compiler (lexer, parser, type checker, and emitter)
-- How to handle regular, unterminated, and escaped strings
+- How to build tokens and structure the AST to support list of var declarations
+- How to type check lists
+- How to transform and emit variable declaration lists
 
-I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
+I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 5 months I've been studying, researching, and working on the TS compiler miniature.
 
 This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
 
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
 - [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
 
 For additional content on compilers and programming language theory, have a look at the [Programming Language Design](/tags/programming-language-design) tag and the [Programming Language Research](https://github.com/imteekay/programming-language-research) repo.
 
@@ -571,11 +574,7 @@ For additional content on compilers and programming language theory, have a look
 
 ### PRs & What helped the implementation
 
-- [Ecmascript SingleEscapeCharacter](https://262.ecma-international.org/13.0/#prod-SingleEscapeCharacter)
-- [Clarification on String literals issue](https://github.com/sandersn/mini-typescript/issues/15)
-- [Implementing String literals](https://github.com/imteekay/mini-typescript-fork/pull/4)
-- [Handling unterminated strings](https://github.com/imteekay/mini-typescript-fork/pull/12)
-- [Fix string literal test](https://github.com/imteekay/mini-typescript-fork/pull/14)
+- [Allow var statements to declare multiple symbols PR](https://github.com/imteekay/mini-typescript-fork/pull/9)
 
 ---
 
