@@ -441,6 +441,101 @@ case Node.Identifier:
   return errorType;
 ```
 
+Now we have the generated types when type checking identifiers and `VariableStatement`s.
+
+## `Transformer`: removing variable types
+
+Before, the responsibility of the transformer was to just remove the `typename` of the variable declaration. We need to keep this transformation but now we need to go through all the declarations stored in `VariableStatement`.
+
+```tsx
+function transformStatement(statement: Statement): Statement[] {
+  switch (statement.kind) {
+    // ...
+    case Node.VariableStatement:
+      return [
+        {
+          ...statement,
+          declarationList: {
+            ...statement.declarationList,
+            declarations: statement.declarationList.declarations.map(
+              (declaration) => ({ ...declaration, typename: undefined }),
+            ),
+          },
+        },
+      ];
+  }
+}
+```
+
+The `VariableStatement` and the `VariableDeclarationList` are the same. But for each declaration, we need to remove the `typename`.
+
+And also remove the transformation for `Var` nodes as `Var` is not a statement anymore.
+
+## `Emitter`: outputting variable in JS
+
+This is a “not annotated” example of a variable declaration list:
+
+```tsx
+var var1 = 1, var2 = 2, var3 = 3;
+```
+
+We would have this JS output:
+
+```tsx
+var var1 = 1,var2 = 2,var3 = 3;
+```
+
+Or in a string format:
+
+```tsx
+"var var1 = 1,var2 = 2,var3 = 3;\n"
+```
+
+And for this annotated example of a variable declaration list:
+
+```tsx
+var n: number = 1, s: string = 'test', n2: number = 3;
+```
+
+We would have the same JS output:
+
+```tsx
+var var1 = 1,var2 = 2,var3 = 3;
+```
+
+And the same string format:
+
+```tsx
+"var var1 = 1,var2 = 2,var3 = 3;\n"
+```
+
+The first thing we need to do is to remove the `Var` node from the `emitStatement` function and handle the `VariableStatement` node. So we move the emit logic for `Var` into a new separate function:
+
+```tsx
+function emitVar(declaration: VariableDeclaration) {
+  const typestring = declaration.typename ? ': ' + declaration.name : '';
+  return `${declaration.name.text}${typestring} = ${emitExpression(
+    declaration.init,
+  )}`;
+}
+```
+
+And then we can use it to emit each variable declaration:
+
+```tsx
+function emitStatement(statement: Statement): string {
+  switch (statement.kind) {
+    // ...
+    case Node.VariableStatement:
+      return `var ${statement.declarationList.declarations
+        .map(emitVar)
+        .join(',')}`;
+  }
+}
+```
+
+We just need to iterate through the declarations, generate the JS output and join them all separated by a comma.
+
 ## Final words
 
 In this piece of content, my goal was to show the whole implementation of string literals:
