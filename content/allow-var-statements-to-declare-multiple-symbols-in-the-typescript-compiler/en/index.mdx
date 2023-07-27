@@ -1,6 +1,6 @@
 <SmoothRender>
 
-This is the 6th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)** and these are the posts we talked about before:
+This is the 6th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)** and these are the posts we've talked about before:
 
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
 - [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
@@ -10,7 +10,7 @@ This is the 6th post of the **[TypeScript Compiler Series](/series/the-typescrip
 
 Now we are going to see the implementation of declaring multiple symbols for variable statements.
 
-We'll see some examples, implement new tokens in the lexer phase, create new AST nodes in the parser, refactor the binder and the type checker to synchronize with the new AST structure, and transform and emit JS.
+We'll see some examples, implement new tokens in the lexer phase, create new AST nodes in the parser, refactor the binder and the type checker to synchronize with the new AST structure, and transform and emit JS code.
 
 ---
 
@@ -20,7 +20,7 @@ Before, the mini TS compiler only allowed us to have one variable per declaratio
 var var1 = 1, var2 = 2, var3 = 3;
 ```
 
-Or even typed variable declarations (with different types):
+Or even typed variable declarations (even with different types):
 
 ```tsx
 var n: number = 1, s: string = 'test', n2: number = 3;
@@ -137,7 +137,7 @@ We'll have this AST structure:
 
 Before, we only had a `Var` node for each declaration. Now that we need a list of variables for the same var declaration, we'll have this structure
 
-- VariableDeclaration
+- `VariableDeclaration`
   - `declarationList`: `VariableDeclarationList`
     - `declarations`: `VariableDeclaration[]`
 
