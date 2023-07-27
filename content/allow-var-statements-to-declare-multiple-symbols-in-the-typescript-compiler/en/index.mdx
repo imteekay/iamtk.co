@@ -482,13 +482,13 @@ var var1 = 1, var2 = 2, var3 = 3;
 We would have this JS output:
 
 ```tsx
-var var1 = 1,var2 = 2,var3 = 3;
+var var1 = 1, var2 = 2, var3 = 3;
 ```
 
 Or in a string format:
 
 ```tsx
-"var var1 = 1,var2 = 2,var3 = 3;\n"
+"var var1 = 1, var2 = 2, var3 = 3;\n"
 ```
 
 And for this annotated example of a variable declaration list:
@@ -500,13 +500,13 @@ var n: number = 1, s: string = 'test', n2: number = 3;
 We would have the same JS output:
 
 ```tsx
-var var1 = 1,var2 = 2,var3 = 3;
+var var1 = 1, var2 = 2, var3 = 3;
 ```
 
 And the same string format:
 
 ```tsx
-"var var1 = 1,var2 = 2,var3 = 3;\n"
+"var var1 = 1, var2 = 2, var3 = 3;\n"
 ```
 
 The first thing we need to do is to remove the `Var` node from the `emitStatement` function and handle the `VariableStatement` node. So we move the emit logic for `Var` into a new separate function:
@@ -529,7 +529,7 @@ function emitStatement(statement: Statement): string {
     case Node.VariableStatement:
       return `var ${statement.declarationList.declarations
         .map(emitVar)
-        .join(',')}`;
+        .join(', ')}`;
   }
 }
 ```
