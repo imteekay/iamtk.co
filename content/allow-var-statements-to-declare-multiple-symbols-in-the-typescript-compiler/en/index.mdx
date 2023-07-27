@@ -469,7 +469,7 @@ function transformStatement(statement: Statement): Statement[] {
 
 The `VariableStatement` and the `VariableDeclarationList` are the same. But for each declaration, we need to remove the `typename`.
 
-And also remove the transformation for `Var` nodes as `Var` is not a statement anymore.
+And also remove the transformation for `Var` nodes from the `transformStatement` function as `Var` is not a statement anymore.
 
 ## `Emitter`: outputting variable in JS
 
