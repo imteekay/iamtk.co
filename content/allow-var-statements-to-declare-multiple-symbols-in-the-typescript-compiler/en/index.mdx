@@ -8,7 +8,9 @@ This is the 6th post of the **[TypeScript Compiler Series](/series/the-typescrip
 - [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
 - [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
 
-Now we are going to see the implementation of declaring multiple symbols for variable statements. We'll see some examples, implement new tokens in the lexer phase, create new AST nodes in the parser, refactor the binder and the type checker to synchronize with the new AST structure, and transform and emit JS.
+Now we are going to see the implementation of declaring multiple symbols for variable statements.
+
+We'll see some examples, implement new tokens in the lexer phase, create new AST nodes in the parser, refactor the binder and the type checker to synchronize with the new AST structure, and transform and emit JS.
 
 ---
 
@@ -27,6 +29,8 @@ var n: number = 1,
   s: string = 'test',
   n2: number = 3;
 ```
+
+---
 
 ## `Lexer`: building tokens for the declaration list
 
