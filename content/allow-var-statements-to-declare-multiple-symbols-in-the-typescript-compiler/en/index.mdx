@@ -17,17 +17,13 @@ We'll see some examples, implement new tokens in the lexer phase, create new AST
 Before, the mini TS compiler only allowed us to have one variable per declaration. But with this new feature, we'll be able to write code like this:
 
 ```tsx
-var var1 = 1,
-  var2 = 2,
-  var3 = 3;
+var var1 = 1, var2 = 2, var3 = 3;
 ```
 
 Or even typed variable declarations (with different types):
 
 ```tsx
-var n: number = 1,
-  s: string = 'test',
-  n2: number = 3;
+var n: number = 1, s: string = 'test', n2: number = 3;
 ```
 
 ---
@@ -77,9 +73,7 @@ When creating new AST nodes, we need to understand how we want to structure the 
 For this example below:
 
 ```tsx
-var var1 = 1,
-  var2 = 2,
-  var3 = 3;
+var var1 = 1, var2 = 2, var3 = 3;
 ```
 
 We'll have this AST structure:
