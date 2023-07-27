@@ -1,7 +1,7 @@
 {
   "title": "Allow var statements to declare multiple symbols in the TypeScript compiler",
-  "description": "Understanding how string literals are implemented in the TypeScript compiler",
-  "date": "2023-07-03",
+  "description": "Understanding how implement multiple symbols for variable statements in the TypeScript compiler",
+  "date": "2023-07-31",
   "tags": [
     {
       "href": "/tags/typescript",
