@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-07-31',
+    link: '/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler',
+    title:
+      'Allow var statements to declare multiple symbols in the TypeScript compiler',
+  },
+  {
     datetime: '2023-07-23',
     link: '/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler',
     title:
