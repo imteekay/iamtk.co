@@ -1,10 +1,12 @@
 import { useMemo, useState } from 'react';
 
 import type { NextPage } from 'next';
-import ReactFlow from 'react-flow-renderer';
+import ReactFlow from 'reactflow';
+import 'reactflow/dist/style.css';
 
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { Head } from 'Base/components/Head';
+import { Navbar } from 'Base/components/Navbar';
 import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { posts } from 'data/posts';
 import { buildGraph } from 'src/lib/buildGraph';
@@ -27,7 +29,13 @@ const Page: NextPage = () => {
         description="Learning & Improving with TK —— Links Graph"
         imageUrl="/logo.jpeg"
       />
-      <ReactFlow nodes={nodes} edges={edges} defaultZoom={0.5} fitView />
+      <Navbar />
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        defaultViewport={{ x: 0, y: 0, zoom: 0.5 }}
+        fitView
+      />
       <Dialog open={open} onClose={onClose} title={title} content={content} />
     </>
   );

@@ -1,7 +1,7 @@
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import '../styles/globals.css';
 import '../styles/night-owl.min.css';
@@ -42,6 +42,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     };
   }, [router.events]);
 
+  const LayoutComponent = [
+    '/web-performance-roadmap',
+    '/experiments/links-graph',
+  ].includes(router.pathname)
+    ? Fragment
+    : Layout;
+
   return (
     <>
       <Script
@@ -57,11 +64,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `}
       </Script>
       <SearchBar>
-        <Layout>
+        <LayoutComponent>
           <AnimatePresence mode="wait">
             <Component {...pageProps} />
           </AnimatePresence>
-        </Layout>
+        </LayoutComponent>
       </SearchBar>
     </>
   );

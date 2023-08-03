@@ -1,10 +1,12 @@
 import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
 
 import type { NextPage } from 'next';
-import ReactFlow from 'react-flow-renderer';
+import ReactFlow from 'reactflow';
+import 'reactflow/dist/style.css';
 
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { Head } from 'Base/components/Head';
+import { Navbar } from 'Base/components/Navbar';
 import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { topics } from 'data/web-performance-topics-content';
 
@@ -378,7 +380,13 @@ const Page: NextPage = () => {
         description="Learning & Improving with TK —— Web Performance Roadmap"
         imageUrl="/web-performance-roadmap.png"
       />
-      <ReactFlow nodes={nodes} edges={edges} defaultZoom={0.7} fitView />
+      <Navbar />
+      <ReactFlow
+        nodes={nodes}
+        edges={edges}
+        defaultViewport={{ x: 0, y: 0, zoom: 0.7 }}
+        fitView
+      />
       <Dialog open={open} onClose={onClose} content={content} />
     </>
   );

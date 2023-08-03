@@ -6,7 +6,7 @@ describe('Home', () => {
     cy.viewport('iphone-x');
     cy.visit('/');
 
-    cy.contains("Hi, I'm TK!").should('exist');
+    cy.contains('TK Kinoshita').should('exist');
 
     postsList.forEach((post) => {
       cy.waitUntil(() => cy.contains(post.title)).click();
