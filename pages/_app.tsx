@@ -42,7 +42,10 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     };
   }, [router.events]);
 
-  const LayoutComponent = ['/web-performance-roadmap'].includes(router.pathname)
+  const LayoutComponent = [
+    '/web-performance-roadmap',
+    '/experiments/links-graph',
+  ].includes(router.pathname)
     ? Fragment
     : Layout;
 
