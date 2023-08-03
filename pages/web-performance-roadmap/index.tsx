@@ -367,7 +367,6 @@ const Page: NextPage = () => {
   const [id, setId] = useState<SlugifiedTopics>('general');
 
   const { nodes, edges } = useMemo(() => buildGraph({ setId, setOpen }), []);
-  console.log('testing! nodes', nodes);
   const content = topics[id];
 
   const onClose = () => setOpen(false);
