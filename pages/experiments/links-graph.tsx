@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 
 import type { NextPage } from 'next';
 import ReactFlow from 'reactflow';
+import 'reactflow/dist/style.css';
 
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { Head } from 'Base/components/Head';
