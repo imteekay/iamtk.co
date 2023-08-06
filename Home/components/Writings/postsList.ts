@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-08-07',
+    link: '/building-let-declarations-for-the-typescript-compiler',
+    title: 'Building Let Declarations for the TypeScript compiler',
+  },
+  {
     datetime: '2023-07-31',
     link: '/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler',
     title:
