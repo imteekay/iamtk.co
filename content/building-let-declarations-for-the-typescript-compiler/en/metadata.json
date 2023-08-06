@@ -13,11 +13,11 @@
     }
   ],
   "coverImage": {
-    "src": "/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler/cover.jpg",
+    "src": "/building-let-declarations-for-the-typescript-compiler/cover.jpg",
     "width": "640",
-    "height": "836",
+    "height": "959",
     "alt": "white and black striped textile",
-    "authorHref": "https://unsplash.com/@priscilladupreez",
-    "authorName": "Priscilla Du Preez"
+    "authorHref": "https://unsplash.com/@fkaregan",
+    "authorName": "Samuel Regan-Asante"
   }
 }
