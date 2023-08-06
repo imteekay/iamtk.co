@@ -1,0 +1,477 @@
+<SmoothRender>
+
+This is the 7th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)** and these are the posts we've talked about before:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
+- [Allow var statements to declare multiple symbols in the TypeScript compiler](/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler)
+
+In this post, we'll be talking about `Let` declarations.
+
+As always, we'll see some examples, go through the lexer to check new tokens, create new AST nodes in the parser, handle redeclaration of `Let` in the binder, handle some errors in the type checker, and transform and emit JS code. We'll also add a simple support for es2015, which will handle the transformation of let declarations into var declarations.
+
+---
+
+Before, the mini TS compiler only allowed us to use `var` to declare variables. Now we'll implement `let` which's very similar but has some differences in behavior.
+
+To start off, let's see two examples.
+
+The first one declares variables using the `let` keyword.
+
+```typescript
+let x = 1;
+let y = 2;
+```
+
+And the second generates an error because `let` doesn't allow the usage of the variable before its declaration. So if you do something like:
+
+```typescript
+variable;
+let variable = 1;
+```
+
+We'll need to see an error: `Variable 'variable' is used before being assigned.`
+
+## `Lexer`: adding missing tokens for `Let` declarations
+
+The missing token in the lexer phase is the keyword `let`. So, whenever we are going through the source code and building tokens, we need to be able to check the string `let` and create a token `Let`.
+
+Then, the first step is to create the token type.
+
+```diff
+export enum Token {
+  Function = 'Function',
+  Var = 'Var',
++ Let = 'Let',
+  Type = 'Type',
+  Return = 'Return',
+  Equals = 'Equals',
+  NumericLiteral = 'NumericLiteral',
+  Identifier = 'Identifier',
+  Newline = 'Newline',
+  Semicolon = 'Semicolon',
+  Colon = 'Colon',
+  Comma = 'Comma',
+  Whitespace = 'Whitespace',
+  String = 'String',
+  Unknown = 'Unknown',
+  BOF = 'BOF',
+  EOF = 'EOF',
+}
+```
+
+Now we can read the source code to generate this new token.
+
+The logic handle it is already done, because we're already handling some keywords like `var`, `type`, etc. Here's the code:
+
+```typescript
+if (/[_a-zA-Z]/.test(s.charAt(pos))) {
+  scanForward(isAlphanumerical);
+  text = s.slice(start, pos);
+  token =
+    text in keywords
+      ? keywords[text as keyof typeof keywords]
+      : Token.Identifier;
+}
+```
+
+When reading the source code, we need to check if the text is or not a keyword. If it is, we get it from the `keywords` object to build the token. Otherwise, it's just an identifier token.
+
+So the only missing implementation here is to add the `let` in the `keywords` object.
+
+```diff
+const keywords = {
+  function: Token.Function,
+  var: Token.Var,
++ let: Token.Let,
+  type: Token.Type,
+  return: Token.Return,
+};
+```
+
+Now we are ready to start parsing the tokens and creating the AST node for `let`.
+
+## `Parser`: handling let declarations
+
+As we've seen in [the previous post](/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler), the AST for variable declaration is something like this:
+
+```typescript
+VariableStatement
+  declarationList: VariableDeclarationList
+    declarations: VariableDeclaration[]
+```
+
+We have the `VariableStatement` node with the `VariableDeclarationList` which will store all variable declarations. If you see, `let` declarations are no different from `var` declarations. It can have multiple symbols too. The node is pretty much the same.
+
+But how do we differentiate if it's variable coming from a `let` declaration or `var` declaration?
+
+We'll start using the concept of flags. The node has this new `flags` attribute that's just a number. For now, it can be two different flags:
+
+- `None`: when it's a `var` declaration
+- `Let`: when it's a `let` declaration
+
+The flags can hold multiple “meanings” and this is how it's defined for now.
+
+```typescript
+export const enum NodeFlags {
+  None = 0,
+  Let = 1 << 0,
+}
+```
+
+And this `flags` attribute will be stored in the `VariableDeclarationList` level. It means that, for any variable declaration in the list, they are related to a `let` or `var` declaration.
+
+Let's do a quick recap on how we handle `var`, so we can make sense on what's missing for `let`.
+
+Whenever we have a `var` token, we parse it:
+
+```typescript
+if (tryParseToken(Token.Var)) {
+  return parseVariableStatement();
+}
+```
+
+Parsing the variable statement is pretty much creating the whole structure for `VariableStatement` that will have the `VariableDeclarationList` and the list of `VariableDeclaration`.
+
+Here it's:
+
+```typescript
+function parseVariableStatement(): VariableStatement {
+  const pos = lexer.pos();
+  return {
+    kind: Node.VariableStatement,
+    pos,
+    declarationList: {
+      kind: Node.VariableDeclarationList,
+      declarations: parseVariableDeclarations(),
+      pos,
+    },
+  };
+}
+
+function parseVariableDeclarations() {
+  const declarations: VariableDeclaration[] = [];
+  do {
+    const name = parseIdentifier();
+    const typename = tryParseToken(Token.Colon) ? parseIdentifier() : undefined;
+    parseExpected(Token.Equals);
+    const init = parseExpression();
+    declarations.push({
+      kind: Node.VariableDeclaration,
+      name,
+      typename,
+      init,
+      pos: lexer.pos(),
+    });
+  } while (tryParseToken(Token.Comma));
+  return declarations;
+}
+```
+
+If the `flags` attribute will be in the `VariableDeclarationList` level, we should just add a value based on which type of declaration was used with the help of `NodeFlag`.
+
+When parsing the variable statement, we should receive the `flags` and it will be stored in the node:
+
+```typescript
+function parseVariableStatement(flags: NodeFlags): VariableStatement {
+  const pos = lexer.pos();
+  return {
+    kind: Node.VariableStatement,
+    pos,
+    declarationList: {
+      kind: Node.VariableDeclarationList,
+      declarations: parseVariableDeclarations(),
+      flags,
+      pos,
+    },
+  };
+}
+```
+
+So when the parser handles the `Var` token, it should pass the `NodeFlags.None` to this function
+
+```typescript
+if (tryParseToken(Token.Var)) {
+  return parseVariableStatement(NodeFlags.None);
+}
+```
+
+If the `let` declaration is pretty much the same and the only difference is the flag, when parsing the `Let` token, we should just call the same `parseVariableStatement` function, which will create the entire AST node, but now with the `NodeFlags.Let`.
+
+```typescript
+if (tryParseToken(Token.Let)) {
+  return parseVariableStatement(NodeFlags.Let);
+}
+```
+
+And now we parse both tokens with pretty much the same AST node. The only way to differentiate them is by using the `flags` attribute.
+
+## `Binder`: handling variable redeclarations
+
+Let's see these examples below.
+
+When re-declaring the same identifier with `var`:
+
+```typescript
+var num = 0;
+var num = 1;
+```
+
+When re-declaring the same identifier with `let`:
+
+```typescript
+let num = 0;
+let num = 1;
+```
+
+When re-declaring the same identifier with `let` when it was declared with `var`
+
+```typescript
+var num = 0;
+let num = 1;
+```
+
+When re-declaring the same identifier with `var` when it was declared with `let`
+
+```typescript
+let num = 0;
+var num = 1;
+```
+
+Besides the first one, in all these cases, we want to handle the re-declaration of the same identifier. The first example won't generate any error. The last three will.
+
+And the error message is this:
+
+```typescript
+Cannot redeclare block-scoped variable 'num'; first declared at 0
+```
+
+Before going into the implementation, let's do a quick recap on `flags` for both AST nodes and symbols.
+
+In the AST node scope, we differentiate `var` and `let` with the `flags`. If it's `NodeFlags.None`, it's `var`, if it's a `NodeFlags.Let`, it's `let`.
+
+In the scope of the symbol, we can have `None`, `FunctionScopedVariable` (for var), `BlockScopedVariable` (for let or const), and `Type` (for type alias).
+
+That's how we know if the node is a var or let, and when the symbol is a var or let.
+
+These are the possible paths that will generate an error:
+
+- Redeclaring a let
+- Redeclaring a var with let
+- Redeclaring a let with var
+
+The code will look like this:
+
+```typescript
+const hasOther =
+  willRedeclareLet(flags, symbol.flags) ||
+  willRedeclareVarWithLet(flags, symbol.flags) ||
+  willRedeclareLetWithVar(flags, symbol.flags);
+
+if (hasOther) {
+  error(
+    declaration.pos,
+    `Cannot redeclare ${declaration.name.text}; first declared at ${declaration.pos}`,
+  );
+}
+```
+
+If one of the paths happens, we need to generate the error. Now we just need to implement those functions.
+
+For let redeclaration, the symbol's flag should be a `BlockScopedVariable` and the current node's flag should be `Let`.
+
+```typescript
+function willRedeclareLet(nodeFlags: NodeFlags, symbolFlags: SymbolFlags) {
+  return (
+    nodeFlags & NodeFlags.Let && symbolFlags & SymbolFlags.BlockScopedVariable
+  );
+}
+```
+
+The other functions are pretty similar. They should have an expected node flag and the symbols should have an expected symbol flag.
+
+Redeclaring var with let, the node's flag should be `Let` and the symbol's flag should be a `FunctionScopedVariable`.
+
+```typescript
+function willRedeclareVarWithLet(
+  nodeFlags: NodeFlags,
+  symbolFlags: SymbolFlags,
+) {
+  return (
+    nodeFlags & NodeFlags.Let &&
+    symbolFlags & SymbolFlags.FunctionScopedVariable
+  );
+}
+```
+
+And redeclaring let with var, the node shouldn't have a flag (`None` — a Var node), and the symbol’s flag should be a `BlockScopedVariable`.
+
+That way, we generate the expected error.
+
+## `Type checker`: handling variable being used before its declaration error
+
+An example of a code that could generate this error is this one:
+
+```typescript
+variable;
+let variable = 1;
+```
+
+Using the `let` declaration, it doesn't allow us to use the variable before its declaration and the type checker should generate an error for this type of code.
+
+The error message for the code above is this one:
+
+```typescript
+Block-scoped variable 'variable' used before its declaration.
+```
+
+Performing this check is pretty simple. Every time we're type checking an identifier, we should check it and see if this node is being accessed before its declaration. The way we do it is based on the position of the declaration and the expression/identifier being accessed.
+
+If the value declaration's position is greater than the identifier's position, we generate the error message.
+
+```typescript
+function checkExpression(expression: Expression): Type {
+  switch (expression.kind) {
+    case Node.Identifier:
+      // ...
+
+      if (isBlockScopedVarUsedBeforeItsDeclaration(symbol, expression)) {
+        error(
+          expression.pos,
+          `Block-scoped variable '${expression.text}' used before its declaration.`,
+        );
+      }
+
+      // ...
+}
+```
+
+When checking an expression, more specifically an identifier, we check if the identifier is being accessed before its declaration. If so, generate the error.
+
+How’s the `isBlockScopedVarUsedBeforeItsDeclaration` function implementation?
+
+That one is also pretty simple:
+
+```typescript
+function isBlockScopedVarUsedBeforeItsDeclaration(
+  symbol: Symbol,
+  expression: Expression,
+) {
+  const isBlockScopedVar = symbol.flags & SymbolFlags.BlockScopedVariable;
+  return isBlockScopedVar && symbol.valueDeclaration!.pos > expression.pos;
+}
+```
+
+First, we need to ensure that the variable is a `let` declaration. The way we do it is based on the symbol’s flag. Do you recall that `BlockScopedVariable` means `let` (and in the future `const`)? This should be the first check. Then we compare the positions between the let declaration and the identifier being accessed.
+
+If it passes, we generate the error.
+
+## `Transformer`: Supporting old versions of JS
+
+That's a very interesting idea that improved the mini TS compiler. The new implementation allows compiling the code to old versions of JS. So, for this particular case, if we need to support ES2015 or es5, the output can have `let` declarations. They should be transformed into `var` declarations.
+
+In the end, it should just rename the node’s name text from `let` to `var`.
+
+The first important concept I want to share is the transformation based on the compiler options. Yeah, the `tsconfig.json` file you always see on TypeScript projects.
+
+The `transform` function will receive these options and based on it, it can have a better transformation for the source code.
+
+```typescript
+export function transform(
+  statements: Statement[],
+  compilerOptions: CompilerOptions,
+) {
+  switch (compilerOptions.target) {
+    case 'es5':
+      return es2015(typescript(statements));
+    default:
+      return typescript(statements);
+  }
+}
+```
+
+When the target is `es5`, it will run an `es2015` function to transform the code for us before doing the default transformation.
+
+When transforming each statement, we need to check if the variable statement is a `BlockScopedVariable` based on the statement flag and if so, call the `transformLetIntoVar` function to transform `let` to `var`.
+
+```typescript
+function transformStatement(statement: Statement): Statement[] {
+  switch (statement.kind) {
+    case Node.VariableStatement:
+      return statement.declarationList.flags & SymbolFlags.BlockScopedVariable
+        ? transformLetIntoVar(statement)
+        : [statement];
+    default:
+      return [statement];
+  }
+}
+```
+
+For the `transformLetIntoVar` function, we just need to change the declaration's name text from `let` to `var` and that's it.
+
+```typescript
+function transformLetIntoVar(statement: VariableStatement) {
+  return [
+    {
+      ...statement,
+      declarationList: {
+        ...statement.declarationList,
+        declarations: statement.declarationList.declarations.map(
+          (declaration) => ({
+            ...declaration,
+            name: { ...declaration.name, text: 'var' },
+          }),
+        ),
+      },
+    },
+  ];
+}
+```
+
+The entire variable statement should keep the same. We just need to update the text.
+
+That way, we can output es2015 based on the compiler options configuration, very similar to what we have on the `tsconfig.json`.
+
+## Final words
+
+In this piece of content, my goal was to show the whole implementation of let declarations:
+
+- How to build tokens and structure the AST to support list of let declarations
+- How to type check let and handle errors
+- How to transform let into var
+
+I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 5 months I've been studying, researching, and working on the TS compiler miniature.
+
+This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
+- [Allow var statements to declare multiple symbols in the TypeScript compiler](/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler)
+
+For additional content on compilers and programming language theory, have a look at the [Programming Language Design](/tags/programming-language-design) tag and the [Programming Language Research](https://github.com/imteekay/programming-language-research) repo.
+
+## Resources
+
+- [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [How the TypeScript Compiler Compiles](https://www.youtube.com/watch?v=X8k_4tZ16qU&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [mini-typescript](https://github.com/imteekay/mini-typescript)
+- [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
+- [Allow var statements to declare multiple symbols in the TypeScript compiler](/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler)
+- [PR: Let -> Var targeting es5](https://github.com/imteekay/mini-typescript-fork/pull/11)
+- [PR: Let statements](https://github.com/imteekay/mini-typescript-fork/pull/8)
+- [PR: Improvement for the let transformation](https://github.com/imteekay/mini-typescript/pull/5)
+
+---
+
+</SmoothRender>

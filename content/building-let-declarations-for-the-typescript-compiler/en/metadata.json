@@ -1,0 +1,23 @@
+{
+  "title": "Building Let Declarations for the TypeScript compiler",
+  "description": "Understanding how implement let declarations for the TypeScript compiler",
+  "date": "2023-08-07",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/building-let-declarations-for-the-typescript-compiler/cover.jpg",
+    "width": "640",
+    "height": "959",
+    "alt": "a dark tunnel with a sign that says let it go",
+    "authorHref": "https://unsplash.com/@fkaregan",
+    "authorName": "Samuel Regan-Asante"
+  }
+}
