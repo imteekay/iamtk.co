@@ -1,0 +1,23 @@
+{
+  "title": "Building Let Declarations for the TypeScript compiler",
+  "description": "Understanding how implement let declarations for the TypeScript compiler",
+  "date": "2023-08-07",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler/cover.jpg",
+    "width": "640",
+    "height": "836",
+    "alt": "white and black striped textile",
+    "authorHref": "https://unsplash.com/@priscilladupreez",
+    "authorName": "Priscilla Du Preez"
+  }
+}
