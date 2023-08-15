@@ -1,0 +1,23 @@
+{
+  "title": "10x Is Easier Than 2x",
+  "description": "Notes from the 10x Is Easier Than 2x book",
+  "date": "2023-08-15",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    },
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/10x-is-easier-than-2x/cover.jpg",
+    "width": "640",
+    "height": "1137",
+    "alt": "gray concrete statue of the David",
+    "authorHref": "https://unsplash.com/@jacktthunter",
+    "authorName": "Jack Hunter"
+  }
+}

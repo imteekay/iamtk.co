@@ -1,5 +1,12 @@
 export const bookshelfList = [
   {
+    link: '/bookshelf/10x-is-easier-than-2x',
+    title: '10x Is Easier Than 2x',
+    author: 'Benjamin Hardy',
+    reviewLink: 'https://www.goodreads.com/review/show/5357244882',
+    stars: '⭐️⭐️⭐️⭐️',
+  },
+  {
     link: '',
     title: "Man's Search for Meaning",
     author: 'Viktor E. Frankl',
