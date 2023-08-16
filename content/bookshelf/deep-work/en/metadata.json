@@ -1,0 +1,23 @@
+{
+  "title": "Deep Work",
+  "description": "Notes from the Deep Work book",
+  "date": "2023-08-16",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    },
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/deep-work/cover.jpg",
+    "width": "640",
+    "height": "444",
+    "alt": "silhouette of person standing in front of window",
+    "authorHref": "https://unsplash.com/@azarbadam",
+    "authorName": "hossein azarbad"
+  }
+}
