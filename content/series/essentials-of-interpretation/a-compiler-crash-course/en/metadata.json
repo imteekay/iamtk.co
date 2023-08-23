@@ -1,27 +1,19 @@
 {
-  "title": "Building an Interpreter: Lexical Analysis - Part 1",
-  "description": "The first part of the Lexical Analysis implementation of the interpreter",
-  "date": "2021-05-23",
+  "title": "Essentials of Interpretation: A Compiler Crash Course",
+  "description": "A crash course on compilers and runtime semantics",
+  "date": "2023-08-28",
   "tags": [
     {
       "href": "/tags/programming-language-design",
       "name": "programming_language_design"
-    },
-    {
-      "href": "/tags/typescript",
-      "name": "typescript"
-    },
-    {
-      "href": "/tags/javascript",
-      "name": "javascript"
     }
   ],
   "coverImage": {
-    "src": "/series/building-an-interpreter/analysis.jpeg",
-    "width": "592",
-    "height": "394",
-    "alt": "Two men discussing and writing in a whiteboard",
-    "authorHref": "https://unsplash.com/@kaleidico",
-    "authorName": "Kaleidico"
+    "src": "/series/essentials-of-interpretation/a-compiler-crash-course/cover.jpg",
+    "width": "640",
+    "height": "1000",
+    "alt": "white smoke on black background",
+    "authorHref": "https://unsplash.com/@mullyadii",
+    "authorName": "Mulyadi"
   }
 }
