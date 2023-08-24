@@ -80,7 +80,7 @@ A clear example of how semantics can be different between languages is the compa
 
 In PHP, we'll get an `Undefined variable` and in JavaScript, the function “knows” about the outside variable `data` so it will print its value.
 
-## Interpreter vs Compilers
+## Interpreters vs Compilers
 
 Interpreted languages implement the semantics themselves. They can be AST-based (recursive) interpreters (tree-based data structure) or Bytecode interpreters, also called VMs, or Virtual Machines, where it receives a plain array of code instructions.
 
@@ -218,7 +218,7 @@ In this case,
   - 3rd position: `15` literal (right child)
 - The second statement/expression
   - 1st position: `sub` type
-  - 2nd position: a new node
+  - 2nd position: a new node (left child)
     - 1st position: `add` type
     - 2nd position: `x` identifier (left child)
     - 3rd position: `10` literal (right child)
@@ -237,6 +237,8 @@ That way the compiler is responsible for generating the native code but the CPU 
 This phase always happens in static time, before execution time, this is why it's called ahead-of-time compilation.
 
 The second type of compiler is the JIT Compiler, or Just In Time Compiler. It handles the translation at runtime which means that the program is being translated when it's being executed.
+
+This type of compilation is a combination of the ahead-of-time compilation and interpretation.
 
 The purpose of JIT compilation is to improve the performance of the heavyweight operations, so if we have a heavyweight function being called multiple times, the compiler generates native code in runtime and when it's called again, the compiler can use the cached version of that compiled program so it doesn't need to through all the steps again.
 
