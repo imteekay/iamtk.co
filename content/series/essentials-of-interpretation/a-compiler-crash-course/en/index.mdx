@@ -238,6 +238,8 @@ This phase always happens in static time, before execution time, this is why it'
 
 The second type of compiler is the JIT Compiler, or Just In Time Compiler. It handles the translation at runtime which means that the program is being translated when it's being executed.
 
+This type of compilation is a combination of the ahead-of-time compilation and interpretation.
+
 The purpose of JIT compilation is to improve the performance of the heavyweight operations, so if we have a heavyweight function being called multiple times, the compiler generates native code in runtime and when it's called again, the compiler can use the cached version of that compiled program so it doesn't need to through all the steps again.
 
 The last one is the Transpiler or also called AST Transformer. It's a high-level translation, it's the mix of a transformer + a compiler.
