@@ -2,14 +2,15 @@ import { postsList } from 'cypress/helpers/postsList';
 import { seriesList } from 'cypress/helpers/seriesList';
 
 describe('Home', () => {
-  it('verifies all links and content', () => {
+  it('verifies links and content', () => {
     cy.viewport('iphone-x');
     cy.visit('/');
 
     cy.contains('TK Kinoshita').should('exist');
 
-    postsList.forEach((post) => {
-      cy.waitUntil(() => cy.contains(post.title)).click();
+    postsList.forEach(({ title }) => {
+      cy.contains(title).should('exist');
+      cy.contains(title).click();
       cy.get('[data-testid="home-link"]').click();
     });
   });
@@ -18,10 +19,10 @@ describe('Home', () => {
     cy.viewport('iphone-x');
     cy.visit('/');
 
-    seriesList.forEach((series) => {
+    seriesList.forEach(({ title }) => {
       cy.get('#series').within(() => {
-        cy.contains(series.title).should('exist');
-        cy.contains(series.title).click();
+        cy.contains(title).should('exist');
+        cy.contains(title).click();
       });
 
       cy.get('[data-testid="home-link"]').click();
