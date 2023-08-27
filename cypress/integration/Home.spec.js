@@ -9,8 +9,11 @@ describe('Home', () => {
     cy.contains('TK Kinoshita').should('exist');
 
     postsList.forEach(({ title }) => {
-      cy.contains(title).should('exist');
-      cy.contains(title).click();
+      cy.get('#writings').within(() => {
+        cy.contains(title).should('exist');
+        cy.contains(title).click();
+      });
+
       cy.get('[data-testid="home-link"]').click();
     });
   });
