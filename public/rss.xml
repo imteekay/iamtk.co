@@ -12,6 +12,30 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Essentials of Interpretation: A Compiler Crash Course</title>
+    <link>https://www.iamtk.co/series/essentials-of-interpretation/a-compiler-crash-course</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/a-compiler-crash-course</guid>
+    <description>A crash course on compilers and runtime semantics</description>
+  </item>
+  <item>
+    <title>Building Let Declarations for the TypeScript compiler</title>
+    <link>https://www.iamtk.co/building-let-declarations-for-the-typescript-compiler</link>
+    <guid isPermaLink="true">https://www.iamtk.co/building-let-declarations-for-the-typescript-compiler</guid>
+    <description>Understanding how implement let declarations for the TypeScript compiler</description>
+  </item>
+  <item>
+    <title>Allow var statements to declare multiple symbols in the TypeScript compiler</title>
+    <link>https://www.iamtk.co/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler</link>
+    <guid isPermaLink="true">https://www.iamtk.co/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler</guid>
+    <description>Understanding how implement multiple symbols for variable statements in the TypeScript compiler</description>
+  </item>
+  <item>
+    <title>Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler</title>
+    <link>https://www.iamtk.co/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler</link>
+    <guid isPermaLink="true">https://www.iamtk.co/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler</guid>
+    <description>Understanding how empty statement and semicolon as statement ender are implemented in the TypeScript compiler</description>
+  </item>
+  <item>
     <title>Implementing StringLiterals for the TypeScript Compiler</title>
     <link>https://www.iamtk.co/implementing-string-literals-for-the-typescript-compiler</link>
     <guid isPermaLink="true">https://www.iamtk.co/implementing-string-literals-for-the-typescript-compiler</guid>
