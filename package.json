@@ -12,7 +12,8 @@
     "eslint:fix": "eslint --cache --fix",
     "typecheck": "tsc",
     "prepare": "husky install",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "update:webperf": "cd packages/scripts && yarn build:repo-content"
   },
   "dependencies": {
     "@emotion/css": "^11.7.1",
