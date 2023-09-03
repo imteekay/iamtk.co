@@ -1,0 +1,19 @@
+{
+  "title": "The Programming Language & Self-Evaluating Expressions",
+  "description": "The Eva programming language, its syntax and features, and the interpreter implementation: numbers, strings, and addition",
+  "date": "2023-09-04",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions/cover.jpg",
+    "width": "640",
+    "height": "480",
+    "alt": "a mirror sitting on top of a table under a cloudy sky",
+    "authorHref": "https://unsplash.com/@sonance",
+    "authorName": "Viktor Forgacs"
+  }
+}
