@@ -12,7 +12,7 @@ type FooterPropTypes = {
   tags: Tag[];
 };
 
-const Footer: FC<FooterPropTypes> = ({ tags }) => (
+export const Footer: FC<FooterPropTypes> = ({ tags }) => (
   <>
     <SubstackEmbed />
 
@@ -33,5 +33,3 @@ const Footer: FC<FooterPropTypes> = ({ tags }) => (
     </div>
   </>
 );
-
-export default Footer;
