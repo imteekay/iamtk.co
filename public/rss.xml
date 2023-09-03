@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Essentials of Interpretation: The Programming Language & Self-Evaluating Expressions</title>
+    <link>https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</guid>
+    <description>The Eva programming language, its syntax and features, and the interpreter implementation: numbers, strings, and addition</description>
+  </item>
+  <item>
     <title>Essentials of Interpretation: A Compiler Crash Course</title>
     <link>https://www.iamtk.co/series/essentials-of-interpretation/a-compiler-crash-course</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/a-compiler-crash-course</guid>
