@@ -64,6 +64,11 @@ export const postsList: Post[] = [
     title: 'The Evolution of React Rendering Architectures & Web Performance',
   },
   {
+    datetime: '2023-03-04',
+    link: '/math-symbols-on-macos',
+    title: 'Math Symbols on MacOS',
+  },
+  {
     datetime: '2023-02-27',
     link: '/a-high-level-architecture-of-the-typescript-compiler',
     title: 'A High Level Architecture of the TypeScript compiler',
