@@ -15,7 +15,6 @@ type FooterPropTypes = {
 export const Footer: FC<FooterPropTypes> = ({ tags }) => (
   <>
     <SubstackEmbed />
-
     <div
       className={css`
         display: flex;
