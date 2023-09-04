@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-09-04',
+    link: '/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions',
+    title:
+      'Essentials of Interpretation: The Programming Language & Self-Evaluating Expressions',
+  },
+  {
     datetime: '2023-08-28',
     link: '/series/essentials-of-interpretation/a-compiler-crash-course',
     title: 'Essentials of Interpretation: A Compiler Crash Course',
