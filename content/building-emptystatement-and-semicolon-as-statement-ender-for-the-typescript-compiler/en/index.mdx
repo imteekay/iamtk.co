@@ -159,7 +159,7 @@ And when the compiler is checking the empty statement, we just need to return th
 
 ```tsx
 case Node.EmptyStatement:
-	return empty;
+  return empty;
 ```
 
 ## Transforming and emitting JS
@@ -175,7 +175,7 @@ The emitting process is pretty similar. When handling the emit for empty stateme
 
 ```tsx
 case Node.EmptyStatement:
-	return '';
+  return '';
 ```
 
 That's it! We've finished the implementation of empty statements. To complement this feature, we are going to also implement semicolons as a statement ender.
