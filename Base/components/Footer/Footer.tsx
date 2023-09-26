@@ -1,6 +1,17 @@
 /* eslint-disable @next/next/no-html-link-for-pages */
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
+
+interface NewTabLinkProps {
+  children: ReactNode;
+  href: string;
+}
+
+const NewTabLink = ({ children, href }: NewTabLinkProps) => (
+  <a href={href} target="_blank" rel="noopener noreferrer">
+    {children}
+  </a>
+);
 
 export const Footer: FC = () => (
   <footer id="footer" className="footer">
@@ -14,24 +25,18 @@ export const Footer: FC = () => (
             <Link href="/">Home</Link>
           </li>
           <li>
-            <a href="/writings">Writing</a>
+            <Link href="/writings">Writing</Link>
           </li>
           <li>
-            <a href="/support">Support</a>
+            <Link href="/support">Support</Link>
           </li>
           <li>
-            <a
-              href="https://github.com/imteekay"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Projects
-            </a>
+            <NewTabLink href="https://github.com/imteekay/iamtk.co">
+              Code
+            </NewTabLink>
           </li>
           <li>
-            <a href="/rss.xml" target="_blank" rel="noopener noreferrer">
-              RSS
-            </a>
+            <NewTabLink href="/rss.xml">RSS</NewTabLink>
           </li>
         </ul>
       </nav>
