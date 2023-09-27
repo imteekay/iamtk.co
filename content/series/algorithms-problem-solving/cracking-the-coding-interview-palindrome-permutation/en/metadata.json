@@ -1,0 +1,23 @@
+{
+  "title": "Cracking the Coding Interview: Palindrome Permutation",
+  "description": "Solving algorithmic problems, algorithmic techniques, and cracking the coding interview",
+  "date": "2023-09-27",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/algorithms-problem-solving/palindrome-permutation.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "a wall covered in padlocks with a red double decker bus in the background",
+    "authorHref": "https://unsplash.com/@mayumimaciel",
+    "authorName": "Mayumi Maciel"
+  }
+}

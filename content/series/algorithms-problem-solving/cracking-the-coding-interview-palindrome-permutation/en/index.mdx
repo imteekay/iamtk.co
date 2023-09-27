@@ -1,0 +1,89 @@
+<SmoothRender>
+
+This post is part of the [`Algorithms Problem Solving`](/series/algorithms-problem-solving) series and a problem from the Cracking the Coding Interview book.
+
+## Problem description
+
+Given a string, write a function to check if it is a permutation of a palindrome.
+A palindrome is a word or phrase that is the same forwards and backwards.
+A permutation is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
+You can ignore casing and non-letter characters.
+
+## Examples
+
+```bash
+input: 'Tact Coa'
+output: true
+
+input: 'tat'
+output: true
+
+input: 'abcd'
+output: false
+
+input: 'tactfcoa'
+output: false
+
+input: 'tactfffcoa'
+output: false
+```
+
+## Solution
+
+The first thing we do is to a hashmap of characters. For each character, we want to check the number of their occurances in the string.
+
+The character we add to the hashmaps are only alpha and downcased. So it's important to lower case the string and check if it is an alphabetic character.
+
+To check if the string is a palindrome, we just need to check the number of characters. If we have only one character that has an odd count, that can be a palindrome. Otherwise, it's not a palindrome and we can have a permutation for that.
+
+- Runtime Complexity: O(N), where N = the true length of the string
+- Space Complexity: O(N), where N = the true length of the string in the hashmap
+
+```JavaScript
+function isAlpha(char) {
+  return /[_a-zA-Z]/.test(char);
+}
+
+function buildMapOsChars(string) {
+  const charsMap = new Map();
+  const downcasedString = string.toLowerCase();
+
+  for (let char of downcasedString) {
+    if (!isAlpha(char)) continue;
+    if (charsMap.has(char)) charsMap.set(char, charsMap.get(char) + 1);
+    else charsMap.set(char, 1);
+  }
+
+  return charsMap;
+}
+
+function palindromePermutation(string) {
+  let charsMap = buildMapOsChars(string);
+  let numberOfCharsWithOneCount = 0;
+
+  for (let [_, count] of charsMap.entries()) {
+    numberOfCharsWithOneCount += count % 2;
+  }
+
+  return numberOfCharsWithOneCount <= 1;
+}
+```
+
+## Resources
+
+- [Algorithms Problem Solving Series](/series/algorithms-problem-solving)
+- [Algorithms & Data Structures studies](https://github.com/imteekay/algorithms)
+- [Is Unique source code](https://github.com/imteekay/algorithms/blob/master/coding_interviews/cracking-the-coding-interview/string/is-unique/is-unique.js)
+- [Data Structures in JavaScript Series](/series/data-structures-in-javascript)
+- [Stack Data Structure in JavaScript](/series/data-structures-in-javascript/stack-data-structure)
+- [Queue Data Structure in JavaScript](/series/data-structures-in-javascript/queue-data-structure)
+- [Linked List Data Structure in JavaScript](/series/data-structures-in-javascript/linked-list-data-structure)
+- [Tree Data Structure in JavaScript](/series/data-structures-in-javascript/tree-data-structure)
+- [Stack Data Structure](/series/data-structures/stack-data-structure)
+- [Queue Data Structure](/series/data-structures/queue-data-structure)
+- [Linked List](/series/data-structures/linked-list-data-structure)
+- [Tree Data Structure](/series/data-structures/tree-data-structure)
+
+---
+
+</SmoothRender>
