@@ -15,6 +15,14 @@ type PostTypes = {
 
 export const posts: PostTypes[] = [
   {
+    title: 'Being Different',
+    slug: 'being-different',
+    date: '2023-09-29 • 18:12',
+    description: `I love this quote by Mitchell Pritchett:
+    <br><br>
+    "This is the funny thing about growing up. For years and years, everybody's desperately afraid, to be different, you know, in any way. And then, suddenly, almost overnight, Everybody wants to be different"`,
+  },
+  {
     title: 'Writing & The Promise of Living Forever',
     slug: 'writing-and-the-promise-of-living-forever',
     date: '2023-01-20 • 21:23',
