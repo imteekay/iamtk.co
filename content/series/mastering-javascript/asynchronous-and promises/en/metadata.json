@@ -1,0 +1,27 @@
+{
+  "title": "Revisiting Conditionals in JavaScript and TypeScript",
+  "description": "The process to master JavaScript",
+  "date": "2022-01-03",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mastering-javascript/conditionals.jpg",
+    "width": "640",
+    "height": "930",
+    "alt": "two ways rails",
+    "authorHref": "https://unsplash.com/@ivalex",
+    "authorName": "Ivan Aleksic"
+  }
+}
