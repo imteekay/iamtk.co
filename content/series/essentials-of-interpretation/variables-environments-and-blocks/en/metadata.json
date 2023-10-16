@@ -1,7 +1,7 @@
 {
   "title": "Scoping: Variables, Environments, and Blocks",
-  "description": "The Eva programming language, its syntax and features, and the interpreter implementation: numbers, strings, and addition",
-  "date": "2023-09-04",
+  "description": "How scope, variables, environments and blocks work in the semantics of a programming language",
+  "date": "2023-10-16",
   "tags": [
     {
       "href": "/tags/programming-language-design",
@@ -9,11 +9,11 @@
     }
   ],
   "coverImage": {
-    "src": "/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions/cover.jpg",
+    "src": "/series/essentials-of-interpretation/variables-environments-and-blocks/cover.jpg",
     "width": "640",
-    "height": "480",
-    "alt": "a mirror sitting on top of a table under a cloudy sky",
-    "authorHref": "https://unsplash.com/@sonance",
-    "authorName": "Viktor Forgacs"
+    "height": "360",
+    "alt": "a grey and white photo of a building",
+    "authorHref": "https://unsplash.com/@zeepresents",
+    "authorName": "Zaeem Nawaz"
   }
 }
