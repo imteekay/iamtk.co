@@ -2,6 +2,8 @@
 
 These notes were taken from the [Essentials of Interpretation](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation) course by [Dmitry Soshnikov](https://dmitrysoshnikov.teachable.com/) and part of the [Essentials of Interpretation series](/series/essentials-of-interpretation).
 
+---
+
 In the [previous post](https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions), we talked about self-evaluating expressions like numbers, strings, and simple addition expressions. In this post, we'll take a look at more complex expressions like handling recursive expressions, variables and environments, blogs, and control flow (if and while expressions).
 
 ## Complex, recursive math operations
@@ -10,8 +12,8 @@ Before, the expression looked like:
 
 ```jsx
 Exp ::= Number
-			| String
-			| [+ Number, Number]
+      | String
+      | [+ Number, Number]
 ```
 
 But that way, we handle only numbers for the addition expression. We want to be able to handle more complex examples like the addition of additions. Take a look at this code:
@@ -32,8 +34,8 @@ What we want to have now is the addition expression to handle expressions and no
 
 ```jsx
 Exp ::= Number
-			| String
-			| [+ Exp, Exp]
+      | String
+      | [+ Exp, Exp]
 ```
 
 With that, we can understand that it turns into a recursive approach. The base case for now is if the expression is a number or a string.
@@ -153,7 +155,7 @@ class Environment {
 }
 ```
 
-It's a class that has two properties: the `record` (the object we will store all the variables and functions) and the `parent` (that's just a reference for a parent).
+It's a class that has two properties: the `record` (the object we will store all the variables and functions) and the `parent` (that's just a reference for a parent environment).
 
 When instantiated, the environment doesn't have a parent and the initial value of the record is an empty object.
 
@@ -335,7 +337,7 @@ class Eva {
 
 This is interesting because, now we can evaluate complex expressions before storing the value in the variable. See the following expression:
 
-```
+```js
 assert.strictEqual(eva.eval(['var', 'z', ['+', 2, 2]]), 4);
 assert.strictEqual(eva.eval('z'), 4);
 ```
@@ -352,7 +354,7 @@ In Eva, we define the blocks using the `begin` keyword and within it, we can hav
 (begin
   (var x 10)
   (var y 20)
-	(+ (* x 10) y))
+  (+ (* x 10) y))
 ```
 
 As you see above, we can have multiple expressions within the block like declaring variables, accessing them, and performing operations.

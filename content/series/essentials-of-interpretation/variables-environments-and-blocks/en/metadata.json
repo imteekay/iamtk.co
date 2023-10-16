@@ -1,5 +1,5 @@
 {
-  "title": "The Programming Language & Self-Evaluating Expressions",
+  "title": "Scoping: Variables, Environments, and Blocks",
   "description": "The Eva programming language, its syntax and features, and the interpreter implementation: numbers, strings, and addition",
   "date": "2023-09-04",
   "tags": [
