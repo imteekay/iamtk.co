@@ -1,7 +1,7 @@
 {
   "title": "Scoping: Variables, Environments, and Blocks",
   "description": "How scope, variables, environments and blocks work in the semantics of a programming language",
-  "date": "2023-10-16",
+  "date": "2023-10-17",
   "tags": [
     {
       "href": "/tags/programming-language-design",
