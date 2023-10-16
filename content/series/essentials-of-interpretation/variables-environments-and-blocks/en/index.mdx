@@ -125,9 +125,7 @@ Before implementing variables, we first need to understand the concept of enviro
 
 For its implementation, the environment structure has the environment record and a reference to the parent environment. Let's illustrate how it works:
 
-(draw my illustration for the environments)
-
-![Screen Shot 2023-09-04 at 13.27.34.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/3d989ae8-707c-4e71-947e-f5174e6f8929/4b4f70df-52d9-458f-8136-9f326a9c3fa6/Screen_Shot_2023-09-04_at_13.27.34.png)
+![Global and local scope based on environments](/series/essentials-of-interpretation/variables-environments-and-blocks/envs.png)
 
 Environment 1 defines the variables `foo` and `bar` and it doesn't have a parent environment. Environment 2 defines `x`, `y`, and `z`, and its parent is Environment 1.
 
