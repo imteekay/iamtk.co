@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-10-16',
+    link: '/series/essentials-of-interpretation/variables-environments-and-blocks',
+    title:
+      'Essentials of Interpretation — Scoping: Variables, Environments, and Blocks',
+  },
+  {
     datetime: '2023-09-04',
     link: '/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions',
     title:
