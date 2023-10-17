@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Essentials of Interpretation — Scoping: Variables, Environments, and Blocks</title>
+    <link>https://www.iamtk.co/series/essentials-of-interpretation/variables-environments-and-blocks</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/variables-environments-and-blocks</guid>
+    <description>How scope, variables, environments and blocks work in the semantics of a programming language</description>
+  </item>
+  <item>
     <title>Essentials of Interpretation: The Programming Language & Self-Evaluating Expressions</title>
     <link>https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</guid>
