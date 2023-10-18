@@ -13,7 +13,7 @@ export const postsList: Post[] = [
       'Essentials of Interpretation — Control Flow: If and While Expressions',
   },
   {
-    datetime: '2023-10-16',
+    datetime: '2023-10-17',
     link: '/series/essentials-of-interpretation/variables-environments-and-blocks',
     title:
       'Essentials of Interpretation — Scoping: Variables, Environments, and Blocks',
