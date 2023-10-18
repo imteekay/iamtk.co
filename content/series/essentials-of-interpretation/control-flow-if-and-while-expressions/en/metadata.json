@@ -1,7 +1,7 @@
 {
-  "title": "Scoping: Variables, Environments, and Blocks",
-  "description": "How scope, variables, environments and blocks work in the semantics of a programming language",
-  "date": "2023-10-17",
+  "title": "Control Flow: If and While Expressions",
+  "description": "How to handle control flor with if and while expressions in a programming language",
+  "date": "2023-10-19",
   "tags": [
     {
       "href": "/tags/programming-language-design",
