@@ -1,0 +1,196 @@
+<SmoothRender>
+
+These notes were taken from the [Essentials of Interpretation](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation) course by [Dmitry Soshnikov](https://dmitrysoshnikov.teachable.com/) and part of the [Essentials of Interpretation series](/series/essentials-of-interpretation).
+
+---
+
+In the [previous post](/series/essentials-of-interpretation/variables-environments-and-blocks), we talked about variables, environments, blocks and how they handle scoping in a programming language. In this post, we'll take a look at control flow, more especifically, if and while expressions.
+
+## If Expressions: handling conditions
+
+To better understand how to approach if expressions, let's take a look at their structure and syntax.
+
+```jsx
+(if <condition>
+    <consequent>
+    <alternate>)
+```
+
+We have the `if` expression, the condition, if the condition evaluates to `true`, it goes to the first branch, the `consequent`, if it's `false`, it goes to the `alternate` branch.
+
+Starting with tests, here's a simple expression that's easy to understand.
+
+```jsx
+test(
+  eva,
+  `(begin
+    (var x 10)
+    (var y 0)
+    (if (> x 10)
+      (set y 20)
+      (set y 30))
+    y)`,
+  30,
+);
+```
+
+We define the variables `x` and `y`. If the `x` is greater than `10`, it will assign `20` to `y`, if not, it will assign `30`. In this case, `x` is equal to `10`, so `y` will be `30` at the end of this code block.
+
+Let's go for the implementation now. When we have an if expression, it requires us to get all the parts of it: the tag name, the condition, the consequent, and the alternate. Here it is:
+
+```jsx
+if (exp[0] === 'if') {
+  const [_tag, condition, consequent, alternate] = exp;
+  // ...
+}
+```
+
+The rest of the implementation is pretty simple. First, we need to evaluate the condition. If it evaluates to `true`, we return the evaluation of the `consequent` expression. If it evaluates to `false`, we should return the evaluation of the `alternate` expression.
+
+```jsx
+if (exp[0] === 'if') {
+  const [_tag, condition, consequent, alternate] = exp;
+  return this.eval(condition, env)
+    ? this.eval(consequent, env)
+    : this.eval(alternate, env);
+}
+```
+
+But executing it still doesn't work as we are still required to implement the comparison operators.
+
+As we learned in the [previous post about global vs local scope and environments](https://www.iamtk.co/series/essentials-of-interpretation/variables-environments-and-blocks), we can add all the comparison operators as built-in expressions of the language. That way, we don't actually need to parse and evaluate them.
+
+```jsx
+const GlobalEnvironment = new Environment({
+  // ...
+
+  '>': (op1, op2) => {
+    return op1 > op2;
+  },
+
+  '<': (op1, op2) => {
+    return op1 < op2;
+  },
+
+  '<=': (op1, op2) => {
+    return op1 <= op2;
+  },
+
+  '>=': (op1, op2) => {
+    return op1 >= op2;
+  },
+
+  '=': (op1, op2) => {
+    return op1 === op2;
+  },
+
+  // ...
+});
+```
+
+Now, it passes the check when running the test.
+
+Just to make sure all comparison operators work, I added more tests to cover them all.
+
+```jsx
+test(
+  eva,
+  `(begin
+    (if (>= 10 10)
+      1
+      2))`,
+  1,
+);
+
+test(
+  eva,
+  `(begin
+    (if (<= 10 10)
+      1
+      2))`,
+  1,
+);
+
+test(
+  eva,
+  `(begin
+    (if (= 10 10)
+      1
+      2))`,
+  1,
+);
+
+test(
+  eva,
+  `(begin
+    (if (< 10 10)
+      1
+      2))`,
+  2,
+);
+```
+
+## While Expressions: looping
+
+The structure of while expressions reminds me a lot of if expressions. But it doesn't have the `consequent` and `alternate` part, it has only a body of expressions.
+
+Let's start with the test:
+
+```jsx
+test(
+  eva,
+  `(begin
+    (var counter 0)
+    (var result 0)
+    
+    (while (< counter 10)
+      (begin
+        (set counter (+ counter 1))
+        (set result (+ result 1))))
+        
+    result)`,
+  10,
+);
+```
+
+We start with a `counter` and a `result` as `0`. For every loop, it will increment the counter and the result. When the counter reaches `10` or more than `10`, it will stop the loop.
+
+In this case, it will stop when the `counter` and the `result` are `10`. So the whole block of code will evaluate to `10`.
+
+Here’s the implementation:
+
+```jsx
+if (exp[0] === 'while') {
+  const [_, condition, body] = exp;
+  let result;
+
+  while (this.eval(condition, env)) {
+    result = this.eval(body, env);
+  }
+
+  return result;
+}
+```
+
+We get the `condition` and the `body`.
+
+We'll keep evaluating the `condition` while it keeps being evaluated to `true`. For every loop, it will evaluate the `body` and the value produced in this process will be stored in the `result` variable.
+
+That way, the last time it evaluates the body will be the value we want to return from this while expression.
+
+Running the tests again, it passes.
+
+## Final words
+
+In this fourth post of the [series](/series/essentials-of-interpretation), we talked about if and while expressions and how to handle controle flow in a programming language.
+
+Here are some resources you can use:
+
+- [Programming Language Research: a bunch of resources about my studies on Programming Language Theory & Applied PLT](https://github.com/imteekay/programming-language-research)
+- [Essentials of Interpretation repo](https://github.com/imteekay/essentials-of-interpretation)
+- [Essentials of Interpretation course](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation)
+- [Compiler Engineering courses](https://dmitrysoshnikov.teachable.com)
+
+---
+
+</SmoothRender>

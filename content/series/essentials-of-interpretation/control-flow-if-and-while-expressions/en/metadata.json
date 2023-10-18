@@ -1,0 +1,19 @@
+{
+  "title": "Control Flow: If and While Expressions",
+  "description": "How to handle control flor with if and while expressions in a programming language",
+  "date": "2023-10-19",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/essentials-of-interpretation/control-flow-if-and-while-expressions/cover.jpg",
+    "width": "640",
+    "height": "853",
+    "alt": "aerial view photography of body of water surrounded by fogs",
+    "authorHref": "https://unsplash.com/@justchris87",
+    "authorName": "Chris Coe"
+  }
+}
