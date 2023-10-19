@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-10-19',
+    link: '/series/essentials-of-interpretation/control-flow-if-and-while-expressions',
+    title:
+      'Essentials of Interpretation — Control Flow: If and While Expressions',
+  },
+  {
     datetime: '2023-10-17',
     link: '/series/essentials-of-interpretation/variables-environments-and-blocks',
     title:
