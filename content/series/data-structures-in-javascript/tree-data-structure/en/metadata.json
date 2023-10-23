@@ -1,0 +1,23 @@
+{
+  "title": "Tree Data Structure",
+  "description": "Data Structures and Algorithms — Trees, Binary Trees, Binary Search Trees",
+  "date": "2023-03-17",
+  "tags": [
+    {
+      "href": "/tags/algorithms-and-data-structures",
+      "name": "algorithms_and_data_structures"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/data-structures/trees.jpeg",
+    "width": "592",
+    "height": "592",
+    "alt": "A tree on the top and a house on the bottom cover by trees",
+    "authorHref": "https://www.iamtk.co",
+    "authorName": "TK"
+  }
+}

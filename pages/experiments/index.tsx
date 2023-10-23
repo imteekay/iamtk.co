@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
-import { Head } from 'Base/components/Head';
+
 import { HomeLink } from 'Base/Article/HomeLink';
+import { Head } from 'Base/components/Head';
 import { Experiments } from 'Home/components/Experiments/Experiments';
 
 const Page: NextPage = () => (

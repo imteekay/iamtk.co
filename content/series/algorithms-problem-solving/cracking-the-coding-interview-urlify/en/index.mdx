@@ -1,0 +1,110 @@
+<SmoothRender>
+
+This post is part of the [`Algorithms Problem Solving`](/series/algorithms-problem-solving) series and a problem from the Cracking the Coding Interview book.
+
+## Problem description
+
+Write a method to replace all spaces in a string with '%20'.
+You may assume that the string has sufficient space at the end to hold the additional characters,
+and that you are given the "true" length of the string
+
+## Examples
+
+```bash
+input: 'Mr John Smith     ', 13
+output: 'Mr%20John%20Smith'
+
+input: 'Mr John Smith     ', 13
+output: 'Mr%20John%20Smith'
+```
+
+## Solutions
+
+The first solution we go through the characters one by one until we reach the `length` input.
+
+If it's not a space character, we just add it to the `output` array.
+If it's a space character and the last character was not a space character, we add the placeholder `%20`.
+
+We check the last character because we want to add the placeholder only one time even if we have consecutive spaces.
+
+In the end, we have the new string in an array format, so we just need to join all the characters, form the string, and return it.
+
+- Runtime Complexity: O(N), where N = the true length of the string
+- Space Complexity: O(N), where N = the true length of the string in the new array
+
+```JavaScript
+function urlify(string, length, placeholder = '%20') {
+  let output = [];
+  let lastChar = '';
+  let space = ' ';
+
+  for (let index = 0; index < length; index++) {
+    let char = string[index];
+
+    if (char !== space) {
+      output.push(char);
+    }
+
+    if (char === space && lastChar !== space) {
+      output.push(placeholder);
+    }
+
+    lastChar = char;
+  }
+
+  return output.join('');
+}
+```
+
+The second solution is similar but instead of having a `lastChar` variable, we move the index forward when it reaches the first space.
+
+If the character is a space, we add the placeholder `%20` to the `output` array and move forward the index until it finishes all consecutive spaces.
+If it's not a space character, we just add it to the `output` array.
+
+- Runtime Complexity: O(N), where N = the true length of the string
+- Space Complexity: O(N), where N = the true length of the string in the new array
+
+```JavaScript
+function urlifyForward(string, length, placeholder = '%20') {
+  let output = [];
+  let index = 0;
+  let space = ' ';
+
+  const moveForward = () => {
+    while (string[index] === space) {
+      index++;
+    }
+  };
+
+  while (index < length) {
+    if (string[index] === space) {
+      output.push(placeholder);
+      moveForward();
+    } else {
+      output.push(string[index]);
+      index++;
+    }
+  }
+
+  return output.join('');
+}
+```
+
+## Resources
+
+- [Algorithms Problem Solving Series](/series/algorithms-problem-solving)
+- [Algorithms & Data Structures studies](https://github.com/imteekay/algorithms)
+- [Is Unique source code](https://github.com/imteekay/algorithms/blob/master/coding_interviews/cracking-the-coding-interview/string/is-unique/is-unique.js)
+- [Data Structures in JavaScript Series](/series/data-structures-in-javascript)
+- [Stack Data Structure in JavaScript](/series/data-structures-in-javascript/stack-data-structure)
+- [Queue Data Structure in JavaScript](/series/data-structures-in-javascript/queue-data-structure)
+- [Linked List Data Structure in JavaScript](/series/data-structures-in-javascript/linked-list-data-structure)
+- [Tree Data Structure in JavaScript](/series/data-structures-in-javascript/tree-data-structure)
+- [Stack Data Structure](/series/data-structures/stack-data-structure)
+- [Queue Data Structure](/series/data-structures/queue-data-structure)
+- [Linked List](/series/data-structures/linked-list-data-structure)
+- [Tree Data Structure](/series/data-structures/tree-data-structure)
+
+---
+
+</SmoothRender>

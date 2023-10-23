@@ -1,8 +1,9 @@
 import { FC } from 'react';
-import { Title } from 'Base/components/Title';
-import { titleStyle } from 'Base/components/Title/style';
+
 import { Item, ItemProps } from './Item';
 import { titleLinkStyle, listStyle } from './style';
+import { Title } from 'Base/components/Title';
+import { titleStyle } from 'Base/components/Title/style';
 
 type Header = 'h1' | 'h2';
 
@@ -36,7 +37,7 @@ export const List: FC<ListPropType> = ({
           rel={linkAttr.rel}
           style={titleLinkStyle}
         >
-          <h2 style={titleStyle}>{titleText}</h2>
+          <h2 className={titleStyle}>{titleText}</h2>
         </a>
       ) : (
         <Title text={titleText} />

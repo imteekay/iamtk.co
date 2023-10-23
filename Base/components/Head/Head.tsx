@@ -1,4 +1,5 @@
 import HeadNext from 'next/head';
+
 import { useCanonicalURL } from 'Base/hooks/useCanonicalURL';
 
 type HeadPropTypes = {

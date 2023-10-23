@@ -1,0 +1,19 @@
+{
+  "title": "Discipline is Destiny",
+  "description": "Notes from the Discipline is Destiny book",
+  "date": "2023-02-01",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/discipline-is-destiny/cover.webp",
+    "width": "648",
+    "height": "850",
+    "alt": "The Discipline is Destiny book",
+    "authorHref": "https://store.dailystoic.com/pages/discipline",
+    "authorName": "Ryan Holiday"
+  }
+}

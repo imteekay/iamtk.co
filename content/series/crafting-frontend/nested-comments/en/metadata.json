@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: React — Nested Comments Component",
+  "description": "How can I build a nested comment component in React?",
+  "date": "2022-12-13",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/nested-comments/cover.jpg",
+    "width": "592",
+    "height": "887",
+    "alt": "person holding black samsung android smartphone",
+    "authorHref": "https://unsplash.com/@introspectivedsgn",
+    "authorName": "Erik Mclean"
+  }
+}

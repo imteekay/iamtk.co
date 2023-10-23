@@ -1,20 +1,26 @@
+import Image, { ImageProps } from 'next/image';
 import { FC } from 'react';
-import Image from 'next/image';
-import {
-  coverImageStyle,
-  figcaptionStyle,
-  figcaptionLinkStyle,
-} from './styles';
 
-type CoverImagePropTypes = {
+import { styled } from '@mui/material/styles';
+
+import { figcaptionStyle, figcaptionLinkStyle } from './styles';
+
+const ImageWrapper = styled('div')`
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+`;
+
+interface CoverImagePropTypes extends ImageProps {
   src: string;
-  width: string;
-  height: string;
   alt: string;
   authorHref: string;
   authorName: string;
   blurDataURL?: string;
-};
+}
 
 export const CoverImage: FC<CoverImagePropTypes> = ({
   src,
@@ -25,7 +31,7 @@ export const CoverImage: FC<CoverImagePropTypes> = ({
   authorName,
   blurDataURL,
 }) => (
-  <div style={coverImageStyle}>
+  <ImageWrapper>
     <Image
       src={src}
       width={width}
@@ -47,5 +53,5 @@ export const CoverImage: FC<CoverImagePropTypes> = ({
         </a>
       </span>
     ) : null}
-  </div>
+  </ImageWrapper>
 );

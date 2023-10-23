@@ -1,3 +1,5 @@
+<SmoothRender>
+
 In this post, I want to talk about one of the techniques we can take to reduce JavaScript in the final bundle: Code splitting.
 
 Code splitting is the process of splitting the bundle into multiple, smaller bundles (also known as JavaScript chunks).
@@ -114,3 +116,5 @@ So, imagine that you like functional programming and you use `ramda`, you can co
 This is interesting because the library can be used on different pages of the product and as it's already cached, it won't penalize the user again. We, engineers, don't bump libraries versions that often, so the probability of this library being cached for the users for a long time is very high.
 
 If you apply this same strategy to a list of the biggest libraries in your codebase, it will save more time for recurrent users. I showed an example of this approach in a `React` application using `webpack` and the `CommonsChunkPlugin`: **[Optimizing the Performance of a React Progressive Web App — Caching Biggest Dependencies](/optimizing-the-performance-of-a-react-progressive-web-app#caching-biggest-dependencies).**
+
+</SmoothRender>

@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: JavaScript — Event Emitter",
+  "description": "How can I build an Event Emitter in JavaScript?",
+  "date": "2022-12-05",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/event-emitter-cover.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "red and blue boke lights",
+    "authorHref": "https://unsplash.com/@hishahadat",
+    "authorName": "Shahadat Rahman"
+  }
+}

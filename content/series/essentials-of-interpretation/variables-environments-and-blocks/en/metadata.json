@@ -1,0 +1,19 @@
+{
+  "title": "Scoping: Variables, Environments, and Blocks",
+  "description": "How scope, variables, environments and blocks work in the semantics of a programming language",
+  "date": "2023-10-17",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/essentials-of-interpretation/variables-environments-and-blocks/cover.jpg",
+    "width": "640",
+    "height": "360",
+    "alt": "a grey and white photo of a building",
+    "authorHref": "https://unsplash.com/@zeepresents",
+    "authorName": "Zaeem Nawaz"
+  }
+}

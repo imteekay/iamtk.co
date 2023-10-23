@@ -1,0 +1,144 @@
+<SmoothRender>
+
+This post is part of the series [`Crafting Frontend`](/series/crafting-frontend), the React version.
+
+---
+
+Today we are going to talk about the React Context API, or more specifically, how to use it.
+
+First, let's build a counter app without the Context API, using only pure `useState`.
+
+```jsx
+import { useState } from 'react';
+
+const Counter = () => {
+  const [count, increment] = useState(0);
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button onClick={() => increment(count + 1)}>Increment</button>
+    </>
+  );
+};
+```
+
+That's it! Super simple. With that in mind, we can now refactor it to use the Context API and understand how it works.
+
+The first implementation we need to code is to create the context using the `createContext` function.
+
+```jsx
+const CountContext = createContext();
+```
+
+Just like that.
+
+Now, with the new context, we can use the `Provider` component to provide values (string, number, etc — and functions) to the wrapped children components.
+
+```jsx
+const Component = () => {
+  const example = 'An Example';
+
+  return (
+    <CountContext.Provider value={{ example }}>
+      {/* wrapped children components */}
+    </CountContext.Provider>
+  );
+};
+```
+
+Every component that's wrapped by the provider, will be able to access the values passed in the `value` object.
+
+With that in mind, we can use the `useContext` hook to access this information. So imagine we have a child component there.
+
+```jsx
+const Child = () => <div></div>;
+
+const Component = () => {
+  const example = 'An Example';
+
+  return (
+    <CountContext.Provider value={{ example }}>
+      <Child />
+    </CountContext.Provider>
+  );
+};
+```
+
+Now let's use the `useContext` hook to access the `example` value. Like that:
+
+```jsx
+const Child = () => {
+  const { example } = useContext(CountContext);
+  return <h1>{example}</h1>;
+};
+```
+
+Passing our `CountContext`, the component is able to access the `value` object, destructure it, and render the `example` string as a title.
+
+Let's recap:
+
+1. Create the context
+2. Create the provider component
+3. Pass the state values to the `value` object
+4. Wrap the children components by the provider
+5. Use the `useContext` hook to access the `value` object
+
+Refactoring the `Counter` component to use the context API is straightforward if we follow the above steps.
+
+```jsx
+const CountContext = createContext();
+
+const Counter = () => {
+  const [count, increment] = useState(0);
+
+  return (
+    <CountContext.Provider value={{ count, increment }}>
+      {/* wrapped children components */}
+    </CountContext.Provider>
+  );
+};
+```
+
+I also want to extract the count text and the increment button into separate components. If they are placed as children of the provider, there's no problem as they will have access to the `value` object.
+
+Here they are:
+
+```jsx
+const Count = () => {
+  const { count } = useContext(CountContext);
+  return <p>Count: {count}</p>;
+};
+
+const IncrementButton = () => {
+  const { count, increment } = useContext(CountContext);
+  return <button onClick={() => increment(count + 1)}>Increment</button>;
+};
+```
+
+For the `Count` component, we only need to get the `count` via `useContext`. In the `IncrementButton`, we get both the `count` and the `increment` values as we need to call increment to increment the count and we need the current count value.
+
+We just need to place them as children of the provider for them to have access to the `value` object.
+
+```jsx
+const Counter = () => {
+  const [count, increment] = useState(0);
+
+  return (
+    <CountContext.Provider value={{ count, increment }}>
+      <Count />
+      <IncrementButton />
+    </CountContext.Provider>
+  );
+};
+```
+
+And it's done! Counter refactored to use the Context API.
+
+---
+
+[`Crafting Frontend`](/series/crafting-frontend) is a series of posts and experiments I'm doing to craft the art of frontend engineering. To see all the experiments I've been doing, follow the [Crafting Frontend github repo](https://github.com/imteekay/crafting-frontend).
+
+---
+
+</SmoothRender>

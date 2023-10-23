@@ -7,6 +7,101 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-10-19',
+    link: '/series/essentials-of-interpretation/control-flow-if-and-while-expressions',
+    title:
+      'Essentials of Interpretation — Control Flow: If and While Expressions',
+  },
+  {
+    datetime: '2023-10-17',
+    link: '/series/essentials-of-interpretation/variables-environments-and-blocks',
+    title:
+      'Essentials of Interpretation — Scoping: Variables, Environments, and Blocks',
+  },
+  {
+    datetime: '2023-09-04',
+    link: '/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions',
+    title:
+      'Essentials of Interpretation: The Programming Language & Self-Evaluating Expressions',
+  },
+  {
+    datetime: '2023-08-28',
+    link: '/series/essentials-of-interpretation/a-compiler-crash-course',
+    title: 'Essentials of Interpretation: A Compiler Crash Course',
+  },
+  {
+    datetime: '2023-08-21',
+    link: '/i-read-47-books-in-the-first-6-months-of-2023-now-what',
+    title: 'I read 47 books in the first 6 months of 2023. Now what?',
+  },
+  {
+    datetime: '2023-08-07',
+    link: '/building-let-declarations-for-the-typescript-compiler',
+    title: 'Building Let Declarations for the TypeScript compiler',
+  },
+  {
+    datetime: '2023-07-31',
+    link: '/allow-var-statements-to-declare-multiple-symbols-in-the-typescript-compiler',
+    title:
+      'Allow var statements to declare multiple symbols in the TypeScript compiler',
+  },
+  {
+    datetime: '2023-07-23',
+    link: '/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler',
+    title:
+      'Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler',
+  },
+  {
+    datetime: '2023-07-03',
+    link: '/implementing-string-literals-for-the-typescript-compiler',
+    title: 'Implementing StringLiterals for the TypeScript Compiler',
+  },
+  {
+    datetime: '2023-06-25',
+    link: '/a-deep-dive-into-the-typescript-compiler-miniature',
+    title: 'A Deep Dive into the TypeScript Compiler Miniature',
+  },
+  {
+    datetime: '2023-06-09',
+    link: '/solving-algorithmic-problems-using-the-two-pointers-technique',
+    title: 'Solving Algorithmic problems using the Two Pointers technique',
+  },
+  {
+    datetime: '2023-06-04',
+    link: '/javascript-scope-closures-and-the-typescript-compiler',
+    title: 'JavaScript scope, Closures, and the TypeScript compiler',
+  },
+  {
+    datetime: '2023-03-17',
+    link: '/series/data-structures-in-javascript/tree-data-structure',
+    title: 'Tree Data Structure in JavaScript',
+  },
+  {
+    datetime: '2023-03-12',
+    link: '/the-evolution-of-react-rendering-architectures-and-web-performance',
+    title: 'The Evolution of React Rendering Architectures & Web Performance',
+  },
+  {
+    datetime: '2023-03-04',
+    link: '/math-symbols-on-macos',
+    title: 'Math Symbols on MacOS',
+  },
+  {
+    datetime: '2023-02-27',
+    link: '/a-high-level-architecture-of-the-typescript-compiler',
+    title: 'A High Level Architecture of the TypeScript compiler',
+  },
+  {
+    datetime: '2023-02-02',
+    link: '/webpack-bundle-splitting-and-browser-caching',
+    title: 'Webpack Bundle Splitting & Browser Caching',
+  },
+  {
+    datetime: '2023-01-30',
+    link: '/series/crafting-frontend/spotify-playlist-frontend-system-architecture',
+    title: 'Spotify Playlist — Frontend System Architecture',
+  },
+  {
     datetime: '2022-11-12',
     link: '/series/crafting-frontend',
     title: 'Crafting Frontend',

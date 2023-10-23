@@ -1,0 +1,19 @@
+{
+  "title": "The Intelligence Trap",
+  "description": "Notes from The Intelligence Trap book",
+  "date": "2023-01-02",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/the-intelligence-trap/cover.jpeg",
+    "width": "592",
+    "height": "592",
+    "alt": "The Intelligence Trap book",
+    "authorHref": "https://www.daraz.pk/products/the-intelligence-trap-book-by-david-robson-i198432843.html",
+    "authorName": "David Robson"
+  }
+}

@@ -1,3 +1,5 @@
+import { ImageProps } from 'next/image';
+
 type PostTypes = {
   title: string;
   slug: string;
@@ -5,13 +7,45 @@ type PostTypes = {
   description: string;
   image?: {
     url: string;
-    width: string;
-    height: string;
+    width: ImageProps['width'];
+    height: ImageProps['height'];
     alt: string;
   };
 };
 
 export const posts: PostTypes[] = [
+  {
+    title: 'Being Different',
+    slug: 'being-different',
+    date: '2023-09-29 • 18:12',
+    description: `I love this quote by Mitchell Pritchett:
+    <br><br>
+    "This is the funny thing about growing up. For years and years, everybody's desperately afraid, to be different, you know, in any way. And then, suddenly, almost overnight, Everybody wants to be different"`,
+  },
+  {
+    title: 'Writing & The Promise of Living Forever',
+    slug: 'writing-and-the-promise-of-living-forever',
+    date: '2023-01-20 • 21:23',
+    description: `Leonardo da Vinci, Ramanujan, and Aaron Swartz.
+    <br><br>
+    They are all eternalized in their writings.
+    <br><br>
+    <a href="https://www.amazon.com/Leonardo-Vinci-Walter-Isaacson/dp/1501139150">Leonardo da Vinci</a> wrote about his ideas, thoughts, and illustrations in his notebooks. He is eternalized in history through his writings, art, and biographies.
+    <br><br>
+    <a href="https://www.youtube.com/watch?v=8WwLPep9xNg&ab_channel=HOLLYWOODWORLD">Ramanujan</a> didn't want his ideas to die with himself and publishing was his own goal to spread all the work he did. He is eternalized in history through his publication.
+    <br><br>
+    <a href="https://www.youtube.com/watch?v=9vz06QO3UkQ&ab_channel=moviemaniacsDE">Aaron Swartz</a> wrote software and his idea about the open web and open knowledge. He is eternalized in history through his writings and his work on knowledge freedom.
+    <br><br>
+    And this, I write to you TK. Do you want to be eternalized in history through your writings and ideas? Keep asking yourself this and you'll find answers and more answers throughout your life.`,
+  },
+  {
+    title: 'Getting Better',
+    slug: 'getting-better',
+    date: '2022-09-07 • 15:32',
+    description: `You're not gonna get better by doing things that are easy, this is why I want to take the hard way, that's when you build the character, that's when you become resilient, is going through tough times.
+    <br><br>
+    Comfort is good. But constant comfort is not what I'm looking for. I want the next step. I want to become better. Tiny improvements every single day.`,
+  },
   {
     title: 'Blogging as an excuse',
     slug: 'blogging-as-an-excuse',

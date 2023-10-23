@@ -1,0 +1,19 @@
+{
+  "title": "Essentials of Interpretation: A Compiler Crash Course",
+  "description": "A crash course on compilers and runtime semantics",
+  "date": "2023-08-28",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/essentials-of-interpretation/a-compiler-crash-course/cover.jpg",
+    "width": "640",
+    "height": "1000",
+    "alt": "white smoke on black background",
+    "authorHref": "https://unsplash.com/@mullyadii",
+    "authorName": "Mulyadi"
+  }
+}

@@ -1,5 +1,6 @@
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import { FC } from 'react';
+
 import { patreonImageBase64, kofiImageBase64 } from './constants';
 import {
   sponsorshipWrapperStyle,
@@ -9,7 +10,22 @@ import {
   kofiImageStyle,
 } from './styles';
 
-const sponsorshipPrograms = [
+type Style = Record<string, string>;
+
+interface SponsorshipPrograms {
+  href: string;
+  style: Style;
+  image: {
+    src: string;
+    height: ImageProps['height'];
+    width: ImageProps['width'];
+    alt: string;
+    style: Style;
+  };
+  text: string;
+}
+
+const sponsorshipPrograms: SponsorshipPrograms[] = [
   {
     href: 'https://www.patreon.com/iamteekay',
     style: patreonButtonStyle,

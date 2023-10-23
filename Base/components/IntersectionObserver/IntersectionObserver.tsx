@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+
 import { InView } from 'react-intersection-observer';
 
 export const IntersectionObserver: FC = ({ children }) => {

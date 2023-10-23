@@ -1,0 +1,574 @@
+<SmoothRender>
+
+This is the 6th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)** and these are the posts we've talked about before:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
+
+Now we are going to see the implementation of declaring multiple symbols for variable statements.
+
+We'll see some examples, implement new tokens in the lexer phase, create new AST nodes in the parser, refactor the binder and the type checker to synchronize with the new AST structure, and transform and emit JS code.
+
+---
+
+Before, the mini TS compiler only allowed us to have one variable per declaration. But with this new feature, we'll be able to write code like this:
+
+```tsx
+var var1 = 1, var2 = 2, var3 = 3;
+```
+
+Or even typed variable declarations (even with different types):
+
+```tsx
+var n: number = 1, s: string = 'test', n2: number = 3;
+```
+
+---
+
+## `Lexer`: building tokens for the declaration list
+
+Looking at the examples above, it's pretty obvious the missing token is the `,` (comma).
+
+Everything we need to do is add the new token type:
+
+```diff
+export enum Token {
+  Function = 'Function',
+  Var = 'Var',
+  Let = 'Let',
+  Type = 'Type',
+  Return = 'Return',
+  Equals = 'Equals',
+  NumericLiteral = 'NumericLiteral',
+  Identifier = 'Identifier',
+  Newline = 'Newline',
+  Semicolon = 'Semicolon',
+  Colon = 'Colon',
++ Comma = 'Comma',
+  Whitespace = 'Whitespace',
+  String = 'String',
+  Unknown = 'Unknown',
+  BOF = 'BOF',
+  EOF = 'EOF',
+}
+```
+
+And then create the token when it's reading the character `,` in the lexer phase:
+
+```tsx
+case ',':
+  token = Token.Comma;
+  break;
+```
+
+Now we have all the tokens representing the code and we're able to parse it.
+
+## `Parser`: creating the VariableDeclarationList AST node
+
+When creating new AST nodes, we need to understand how we want to structure the source code in terms of nodes before creating new types and parsing them.
+
+For this example below:
+
+```tsx
+var var1 = 1, var2 = 2, var3 = 3;
+```
+
+We'll have this AST structure:
+
+```tsx
+[
+  {
+    kind: 'VariableStatement',
+    pos: 8,
+    declarationList: {
+      kind: 'VariableDeclarationList',
+      pos: 8,
+      declarations: [
+        {
+          kind: 'VariableDeclaration',
+          name: {
+            kind: 'Identifier',
+            text: 'var1',
+            pos: 8,
+          },
+          init: {
+            kind: 'NumericLiteral',
+            value: 1,
+            pos: 12,
+          },
+          pos: 13,
+        },
+        {
+          kind: 'VariableDeclaration',
+          name: {
+            kind: 'Identifier',
+            text: 'var2',
+            pos: 18,
+          },
+          init: {
+            kind: 'NumericLiteral',
+            value: 2,
+            pos: 22,
+          },
+          pos: 23,
+        },
+        {
+          kind: 'VariableDeclaration',
+          name: {
+            kind: 'Identifier',
+            text: 'var3',
+            pos: 28,
+          },
+          init: {
+            kind: 'NumericLiteral',
+            value: 3,
+            pos: 32,
+          },
+          pos: 33,
+        },
+      ],
+    },
+  },
+];
+```
+
+Before, we only had a `Var` node for each declaration. Now that we need a list of variables for the same var declaration, we'll have this structure
+
+- `VariableStatement`
+  - `declarationList`: `VariableDeclarationList`
+    - `declarations`: `VariableDeclaration[]`
+
+`VariableStatement` will hold every declaration, and each declaration will be placed in the list of declarations. So instead of placing each declaration in the root of the tree, it will be attached to the new `VariableStatement`.
+
+Let's now create the types for it, starting with the nodes:
+
+```diff
+export enum Node {
+  Identifier,
+  NumericLiteral,
+  Assignment,
+  ExpressionStatement,
+  Var,
+  Let,
+  TypeAlias,
+  StringLiteral,
+  EmptyStatement,
++ VariableStatement,
++ VariableDeclarationList,
++ VariableDeclaration,
+}
+```
+
+We just added the three types we mentioned before: `VariableStatement`, `VariableDeclarationList`, and `VariableDeclaration`.
+
+Now we can create the AST nodes:
+
+```tsx
+export type VariableStatement = Location & {
+  kind: Node.VariableStatement;
+  declarationList: VariableDeclarationList;
+};
+
+export type VariableDeclarationList = Location & {
+  kind: Node.VariableDeclarationList;
+  declarations: VariableDeclaration[];
+};
+
+export type VariableDeclaration = Location & {
+  kind: Node.VariableDeclaration;
+  name: Identifier;
+  typename?: Identifier | undefined;
+  init: Expression;
+};
+```
+
+And finally, add the new statement to the `Statement` type:
+
+```tsx
+export type Statement =
+  | ExpressionStatement
+  | TypeAlias
+  | EmptyStatement
+  | VariableStatement;
+```
+
+With every type set up, we can start parsing the source code and creating new AST nodes.
+
+Before, when the parser reached a `Var` token, it just created the `Var` node. But now we need this whole new AST structure to handle the multiple variable declarations.
+
+We start looking at the `Var` token and parsing the variable statement.
+
+```tsx
+if (tryParseToken(Token.Var)) {
+  return parseVariableStatement();
+}
+```
+
+With the `parseVariableStatement`, we are going to create the `VariableStatement` node. It has a `declarationList` attribute which is a `VariableDeclarationList` node.
+
+```tsx
+function parseVariableStatement(): VariableStatement {
+  const pos = lexer.pos();
+  return {
+    kind: Node.VariableStatement,
+    pos,
+    declarationList: {
+      kind: Node.VariableDeclarationList,
+      declarations: parseVariableDeclarations(),
+      pos,
+    },
+  };
+}
+```
+
+The `VariableDeclarationList` has a `declarations` attribute to hold all declarations, that we still need to parse.
+
+```tsx
+function parseVariableDeclarations() {
+  const declarations: VariableDeclaration[] = [];
+  do {
+    const name = parseIdentifier();
+    const typename = tryParseToken(Token.Colon)
+      ? parseIdentifier()
+      : undefined;
+    parseExpected(Token.Equals);
+    const init = parseExpression();
+    declarations.push({
+      kind: Node.VariableDeclaration,
+      name,
+      typename,
+      init,
+      pos: lexer.pos(),
+    });
+  } while (tryParseToken(Token.Comma));
+  return declarations;
+}
+```
+
+First we need to create a `declarations` list that will be returned from this function.
+
+It parses the first variable declaration and pushes it to the `declarations` list. If the next token is a `Token.Comma` (`,`), it loops and creates a new variable declaration. If there are no more commas, it breaks the loop and returns the `declarations` list.
+
+And that's the whole parsing phase for multiple variable declarations.
+
+## `Binder`: handling declaration symbols from variable statements
+
+That was the implementation of the `bindStatement`:
+
+```tsx
+function bindStatement(locals: Table, statement: Statement) {
+  if (statement.kind === Node.Var || statement.kind === Node.TypeAlias) {
+    const symbol = locals.get(declaration.name.text);
+    if (symbol) {
+      const other = symbol.declarations.find(
+        (d) => d.kind === declaration.kind,
+      );
+      if (other) {
+        error(
+          declaration.pos,
+          `Cannot redeclare ${declaration.name.text}; first declared at ${other.pos}`,
+        );
+      } else {
+        symbol.declarations.push(declaration);
+        if (declaration.kind === Node.Var) {
+          symbol.valueDeclaration = declaration;
+        }
+      }
+    } else {
+      locals.set(declaration.name.text, {
+        declarations: [declaration],
+        valueDeclaration:
+          declaration.kind === Node.Var ? declaration : undefined,
+      });
+    }
+  }
+}
+```
+
+It handled the `Var` and the `TypeAlias` nodes. But `Var` is not a statement anymore, `VariableStatement` is. `VariableStatement` also has a different structure compared to the `TypeAlias`, so it needs to be handled in a different way.
+
+The first thing to do is to separate this logic and abstract it into a new function, let's call it `bindSymbol`. It will handle declarations like `TypeAlias` and `Var`.
+
+```tsx
+function bindSymbol(locals: Table, declaration: Var | TypeAlias) {
+  const symbol = locals.get(declaration.name.text);
+  if (symbol) {
+    const other = symbol.declarations.find(
+      (d) => d.kind === declaration.kind
+    );
+    if (other) {
+      error(
+        declaration.pos,
+        `Cannot redeclare ${declaration.name.text}; first declared at ${other.pos}`,
+      );
+    } else {
+      symbol.declarations.push(declaration);
+      if (declaration.kind === Node.Var) {
+        symbol.valueDeclaration = declaration;
+      }
+    }
+  } else {
+    locals.set(declaration.name.text, {
+      declarations: [declaration],
+      valueDeclaration: declaration.kind === Node.Var ? declaration : undefined,
+    });
+  }
+}
+```
+
+For `TypeAlias`, we just need to call `bindSymbol` passing the `locals` object and the statement. But what should we do when binding the `VariableStatement`?
+
+```tsx
+function bindStatement(locals: Table, statement: Statement) {
+  if (statement.kind === Node.VariableStatement) {
+    // ...
+  }
+
+  if (statement.kind === Node.TypeAlias) {
+    bindSymbol(locals, statement);
+  }
+}
+```
+
+We should also call `bindSymbol` but we aren't going to pass the `VariableStatement`. We need to pass the `Var` node for it. `Var` now lives inside the `VariableDeclarationList`'s `declarations`.
+
+So we just need to iterate through the var declarations and pass each to the `bindSymbol`.
+
+```tsx
+function bindStatement(locals: Table, statement: Statement) {
+  if (statement.kind === Node.VariableStatement) {
+    statement.declarationList.declarations.forEach((declaration) =>
+      bindSymbol(locals, declaration),
+    );
+  }
+
+  if (statement.kind === Node.TypeAlias) {
+    bindSymbol(locals, statement);
+  }
+}
+```
+
+`bindSymbol` will handle both nodes and whenever the type checker needs to resolve these declarations, it just needs to reach out to this symbol table.
+
+## `Type Checker`: checking var declaration types
+
+`Var` nodes are not statements anymore, so we need to move it outside the `checkStatement` and call the type check function when needed. But when it's needed? We have two places:
+
+- When type checking the `VariableStatement`: it needs to check each declaration
+- When type checking the identifier: it needs to resolve the identifier and type check the variable if it's a `Var` node
+
+Let's do it then.
+
+First of all, we need to move the type checking of var declarations into a new function. Let's call it `checkVariableDeclaration`.
+
+```tsx
+function checkVariableDeclaration(declaration: VariableDeclaration) {
+  const initType = checkExpression(declaration.init);
+  if (!declaration.typename) {
+    return initType;
+  }
+  const type = checkType(declaration.typename);
+  if (type !== initType && type !== errorType)
+    error(
+      declaration.init.pos,
+      `Cannot assign initialiser of type '${typeToString(
+        initType,
+      )}' to variable with declared type '${typeToString(type)}'.`,
+    );
+  return type;
+}
+```
+
+Now, the same way we handled the `VariableStatement` in the binder phase, we should do it similarly in the type checking phase: go through all the declarations, and for each declaration, check it:
+
+```diff
+const anyType: Type = { id: 'any' };
+
+// type checking
+
+function checkStatement(statement: Statement): Type {
+  switch (statement.kind) {
+    // ...
+-   case Node.Var:
+-     const i = checkExpression(statement.init);
+-     if (!statement.typename) {
+-       return i;
+-     }
+-     const t = checkType(statement.typename);
+-     if (t !== i && t !== errorType)
+-       error(
+-         statement.init.pos,
+-         `Cannot assign initialiser of type '${typeToString(
+-           i,
+-         )}' to variable with declared type '${typeToString(t)}'.`,
+-       );
+-     return t;
++   case Node.VariableStatement:
++     statement.declarationList.declarations.forEach(
++       checkVariableDeclaration,
++     );
++     return anyType;
+    // ...
+  }
+}
+```
+
+Also, we also should return a type, and according to the TypeScript compiler, it should be an any type.
+
+When type checking the identifier, we used to just resolve the symbol and call `checkStatement` like this:
+
+```tsx
+checkStatement(symbol.valueDeclaration!);
+```
+
+But now the variable declaration is not a statement anymore so we basically need to check which node kind we are dealing with first and then decide how to proceed with the right check.
+
+If it's a `Var` node, we call the function `checkVariableDeclaration` we've created. If not, keep calling the `checkStatement` (in this case for `TypeAlias`).
+
+```diff
+case Node.Identifier:
+  const symbol = resolve(module.locals, expression.text, Node.Var);
+  if (symbol) {
+-   return checkStatement(symbol.valueDeclaration!);
++   return symbol?.valueDeclaration?.kind === Node.Var
++     ? checkVarDeclaration(symbol.valueDeclaration!)
++     : checkStatement(symbol.valueDeclaration!);
+  }
+  error(expression.pos, 'Could not resolve ' + expression.text);
+  return errorType;
+```
+
+Now we have the generated types when type checking identifiers and `VariableStatement`s.
+
+## `Transformer`: removing variable types
+
+Before, the responsibility of the transformer was to just remove the `typename` of the variable declaration. We need to keep this transformation but now we need to go through all the declarations stored in `VariableStatement`.
+
+```tsx
+function transformStatement(statement: Statement): Statement[] {
+  switch (statement.kind) {
+    // ...
+    case Node.VariableStatement:
+      return [
+        {
+          ...statement,
+          declarationList: {
+            ...statement.declarationList,
+            declarations: statement.declarationList.declarations.map(
+              (declaration) => ({ ...declaration, typename: undefined }),
+            ),
+          },
+        },
+      ];
+  }
+}
+```
+
+The `VariableStatement` and the `VariableDeclarationList` are the same. But for each declaration, we need to remove the `typename`.
+
+And also remove the transformation for `Var` nodes from the `transformStatement` function as `Var` is not a statement anymore.
+
+## `Emitter`: outputting variable in JS
+
+This is a “not annotated” example of a variable declaration list:
+
+```tsx
+var var1 = 1, var2 = 2, var3 = 3;
+```
+
+We would have this JS output:
+
+```tsx
+var var1 = 1, var2 = 2, var3 = 3;
+```
+
+Or in a string format:
+
+```tsx
+"var var1 = 1, var2 = 2, var3 = 3;\n"
+```
+
+And for this annotated example of a variable declaration list:
+
+```tsx
+var n: number = 1, s: string = 'test', n2: number = 3;
+```
+
+We would have the same JS output (without the types):
+
+```tsx
+var var1 = 1, var2 = 2, var3 = 3;
+```
+
+And the same string format:
+
+```tsx
+"var var1 = 1, var2 = 2, var3 = 3;\n"
+```
+
+The first thing we need to do is to remove the `Var` node from the `emitStatement` function and handle the `VariableStatement` node. So we move the emit logic for `Var` into a new separate function:
+
+```tsx
+function emitVar(declaration: VariableDeclaration) {
+  const typestring = declaration.typename ? ': ' + declaration.name : '';
+  return `${declaration.name.text}${typestring} = ${emitExpression(
+    declaration.init,
+  )}`;
+}
+```
+
+And then we can use it to emit each variable declaration:
+
+```tsx
+function emitStatement(statement: Statement): string {
+  switch (statement.kind) {
+    // ...
+    case Node.VariableStatement:
+      return `var ${statement.declarationList.declarations
+        .map(emitVar)
+        .join(', ')}`;
+  }
+}
+```
+
+We just need to iterate through the declarations, generate the JS output and join them all separated by a comma.
+
+## Final words
+
+In this piece of content, my goal was to show the whole implementation of declaring multiple symbols for variables:
+
+- How to build tokens and structure the AST to support list of var declarations
+- How to type check lists
+- How to transform and emit variable declaration lists
+
+I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 5 months I've been studying, researching, and working on the TS compiler miniature.
+
+This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
+
+For additional content on compilers and programming language theory, have a look at the [Programming Language Design](/tags/programming-language-design) tag and the [Programming Language Research](https://github.com/imteekay/programming-language-research) repo.
+
+## Resources
+
+- [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [How the TypeScript Compiler Compiles](https://www.youtube.com/watch?v=X8k_4tZ16qU&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [mini-typescript](https://github.com/imteekay/mini-typescript)
+- [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+- [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
+- [Allow var statements to declare multiple symbols PR](https://github.com/imteekay/mini-typescript-fork/pull/9)
+
+---
+
+</SmoothRender>

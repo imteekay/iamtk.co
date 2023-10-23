@@ -7,16 +7,16 @@ export const projectsList = [
     rel: 'noopener noreferrer',
   },
   {
-    title: 'FP',
-    description: 'A Learning Path for Functional Programming',
-    link: 'https://github.com/imteekay/functional-programming-learning-path',
+    title: 'Programming Language Theory',
+    description: 'Studies on Programming Language Theory & Applied PLT',
+    link: 'https://github.com/imteekay/programming-language-theory',
     target: '_blank',
     rel: 'noopener noreferrer',
   },
   {
-    title: 'Programming Language Theory',
-    description: 'Studies on Programming Language Theory & Applied PLT',
-    link: 'https://github.com/imteekay/programming-language-theory',
+    title: 'FP',
+    description: 'A Learning Path for Functional Programming',
+    link: 'https://github.com/imteekay/functional-programming-learning-path',
     target: '_blank',
     rel: 'noopener noreferrer',
   },
@@ -35,10 +35,9 @@ export const projectsList = [
     rel: 'noopener noreferrer',
   },
   {
-    title: 'Monkey TS',
-    description:
-      "The Monkey programming language's compiler written in TypeScript",
-    link: 'https://github.com/imteekay/monkey-ts',
+    title: 'Crafting an Interpreter',
+    description: 'Crafting an interpreter/compiler with TypeScript',
+    link: 'https://github.com/imteekay/crafting-an-interpreter',
     target: '_blank',
     rel: 'noopener noreferrer',
   },
@@ -69,5 +68,20 @@ export const projectsList = [
     link: 'https://github.com/imteekay/advanced-typescript',
     target: '_blank',
     rel: 'noopener noreferrer',
+  },
+  {
+    title: 'Notes',
+    description: 'My notes from tech talks',
+    link: '/notes',
+  },
+  {
+    title: 'Digital Bookshelf',
+    description: "My digital bookshelf — all the books I've read",
+    link: '/bookshelf',
+  },
+  {
+    title: 'Microblog',
+    description: 'Micro posts about thoughts & reflections',
+    link: '/microblog',
   },
 ];

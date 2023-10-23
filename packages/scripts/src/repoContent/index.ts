@@ -1,9 +1,9 @@
-import path from 'path';
-import { writeFile } from 'fs/promises';
 import { Octokit } from '@octokit/core';
 import { Buffer } from 'buffer';
-import { marked } from 'marked';
 import * as dotenv from 'dotenv';
+import { writeFile } from 'fs/promises';
+import { marked } from 'marked';
+import path from 'path';
 
 dotenv.config();
 

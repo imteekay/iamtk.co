@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { projectsList } from './projectsList';
 import { List } from 'Base/components/List';
 
@@ -11,5 +12,3 @@ export const Projects: FC = () => (
     openNewTab
   />
 );
-
-export default Projects;

@@ -1,0 +1,483 @@
+<SmoothRender>
+
+This is the 4th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)**. Before, we had an [overview of the TypeScript architecture](/a-high-level-architecture-of-the-typescript-compiler), [how it uses the closure technique](/javascript-scope-closures-and-the-typescript-compiler), and a [deep dive into the compiler and its features](/a-deep-dive-into-the-typescript-compiler-miniature).
+
+Now we are going to learn about one of the first exercises I did: the implementation of string literals.
+
+The same way we did for numeric literals, variable declarations, and assignments, we will do this for strings: going all the way from the lexer creating tokens to the parser creating AST nodes to the type checker returning and comparing types.
+
+We didn't see this before but in this post, I want to share a bit more about the emitting phase and also a bonus part: how to report errors in the lexer phase for unterminated strings.
+
+---
+
+Before starting, let's see some examples to get familiar with possible strings we need to compile.
+
+```tsx
+var singleQuote = 'singleQuote';
+var doubleQuote = "doubleQuote";
+var escapedSingleQuote = 'escapedSingle\'Quote';
+var escapedDoubleQuote = "escapedDouble\"Quote";
+var escapedB = 'escaped\bB';
+var escapedT = 'escaped\tT';
+var escapedN = 'escaped\nN';
+var escapedR = 'escaped\rR';
+```
+
+It should handle
+
+- single quote strings
+- double quote strings
+- escaping single quote `\'`
+- escaping double quote `\"`
+- escaping `\b`
+- escaping `\t`
+- escaping `\n`
+- escaping `\r`
+
+There are probably more things we should care about when implementing strings but this is a good starting point.
+
+## `Lexer`: transforming source code into tokens
+
+In the lexer phase, we need to create tokens from the source code. Looking at the examples, what are the missing tokens we still need to implement?
+
+```tsx
+var variable = 'string';
+```
+
+- `var`: `Token.Var`
+- `variable`: `Token.Identifier`
+- `=`: `Token.Equals`
+- `'string'`: ?
+- `;`: `Token.Semicolon`
+
+So clearly the missing token is the string one. The first thing is to create this new token in the type of tokens.
+
+```tsx
+enum Token {
+  Function = 'Function',
+  Var = 'Var',
+  Type = 'Type',
+  Return = 'Return',
+  Equals = 'Equals',
+  NumericLiteral = 'NumericLiteral',
+  Identifier = 'Identifier',
+  Newline = 'Newline',
+  Semicolon = 'Semicolon',
+  Colon = 'Colon',
+  Whitespace = 'Whitespace',
+  String = 'String', // Here it's!!
+  Unknown = 'Unknown',
+  BOF = 'BOF',
+  EOF = 'EOF',
+}
+```
+
+Easy peasy!
+
+Now we need to scan the source code and create the new token for the string. Whenever we are in the lexer phase, we scan character by character. For a string, we expect it to start with a single or a double quote. This is the hint.
+
+```tsx
+if (['"', "'"].includes(s.charAt(pos))) {
+  // create the new string token
+}
+```
+
+To have the entire token, we need the `text`, that's the value of the string, and the `token`, that's basically `Token.String`.
+
+To have the `text`, we need to keep scanning the source code until we finish the string. We'll create a `scanString` function to handle that. So in the end, the code will be just:
+
+```tsx
+if (['"', "'"].includes(s.charAt(pos))) {
+  text = scanString();
+  token = Token.String;
+}
+```
+
+Now we need to figure out how to implement the `scanString` function.
+
+The first rule to scan the string is:
+
+- if the string starts with a single quote (`’`) character, it should end with a single quote character
+- if the string starts with a double quote (`”`) character, it should end with a double quote character
+
+So let's store the first character to be used later on.
+
+```tsx
+const quote = s.charCodeAt(pos);
+```
+
+That way we can compare it with the current character and decide if this is time to end the scan for the string.
+
+The whole idea of it is to have a `stringValue`, that's basically the value we want to return from this function and the `start`, which's the start position, so we can keep scanning the string and when we finish it, we just get the slice of the source code.
+
+```tsx
+stringValue += s.slice(start, pos);
+```
+
+To be able to keep scanning, we need to move the `pos` forward. This was inspired by the TypeScript source code. It's basically a `while (true)` loop. If it finds the end of the string, we break the loop. If not, we keep moving the `pos` forward by just calling `pos++;`.
+
+The first part of the implementation is like this:
+
+```tsx
+function scanString() {
+  const quote = s.charCodeAt(pos);
+  pos++;
+
+  let stringValue = '';
+  let start = pos;
+
+  while (true) {
+    const char = s.charCodeAt(pos);
+
+    if (char === quote) {
+      stringValue += s.slice(start, pos);
+      pos++;
+      break;
+    }
+
+    pos++;
+  }
+
+  return stringValue;
+}
+```
+
+We do `pos++;` after getting the quote because at that time, it is pointing to the single or double quote, the first character. We move the `pos` forward to keep reading the string.
+
+- It stores the quote (can be a single or a double quote)
+- It starts the `stringValue` with an empty string
+- It stores the start position
+- And finally, it performs the loop to keep scanning the string
+- It gets the character in the current position
+- If the char is the quote, we know it should stop the loop as it's the end of the string
+- It slices the source code to get the string value, increments the `pos`, and breaks the loop
+- And finally, it returns the `stringValue`
+
+This algorithm will work for most of the strings. There are still two cases we need to cover:
+
+- When the string never finishes and we should report an unterminated string literal error
+- When the string has characters like `\'`, `\"`, `\n` and we should “escape” those characters
+
+Let's do it.
+
+The first one is actually pretty simple. We just need to verify if the current position is greater than the length of the source code. We keep scanning each character for the string indefinitely until we find the end character (`”` or `'`). But if we don't find it and the source code finishes, we need to report the error.
+
+```tsx
+if (pos >= s.length) {
+  error(pos, 'Unterminated string literal');
+  stringValue += s.slice(start, pos);
+  break;
+}
+```
+
+The `error` is just a function to add the new error to the `Map` of errors. We send the position of the syntax error and the message to clarify what's the problem.
+
+We also return the unterminated string value and break the loop.
+
+This logic makes this example below passes our tests:
+
+```tsx
+var string = "a-string-literal-but-unterminated;
+```
+
+Now we have the logic for “normal” strings and unterminated strings. Let's handle the string with characters we need to escape.
+
+See this example:
+
+```tsx
+var escapedSingleQuote = "escapedSingle'Quote";
+```
+
+The whole idea of the algorithm is to split the logic into 3 parts
+
+- `'escapedSingle`: the normal scan
+- `\'`: handling a possible escape
+- `Quote'`: continue the normal scan
+
+And here's the code:
+
+```tsx
+if (char === CharCodes.backslash) {
+  stringValue += s.slice(start, pos);
+  stringValue += scanEscapeSequence();
+  start = pos;
+  continue;
+}
+```
+
+If the current character is a “backslash”, we slice the first part of the string and add the second part of the string, which's the escape sequence and then we continue so we can get the last part of the string and glue it to the `stringValue`.
+
+To scan the escape sequence, we just need to return the `\` character joined with the following character. To know which following character we need to return, we can use a switch case, but before doing that, we need to move the `pos` forward so we are pointing to the right character.
+
+```tsx
+function scanEscapeSequence() {
+  pos++;
+  const char = s.charCodeAt(pos);
+  pos++;
+
+  switch (char) {
+    case CharCodes.b:
+      return '\b';
+    case CharCodes.t:
+      return '\t';
+    case CharCodes.n:
+      return '\n';
+    case CharCodes.r:
+      return '\r';
+    case CharCodes.singleQuote:
+      return "'";
+    case CharCodes.doubleQuote:
+      return '"';
+    default:
+      return String.fromCharCode(char);
+  }
+}
+```
+
+Here it's.
+
+- It moves the `pos` forward to point to the right character
+- It gets the current character code
+- It moves the `pos` forward again just for the following steps of the scan
+- It returns the escape sequence based on the character code
+
+That's it. Here's the whole code for string scanning:
+
+```tsx
+function scanString() {
+  const quote = s.charCodeAt(pos);
+  pos++;
+
+  let stringValue = '';
+  let start = pos;
+
+  while (true) {
+    if (pos >= s.length) {
+      error(pos, 'Unterminated string literal');
+      stringValue += s.slice(start, pos);
+      break;
+    }
+
+    const char = s.charCodeAt(pos);
+
+    if (char === quote) {
+      stringValue += s.slice(start, pos);
+      pos++;
+      break;
+    }
+
+    if (char === CharCodes.backslash) {
+      stringValue += s.slice(start, pos);
+      stringValue += scanEscapeSequence();
+      start = pos;
+      continue;
+    }
+
+    pos++;
+  }
+
+  return stringValue;
+}
+```
+
+We now have the entire string implementation in the lexer phase. But before moving to the parser, there's a small thing we need to do in the lexer to be used in the future in the emitting phase. We should have a value called `firstChar`.
+
+```tsx
+let firstChar: string;
+
+// ...
+
+if (['"', "'"].includes(s.charAt(pos))) {
+  firstChar = s.charAt(pos);
+  text = scanString();
+  token = Token.String;
+}
+```
+
+That way, we know if the string is single quote based or double quote. This will be used in the “public” function called `isSingleQuote` returned by the lexer.
+
+```tsx
+isSingleQuote: () => firstChar === "'";
+```
+
+That will be used in the parser to create the right AST node and is crucial for the emitting phase. We'll look into that later on.
+
+## `Parsing`: creating AST nodes for string literals
+
+The parsing phase tends to be one of the hardest parts to implement new features but specifically for string literals, that's the other way around. Creating AST nodes for string literals is quite easy.
+
+When parsing literals, we just need to create a node with this structure:
+
+```tsx
+{
+  kind: Node.StringLiteral;
+  value: string;
+  pos: number;
+  isSingleQuote: boolean;
+}
+```
+
+So, if the current token is a `Token.String`, we should create this node and return it:
+
+```tsx
+if (tryParseToken(Token.String)) {
+  return {
+    kind: Node.StringLiteral,
+    value: lexer.text(),
+    pos,
+    isSingleQuote: lexer.isSingleQuote(),
+  };
+}
+```
+
+That's it! That's the whole implementation for the parsing phase.
+
+## `Type checker`: returning types for string literals
+
+The checking phase is also quite easy. For string literals, it should return the `stringType` type.
+
+This is implemented like this for now:
+
+```tsx
+const stringType: Type = { id: 'string' };
+```
+
+And then, when checking the type, if the expression is a `StringLiteral`, it should return this type we saw above:
+
+```tsx
+case Node.StringLiteral:
+  return stringType;
+```
+
+Simple as that.
+
+## `Emitter`: emitting JavaScript string literals
+
+The emitting phase is a new concept in this series. This is basically the act of outputting JavaScript from a TypeScript code, depending on your configuration.
+
+If you did run `tsc` in your project before and saw JavaScript files being generated, this is what the emitting phase is.
+
+If you recall, we implemented a function called `isSingleQuote` in the lexer phase and then created a new attribute called `isSingleQuote` for the AST node in the parsing phase. Now we will see why we should have it.
+
+The emitter should know if this is a single quote or a double quote to generate the right JavaScript string. When parsing string literals, we store only the value of the string, not if it's a single quote or a double quote string, so we use this extra attribute to give information to the emitter.
+
+```tsx
+function emitExpression(expression: Expression): string {
+  switch (expression.kind) {
+    // ...
+    case Node.StringLiteral:
+      return expression.isSingleQuote
+        ? `'${expression.value}'`
+        : `"${expression.value}"`;
+    // ...
+  }
+}
+```
+
+This is how we emit expression, specifically string literals. If it's a single quote string, it should be wrapped by `'`, otherwise, it should be wrapped by `"`.
+
+But that's not all we need. When having `\` characters in the string, we need to escape them to not generate broken code.
+
+To do that, we just need a function we will implement called `escapeString` and use it like this:
+
+```tsx
+function emitExpression(expression: Expression): string {
+  switch (expression.kind) {
+    // ...
+    case Node.StringLiteral:
+      return expression.isSingleQuote
+        ? `'${escapeString(expression.value, true)}'`
+        : `"${escapeString(expression.value, false)}"`;
+    // ...
+  }
+}
+```
+
+The implementation of this function is simple. We just need to do a replacement for `\` characters. For each type of string, need to add a new `\` character to escape it. The first step is to create a map for types of string.
+
+```tsx
+const escapedCharsMap = new Map(
+  Object.entries({
+    '\t': '\\t',
+    '\v': '\\v',
+    '\f': '\\f',
+    '\b': '\\b',
+    '\r': '\\r',
+    '\n': '\\n',
+    '\\': '\\\\',
+    '"': '\\"',
+    "'": "\\'",
+  }),
+);
+```
+
+It's a map with the string to be replaced as a key and the new string as the value. And to do the replacement, we are going to use a simple `String.replace` with the right regular expression. Here they are:
+
+```tsx
+const singleQuoteRegex = /[\\\'\t\v\f\b\r\n]/g;
+const doubleQuoteRegex = /[\\\"\t\v\f\b\r\n]/g;
+```
+
+Now we have everything to build the `escapeString` function:
+
+```tsx
+function escapeString(string: string, isSingleQuote: boolean) {
+  return string.replace(
+    isSingleQuote ? singleQuoteRegex : doubleQuoteRegex,
+    replacement,
+  );
+}
+
+function replacement(char: string) {
+  return escapedCharsMap.get(char) || char;
+}
+```
+
+The `escapeString` receives the string to be escaped and if it's a single quote or a double quote string. Depending on that, it uses the right regex.
+
+It calls the `replace` for the string and uses the `replacement` function, which is just a call for the `escapedCharsMap` we created before.
+
+That way, it finds the characters based on the regex and replaces them with the values in the map. Now we have the full implementation of the emitter for string literals.
+
+## Final words
+
+In this piece of content, my goal was to show the whole implementation of string literals:
+
+- What's required to implement in each phase of the compiler (lexer, parser, type checker, and emitter)
+- How to handle regular, unterminated, and escaped strings
+
+I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
+
+This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+
+For additional content on compilers and programming language theory, have a look at the [Programming Language Design](/tags/programming-language-design) tag and the [Programming Language Research](https://github.com/imteekay/programming-language-research) repo.
+
+## Resources
+
+### TS Compiler
+
+- [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [How the TypeScript Compiler Compiles](https://www.youtube.com/watch?v=X8k_4tZ16qU&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [mini-typescript](https://github.com/imteekay/mini-typescript)
+- [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+
+---
+
+### PRs & What helped the implementation
+
+- [Ecmascript SingleEscapeCharacter](https://262.ecma-international.org/13.0/#prod-SingleEscapeCharacter)
+- [Clarification on String literals issue](https://github.com/sandersn/mini-typescript/issues/15)
+- [Implementing String literals](https://github.com/imteekay/mini-typescript-fork/pull/4)
+- [Handling unterminated strings](https://github.com/imteekay/mini-typescript-fork/pull/12)
+- [Fix string literal test](https://github.com/imteekay/mini-typescript-fork/pull/14)
+
+---
+
+</SmoothRender>

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { itemStyle, timeWrapperStyle, linkStyle } from './style';
 
 export type PostPropType = { datetime: string; link: string; title: string };

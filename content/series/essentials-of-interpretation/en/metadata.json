@@ -1,0 +1,19 @@
+{
+  "title": "Essentials of Interpretation Series",
+  "description": "A documentation series about the interpreter, runtime semantics, and compilation",
+  "date": "2023-08-28",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/essentials-of-interpretation/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "a close up of a metal surface with writing on it",
+    "authorHref": "https://unsplash.com/@dilucidus",
+    "authorName": "Kai Dahms"
+  }
+}

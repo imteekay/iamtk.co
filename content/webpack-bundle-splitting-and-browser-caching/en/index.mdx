@@ -1,0 +1,323 @@
+<SmoothRender>
+
+Every time we deploy our SPA, we need to build it using webpack. So in every CI build, webpack generates all the JavaScript chunks we ship to production.
+
+If we don't change the JavaScript (or TypeScript) code related to that code, webpack keeps the same name and hashcode for that bundle. If we change it, as the bundle name + hashcode is based on its contents, it will change.
+
+Now, imagine our application is all merged into a huge bundle called `main.js`. Every time we change the code and ship it to production, webpack generates a new name + hashcode for the bundle and we need to invalidate that again, so the browser won't cache that bundle content anymore.
+
+If we split the bundle into smaller pieces, maybe we could improve the caching experience. Imagine that we:
+
+- bundle `main.js`
+- bundle `vendor.js`
+- bundle `home.js`
+
+Every time we update the code related to the `main.js` bundle, the `vendor.js` and the `home.js` bundles will keep intact. So the browser can still cache them and the user won't be penalized again and again every time we ship a new `main.js`-related change. The same if changing only the code related to `vendor.js` or `home.js` only.
+
+That's the whole idea. And I wanted to show how I designed the bundles to use most out of the browser caching.
+
+We'll see two main strategies: separate big dependencies into their own chunk and separate application code from vendor code (dependencies or third-party code).
+
+## Code split big dependencies
+
+The idea is to separate the biggest dependencies from the application code (the code we’ve written) and any other dependencies in the project. Why?
+
+- If we change the code (and we change it A LOT, every single day, multiple deploys): the biggest dependencies will still be cached in the browser. Only the bundle related to the application code will change.
+- If we change dependencies (add a new one or remove an existing one): the biggest dependencies will still be cached in the browser. Only the bundle related to the dependencies will change.
+
+To get all the biggest dependencies, I manually ran the webpack bundle analyzer and analyzed all dependencies in my application. Maybe we could have better tooling to extract that information from the generated bundle.
+
+Listing all the biggest dependencies and chunk split them. These are all of them grouped by “domain”:
+
+- react: `'react-dom'`, `'react-icons'`, `'react-router'`
+- redux: `'redux'`, `'react-redux'`, `'@reduxjs'`, `'redux-sentry-middleware'`, `'addon-redux'`
+- phone: `'react-phone-number-input'`, `'libphonenumber-js'`, `'country-flag-icons'`
+- analytics: `'@segment'`, `'@datadog'`
+- search: `'@findhotel/sapi'`, `'algoliasearch'`
+- experimentation: `'@optimizely'`, `'opticks'`
+- intl: ‘`@formatjs'`, `'intl-messageformat'`
+- aws: `'@aws-amplify'`, `'aws-amplify'`, `'@aws-sdk'`, `'@aws-crypto'`
+- fp: `'ramda/es'`, `'immer'`
+
+To implement that, we need to use the concept of “split chunks” of webpack (if you're using webpack version ≥4).
+
+Here we add the “cache group” for each “domain”, so “react” will be a cache group, “redux” another one, and so on.
+
+To form each group, we need deliberately get the specific dependencies from node modules. We do this by implementing a regular expression for the `test` function.
+
+```typescript
+const getNodeModulesRegExp = (deps: string[]) =>
+  new RegExp(`[\\/]node_modules[\\/]${deps.join('|')}`);
+```
+
+So if the react dependencies are all listed like this:
+
+```typescript
+const reactCacheGroupDeps = ['react-dom', 'react-icons', 'react-router'];
+```
+
+We should just pass it to the `getNodeModulesRegExp` to get only these dependencies:
+
+```typescript
+const ReactCacheGroup = {
+  name: 'react',
+  test: getNodeModulesRegExp(reactCacheGroupDeps),
+};
+```
+
+And this is how we form our first cache group. Now we are able to pass it to the split chunks object:
+
+```typescript
+const splitChunks = {
+  chunks: 'all',
+  cacheGroups: {
+    [cacheGroups.react.name]: cacheGroups.react,
+  },
+};
+```
+
+Now we just need to do the very same thing for all the other “domains”.
+
+All dependencies we need for each domain:
+
+```typescript
+const reactCacheGroupDeps = ['react-dom', 'react-icons', 'react-router'];
+const reduxCacheGroupDeps = [
+  'redux',
+  'react-redux',
+  '@reduxjs',
+  'redux-sentry-middleware',
+  'addon-redux',
+  'reselect',
+];
+
+const phoneCacheGroupDeps = [
+  'react-phone-number-input',
+  'libphonenumber-js',
+  'country-flag-icons',
+];
+
+const monitoringCacheGroupDeps = ['@segment', '@datadog'];
+const searchCacheGroupDeps = ['@findhotel/sapi', 'algoliasearch'];
+const experimentationCacheGroupDeps = ['@optimizely', 'opticks'];
+const intlCacheGroupDeps = ['@formatjs', 'intl-formatmessage'];
+const awsCacheGroupDeps = [
+  '@aws-amplify',
+  'aws-amplify',
+  '@aws-sdk',
+  '@aws-crypto',
+];
+
+const fpCacheGroupDeps = ['ramda/es', 'immer'];
+```
+
+All the cache groups:
+
+```typescript
+const ReactCacheGroup = {
+  name: 'react',
+  test: getNodeModulesRegExp(reactCacheGroupDeps),
+};
+
+const ReduxCacheGroup = {
+  name: 'redux',
+  test: getNodeModulesRegExp(reduxCacheGroupDeps),
+};
+
+const PhoneCacheGroup = {
+  name: 'phone',
+  test: getNodeModulesRegExp(phoneCacheGroupDeps),
+};
+
+const MonitoringCacheGroup = {
+  name: 'monitoring',
+  test: getNodeModulesRegExp(monitoringCacheGroupDeps),
+};
+
+const SearchCacheGroup = {
+  name: 'search-api',
+  test: getNodeModulesRegExp(searchCacheGroupDeps),
+};
+
+const ExperimentationCacheGroup = {
+  name: 'experimentation',
+  test: getNodeModulesRegExp(experimentationCacheGroupDeps),
+};
+
+const IntlCacheGroup = {
+  name: 'intl',
+  test: getNodeModulesRegExp(intlCacheGroupDeps),
+};
+
+const AWSCacheGroup = {
+  name: 'aws',
+  test: getNodeModulesRegExp(awsCacheGroupDeps),
+};
+
+const FPCacheGroup = {
+  name: 'fp',
+  test: getNodeModulesRegExp(fpCacheGroupDeps),
+};
+
+const cacheGroups = {
+  react: ReactCacheGroup,
+  redux: ReduxCacheGroup,
+  phone: PhoneCacheGroup,
+  monitoring: MonitoringCacheGroup,
+  search: SearchCacheGroup,
+  experimentation: ExperimentationCacheGroup,
+  intl: IntlCacheGroup,
+  aws: AWSCacheGroup,
+  fp: FPCacheGroup,
+};
+```
+
+And finally adding them to the split chunks object:
+
+```typescript
+const splitChunks = {
+  chunks: 'all',
+  cacheGroups: {
+    [cacheGroups.react.name]: cacheGroups.react,
+    [cacheGroups.redux.name]: cacheGroups.redux,
+    [cacheGroups.phone.name]: cacheGroups.phone,
+    [cacheGroups.monitoring.name]: cacheGroups.monitoring,
+    [cacheGroups.search.name]: cacheGroups.search,
+    [cacheGroups.experimentation.name]: cacheGroups.experimentation,
+    [cacheGroups.intl.name]: cacheGroups.intl,
+    [cacheGroups.aws.name]: cacheGroups.aws,
+    [cacheGroups.fp.name]: cacheGroups.fp,
+  },
+};
+```
+
+Now when running webpack to build our application, the `main.js` is reduced and became way smaller than its initial size. All dependencies can be cached in the browser now.
+
+## Code split the v**endor**
+
+Code splitting the vendor into its own bundle and separating it from the `main.js` chunk. It's super similar to how we did for the biggest dependencies.
+
+We just need to ensure we get all `node_modules` from `client`, `atlas`, and `core` (our internal packages) except all listed above as the biggest dependencies.
+
+As I explained, If we change the application code (and we change it A LOT), these dependencies (from the vendor) will still be cached in the browser. Only the bundle related to the application code (`main.js`) will change.
+
+We just need to add the new “vendor” cache group. But it looks slightly different because it need to get all node modules except the biggest dependencies.
+
+We do it by implementing a new function:
+
+```typescript
+const excludeNodeModulesRegExp = (deps: string[]) =>
+  new RegExp(`[\\/]node_modules[\\/](?!(${deps.join('|')})).*`);
+```
+
+This does exactly what we need: get all node modules and exclude all the dependencies we pass to it.
+
+Now we just need to get all dependencies we want to be excluded from this cache group. And we actually already have them. We just need to join them all together into one list.
+
+```typescript
+const vendorCacheGroupDeps = [
+  ...reactCacheGroupDeps,
+  ...reduxCacheGroupDeps,
+  ...phoneCacheGroupDeps,
+  ...monitoringCacheGroupDeps,
+  ...searchCacheGroupDeps,
+  ...experimentationCacheGroupDeps,
+  ...intlCacheGroupDeps,
+  ...awsCacheGroupDeps,
+  ...fpCacheGroupDeps,
+];
+```
+
+Create the vendor cache group:
+
+```typescript
+const VendorCacheGroup = {
+  name: 'vendor',
+  test: excludeNodeModulesRegExp(vendorCacheGroupDeps),
+};
+```
+
+Add it to the cache group object:
+
+```typescript
+const cacheGroups = {
+  // ...
+  vendor: VendorCacheGroup,
+};
+```
+
+And then just add the new cache group to the split chunks object:
+
+```typescript
+const splitChunks = {
+  chunks: 'all',
+  cacheGroups: {
+    // ...
+    [cacheGroups.vendor.name]: cacheGroups.vendor,
+  },
+};
+```
+
+All cache groups were created and the two strategies were implemented.
+
+To test it, take a look at the network tab on devtools.
+
+- In the size, you can see two values per bundle
+  - real size of the file transferred via the network
+  - size of the cached file (no download, no parsing)
+- All of these bundles will be cached in the user's browser until we clear the cache (meaning: add/remove/bump dependencies)
+
+<img
+  src="/webpack-bundle-splitting-and-browser-caching/cached-bundles.png"
+  loading="lazy"
+/>
+
+### Impact & Results
+
+Our `main.js` bundle was 19.72MB in total and 1.03MB gzipped. And we decreased its size to 6.68MB / 274.31KB (gzipped). Huge improvements.
+
+<SideBySideImages
+  images={[
+    '/webpack-bundle-splitting-and-browser-caching/old-bundle.png',
+    '/webpack-bundle-splitting-and-browser-caching/new-bundle.png',
+  ]}
+/>
+
+Improvements in the cache invalidation (less % of the cache will be invalidated)
+
+- relative CI: every deployment we are invalidating 94% of the cache
+
+<img
+  src="/webpack-bundle-splitting-and-browser-caching/old-cache-invalidation.png"
+  loading="lazy"
+/>
+
+- around ~14 - ~20% is invalidated now. At least 80% of the bundle will be cached in the user’s browser
+
+<img
+  src="/webpack-bundle-splitting-and-browser-caching/new-cache-invalidation-1.png"
+  loading="lazy"
+/>
+
+<img
+  src="/webpack-bundle-splitting-and-browser-caching/new-cache-invalidation-2.png"
+  loading="lazy"
+/>
+
+### Caveats & Issues
+
+For the output file, make sure we are running the `contenthash` so webpack can generate the same hashcode based on the contents of a bundle. This is an example:
+
+```typescript
+'static/js/[name].[contenthash].js';
+```
+
+Some known problems when using CRA + webpack 5 and `splitChunk`.
+
+- [Webpack 5 splitChunks breaks WebpackDevServer](https://stackoverflow.com/questions/71330484/webpack-5-splitchunks-breaks-webpackdevserver)
+- [yarn start fail in dev with CRA v5.0.0](https://github.com/facebook/create-react-app/issues/12156)
+- [react-scripts 5.0.0 build does not split resulting JavaScript bundle](https://github.com/facebook/create-react-app/issues/11963)
+
+---
+
+</SmoothRender>

@@ -1,0 +1,297 @@
+<SmoothRender>
+
+In this post, we'll see how different rendering architectures work. We'll talk about Client-Side Rendering (CSR), Server-Side Rendering (SSR), and Streaming SSR in React and how they impact performance on the web.
+
+First of all, how do we measure performance on the web? The current standard is the [core web vitals](https://github.com/imteekay/web-performance-research/tree/master/core-web-vitals) (take a look at the [web performance research](https://github.com/imteekay/web-performance-research) for more info). These metrics are:
+
+- [LCP](https://web.dev/lcp/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter): Largest Contentful Paint — measures the time it takes to render the main content
+- [FID](https://web.dev/fid/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter): First Input Delay — measures the latency of the first interaction a user has made with the page
+- [CLS](https://web.dev/cls?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter): Cumulative Layout Shift — measures the stability of the page
+
+But we'll also talk about other complementary performance metrics in this article. They are:
+
+- [TTFB](https://web.dev/ttfb/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter): Time To First Byte — measures the connection setup time and server responsiveness
+- [FCP](https://web.dev/fcp/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter): First Contentful Paint — measures the time it takes to render the first content
+- [INP](https://web.dev/inp/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter): Interaction to Next Paint — measures the latency of all interactions a user has made with the page
+- [TTI](https://web.dev/tti/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)**:** Time To Interactive - measures the time at which a page becomes interactive (events wired up, etc).
+
+With that context in mind, we dive deep into the rendering architectures and how each impacts the performance of a web app.
+
+## CSR — Client Side Rendering
+
+As the name suggests, CSR renders the content on the client. It means JavaScript will handle how the page is rendered, but how does it work?
+
+A common approach, perhaps popularized by [create-react-app](https://github.com/facebook/create-react-app), is the “single-page application”. It has a very thin layer of HTML, a file that has only the head, a body with a div (where the content is going to be placed), and the script tag, which will be responsible to make the browser download, parse, and execute the JavaScript bundle. While running JavaScript, React.js can render all related DOM nodes on the browser.
+
+This is what it usually looks like:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Undefined</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script src="/app.js" type="text/javascript"></script>
+  </body>
+</html>
+```
+
+This is the backbone of a Client-Side Rendering architecture. A small HTML file with the basic stuff and ready to make the browser uses JavaScript to render the actual content.
+
+This is how it works under the hood:
+
+<img
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/csr.png"
+  class="full"
+  loading="lazy"
+/>
+
+These are the steps of a CSR architecture:
+
+- The client (browser) sends a request
+- Connection happens
+- A minimal HTML/CSS is rendered
+- Scripts tags are executed: JavaScript files downloaded, parsed, and executed
+- Hydration: making the website interactive
+- Fetching data: it can be requested to any API — user API to get user data, content API (e.g. itinerary data if it's a hotel app, products data if it's an e-commerce kind of app)
+- Rendering happens and the content is rendered on the page (LCP will be measured only here, probably)
+
+Here we can see Client-Side Rendering has issues in some of these steps and because of them, it can translate into bad performance.
+
+The most problematic part is the need for browsers to download, parse, and execute the generated bundle and only then be able to fetch the data and finally render the content on the page.
+
+- The browser on the client handles the execution of JavaScript
+- The browser on the client handles data fetching
+- Rendering on the client happens _only_ after JavaScript is executed and data fetching is done
+
+The time it takes to handle this whole process is relied on the user's device. If it's more powerful and the internet connection is good, browsers can handle it well with a certain limit. It can be a huge performance bottleneck if the device is less powerful or the connection is not good (3g or worse).
+
+It's challenging to optimize LCP on a CSR application as it needs to have all these steps one after another to finally render the LCP element.
+
+The time between the start of JavaScript download to rendering the LCP can be huge, in some cases, it can even reach 16s on mobile 4g. Even if you optimize the application with [code-splitting](/web-performance-code-splitting-strategies-and-react-applications) and [browser caching](/webpack-bundle-splitting-and-browser-caching), it's challenging to get better Core Web Vitals (CWV). The problem increases the bigger your final bundle is. The more your application's bundle size increases, the more you hurt the final users’ experience.
+
+> “CSR cannot get good performance as measured by Core Web Vitals (CWV). SSR / SSG can, but it's not a guarantee. If good performance is important in your use-case then you will need to move beyond CSR.” — [Dan Shappir](https://twitter.com/DanShappir/status/1621646702066245634)
+
+Some of the benefits of Client-Side Rendering is that it doesn't really need a server to handle the application. You can easily setup the app and serve it on a CDN. Depending on how the app is structured and implemented, it has soft navigations which provide a better UX. But if performance is a bottleneck and is hurting the final user, we should think of a better architecture.
+
+## SSR — Server-Side Rendering
+
+Different than Client-Side Rendering, SSR handles rendering on the server, so everything (data fetching, generated HTML, etc) is done on the server and not on the client anymore. This is how it works under the hood:
+
+<img
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/ssr.png"
+  class="full"
+  loading="lazy"
+/>
+
+These are the SSR steps:
+
+- On the server
+  - Fetch data for the entire app: user data, content data
+  - Render the entire app to HTML and send it in the response
+- On the client
+  - Load the JavaScript code for the entire app
+  - _Hydration_: Connect the JavaScript logic to the server-generated HTML for the entire app
+
+This part is _important_: each step has to finish before the next step can start. There’s no concurrency/parallelism here. This means it begins with data fetching, then generate the HTML, renders the HTML on the client, loads the JavaScript bundle, and then hydrates the app. In this order, no parallelism.
+
+The performance gain is in these particular parts:
+
+- Data fetching happens on the server. With a more powerful machine, it handles this process faster than when it's done on the client, which relies on the user's device
+- SSR: generates HTML from react components on the server and sends that HTML to the client
+- As the page is already generated, the user can see the content before loading the JavaScript bundle.
+
+The server handles data fetching and the generation of static HTML and responds to the client's request pretty fast compared to what's done in Client-Side Rendering.
+
+An interesting piece of info about data fetching is:
+
+- Server-side data fetching can be faster than client-side data fetching, particularly for large datasets or complex queries. This is because servers often have more resources available than client devices, such as more processing power, memory, and faster internet connections.
+  - After the request is sent, we have the TTFB or the time it needs to wait for the server response and the content download ([resource](https://developer.chrome.com/docs/devtools/network/reference/?utm_source=devtools#timing-explanation?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter))
+  - **TTFB**: 1 roundtrip of latency and the time the server took to prepare the response. It relies on the server (in this case, SAPI) to respond to the website
+  - **Content download**: the total amount of time reading the response body. It relies on the machine (servers vs. browsers/user devices)
+
+Because of these facts, SSR can hugely improve the performance metrics of your application.
+
+To back it up, we have interesting case studies on the CSR → SSR migration and how it impacted performance:
+
+- [Optimizing Core Web Vitals on a Next.js app](https://web.archive.org/web/20221201233650/https://www.patterns.dev/posts/nextjs-casestudy/?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported 73% and 51% improvements for FCP and LCP, respectively when migrating the app to Next.js SSR.
+- [Dan Shappir - The Challenges and Pitfalls of Server Side Rendering](https://www.youtube.com/watch?v=O1wBZviW7yI&t=385s&ab_channel=YouGottaLoveFrontend) — reported 60% improvements on Time to visible (it’s similar to Start render and FCP metrics)
+- [Improving The Performance Of Wix Websites (Case Study) — Smashing Magazine](https://www.smashingmagazine.com/2021/11/improving-performance-wix-websites-case-study/#summary?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported an improvement from 17.55s to 2.55s in rendering the complete page. It doesn’t rely only on SSR though.
+
+But, as we saw, SSR also has some performance bottlenecks. It needs to wait for the entire app to fetch the data to be able to render the HTML. And it needs to do a whole DOM hydration. Some would say _[Hydration is a Pure Overhead](https://www.builder.io/blog/hydration-is-pure-overhead?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)_ and for others _[SSR was never the problem. The problem was, and still is, the client-side hydration_.](https://twitter.com/DanShappir/status/1495473032831324161)
+
+This can be a big problem for interactivity metrics like FID (First Input Delay) and INP (Interaction to Next Paint).
+
+What if we could be more granular about which parts of HTML we can flush rather than flush the entire HTML just once? We would flush smaller, granular chunks over time.
+
+- Static parts are rendered from the server without the need to wait for the data to be fetched (first flush)
+- Parts of the UI that are still waiting for the data to be fetched can render a loading indicator (spinner, skeleton)
+- and when the fetch is done, the server streams again (second flush) the missing (dynamic) parts.
+
+That’s called **Streaming SSR** and it's what we are going to see next.
+
+## **Streaming SSR**
+
+Streaming is all about parallelizing operations. The idea is to send HTML in chunks and progressively render it as it's received. So, we can parallelize work on the server and send small HTML chunks over time to the client.
+
+<SideBySideImages
+  images={[
+    '/the-evolution-of-react-rendering-architectures-and-web-performance/ssr-without-streaming.png',
+    '/the-evolution-of-react-rendering-architectures-and-web-performance/ssr-with-streaming.png',
+  ]}
+/>
+
+With that in mind, we can solve, or at least improve the two major problems of SSR:
+
+- _Rendering on the server is blocked by data_: it needs to wait for data fetching to be finished to respond to the request and render on the client, which offers a slower TTFB
+- _Hydration is a bottleneck_: making the website interactive depends on JavaScript, so the browser needs to download, parse, and execute JS before hydrating the entire page, making TTI (and other interactivity metrics like FID and INP) worse
+
+Streaming SSR tackles these two problems. Now that SSR can rely on [Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), we can send granular, smaller chunks of HTML to the client. Before it was blocked by data fetching, now we can render the “static” parts first _while_ the server handles data fetching. So, rendering the _first HTML chunk_ is pretty fast, which improves TTFB and FCP for the app.
+
+Then, when SSR finishes the data fetching, it can stream the second HTML chunk to the client. We now clearly draw the line between static HTML and HTML that relies on data fetching. But we can make it even more granular. If we have parts of the page that relies on different data, we can divide them into N pieces of HTML chunks and stream them back to the client whenever they're ready to be rendered.
+
+We all know hydration is a big performance bottleneck when it comes to SSR and Streaming SSR tries to fix/improve this problem by using something called Selective Hydration.
+
+SSR can stream HTML in chunks over time, so each HTML chunk delivered and rendered on the client can be hydrated right away. It doesn't need to wait for the second and the following chunks to be rendered.
+
+Imagine we took a strategy of dividing the HTML into 3 chunks:
+
+- static chunk
+- dynamic chunk relied on fetching an API (_fetch #1_)
+- dynamic chunk relied on another API (_fetch #2_)
+
+While _fetch #1_ and _fetch #2_ are running, the static chunk can be delivered to the client. When the browser receives it, it gets rendered and it starts hydrating this selected part (selective hydration!). Let's say _fetch #1_ finishes first. It gets rendered and hydrated on the client without the need to wait for _fetch #2_ to be finished. And then, _fetch #2_ gets rendered and hydrated after its related data is fetched.
+
+You can see that everything is now parallelized. But keep in mind that it has a caveat here. When each chunk gets to the browser, for it to be rendered and hydrated, the main thread needs to be free to handle the work. If it's busy, there's no way it gets worked on, unless it gets prioritized.
+
+Parallelizing hydration (with Selective Hydration), we get better TTI (and FID and INP) compared to “pure” SSR.
+
+So, in general, with Streaming SSR, we get:
+
+- Parallelized server rendering HTML in smaller chunks
+- Selective hydration for each streamed HTML chunk
+- Better TTFB and FCP because of the smaller HTML chunk streamed
+- Better TTI, FID, and INP because of selective hydration of the smaller chunks
+
+In terms of implementation, we use a nice abstraction called “React Suspense”.
+
+Let's think about an example to illustrate how this would work. Imagine an e-commerce.
+
+<img
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/e-commerce.png"
+  loading="lazy"
+/>
+
+- An e-commerce has a logo, a search bar, an avatar, filters, and a list of products
+- We can organize the components into “static” and “dynamic”
+  - Dynamic components are components that rely on data fetching like the products list and the avatar
+  - And the Static components are the ones that don't rely on data fetching and can just render the HTML right away, like all components besides the list of products and the avatar
+
+This is how it would look like in a “pure” SSR (or even a CSR) implementation:
+
+```jsx
+<Layout>
+  <Header>
+    <Logo />
+    <SearchBar />
+    <Avatar />
+  <Header>
+  <Filters />
+  <Products />
+</Layout>
+```
+
+It's an “all or nothing” approach. It needs to fetch the User API for the data to the `<Avatar />` component and the Products API for the data to the `<Products />` component before rendering and hydrating everything.
+
+The Streaming SSR with the Suspense boundary would look like this:
+
+```jsx
+<Layout>
+  <Header>
+    <Logo />
+    <SearchBar />
+    <Suspense fallback={<AvatarSkeleton />}>
+      <Avatar />
+    </Suspense>
+  <Header>
+  <Filters />
+  <Suspense fallback={<ProductsSkeleton />}>
+    <Products />
+  </Suspense>
+</Layout>
+```
+
+While the data fetching for the user and the products are running on the server, everything besides the `<Avatar />` and the `<Products />` components will be rendered. For `<Avatar />` and `<Products />` the server will fall back to the placeholder. In this case, they are skeleton loaders.
+
+<img
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/static-rendered.png"
+  loading="lazy"
+/>
+
+And then the client can already work on the hydration of the components rendered on the browser while the data fetching is still running on the server. It doesn't need to wait for the data fetching to be finished.
+
+<img
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/static-hydrated.png"
+  loading="lazy"
+/>
+
+And finally, when the data fetch is done, the products and the avatar are rendered and hydrated on the client.
+
+<img
+  src="/the-evolution-of-react-rendering-architectures-and-web-performance/dynamic-rendered-hydrated.png"
+  loading="lazy"
+/>
+
+With this approach, we can now render the static parts of the page running the data requests in parallel. It can also use Selective Hydration to handle the hydration of these static parts. It doesn't need to wait for anything else.
+
+When the data is ready, the server can stream back the HTML and it will be rendered and hydrated on the client.
+
+All this with a simple abstraction called Suspense.
+
+It's important to notice that Suspense is not a feature exclusive to Streaming SSR. Suspense is a mechanism to show a fallback for a certain part of the application while it's waiting for the data. When the data is ready, the fallback UI (spinners, skeletons) will be updated with the actual content. So it can also be used in Client-Side Rendering.
+
+## Performance impact on the web
+
+There's a collection of interesting [performance case studies](https://github.com/imteekay/web-performance-research/tree/master/case-studies), and here I list ones that talk about rendering architectures and how they optimized performance for their app.
+
+- [Optimizing Core Web Vitals on a Next.js app](https://www.patterns.dev/posts/nextjs-casestudy?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported 73% and 51% improvements for FCP and LCP, respectively when migrating the app to Next.js SSR.
+- [Dan Shappir - The Challenges and Pitfalls of Server Side Rendering](https://www.youtube.com/watch?v=O1wBZviW7yI&t=385s&ab_channel=YouGottaLoveFrontend&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported 60% improvements on Time to visible (it’s similar to Start render and FCP metrics)
+- [Improving The Performance Of Wix Websites (Case Study) — Smashing Magazine](https://www.smashingmagazine.com/2021/11/improving-performance-wix-websites-case-study/#summary?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — reported an improvement from 17.55s to 2.55 in rendering the complete page. It doesn’t rely only on SSR though.
+- [How QuintoAndar increased conversion rates and pages per session by improving page performance](https://web.dev/quintoandar/#results?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter) — 39% improvement on LCP & 39% improvement on TTI
+
+## Resources
+
+### Rendering Architecture
+
+- [The Future (and the Past) of the Web is Server Side Rendering](https://deno.com/blog/the-future-and-past-is-server-side-rendering?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [The Benefits of Server Side Rendering Over Client Side Rendering](https://medium.com/walmartglobaltech/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [What Is Server-side Rendering And How Does It Improve Site Speed?](https://www.debugbear.com/blog/server-side-rendering?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Streaming server-side rendering (SSR)](https://shopify.github.io/hydrogen-v1/tutorials/streaming-ssr?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Rendering on the Web](https://web.dev/rendering-on-the-web?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Advanced Rendering Patterns](https://www.youtube.com/watch?v=PN1HgvAOmi8&ab_channel=RealWorldReact&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+
+### React
+
+- [New Suspense SSR Architecture in React 18](https://github.com/reactwg/react-18/discussions/37?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Partial Hydration](https://github.com/facebook/react/pull/14717?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [The future of rendering in React](https://prateeksurana.me/blog/future-of-rendering-in-react?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Suspense: React Doc](https://beta.reactjs.org/reference/react/Suspense?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Suspense and Error Boundaries in React 18](https://www.youtube.com/watch?v=h_vVsPwvcsg?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [When To Fetch: Remixing React Router](https://www.youtube.com/watch?v=95B8mnhzoCM&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A guide to streaming SSR with React 18](https://blog.logrocket.com/streaming-ssr-with-react-18?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Streaming and Suspense](https://beta.nextjs.org/docs/data-fetching/streaming-and-suspense?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+
+### Web Performance
+
+- [Web Performance Research](https://github.com/imteekay/web-performance-research?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Optimizing Core Web Vitals on a Next.js app](https://www.patterns.dev/posts/nextjs-casestudy?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Dan Shappir - The Challenges and Pitfalls of Server Side Rendering](https://www.youtube.com/watch?v=O1wBZviW7yI&t=385s&ab_channel=YouGottaLoveFrontend&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Improving The Performance Of Wix Websites (Case Study) — Smashing Magazine](https://www.smashingmagazine.com/2021/11/improving-performance-wix-websites-case-study/#summary?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [How QuintoAndar increased conversion rates and pages per session by improving page performance](https://web.dev/quintoandar/#results?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+
+---
+
+</SmoothRender>

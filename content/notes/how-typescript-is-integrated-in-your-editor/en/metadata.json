@@ -1,0 +1,19 @@
+{
+  "title": "How TypeScript is integrated in your editor",
+  "description": "Notes: How TypeScript is integrated in your editor",
+  "date": "2023-10-07",
+  "tags": [
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/notes/starting-a-dedicated-web-performance-team.png",
+    "width": "640",
+    "height": "334",
+    "alt": "The cover of sarah's talk",
+    "authorHref": "",
+    "authorName": ""
+  }
+}

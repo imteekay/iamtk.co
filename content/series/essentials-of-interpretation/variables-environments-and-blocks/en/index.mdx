@@ -1,0 +1,617 @@
+<SmoothRender>
+
+These notes were taken from the [Essentials of Interpretation](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation) course by [Dmitry Soshnikov](https://dmitrysoshnikov.teachable.com/) and part of the [Essentials of Interpretation series](/series/essentials-of-interpretation).
+
+---
+
+In the [previous post](/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions), we talked about self-evaluating expressions like numbers, strings, and simple addition expressions. In this post, we'll take a look at more complex expressions like handling recursive expressions, variables and environments, and blocks.
+
+## Complex, recursive math operations
+
+Before, the expression looked like:
+
+```jsx
+Exp ::= Number
+      | String
+      | [+ Number, Number]
+```
+
+But that way, we handle only numbers for the addition expression. We want to be able to handle more complex examples like the addition of additions. Take a look at this code:
+
+```jsx
+3 + 2 + 5; // 10
+```
+
+In our tests, this will be represented as:
+
+```jsx
+assert.strictEqual(eva.eval(['+', ['+', 3, 2], 5]), 10);
+```
+
+Take a look again at the test above. We can see that all of the expressions are already covered on the `eval` function. The `number` and the `+` expressions are already implemented.
+
+What we want to have now is the addition expression to handle expressions and not only numbers.
+
+```jsx
+Exp ::= Number
+      | String
+      | [+ Exp, Exp]
+```
+
+With that, we can understand that it turns into a recursive approach. The base case for now is if the expression is a number or a string.
+
+To implement this recursive approach, we just need to call the eval function again but now pass the expression we want to evaluate.
+
+```jsx
+class Eva {
+  eval(exp) {
+    if (isNumber(exp)) {
+      return exp;
+    }
+
+    if (this.isString(exp)) {
+      return exp.slice(1, -1);
+    }
+
+    if (exp[0] === '+') {
+      return this.eval(exp[1]) + this.eval(exp[2]);
+    }
+
+    throw 'Unimplemented';
+  }
+}
+```
+
+We can pretty much do the same thing for all the other operations like `*`, `/`, and `-`.
+
+```jsx
+class Eva {
+  eval(exp) {
+    if (isNumber(exp)) {
+      return exp;
+    }
+
+    if (this.isString(exp)) {
+      return exp.slice(1, -1);
+    }
+
+    if (exp[0] === '+') {
+      return this.eval(exp[1]) + this.eval(exp[2]);
+    }
+
+    if (exp[0] === '-') {
+      return exp[2]
+        ? this.eval(exp[1]) - this.eval(exp[2])
+        : -this.eval(exp[1]);
+    }
+
+    if (exp[0] === '*') {
+      return this.eval(exp[1]) * this.eval(exp[2]);
+    }
+
+    if (exp[0] === '/') {
+      return this.eval(exp[1]) / this.eval(exp[2]);
+    }
+
+    throw 'Unimplemented';
+  }
+}
+```
+
+And we add some tests to make sure the code really works.
+
+```jsx
+// multiplication
+assert.strictEqual(eva.eval(['+', ['*', 3, 2], 5]), 11);
+
+// subtraction
+assert.strictEqual(eva.eval(['+', ['-', 3, 2], 5]), 6);
+
+// division
+assert.strictEqual(eva.eval(['+', ['/', 2, 2], 5]), 6);
+```
+
+## Variable: Declaration, Assignment & Lookup
+
+Let's first see the syntax of the variable declaration and assignment.
+
+```jsx
+(var foo 10)
+(set foo 100)
+foo
+```
+
+Before implementing variables, we first need to understand the concept of environments. An **environment** is a repository of variables and functions defined in a scope.
+
+For its implementation, the environment structure has the environment record and a reference to the parent environment. Let's illustrate how it works:
+
+![Global and local scope based on environments](/series/essentials-of-interpretation/variables-environments-and-blocks/envs.png)
+
+Environment 1 defines the variables `foo` and `bar` and it doesn't have a parent environment. Environment 2 defines `x`, `y`, and `z`, and its parent is Environment 1.
+
+It means that Environment 2 has access to not only `x`, `y`, and `z`, but also `foo` and `bar`. Environment 1 has access only to `foo` and `bar`, it doesn't know anything about `x`, `y`, and `z`.
+
+The interface of an environment should have three main operations:
+
+- Define a variable
+- Assign a new value to a variable
+- Lookup a variable
+
+So now let's implement the environment and its API. The first implementation will cover how we define a variable in the environment.
+
+```jsx
+class Environment {
+  constructor(record = {}, parent = null) {
+    this.record = record;
+    this.parent = parent;
+  }
+
+  define(name, value) {
+    this.record[name] = value;
+    return value;
+  }
+}
+```
+
+It's a class that has two properties: the `record` (the object we will store all the variables and functions) and the `parent` (that's just a reference for a parent environment).
+
+When instantiated, the environment doesn't have a parent and the initial value of the record is an empty object.
+
+In the `define` method implementation, we receive the name of the variable and its value. We store it in the record, the `name` as the `key` and the `value` as the object `value`.
+
+We also return the `value` as in Eva, everything is an expression so every operation will produce a value.
+
+Every programming language has the concept of the global environment which contains defined variables and functions.
+
+In Eva, the global environment will be stored when Eva is instantiated.
+
+```jsx
+class Eva {
+  constructor(global = new Environment()) {
+    this.global = global;
+  }
+}
+```
+
+In the `eval`, the default environment will be the global one.
+
+```jsx
+class Eva {
+  constructor(global = GlobalEnvironment) {
+    this.global = global;
+  }
+
+  eval(exp, env = this.global) {
+    // ...
+  }
+}
+```
+
+Before going into the implementation of the variable declaration, let's write our test first.
+
+```jsx
+assert.strictEqual(eva.eval(['var', 'x', 10]), 10);
+assert.strictEqual(eva.eval(['var', 'y', 100]), 100);
+```
+
+If we get the first line of this test, we know that the variable declaration expression has three parts:
+
+- `[0]`: `var`
+- `[1]`: `x`
+- `[2]`: `10`
+
+And it always produces a value because everything is an expression.
+
+Now we can implement the variable declaration and it's pretty simple.
+
+```jsx
+class Eva {
+  eval(exp, env = this.global) {
+    // ...
+
+    if (exp[0] === 'var') {
+      const [_, name, value] = exp;
+      return env.define(name, value);
+    }
+
+    // ...
+  }
+}
+```
+
+If the first part of the expression is `var`, we expect it to be a variable declaration, so the second and third parts of the expressions are the `name` and the `value`. We extract them from the expression and just call the `env.define` passing the right values.
+
+The second part of the variables is the lookup. Let's see this test:
+
+```jsx
+assert.strictEqual(eva.eval(['var', 'x', 10]), 10);
+assert.strictEqual(eva.eval('x'), 10);
+assert.strictEqual(eva.eval(['var', 'y', 100]), 100);
+assert.strictEqual(eva.eval('y'), 100);
+```
+
+After declaring variables, we can access them. Now let's implement the evaluation:
+
+```jsx
+class Eva {
+  eval(exp, env = this.global) {
+    // ...
+
+    if (this._isVariableName(exp)) {
+      return env.lookup(exp);
+    }
+
+    _isVariableName(exp) {
+      return typeof exp === 'string' && /^[+\-*/<>=a-zA-Z0-9_]*$/.test(exp);
+    }
+
+    // ...
+  }
+}
+```
+
+We first check if the expression can be a variable name. It needs to be a string, and it should start with a letter that can be followed by letters, numbers, and underscore.
+
+If it passes the first check, we just need to call the `env.lookup(exp)` to get the variable from the environment record.
+
+The last part of the lookup is the implementation of the Environment's `lookup` method.
+
+```jsx
+class Environment {
+  // ...
+
+  lookup(name) {
+    if (!this.record.hasOwnProperty(name)) {
+      throw new ReferenceError(`Variable "${name}" is not defined.`);
+    }
+
+    return this.record[name];
+  }
+
+  // ...
+}
+```
+
+It receives the `name` of the searched variable. The first check is if we can find the variable's name in the record. If we don't find it, we should throw an error saying that the variable is not defined.
+
+Otherwise, we can get the value from that variable by accessing the `record`.
+
+## Pre defined variables
+
+In programming languages, we can have built-in variables defined in the global environment, for example, `null` and `boolean` values, and in the case of Eva, we are also going to have its `VERSION`.
+
+To make it available as built-in variables, we just need to pass these values to the global environment when creating it and it will be defined in the record storage.
+
+```jsx
+const GlobalEnvironment = new Environment({
+  null: null,
+  true: true,
+  false: false,
+  VERSION: '0.1',
+});
+
+class Eva {
+  constructor(global = GlobalEnvironment) {
+    this.global = global;
+  }
+
+  eval(exp, env = this.global) {
+    // ...
+  }
+}
+```
+
+So now if we try to access these values, they will already be pre-installed in the language.
+
+Let's see the following test:
+
+```jsx
+assert.strictEqual(eva.eval('VERSION'), '0.1');
+assert.strictEqual(eva.eval(['var', 'isTrue', 'true']), true);
+```
+
+But with that test, we get an error that:
+
+```jsx
+'true' !== true;
+```
+
+We get this error because every time we store (or define) the variable value in the environment record, we need to evaluate it, so the eval can handle any complex expression and it can store the correct value in the variable.
+
+```jsx
+class Eva {
+  eval(exp, env = this.global) {
+    // ...
+
+    if (exp[0] === 'var') {
+      const [_, name, value] = exp;
+      return env.define(name, this.eval(value, env));
+    }
+
+    // ...
+  }
+}
+```
+
+This is interesting because, now we can evaluate complex expressions before storing the value in the variable. See the following expression:
+
+```js
+assert.strictEqual(eva.eval(['var', 'z', ['+', 2, 2]]), 4);
+assert.strictEqual(eva.eval('z'), 4);
+```
+
+`(+ 2 2)` will be evaluated to `4` before storing into `z`, so when looking up `z`, we get the value `4`.
+
+## Blocks: Expression Groups and Nested Scopes
+
+The two main purposes of blocks are to group expressions and create new environments for that block of code.
+
+In Eva, we define the blocks using the `begin` keyword and within it, we can have multiple expressions.
+
+```jsx
+(begin
+  (var x 10)
+  (var y 20)
+  (+ (* x 10) y))
+```
+
+As you see above, we can have multiple expressions within the block like declaring variables, accessing them, and performing operations.
+
+The second feature of blocks is that they create a new environment for the expressions. So we start to understand the concept of scope in the programming language.
+
+```jsx
+(var x 10)
+(print x) // 10
+
+(begin
+  (var x 20)
+  (print x)) // 20
+
+(print x) // 10
+```
+
+In this example, we create a variable `x` in the global environment (scope) and print it. It should produce the value `10`.
+
+Then we create a block, and because of that, we now have a new environment and a new scope. So this new variable `x` is defined in the block scope and is only accessible in this environment.
+
+If we print it, it should produce the value `20`, not `10`.
+
+But the most interesting part is the fact that, when creating a new variable in the block environment, it doesn't change anything related to the parent environment. So, if we print the value `x` after the block expression, it should produce `10` again.
+
+Let's create a test so we can build the block expression based on that.
+
+```jsx
+test(
+  eva,
+  `(begin
+    (var x 10)
+    (var y 20)
+    (+ (* x y) 30))`,
+  230,
+);
+```
+
+We have
+
+- The `begin` that defines the block expression
+- The first expression is just defining the `x` variable
+- The second expression defines the `y` variable
+- And the third is a calculation
+- The block expression should return the produced value from the last expression which is `230`
+
+In the `eval`, we first check if the expression starts with a `begin`, and if so, we evaluate the block.
+
+```jsx
+class Eva {
+  eval(exp, env = this.global) {
+    // ...
+
+    if (exp[0] === 'begin') {
+      return this._evalBlock(exp, env);
+    }
+
+    // ...
+  }
+}
+```
+
+It should call a “private” function called `evalBlock` that will do the work for us.
+
+The implementation is pretty simple, let's take a look at it:
+
+```jsx
+_evalBlock(block, env) {
+  let result;
+  const [_tag, ...expressions] = block;
+
+  expressions.forEach((exp) => {
+    result = this.eval(exp, env);
+  });
+
+  return result;
+}
+```
+
+First, we need to get all the expressions that are within the block, iterate through them, call `eval` for each of them, and store the last value in the result. The value produced from the last expression should be the returning value of the block.
+
+That's a simple example of a block expression. We want to see the scope feature in action.
+
+```jsx
+(var x 10)
+(print x) // 10
+
+(begin
+  (var x 20)
+  (print x)) // 20
+
+(print x) // 10
+```
+
+To test a code similar to the above example, we create the following test:
+
+```jsx
+test(
+  eva,
+  `(begin
+    (var x 10)
+    (begin
+      (var x 10)
+      x)
+    x)`,
+  10,
+);
+```
+
+A block inside a block. But, the nested block should not have any side effect on the global scope.
+
+The whole idea here is to use the parent link or the parent reference as we talked about before. The nested block will be created and it will point the parent link to the current environment it's being defined.
+
+If you remember, when we created the `Environment`, we already defined the parent link as `null`.
+
+```jsx
+class Environment {
+  constructor(record = {}, parent = null) {
+    this.record = record;
+    this.parent = parent;
+  }
+}
+```
+
+This works well for the global environment (it doesn't have a parent scope). But for blocks and nested blocks, we should store the parent reference.
+
+The implementation is simple. We just need to create a new environment and pass the current environment, as the parent, to the newly created environment.
+
+```jsx
+class Eva {
+  eval(exp, env = this.global) {
+    // ...
+
+    if (exp[0] === 'begin') {
+      const blockEnv = new Environment({}, env);
+      return this._evalBlock(exp, blockEnv);
+    }
+
+    // ...
+  }
+}
+```
+
+Now the tests pass! 🎉
+
+The next part of blocks is that this example below
+
+```jsx
+test(
+  eva,
+  `(begin
+    (var x 10)
+    (var result (begin
+                  (var y (+ x 10)
+                  y)))
+    result)`,
+  20,
+);
+```
+
+- We have a block
+- It defines the variable `x`
+- It defines the variable `result` with the produced value from an inner block
+- The inner block will define the variable `y` based on a sum and return it
+- And finally, the block produces the result value
+
+The problem now is that every time we create a new environment for an inner block. This inner block doesn't have access to the parent block. In other words, the inner block can't access variables and values created in the parent environment.
+
+In this case, the inner block doesn't have access to `x`.
+
+The implementation we need is the so-called identifier resolution. We first try to find it in its own scope, if it doesn't find it, it will recursively try to find it in parent scopes.
+
+```jsx
+class Environment {
+  // ...
+
+  lookup(name) {
+    return this.resolve(name).record[name];
+  }
+
+  resolve(name) {
+    if (this.record.hasOwnProperty(name)) {
+      return this;
+    }
+
+    if (this.parent == null) {
+      throw new ReferenceError(`Variable "${name}" is not defined.`);
+    }
+
+    return this.parent.resolve(name);
+  }
+
+  // ...
+}
+```
+
+The `resolve` method will take care of the identifier resolution. It tries to find the variable in the current environment. If it finds it, it returns the environment.
+
+If it's not the case, we need to try to find it in the parent scope. If there's no parent, we should just throw an error because it means we can't really find this variable defined in any known environment.
+
+If we have the parent, we need to recursively call the `resolve` method for the parent to try to find the variable for us.
+
+In the `lookup`, we can just call the `resolve` passing the name of the variable we are looking for. It will throw an error or return the environment for that variable.
+
+Then we just need to get the record and call the name to get the variable value.
+
+The next part is about assigning new values to a variable, even if it's not from the same environment.
+
+Take a look at this example:
+
+```jsx
+test(
+  eva,
+  `(begin
+    (var x 10)
+    (begin
+      (set x 100))
+    x)`,
+  100,
+);
+```
+
+There's the declaration of variable `x`, and in the inner block, we set it to a different value. The returned value from `x` should be now `100` and not `10` anymore.
+
+First, we need to add support for the `set` instruction in the interpreter.
+
+```jsx
+if (exp[0] === 'set') {
+  const [_, ref, value] = exp;
+  return env.assign(ref, this.eval(value, env));
+}
+```
+
+It's pretty similar to the variable declaration, but now, instead of calling the `define` method, we call the `assign` method from the environment.
+
+That way, it will try to find the variable in the current environment (or in its parent scope) and assign the new value to that variable.
+
+Let's implement the `assign` method:
+
+```jsx
+assign(name, value) {
+  this.resolve(name).record[name] = value;
+  return value;
+}
+```
+
+The `assign` method will resolve the variable and assign a new value to this variable. Then it just returns the value assigned.
+
+## Final words
+
+In this third post of the [series](/series/essentials-of-interpretation), we talked about scoping: how we define, store, and assign variables and how we use environments and blocks.
+
+Here are some resources you can use:
+
+- [Programming Language Research: a bunch of resources about my studies on Programming Language Theory & Applied PLT](https://github.com/imteekay/programming-language-research)
+- [Essentials of Interpretation repo](https://github.com/imteekay/essentials-of-interpretation)
+- [Essentials of Interpretation course](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation)
+- [Compiler Engineering courses](https://dmitrysoshnikov.teachable.com)
+
+---
+
+</SmoothRender>

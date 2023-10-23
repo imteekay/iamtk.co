@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: React — Fetch data from an API",
+  "description": "How can I fetch data from an API in React?",
+  "date": "2022-11-28",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/data-fetching.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "a dark picture",
+    "authorHref": "https://unsplash.com/@jeremybishop",
+    "authorName": "Jeremy Bishop"
+  }
+}

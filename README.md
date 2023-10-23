@@ -3,26 +3,11 @@
 # TK
 
 ↳ [iamtk.co](https://www.iamtk.co)\
-↳ [Features Roadmap](https://github.com/imteekay/tk/projects/3)
+↳ [Feature Roadmap](https://github.com/imteekay/tk/projects/3)
 
-## Web Performance Roadmap
+## Licenses
 
-Get content from `web-performance-research` repo and update the `data/web-performance-topics-content.ts` file.
-
-```bash
-cd packages/scripts
-yarn build:repo-content
-```
-
-## Microblog
-
-Writing and publishing a new micropost
-
-- [Quote Image](https://quoootes.com/studio)
-  - Anton
-  - background color: black
-  - line spacing: 1.2
-- [Image Editor](https://pixlr.com/x/#editor)
-  - Crop image: remove top and bottom
+- The source code of iamtk.co is licensed under [MIT](./LICENSE)
+- The images, text and assets are licensed under [BY-NC-SA 4.0](./LICENSE.by-nc-sa-4.0.md)
 
 </samp>

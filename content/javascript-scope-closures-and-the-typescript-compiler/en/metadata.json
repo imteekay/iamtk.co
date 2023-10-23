@@ -1,0 +1,23 @@
+{
+  "title": "JavaScript scope, Closures, and the TypeScript compiler",
+  "description": "Understand how the TypeScript compiler uses closures",
+  "date": "2023-06-04",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/javascript-scope-closures-and-the-typescript-compiler/cover.jpg",
+    "width": "640",
+    "height": "959",
+    "alt": "grayscale photo of person running in panel paintings",
+    "authorHref": "https://unsplash.com/@raphi_rawr",
+    "authorName": "Raphael Renter"
+  }
+}

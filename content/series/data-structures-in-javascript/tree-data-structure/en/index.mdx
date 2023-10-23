@@ -1,0 +1,727 @@
+<SmoothRender>
+
+When you first learn to code, it's common to learn arrays as the "main data structure."
+
+Eventually, you will learn about `hash tables` too. If you are pursuing a Computer Science degree, you have to take a class on data structure. You will also learn about [`linked lists`](/series/data-structures-in-javascript/linked-list-data-structure), [`queues`](/series/data-structures-in-javascript/queue-data-structure), and [`stacks`](/series/data-structures-in-javascript/stack-data-structure). Those data structures are called “linear” data structures because they all have a logical start and a logical end.
+
+When we start learning about `trees` and `graphs`, it can get really confusing. We don't store data in a linear way. Both data structures store data in a specific way.
+
+This post is to help you better understand the Tree Data Structure and to clarify any confusion you may have about it.
+
+In this article, we will learn:
+
+- What is a tree
+- Examples of trees
+- Its terminology and how it works
+- How to implement tree structures in code.
+
+Let's start this learning journey. :)
+
+### Definition
+
+When starting programming, it is common to have a better understanding of linear data structures than data structures like trees and graphs.
+
+Trees are well-known as a non-linear data structure. They 't store data in a linear way. They organize data hierarchically.
+
+### Let's dive into real life examples!
+
+What do I mean when I say in a hierarchical way?
+
+Imagine a family tree with relationships from all generation: grandparents, parents, children, siblings, etc. We commonly organize family trees hierarchically.
+
+![](https://cdn-images-1.medium.com/max/1600/1*MasdC5DmucEU2abIXQe45Q.jpeg)
+
+The above drawing is my family tree. `Tossico`, `Akikazu`, `Hitomi,` and `Takemi` are my grandparents.
+
+`Toshiaki` and `Juliana` are my parents.
+
+`TK`, `Yuji`, `Bruno`, and `Kaio` are the children of my parents (me and my brothers).
+
+An organization's structure is another example of a hierarchy.
+
+![](https://cdn-images-1.medium.com/max/1600/1*GsBCmW5E1GuJ3MpH3Zz0Ew.jpeg)
+
+In HTML, the Document Object Model (DOM) works as a tree.
+
+![](https://cdn-images-1.medium.com/max/1600/1*dLXUdR4NuIZG8GJdu_Cinw.jpeg)
+
+The `HTML` tag contains other tags. We have a `head` tag and a `body` tag. Those tags contains specific elements. The `head` tag has `meta` and `title` tags. The `body` tag has elements that show in the user interface, for example, `h1`, `a`, `li`, etc.
+
+### A technical definition
+
+A `tree` is a collection of entities called `nodes`. Nodes are connected by `edges`. Each `node` contains a `value` or `data`, and it may or may not have a `child node`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*3WN7tIQ-kNBQmY9MgvTuOA.jpeg)
+
+The `first node` of the `tree` is called the `root`. If this `root node` is connected by another `node`, the `root` is then a `parent node` and the connected `node` is a `child`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*9AtR3bhhlMJxQlaUVEQgrw.jpeg)
+
+All `Tree nodes` are connected by links called `edges`. It's an important part of `trees`, because it's manages the relationship between `nodes`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*j5qKwIxKcEjoxy88EOc1Rg.jpeg)
+
+`Leaves` are the last `nodes` on a `tree`. They are nodes without children. Like real trees, we have the `root`, `branches`, and finally the `leaves`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*c9_5uMUsIy4Q3OA7Q8bJiw.jpeg)
+
+Other important concepts to understand are `height` and `depth`.
+
+- The `height` of a `tree` is the length of the longest path to a `leaf`.
+- The `depth` of a `node` is the length of the path to its `root`.
+
+### Terminology summary
+
+- **Root** is the topmost `node` of the `tree`
+- **Edge** is the link between two `nodes`
+- **Child** is a `node` that has a `parent node`
+- **Parent** is a `node` that has an `edge` to a `child node`
+- **Leaf** is a `node` that does not have a `child node` in the `tree`
+- **Height** is the length of the longest path to a `leaf`
+- **Depth** is the length of the path to its `root`
+
+### Binary trees
+
+Now we will discuss a specific type of `tree`. We call it the `binary tree`.
+
+> “In computer science, a binary tree is a tree data structure in which each node has at the most two children, which are referred to as the left child and the right child.” — Wikipedia
+
+So let's look at an example of a `binary tree`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*ofbwuz4inpf2OlB-l9gtHw.jpeg)
+
+### Let's code a binary tree
+
+The first thing we need to keep in mind when we implement a `binary tree` is that it is a collection of `nodes`. Each `node` has three attributes: `value`, `left`, and `right`.
+
+How do we implement a simple `binary tree` that initializes with these three properties?
+
+Let's take a look.
+
+```javascript
+class BinarySearchTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+```
+
+Here it is. Our `binary tree` class.
+
+When we instantiate an object, we pass the `value` (the data of the node) as a parameter. Look at the `left` and the `right`. Both are set to `null`.
+
+Why?
+
+Because when we create our `node`, it doesn't have any children. We just have the `node` data.
+
+Let's test it:
+
+```javascript
+describe('BinarySearchTree', () => {
+  it('instantiates a BinarySearchTree', () => {
+    const tree = new BinarySearchTree('a');
+    expect(tree.value).toEqual('a');
+    expect(tree.right).toEqual(null);
+    expect(tree.left).toEqual(null);
+  });
+});
+```
+
+That's it.
+
+We can pass the `string` '`a`' as the `value` to our `Binary Tree node`. If we print the `value`, `left`, and `right`, we can see the values.
+
+Let's go to the insertion part. What do we need to do here?
+
+We will implement a method to insert a new `node` to the `right` and to the `left`.
+
+Here are the rules:
+
+- If the current `node` doesn't have a `left child`, we just create a new `node` and set it to the current node's `left`.
+- If it does have the `left child`, we create a new node and put it in the current `left child`'s place. Allocate this `left child node` to the new node's `left child`.
+
+Let's draw it out. :)
+
+![](https://cdn-images-1.medium.com/max/1600/1*ofbwuz4inpf2OlB-l9gtHw.jpeg)
+
+Here's the code:
+
+```javascript
+insertLeft(value) {
+  if (this.left) {
+    const node = new BinarySearchTree(value);
+    node.left = this.left;
+    this.left = node;
+  } else {
+    this.left = new BinarySearchTree(value);
+  }
+}
+```
+
+Again, if the current node doesn't have a `left child`, we just create a new node and set it to the current node's `left`. Or else we create a new node and put it in the current `left child`'s place. Allocate this `left child node` to the new node's `left child`.
+
+And we do the same thing to insert a `right child node`.
+
+```javascript
+insertRight(value) {
+  if (this.right) {
+    const node = new BinarySearchTree(value);
+    node.right = this.right;
+    this.right = node;
+  } else {
+    this.right = new BinarySearchTree(value);
+  }
+}
+```
+
+Done. :)
+
+But not entirely. We still need to test it.
+
+Let's build the following `tree`:
+
+![](https://cdn-images-1.medium.com/max/1600/1*V_EUgNXVc8Wy9H1-JoqT3g.jpeg)
+
+To summarize the illustration of this tree:
+
+- `a` `node` will be the `root` of our `binary Tree`
+- `a`'s `left child` is `b` `node`
+- `a`'s `right child` is `c` `node`
+- `b`'s `right child` is `d` `node` (`b` `node` doesn't have a `left child`)
+- `c`'s `left child` is `e` `node`
+- `c`'s `right child` is `f` `node`
+- both `e` and `f` `nodes` do not have children
+
+So here is the code for the `tree`:
+
+```javascript
+describe('inserts a left node', () => {
+  it('with a left child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.left = new BinarySearchTree('b');
+    tree.insertLeft('c');
+    expect(tree.left.value).toEqual('c');
+    expect(tree.left.left.value).toEqual('b');
+  });
+
+  it('without a left child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.insertLeft('b');
+    expect(tree.left.value).toEqual('b');
+  });
+});
+
+describe('inserts a right node', () => {
+  it('with a right child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.right = new BinarySearchTree('b');
+    tree.insertRight('c');
+    expect(tree.right.value).toEqual('c');
+    expect(tree.right.right.value).toEqual('b');
+  });
+
+  it('without a right child', () => {
+    const tree = new BinarySearchTree('a');
+    tree.insertRight('b');
+    expect(tree.right.value).toEqual('b');
+  });
+});
+```
+
+Insertion is done.
+
+Now we have to think about `tree` traversal.
+
+We have **two options** here: **Depth-First Search (DFS)** and **Breadth-First Search (BFS)**.
+
+- [Depth-First Search (DFS) — Wikipedia](https://en.wikipedia.org/wiki/Depth-first_search)
+- [Breadth-First Search (BFS) — Wikipedia](https://en.wikipedia.org/wiki/Breadth-first_search)
+
+So let's dive into each tree traversal type.
+
+#### Depth-First Search (DFS)
+
+**DFS** explores a path all the way to a leaf before **backtracking** and exploring another path. Let's take a look at an example with this type of traversal.
+
+![](https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg)
+
+The result for this algorithm will be 1-2-3-4-5-6-7.
+
+Why?
+
+Let's break it down.
+
+2. Go to the `left child` (2). Print it.
+3. Then go to the `left child` (3). Print it. (This `node` doesn't have any children)
+4. Backtrack and go the `right child` (4). Print it. (This `node` doesn't have any children)
+5. Backtrack to the `root` `node` and go to the `right child` (5). Print it.
+6. Go to the `left child` (6). Print it. (This `node` doesn't have any children)
+7. Backtrack and go to the `right child` (7). Print it. (This `node` doesn't have any children)
+8. Done.
+
+When we go deep to the leaf and backtrack, this is called **DFS** algorithm.
+
+Now that we are familiar with this traversal algorithm, we will discuss types of **DFS**: `pre-order`, `in-order`, and `post-order`.
+
+#### Pre-order
+
+This is exactly what we did in the above example.
+
+```javascript
+preOrder() {
+  console.log(this.value);
+  if (this.left) this.left.preOrder();
+  if (this.right) this.right.preOrder();
+}
+```
+
+#### In-order
+
+![](https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg)
+
+The result of the in-order algorithm for this `tree` example is 3-2-4-1-6-5-7.
+
+The left first, the middle second, and the right last.
+
+Now let's code it.
+
+```javascript
+inOrder() {
+  if (this.left) this.left.inOrder();
+  console.log(this.value);
+  if (this.right) this.right.inOrder();
+}
+```
+
+#### Post-order
+
+![](https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg)
+
+The result of the `post order` algorithm for this `tree` example is 3–4–2–6–7–5–1.
+
+The left first, the right second, and the middle last.
+
+Let's code this.
+
+```javascript
+postOrder() {
+  if (this.left) this.left.postOrder();
+  if (this.right) this.right.postOrder();
+  console.log(this.value);
+}
+```
+
+#### Breadth-First Search (BFS)
+
+**BFS** algorithm traverses the `tree` level by level and depth by depth.
+
+![](https://cdn-images-1.medium.com/max/1600/1*ZNxp_NkRZLCeak85rreebA.jpeg)
+
+Here is an example that helps to better explain this algorithm:
+
+![](https://cdn-images-1.medium.com/max/1600/1*-sCuUx3R9e1ougu2pGdThg.jpeg)
+
+So we traverse level by level. In this example, the result is 1–2–5–3–4–6–7.
+
+- Level/Depth 0: only `node` with value 1
+- Level/Depth 1: `nodes` with values 2 and 5
+- Level/Depth 2: `nodes` with values 3, 4, 6, and 7
+
+Now let's code it.
+
+```javascript
+bfs() {
+  const queue = new Queue();
+  queue.enqueue(this);
+
+  while (!queue.isEmpty()) {
+    const node = queue.dequeue();
+    console.log(node.value);
+    if (node.left) queue.enqueue(node.left);
+    if (node.right) queue.enqueue(node.right);
+  }
+}
+```
+
+To implement a **BFS** algorithm, we use the [`queue`](/series/data-structures-in-javascript/queue-data-structure) data structure to help.
+
+How does it work?
+
+Here's the explanation.
+
+![](https://cdn-images-1.medium.com/max/1600/1*A4yGfEoiqcZ-COvAfr2CWQ.jpeg)
+
+### Binary Search tree
+
+> “A Binary Search Tree is sometimes called ordered or sorted binary trees, and it keeps its values in sorted order, so that lookup and other operations can use the principle of binary search” — Wikipedia
+
+An important property of a `Binary Search Tree` is that the value of a `Binary Search Tree` `node`is larger than the value of the offspring of its `left child`, but smaller than the value of the offspring of its `right child.`"
+
+![](https://cdn-images-1.medium.com/max/1600/1*mslH9VtVUN9Hs983XxUN5A.jpeg)
+
+Here is a breakdown of the above illustration:
+
+- **A** is inverted. The `subtree` 7-5-8-6 needs to be on the right side, and the `subtree` 2-1-3 needs to be on the left.
+- **B** is the only correct option. It satisfies the `Binary Search Tree` property.
+- **C** has one problem: the `node` with the value 4. It needs to be on the left side of the `root` because it is smaller than 5.
+
+### Let's code a Binary Search Tree!
+
+Now it's time to code!
+
+What will we see here? We will insert new nodes, search for a value, delete nodes, and the balance of the `tree`.
+
+Let's start.
+
+#### Insertion: adding new nodes to our tree
+
+Imagine that we have an empty `tree` and we want to add new `nodes` with the following values in this order: 50, 76, 21, 4, 32, 100, 64, 52.
+
+The first thing we need to know is if 50 is the `root` of our tree.
+
+![](https://cdn-images-1.medium.com/max/1600/1*fxSlTwgQSN_DlzfEmcxqQg.jpeg)
+
+We can now start inserting `node` by `node`.
+
+- 76 is greater than 50, so insert 76 on the right side.
+- 21 is smaller than 50, so insert 21 on the left side.
+- 4 is smaller than 50. `Node` with value 50 has a `left child` 21. Since 4 is smaller than 21, insert it on the left side of this `node`.
+- 32 is smaller than 50. `Node` with value 50 has a `left child` 21. Since 32 is greater than 21, insert 32 on the right side of this `node`.
+- 100 is greater than 50. `Node` with value 50 has a `right child` 76. Since 100 is greater than 76, insert 100 on the right side of this `node`.
+- 64 is greater than 50. `Node` with value 50 has a `right child `76. Since 64 is smaller than 76, insert 64 on the left side of this `node`.
+- 52 is greater than 50. `Node` with value 50 has a `right child `76. Since 52 is smaller than 76, `node` with value 76 has a `left child` 64. 52 is smaller than 64, so insert 54 on the left side of this `node`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*LlLDNx7wgJfH6VAGnyAbIQ.jpeg)
+
+Do you notice a pattern here?
+
+Let's break it down.
+
+Now let's code it.
+
+```javascript
+insertNode(value) {
+  if (value <= this.value && this.left) {
+    this.left.insertNode(value);
+  } else if (value <= this.value) {
+    this.left = new BinarySearchTree(value);
+  } else if (value > this.value && this.right) {
+    this.right.insertNode(value);
+  } else {
+    this.right = new BinarySearchTree(value);
+  }
+}
+```
+
+It seems very simple.
+
+The powerful part of this algorithm is the recursion part, which is on line 9 and line 13. Both lines of code call the `insertNode` method, and use it for its `left` and `right` `children`, respectively. Lines `11` and `15` are the ones that do the insertion for each `child`.
+
+#### Let's search for the node value... Or not...
+
+The algorithm that we will build now is about doing searches. For a given value (integer number), we will say if our `Binary Search Tree` does or does not have that value.
+
+An important item to note is how we defined the tree **insertion algorithm**. First we have our `root` `node`. All the left `subtree` `nodes` will have smaller values than the `root` `node`. And all the right `subtree` `nodes` will have values greater than the `root` `node`.
+
+Let's take a look at an example.
+
+Imagine that we have this `tree`.
+
+![](https://cdn-images-1.medium.com/max/1600/1*LlLDNx7wgJfH6VAGnyAbIQ.jpeg)
+
+Now we want to know if we have a node based on value 52.
+
+![](https://cdn-images-1.medium.com/max/1600/1*NwvTrpKiJWb1u2yAY-nnAA.jpeg)
+
+Let's break it down.
+
+Now let's code it.
+
+```javascript
+findNode(value) {
+  if (value < this.value && this.left) {
+    return this.left.findNode(value);
+  }
+
+  if (value > this.value && this.right) {
+    return this.right.findNode(value);
+  }
+
+  return this.value === value;
+}
+```
+
+Let's beak down the code:
+
+- Lines 8 and 9 fall under rule #1.
+- Lines 10 and 11 fall under rule #2.
+- Line 13 falls under rule #3.
+
+How do we test it?
+
+Let's create our `Binary Search Tree` by initializing the `root` `node` with the value 50.
+
+```javascript
+const tree = new BinarySearchTree(50);
+```
+
+And now we will insert many new `nodes`.
+
+```javascript
+tree.insertNode(21);
+tree.insertNode(4);
+tree.insertNode(32);
+tree.insertNode(76);
+tree.insertNode(64);
+tree.insertNode(52);
+tree.insertNode(100);
+```
+
+For each inserted `node`, we will test if our `findNode` method really works.
+
+```javascript
+describe('findNode', () => {
+  it('finds the node in the tree', () => {
+    expect(tree.findNode(50)).toEqual(true);
+    expect(tree.findNode(21)).toEqual(true);
+    expect(tree.findNode(4)).toEqual(true);
+    expect(tree.findNode(32)).toEqual(true);
+    expect(tree.findNode(76)).toEqual(true);
+    expect(tree.findNode(64)).toEqual(true);
+    expect(tree.findNode(52)).toEqual(true);
+    expect(tree.findNode(100)).toEqual(true);
+  });
+});
+```
+
+Yeah, it works for these given values! Let's test for a value that doesn't exist in our `Binary Search Tree`.
+
+```javascript
+expect(tree.findNode(0)).toEqual(false);
+expect(tree.findNode(999)).toEqual(false);
+```
+
+Oh yeah.
+
+Our search is done.
+
+#### Deletion: removing and organizing
+
+Deletion is a more complex algorithm because we need to handle different cases. For a given value, we need to remove the `node` with this value. Imagine the following scenarios for this `node`: it has no `children`, has a single `child`, or has two `children`.
+
+- **Scenario #1**: A `node` with no `children` (`leaf` `node`).
+
+```javascript
+#        |50|                              |50|
+#      /      \                           /    \
+#    |30|     |70|   (DELETE 20) --->   |30|   |70|
+#   /    \                                \
+# |20|   |40|                             |40|
+```
+
+If the `node` we want to delete has no children, we simply delete it. The algorithm doesn't need to reorganize the `tree`.
+
+- **Scenario #2**: A `node` with just one child (`left` or `right` child).
+
+```javascript
+#        |50|                              |50|
+#      /      \                           /    \
+#    |30|     |70|   (DELETE 30) --->   |20|   |70|
+#   /
+# |20|
+```
+
+In this case, our algorithm needs to make the parent of the `node` point to the `child` node. If the `node` is the `left child`, we make the parent of the `left child` point to the `child`. If the `node` is the `right child` of its parent, we make the parent of the `right child` point to the `child`.
+
+- **Scenario #3**: A `node` with two children.
+
+```javascript
+#        |50|                              |50|
+#      /      \                           /    \
+#    |30|     |70|   (DELETE 30) --->   |40|   |70|
+#   /    \                             /
+# |20|   |40|                        |20|
+```
+
+When the `node` has 2 children, we need to find the `node` with the minimum value, starting from the `node`'s `right child`. We will put this `node` with minimum value in the place of the `node` we want to remove.
+
+It's time to code.
+
+```javascript
+removeNode(value, parent) {
+  if (value < this.value && this.left) {
+    return this.left.removeNode(value, this);
+  }
+
+  if (value < this.value) {
+    return false;
+  }
+
+  if (value > this.value && this.right) {
+    return this.right.removeNode(value, this);
+  }
+
+  if (value > this.value) {
+    return false;
+  }
+
+  if (this.left === null && this.right === null && this == parent.left) {
+    parent.left = null;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.left === null && this.right === null && this == parent.right) {
+    parent.right = null;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.left && this.right === null && this == parent.left) {
+    parent.left = this.left;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.left && this.right === null && this == parent.right) {
+    parent.right = this.left;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.right && this.left === null && this == parent.left) {
+    parent.left = this.right;
+    this.clearNode();
+    return true;
+  }
+
+  if (this.right && this.left === null && this == parent.right) {
+    parent.right = this.right;
+    this.clearNode();
+    return true;
+  }
+
+  this.value = this.right.findMinimumValue();
+  this.right.removeNode(this.value, this);
+  return true;
+}
+```
+
+- To use the `clearNode` method: set the `null` value to all three attributes — (`value`, `left`, and `right`)
+
+```javascript
+clearNode() {
+  this.value = null;
+  this.left = null;
+  this.right = null;
+}
+```
+
+- To use the `findMinimumValue` method: go way down to the left. If we can't find anymore nodes, we found the smallest one.
+
+```javascript
+findMinimumValue() {
+  if (this.left) return this.left.findMinimumValue();
+  return this.value;
+}
+```
+
+Now let's test it.
+
+We will use this `tree` to test our `removeNode` algorithm.
+
+```javascript
+#        |15|
+#      /      \
+#    |10|     |20|
+#   /    \    /    \
+# |8|   |12| |17| |25|
+#              \
+#              |19|
+```
+
+Let's remove the `node` with the `value` 8. It's a `node` with no child.
+
+```javascript
+expect(tree.findNode(8)).toEqual(true);
+expect(tree.removeNode(8)).toEqual(true);
+expect(tree.findNode(8)).toEqual(false);
+
+tree.preOrder()
+
+#     |15|
+#   /      \
+# |10|     |20|
+#    \    /    \
+#   |12| |17| |25|
+#          \
+#          |19|
+```
+
+Now let's remove the `node` with the `value` 17. It's a `node` with just one child.
+
+```javascript
+expect(tree.findNode(17)).toEqual(true);
+expect(tree.removeNode(17)).toEqual(true);
+expect(tree.findNode(17)).toEqual(false);
+
+tree.preOrder()
+
+#        |15|
+#      /      \
+#    |10|     |20|
+#       \    /    \
+#      |12| |19| |25|
+```
+
+Finally, we will remove a `node` with two children. This is the `root` of our `tree`.
+
+```javascript
+expect(tree.findNode(15)).toEqual(true);
+expect(tree.removeNode(15)).toEqual(true);
+expect(tree.findNode(15)).toEqual(false);
+
+tree.preOrder()
+
+#        |19|
+#      /      \
+#    |10|     |20|
+#        \        \
+#        |12|     |25|
+```
+
+The tests are now done. :)
+
+### That's all for now!
+
+We learned a lot here.
+
+Congrats on finishing this dense content. It's really tough to understand a concept that we do not know. But you did it. :)
+
+This is one more step forward in my journey to learning and mastering algorithms and data structures.
+
+Have fun, keep learning and coding.
+
+## Resources
+
+- [Introduction to Tree Data Structure by mycodeschool](https://www.youtube.com/watch?v=qH6yxkw0u78&index=25&list=PL2_aWCzGMAwI3W_JlcBbtYTwiQSsOTa6P&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Tree by Wikipedia](<https://en.wikipedia.org/wiki/Tree_(data_structure)?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter>)
+- [How To Not Be Stumped By Trees by the talented Vaidehi Joshi](https://medium.com/basecs/how-to-not-be-stumped-by-trees-5f36208f68a7?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Intro to Trees, Lecture by Professor Jonathan Cohen](http://www.cs.jhu.edu/~cohen/CS226/Lectures/Trees.pdf?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Intro to Trees, Lecture by Professor David Schmidt](http://people.cs.ksu.edu/~schmidt/300s05/Lectures/Week7b.html?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Intro to Trees, Lecture by Professor Victor Adamchik](http://www.cs.cmu.edu/~clo/www/CMU/DataStructures/Lessons/lesson4_1.htm?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Trees with Gayle Laakmann McDowell](https://www.youtube.com/watch?v=oSWTXtMglKE&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Binary Tree Implementation](https://github.com/imteekay/algorithms/blob/7729227b49e62b043b1984afb85027ed20556018/computer_science/data_structures/binary_tree/BinaryTree/index.js)
+- [Binary Search Tree Implementation](https://github.com/imteekay/algorithms/blob/4faee354f573af10335bc0d75ea5c12943438141/computer_science/data_structures/binary_search_tree/BinarySearchTree/index.js)
+- [Coursera Course: Data Structures by University of California, San Diego](https://www.coursera.org/learn/data-structures?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Coursera Course: Data Structures and Performance by University of California, San Diego](https://www.coursera.org/learn/data-structures-optimizing-performance?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Binary Search Tree concepts and Implementation by Paul Programming](https://www.youtube.com/playlist?list=PLTxllHdfUq4d-DE16EDkpeb8Z68DU7Z_Q)
+- [Tree Traversal by Wikipedia](https://en.wikipedia.org/wiki/Tree_traversal)
+- [Binary Search Tree Remove Node Algorithm by GeeksforGeeks](http://www.geeksforgeeks.org/binary-search-tree-set-2-delete?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [Learning Python From Zero to Hero](https://medium.freecodecamp.org/learning-python-from-zero-to-hero-120ea540b567?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+
+---
+
+</SmoothRender>

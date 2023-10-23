@@ -1,18 +1,18 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
+import { ParsedUrlQuery } from 'querystring';
 
-import { Content, MDX, serializeMDX } from 'Base/components/MDX';
-import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
-import { Language } from 'src/lib/languages';
+import { Head } from 'Base/components/Head';
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import {
   getNestedPaths,
   getNestedPostContent,
   getNestedPostMetadata,
   PostMetadata,
 } from 'src/lib';
+import { Language } from 'src/lib/languages';
 
 interface Params extends ParsedUrlQuery {
   series: string;

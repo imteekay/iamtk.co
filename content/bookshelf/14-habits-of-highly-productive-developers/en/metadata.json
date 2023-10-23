@@ -1,0 +1,23 @@
+{
+  "title": "14 Habits of Highly Productive Developers",
+  "description": "Notes from the 14 Habits of Highly Productive Developers book",
+  "date": "2023-03-10",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    },
+    {
+      "href": "/tags/career",
+      "name": "career"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/14-habits-of-highly-productive-developers/cover.png",
+    "width": "648",
+    "height": "880",
+    "alt": "The 14 Habits of Highly Productive Developers book",
+    "authorHref": "https://14habits.com/",
+    "authorName": "Zeno Rocha"
+  }
+}

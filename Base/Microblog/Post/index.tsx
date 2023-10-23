@@ -1,9 +1,11 @@
-import { FC } from 'react';
-import Image from 'next/image';
+import Image, { ImageProps } from 'next/image';
 import Link from 'next/link';
+import { FC } from 'react';
+
 import { css } from '@emotion/css';
-import { ShareButtons } from 'Base/Article/SocialLinks';
+
 import { dateStyle, titleStyle } from './styles';
+import { ShareButtons } from 'Base/Article/SocialLinks';
 
 type PostPropTypes = {
   id: string;
@@ -13,8 +15,8 @@ type PostPropTypes = {
   description: string;
   image?: {
     url: string;
-    width: string;
-    height: string;
+    width: ImageProps['width'];
+    height: ImageProps['height'];
     alt: string;
   };
 };
@@ -29,6 +31,10 @@ const linkStyle = css`
   color: white;
   margin-bottom: 20px;
   display: block;
+
+  @media (prefers-color-scheme: light) {
+    color: #333;
+  }
 `;
 
 export const Post: FC<PostPropTypes> = ({
@@ -40,23 +46,21 @@ export const Post: FC<PostPropTypes> = ({
   image,
 }) => (
   <>
-    <Link href={`/microblog/${slug}`} passHref>
-      <a className={linkStyle}>
-        <h2 style={titleStyle}>{title}</h2>
-        <p style={dateStyle}>{date}</p>
-        {image ? (
-          <Image
-            src={image.url}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-          />
-        ) : null}
-        <div
-          className={postDescriptionStyle}
-          dangerouslySetInnerHTML={{ __html: description }}
+    <Link href={`/microblog/${slug}`} passHref className={linkStyle}>
+      <h2 style={titleStyle}>{title}</h2>
+      <p style={dateStyle}>{date}</p>
+      {image ? (
+        <Image
+          src={image.url}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
         />
-      </a>
+      ) : null}
+      <div
+        className={postDescriptionStyle}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
     </Link>
     <ShareButtons title={title} anchor={id} />
   </>

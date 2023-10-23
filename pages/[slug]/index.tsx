@@ -1,12 +1,12 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
-import { getPlaiceholder } from 'plaiceholder';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { getPlaiceholder } from 'plaiceholder';
+import { ParsedUrlQuery } from 'querystring';
 
-import { MDX, serializeMDX } from 'Base/components/MDX';
-import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
+import { Head } from 'Base/components/Head';
+import { MDX, serializeMDX } from 'Base/components/MDX';
 import { getPaths } from 'src/lib';
 import { getPostContent } from 'src/lib/getPostContent';
 import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';

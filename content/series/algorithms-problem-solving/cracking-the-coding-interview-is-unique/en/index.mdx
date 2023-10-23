@@ -1,0 +1,124 @@
+<SmoothRender>
+
+This post is part of the [`Algorithms Problem Solving`](/series/algorithms-problem-solving) series and a problem from the Cracking the Coding Interview book.
+
+## Problem description
+
+Is Unique: Implement an algorithm to determine if a string has all unique characters.
+
+## Examples
+
+```bash
+input: 'asdfghjkl'
+output: true
+
+input: 'asdfghjkla'
+output: false
+```
+
+## Solutions
+
+Comparing each character with all the other characters. If there's a matching, it's not a string with unique characters
+
+- Runtime Complexity: O(N^2)
+- Space Complexity: O(1)
+
+```JavaScript
+function isUnique(string) {
+  for (let i = 0; i < string.length; i++) {
+    for (let j = i + 1; j < string.length; j++) {
+      if (string[i] === string[j]) return false;
+    }
+  }
+
+  return true;
+}
+```
+
+Sorting the string characters and comparing characters two by two.
+
+- Runtime Complexity: O(NlogN) because of the sorting runtime complexity
+- Space Complexity: O(N) because of the newly created array
+
+```JavaScript
+function isUnique(string) {
+  let sortedString = [...string].sort(
+    (a, b) => a.charCodeAt() - b.charCodeAt()
+  );
+
+  for (let index = 0; index < sortedString.length - 1; index++) {
+    if (sortedString[index] === sortedString[index + 1]) return false;
+  }
+
+  return true;
+}
+```
+
+Using a hashmap to count the number of characters in the string
+If there's already a character, it should return false as a result
+If it passes the entire string, it means it's a string with unique characters
+
+- Time Complexity: O(N), N = number of charactes in the string
+- Space Complexity: O(N), N = number of charactes in the string stored in the `charMap` hashmap
+
+```JavaScript
+function isUnique(string) {
+  const charMap = new Map();
+
+  for (let char of string) {
+    if (charMap.has(char)) return false;
+    charMap.set(char, 1);
+  }
+
+  return true;
+}
+```
+
+Using a set to store all unique characters of the string
+If the size of the set is equal to the string, the string has unique characters
+
+- Time Complexity: O(N), N = number of charactes in the string
+- Space Complexity: O(N), N = number of charactes in the string stored in the `uniqueChars` set
+
+```JavaScript
+function isUniqueWithSet(string) {
+  const uniqueChars = new Set();
+
+  for (let char of string) {
+    uniqueChars.add(char);
+  }
+
+  return uniqueChars.size === string.length;
+}
+```
+
+Using a set to store all unique characters of the string
+A simplified version using the Set constructor
+
+- Time Complexity: O(N), N = number of charactes in the string
+- Space Complexity: O(N), N = number of charactes in the string stored in the `uniqueChars` set
+
+```JavaScript
+function isUniqueWithSetSimplified(string) {
+  return string.length === new Set(string).size;
+}
+```
+
+## Resources
+
+- [Algorithms Problem Solving Series](/series/algorithms-problem-solving)
+- [Algorithms & Data Structures studies](https://github.com/imteekay/algorithms)
+- [Is Unique source code](https://github.com/imteekay/algorithms/blob/master/coding_interviews/cracking-the-coding-interview/string/is-unique/is-unique.js)
+- [Data Structures in JavaScript Series](/series/data-structures-in-javascript)
+- [Stack Data Structure in JavaScript](/series/data-structures-in-javascript/stack-data-structure)
+- [Queue Data Structure in JavaScript](/series/data-structures-in-javascript/queue-data-structure)
+- [Linked List Data Structure in JavaScript](/series/data-structures-in-javascript/linked-list-data-structure)
+- [Tree Data Structure in JavaScript](/series/data-structures-in-javascript/tree-data-structure)
+- [Stack Data Structure](/series/data-structures/stack-data-structure)
+- [Queue Data Structure](/series/data-structures/queue-data-structure)
+- [Linked List](/series/data-structures/linked-list-data-structure)
+- [Tree Data Structure](/series/data-structures/tree-data-structure)
+
+---
+
+</SmoothRender>

@@ -11,7 +11,7 @@ html {
 }
 
 body {
-  background: #000;
+  background: black;
   color: white;
   font-size: 15px;
   font-family: 'Menlo', monospace;
@@ -29,8 +29,16 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+@media (prefers-color-scheme: light) {
+  body {
+    background: white;
+    color: #333;
+  }
+}
+
 div#__next {
   height: 100%;
+  position: relative;
 }
 
 article h1 {
@@ -46,6 +54,12 @@ article h1 {
   line-height: 1.25;
 }
 
+@media (prefers-color-scheme: light) {
+  article h1 {
+    color: #333;
+  }
+}
+
 article h2 {
   position: relative;
   font-size: 1.7rem;
@@ -59,6 +73,12 @@ article h2 {
   line-height: 40px;
 }
 
+@media (prefers-color-scheme: light) {
+  article h2 {
+    color: #333;
+  }
+}
+
 article h3 {
   margin-top: 0.9rem;
   margin-bottom: 0.5rem;
@@ -66,6 +86,12 @@ article h3 {
   font-weight: bold;
   color: #eee;
   line-height: 30px;
+}
+
+@media (prefers-color-scheme: light) {
+  article h3 {
+    color: #333;
+  }
 }
 
 article img {
@@ -92,6 +118,12 @@ article blockquote {
   line-height: 30px;
 }
 
+@media (prefers-color-scheme: light) {
+  article blockquote {
+    color: #333;
+  }
+}
+
 article blockquote::before {
   color: #eee;
   content: '\201C';
@@ -103,12 +135,38 @@ article blockquote::before {
   left: -15px;
 }
 
+@media (prefers-color-scheme: light) {
+  article blockquote::before {
+    color: #333;
+  }
+}
+
 a,
 article a {
   color: white;
   text-decoration-color: rgb(209 209 209);
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 1px;
   text-decoration-skip-ink: none;
+  text-underline-offset: 4px;
+}
+
+a:hover {
+  text-decoration-color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  a,
+  article a {
+    color: #333;
+    text-decoration-color: rgb(165 165 165);
+    text-decoration-thickness: 1px;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 4px;
+  }
+
+  a:hover {
+    text-decoration-color: black;
+  }
 }
 
 article .series ul,
@@ -167,7 +225,7 @@ article.post .side-by-side img {
 
   article.post img.full {
     margin: 30px 0;
-    margin-left: calc(-1 * (75vw - 815px) / 2);
+    margin-left: calc(-1 * (70vw - 800px) / 2);
     width: 60vw;
   }
 
@@ -223,9 +281,37 @@ a.icon:hover {
   );
 }
 
+@media (prefers-color-scheme: light) {
+  h1 a:hover,
+  h2 a:hover,
+  h3 a:hover,
+  h4 a:hover,
+  h5 a:hover,
+  h6 a:hover,
+  p a.icon:hover,
+  a.icon:hover {
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 100% 6px;
+    background-image: linear-gradient(
+      transparent,
+      transparent 6px,
+      #333 6px,
+      #333
+    );
+  }
+}
+
 p a.icon:hover,
 a.icon:hover {
   color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  p a.icon:hover,
+  a.icon:hover {
+    color: #333;
+  }
 }
 
 p.no-margin {
@@ -242,7 +328,7 @@ p.no-margin-top {
 
 .content {
   width: 100%;
-  max-width: 39rem;
+  max-width: 680px;
   flex: 1;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -299,6 +385,12 @@ code {
   background-color: #303e80;
 }
 
+@media (prefers-color-scheme: light) {
+  code {
+    background-color: #9fb3ff;
+  }
+}
+
 pre code {
   border: none;
   display: block;
@@ -317,10 +409,6 @@ a.link {
     white 5px,
     white
   );
-}
-
-a:hover {
-  text-decoration-color: white;
 }
 
 .footer {
@@ -362,6 +450,12 @@ a:hover {
 .footer a {
   color: white;
   text-decoration: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .footer a {
+    color: #333;
+  }
 }
 
 .footer .footer-right {

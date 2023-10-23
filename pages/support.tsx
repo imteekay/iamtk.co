@@ -1,21 +1,25 @@
-import type { NextPage } from 'next';
-import Link from 'next/link';
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+
 import { faTwitter, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Head } from 'Base/components/Head';
-import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { NextPage } from 'next';
+
 import { HomeLink } from 'Base/Article/HomeLink';
+import { SubstackEmbed } from 'Base/Community/SubstackEmbed';
+import { Head } from 'Base/components/Head';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
+import { Navbar } from 'Base/components/Navbar';
 
-const Page: NextPage = () => {
-  return (
-    <>
-      <Head
-        title="TK —— Support"
-        description="Learning & Improving with TK —— Support"
-        imageUrl="/logo.jpeg"
-      />
-
+const Page: NextPage = () => (
+  <>
+    <Head
+      title="TK —— Support"
+      description="Learning & Improving with TK —— Support"
+      imageUrl="/logo.jpeg"
+    />
+    <Navbar />
+    <AnimationLayout>
       <main id="main">
         <div className="content">
           <HomeLink />
@@ -41,8 +45,8 @@ const Page: NextPage = () => {
             </Link>
             . Every post will continue to be open and free. But I‘ll send early
             access to{' '}
-            <Link href="https://teekay.substack.com">
-              <a target="_blank">paid Substack subscribers</a>
+            <Link href="https://teekay.substack.com" target="_blank">
+              paid Substack subscribers
             </Link>
             .
           </p>
@@ -93,8 +97,8 @@ const Page: NextPage = () => {
           </p>
         </div>
       </main>
-    </>
-  );
-};
+    </AnimationLayout>
+  </>
+);
 
 export default Page;

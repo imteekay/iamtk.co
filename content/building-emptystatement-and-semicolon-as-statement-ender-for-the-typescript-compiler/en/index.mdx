@@ -1,0 +1,392 @@
+<SmoothRender>
+
+This is the 5th post of the **[TypeScript Compiler Series](/series/the-typescript-compiler)**. Before, we had an [overview of the TypeScript architecture](/a-high-level-architecture-of-the-typescript-compiler), [how it uses the closure technique](/javascript-scope-closures-and-the-typescript-compiler), a [deep dive into the compiler and its features](/a-deep-dive-into-the-typescript-compiler-miniature), and [how to implement string literals in the compiler](/implementing-string-literals-for-the-typescript-compiler).
+
+Now we are going to learn how to implement empty statements and use the semicolon as the statement ender for the compiler.
+
+This post will be pretty similar to the string literals one. We'll see some examples and go through all the steps of the compiler to implement these features.
+
+---
+
+The example for empty statements is pretty simple, take a look at it:
+
+```tsx
+var x: number = 1;
+;
+var y: number = 2;
+```
+
+The semicolon in this case is an empty statement. At that time, semicolons were treated as separators, so every time the parser reached a semicolon, it separated the piece as a statement and continued parsing the following statements. These are the separated pieces:
+
+- `var x: number = 1;`
+- `;`
+- `var y: number = 2;`
+
+What we need to do now is get the second piece and transform it into an `EmptyStatement`.
+
+According to the [ECMAScript spec](https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-empty-statement), the `;` token is the syntax for empty statements.
+
+Let's see what it would look like in the AST structure:
+
+```tsx
+[
+  {
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'x',
+    },
+    typename: {
+      kind: 'Identifier',
+      text: 'number',
+    },
+    init: {
+      kind: 'Literal',
+      value: 1,
+    },
+  },
+  {
+    kind: 'EmptyStatement',
+  },
+  {
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'y',
+    },
+    typename: {
+      kind: 'Identifier',
+      text: 'number',
+    },
+    init: {
+      kind: 'Literal',
+      value: 2,
+    },
+  },
+];
+```
+
+We have three nodes or three statements in this case. The first one is the variable declaration for `x`, the second is the `EmptyStatement`, and the last one is the variable declaration for `y`.
+
+Looking at this, we pretty much get a sense of what we should do to implement this feature in the compiler. But before going into the implementation, let's see how we should output the JS code.
+
+That source code will generate this JS
+
+```tsx
+var x = 1;
+var y = 2;
+```
+
+In a string format, it would look like this:
+
+```tsx
+'var x = 1;\n;\nvar y = 2;\n';
+```
+
+## `Lexer`: building tokens
+
+As we've seen in the previous posts of the series, we already are handling the semicolon `;` token.
+
+```tsx
+case ';':
+  token = Token.Semicolon;
+  break;
+```
+
+This is what we have and all we need to do to handle semicolons. Having it already implemented, let's go to the parser.
+
+## `Parser`: building AST nodes
+
+I think this is the most important part of this implementation. But it is actually pretty simple. Whenever the compiler is reading a `Semicolon` token, we should create and return a node representation for the `EmptyStatement`.
+
+The first step is to create the `EmptyStatement` type:
+
+```diff
+export enum Node {
+  Identifier,
+  NumericLiteral,
+  Assignment,
+  ExpressionStatement,
+  Var,
+  Let,
+  TypeAlias,
+  StringLiteral,
++ EmptyStatement,
+  VariableStatement,
+  VariableDeclarationList,
+  VariableDeclaration,
+}
+```
+
+We also need to add it to the list of possible statements:
+
+```tsx
+type EmptyStatement = {
+  kind: Node.EmptyStatement;
+};
+
+export type Statement =
+  | ExpressionStatement
+  | TypeAlias
+  | EmptyStatement
+  | VariableStatement;
+```
+
+Now all we need to do is to create the AST node when the compiler is reading the semicolon token.
+
+```tsx
+if (tryParseToken(Token.Semicolon)) {
+  return { kind: Node.EmptyStatement };
+}
+```
+
+Here it's! If the current token is the `Semicolon`, the compiler just needs to create and return the `EmptyStatement` AST node. Different from the other nodes, this one doesn't have anything else besides the `kind`.
+
+## `Binder`: storing symbols
+
+In the binder, the compiler usually stores symbols like variable or type declarations. As it's an empty statement and we don't need to resolve to get the “declaration” of it nor its type, we don't need to store anything here.
+
+Let's go to the type checker.
+
+## `Type Checker`: checking empty statements
+
+As we created a new AST node for statements, we need to return a new type for it in the type checking process. This is the new type for empty statements:
+
+```tsx
+const empty: Type = { id: 'empty' };
+```
+
+And when the compiler is checking the empty statement, we just need to return this new type.
+
+```tsx
+case Node.EmptyStatement:
+  return empty;
+```
+
+## Transforming and emitting JS
+
+In the transformation process, we don't need to do anything extra in terms of transformation, it should just return the actual empty statement.
+
+```tsx
+case Node.EmptyStatement:
+  return [statement];
+```
+
+The emitting process is pretty similar. When handling the emit for empty statements, the compiler will return an empty string so it doesn't return anything.
+
+```tsx
+case Node.EmptyStatement:
+  return '';
+```
+
+That's it! We've finished the implementation of empty statements. To complement this feature, we are going to also implement semicolons as a statement ender.
+
+The process will look very similar to what we did for empty statements: examples, AST nodes, JS output, and the whole compiler steps.
+
+Before, we were using semicolons as separators, but now we are going to use semicolons as statement enders. So, every time we parse a new statement, we expect a “terminator”, in this case, a semicolon.
+
+As semicolons are optional in JavaScript, it doesn't break the parser if after the statement is parsed, it doesn't have a semicolon as the terminator. If it does, it just moves the pointer to the next token.
+
+In general, this change is more like a refactoring than a new feature of the language. The behavior shouldn't change.
+
+Let's see an example:
+
+```tsx
+var x = 1;
+var y = 2;
+var z = 3;
+x;
+y;
+z;
+```
+
+For this example, we generate these AST nodes
+
+```tsx
+[
+  {
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'x',
+    },
+    init: {
+      kind: 'NumericLiteral',
+      value: 1,
+    },
+  },
+  {
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'y',
+    },
+    init: {
+      kind: 'NumericLiteral',
+      value: 2,
+    },
+  },
+  {
+    kind: 'Var',
+    name: {
+      kind: 'Identifier',
+      text: 'z',
+    },
+    init: {
+      kind: 'NumericLiteral',
+      value: 3,
+    },
+  },
+  {
+    kind: 'ExpressionStatement',
+    expr: {
+      kind: 'Identifier',
+      text: 'x',
+    },
+  },
+  {
+    kind: 'ExpressionStatement',
+    expr: {
+      kind: 'Identifier',
+      text: 'y',
+    },
+  },
+  {
+    kind: 'ExpressionStatement',
+    expr: {
+      kind: 'Identifier',
+      text: 'z',
+    },
+  },
+];
+```
+
+Nothing new here, we just have three variable declarations and three expressions for each variable declared.
+
+The JS output is pretty much the same as the source code:
+
+```tsx
+var x = 1;
+var y = 2;
+var z = 3;
+x;
+y;
+z;
+```
+
+Or in a string format, it should look like this:
+
+```tsx
+'var x = 1;\nvar y = 2;\nvar z = 3;\nx;\ny;\nz;\n';
+```
+
+As we’re refactoring the compiler, we are going to modify only the parser and the emitter. So all of the other steps won't change. We don't need to do anything for the lexer, the binder, the type checker, and the transformer.
+
+## `Parser`: parsing statement enders
+
+As we've seen before, every time the parser parses a new statement, it needs to parse the terminator, in this case, the semicolon (`;`). And we also know the parser won't break if the terminator is not there because semicolons are optional in JavaScript.
+
+The algorithm for this is pretty simple. This is what we need to do:
+
+- Parse a statement
+- Parse the terminator (terminator is optional)
+- Peek if the next token is not the “end of file” (`EOF`) token. If not, loop and continue the same algorithm
+
+Here it's:
+
+```tsx
+function parseStatements<T>(
+  element: () => T,
+  terminator: () => boolean,
+  peek: () => boolean,
+) {
+  const list = [];
+  while (peek()) {
+    list.push(element());
+    terminator();
+  }
+  return list;
+}
+```
+
+Every time it parses a new statement, it pushes it to the list. At the end of the function, it just returns the list of statements (AST nodes).
+
+And this is who it's used:
+
+```tsx
+parseStatements(
+  parseStatement,
+  () => tryParseToken(Token.Semicolon),
+  () => lexer.token() !== Token.EOF,
+);
+```
+
+- `element` → `parseStatement`
+- `terminator` → `tryParseToken` for semicolon
+- `peek` → is the current token the `Token.EOF`?
+
+I really liked this design and how it simplifies the parsing.
+
+## `Emitter`: emitting JS code
+
+Before, semicolons were handled as separators, so the emitting phase was done by just joining the statements with the `';\n'` string and that was fine.
+
+But now that semicolons are terminators, we should always have this `';\n'` string at the end of each statement in the JS output.
+
+Before, the emitting code was like this:
+
+```tsx
+statements.map(emitStatement).join(';\n');
+```
+
+Joining was enough. But now we should move this string to the end of each statement. One way of doing that is to just concatenate it to the end of the emitted statement in the mapping, and then join the statements:
+
+```tsx
+statements.map((statement) => `${emitStatement(statement)};\n`).join('');
+```
+
+That way, all statements finish with the semicolon and a line break.
+
+## Final words
+
+In this piece of content, my goal was to show the whole implementation of empty statements and use semicolons as statement enders:
+
+- What's required to implement in each phase of the compiler (lexer, parser, type checker, and emitter)
+- How to refactor the parser to handle semicolons as terminators
+
+I hope it can be a nice source of knowledge to understand more about the TypeScript compiler and compilers in general. This is part of my last 3 months I've been studying, researching, and working on the TS compiler miniature.
+
+This is a [series](/series/the-typescript-compiler) of posts about compilers and if you didn't have the chance to see the previous two posts, take a look at them:
+
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+
+For additional content on compilers and programming language theory, have a look at the [Programming Language Design](/tags/programming-language-design) tag and the [Programming Language Research](https://github.com/imteekay/programming-language-research) repo.
+
+## Resources
+
+### TS Compiler
+
+- [TypeScript codebase](https://github.com/microsoft/typescript?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [How the TypeScript Compiler Compiles](https://www.youtube.com/watch?v=X8k_4tZ16qU&utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [mini-typescript](https://github.com/imteekay/mini-typescript)
+- [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html?utm_source=iamtk.co&utm_medium=referral&utm_campaign=tk_newsletter)
+- [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
+- [JavaScript scope, Closures, and the TypeScript compiler](/javascript-scope-closures-and-the-typescript-compiler)
+- [A Deep Dive into the TypeScript Compiler Miniature](/a-deep-dive-into-the-typescript-compiler-miniature)
+- [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
+
+---
+
+### PRs & What helped the implementation
+
+- [EmptyStatement](https://github.com/imteekay/mini-typescript-fork/pull/2)
+- [Fix empty statement in the transformer](https://github.com/imteekay/mini-typescript-fork/pull/10)
+- [Semicolon as statement ender](https://github.com/imteekay/mini-typescript-fork/pull/7)
+- [ECMAScript EmptyStatement spec](https://tc39.es/ecma262/multipage/ecmascript-language-statements-and-declarations.html#sec-empty-statement)
+
+---
+
+</SmoothRender>

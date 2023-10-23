@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { itemStyle, linkStyle } from './styles';
 
 export type ResourcePropType = {

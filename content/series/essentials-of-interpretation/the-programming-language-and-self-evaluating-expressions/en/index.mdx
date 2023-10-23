@@ -1,0 +1,308 @@
+<SmoothRender>
+
+These notes were taken from the [Essentials of Interpretation](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation) course by [Dmitry Soshnikov](https://dmitrysoshnikov.teachable.com/) and part of the [Essentials of Interpretation series](/series/essentials-of-interpretation).
+
+This is the first post we start to interpret the programming language. It will be divided into three parts:
+
+1. The AST structure we'll be using
+2. The programming language. It was called the Eva programming language by Dmitry Soshnikov
+3. Evaluating simple expressions like numbers, strings, math operations
+
+Let's get started.
+
+## The AST structure
+
+Let's see an example of an abstract syntax tree. Take a look at the following source code:
+
+```js
+total = current + 150;
+```
+
+For this source code, a common structure for an AST is something like this:
+
+```js
+{
+  type: "Assignment",
+  left: {
+    type: "Identifier",
+    value: "total"
+  },
+  right: {
+    type: "Addition",
+    left: {
+      type: "Identifier",
+      value: "current"
+    },
+    right: {
+      type: "Literal",
+      value: 150
+    }
+  }
+}
+```
+
+We have the `Assignment` expression that has two children, the left and the right sides. The left one is the `total` identifier, probably a variable defined early on. The right side is the `Addition` expression. It's a node that also has two children. The left one is the `current` identifier, also a variable. And the right side is the literal `150`, that's just a number.
+
+That's a very common way to structure the AST. But we can simplify it. What if:
+
+- `type`: 0
+- `left`: 1
+- `right`: 2
+
+So, instead of having text, we represent each one with numbers. It would look shorter:
+
+```js
+{
+  0: "Assignment",
+  1: {
+    0: "Identifier",
+    value: "total"
+  },
+  2: {
+    0: "Addition",
+    1: {
+      0: "Identifier",
+      value: "current"
+    },
+    2: {
+      0: "Literal",
+      value: 150
+    }
+  }
+}
+```
+
+Now that it's using numbers to identify each part of the tree, it feels like an array, right? We can transform it from an object to an array.
+
+```js
+[
+  'Assignment',
+  ['Identifier', 'total'],
+  ['Addition', ['Identifier', 'current'], ['Literal', 150]],
+];
+```
+
+In this tree, we access each part of it through its indices. That's a very basic operation but if we need to get the literal `150`, we just need to do:
+
+```js
+tree[2][2][1]; // 150
+```
+
+To simplify even more, we can transform the operators into actual symbols. So:
+
+- `Assignment` → `set`
+- `Identifier: total` → `total`
+- `Addition` → `+`
+- `Identifier: current` → `current`
+- `Literal: 150` → `150`
+
+With that, we can have this structure:
+
+```js
+[
+  'set', // type tag
+  'total', // left hand side
+  [
+    '+', // type tag
+    'current', // left hand side
+    150, // right hand side
+  ], // right hand side
+];
+```
+
+If you already worked with this kind of structure before, you'll probably see similarities with LISP (or PLs in the LISP family). This was invented for and popularized by this language and it's called [S-expression](https://en.wikipedia.org/wiki/S-expression) or symbolic expression.
+
+That way we don't really need a parser here, as it's just a list of lists, and it can use JavaScript to interpret the source code.
+
+## The Programming Language: Eva
+
+Dmitry presents Eva as "a dynamic programming language with simple syntax, functional heart, and OOP support". Eva comes from "eval" which is the core of an interpreter and it stands for "evaluate", where it interprets and evaluates expressions.
+
+Let's see some examples of the language syntax.
+
+The addition:
+
+```js
+(+ 5 10) // 15
+```
+
+The type is the symbol `+` followed by two operands, in this case, `5` and `10`.
+
+The assignment:
+
+```js
+(set x 15) // 15
+```
+
+It's just assigning the value `15` to the variable (identifier) `x`. As it's an expression, besides making the assignment, it also produces the value to be assigned, in this case, `15`.
+
+The if expression:
+
+```js
+(if (> x 10)
+    (print "ok)
+    (print "err))
+```
+
+It has some sub-expressions that we will talk about them later on.
+
+The function declaration:
+
+```js
+(def foo (bar)
+  (+ bar 10))
+```
+
+It defines a function and it is important to say that all functions in Eva are closures.
+
+Lambda expression / anonymous function:
+
+```js
+// IILE - immediately-invoked lambda expression
+(lambda (x) (* x x) 10) // 100
+```
+
+It's very similar to the JavaScript arrow functions. For the example above, the lambda is defined and applied, so it produces the value `100`.
+
+Here are the design goals of the language:
+
+- Simple syntax: S-expression
+- Everything is an expression
+  - Statement vs Expression
+    - statement: There's no value produced from the operation
+    - expression: always produces a value
+- No explicit return: The last evaluated expression is the result
+- Support first-class functions: assign to variables, pass as arguments, return as values
+- Static scope: All functions are closures
+- FP, imperative, OOP
+- Namespaces and modules
+- Lambda functions, IILEs (immediately-invoked lambda expression)
+
+## Self-evaluating Expressions
+
+To evaluate simple expressions like numbers and strings, we'll be using a notation called BNF or Backus-Naur Form to define the syntax and the runtime semantics.
+
+The class `Eva` will be responsible for implementing the evaluation process. This is the basic implementation:
+
+```js
+class Eva {
+  eval(exp) {
+    throw 'Unimplemented';
+  }
+}
+```
+
+So if we run the `eval` function to process the number `1`, we'll get an error for it to be implemented as expected:
+
+```js
+const assert = require('assert');
+
+const eva = new Eva();
+
+assert.strictEqual(eva.eval(1), 1); // Unimplemented
+```
+
+So let's implement it:
+
+```js
+class Eva {
+  eval(exp) {
+    if (isNumber(exp)) {
+      return exp;
+    }
+
+    throw 'Unimplemented';
+  }
+}
+
+function isNumber(exp) {
+  return typeof exp === 'number';
+}
+```
+
+We define this `isNumber` function using the help of `typeof` and in the `eval`, we use it to check the expression. If it's a number, we just return the expression (number). This is why it's called self-evaluating expression. We don't need to do any additional implementation, just return the given expression.
+
+Running again, it doesn't produce any error and it works!
+
+In Eva, we’re going to use double quotes (`"`) to represent strings and it's the second simple expression we are going to implement here.
+
+```js
+assert.strictEqual(eva.eval('"hello"'), 'hello');
+```
+
+The evaluated result should be the value between the quotation, and everything that's in between the double quotes.
+
+```js
+class Eva {
+  eval(exp) {
+    if (isNumber(exp)) {
+      return exp;
+    }
+
+    if (this.isString(exp)) {
+      return exp.slice(1, -1);
+    }
+
+    throw 'Unimplemented';
+  }
+}
+
+function isString(exp) {
+  return typeof exp === 'string' && exp[0] === '"' && exp.slice(-1) === '"';
+}
+```
+
+We also have the helper function `isString`, similar to the `isNumber` function, which will check if the expression is a string and will also do an additional check to see if the value is wrapped by double quotes: the first and the last characters of the expressions are double quotes.
+
+In the `eval`, if the expression is a string, we just return the value that's in between the double quotes using the `slice` function. It will return the whole expression but the first and last characters.
+
+The third simple expression is the addition expression, which will enable us to sum numbers.
+
+```js
+assert.strictEqual(eva.eval(['+', 1, 5]), 6);
+```
+
+Let's implement it then:
+
+```js
+class Eva {
+  eval(exp) {
+    if (isNumber(exp)) {
+      return exp;
+    }
+
+    if (this.isString(exp)) {
+      return exp.slice(1, -1);
+    }
+
+    if (exp[0] === '+') {
+      return exp[1] + exp[2];
+    }
+
+    throw 'Unimplemented';
+  }
+}
+```
+
+When evaluating an addition expression, the expression has three parts, the `+`, the first operator, and the second operator.
+
+To evaluate this expression, we first check if the first part is a `plus` (`+`) value, and if so, we just return the sum of the second and the third parts.
+
+And with that, we finish the second part of this series.
+
+## Final words
+
+In this second post of the series, we talked about the Eva programming language, its syntax and features, and we finally started to implement the interpreter.
+
+For this first round, we implemented self-evaluating expressions like numbers, strings, and the addition operation. In the next series posts, we'll get deeper into the interpreter and implement more complex expressions.
+
+Here are some resources you can use:
+
+- [Programming Language Research: a bunch of resources about my studies on Programming Language Theory & Applied PLT](https://github.com/imteekay/programming-language-research)
+- [Essentials of Interpretation repo](https://github.com/imteekay/essentials-of-interpretation)
+- [Essentials of Interpretation course](https://dmitrysoshnikov.teachable.com/p/essentials-of-interpretation)
+- [Compiler Engineering courses](https://dmitrysoshnikov.teachable.com)
+
+---
+
+</SmoothRender>

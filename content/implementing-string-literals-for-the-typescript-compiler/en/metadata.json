@@ -1,0 +1,23 @@
+{
+  "title": "Implementing StringLiterals for the TypeScript Compiler",
+  "description": "Understanding how string literals are implemented in the TypeScript compiler",
+  "date": "2023-07-03",
+  "tags": [
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/implementing-string-literals-for-the-typescript-compiler/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "lights in the tree in the dark",
+    "authorHref": "https://unsplash.com/@jarispics",
+    "authorName": "Jari Hytönen"
+  }
+}

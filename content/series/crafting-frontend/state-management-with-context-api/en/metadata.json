@@ -1,0 +1,23 @@
+{
+  "title": "Crafting Frontend: React — State Management with Context API",
+  "description": "How can I use Context API in React?",
+  "date": "2022-11-27",
+  "tags": [
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/crafting-frontend/state-management-with-context-api.jpg",
+    "width": "592",
+    "height": "394",
+    "alt": "a Kindle together with a notebook placed on a leather sofa",
+    "authorHref": "https://unsplash.com/@benceboros",
+    "authorName": "BENCE BOROS"
+  }
+}

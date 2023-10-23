@@ -1,0 +1,50 @@
+<SmoothRender>
+
+_My notes on the "How TypeScript is integrated in your editor" tech talk by Maria Solano_
+
+---
+
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/ne_UYfDmDYc"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen
+></iframe>
+
+When running this code:
+
+```js
+function printGreeting() {
+  const greeting = 'Hola amigos!';
+  console.log(greeting);
+}
+```
+
+- There's a lightbulb after the `greeting` variable declaration
+- How the items get displayed when clicking on it?
+- How this experience is uniform across editor?
+
+## Trigger Event
+
+- The cursor is in a spot where a code fix (or refactoring) can be applied.
+- Manually invoked (via a key binding)
+
+Handling the trigger event
+
+- The editor records the position (line and column)
+- The editor records the content type
+
+In visual studio code you can use the LSP (Language Server Protocol). But it can also be done by hooking up an extension to the code action like ESLint.
+
+## TSServer: The language server
+
+A node executable that encapsulates the TypeScript compiler and language services and exposes them through a JSON protocol.
+
+Isn't this just `tsc`? No, TSServer isn't resposible for compilation.
+
+---
+
+</SmoothRender>

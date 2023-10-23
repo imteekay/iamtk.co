@@ -12,7 +12,8 @@
     "eslint:fix": "eslint --cache --fix",
     "typecheck": "tsc",
     "prepare": "husky install",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "update:webperf": "cd packages/scripts && yarn build:repo-content"
   },
   "dependencies": {
     "@emotion/css": "^11.7.1",
@@ -26,39 +27,46 @@
     "@loadable/component": "^5.15.2",
     "@mui/material": "^5.3.1",
     "@octokit/core": "^4.0.5",
+    "framer-motion": "^10.12.16",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
     "minisearch": "^3.2.0",
-    "next": "12.1.0",
+    "next": "13.4.12",
     "plaiceholder": "2.2.0",
-    "react": "17.0.2",
+    "react": "^18.2.0",
     "react-autocomplete": "^1.8.1",
-    "react-dom": "17.0.2",
-    "react-flow-renderer": "10.3.17",
+    "react-dom": "^18.2.0",
     "react-intersection-observer": "^8.33.1",
+    "reactflow": "^11.7.4",
     "reading-time": "^1.5.0",
     "sharp": "^0.30.5"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@types/gtag.js": "^0.0.8",
     "@types/loadable__component": "^5.13.4",
-    "@types/node": "16.11.6",
+    "@types/node": "18.16.0",
     "@types/react": "17.0.39",
     "@types/react-autocomplete": "^1.8.6",
     "cypress": "^9.2.0",
+    "cypress-wait-until": "1.7.2",
     "eslint": "8.6.0",
     "eslint-config-next": "12.0.1",
     "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-unused-imports": "^2.0.0",
     "husky": ">=6",
     "lint-staged": ">=10",
     "next-mdx-remote": "^4.2.0",
     "prettier": "^2.4.1",
+    "react-tweet-embed": "^2.0.0",
     "rehype-highlight": "6.0.0",
     "typescript": "4.6.3"
   },
   "lint-staged": {
-    "*.{js,ts,tsx}": "eslint --cache --fix",
-    "*.{js,ts,tsx,css,md}": "prettier --write"
+    "*.{js,ts,tsx,css,md}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   },
   "resolutions": {
     "**/@types/react": "17.0.39"

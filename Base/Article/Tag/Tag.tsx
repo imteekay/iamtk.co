@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FC } from 'react';
+
 import { tagStyle } from './styles';
 
 export type TagPropTypes = {
@@ -8,7 +9,7 @@ export type TagPropTypes = {
 };
 
 export const Tag: FC<TagPropTypes> = ({ href, name }) => (
-  <Link href={href}>
-    <a style={tagStyle}>{`#${name}`}</a>
+  <Link href={href} style={tagStyle}>
+    {`#${name}`}
   </Link>
 );

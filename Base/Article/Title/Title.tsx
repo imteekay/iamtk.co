@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { titleStyle } from './style';
 
 type TitleProps = {
@@ -6,5 +7,5 @@ type TitleProps = {
 };
 
 export const Title: FC<TitleProps> = ({ text }) => (
-  <h1 style={titleStyle}>{text}</h1>
+  <h1 className={titleStyle}>{text}</h1>
 );

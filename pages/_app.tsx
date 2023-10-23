@@ -1,12 +1,14 @@
+import type { AppProps, NextWebVitalsMetric } from 'next/app';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import { Fragment, useEffect } from 'react';
+
 import '../styles/globals.css';
 import '../styles/night-owl.min.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-
-import type { AppProps, NextWebVitalsMetric } from 'next/app';
-import Script from 'next/script';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { AnimatePresence } from 'framer-motion';
+
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
@@ -40,6 +42,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     };
   }, [router.events]);
 
+  const LayoutComponent = [
+    '/web-performance-roadmap',
+    '/experiments/links-graph',
+  ].includes(router.pathname)
+    ? Fragment
+    : Layout;
+
   return (
     <>
       <Script
@@ -55,9 +64,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         `}
       </Script>
       <SearchBar>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <LayoutComponent>
+          <AnimatePresence mode="wait">
+            <Component {...pageProps} />
+          </AnimatePresence>
+        </LayoutComponent>
       </SearchBar>
     </>
   );

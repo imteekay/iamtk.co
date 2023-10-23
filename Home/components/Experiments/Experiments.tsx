@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import { experimentsList } from './experimentsList';
 import { List } from 'Base/components/List';
 
@@ -11,5 +12,3 @@ export const Experiments: FC = () => (
     openNewTab={false}
   />
 );
-
-export default Experiments;

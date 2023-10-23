@@ -1,0 +1,27 @@
+{
+  "title": "The Evolution of React Rendering Architectures & Web Performance",
+  "description": "Understanding diffeerent rendering architectures in react.js and how they impact performance on the web: Client-Side Rendering, Server-Side Rendering, and Streaming SSR",
+  "date": "2023-03-12",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/the-evolution-of-react-rendering-architectures-and-web-performance/cover.jpg",
+    "width": "640",
+    "height": "1001",
+    "alt": "",
+    "authorHref": "https://unsplash.com/@mullyadii",
+    "authorName": "Mulyadi"
+  }
+}

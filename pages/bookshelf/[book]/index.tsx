@@ -1,11 +1,12 @@
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
-import { ParsedUrlQuery } from 'querystring';
 import { getPlaiceholder } from 'plaiceholder';
+import { ParsedUrlQuery } from 'querystring';
 
-import { Content, MDX, serializeMDX } from 'Base/components/MDX';
-import { Head } from 'Base/components/Head';
 import { Layout } from 'Base/Article/Layout';
+import { Head } from 'Base/components/Head';
+import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import {
   getNestedPaths,
   getNestedPostContent,
@@ -24,7 +25,7 @@ type PageProps = {
 };
 
 const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
-  <>
+  <AnimationLayout>
     <Head
       title={postMetadata.title}
       description={postMetadata.description}
@@ -41,7 +42,7 @@ const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
     >
       <MDX content={content} />
     </Layout>
-  </>
+  </AnimationLayout>
 );
 
 export async function getStaticPaths() {

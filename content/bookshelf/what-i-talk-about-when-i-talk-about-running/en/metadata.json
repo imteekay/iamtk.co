@@ -1,0 +1,19 @@
+{
+  "title": "What I Talk about When I Talk about Running",
+  "description": "Notes from the What I Talk about When I Talk about Running book",
+  "date": "2023-01-31",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/what-i-talk-about-when-i-talk-about-running/cover.jpeg",
+    "width": "648",
+    "height": "648",
+    "alt": "The What I Talk about When I Talk about Running book",
+    "authorHref": "https://www.harukimurakami.com/book/what-i-talk-about-when-i-talk-about-running-a-memoir",
+    "authorName": "Haruki Murakami"
+  }
+}
