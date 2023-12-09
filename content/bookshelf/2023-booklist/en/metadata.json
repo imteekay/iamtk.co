@@ -1,0 +1,19 @@
+{
+  "title": "2023 Booklist",
+  "description": "My list of books of 2023",
+  "date": "2023-12-09",
+  "tags": [
+    {
+      "href": "/tags/bookshelf",
+      "name": "bookshelf"
+    }
+  ],
+  "coverImage": {
+    "src": "/bookshelf/2023-booklist/cover.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "building interior full of books",
+    "authorHref": "https://unsplash.com/@jeztimms",
+    "authorName": "Jez Timms"
+  }
+}
