@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-12-09',
+    link: '/bookshelf/2023-booklist',
+    title: '2023 Booklist',
+  },
+  {
     datetime: '2023-10-19',
     link: '/series/essentials-of-interpretation/control-flow-if-and-while-expressions',
     title:
