@@ -30,7 +30,7 @@
     <description>How scope, variables, environments and blocks work in the semantics of a programming language</description>
   </item>
   <item>
-    <title>Essentials of Interpretation: The Programming Language & Self-Evaluating Expressions</title>
+    <title>Essentials of Interpretation: The Programming Language &amp; Self-Evaluating Expressions</title>
     <link>https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</guid>
     <description>The Eva programming language, its syntax and features, and the interpreter implementation: numbers, strings, and addition</description>
