@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2023-12-27',
+    link: '/2023-in-review',
+    title: '2023 in Review',
+  },
+  {
     datetime: '2023-12-09',
     link: '/bookshelf/2023-booklist',
     title: '2023 Booklist',

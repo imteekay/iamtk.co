@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>2023 in Review</title>
+    <link>https://www.iamtk.co/2023-in-review</link>
+    <guid isPermaLink="true">https://www.iamtk.co/2023-in-review</guid>
+    <description>What I did in 2023 and what I plan for 2024</description>
+  </item>
+  <item>
     <title>Essentials of Interpretation — Control Flow: If and While Expressions</title>
     <link>https://www.iamtk.co/series/essentials-of-interpretation/control-flow-if-and-while-expressions</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/control-flow-if-and-while-expressions</guid>
@@ -24,7 +30,7 @@
     <description>How scope, variables, environments and blocks work in the semantics of a programming language</description>
   </item>
   <item>
-    <title>Essentials of Interpretation: The Programming Language & Self-Evaluating Expressions</title>
+    <title>Essentials of Interpretation: The Programming Language &amp; Self-Evaluating Expressions</title>
     <link>https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/essentials-of-interpretation/the-programming-language-and-self-evaluating-expressions</guid>
     <description>The Eva programming language, its syntax and features, and the interpreter implementation: numbers, strings, and addition</description>

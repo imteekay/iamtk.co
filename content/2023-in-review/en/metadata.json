@@ -1,0 +1,19 @@
+{
+  "title": "2023 in Review",
+  "description": "What I did in 2023 and what I plan for 2024",
+  "date": "2023-12-27",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/designing-my-lifes-system/cover.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A photo of the universe",
+    "authorHref": "https://unsplash.com/@phaelnogueira",
+    "authorName": "Raphael Nogueira"
+  }
+}
