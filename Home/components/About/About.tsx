@@ -106,7 +106,7 @@ export const About: FC = () => (
       <Topics className="no-margin">
         programming language theory . compilers
         <br />
-        frontend architecture . infrastructure
+        math . machine learning . science
       </Topics>
     </div>
     <Socials />
