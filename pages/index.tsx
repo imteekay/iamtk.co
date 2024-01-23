@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
+
 import styled from '@emotion/styled';
 import type { NextPage } from 'next';
+import { onLCP } from 'web-vitals';
 
 import { Head } from 'Base/components/Head';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
@@ -22,29 +25,35 @@ const LayoutFade = styled.div`
   pointer-events: none;
 `;
 
-const Page: NextPage = () => (
-  <>
-    <Head
-      title="TK's website about software engineering, web development, and career in tech"
-      description="Learning & Improving with TK: a website about software engineering, web development, and career in tech"
-      imageUrl="/logo.jpeg"
-    />
-    <Navbar />
-    <SkipLink />
-    <AnimationLayout>
-      <main id="main">
-        <div className="content">
-          <Title text="TK Kinoshita" />
-          <About />
-          <Writings />
-          <Series />
-          <Projects />
-          <Experiments />
-        </div>
-        <LayoutFade />
-      </main>
-    </AnimationLayout>
-  </>
-);
+const Page: NextPage = () => {
+  useEffect(() => {
+    onLCP(console.log);
+  }, []);
+
+  return (
+    <>
+      <Head
+        title="TK's website about software engineering, web development, and career in tech"
+        description="Learning & Improving with TK: a website about software engineering, web development, and career in tech"
+        imageUrl="/logo.jpeg"
+      />
+      <Navbar />
+      <SkipLink />
+      <AnimationLayout>
+        <main id="main">
+          <div className="content">
+            <Title text="TK Kinoshita" />
+            <About />
+            <Writings />
+            <Series />
+            <Projects />
+            <Experiments />
+          </div>
+          <LayoutFade />
+        </main>
+      </AnimationLayout>
+    </>
+  );
+};
 
 export default Page;
