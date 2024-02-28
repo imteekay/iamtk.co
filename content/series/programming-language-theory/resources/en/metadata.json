@@ -1,0 +1,27 @@
+{
+  "title": "Programming Language Theory: Resources",
+  "description": "PLT, PL Design, and Compilers Resources",
+  "date": "2022-04-16",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/typescript",
+      "name": "typescript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    }
+  ],
+  "coverImage": {
+    "src": "/frontend-infrastructure/books.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "books",
+    "authorHref": "https://unsplash.com/@ugur",
+    "authorName": "Ugur Akdemir"
+  }
+}
