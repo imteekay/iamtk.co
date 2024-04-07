@@ -1,0 +1,19 @@
+{
+  "title": "Taking a Break",
+  "description": "Recharging my energy to get the passion for my programming craft back",
+  "date": "2024-04-07",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design",
+      "name": "lifestyle_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/taking-a-break/cover.webp",
+    "width": "640",
+    "height": "480",
+    "alt": "A photo of the universe",
+    "authorHref": "https://unsplash.com/@jackzhang904",
+    "authorName": "Jack Zhang"
+  }
+}
