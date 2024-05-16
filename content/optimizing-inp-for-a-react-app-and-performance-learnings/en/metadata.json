@@ -1,0 +1,27 @@
+{
+  "title": "Optimizing INP for a React App & Performance Learnings",
+  "description": "Performance optimizations for the interaction to next paint metric and sharing the learning along the way",
+  "date": "2024-05-17",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/optimizing-inp-for-a-react-app-and-performance-learnings/cover.jpg",
+    "width": "640",
+    "height": "960",
+    "alt": "white feather in a dark background",
+    "authorHref": "https://unsplash.com/@evieshaffer",
+    "authorName": "Evie S."
+  }
+}
