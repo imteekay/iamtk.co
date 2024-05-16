@@ -1,6 +1,6 @@
 {
   "title": "Optimizing INP for a React App & Performance Learnings",
-  "description": "Tech Debts, Software Maintainability, Developer Experience, and Technical Leadership",
+  "description": "Performance optimizations for the interaction to next paint metric and sharing the learning along the way",
   "date": "2024-05-17",
   "tags": [
     {
@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/optimizing-the-performance-of-a-react-progressive-web-app/cover.jpeg",
-    "width": "592",
-    "height": "386",
+    "src": "/optimizing-inp-for-a-react-app-and-performance-learnings/cover.jpg",
+    "width": "640",
+    "height": "960",
     "alt": "Cars running in Tokyo",
-    "authorHref": "https://unsplash.com/@jezael",
-    "authorName": "Jezael Melgoza"
+    "authorHref": "https://unsplash.com/@evieshaffer",
+    "authorName": "Evie S."
   }
 }
