@@ -186,7 +186,7 @@ Here's what it looks like:
   </video>
 </div>
 
-### React 18
+## React 18
 
 The biggest project I worked on was the React 18 migration. There are many benefits to migrating to React 18 including enabling Streaming SSR on Next.js (one of the big projects we have ahead) and client/server components, but I actively participated in this migration because of the new React rendering called Concurrent Rendering, and we are going to briefly talk about it later on.
 
@@ -258,7 +258,7 @@ This was the results we got:
 
 That was huge for us, especially looking at the mobile INP scores, it was very bad, and even though it was still bad after the migration, it looked much better. This helped improve all user interaction on the page.
 
-### Track Events
+## Track Events
 
 After working on the React 18 migration project, I started to debug the runtime performance to find the main bottlenecks in the search page. When running the performance record from devtools, I found that one of the biggest bottlenecks was track events (analytics, logs, etc).
 
@@ -358,7 +358,7 @@ The results were promising. We got a 19% improvement (shaved >120ms), which's hu
   loading="lazy"
 />
 
-### React re-rendering: debounce
+## React re-rendering: debounce
 
 This section will be big! Mostly because we had (and still have) so many re-rendering problems and solving a big portion of it took a lot of time.
 
@@ -452,7 +452,7 @@ And this is what the change looks like side by side:
   ]}
 />
 
-### React re-rendering: router
+## React re-rendering: router
 
 The second problem I spotted was the re-rendering of many components that didn't have any relation with the interaction. The interaction in this case was the click on the hotel card and it opens the hotel details overlay. But for some reason, it was triggering a render for the mobile header, the search box, the hotel card, and many other components.
 
@@ -500,7 +500,7 @@ The results were awesome! We shaved more than 1.4s from our custom performance m
 
 And with this optimization, we finally reached a ‘needs-improvement’ score for INP. That was a huge improvement for us as this score was pretty bad 6 months ago. At that point, it was still not good enough but we were progressing in the right direction.
 
-### React re-rendering: colocating functions
+## React re-rendering: colocating functions
 
 Back to the debugging process, I noticed in the React Profiler that we had a component called `DealFreeze` being re-rendered. I also checked in the devtools performance tab and found the call for some of the functions.
 
@@ -632,7 +632,7 @@ As I mentioned, this code was used on many pages and it also got a nice improvem
   loading="lazy"
 />
 
-### React re-rendering: complex custom hooks
+## React re-rendering: complex custom hooks
 
 This one we also got nice improvements. Especially because it was a huge bottleneck in our app.
 
@@ -723,7 +723,7 @@ We had a nice improvement on some of the interaction metrics. One of them is whe
 
 We improved this metric by 25%, shaving around 50ms which was huge.
 
-### React re-rendering: selector memoization
+## React re-rendering: selector memoization
 
 Last but not least we have selector memoization. Let's take a look at this problem.
 
