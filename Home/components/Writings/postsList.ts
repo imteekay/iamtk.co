@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2024-05-17',
+    link: '/optimizing-inp-for-a-react-app-and-performance-learnings',
+    title: 'Optimizing INP for a React App & Performance Learnings',
+  },
+  {
     datetime: '2024-04-07',
     link: '/taking-a-break',
     title: 'Taking a Break',
