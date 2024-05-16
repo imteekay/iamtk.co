@@ -2,10 +2,10 @@
 
 It's been 2 years that I've been working at Vio and since the beginning, I've been working on web performance-related projects. The most notable projects are these:
 
-- [Profiling & Optimizing the runtime performance with the DevTools Performance tab](https://www.iamtk.co/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab)
-- [Web performance, code splitting strategies, and a React case study](https://www.iamtk.co/web-performance-code-splitting-strategies-and-react-applications)
-- [Webpack Bundle Splitting & Browser Caching](https://www.iamtk.co/webpack-bundle-splitting-and-browser-caching)
-- [The Evolution of React Rendering Architectures & Web Performance](https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance)
+- [Profiling & Optimizing the runtime performance with the DevTools Performance tab](/profiling-and-optimizing-the-runtime-performance-with-the-devtools-performance-tab)
+- [Web performance, code splitting strategies, and a React case study](/web-performance-code-splitting-strategies-and-react-applications)
+- [Webpack Bundle Splitting & Browser Caching](/webpack-bundle-splitting-and-browser-caching)
+- [The Evolution of React Rendering Architectures & Web Performance](/the-evolution-of-react-rendering-architectures-and-web-performance)
 
 Some work on runtime performance, some on bundle optimizations, and also on the architectural level of our application.
 
@@ -893,7 +893,7 @@ Track events as the last operation: Dispatch state updates, UI changes, etc firs
 
 This is more specifically for our application because of the way we implement our overlay architecture. It uses the history API through `react-router` so every time we update the overlay, anywhere it’s used `react-router` will cause a re-rendering. APIs like `useLocation`, `useRouteMatch`, and `useHistory` could be replaced with the `history` or `location` from the `window` object.
 
-Soon [we pretend to move our application to Next.js](https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance) so we just need to remember that the server doesn't have access to the `window` object. In this case, we need to wrap it with `useEffect` or run the component with `use client`.
+Soon [we pretend to move our application to Next.js](/the-evolution-of-react-rendering-architectures-and-web-performance) so we just need to remember that the server doesn't have access to the `window` object. In this case, we need to wrap it with `useEffect` or run the component with `use client`.
 
 ### **State Management & Redux**
 
