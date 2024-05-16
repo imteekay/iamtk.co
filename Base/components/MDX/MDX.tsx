@@ -5,6 +5,7 @@ import rehypeHighlight from 'rehype-highlight';
 
 import { PostAndDate } from 'Base/components/PostAndDate';
 import { SideBySideImages } from 'Base/components/SideBySideImages';
+import { SideBySideVideos } from 'Base/components/SideBySideVideos';
 import { SmoothRender } from 'Base/components/SmoothRender';
 
 export type Content = MDXRemoteSerializeResult<
@@ -26,6 +27,7 @@ const components = {
   SideBySideImages,
   TweetEmbed,
   SmoothRender,
+  SideBySideVideos,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (

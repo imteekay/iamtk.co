@@ -214,6 +214,13 @@ article.post .side-by-side img {
     justify-content: center;
   }
 
+  article.post .videos-side-by-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+
   article.post .text-img-side-by-side {
     display: flex;
     gap: 24px;
