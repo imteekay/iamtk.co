@@ -262,7 +262,10 @@ That was huge for us, especially looking at the mobile INP scores, it was very b
 
 After working on the React 18 migration project, I started to debug the runtime performance to find the main bottlenecks in the search page. When running the performance record from devtools, I found that one of the biggest bottlenecks was track events (analytics, logs, etc).
 
-[Add image: tracking/before]
+<img
+  src="/optimizing-inp-for-a-react-app-and-performance-learnings/tracking/before.png"
+  loading="lazy"
+/>
 
 When looking at the flamechart, the first thing you notice at the click event is a big task block and I found 3 culprits there:
 
@@ -469,7 +472,7 @@ We use `react-router` to handle the history push/pop/replace new states. That me
 
 Replacing the `location` reference from `useLocation` with the `window.location` stopped the re-rendering for most of the components. I also cached some components to avoid the re-rendering especially because they didn't have any props being changed — a so-called unnecessary re-rendering.
 
-This is the improvement we've got for the mobile header and children components:
+This is the improvement we've got for the mobile header and children components: before on the left and after on the right.
 
 <SideBySideImages
   images={[
