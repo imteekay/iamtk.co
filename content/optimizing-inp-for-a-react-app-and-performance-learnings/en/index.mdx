@@ -425,8 +425,6 @@ export const useScrollPosition = () => {
   const [scrollPosition, setScrollPosition] = useState(window.scrollY);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
     const callback = debounce(() => {
       setScrollPosition(window.scrollY);
     }, 300);
