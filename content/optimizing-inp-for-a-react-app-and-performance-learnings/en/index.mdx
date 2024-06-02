@@ -381,8 +381,6 @@ export const useScrollPosition = () => {
   const [bodyHeight, setBodyHeight] = useState(document.body.clientHeight);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-
     const callback = throttle(() => {
       setScrollPosition(window.scrollY);
     }, 300);
