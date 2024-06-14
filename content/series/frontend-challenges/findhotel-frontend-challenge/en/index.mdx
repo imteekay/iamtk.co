@@ -1094,7 +1094,7 @@ export const Button: FC<ButtonPropTypes> = ({
 To make sure we have an effect when opening the overlay component in the mobile view, we will use `keyframes` and `animation`.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="lazy" controls="true" allowfullscreen="true">
+  <video preload="none" class="lazy" controls="true" allowfullscreen="true">
     <source
       src="/series/frontend-challenges/dialog-transition.mov"
       type="video/mp4"
@@ -1737,7 +1737,12 @@ describe('GuestRoomsDialog', () => {
 Let's see a preview of the integration test in action?
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="lazy" controls="true" allowfullscreen="true" class="full-width">
+  <video
+    preload="none"
+    controls="true"
+    allowfullscreen="true"
+    class="full-width lazy"
+  >
     <source
       src="/series/frontend-challenges/dialog-integration-test-cypress.mov"
       type="video/mp4"

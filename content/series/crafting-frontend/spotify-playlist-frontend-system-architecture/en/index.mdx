@@ -259,7 +259,7 @@ The size of images is also important. We need to make sure we won't load a 1mb i
 Another image perf technique to improve perceived performance is to request a low-quality image with blur, download a high-quality image in the background and [smoothly transition](/ux-studies-with-react-typescript-and-testing-library) from the low-quality to the high-quality image with the ease-in/ease-out transition.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="lazy" controls="true" allowfullscreen="true">
+  <video preload="none" class="lazy" controls="true" allowfullscreen="true">
     <source src="/series/crafting-frontend/spotify-playlist-frontend-system-architecture/smooth-image-transition.mov" />
   </video>
 </div>
