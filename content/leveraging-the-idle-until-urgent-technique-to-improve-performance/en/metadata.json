@@ -1,0 +1,19 @@
+{
+  "title": "Leveraging the Idle Until Urgent technique to improve performance",
+  "description": "Performance optimizations for the interaction to next paint metric: Leveraging the Idle Until Urgent technique",
+  "date": "2024-06-14",
+  "tags": [
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/leveraging-the-idle-until-urgent-technique-to-improve-performance/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "gray wooden house covered by fog",
+    "authorHref": "https://unsplash.com/@mwrona",
+    "authorName": "m wrona"
+  }
+}

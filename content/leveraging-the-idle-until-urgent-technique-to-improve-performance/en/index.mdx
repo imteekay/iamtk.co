@@ -1,0 +1,302 @@
+<SmoothRender>
+
+Last month I wrote a post about [some optimizations I did to improve the INP metric](/optimizing-inp-for-a-react-app-and-performance-learnings), which measures user interaction time.
+
+One of these optimizations was postponing tracking events and running them after important user interaction callbacks using the idea of yielding to the main thread.
+
+The implementation was very simple:
+
+```tsx
+export async function yieldToMain() {
+  if ('scheduler' in window && 'yield' in window.scheduler) {
+    return await window.scheduler.yield();
+  }
+
+  return new Promise((resolve) => {
+    setTimeout(resolve, 0);
+  });
+}
+```
+
+If the browser has a scheduler, we can use it. But if not, we rely on the `setTimeout` function to break the long task into smaller tasks and run the non-urgent after the more important ones.
+
+This brought nice results in terms of INP score improvements, which means that we were in the right direction about what are the real performance bottlenecks in our app.
+
+But another idea came along: what if we not only break long tasks and postpone them but also run analytics tasks on the browser's idle time?
+
+That way, we know we only run analytics code when the browser is not doing anything important or urgent. That would be the next step for this implementation.
+
+To be able to do this implementation, we can leverage the usage of a browser API called `requestIdleCallback`. It's a method that queues a function to be called during a browser's idle periods. It's as simple as that.
+
+So, whenever we run analytics code, instead of calling them directly, we pass it as a function callback for the `requestIdleCallback` method. It would look like this:
+
+```tsx
+const track = () => {
+  // run the tracking request
+};
+
+requestIdleCallback(track);
+```
+
+That way it will automatically run that for us in idle time.
+
+This by itself can impact the performance metrics in a pretty good way. But it's not enough as it doesn't cover everything that we need.
+
+What else is missing in this implementation?
+
+- What if we want to run each task one by one, like, first in first out? Like a queue
+- What if the user closes the tab? Do we lose the event? We need to ensure it gets tracked
+
+Now we need to implement a technique coined by Philip Walton called [Idle Until Urgent](https://philipwalton.com/articles/idle-until-urgent/?utm_source=iamtk.co&utm_medium=blog). And it does exactly what it's called. It runs tasks in idle time until they get urgent so it prioritizes and runs them first.
+
+It also handles all the tasks in a queue. That way we ensure the first task added to the queue will be executed first. Going to the second and so on and so forth.
+
+The concept is clear, now let's go to the implementation details.
+
+We build a class to hold all the states and behaviors we need for it. We'll call this class `IdleQueue` and it will hold data and all the necessary logic.
+
+```tsx
+interface State {
+  time: number;
+  visibilityState: 'hidden' | 'visible' | 'prerender' | 'unloaded';
+}
+
+type Task = (state: State) => void;
+
+interface TaskQueueItem {
+  state: State;
+  task: Task;
+  minTaskTime: number;
+}
+
+type TaskQueue = TaskQueueItem[];
+
+export class IdleQueue {
+  // ...
+  private taskQueue: TaskQueue = [];
+  // ...
+}
+```
+
+It's important to implement one of the most important parts of the `IdleQueue`: the `taskQueue`. It's just an array that will run as a queue for our implementation. It's just a collection of tasks. Each task item has 3 attributes: a state, the task itself, and the minimum task time.
+
+- State: it holds the time the task was added to the queue and the document's visibility state
+- Task: the function we want to run in the idle time
+- Min task time: The minimum amount of idle time remaining for a task to be run
+
+Following the implementation, let's see the main public API: `pushTask`.
+
+`pushTask` should be very simple. It just needs to add the task to the `taskQueue`. Well, not only that, but also schedule the tasks to run in idle time.
+
+```tsx
+pushTask(task: Task, options?: { minTaskTime?: number }): void {
+  this.handleTask(task, this.taskQueue.push.bind(this.taskQueue), options);
+}
+```
+
+We do it this way and pass the responsibility to the `handleTask` method because removing tasks from the queue should have the same exact logic, besides the fact that it removes the tasks from the queue, and not add them.
+
+```tsx
+unshiftTask(task: Task, options?: { minTaskTime?: number }): void {
+  this.handleTask(task, this.taskQueue.unshift.bind(this.taskQueue), options);
+}
+```
+
+We call it `unshiftTask`. It also calls the `handleTask` but now, rather than passing the `push` function, it will pass the `unshift`. Let's see the `handleTask` implementation then.
+
+```tsx
+private handleTask(
+  task: Task,
+  handleTaskQueueItem: (taskQueueItem: TaskQueueItem) => number,
+  options?: { minTaskTime?: number }
+): void {
+  const state: State = {
+    time: now(),
+    visibilityState: isBrowser ? document.visibilityState : "visible",
+  };
+
+  const minTaskTime: number = Math.max(
+    0,
+    (options && options.minTaskTime) || this.defaultMinTaskTime
+  );
+
+  handleTaskQueueItem({
+    state,
+    task,
+    minTaskTime,
+  });
+
+  this.scheduleTasksToRun();
+}
+```
+
+So here's what's going on:
+
+- It builds the state with the time and visibility state
+- It builds the `minTaskTime` based on config you can pass to it or default to a `defaultminTaskTime`, which will be zero in our implementation
+- Then it runs the `handleTaskQueueItem`: in the case of the `pushTask`, it will add a new item to the `taskQueue`. Or remove it from the queue if it's called with `unshift`.
+- And finally, we just need to schedule to run the tasks appropriately
+
+Remember when we explore the idea of making the task urgent? This is the place we handle the logic between the task being urgent or running in idle time.
+
+```tsx
+private scheduleTasksToRun(): void {
+  if (
+    isBrowser &&
+    this.ensureTasksRun &&
+    document.visibilityState === "hidden"
+  ) {
+    this.queueMicrotask ||= createQueueMicrotask();
+    this.queueMicrotask(this.runTasks);
+  } else {
+    this.idleCallbackHandle ||= rIC(this.runTasks) as number;
+  }
+}
+```
+
+If the `visibilityState` is `"hidden"`, it means that _“the page content is not visible to the user. In practice this means that the document is either a background tab or part of a minimized window, or the OS screen lock is active.”_ — [mdn](https://developer.mozilla.org/en-US/docs/Web/API/Document/visibilityState#hidden)
+
+Why do we run an urgent task through a microtask? For two main reasons microtasks differ from tasks in JavaScript:
+
+1. Each time a task exits, the event loop checks to see if the task is returning control to other JavaScript code. If not, it runs all of the microtasks in the microtask queue
+2. If a microtask adds more microtasks to the queue by calling [`queueMicrotask()`](https://developer.mozilla.org/en-US/docs/Web/API/queueMicrotask), those newly-added microtasks _execute before the next task is run_
+
+To run the tasks through a microtask we have three types
+
+- `queueMicrotask`
+- `Promises`
+- `MutationObserver`
+
+Here's the whole implementation of the `createQueueMicrotask` function:
+
+```tsx
+type Microtask = () => void;
+
+function createQueueMicrotaskViaPromises(): (microtask: Microtask) => void {
+  return (microtask: Microtask) => {
+    Promise.resolve().then(microtask);
+  };
+}
+
+function createQueueMicrotaskViaMutationObserver(): (
+  microtask: Microtask,
+) => void {
+  let mutationCounter = 0;
+  let microtaskQueue: Microtask[] = [];
+  const observer = new MutationObserver(() => {
+    microtaskQueue.forEach((microtask) => microtask());
+    microtaskQueue = [];
+  });
+  const node = document.createTextNode('');
+  observer.observe(node, { characterData: true });
+
+  return (microtask: Microtask) => {
+    microtaskQueue.push(microtask);
+    node.data = String(++mutationCounter % 2);
+  };
+}
+
+export function createQueueMicrotask(): (microtask: Microtask) => void {
+  if (isBrowser && typeof queueMicrotask === 'function') {
+    return queueMicrotask.bind(window);
+  } else if (
+    typeof Promise === 'function' &&
+    Promise.toString().includes('[native code]')
+  ) {
+    return createQueueMicrotaskViaPromises();
+  } else {
+    return createQueueMicrotaskViaMutationObserver();
+  }
+}
+```
+
+First, it tries to run through a `queueMicrotask`, then via a `Promise`, and finally through the `MutationObserver`.
+
+If the task is not urgent, it means we just need to pass the task as a function callback for the `requestIdleCallback` (`rIC` is `requestIdleCallback` in this case).
+
+What do we pass to the `queueMicrotask` and `requestIdleCallback`? The `runTasks` method. This is the next step so let's implement it.
+
+```tsx
+private runTasks(deadline?: IdleDeadline): void {
+  this.cancelScheduledRun();
+
+  if (!this.isProcessing) {
+    this.isProcessing = true;
+    let tasksProcessed = 0;
+
+    while (
+      this.hasPendingTasks() &&
+      tasksProcessed < this.maxTasksPerIteration &&
+      !shouldYield(deadline, this.taskQueue[0].minTaskTime)
+    ) {
+      const taskQueueItem = this.taskQueue.shift();
+
+      if (taskQueueItem) {
+        const { task, state } = taskQueueItem;
+
+        this.state = state;
+
+        try {
+          task(state);
+        } catch (error) {
+          console.error("Error running IdleQueue Task: ", error);
+        }
+
+        this.state = null;
+        tasksProcessed++;
+      }
+    }
+
+    this.isProcessing = false;
+
+    if (this.hasPendingTasks()) {
+      this.scheduleTasksToRun();
+    }
+  }
+}
+```
+
+The core idea of this code is:
+
+- Whenever there are pending tasks to run
+- Dequeue the next task and run it
+- Go to the next task in the queue
+- Do it until it doesn't have more tasks or it reached the deadline (and should run more important tasks in the main thread)
+- If it reaches a deadline and it has pending tasks, schedule the tasks to run again for the next idle window
+
+There are more details in the implementation but I wanted to show how it works and share the core idea behind it.
+
+## Results
+
+With the idle until urgent technique, I applied it in our tracking events to see how much it could improve the performance of interaction metrics, especially INP and other custom in-house metrics we have at Vio.
+
+For INP, it didn't move the needle, only ~15ms improvement for desktop and mobile together. I suspect that it didn't have much effect because of the improvement we had using the [yielding technique](/optimizing-inp-for-a-react-app-and-performance-learnings) that I shared a couple of weeks ago. But I'm still investigating it.
+
+In terms of custom metrics, there are two metrics I could see a good improvement:
+
+- Hotel details overlay opening: when clicking the hotel card and opening an overlay with the hotel details in it
+- Loading the offers in the search results page
+
+For the hotel overlay, we've got a 1s improvement which is huge.
+
+<img
+  loading="lazy"
+  src="leveraging-the-idle-until-urgent-technique-to-improve-performance/hotel-overlay-opening.png"
+/>
+
+And for the loading of offers, we've got a 2s improvement.
+
+<img
+  loading="lazy"
+  src="leveraging-the-idle-until-urgent-technique-to-improve-performance/first-offers-received.png"
+/>
+
+## Resources
+
+The code is my TypeScript version of the [idlize](https://github.com/GoogleChromeLabs/idlize) package. Also, check the whole implementation in this repo: [idle-until-urgent](https://github.com/imteekay/idle-until-urgent).
+
+I have some resources I used along the way while doing this project. I hope it can be helpful to you too: [Web Performance Research](https://github.com/imteekay/web-performance-research).
+
+---
+
+</SmoothRender>
