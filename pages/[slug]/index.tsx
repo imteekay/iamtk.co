@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
@@ -26,26 +28,49 @@ type PageProps = {
   minutes: number;
 };
 
-const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
-  <>
-    <Head
-      title={postMetadata.title}
-      description={postMetadata.description}
-      imageUrl={postMetadata.coverImage.src}
-    />
-    <Layout
-      tags={postMetadata.tags}
-      title={postMetadata.title}
-      date={postMetadata.date}
-      alternativeArticle={postMetadata.alternativeArticle}
-      showSocialLinks
-      minutes={minutes}
-      coverImage={postMetadata.coverImage}
-    >
-      <MDX content={content} />
-    </Layout>
-  </>
-);
+const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => {
+  useEffect(() => {
+    const lazyVideos = [].slice.call(document.querySelectorAll('video.lazy'));
+
+    if ('IntersectionObserver' in window) {
+      const lazyVideoObserver = new IntersectionObserver((entries) => {
+        entries.forEach((video) => {
+          if (video.isIntersecting) {
+            const videoElement = video.target as HTMLVideoElement;
+            videoElement.load();
+            videoElement.classList.remove('lazy');
+            lazyVideoObserver.unobserve(videoElement);
+          }
+        });
+      });
+
+      lazyVideos.forEach((lazyVideo) => {
+        lazyVideoObserver.observe(lazyVideo);
+      });
+    }
+  }, []);
+
+  return (
+    <>
+      <Head
+        title={postMetadata.title}
+        description={postMetadata.description}
+        imageUrl={postMetadata.coverImage.src}
+      />
+      <Layout
+        tags={postMetadata.tags}
+        title={postMetadata.title}
+        date={postMetadata.date}
+        alternativeArticle={postMetadata.alternativeArticle}
+        showSocialLinks
+        minutes={minutes}
+        coverImage={postMetadata.coverImage}
+      >
+        <MDX content={content} />
+      </Layout>
+    </>
+  );
+};
 
 export async function getStaticPaths() {
   return {

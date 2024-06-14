@@ -126,7 +126,14 @@ Measuring:
 The web-vitals extension is an interesting setup because it will add the labels to the Timings. There you can see when the INP metric starts and finishes. It will also provide the INP breakdown for you so you can check when each phase starts and finishes too.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video controls="true" allowfullscreen="true" style={{ width: '100%' }}>
+  <video
+    preload="none"
+    muted
+    class="lazy"
+    controls="true"
+    allowfullscreen="true"
+    style={{ width: '100%' }}
+  >
     <source src="/optimizing-inp-for-a-react-app-and-performance-learnings/OfferInteraction-devtools.mov" />
   </video>
 </div>
@@ -181,7 +188,14 @@ It means that even if we improve one of the features, the INP score could improv
 Here's what it looks like:
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video controls="true" allowfullscreen="true" style={{ width: '50%' }}>
+  <video
+    preload="none"
+    muted
+    class="lazy"
+    controls="true"
+    allowfullscreen="true"
+    style={{ width: '50%' }}
+  >
     <source src="/optimizing-inp-for-a-react-app-and-performance-learnings/srp-features.mov" />
   </video>
 </div>
