@@ -56,7 +56,7 @@ It could be a variety set of reasons the page had this problem. But without meas
 With the DevTools, I was able to have an overview of the UI using the Performance Monitor.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="full" controls="true" allowfullscreen="true">
+  <video class="full lazy" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/performance-monitor.mov" />
   </video>
 </div>
@@ -77,7 +77,7 @@ The DOM nodes were big but the attribute that caught my attention was the CPU us
 The Chrome devtools is a nice tool to investigate possible performance issues.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="full" controls="true" allowfullscreen="true">
+  <video class="full lazy" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/devtools-performance-tab.mov" />
   </video>
 </div>
@@ -95,7 +95,7 @@ With that in mind, a new concept comes up: Long Tasks.
 A Long Task is “_any uninterrupted period where the main UI thread is busy for 50 ms or longer_". As we all know, JavaScript is single threaded and every time the main thread is busy, we are blocking any user interactions leading to a very bad user experience.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="full" controls="true" allowfullscreen="true">
+  <video class="full lazy" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/long-tasks.mov" />
   </video>
 </div>
@@ -160,7 +160,7 @@ One common pattern for lists is to use List Virtualization.
 With List virtualization, only a small subset of the list will be rendered in the DOM. When the user scrolls down, the list virtualization will remove and recycle the first items and replace them with newer and subsequent items in the list.
 
 <div style={{ margin: 'auto', textAlign: 'center' }}>
-  <video class="full" controls="true" allowfullscreen="true">
+  <video class="full lazy" controls="true" allowfullscreen="true">
     <source src="/profiling-and-optimizing-the-runtime-web-performance-with-the-devtools-performance-tab/list-virtualization-dom-elements.mov" />
   </video>
 </div>
