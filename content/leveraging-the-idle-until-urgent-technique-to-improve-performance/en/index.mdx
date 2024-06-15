@@ -270,7 +270,19 @@ There are more details in the implementation but I wanted to show how it works a
 
 With the idle until urgent technique, I applied it in our tracking events to see how much it could improve the performance of interaction metrics, especially INP and other custom in-house metrics we have at Vio.
 
-For INP, it didn't move the needle that much, only ~15ms improvement for desktop and mobile together. I suspect that it didn't have much effect because of the improvement we had using the [yielding technique](/optimizing-inp-for-a-react-app-and-performance-learnings) that I shared a couple of weeks ago. But I'm still investigating it.
+For INP, it didn't move the needle that much, only ~15ms improvement for desktop and mobile together:
+
+- 10-15ms improvement for mobile
+- 10ms improvement for desktop
+
+In the INP data, we can even see that improvement as it was a very small one (I wonder if 10-15ms improvement makes any difference for the user).
+
+<img
+  loading="lazy"
+  src="leveraging-the-idle-until-urgent-technique-to-improve-performance/inp.png"
+/>
+
+I suspect that it didn't have much effect because of the improvement we had using the [yielding technique](/optimizing-inp-for-a-react-app-and-performance-learnings) that I shared a couple of weeks ago. But I'm still investigating it.
 
 In terms of custom metrics, there are two metrics I could see a good improvement:
 
