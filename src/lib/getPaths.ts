@@ -18,6 +18,7 @@ const folderMapper = {
   tags: 'tag',
   microblog: 'microblog',
   notes: 'notes',
+  essay: 'essay',
 };
 
 type FolderTypes = keyof typeof folderMapper;
