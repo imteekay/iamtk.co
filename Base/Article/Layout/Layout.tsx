@@ -54,7 +54,7 @@ export const Layout: FC<LayoutPropTypes> = ({
             />
           </header>
 
-          {coverImage.src && (
+          {coverImage?.src && (
             <CoverImage
               src={coverImage.src}
               width={coverImage.width}
