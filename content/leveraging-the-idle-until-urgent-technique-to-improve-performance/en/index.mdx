@@ -303,6 +303,19 @@ And for the loading of offers, we've got a 2s improvement.
   src="leveraging-the-idle-until-urgent-technique-to-improve-performance/first-offers-received.png"
 />
 
+But the most impressive improvement was on the LCP metric:
+
+- General LCP: improved in ~700ms
+- Android Webview: improved in ~1.5s
+- Android Web: improved in ~700ms
+
+<SideBySideImages
+  images={[
+    '/leveraging-the-idle-until-urgent-technique-to-improve-performance/lcp.png',
+    '/leveraging-the-idle-until-urgent-technique-to-improve-performance/lcp-mobile.png',
+  ]}
+/>
+
 ## Resources
 
 The code is a TypeScript version of the [idlize](https://github.com/GoogleChromeLabs/idlize) package. The TypeScript support was implemented by Redbus in their [idlefy](https://github.com/redbus-labs/idlefy) package.
