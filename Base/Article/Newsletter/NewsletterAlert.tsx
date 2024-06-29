@@ -95,11 +95,6 @@ export const NewsletterAlert = () => {
       const height = document.body.scrollHeight;
       const percentPageToShow = height * 0.65;
       const percentPageToHide = height * 0.85;
-      console.log({
-        height,
-        percentPageToShow,
-        currentPosition,
-      });
 
       if (currentPosition > percentPageToHide) {
         setAnimated(false);
