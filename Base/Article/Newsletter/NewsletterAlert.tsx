@@ -98,8 +98,12 @@ export const NewsletterAlert = () => {
 
       if (currentPosition > percentPageToHide) {
         setAnimated(false);
-      } else if (currentPosition > percentPageToShow) {
+      } else if (
+        !window.localStorage.getItem('newsletterAlertShown') &&
+        currentPosition > percentPageToShow
+      ) {
         setAnimated(true);
+        window.localStorage.setItem('newsletterAlertShown', 'true');
       }
     });
 
