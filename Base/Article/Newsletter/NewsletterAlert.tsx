@@ -10,7 +10,7 @@ const NewsletterAlertContainer = styled.div`
   width: 300px;
   font-size: 12px;
   line-height: 1.5em;
-  background-color: #e85c57;
+  background-color: #40a578;
   color: white;
   box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   padding: 10px;
