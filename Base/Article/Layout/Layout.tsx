@@ -1,5 +1,7 @@
 import { FC } from 'react';
 
+import { NewsletterAlert } from '../Newsletter/NewsletterAlert';
+
 import { CoverImage } from 'Base/Article/CoverImage';
 import { HomeLink } from 'Base/Article/HomeLink';
 import { Footer } from 'Base/Article/Layout/Footer';
@@ -67,6 +69,7 @@ export const Layout: FC<LayoutPropTypes> = ({
           )}
 
           {children}
+          <NewsletterAlert />
           {showSocialLinks && <SocialLinks />}
         </article>
         <Footer tags={tags} />
