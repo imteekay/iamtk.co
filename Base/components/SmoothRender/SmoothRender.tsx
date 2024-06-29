@@ -29,6 +29,12 @@ const SmoothRenderElement = ({ children }: SmoothRenderElementPropTypes) => {
 };
 
 export const SmoothRender = ({ children }: SmoothRenderPropTypes) =>
-  children.map((child, id) => (
-    <SmoothRenderElement key={id}>{child}</SmoothRenderElement>
-  ));
+  children.map((child, id) => {
+    return child.type.name === 'NewsletterAlert' ? (
+      child
+    ) : (
+      <SmoothRenderElement key={id}>{child}</SmoothRenderElement>
+    );
+    // console.log({ type: child.type.name, id });
+    // return <SmoothRenderElement key={id}>{child}</SmoothRenderElement>;
+  });
