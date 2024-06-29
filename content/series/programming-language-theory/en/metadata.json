@@ -1,0 +1,19 @@
+{
+  "title": "Programming Language Theory: Notes",
+  "description": "PLT, PL Design, and Compilers",
+  "date": "2022-04-16",
+  "tags": [
+    {
+      "href": "/tags/programming-language-design",
+      "name": "programming_language_design"
+    }
+  ],
+  "coverImage": {
+    "src": "/programming-language-theory/math.jpg",
+    "width": "640",
+    "height": "480",
+    "alt": "Math in a chalkboard",
+    "authorHref": "https://unsplash.com/@roman_lazygeek",
+    "authorName": "Roman Mager"
+  }
+}
