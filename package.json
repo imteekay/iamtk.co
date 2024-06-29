@@ -26,6 +26,7 @@
     "@loadable/component": "^5.15.2",
     "@mui/material": "^5.3.1",
     "@octokit/core": "^4.0.5",
+    "debounce": "^2.1.0",
     "framer-motion": "^10.12.16",
     "highlight.js": "^11.3.1",
     "kbar": "^0.1.0-beta.23",
