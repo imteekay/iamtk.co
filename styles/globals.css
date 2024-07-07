@@ -106,7 +106,7 @@ article blockquote {
   margin: 1rem 10px;
   padding: 0.5em 10px;
   font-size: 1.1em;
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: #666;
   margin-top: 1.5em;
   text-align: center;
@@ -127,7 +127,7 @@ article blockquote {
 article blockquote::before {
   color: #eee;
   content: '\201C';
-  font-size: 2em;
+  font-size: 1.5em;
   line-height: 0.1em;
   margin-right: 0.25em;
   vertical-align: -0.4em;
