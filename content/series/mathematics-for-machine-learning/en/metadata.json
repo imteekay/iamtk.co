@@ -1,0 +1,23 @@
+{
+  "title": "Mathematics for Machine Learning",
+  "description": "A documentation series about my mathematics studies for Machine Learning",
+  "date": "2024-07-07",
+  "tags": [
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine-learning"
+    },
+    {
+      "href": "/tags/math",
+      "name": "math"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mathematics-for-machine-learning/cover.jpg",
+    "width": "640",
+    "height": "480",
+    "alt": "dark geometry",
+    "authorHref": "https://unsplash.com/@pawel_czerwinski",
+    "authorName": "Pawel Czerwinski"
+  }
+}

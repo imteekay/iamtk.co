@@ -1,0 +1,23 @@
+{
+  "title": "Algebra Fundamentals",
+  "description": "Learning the fundamentals of algebra for Machine Learning",
+  "date": "2024-07-07",
+  "tags": [
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine-learning"
+    },
+    {
+      "href": "/tags/math",
+      "name": "math"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mathematics-for-machine-learning/algebra-fundamentals/cover.jpg",
+    "width": "640",
+    "height": "480",
+    "alt": "Maths symbols in a glass",
+    "authorHref": "https://unsplash.com/@saadahmad_umn",
+    "authorName": "Saad Ahmad"
+  }
+}
