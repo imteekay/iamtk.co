@@ -1,0 +1,23 @@
+{
+  "title": "Calculus: Derivatives and Optimization",
+  "description": "Learning the fundamentals of Calculus, Derivatives, and Optimization for Machine Learning",
+  "date": "2024-07-08",
+  "tags": [
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine-learning"
+    },
+    {
+      "href": "/tags/math",
+      "name": "math"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mathematics-for-machine-learning/calculus-derivatives-and-optimization/cover.jpg",
+    "width": "640",
+    "height": "424",
+    "alt": "person writing on whiteboard",
+    "authorHref": "https://unsplash.com/@jeswinthomas",
+    "authorName": "Jeswin Thomas"
+  }
+}
