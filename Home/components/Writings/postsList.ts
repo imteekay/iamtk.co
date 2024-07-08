@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2024-07-08',
+    link: '/series/mathematics-for-machine-learning',
+    title: 'Mathematics for Machine Learning',
+  },
+  {
     datetime: '2024-06-14',
     link: '/leveraging-the-idle-until-urgent-technique-to-improve-performance',
     title: 'Leveraging the Idle Until Urgent technique to improve performance',

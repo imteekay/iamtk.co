@@ -12,6 +12,24 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Maths for ML: Calculus — Derivatives and Optimization</title>
+    <link>https://www.iamtk.co/series/mathematics-for-machine-learning/calculus-derivatives-and-optimization</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/mathematics-for-machine-learning/calculus-derivatives-and-optimization</guid>
+    <description>Learning the fundamentals of Calculus, Derivatives, and Optimization for Machine Learning</description>
+  </item>
+  <item>
+    <title>Maths for ML: Algebra Fundamentals</title>
+    <link>https://www.iamtk.co/series/mathematics-for-machine-learning/algebra-fundamentals</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/mathematics-for-machine-learning/algebra-fundamentals</guid>
+    <description>Learning the fundamentals of algebra for Machine Learning</description>
+  </item>
+  <item>
+    <title>Mathematics for Machine Learning</title>
+    <link>https://www.iamtk.co/series/mathematics-for-machine-learning</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/mathematics-for-machine-learning</guid>
+    <description>A documentation series about my mathematics studies for Machine Learning</description>
+  </item>
+  <item>
     <title>Leveraging the Idle Until Urgent technique to improve performance</title>
     <link>https://www.iamtk.co/leveraging-the-idle-until-urgent-technique-to-improve-performance</link>
     <guid isPermaLink="true">https://www.iamtk.co/leveraging-the-idle-until-urgent-technique-to-improve-performance</guid>
