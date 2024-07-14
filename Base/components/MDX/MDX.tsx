@@ -1,5 +1,6 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
+import { InlineMath, BlockMath } from 'react-katex';
 import TweetEmbed from 'react-tweet-embed';
 import rehypeHighlight from 'rehype-highlight';
 
@@ -28,6 +29,8 @@ const components = {
   TweetEmbed,
   SmoothRender,
   SideBySideVideos,
+  InlineMath,
+  BlockMath,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
