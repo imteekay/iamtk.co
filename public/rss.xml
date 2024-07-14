@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Maths for ML: Linear Algebra Fundamentals</title>
+    <link>https://www.iamtk.co/series/mathematics-for-machine-learning/linear-algebra-fundamentals</link>
+    <guid isPermaLink="true">https://www.iamtk.co/series/mathematics-for-machine-learning/linear-algebra-fundamentals</guid>
+    <description>Learning the fundamentals of Linear Algebra for Machine Learning</description>
+  </item>
+  <item>
     <title>Maths for ML: Calculus — Derivatives and Optimization</title>
     <link>https://www.iamtk.co/series/mathematics-for-machine-learning/calculus-derivatives-and-optimization</link>
     <guid isPermaLink="true">https://www.iamtk.co/series/mathematics-for-machine-learning/calculus-derivatives-and-optimization</guid>
