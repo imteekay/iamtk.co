@@ -13,9 +13,7 @@ A numeric element that has magnitude and direction.
 
 Let's see an example:
 
-```bash
-v = (2, 1)
-```
+<BlockMath>{`\\begin{equation}\\vec{v} = \\begin{bmatrix}2 \\\\ 1 \\end{bmatrix}\\end{equation}`}</BlockMath>
 
 For this vector, we need to move 2 units in the `x` dimension and 1 unit in the `y` dimension. It's a way of saying the directions you need to follow to get to there from here.
 
@@ -86,8 +84,13 @@ math.degrees(vAtan) # 𝛉 = 26.56505117707799
 
 Let's add two vectors:
 
-- `v = (2, 1)`
-- `s = (-3, 2)`
+<BlockMath>
+  {`\\begin{equation}\\vec{v} = \\begin{bmatrix}2 \\\\ 1 \\end{bmatrix}\\end{equation}`}
+</BlockMath>
+
+<BlockMath>
+  {`\\begin{equation}\\vec{s} = \\begin{bmatrix}-3 \\\\ 2 \\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 ```python
 import numpy as np
@@ -106,13 +109,19 @@ plt.quiver(*origin, vecs[1, 0], vecs[1, 1], color=['r', 'b'], scale=10)
 plt.show()
 ```
 
-Let's calcula the sum of `v` and `s`, resulting in `z`:
+Let's calculate the sum of `v` and `s`, resulting in `z`:
 
-```bash
-z = v + s
-z = (2, 1) + (-3, 2)
-z = (-1, 3)
-```
+<BlockMath>
+  {`\\begin{equation}\\vec{z} = \\vec{v}+\\vec{s}\\end{equation}`}
+</BlockMath>
+
+<BlockMath>
+  {`\\begin{equation}\\vec{z} = \\begin{bmatrix}2 \\\\ 1 \\end{bmatrix} + \\begin{bmatrix}-3 \\\\ 2 \\end{bmatrix}\\end{equation}`}
+</BlockMath>
+
+<BlockMath>
+  {`\\begin{equation}\\vec{z} = \\begin{bmatrix}2 \\\\ 1 \\end{bmatrix} + \\begin{bmatrix}-3 \\\\ 2 \\end{bmatrix} = \\begin{bmatrix}-1 \\\\ 3 \\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 Generate the new vector `z` with Python:
 
