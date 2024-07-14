@@ -482,21 +482,19 @@ Multiplying a matrix by an identity matrix results in the same matrix. It's like
 
 Matrix division is basically multiplying it by the inverse of the matrix
 
-$$
-\begin{equation}A \div B = A \cdot B^{-1}\end{equation}
-$$
+<BlockMath>{`A \\div B = A \\cdot B^{-1}`}</BlockMath>
 
 How the inverse of a matrix is calculated? Using this equation:
 
-$$
-\begin{equation}\begin{bmatrix}a & b\\c & d\end{bmatrix}^{-1} = \frac{1}{ad-bc}  \begin{bmatrix}d & -b\\-c & a\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}\\begin{bmatrix}a & b\\\\c & d\\end{bmatrix}^{-1} = \\frac{1}{ad-bc}  \\begin{bmatrix}d & -b\\\\-c & a\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 Let's see it in action:
 
-$$
-\begin{equation}\begin{bmatrix}6 & 2\\1 & 2\end{bmatrix}^{-1} = \begin{bmatrix}0.2 & -0.2\\-0.1 & 0.6\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}\\begin{bmatrix}6 & 2\\\\1 & 2\\end{bmatrix}^{-1} = \\begin{bmatrix}0.2 & -0.2\\\\-0.1 & 0.6\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 In Python, we can use the `linalg.inv` method:
 
@@ -526,21 +524,21 @@ np.linalg.inv(B)
 
 With the calculation of the inverse, we can now calculate the multiplication of a matrix with a inverse of another matrix.
 
-$$
-\begin{equation}\begin{bmatrix}1 & 2\\3 & 4\end{bmatrix} \cdot \begin{bmatrix}6 & 2\\1 & 2\end{bmatrix}^{-1} \end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}\\begin{bmatrix}1 & 2\\\\3 & 4\\end{bmatrix} \\cdot \\begin{bmatrix}6 & 2\\\\1 & 2\\end{bmatrix}^{-1} \\end{equation}`}
+</BlockMath>
 
-$$
-\begin{equation}=\begin{bmatrix}1 & 2\\3 & 4\end{bmatrix} \cdot \begin{bmatrix}0.2 & -0.2\\-0.1 & 0.6\end{bmatrix}  \end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}=\\begin{bmatrix}1 & 2\\\\3 & 4\\end{bmatrix} \\cdot \\begin{bmatrix}0.2 & -0.2\\\\-0.1 & 0.6\\end{bmatrix}  \\end{equation}`}
+</BlockMath>
 
-$$
-\begin{equation}=\begin{bmatrix}(1\times0.2)+(2\times-0.1) & (1\times-0.2)+(2\times0.6)\\(3\times0.2)+(4\times-0.1) & (3\times-0.2)+(4\times0.6)\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}=\\begin{bmatrix}(1\\times0.2)+(2\\times-0.1) & (1\\times-0.2)+(2\\times0.6)\\\\(3\\times0.2)+(4\\times-0.1) & (3\\times-0.2)+(4\\times0.6)\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
-$$
-\begin{equation}=\begin{bmatrix}0 & 1\\0.2 & 1.8\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}=\\begin{bmatrix}0 & 1\\\\0.2 & 1.8\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 In Python, we can just invert the matrix and multiply by the inverse:
 
@@ -560,45 +558,41 @@ A @ np.linalg.inv(B)
 
 We can write system of equations in matrix form. Take a look a this equations:
 
-$$
-\begin{equation}2x + 4y = 18\end{equation}
-$$
+<BlockMath>{`\\begin{equation}2x + 4y = 18\\end{equation}`}</BlockMath>
 
-$$
-\begin{equation}6x + 2y = 34\end{equation}
-$$
+<BlockMath>{`\\begin{equation}6x + 2y = 34\\end{equation}`}</BlockMath>
 
 We can write this in matrix form:
 
-$$
-\begin{equation}\begin{bmatrix}2 & 4\\6 & 2\end{bmatrix} \cdot \begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}18\\34\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}\\begin{bmatrix}2 & 4\\\\6 & 2\\end{bmatrix} \\cdot \\begin{bmatrix}x\\\\y\\end{bmatrix}=\\begin{bmatrix}18\\\\34\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 And we can write this in another way:
 
-$$
-\begin{equation}A=\begin{bmatrix}2 & 4\\6 & 2\end{bmatrix}\;\;\;\;X=\begin{bmatrix}x\\y\end{bmatrix}\;\;\;\;B=\begin{bmatrix}18\\34\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}A=\\begin{bmatrix}2 & 4\\\\6 & 2\\end{bmatrix}\\;\\;\\;\\;X=\\begin{bmatrix}x\\\\y\\end{bmatrix}\\;\\;\\;\\;B=\\begin{bmatrix}18\\\\34\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 We know that `A · X = B`, which is the same as `B ÷ A = X`, which is the same as `B · A⁻¹ = X`.
 
 The inverse of `A` is:
 
-$$
-\begin{equation}A^{-1} = \begin{bmatrix}-0.1 & 0.2\\0.3 & -0.1\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}A^{-1} = \\begin{bmatrix}-0.1 & 0.2\\\\0.3 & -0.1\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 So:
 
-$$
-\begin{equation}X = \begin{bmatrix}-0.1 & 0.2\\0.3 & -0.1\end{bmatrix} \cdot \begin{bmatrix}18\\34\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}X = \\begin{bmatrix}-0.1 & 0.2\\\\0.3 & -0.1\\end{bmatrix} \\cdot \\begin{bmatrix}18\\\\34\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 The result of the matrix `X` is
 
-$$
-\begin{equation}X = \begin{bmatrix}5\\2\end{bmatrix}\end{equation}
-$$
+<BlockMath>
+  {`\\begin{equation}X = \\begin{bmatrix}5\\\\2\\end{bmatrix}\\end{equation}`}
+</BlockMath>
 
 In Python, we can confirm that:
 
