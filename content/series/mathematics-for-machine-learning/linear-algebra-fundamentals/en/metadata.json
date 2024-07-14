@@ -1,0 +1,23 @@
+{
+  "title": "Linear Algebra Fundamentals",
+  "description": "Learning the fundamentals of Linear Algebra for Machine Learning",
+  "date": "2024-07-15",
+  "tags": [
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine-learning"
+    },
+    {
+      "href": "/tags/math",
+      "name": "math"
+    }
+  ],
+  "coverImage": {
+    "src": "/series/mathematics-for-machine-learning/linear-algebra-fundamentals/cover.jpg",
+    "width": "640",
+    "height": "577",
+    "alt": "a black background with green dots and lines",
+    "authorHref": "https://unsplash.com/@mariolagr",
+    "authorName": "MARIOLA GROBELSKA"
+  }
+}
