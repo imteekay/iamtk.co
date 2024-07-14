@@ -43,6 +43,10 @@ export const Head = ({ title, description, imageUrl }: HeadPropTypes) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={`https://iamtk.co${imageUrl}`} />
+      <link
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        rel="stylesheet"
+      />
     </HeadNext>
   );
 };
