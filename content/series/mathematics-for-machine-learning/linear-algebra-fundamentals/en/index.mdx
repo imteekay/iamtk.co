@@ -1,0 +1,624 @@
+<SmoothRender>
+
+This is the second part of the series [Mathematics for Machine Learning](/series/mathematics-for-machine-learning) with Python.
+
+## Vectors
+
+### What's a vector
+
+A numeric element that has magnitude and direction.
+
+- magnitude: distance
+- direction: which way is headed
+
+Let's see an example:
+
+```bash
+v = (2, 1)
+```
+
+For this vector, we need to move 2 units in the `x` dimension and 1 unit in the `y` dimension. It's a way of saying the directions you need to follow to get to there from here.
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+vector = np.array([2, 1])
+origin = [0], [0]
+plt.axis('equal')
+plt.grid()
+plt.quiver(*origin, *vector, scale=10, color='r')
+plt.show()
+```
+
+This will plot the vector in the graph:
+
+![](vector.png)
+
+### Calculating Magnitude
+
+We can use the Pythagorean theorum and calculate the square root of the sum of the squares.
+
+```bash
+v = √v₁² + v₂²
+```
+
+For our vector example: `v = (2, 1)`, here's how I calculate it:
+
+```bash
+v = √2² + 1²
+v = √4 + 1
+v = √5 ≈ 2.24
+```
+
+In Python, we can use the `math` module:
+
+```python
+import numpy as np
+import math
+
+vector = np.array([2, 1])
+math.sqrt(vector[0]**2 + vector[1]**2) # 2.23606797749979
+```
+
+### Calculating Direction
+
+To calculate the direction (amplitude), we use trigonometry and get the angle of the vector by calculating the inverse tangent `tan⁻¹`.
+
+```bash
+tan(𝛉) = 1 / 2
+𝛉 = tan⁻¹(0.5) ≈ 26.57°
+```
+
+We can confirm it calculating it in Python
+
+```python
+import math
+import numpy as np
+
+v = np.array([2,1])
+vTan = v[1] / v[0] # 0.5
+vAtan = math.atan(vTan)
+math.degrees(vAtan) # 𝛉 = 26.56505117707799
+```
+
+### Vector Addition
+
+Let's add two vectors:
+
+- `v = (2, 1)`
+- `s = (-3, 2)`
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+v = np.array([2, 1])
+s = np.array([-3, 2])
+
+vecs = np.array([v, s])
+origin = [0], [0]
+plt.axis('equal')
+plt.grid()
+plt.ticklabel_format(style='sci', axis='both', scilimits=(0,0))
+plt.quiver(*origin, vecs[0, 0], vecs[0, 1], color=['r', 'b'], scale=10)
+plt.quiver(*origin, vecs[1, 0], vecs[1, 1], color=['r', 'b'], scale=10)
+plt.show()
+```
+
+Let's calcula the sum of `v` and `s`, resulting in `z`:
+
+```bash
+z = v + s
+z = (2, 1) + (-3, 2)
+z = (-1, 3)
+```
+
+Generate the new vector `z` with Python:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+v = np.array([2, 1])
+s = np.array([-3, 2])
+z = v + s
+
+vecs = np.array([v, s, z])
+origin = [0], [0]
+plt.axis('equal')
+plt.grid()
+plt.ticklabel_format(style='sci', axis='both', scilimits=(0,0))
+plt.quiver(*origin, vecs[0, 0], vecs[0, 1], color=['r', 'b'], scale=10)
+plt.quiver(*origin, vecs[1, 0], vecs[1, 1], color=['r', 'b'], scale=10)
+plt.quiver(*origin, vecs[2, 0], vecs[2, 1], color=['r', 'b'], scale=10)
+plt.show()
+```
+
+Here's the plot:
+
+![](vector-addition.png)
+
+### Vector Multiplication
+
+We have 3 ways of performing vector multiplication:
+
+- Scalar multiplication
+- Dot product multiplication
+- Cross product multiplication
+
+Scalar multiplication is multiplying a vector by a single numeric value.
+
+Let's multiply vector `v` by `2`, resulting in a vector `w`.
+
+```bash
+v = (2, 1)
+w = 2v
+```
+
+Here's how the multiplication is calculated:
+
+```bash
+w = (2·2, 2·1)
+w = (4, 2)
+```
+
+In Python, we can use `numpy` to perform the vector multiplication
+
+```python
+import numpy as np
+
+v = np.array([2, 1])
+w = 2 * v # [4 2]
+```
+
+Scalar division is the same idea:
+
+```python
+import numpy as np
+
+v = np.array([2, 1])
+b = v / 2 # [1. 0.5]
+```
+
+In the dot production multiplication, we get the result of of two vectors multiplication, in other words, the scalar product (a numeric value).
+
+```bash
+v·s = (v₁·s₁) + (v₂·s₂) ... + (vₙ·sₙ)
+```
+
+If `v = (2, 1)` and `s = (-3, 2)`, here's how we calculate the scalar product:
+
+```bash
+v·s = (2·-3) + (1·2) = -6 + 2 = -4
+```
+
+In Python, we can use the `dot` method or `@` to calculate the scalar product of two vectors.
+
+```python
+# using .dot
+v = np.array([2, 1])
+s = np.array([-3, 2])
+np.dot(v, s) # -4
+
+# using @
+v = np.array([2, 1])
+s = np.array([-3, 2])
+v @ s # -4
+```
+
+To get the vector product of multiplying two vectors, we need to calculate the cross product.
+
+```bash
+v = (2, 3, 1)
+s = (1, 2, -2)
+r = v·s = ? # vector product
+```
+
+We need to calculate the three components for the final vector:
+
+```bash
+r₁ = v₂s₃ - v₃s₂
+r₂ = v₃s₁ - v₁s₃
+r₃ = v₁s₂ - v₂s₁
+```
+
+Here's how we do the calculation in our example:
+
+```bash
+r = v·s = ((3·-2) - (1·-2), (1·1) - (2·-2), (2·2) - (3·1))
+r = v·s = (-8, 5, 1)
+```
+
+In Python, we use the `cross` method:
+
+```python
+p = np.array([2, 3, 1])
+q = np.array([1, 2, -2])
+r = np.cross(p, q) # [-8  5  1]
+```
+
+## Matrices
+
+### What's a matrix
+
+A matrix is an array of numbers that are arranged into rows and columns.
+
+```bash
+A = [
+  1 2 3
+  4 5 6
+]
+```
+
+This is how you indicate each element in the matrix:
+
+```bash
+A = [
+  a₁,₁  a₁,₂  a₁,₃
+  a₂,₁  a₂,₂  a₂,₃
+]
+```
+
+In Python, we can define the matrix as a 2-dimensional array:
+
+```python
+import numpy as np
+
+A = np.array([[1,2,3],
+              [4,5,6]])
+# [[1 2 3]
+#  [4 5 6]]
+```
+
+To add two matrices of the same size together, just add the corresponding elements in each matrix:
+
+```bash
+[               [             [
+  1 2 3     +     6 5 4   =     7 7 7
+  4 5 6           3 2 1         7 7 7
+]               ]             ]
+```
+
+Here's how we calculate it:
+
+```bash
+[
+  a₁,₁ + b₁,₁, a₁,₂ + b₁,₂, a₁,₃ + b₁,₃
+  a₂,₁ + b₂,₁, a₂,₂ + b₂,₂, a₂,₃ + b₂,₃
+]
+```
+
+In Python, we can just sum the two matrices:
+
+```python
+A = np.array([[1, 2, 3],
+              [4, 5, 6]])
+
+B = np.array([[6, 5, 4],
+              [3, 2, 1]])
+
+A + B
+# [[7 7 7]
+# [7 7 7]]
+```
+
+Subtraction of two matrices works the same way:
+
+```bash
+[               [             [
+  1 2 3     -     6 5 4   =     -5 -3 -1
+  4 5 6           3 2 1         1   3  5
+]               ]             ]
+```
+
+The nagative of a matrix, is just a matrix with the sign of each element reversed.
+
+```bash
+C = [
+  -5  -3  -1
+  1   3   5
+]
+
+-C = [
+  5   3    1
+  -1  -3   -5
+]
+```
+
+In Python, we can use the minus sign:
+
+```python
+C = np.array([[-5, -3, -1],
+              [1, 3, 5]])
+C
+# [[-5 -3 -1]
+#  [ 1  3  5]]
+
+-C
+# [[ 5  3  1]
+#  [-1 -3 -5]]
+```
+
+Matrix Transposition is when we switch the orientation of its rows and columns:
+
+```bash
+[               [
+  1 2 3    =      1 4
+  4 5 6           2 5
+] ͭ                3 6
+                ]
+```
+
+In Python, we have the `T` method:
+
+```python
+A = np.array([[1, 2, 3],
+              [4, 5, 6]])
+A.T
+# [[1 4]
+#  [2 5]
+#  [3 6]]
+```
+
+### Matrix Multiplication
+
+Scalar multiplication in matrices looks similar to scalar multiplication in vectors. To multiply a matrix by a scalar value, you just multiply each element by the scalar to produce a new matrix:
+
+```bash
+     [                 [
+2 ·     1 2 3     =       2  4   6
+        4 5 6             8  10  12
+     ]                 ]
+```
+
+In Python, we simply perform the multiplication of two values:
+
+```python
+A = np.array([[1,2,3],
+              [4,5,6]])
+
+2 * A
+# [[ 2  4  6]
+#  [ 8 10 12]]
+```
+
+To mulitply two matrices, we need to calculate the dot product of rows and columns.
+
+```bash
+A · B
+
+[               [
+  1 2 3     ·     9 8
+  4 5 6           7 6
+]                 5 4
+                ]
+```
+
+How to calculate this multiplication:
+
+- First row from A times first column from B = First row, first column
+- First row from A times second column from B = First row, second column
+- Second row from A times first column from B = Second row, first column
+- Second row from A times second column from B = Second row, second column
+
+Resulting in these calculations:
+
+```bash
+(1·9) + (2·7) + (3·5) = 38
+(1·8) + (2·6) + (3·4) = 32
+(4·9) + (5·7) + (6·5) = 101
+(4·8) + (5·6) + (6·4) = 86
+```
+
+Resulting in this matrix:
+
+```bash
+[
+  38   32
+  101  86
+]
+```
+
+In Python, we can use the `dot` method or `@`:
+
+```python
+import numpy as np
+
+A = np.array([[1, 2, 3],
+              [4, 5, 6]])
+
+B = np.array([[9, 8],
+              [7, 6],
+              [5, 4]])
+
+np.dot(A,B)
+A @ B
+# [[ 38  32]
+#  [101  86]]
+```
+
+For matrix multiplication, we commutative law doesn't apply:
+
+```python
+A = np.array([[2, 4],
+              [6, 8]])
+
+B = np.array([[1, 3],
+              [5, 7]])
+
+A @ B
+# [[22 34]
+#  [46 74]]
+
+B @ A
+# [[20 28]
+#  [52 76]]
+```
+
+Identity matrices are matrices that have the value 1 in the diagonal positions and 0 in the rest of the other positions.
+
+An example:
+
+```bash
+[
+  1 0 0
+  0 1 0
+  0 0 1
+]
+```
+
+Multiplying a matrix by an identity matrix results in the same matrix. It's like multiplying by 1.
+
+```bash
+[             [             [
+  1 2 3         1 0 0         1 2 3
+  4 5 6   ·     0 1 0   =     4 5 6
+  7 8 9         0 0 1         7 8 9
+]             ]             ]
+```
+
+### Matrix Division
+
+Matrix division is basically multiplying it by the inverse of the matrix
+
+$$
+\begin{equation}A \div B = A \cdot B^{-1}\end{equation}
+$$
+
+How the inverse of a matrix is calculated? Using this equation:
+
+$$
+\begin{equation}\begin{bmatrix}a & b\\c & d\end{bmatrix}^{-1} = \frac{1}{ad-bc}  \begin{bmatrix}d & -b\\-c & a\end{bmatrix}\end{equation}
+$$
+
+Let's see it in action:
+
+$$
+\begin{equation}\begin{bmatrix}6 & 2\\1 & 2\end{bmatrix}^{-1} = \begin{bmatrix}0.2 & -0.2\\-0.1 & 0.6\end{bmatrix}\end{equation}
+$$
+
+In Python, we can use the `linalg.inv` method:
+
+```python
+import numpy as np
+
+B = np.array([[6, 2],
+              [1, 2]])
+
+np.linalg.inv(B)
+# [[ 0.2 -0.2]
+#  [-0.1  0.6]]
+```
+
+Larger matrices than 2x2 are more complex to calculate the inverse, but it is calculated in the same way in Python:
+
+```python
+B = np.array([[4, 2, 2],
+              [6, 2, 4],
+              [2, 2, 8]])
+
+np.linalg.inv(B)
+# [[-0.25   0.375 -0.125]
+#  [ 1.25  -0.875  0.125]
+#  [-0.25   0.125  0.125]]
+```
+
+With the calculation of the inverse, we can now calculate the multiplication of a matrix with a inverse of another matrix.
+
+$$
+\begin{equation}\begin{bmatrix}1 & 2\\3 & 4\end{bmatrix} \cdot \begin{bmatrix}6 & 2\\1 & 2\end{bmatrix}^{-1} \end{equation}
+$$
+
+$$
+\begin{equation}=\begin{bmatrix}1 & 2\\3 & 4\end{bmatrix} \cdot \begin{bmatrix}0.2 & -0.2\\-0.1 & 0.6\end{bmatrix}  \end{equation}
+$$
+
+$$
+\begin{equation}=\begin{bmatrix}(1\times0.2)+(2\times-0.1) & (1\times-0.2)+(2\times0.6)\\(3\times0.2)+(4\times-0.1) & (3\times-0.2)+(4\times0.6)\end{bmatrix}\end{equation}
+$$
+
+$$
+\begin{equation}=\begin{bmatrix}0 & 1\\0.2 & 1.8\end{bmatrix}\end{equation}
+$$
+
+In Python, we can just invert the matrix and multiply by the inverse:
+
+```python
+A = np.array([[1,2],
+              [3,4]])
+
+B = np.array([[6,2],
+              [1,2]])
+
+A @ np.linalg.inv(B)
+# [[0.  1. ]
+#  [0.2 1.8]]
+```
+
+### Systems of Equations
+
+We can write system of equations in matrix form. Take a look a this equations:
+
+$$
+\begin{equation}2x + 4y = 18\end{equation}
+$$
+
+$$
+\begin{equation}6x + 2y = 34\end{equation}
+$$
+
+We can write this in matrix form:
+
+$$
+\begin{equation}\begin{bmatrix}2 & 4\\6 & 2\end{bmatrix} \cdot \begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}18\\34\end{bmatrix}\end{equation}
+$$
+
+And we can write this in another way:
+
+$$
+\begin{equation}A=\begin{bmatrix}2 & 4\\6 & 2\end{bmatrix}\;\;\;\;X=\begin{bmatrix}x\\y\end{bmatrix}\;\;\;\;B=\begin{bmatrix}18\\34\end{bmatrix}\end{equation}
+$$
+
+We know that `A · X = B`, which is the same as `B ÷ A = X`, which is the same as `B · A⁻¹ = X`.
+
+The inverse of `A` is:
+
+$$
+\begin{equation}A^{-1} = \begin{bmatrix}-0.1 & 0.2\\0.3 & -0.1\end{bmatrix}\end{equation}
+$$
+
+So:
+
+$$
+\begin{equation}X = \begin{bmatrix}-0.1 & 0.2\\0.3 & -0.1\end{bmatrix} \cdot \begin{bmatrix}18\\34\end{bmatrix}\end{equation}
+$$
+
+The result of the matrix `X` is
+
+$$
+\begin{equation}X = \begin{bmatrix}5\\2\end{bmatrix}\end{equation}
+$$
+
+In Python, we can confirm that:
+
+```python
+A = np.array([[2, 4],
+              [6, 2]])
+
+B = np.array([[18],
+              [34]])
+
+X = np.linalg.inv(A) @ B
+# [[5.]
+#  [2.]]
+```
+
+## Resources
+
+- [Machine Learning Research](https://github.com/imteekay/machine-learning-research)
+- [Math for Machine Learning with Python](https://www.edx.org/learn/math/edx-math-for-machine-learning-with-python)
+
+---
+
+</SmoothRender>
