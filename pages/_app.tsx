@@ -8,6 +8,7 @@ import '../styles/night-owl.min.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { AnimatePresence } from 'framer-motion';
+import 'katex/dist/katex.min.css';
 
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
