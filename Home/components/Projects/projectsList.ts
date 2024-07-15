@@ -71,7 +71,7 @@ export const projectsList = [
   },
   {
     title: 'Notes',
-    description: 'My notes from tech talks',
+    description: 'My notes',
     link: '/notes',
   },
   {

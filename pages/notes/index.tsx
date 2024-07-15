@@ -8,6 +8,14 @@ import { Navbar } from 'Base/components/Navbar';
 
 const notes = [
   {
+    link: '/notes/how-to-learn-complex-skills-quickly',
+    title: 'How to Learn Complex Skills Quickly',
+    description:
+      'Notes on the How to Learn Complex Skills Quickly by Justin Sung',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/notes/starting-a-dedicated-web-performance-team',
     title: 'Starting a Dedicated Web Performance Team',
     description: 'Notes on the Web Performance Team by Sarah Dapul-Weberman',
