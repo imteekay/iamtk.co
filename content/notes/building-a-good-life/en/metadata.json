@@ -1,0 +1,19 @@
+{
+  "title": "Building a Good Life",
+  "description": "Notes: Building a Good Life",
+  "date": "2024-07-20",
+  "tags": [
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/notes/building-a-good-life.jpg",
+    "width": "640",
+    "height": "427",
+    "alt": "",
+    "authorHref": "https://unsplash.com/@r3dmax",
+    "authorName": "Jonatan Pie"
+  }
+}

@@ -8,6 +8,13 @@ import { Navbar } from 'Base/components/Navbar';
 
 const notes = [
   {
+    link: '/notes/building-a-good-life',
+    title: 'Building a Good Life',
+    description: 'Notes on the Building a Good Life by Michael Saylor',
+    target: '',
+    rel: '',
+  },
+  {
     link: '/notes/how-to-learn-complex-skills-quickly',
     title: 'How to Learn Complex Skills Quickly',
     description:
