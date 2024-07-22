@@ -9,6 +9,7 @@ import { PostAndDate } from 'Base/components/PostAndDate';
 import { SideBySideImages } from 'Base/components/SideBySideImages';
 import { SideBySideVideos } from 'Base/components/SideBySideVideos';
 import { SmoothRender } from 'Base/components/SmoothRender';
+import { Venn } from 'Base/components/Venn';
 
 export type Content = MDXRemoteSerializeResult<
   Record<string, unknown>,
@@ -35,6 +36,7 @@ const components = {
   SideBySideVideos,
   InlineMath,
   BlockMath,
+  Venn,
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
