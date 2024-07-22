@@ -42,7 +42,6 @@ This works the same way for other “blocks” like `for` loops, if statements, 
 Closures are a common topic and a powerful technique in JavaScript. As MDN web docs define it:
 
 > "A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment)."
-> 
 
 Basically, every time a function is created, a closure is also created and it gives access to all states (variables, constants, functions, etc). The surrounding state is known as the `lexical environment`.
 
@@ -158,13 +157,13 @@ const num = 10;
 For each token, it will build the AST node and form the entire tree representation of the source code:
 
 ```jsx
-SourceFile
-  - VariableStatement
-    - VariableDeclarationList
-      - VariableDeclaration
-        - Identifier
-        - NumericLiteral
-  - EndOfFileToken
+SourceFile -
+  VariableStatement -
+  VariableDeclarationList -
+  VariableDeclaration -
+  Identifier -
+  NumericLiteral -
+  EndOfFileToken;
 ```
 
 With an AST data structure, it gets easier to understand a variable type, which values an identifier holds, if it's a list of variables declaration, etc.
@@ -213,11 +212,21 @@ function parser(scanner: Scanner): Module {
   scanner.scan();
   return parseModule();
 
-  function parseModule(): Module { /** implementation */ }
-  function parseExpression(): Expression { /** implementation */ }
-  function parseIdentifierOrLiteral(): Expression { /** implementation */ }
-  function parseIdentifier(): Identifier { /** implementation */ }
-  function parseStatement(): Statement { /** implementation */ }
+  function parseModule(): Module {
+    /** implementation */
+  }
+  function parseExpression(): Expression {
+    /** implementation */
+  }
+  function parseIdentifierOrLiteral(): Expression {
+    /** implementation */
+  }
+  function parseIdentifier(): Identifier {
+    /** implementation */
+  }
+  function parseStatement(): Statement {
+    /** implementation */
+  }
 }
 ```
 
@@ -229,9 +238,15 @@ And this is how a typechecker is illustrated:
 function checker(module: Module) {
   return module.statements.map(checkStatement);
 
-  function checkStatement(statement: Statement): Type { /** implementation */ }
-  function checkExpression(expression: Expression): Type { /** implementation */ }
-  function checkType(name: Identifier): Type { /** implementation */ }
+  function checkStatement(statement: Statement): Type {
+    /** implementation */
+  }
+  function checkExpression(expression: Expression): Type {
+    /** implementation */
+  }
+  function checkType(name: Identifier): Type {
+    /** implementation */
+  }
 }
 ```
 
@@ -246,7 +261,5 @@ In this post I just shared about JavaScript scope, how closures work, and the Ty
 - [mini-typescript](https://github.com/imteekay/mini-typescript)
 - [TypeScript Compiler Manual](https://sandersn.github.io/manual/Typescript-compiler-implementation.html)
 - [A High Level Architecture of the TypeScript compiler](/a-high-level-architecture-of-the-typescript-compiler)
-
----
 
 </SmoothRender>

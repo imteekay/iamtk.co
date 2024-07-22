@@ -49,8 +49,9 @@ In this first test, we want to know if it renders the proper text. To query the 
 
 ```jsx
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+
 import Queries from '../Queries';
+import { render, screen } from '@testing-library/react';
 
 describe('getBy', () => {
   it('title is in the document', () => {
@@ -94,8 +95,9 @@ If you run this test, the `subtitle` text doesn't exist and it will throw an err
 
 ```jsx
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+
 import Queries from '../Queries';
+import { render, screen } from '@testing-library/react';
 
 describe('queryBy', () => {
   it('title is in the document', () => {
@@ -161,8 +163,9 @@ Now we can use the `findBy` to query a paragraph, after clicking in the button.
 
 ```jsx
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+
 import Queries from '../Queries';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 describe('findBy', () => {
   it('paragraph is in the document', async () => {
@@ -408,9 +411,10 @@ userEvent.click(button);
 
 ```jsx
 import React from 'react';
+
+import { Form } from '../Form';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Form } from '../Form';
 
 describe('Form', () => {
   it('fills form', () => {
@@ -468,6 +472,7 @@ Now we will see an example of fetching within a component and test the loading s
 
 ```jsx
 import React from 'react';
+
 import { useFetchAPI } from './useFetchAPI';
 
 const Loading = ({ pokemon }) => {
@@ -559,8 +564,9 @@ Now everything together:
 
 ```jsx
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+
 import Loading from '../Loading';
+import { render, screen } from '@testing-library/react';
 
 describe('Loading', () => {
   it('renders the loading and then the pokemon info', async () => {
@@ -602,7 +608,5 @@ So here we finish this first conversation about tests in frontend. We've learned
 I wanted to cover as much as possible, but I think this is a good start to understand how use this tool to test our applications and gain more confidence when shipping features or refactorings to production. I hope these recipes can help you understand more about testing in general and improve the quality of your software.
 
 Until the next time! Keep learning!
-
----
 
 </SmoothRender>

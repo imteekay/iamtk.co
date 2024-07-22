@@ -52,8 +52,9 @@ In my test, I wanted to render it and see if it was in the DOM.
 
 ```tsx
 import React from 'react';
-import { render } from '@testing-library/react';
+
 import { Thing } from '../index';
+import { render } from '@testing-library/react';
 
 describe('Thing', () => {
   it('renders the correct text in the document', () => {
@@ -103,12 +104,12 @@ It looks like this:
 
 ```tsx
 import React, { Fragment, useState, MouseEvent } from 'react';
-import { Link } from 'react-router-dom';
+
+import { MenuItem } from '../../types/MenuItem';
 import Button from '@material-ui/core/Button';
 import MuiMenu from '@material-ui/core/Menu';
 import MuiMenuItem from '@material-ui/core/MenuItem';
-
-import { MenuItem } from '../../types/MenuItem';
+import { Link } from 'react-router-dom';
 
 type MenuPropsType = { menuItems: MenuItem[] };
 
@@ -194,6 +195,7 @@ At first, I just built the fetching with `useEffect` in the `Search` component. 
 
 ```tsx
 import React, { useState, useEffect } from 'react';
+
 import { getProducts } from 'api';
 
 export const Search = () => {
@@ -1504,7 +1506,5 @@ For the next part of this series, we are going to think more in an architectural
 - [Tips for rolling your own lazy loading](https://css-tricks.com/tips-for-rolling-your-own-lazy-loading/)
 - [Intersection Observer API - MDN](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
 - [React Typescript Cheatsheet](https://github.com/typescript-cheatsheets/react-typescript-cheatsheet)
-
----
 
 </SmoothRender>

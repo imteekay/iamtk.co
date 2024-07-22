@@ -17,13 +17,17 @@ We'll see some examples, implement new tokens in the lexer phase, create new AST
 Before, the mini TS compiler only allowed us to have one variable per declaration. But with this new feature, we'll be able to write code like this:
 
 ```tsx
-var var1 = 1, var2 = 2, var3 = 3;
+var var1 = 1,
+  var2 = 2,
+  var3 = 3;
 ```
 
 Or even typed variable declarations (even with different types):
 
 ```tsx
-var n: number = 1, s: string = 'test', n2: number = 3;
+var n: number = 1,
+  s: string = 'test',
+  n2: number = 3;
 ```
 
 ---
@@ -73,7 +77,9 @@ When creating new AST nodes, we need to understand how we want to structure the 
 For this example below:
 
 ```tsx
-var var1 = 1, var2 = 2, var3 = 3;
+var var1 = 1,
+  var2 = 2,
+  var3 = 3;
 ```
 
 We'll have this AST structure:
@@ -231,9 +237,7 @@ function parseVariableDeclarations() {
   const declarations: VariableDeclaration[] = [];
   do {
     const name = parseIdentifier();
-    const typename = tryParseToken(Token.Colon)
-      ? parseIdentifier()
-      : undefined;
+    const typename = tryParseToken(Token.Colon) ? parseIdentifier() : undefined;
     parseExpected(Token.Equals);
     const init = parseExpression();
     declarations.push({
@@ -296,9 +300,7 @@ The first thing to do is to separate this logic and abstract it into a new funct
 function bindSymbol(locals: Table, declaration: Var | TypeAlias) {
   const symbol = locals.get(declaration.name.text);
   if (symbol) {
-    const other = symbol.declarations.find(
-      (d) => d.kind === declaration.kind
-    );
+    const other = symbol.declarations.find((d) => d.kind === declaration.kind);
     if (other) {
       error(
         declaration.pos,
@@ -476,37 +478,45 @@ And also remove the transformation for `Var` nodes from the `transformStatement`
 This is a “not annotated” example of a variable declaration list:
 
 ```tsx
-var var1 = 1, var2 = 2, var3 = 3;
+var var1 = 1,
+  var2 = 2,
+  var3 = 3;
 ```
 
 We would have this JS output:
 
 ```tsx
-var var1 = 1, var2 = 2, var3 = 3;
+var var1 = 1,
+  var2 = 2,
+  var3 = 3;
 ```
 
 Or in a string format:
 
 ```tsx
-"var var1 = 1, var2 = 2, var3 = 3;\n"
+'var var1 = 1, var2 = 2, var3 = 3;\n';
 ```
 
 And for this annotated example of a variable declaration list:
 
 ```tsx
-var n: number = 1, s: string = 'test', n2: number = 3;
+var n: number = 1,
+  s: string = 'test',
+  n2: number = 3;
 ```
 
 We would have the same JS output (without the types):
 
 ```tsx
-var var1 = 1, var2 = 2, var3 = 3;
+var var1 = 1,
+  var2 = 2,
+  var3 = 3;
 ```
 
 And the same string format:
 
 ```tsx
-"var var1 = 1, var2 = 2, var3 = 3;\n"
+'var var1 = 1, var2 = 2, var3 = 3;\n';
 ```
 
 The first thing we need to do is to remove the `Var` node from the `emitStatement` function and handle the `VariableStatement` node. So we move the emit logic for `Var` into a new separate function:
@@ -568,7 +578,5 @@ For additional content on compilers and programming language theory, have a look
 - [Implementing StringLiterals for the TypeScript Compiler](/implementing-string-literals-for-the-typescript-compiler)
 - [Building EmptyStatement and Semicolon as a statement ender for the TypeScript compiler](/building-emptystatement-and-semicolon-as-statement-ender-for-the-typescript-compiler)
 - [Allow var statements to declare multiple symbols PR](https://github.com/imteekay/mini-typescript-fork/pull/9)
-
----
 
 </SmoothRender>
