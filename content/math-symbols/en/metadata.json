@@ -1,0 +1,19 @@
+{
+  "title": "Math Symbols",
+  "description": "Memorizing and active recall for math symbols",
+  "date": "2024-08-19",
+  "tags": [
+    {
+      "href": "/tags/math",
+      "name": "math"
+    }
+  ],
+  "coverImage": {
+    "src": "/math-symbols-on-macos/cover.jpg",
+    "width": "640",
+    "height": "394",
+    "alt": "math symbols",
+    "authorHref": "https://unsplash.com/@dancristianpaduret",
+    "authorName": "Dan Cristian Pădureț"
+  }
+}
