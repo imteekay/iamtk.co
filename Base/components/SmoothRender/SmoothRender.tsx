@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { cloneElement, useEffect, useState } from 'react';
 
 import { css } from '@emotion/css';
-import { InView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer';
 
 interface SmoothRenderPropTypes {
   children: JSX.Element[];
@@ -20,15 +20,24 @@ const smoothRenderElementStyle = ({ render }: { render: boolean }) => css`
 
 const SmoothRenderElement = ({ children }: SmoothRenderElementPropTypes) => {
   const [render, setRender] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setRender(inView);
+    }
+  }, [inView]);
 
   return (
-    <InView
-      className={smoothRenderElementStyle({ render })}
-      as="div"
-      onChange={(inView) => inView && setRender(inView)}
-    >
-      {children}
-    </InView>
+    <>
+      <div ref={ref} style={{ minHeight: '0px', visibility: 'hidden' }} />
+      {cloneElement(children, {
+        className: smoothRenderElementStyle({ render }),
+      })}
+    </>
   );
 };
 
