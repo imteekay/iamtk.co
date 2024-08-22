@@ -105,7 +105,7 @@ The mobile score was `poor`. Even the desktop was `poor`. Now we reached a bette
 
 After collecting data, we knew our performance status and could start working on the exploration, debugging, and optimizations.
 
-## **Devtools: exploring and debugging perf issues**
+## Devtools: exploring and debugging perf issues
 
 Optional setup I use:
 
@@ -140,7 +140,7 @@ The web-vitals extension is an interesting setup because it will add the labels 
 
 In the flamechart above you can see that the input delay is quite small, and the presentation delay takes a bit more time, but the biggest issue is related to the processing time.
 
-## **React Devtools: exploring and debugging perf issues**
+## React Devtools: exploring and debugging perf issues
 
 Going deeper into the processing time phase, for React apps, it's very common that we are unnecessarily re-rendering components. The culprits can be custom hooks, contexts, or other parent components re-rendering.
 
@@ -875,11 +875,11 @@ Summing up, these are the complete results of all optimizations together
 
 The results are promising but this is just the start of the work. There are a bunch of projects and optimizations we can work on soon. After working on them and achieving better results, I can come here and write a new article with the learnings and improvements.
 
-## Performance Learnings **& Recommendations**
+## Performance Learnings & Recommendations
 
 This section is part of a document I wrote for [Vio.com](http://Vio.com) to share the knowledge and recommendations for writing performant JavaScript/React code.
 
-### **Simplify abstractions**
+### Simplify abstractions
 
 Build smaller hooks to avoid complexity (less logic and state involved). Avoid nested hooks to avoid too much complexity and many moving parts (states).
 
@@ -895,17 +895,17 @@ Prefer having a hook returning only one function rather than returning multiple 
 
 This is not just for performance but for software in general: write unit tests for hooks detailing all the behaviors (business logic). It will get easier to refactor it in the future, especially if they are complex and we need to do optimizations there keeping the behavior.
 
-### **Defer non-UI related code**
+### Defer non-UI related code
 
 Track events as the last operation: Dispatch state updates, UI changes, etc first; Track events later. Use `yieldToMain` to postpone this non-ui related code so the browser has more time to work on UI-related operations.
 
-### **Overlays**
+### Overlays
 
 This is more specifically for our application because of the way we implement our overlay architecture. It uses the history API through `react-router` so every time we update the overlay, anywhere it’s used `react-router` will cause a re-rendering. APIs like `useLocation`, `useRouteMatch`, and `useHistory` could be replaced with the `history` or `location` from the `window` object.
 
 Soon [we pretend to move our application to Next.js](/the-evolution-of-react-rendering-architectures-and-web-performance) so we just need to remember that the server doesn't have access to the `window` object. In this case, we need to wrap it with `useEffect` or run the component with `use client`.
 
-### **State Management & Redux**
+### State Management & Redux
 
 Redux is a global state manager so if we store one value and it gets updated, all the components that hold that reference will be re-rendered. [Redux notification time can be quite high](https://twitter.com/wordsofteekay/status/1790020815997547005) so we need to be careful about how to use Redux. Colocating Redux state where the place needs it is especially important here so we don't spread states all over the place and have a nightmare dealing with performance bottlenecks.
 
