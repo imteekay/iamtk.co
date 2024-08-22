@@ -22,8 +22,12 @@ const SmoothRenderElement = ({ children }: SmoothRenderElementPropTypes) => {
   const [render, setRender] = useState(false);
 
   return (
-    <InView as="div" onChange={(inView) => inView && setRender(inView)}>
-      <div className={smoothRenderElementStyle({ render })}>{children}</div>
+    <InView
+      className={smoothRenderElementStyle({ render })}
+      as="div"
+      onChange={(inView) => inView && setRender(inView)}
+    >
+      {children}
     </InView>
   );
 };
