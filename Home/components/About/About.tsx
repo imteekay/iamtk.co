@@ -104,9 +104,9 @@ export const About: FC = () => (
         🇯🇵🇧🇷 . software engineer . writer . researcher
       </p>
       <Topics className="no-margin">
-        programming language theory . compilers
-        <br />
         mathematics . machine learning . science
+        <br />
+        software engineering . web performance
       </Topics>
     </div>
     <Socials />
