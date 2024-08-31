@@ -35,7 +35,7 @@ This will plot the vector in the graph:
 
 ### Calculating Magnitude
 
-We can use the Pythagorean theorum and calculate the square root of the sum of the squares.
+We can use the Pythagorean theorem and calculate the square root of the sum of the squares.
 
 ```bash
 v = √v₁² + v₂²
@@ -68,7 +68,7 @@ tan(𝛉) = 1 / 2
 𝛉 = tan⁻¹(0.5) ≈ 26.57°
 ```
 
-We can confirm it calculating it in Python
+We can confirm it by calculating it in Python
 
 ```python
 import math
@@ -181,7 +181,7 @@ v = np.array([2, 1])
 w = 2 * v # [4 2]
 ```
 
-Scalar division is the same idea:
+The scalar division is the same idea:
 
 ```python
 import numpy as np
@@ -190,7 +190,7 @@ v = np.array([2, 1])
 b = v / 2 # [1. 0.5]
 ```
 
-In the dot production multiplication, we get the result of of two vectors multiplication, in other words, the scalar product (a numeric value).
+In the dot production multiplication, we get the result of two vectors multiplication, in other words, the scalar product (a numeric value).
 
 ```bash
 v·s = (v₁·s₁) + (v₂·s₂) ... + (vₙ·sₙ)
@@ -312,7 +312,7 @@ Subtraction of two matrices works the same way:
   {`\\begin{equation}\\begin{bmatrix}1 & 2 & 3 \\\\4 & 5 & 6\\end{bmatrix}- \\begin{bmatrix}6 & 5 & 4 \\\\3 & 2 & 1\\end{bmatrix} = \\begin{bmatrix}-5 & -3 & -1 \\\\1 & 3 & 5\\end{bmatrix}\\end{equation}`}
 </BlockMath>
 
-The nagative of a matrix, is just a matrix with the sign of each element reversed.
+The negative of a matrix is just a matrix with the sign of each element reversed.
 
 <BlockMath>
   {`\\begin{equation}C = \\begin{bmatrix}-5 & -3 & -1 \\\\1 & 3 & 5\\end{bmatrix}\\end{equation}`}
@@ -372,7 +372,7 @@ A = np.array([[1,2,3],
 #  [ 8 10 12]]
 ```
 
-To mulitply two matrices, we need to calculate the dot product of rows and columns.
+To multiply two matrices, we need to calculate the dot product of rows and columns.
 
 <BlockMath>
   {`\\begin{equation}\\begin{bmatrix}1 & 2 & 3 \\\\4 & 5 & 6\\end{bmatrix} \\cdot \\begin{bmatrix}9 & 8 \\\\ 7 & 6 \\\\ 5 & 4\\end{bmatrix}\\end{equation}`}
@@ -494,7 +494,7 @@ np.linalg.inv(B)
 #  [-0.25   0.125  0.125]]
 ```
 
-With the calculation of the inverse, we can now calculate the multiplication of a matrix with a inverse of another matrix.
+With the calculation of the inverse, we can now calculate the multiplication of a matrix with an inverse of another matrix.
 
 <BlockMath>
   {`\\begin{equation}\\begin{bmatrix}1 & 2\\\\3 & 4\\end{bmatrix} \\cdot \\begin{bmatrix}6 & 2\\\\1 & 2\\end{bmatrix}^{-1} \\end{equation}`}
@@ -528,7 +528,7 @@ A @ np.linalg.inv(B)
 
 ### Systems of Equations
 
-We can write system of equations in matrix form. Take a look a this equations:
+We can write a system of equations in matrix form. Take a look a these equations:
 
 <BlockMath>{`\\begin{equation}2x + 4y = 18\\end{equation}`}</BlockMath>
 
