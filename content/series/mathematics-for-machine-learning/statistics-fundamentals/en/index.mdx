@@ -7,7 +7,7 @@ This is the second part of the series [Mathematics for Machine Learning](/series
 For types of data, we can represent them as qualitative or quantitative data.
 
 - **Qualitative**: it's a type of categorical data. It's used to categorize or identify the observed data
-  - **Nominal**: data that can be labelled or classified into mutually exclusive categories within a variable
+  - **Nominal**: data that can be labeled or classified into mutually exclusive categories within a variable
   - **Ordinal**:data that have natural, ordered categories
 - **Quantitative**: it indicates some kind of quantitative or measurement
   - **Discrete**: a type of quantitative data that includes nondivisible figures and statistics you can count
@@ -21,14 +21,14 @@ Population vs Samples
 Different types of data visualization
 
 - **Bar charts**: a _bar chart_ is a good way to compare numeric quantities or counts across categories
-- **Histograms**: an _histogram chart_ is good for continous data, so the chart doesn't show a bar for each individual value, but rather a bar for each range of binned values
+- **Histograms**: an _histogram chart_ is good for continuous data, so the chart doesn't show a bar for each individual value, but rather a bar for each range of binned values
 - **Pie charts**: make it easy to compare relative quantities by categories
 - **Scatter plots**: it's helpful for identifying apparent relationships between numeric features
 - **Line charts**: a _line chart_ is a great way to see changes in values along a series based on a time period
 
 ## Statistics Fundamentals
 
-One of the important topics in statistics is understanding the distribution of data in a sample. To be able to have this understanding, we need to learn the "Measures of Central Tendency", which's basically where the middle value in the data is. There are different ways of approaching this.
+One of the important topics in statistics is understanding the distribution of data in a sample. To be able to have this understanding, we need to learn the "Measures of Central Tendency", which is basically where the middle value in the data is. There are different ways of approaching this.
 
 Let's start with this example of comparative salaries of people:
 
@@ -82,7 +82,7 @@ To calculate the median, we:
   {2}\\end{equation}`}
 </BlockMath>
 
-- if the number of observation is even, we calculate the median as the average of the two middle-most values:
+- if the number of observations is even, we calculate the median as the average of the two middle-most values:
 
 <BlockMath>
   {`\\begin{equation}\\frac{n}
@@ -113,7 +113,7 @@ df['Salary'].median() # 54000.0
 
 ### Mode
 
-Mode indicates the most frequently occurring value. Looking at the salaries list, we notice that the salary `50,000` is most frequant one, and so, it's the mode.
+Mode indicates the most frequently occurring value. Looking at the salaries list, we notice that the salary `50,000` is the most frequent one, and so, it's the mode.
 
 | Salary        |
 | ------------- |
@@ -138,7 +138,7 @@ We can also have multimodal data, where the list has more than 1 mode. The `mode
 
 ### Distribution & Density
 
-It's important not only to find the center but also how the data is distrbuted. First starting with the minimum and maximum values.
+It's important not only to find the center but also how the data is distributed. First starting with the minimum and maximum values.
 
 ```python
 df = pd.DataFrame({'Name': ['Dan', 'Joann', 'Pedro', 'Rosie', 'Ethan', 'Vicky', 'Frederic'],
@@ -151,7 +151,7 @@ print('Mean: ' + str(df['Salary'].mean())) # Mean: 71000.0
 print('Max: ' + str(df['Salary'].max())) # Max: 189000
 ```
 
-Looking at this information, we can have a sense of how the data is distrbuted. But we can also use graphs to have a visually understanding of it.
+Looking at this information, we can have a sense of how the data is distributed. But we can also use graphs to have a visual understanding of it.
 
 ```python
 import pandas as pd
@@ -178,8 +178,8 @@ Here's an interpretation of this graph:
 
 - The `mean` is the magenta dashed line
 - The `median` is the green dashed line
-- _Salary_ is a continuous data value - graduates could potentially earn any value along the scale, even down to a fraction of cent.
-- The number of bins in the histogram determines the size of each salary band for which we're counting frequencies. Fewer bins means merging more individual salaries together to be counted as a group.
+- _Salary_ is a continuous data value - graduates could potentially earn any value along the scale, even down to a fraction of a cent.
+- The number of bins in the histogram determines the size of each salary band for which we're counting frequencies. Fewer bins mean merging more individual salaries together to be counted as a group.
 - The majority of the data is on the left side of the histogram, reflecting the fact that most graduates earn between 40,000 and 55,000
 - The mean is a higher value than the median and mode.
 - There are gaps in the histogram for salary bands that nobody earns.
@@ -251,7 +251,7 @@ For a sample:
 
 As an example, let's calculate the variance for the grades data.
 
-First we need to calculate the mean
+First, we need to calculate the mean
 
 <BlockMath>
   {`\\begin{equation}\\bar{x} = \\frac{50 + 50 + 46 + 95 + 50 + 5 + 57}
@@ -398,7 +398,7 @@ When we talk about comparing data, we have two different types of data
 
 ### Bivariate or Multivariate data
 
-When comparing multiple variables, the difficult is to have them in different scales.
+When comparing multiple variables, the difficulty is to have them in different scales.
 
 Let's see this in practice with Python:
 
@@ -475,14 +475,14 @@ df.plot(kind='scatter', title='Grade vs Hours', x='Grade', y='Salary')
 plt.show()
 ```
 
-If we look close, we can see a pattern in the graph, a diagonal rising to the right. In other words, the higher the grade, the higher the salary is.
+If we look closely, we can see a pattern in the graph, a diagonal rising to the right. In other words, the higher the grade, the higher the salary is.
 
 <img
   loading="lazy"
   src="/series/mathematics-for-machine-learning/scatter-plot.png"
 />
 
-If it's not clear for you, we can draw the _line of best fit_ (trendline) in the graph to make it easier.
+If it's not clear to you, we can draw the _line of best fit_ (trendline) in the graph to make it easier.
 
 ```python
 import pandas as pd
@@ -519,7 +519,7 @@ The _correlation_ value is always a number between -1 and 1. This is how we inte
 
 - A positive value indicates a positive correlation (as the value of variable _x_ increases, so does the value of variable _y_).
 - A negative value indicates a negative correlation (as the value of variable _x_ increases, the value of variable _y_ decreases).
-- The closer to zero the correlation value is, the weaker the correlation between _x_ and _y_.
+- The closer the correlation value is to zero, the weaker the correlation between _x_ and _y_.
 - A correlation of exactly zero means there is no apparent relationship between the variables.
 
 The formula to calculate correlation is:
@@ -553,7 +553,7 @@ The difference between the original _y_ (_Hours_) value and the _f(x)_ value is 
 
 The first part is to calculate the slope and intercept for a line with the lowest overall error.
 
-And then we define the overall error by taking the error for each point, squaring it, and adding all the squared errors together. The line of best fit is the line that gives us the lowest value for the sum of the squared errors - _least squares regression_.
+Then we define the overall error by taking the error for each point, squaring it, and adding all the squared errors together. The line of best fit is the line that gives us the lowest value for the sum of the squared errors - _least squares regression_.
 
 Here's how we calculate the slope (_m_), which we do using this formula (in which _n_ is the number of observations in our data sample):
 
@@ -561,7 +561,7 @@ Here's how we calculate the slope (_m_), which we do using this formula (in whic
   {`\\begin{equation}m = \\frac{n(\\sum{xy}) - (\\sum{x})(\\sum{y})}{n(\\sum{x^{2}})-(\\sum{x})^{2}}\\end{equation}`}
 </BlockMath>
 
-After we've calculated the slope (_m_), we can use is to calculate the intercept (_b_) like this:
+After we've calculated the slope (_m_), we can use it to calculate the intercept (_b_) like this:
 
 <BlockMath>
   {`\\begin{equation}b = \\frac{\\sum{y} - m(\\sum{x})}{n}\\end{equation}`}
@@ -660,14 +660,14 @@ Some basic definitions and principles:
 - An **_experiment_** or **_trial_** is an action with an uncertain outcome, such as tossing a coin.
 - A **_sample space_** is the set of all possible outcomes of an experiment. In a coin toss, there's a set of two possible oucomes (_heads_ and _tails_).
 - A **_sample point_** is a single possible outcome - for example, _heads_)
-- An **_event_** is a specific outome of single instance of an experiment - for example, tossing a coin and getting _tails_.
+- An **_event_** is a specific outcome of a single instance of an experiment - for example, tossing a coin and getting _tails_.
 - **_Probability_** is a value between 0 and 1 that indicates the likelihood of a particular event, with 0 meaning that the event is impossible, and 1 meaning that the event is inevitable.
 
 <BlockMath>
   {`\\begin{equation}\\text{probability of an event} = \\frac{\\text{Number of sample points that produce the event}}{\\text{Total number of sample points in the sample space}} \\end{equation}`}
 </BlockMath>
 
-We use the `P(A)` notation to express the probability of an event occur. `P` is the probability and `A` is the event. Here's the probability of event `A` occurring (in this case, 1/6 or 0.167):
+We use the `P(A)` notation to express the probability of an event occurring. `P` is the probability and `A` is the event. Here's the probability of event `A` occurring (in this case, 1/6 or 0.167):
 
 <BlockMath>{`\\begin{equation}P(A) = 0.167 \\end{equation}`}</BlockMath>
 
@@ -680,7 +680,7 @@ Here's how we indicate this:
 - `P(A)` is the probability of `A` occurring
 - `P(A')` is the complement
 
-There's also the concept of bias, when the sample points in the sample space don't have the same probability.
+There's also the concept of bias when the sample points in the sample space don't have the same probability.
 
 The weather forecast is an example of that. Sunny vs Rainy vs Cloudy days. All of them have different probabilities of occurring.
 
@@ -698,13 +698,13 @@ Events can be:
 - _Dependent_ (events that are conditional on other events)
 - _Mutually Exclusive_ (events that can't occur together)
 
-In independent events, the probability of different events doesn't dependent on previous events.
+In independent events, the probability of different events isn't dependent on previous events.
 
-One example is the coin toss. If we toss the coin two times, the first time we toss the coin doesn't affect the second time. They are indendent.
+One example is the coin toss. If we toss the coin two times, the first time we toss the coin doesn't affect the second time. They are independent.
 
 The probability of getting heads is 1/2. For sequential events, the probability will keep the same, 50%, independent from the previous events.
 
-We can use Python to illustrate this idea, showing 10,000 trials and seeing the probability of coin toss.
+We can use Python to illustrate this idea, showing 10,000 trials and seeing the probability of a coin toss.
 
 ```python
 import random
@@ -736,7 +736,7 @@ In independent events combination, we have a different problem. For example, wha
 
 To combine these independent events, we need to multiply the probability of each event. In this case, it's `1/2 · 1/2 · 1/2 = 0.125`, or 12.5%
 
-Let's try it with Python: running random trials and see how it approximates to the probability of 12.5%.
+Let's try it with Python: running random trials and see how it approximates the probability of 12.5%.
 
 ```python
 import random
@@ -819,7 +819,7 @@ The notation for dependent events:
 
 <BlockMath>{`\\begin{equation}P(B|A)\\end{equation}`}</BlockMath>
 
-We can interpret this as _the probability of B, given A_. Given that the event A happended, what's the probability of the event B.
+We can interpret this as _the probability of B, given A_. Given that event A happened, what's the probability of event B.
 
 <BlockMath>
   {`\\begin{equation}P(B|A) = \\frac{P(A \\cap B)}{P(A)}\\end{equation}`}
@@ -847,13 +847,13 @@ Mutually exclusive events are when events don't occur at the same time.
 An example of this is coin toss getting heads and tails.
 
 - The intersection of a mutually exclusive event is always 0
-- The union is the sum of the two events, there's no need for the subtractation of the intersection because the intersection of mutually exclusive events are always 0
+- The union is the sum of the two events, there's no need for the subtraction of the intersection because the intersection of mutually exclusive events is always 0
 
 ### Binomial Variables
 
 A binomial variable is used to count how frequently an event occurs in a fixed number of repeated independent experiments.
 
-The event in question must have the same probability of occurring in each experiment, and indicates the success or failure of the experiment; with a probability **_p_** of success, which has a complement of **_1 - p_** as the probability of failure.
+The event in question must have the same probability of occurring in each experiment, and indicate the success or failure of the experiment; with a probability **_p_** of success, which has a complement of **_1 - p_** as the probability of failure.
 
 In `n` experiments, we want to choose `k` successful results. This is known as _n choose k_. This is the notation:
 
