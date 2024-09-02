@@ -7,6 +7,21 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2024-08-14',
+    link: '/essays/applying-books-in-my-life',
+    title: 'Applying Books in My Life',
+  },
+  {
+    datetime: '2024-08-12',
+    link: '/essays/learning-and-the-power-of-the-first-step',
+    title: 'The Art of Learning',
+  },
+  {
+    datetime: '2024-08-05',
+    link: '/essays/the-art-of-learning',
+    title: 'Learning & The Power of the First Step',
+  },
+  {
     datetime: '2024-07-08',
     link: '/series/mathematics-for-machine-learning',
     title: 'Mathematics for Machine Learning',
