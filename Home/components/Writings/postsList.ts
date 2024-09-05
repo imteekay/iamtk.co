@@ -13,13 +13,13 @@ export const postsList: Post[] = [
   },
   {
     datetime: '2024-08-12',
-    link: '/essays/learning-and-the-power-of-the-first-step',
+    link: '/essays/the-art-of-learning',
     title: 'The Art of Learning',
   },
   {
     datetime: '2024-08-05',
-    link: '/essays/the-art-of-learning',
-    title: 'Learning & The Power of the First Step',
+    link: '/essays/learning-and-the-power-of-the-first-step',
+    title: 'Essay: Learning & The Power of the First Step',
   },
   {
     datetime: '2024-07-08',
