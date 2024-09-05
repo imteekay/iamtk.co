@@ -19,7 +19,7 @@ export const postsList: Post[] = [
   {
     datetime: '2024-08-05',
     link: '/essays/learning-and-the-power-of-the-first-step',
-    title: 'Essay: Learning & The Power of the First Step',
+    title: 'Learning & The Power of the First Step',
   },
   {
     datetime: '2024-07-08',
