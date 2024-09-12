@@ -8,8 +8,8 @@ type Post = {
 export const postsList: Post[] = [
   {
     datetime: '2024-09-15',
-    link: '/cancer-tumor-classification-models',
-    title: 'Cancer Tumor Classification Models',
+    link: '/training-ml-models-for-cancer-tumor-classification',
+    title: 'Training ML Models for Cancer Tumor Classification',
   },
   {
     datetime: '2024-08-14',

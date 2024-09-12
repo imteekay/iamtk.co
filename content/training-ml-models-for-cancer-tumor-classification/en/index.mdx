@@ -53,9 +53,15 @@ data = pd.read_csv('/breast_cancer/data.csv', sep=',', encoding='iso-8859-1')
 data.head()
 ```
 
-<img src="/cancer-tumor-classification-models/001.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/001.png"
+  loading="lazy"
+/>
 
-<img src="/cancer-tumor-classification-models/002.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/002.png"
+  loading="lazy"
+/>
 
 With that in place, we can now start exploring this data.
 
@@ -101,7 +107,10 @@ sb.histplot(data['concavity_mean'], ax = axes[1, 2])
 
 The idea here is just to choose some of the features and plot the data in the graph so we can visually spot issues.
 
-<img src="/cancer-tumor-classification-models/003.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/003.png"
+  loading="lazy"
+/>
 
 The first thought that I had was if there were some outliers in the data. This is a topic we are going to go into in-depth later on.
 
@@ -115,7 +124,10 @@ heatmap.set_title('Correlation Heatmap', pad=12);
 
 I did this only for the predictors, so there's no correlation with the target (`diagnosis`).
 
-<img src="/cancer-tumor-classification-models/004.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/004.png"
+  loading="lazy"
+/>
 
 Heatmaps are really helpful in understanding relationships in the data, identifying multicollinearity, and detecting redundancies. That way we can start thinking and the preprocessing phase where we can do feature selection, remove highly correlated features to reduce overfitting, and check if it's worth applying Principal Component Analysis (PCA) and regularization.
 
@@ -156,7 +168,10 @@ fig.show()
 
 We have 6 features displayed in the graph. You can see some data points showing up. Those are potential outliers in each feature.
 
-<img src="/cancer-tumor-classification-models/005.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/005.png"
+  loading="lazy"
+/>
 
 The idea in this stage is to start the preprocessing phase. I wanted to understand how the outliers would influence the output of the ML models I was training. The idea is to keep the original dataframe and create a new one without the outliers. That way we can compare the performance metrics of the models for both dataframes.
 
@@ -840,7 +855,10 @@ plot_PCA(metrics)
 
 It will output this kind of graph:
 
-<img src="/cancer-tumor-classification-models/006.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/006.png"
+  loading="lazy"
+/>
 
 Here we have three graphs: one for accuracy, one for precision, and the other for recall. And it shows how each one of them varies with the increase in the number of PCA components.
 
@@ -865,7 +883,10 @@ Even though it's important to compare that, it doesn't have the complete informa
 
 Here's an example of one line of graphs plotted:
 
-<img src="/cancer-tumor-classification-models/007.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/007.png"
+  loading="lazy"
+/>
 
 Training a Naive Bayes model created a blueprint on how I would approach any other algorithm for this problem. The idea is the same: we fit the model to the data, do the prediction, get results from the training data, the test data, and do cross-validation. Then, we just need to plot the metrics and do the analysis.
 
@@ -953,7 +974,10 @@ PCA: 6 components
 
 When plotting the graph with accuracy of the original data set compare to the one trained with PCA, we could see that the one with the original data set was performing way better.
 
-<img src="/cancer-tumor-classification-models/008.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/008.png"
+  loading="lazy"
+/>
 
 And if you put the model trained with the data set without outliers, the performance got even better:
 
@@ -965,9 +989,15 @@ It was also important to notice that if we compare the three (training, test, an
 
 For precision and recall, the comparison looks very similar to the accuracy one. The model trained on the original data set performed better than PCA.
 
-<img src="/cancer-tumor-classification-models/009.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/009.png"
+  loading="lazy"
+/>
 
-<img src="/cancer-tumor-classification-models/010.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/010.png"
+  loading="lazy"
+/>
 
 ## Logistic Regression
 
@@ -991,13 +1021,22 @@ PCA: 4 components
 
 Comparing the performance, we can see the model with PCA is performing better. I chose to show the one trained with 4 components because I wanted a good performance but also make sure that the training, test, and cross-validation scores were approximated so possibly no overfitting, especially because with PCA, the accuracy score for the training test was very high.
 
-<img src="/cancer-tumor-classification-models/011.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/011.png"
+  loading="lazy"
+/>
 
 Precision and recall follow accuracy. The model trained with PCA is performing better than the other two, especially for recall which has a huge importance for this problem:
 
-<img src="/cancer-tumor-classification-models/012.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/012.png"
+  loading="lazy"
+/>
 
-<img src="/cancer-tumor-classification-models/013.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/013.png"
+  loading="lazy"
+/>
 
 ## SVM
 
@@ -1023,15 +1062,24 @@ From taking a quickly look at these results, we notice the model trained with PC
 
 This is true for most of number of components used in PCA. But we chose 6 components for this problem:
 
-<img src="/cancer-tumor-classification-models/014.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/014.png"
+  loading="lazy"
+/>
 
 In terms of precision, they were performing very similarly but with the increase of components, the model with PCA starts to learn more about the data and perform better:
 
-<img src="/cancer-tumor-classification-models/015.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/015.png"
+  loading="lazy"
+/>
 
 For recall, the comparison looks similar to the accuracy score. PCA performing way better than the other ones:
 
-<img src="/cancer-tumor-classification-models/016.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/016.png"
+  loading="lazy"
+/>
 
 ## KNN
 
@@ -1057,11 +1105,17 @@ The model trained on the original data performed very well on the test data (eve
 
 With the increase in components, the model trained with PCA starts to perform better and better. Look at the precision score compare to the model trained with the original data set:
 
-<img src="/cancer-tumor-classification-models/017.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/017.png"
+  loading="lazy"
+/>
 
 For recall, it becomes very obvious PCA is performing way better than the other models:
 
-<img src="/cancer-tumor-classification-models/018.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/018.png"
+  loading="lazy"
+/>
 
 ## Decision Tree
 
@@ -1087,15 +1141,24 @@ Even though the training accuracy is higher for the model trained on the data wi
 
 Looking at the PCA graph, we can see the distance between the score among CV, training, and test. It looks like the model is overfitting and not performing well on the test data.
 
-<img src="/cancer-tumor-classification-models/019.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/019.png"
+  loading="lazy"
+/>
 
 For precision, the training and test using PCA are performing better but in cross-validation, PCA metrics plummets in the graph compared to the original data.
 
-<img src="/cancer-tumor-classification-models/020.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/020.png"
+  loading="lazy"
+/>
 
 For recall, it's the other way around. The training and test are better for the original data. But in cross-validation, PCA is performing way better.
 
-<img src="/cancer-tumor-classification-models/021.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/021.png"
+  loading="lazy"
+/>
 
 ## Random Forests
 
@@ -1119,15 +1182,24 @@ PCA: 5 components
 
 Looking at the metrics at first sight, my assumption was that the model was overfitting.
 
-<img src="/cancer-tumor-classification-models/022.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/022.png"
+  loading="lazy"
+/>
 
 If you look at the accuracy graph, the distance among training, test, and CV looks significant.
 
 If you look at the precision and recall scores, the assumption grows:
 
-<img src="/cancer-tumor-classification-models/023.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/023.png"
+  loading="lazy"
+/>
 
-<img src="/cancer-tumor-classification-models/024.png" loading="lazy" />
+<img
+  src="/training-ml-models-for-cancer-tumor-classification/024.png"
+  loading="lazy"
+/>
 
 It really feels that the model is overfitting the training data and even though it's performing well on test and CV, it isn't that great as the training score.
 
