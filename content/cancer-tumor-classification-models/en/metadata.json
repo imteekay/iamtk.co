@@ -1,6 +1,6 @@
 {
   "title": "Cancer Tumor Classification Models",
-  "description": "Performance optimizations for the interaction to next paint metric and sharing the learning along the way",
+  "description": "Training Machine Learning models to classify cancer tumor types: Naive Bayes, Logistic Regression, SVM, KNN, Decision Tree, Random Forest, and XGBoost",
   "date": "2024-09-15",
   "tags": [
     {
