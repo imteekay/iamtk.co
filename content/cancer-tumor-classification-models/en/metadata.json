@@ -1,0 +1,27 @@
+{
+  "title": "Cancer Tumor Classification Models",
+  "description": "Performance optimizations for the interaction to next paint metric and sharing the learning along the way",
+  "date": "2024-09-15",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/cancer-tumor-classification-models/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "linked neon lights under white painted basement",
+    "authorHref": "https://unsplash.com/@marius",
+    "authorName": "Marius Masalar"
+  }
+}
