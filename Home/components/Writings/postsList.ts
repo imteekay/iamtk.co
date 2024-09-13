@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2024-09-13',
+    link: '/training-ml-models-for-cancer-tumor-classification',
+    title: 'Training ML Models for Cancer Tumor Classification',
+  },
+  {
     datetime: '2024-08-14',
     link: '/essays/applying-books-in-my-life',
     title: 'Applying Books in My Life',
