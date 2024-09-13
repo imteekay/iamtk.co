@@ -1,7 +1,7 @@
 {
   "title": "Training ML Models for Cancer Tumor Classification",
   "description": "Training Machine Learning models to classify cancer tumor types: Naive Bayes, Logistic Regression, SVM, KNN, Decision Tree, Random Forest, and XGBoost",
-  "date": "2024-09-15",
+  "date": "2024-09-13",
   "tags": [
     {
       "href": "/tags/python",
