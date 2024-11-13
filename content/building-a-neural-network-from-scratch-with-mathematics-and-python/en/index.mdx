@@ -186,6 +186,330 @@ So, instead of computing for just one value `z`, we do it for all the training e
 
 <BlockMath>{`\\begin{equation}dB^{[1]} = \\frac{1}{m} \\cdot \\sum_{i=1}^m dZ^{[1]}\\end{equation}`}</BlockMath>
 
+When computing the derivatives for the weights and biases (dW1, dW2, dB1, dB2), we need to add a `1/m` term because we are not calculating for a single loss function anymore, we compute the derivative of the cost function (the mean of the total sum of the individual losses across all examples in the dataset).
+
+This is used to normalize and take a consistent step size in the gradient descent updates. This is why it's used only for updates on weights and biases. The other parts (`dZ2`, `dZ1`) don't need this normalization.
+
+We need to sum biases and then calculate their mean because we want to compute the same bias for all the layers in the neural net. Weights are treated differently because each weight in a layer connects a specific input to a specific neuron in the current layer.
+
+With vectorization, we compute all the values for a vector in one process rather than computing one by one making this process much faster as we need to calculate gradient descent multiple times and for all training examples.
+
+With this introduction to neural networks and the mathematics behind them, we can move on to our problem and the Python implementation.
+
+## Digit Recognizer Problem & Python Implementation
+
+The problem we'll be working on is the [MNIST dataset](https://www.kaggle.com/datasets/hojjatk/mnist-dataset). It's a dataset of handwritten digits, where we have 42,000 training examples and 784 pixels (features). The task is to build a neural network to predict what's the given digit.
+
+Just a reminder of the neural network we are building: we start with a two-layer neural network, the input layer, the hidden layer, and the output layer.
+
+The shape of the input layer is m = 42,000 and n = 784. We start with 10 neurons (hidden units) in the hidden layer and 10 neurons in the output layer. We use 10 neurons in the output layer because we want to represent all the possible digits (from `0` to `9`). The softmax function takes a vector of logits from these 10 neurons and converts it into a probability distribution over the 10 classes, where the sum of probabilities equals 1, making the interpretation straightforward.
+
+Here how it looks like:
+
+===== illustration of the neural network with 2 layers, labeling the ReLU and softmax functions ===
+
+The first thing we need to do is import the libraries we are going to use: numpy and pandas
+
+```python
+import numpy as np
+import pandas as pd
+```
+
+`Numpy` is used for vectorization and matrices multiplication, and `pandas` is used to read the MNIST dataset.
+
+Let's now take a closer look at the data
+
+```python
+data = pd.read_csv('/kaggle/input/digit-recognizer/train.csv')
+m, n = data.shape
+m # 42000
+n # 785
+```
+
+As I said before, we have 42,000 training examples and 784 pixels (features) in this dataset. It's 785 though because we also have a column for the label (a digit from 0 to 9). We'll use the neural network to create the relationship between these pixels and the given label.
+
+Each pixel has a value between 0 and 255 (0 is black and 255 white — this the numbers for RGB).
+
+Before moving forward to the neural network implementation, we need to build the data that will be trained, tested, and normalized.
+
+```python
+np.random.shuffle(data)
+
+number_of_tests = int(m * 0.3)
+
+test_data = data[0:number_of_tests].T
+Y_test = test_data[0]
+X_test = test_data[1:n]
+X_test = X_test / 255.0
+
+train_data = data[number_of_tests:m].T
+Y_train = train_data[0]
+X_train = train_data[1:n]
+X_train = X_train / 255.0
+```
+
+Before splitting the data between training and test data, we shuffle it and use 30% for the test validation and 70% for the training process. After shuffling, we just need to slice the data matrix.
+
+Two other important parts of this process are the division by 255 and the transpose of the data. With the division by 255, we want to normalize the pixels so it will be 0 or 1. For the transpose, this is an important step because to do matrix multiplication, the rows and columns should match perfectly.
+
+To start the neural network implementation, we first need to run the forward pass, but with initialized weights and biases, in this case, `W1`, `W2`, `B1`, and `B2`.
+
+Biases can be initialized with zeros but If initializing with weights all zeros, we compute similar functions in backpropagation, in other words, it computes only one hidden unit (all the hidden units are symmetric).
+
+For biases, we zero out all the values in the matrix:
+
+```python
+B1 = np.zeros((10, 1))
+B2 = np.zeros((10, 1))
+```
+
+For weights, we randomize all values but multiply them by a small number like `0.01`.
+
+```python
+W1 = np.random.rand(10, 784) * 0.01
+W2 = np.random.rand(10, 10) * 0.01
+```
+
+We do it because if the weight values are too large, the activations of the neurons in deeper layers may saturate.
+
+Saturation happens when the input to these activation functions is too large or too small, causing the output to be very close to either 0 or 1 (in the case of sigmoid), or -1 or 1 (in the case of tanh).
+
+This saturation can make the gradients very small (the gradients vanish), which slows down or even stops learning during backpropagation, a problem known as the vanishing gradient problem.
+
+So that's our function
+
+```python
+def init_params():
+    W1 = np.random.rand(10, 784) * 0.01
+    B1 = np.zeros((10, 1))
+    W2 = np.random.rand(10, 10) * 0.01
+    B2 = np.zeros((10, 1))
+    return W1, B1, W2, B2
+```
+
+As I said earlier, we start with 10 neural (hidden units) but we'll expand this and check how much this change improves the neural network for learning about the data.
+
+With everything in place, we can start implementing the first part of the neural network, the forward propagation.
+
+Here's what we need to implement for the forward propagation:
+
+===== add math equations for the forward prop ======
+
+We divide this into two parts, the first layer (hidden layer) and the second layer (output layer).
+
+The first layer will handle the linear combination with the input `X` and then apply the ReLU activation function.
+
+```python
+Z1 = W1.dot(X) + B1
+A1 = ReLU(Z1)
+```
+
+The ReLU function is defined by this equation
+
+====== add relu function math equation ======
+
+It's very simple to implement it:
+
+```python
+def ReLU(Z):
+    return np.maximum(Z, 0)
+```
+
+The second layer will receive the `A1` (the output of the first layer) as an input and apply the softmax activation function to build a probability distribution over the 10 labels (digits).
+
+```python
+Z2 = W2.dot(A1) + B2
+A2 = softmax(Z2)
+```
+
+The softmax equation is defined like this:
+
+===== add softmax math equation =====
+
+Also easy to implement:
+
+```python
+def softmax(Z):
+    return np.exp(Z) / sum(np.exp(Z))
+```
+
+And we finish the forward propagation. We generate `Z1`, `A1`, `Z2`, and `A2`.
+
+```python
+def forward_propagation(W1, B1, W2, B2, X):
+    Z1 = W1.dot(X) + B1
+    A1 = ReLU(Z1)
+    Z2 = W2.dot(A1) + B2
+    A2 = softmax(Z2)
+    return Z1, A1, Z2, A2
+```
+
+A bunch of linear combinations and application of activation functions.
+
+Let's go for the second part now: backward propagation.
+
+The backpropagation needs to calculate the gradients so we can update the weights and biases in each iteration of the algorithm. It will, then, compute `dW1`, `dW2`, `dB1`, and `dB2`.
+
+We start from the back. To compute `dW2` and `dB2`, we need to calculate `dZ2`. As we saw earlier, this is how it's calculated:
+
+====== add equation for dZ2 ======
+
+And it's implemented like this:
+
+```python
+dZ2 = A2 - Y
+```
+
+`Y` is the one hot encoding of `Y` in this context.
+
+`dW2` and `dB2` will follow the equations:
+
+===== add equation for `dW2` and `dB2` ======
+
+Here's the implementation:
+
+```python
+dW2 = 1 / m * dZ2.dot(A1.T)
+dB2 = 1 / m * np.sum(dZ2)
+```
+
+Now that we have `dZ2`, `dW2`, and `dB2`, we can compute the gradients for the rest of the neural network.
+
+`dZ1` is calculated like this:
+
+====== add equation for dZ1 ========
+
+The implementation:
+
+```python
+dZ1 = W2.T.dot(dZ2) * derivative_of_ReLU(Z1)
+```
+
+Here we need to compute the derivative of ReLU. As we saw before, the derivative of the ReLU function if `Z1` is greater than 0 is 1, otherwise, it will be 0.
+
+```python
+def derivative_of_ReLU(Z):
+    return Z > 0
+```
+
+This function returns booleans but it will be used to calculate like we do when we multiply any number with `0`s and `1`s.
+
+Then we have the `dW1` and `dB1`:
+
+===== add equations for dw1 and db1
+
+The implementation is similar to the second layer:
+
+```python
+dW1 = 1 / m * dZ1.dot(X.T)
+dB1 = 1 / m * np.sum(dZ1)
+```
+
+Now we calculated all the gradients and they can be used to update the weights and biases.
+
+Here it's the full backpropagation function:
+
+```python
+def backward_propagation(Z1, A1, Z2, A2, W1, W2, X, Y):
+    dZ2 = A2 - Y
+    dW2 = 1 / m * dZ2.dot(A1.T)
+    dB2 = 1 / m * np.sum(dZ2)
+    dZ1 = W2.T.dot(dZ2) * derivative_of_ReLU(Z1)
+    dW1 = 1 / m * dZ1.dot(X.T)
+    dB1 = 1 / m * np.sum(dZ1)
+    return dW1, dB1, dW2, dB2
+```
+
+After the backpropagation, we need to use the computed values to update weights and biases.
+
+Here we implement the `update_params` function:
+
+```python
+def update_params(W1, B1, W2, B2, dW1, dB1, dW2, dB2, LR):
+    W1 = W1 - LR * dW1
+    B1 = B1 - LR * dB1
+    W2 = W2 - LR * dW2
+    B2 = B2 - LR * dB2
+    return W1, B1, W2, B2
+```
+
+To update these parameters, we just need to multiply it by the learning rate `LR` and subtract it from the previous parameters. The function returns the updated parameters.
+
+The last part of the neural network implementation is putting everything together and calling it a gradient descent algorithm.
+
+```python
+def gradient_descent(X, Y, LR, iterations):
+    W1, B1, W2, B2 = init_params()
+    one_hot_Y = one_hot(Y)
+
+    for i in range(iterations + 1):
+        Z1, A1, Z2, A2 = forward_propagation(W1, B1, W2, B2, X)
+        dW1, db1, dW2, db2 = backward_propagation(Z1, A1, Z2, A2, W1, W2, X, one_hot_Y)
+        W1, B1, W2, B2 = update_params(W1, B1, W2, B2, dW1, db1, dW2, db2, LR)
+        result = A2
+
+    print(get_accuracy(get_predictions(result), Y))
+
+    return W1, B1, W2, B2
+```
+
+This function will receive the features (pixels) `X`, the label `Y`, a learning rate `LR`, and the number of iterations we want to do.
+
+It initializes the parameters and repeats the algorithm `iterations` times. First computing the forward propagation, then the backward propagation, and updates the parameters (weights and biases).
+
+`A2` is the result (the class probabilities) in each iteration. We store it in a variable `result` to see how well it's performing.
+
+The algorithm needs to return the weights and biases so we can use them to validate our test dataset. First, we train the model with the test dataset and then use the parameters to validate.
+
+We can also print the result for different iterations so we know that the neural network is learning:
+
+```python
+if i % 10 == 0:
+    print("Iteration: ", i)
+    predictions = get_predictions(A2)
+    print(get_accuracy(predictions, Y))
+```
+
+Finished that part, here it's an example of how we run this algorithm:
+
+```python
+W1, B1, W2, B2 = gradient_descent(X_train, Y_train, 0.10, 500)
+```
+
+This is for the training dataset and we collect the parameters to be used in the validation phase.
+
+```python
+_, _, _, A2 = forward_propagation(W1, B1, W2, B2, X_test)
+predictions = get_predictions(A2)
+get_accuracy(predictions, Y_test)
+```
+
+Using the learned parameters but now validation with the test dataset, we get the predictions and compute the accuracy.
+
+Running this algorithm with 10 hidden units (neurons), with a learning rate of `0.1`, and `500` iterations, the model's accuracy we've got was **85%**. Both for the training and the test datasets.
+
+As an exercise, I also tested updating the 10 hidden units with 100 hidden units in the hidden layer and I've got **88.2%** accuracy both in the training and test datasets.
+
+To train with 10 neurons, we initialized the parameters like this:
+
+```python
+W1 = np.random.rand(10, 784) * 0.01
+B1 = np.zeros((10, 1))
+W2 = np.random.rand(10, 10) * 0.01
+B2 = np.zeros((10, 1))
+```
+
+To update from 10 to 100 units, we just need to scale the initialization:
+
+```python
+W1 = np.random.rand(100, 784) * 0.01
+B1 = np.zeros((100, 1))
+W2 = np.random.rand(10, 100) * 0.01
+B2 = np.zeros((10, 1))
+```
+
+In a future post, I want to expand this algorithm and add more layers so we can test if the neural network learns and performs better. In other words, deep neural networks would perform better than shallow neural nets? Let's see in a future experiment.
+
 ## Resources
 
 - [Mathematics for Machine Learning](/mathematics-for-machine-learning)
