@@ -158,6 +158,18 @@ That's so interestingly intuitive because if we see the chain rule, we can see t
 
 So here are all the derivatives together:
 
+<BlockMath>{`\\begin{equation}\\frac{dL}{dz^{[2]}} = dz^{[2]} = {a}^{[2]} - y\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}\\frac{dL}{dw^{[2]}} = dw^{[2]} = {({a}^{[2]} - y)} \\cdot {a^{[1]}}^T\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}\\frac{dL}{db^{[2]}} = db^{[2]} = dz^{[2]}\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}\\frac{dL}{dz^{[1]}} = dz^{[1]} = {w^{[2]}}^T \\cdot {dz^{[2]}} \\cdot g\\'(z^{[1]})\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}\\frac{dL}{dw^{[1]}} = dw^{[1]} = dz^{[1]} \\cdot x^T\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}\\frac{dL}{db^{[1]}} = db^{[1]} = dz^{[1]}\\end{equation}`}</BlockMath>
+
 ## Resources
 
 - [Mathematics for Machine Learning](/mathematics-for-machine-learning)
