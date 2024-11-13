@@ -1,5 +1,96 @@
 <SmoothRender>
 
+I've been studying machine learning and AI for quite some time now but neural networks caught my attention because of their nature of modeling, understanding, and learning abstract, complex, and unstructured data. It's been 2 or 3 months that I've been reading books, doing courses, and coding neural nets but I was eager to officially write down all my notes and learnings.
+
+This post aims to be a comprehensive article about neural networks, how mathematics works, and provide an implementation from scratch in Python and Numpy, without any other framework, like Tensorflow or Pytorch.
+
+Here are the following topics I'm going to cover in this post:
+
+### Table of Contents
+
+- Introduction of Neural Networks
+- Mathematics of Neural Networks
+- Digit Recognizer Problem & Python Implementation
+
+## Introduction of Neural Networks
+
+A neural network is a combination of the input, layers, neurons, and the output.
+
+A simple neural network will receive data as input, process the data in the hidden layers through linear combinations and activation functions, and result in an output. The output can be a label — for binary or multiclass classification problems — or a continuous value if we are working with a regression problem.
+
+For a simple neural network, let's say a 2-layer neural network, it has an input layer, a hidden layer where we do our first linear combination together with the application of an activation function, and then we have our second layer, also called, in this case, the output layer, where we also have a linear combination and then apply a different activation function to classify or predict an estimate, depending on the problem.
+
+For the input layer, we use the symbol `X` and this is a matrix of all features and training examples. The features are usually the columns and the rows are all training examples. It's commonly used `m` as the number of rows (training examples) and `n` as the number of columns (features).
+
+And then we have the hidden layer. The neural network makes a bunch of connections between the input and the hidden layers.
+
+==== Add illustration of a connection between the input and hidden layers ====
+
+Each neuron, also called a hidden unit, will do two main things:
+
+- Compute a linear combination (input, weight, and bias)
+- Compute the activation function for this linear combination
+
+The linear combination is basically the input data times a weight `w` plus a bias term `b`. Both `w` and `b` are parameters that the neural network will use in the learning process.
+
+<BlockMath>{`\\begin{equation}z = w x + b\\end{equation}`}</BlockMath>
+
+In linear algebra, linear combinations are usually symbolized with a `z`.
+
+After the linear combination, we need to apply an activation function. It's a non-linear function to add complexity to the model. Different types of functions can be applied here: sigmoid, tanh, ReLU, etc.
+
+Activation functions allow the network to learn and represent complex patterns by introducing non-linearities, enabling it to approximate complex functions. It also helps the neural network to generalize and learn abstract features. It also allows gradients to be meaningful, enabling efficient learning.
+
+==== Add an example of sigmoid, tanh, and relu graphs and equations ====
+
+The output of this first hidden layer is represented by the symbol `A`. With many layers in the neural network, we need to name them with the layer number, like `A1`, `A2`, `A3`, etc.
+
+The output layer has a similar structure to the hidden layer. It computes the linear combination and the activation function. The difference is that the input for this layer is `A1`, the output of the first layer and we use a different activation function to compute the prediction. For example, It can be a linear function for a regression problem, a sigmoid function for a binary classification, or softmax for a multiclass classification problem.
+
+With the prediction, we can now measure how well our neural network model’s predictions align with the actual target values. In other words, we compute a loss function.
+
+==== Add an illustration of the whole neural network ====
+
+This whole process from input to the hidden layer to the output layer and finally resulting in a prediction is called **_forward propagation_**.
+
+If we only compute the forward propagation, we only have one estimate and the neural network is not really learning anything. It just calculated one prediction. So we need a way to make the neural network learns. This learning process is a combination of backpropagation and an optimization algorithm (e.g. gradient descent).
+
+The backpropagation process starts from the output and goes all the way to the starting point of the neural network. The idea is to compute derivatives of the loss function with respect to parameters like weights and biases for the different layers. Because the loss function measures how the model is performing, we want to minimize it as much as possible so it can perform better and better. With these calculations, we know the rate of change between the loss function and the parameter (weight and bias) so we can update the weights and biases with the goal of minimizing the loss function, enabling the neural network to learn and perform better.
+
+We can repeat this back-and-forward process many times, updating the parameters (weights and biases) to minimize the loss function. In other words, we make the neural network learn better in each iteration.
+
+## Mathematics of Neural Networks
+
+Let's now build up the maths for the neural network. We'll start with the forward propagation and do backpropagation right after.
+
+====== illustration of the neural network ======
+
+We have a matrix as the input layer and we'll use it as the input for the first hidden layer. The symbol we use here is `X`.
+
+To compute the hidden layer, we first need to compute the linear combination:
+
+<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\\end{equation}`}</BlockMath>
+
+We call a linear combination as `Z`, or in this case `Z1` because it's the linear combination of the first layer.
+
+Then we need to apply the activation function, symbolized by `g1`, resulting in the output of the first layer: `A1`.
+
+<BlockMath>{`\\begin{equation}A^{[1]} = g(Z^{[1]})\\end{equation}`}</BlockMath>
+
+In the following section, we'll talk about the classification problem we'll apply all this theory and the activation function we'll use is one called Rectified Linear Unit (ReLU) which is a very simple function and easy to implement and derive.
+
+<BlockMath>{`\\begin{equation}f(Z) = max(Z, 0)\\end{equation}`}</BlockMath>
+
+In words, the ReLU function outputs:
+
+- z if z > 0
+- 0 if z ≤ 0.
+
+All of this is for the first layer. The second layer is pretty much the same idea but we annotate the symbols with `2` to specify we are talking about the second one.
+
+<BlockMath>{`\\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}A^{[2]} = g(Z^{[2]})\\end{equation}`}</BlockMath>
 
 ## Resources
 
