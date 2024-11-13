@@ -311,7 +311,13 @@ With everything in place, we can start implementing the first part of the neural
 
 Here's what we need to implement for the forward propagation:
 
-===== add math equations for the forward prop ======
+<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}A^{[1]} = ReLU(Z^{[1]})\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\\end{equation}`}</BlockMath>
+
+<BlockMath>{`\\begin{equation}A^{[2]} = softmax(Z^{[2]})\\end{equation}`}</BlockMath>
 
 We divide this into two parts, the first layer (hidden layer) and the second layer (output layer).
 
@@ -324,7 +330,7 @@ A1 = ReLU(Z1)
 
 The ReLU function is defined by this equation
 
-====== add relu function math equation ======
+<BlockMath>{`\\begin{equation}f(Z) = max(Z, 0)\\end{equation}`}</BlockMath>
 
 It's very simple to implement it:
 
@@ -342,7 +348,7 @@ A2 = softmax(Z2)
 
 The softmax equation is defined like this:
 
-===== add softmax math equation =====
+<BlockMath>{`\\begin{equation}softmax(x_i) = \\frac{e^{x_i}}{\sum_{j=1}^{k} e^{x_j}}\\end{equation}`}</BlockMath>
 
 Also easy to implement:
 
