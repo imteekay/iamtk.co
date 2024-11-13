@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/training-ml-models-for-cancer-tumor-classification/cover.jpg",
+    "src": "/building-a-neural-network-from-scratch-with-mathematics-and-python/cover.jpg",
     "width": "640",
-    "height": "426",
-    "alt": "linked neon lights under white painted basement",
-    "authorHref": "https://unsplash.com/@marius",
-    "authorName": "Marius Masalar"
+    "height": "400",
+    "alt": "lighted city at night aerial photo",
+    "authorHref": "https://unsplash.com/@dulhiier",
+    "authorName": "Nastya Dulhiier"
   }
 }
