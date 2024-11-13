@@ -150,11 +150,11 @@ function.
 
 Because a ReLU function is <InlineMath>{`z`}</InlineMath> if <InlineMath>{`z > 0`}</InlineMath> and 0 if <InlineMath>{`z \\le 0`}</InlineMath>, the derivative of it is 1 if <InlineMath>{`z > 0`}</InlineMath> and 0 if <InlineMath>{`z \\le 0`}</InlineMath>. In the practice example, we'll see how this is very simple to implement in Python and Numpy.
 
-The derivative of dw1 = dL/dz2 _ dz2/da1 _ da1/dz1 _ dz1/dw1, producing dz1 _ x.T
+The derivative of <InlineMath>{`\\frac{dL}{dw^{[1]}} = {dw^{[1]}}`}</InlineMath> is <InlineMath>{`\\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{da^{[1]}} \\cdot \\frac{da^{[1]}}{dz^{[1]}} \\cdot \\frac{dz^{[1]}}{dw^{[1]}}`}</InlineMath>, producing <InlineMath>{`dz^{[1]} \\cdot x^T`}</InlineMath>
 
-The derivative of db1 = dL/dz2 _ dz2/da1 _ da1/dz1 \* dz1/db1, producing dz1
+The derivative of <InlineMath>{`\\frac{dL}{db^{[1]}} = {db^{[1]}}`}</InlineMath> is <InlineMath>{`\\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{da^{[1]}} \\cdot \\frac{da^{[1]}}{dz^{[1]}} \\cdot \\frac{dz^{[1]}}{db^{[1]}}`}</InlineMath>, producing <InlineMath>{`dz^{[1]}`}</InlineMath>
 
-That's so interestingly intuitive because if we see the chain rule, we can see the backpropagation in this computation from z2 to the first parameters w1 and b1.
+That's so interestingly intuitive because if we see the chain rule, we can see the backpropagation in this computation from <InlineMath>{`z^{[2]}`}</InlineMath> to the first parameters <InlineMath>{`w^{[1]}`}</InlineMath> and <InlineMath>{`b^{[1]}`}</InlineMath>.
 
 So here are all the derivatives together:
 
