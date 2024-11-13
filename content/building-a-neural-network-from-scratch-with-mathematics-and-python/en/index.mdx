@@ -138,11 +138,17 @@ For the weight in the second layer, we compute this derivative: <InlineMath>{`\\
 
 The computation for the bias is similar to the weight but we compute the derivative of the loss function with respect to the weight in the second layer: <InlineMath>{`\\frac{dL}{db^{[2]}} = {db^{[2]}} = \\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{db^{[2]}} = {dz^{[2]}}`}</InlineMath>.
 
-The derivative of the loss function with respect to dz1 is a bigger chain rule: dz1 = dL/dz2 _ dz2/da1 _ da1/dz1, producing w2.T dz2 \* g’(z1).
+<InlineMath>{`\\frac{dL}{dz^{[1]}} = {dz^{[1]}}`}</InlineMath>: the derivative
+of the loss function with respect to <InlineMath>{`z^{[1]}`}</InlineMath> is a bigger
+chain rule: <InlineMath>{`\\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{da^{[1]}} \\cdot \\frac{da^{[1]}}{dz^{[1]}}`}</InlineMath>
+, producing <InlineMath>{`{w^{[2]}}^T \\cdot {dz^{[2]}} \\cdot g\\'(z^{[1]})`}</InlineMath>
 
-g’(z1) is the derivative of the loss function with respect to the activation function g. In the example of this post, we need to do the derivative of the ReLU activation function.
+<InlineMath>{`g\\'(z^{[1]})`}</InlineMath> is the derivative of the loss
+function with respect to the activation function <InlineMath>{`g`}</InlineMath>.
+In the example of this post, we need to do the derivative of the ReLU activation
+function.
 
-Because a ReLU function is z if z > 0 and 0 if z ≤ 0, the derivative of it is 1 if z > 0 and 0 if z ≤ 0. In the practice example, we'll see how this is very simple to implement in Python and Numpy.
+Because a ReLU function is <InlineMath>{`z`}</InlineMath> if <InlineMath>{`z > 0`}</InlineMath> and 0 if <InlineMath>{`z \\le 0`}</InlineMath>, the derivative of it is 1 if <InlineMath>{`z > 0`}</InlineMath> and 0 if <InlineMath>{`z \\le 0`}</InlineMath>. In the practice example, we'll see how this is very simple to implement in Python and Numpy.
 
 The derivative of dw1 = dL/dz2 _ dz2/da1 _ da1/dz1 _ dz1/dw1, producing dz1 _ x.T
 
