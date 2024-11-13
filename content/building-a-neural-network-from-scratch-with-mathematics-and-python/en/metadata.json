@@ -1,7 +1,7 @@
 {
   "title": "Building A Neural Network from Scratch with Mathematics and Python",
-  "description": "Training Machine Learning models to classify cancer tumor types: Naive Bayes, Logistic Regression, SVM, KNN, Decision Tree, Random Forest, and XGBoost",
-  "date": "2024-09-13",
+  "description": "A 2-layer neural network implemented with math and Python",
+  "date": "2024-11-13",
   "tags": [
     {
       "href": "/tags/python",
