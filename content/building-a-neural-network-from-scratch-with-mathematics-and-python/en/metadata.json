@@ -1,0 +1,27 @@
+{
+  "title": "Building A Neural Network from Scratch with Mathematics and Python",
+  "description": "Training Machine Learning models to classify cancer tumor types: Naive Bayes, Logistic Regression, SVM, KNN, Decision Tree, Random Forest, and XGBoost",
+  "date": "2024-09-13",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/training-ml-models-for-cancer-tumor-classification/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "linked neon lights under white painted basement",
+    "authorHref": "https://unsplash.com/@marius",
+    "authorName": "Marius Masalar"
+  }
+}
