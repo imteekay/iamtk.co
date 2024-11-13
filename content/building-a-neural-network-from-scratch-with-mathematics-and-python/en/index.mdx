@@ -170,6 +170,10 @@ So here are all the derivatives together:
 
 <BlockMath>{`\\begin{equation}\\frac{dL}{db^{[1]}} = db^{[1]} = dz^{[1]}\\end{equation}`}</BlockMath>
 
+But this is a computation for only one training example. We need to do this for all the training examples in the dataset. Rather than implementing a loop, we can use a much faster operation called vectorization. In this process, we compute operations between matrices.
+
+So, instead of computing for just one value `z`, we do it for all the training examples. We symbolize it with `Z` (capital Z). Here are all the derivatives using vectorization:
+
 ## Resources
 
 - [Mathematics for Machine Learning](/mathematics-for-machine-learning)
