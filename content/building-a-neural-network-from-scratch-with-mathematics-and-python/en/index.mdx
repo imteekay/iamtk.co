@@ -186,9 +186,9 @@ So, instead of computing for just one value `z`, we do it for all the training e
 
 <BlockMath>{`\\begin{equation}dB^{[1]} = \\frac{1}{m} \\cdot \\sum_{i=1}^m dZ^{[1]}\\end{equation}`}</BlockMath>
 
-When computing the derivatives for the weights and biases (dW1, dW2, dB1, dB2), we need to add a `1/m` term because we are not calculating for a single loss function anymore, we compute the derivative of the cost function (the mean of the total sum of the individual losses across all examples in the dataset).
+When computing the derivatives for the weights and biases (<InlineMath>{`dW^{[1]}`}</InlineMath>, <InlineMath>{`dW^{[2]}`}</InlineMath>, <InlineMath>{`dB^{[1]}`}</InlineMath>, <InlineMath>{`dB^{[2]}`}</InlineMath>), we need to add a <InlineMath>{`\\frac{1}{m}`}</InlineMath> term because we are not calculating for a single loss function anymore, we compute the derivative of the cost function (the mean of the total sum of the individual losses across all examples in the dataset).
 
-This is used to normalize and take a consistent step size in the gradient descent updates. This is why it's used only for updates on weights and biases. The other parts (`dZ2`, `dZ1`) don't need this normalization.
+This is used to normalize and take a consistent step size in the gradient descent updates. This is why it's used only for updates on weights and biases. The other parts (<InlineMath>{`dZ^{[2]}`}</InlineMath>, <InlineMath>{`dZ^{[1]}`}</InlineMath>) don't need this normalization.
 
 We need to sum biases and then calculate their mean because we want to compute the same bias for all the layers in the neural net. Weights are treated differently because each weight in a layer connects a specific input to a specific neuron in the current layer.
 
