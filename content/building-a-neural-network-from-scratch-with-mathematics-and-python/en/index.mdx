@@ -44,7 +44,10 @@ After the linear combination, we need to apply an activation function. It's a no
 
 Activation functions allow the network to learn and represent complex patterns by introducing non-linearities, enabling it to approximate complex functions. It also helps the neural network to generalize and learn abstract features. It also allows gradients to be meaningful, enabling efficient learning.
 
-==== Add an example of sigmoid, tanh, and relu graphs and equations ====
+<img
+  src="/building-a-neural-network-from-scratch-with-mathematics-and-python/002.png"
+  loading="lazy"
+/>
 
 The output of this first hidden layer is represented by the symbol `A`. With many layers in the neural network, we need to name them with the layer number, like `A1`, `A2`, `A3`, etc.
 
@@ -52,7 +55,10 @@ The output layer has a similar structure to the hidden layer. It computes the li
 
 With the prediction, we can now measure how well our neural network model’s predictions align with the actual target values. In other words, we compute a loss function.
 
-==== Add an illustration of the whole neural network ====
+<img
+  src="/building-a-neural-network-from-scratch-with-mathematics-and-python/003.png"
+  loading="lazy"
+/>
 
 This whole process from input to the hidden layer to the output layer and finally resulting in a prediction is called **_forward propagation_**.
 
@@ -66,7 +72,10 @@ We can repeat this back-and-forward process many times, updating the parameters 
 
 Let's now build up the maths for the neural network. We'll start with the forward propagation and do backpropagation right after.
 
-====== illustration of the neural network ======
+<img
+  src="/building-a-neural-network-from-scratch-with-mathematics-and-python/003.png"
+  loading="lazy"
+/>
 
 We have a matrix as the input layer and we'll use it as the input for the first hidden layer. The symbol we use here is `X`.
 
@@ -111,7 +120,10 @@ The learning process is about “how much the loss function minimizes if we chan
 
 This concept of “rate of change” of the loss function with respect to parameter `w` or parameter `b` is basically a derivative.
 
-==== illustration of the neural network and the derivatives of each part =====
+<img
+  src="/building-a-neural-network-from-scratch-with-mathematics-and-python/004.png"
+  loading="lazy"
+/>
 
 We compute the gradients from the end of the neural network all the way to the beginning of it. Here are all the steps we need to do then:
 
@@ -209,7 +221,10 @@ The shape of the input layer is m = 42,000 and n = 784. We start with 10 neurons
 
 Here how it looks like:
 
-===== illustration of the neural network with 2 layers, labeling the ReLU and softmax functions ===
+<img
+  src="/building-a-neural-network-from-scratch-with-mathematics-and-python/005.png"
+  loading="lazy"
+/>
 
 The first thing we need to do is import the libraries we are going to use: numpy and pandas
 
