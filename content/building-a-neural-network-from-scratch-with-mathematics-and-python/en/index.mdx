@@ -63,7 +63,7 @@ With the prediction, we can now measure how well our neural network model’s pr
 
 This whole process from input to the hidden layer to the output layer and finally resulting in a prediction is called **_forward propagation_**.
 
-If we only compute the forward propagation, we only have one estimate and the neural network is not really learning anything. It just calculated one prediction. So we need a way to make the neural network learns. This learning process is a combination of backpropagation and an optimization algorithm (e.g. gradient descent).
+If we only compute the forward propagation, we only have one estimate and the neural network is not really learning anything. It just calculated one prediction. So we need a way to make the neural network learn. This learning process is a combination of backpropagation and an optimization algorithm (e.g. gradient descent).
 
 The backpropagation process starts from the output and goes all the way to the starting point of the neural network. The idea is to compute derivatives of the loss function with respect to parameters like weights and biases for the different layers. Because the loss function measures how the model is performing, we want to minimize it as much as possible so it can perform better and better. With these calculations, we know the rate of change between the loss function and the parameter (weight and bias) so we can update the weights and biases with the goal of minimizing the loss function, enabling the neural network to learn and perform better.
 
