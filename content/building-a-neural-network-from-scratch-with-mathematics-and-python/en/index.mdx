@@ -42,12 +42,12 @@ In linear algebra, linear combinations are usually symbolized with a <InlineMath
 
 After the linear combination, we need to apply an activation function. It's a non-linear function to add complexity to the model. Different types of functions can be applied here: sigmoid, tanh, ReLU, etc.
 
-Activation functions allow the network to learn and represent complex patterns by introducing non-linearities, enabling it to approximate complex functions. It also helps the neural network to generalize and learn abstract features. It also allows gradients to be meaningful, enabling efficient learning.
-
 <img
   src="/building-a-neural-network-from-scratch-with-mathematics-and-python/002.png"
   loading="lazy"
 />
+
+Activation functions allow the network to learn and represent complex patterns by introducing non-linearities, enabling it to approximate complex functions. It also helps the neural network to generalize and learn abstract features. It also allows gradients to be meaningful, enabling efficient learning.
 
 The output of this first hidden layer is represented by the symbol <InlineMath>{`A`}</InlineMath>. With many layers in the neural network, we need to name them with the layer number, like <InlineMath>{`{A^{[1]}}`}</InlineMath>, <InlineMath>{`{A^{[2]}}`}</InlineMath>, <InlineMath>{`{A^{[3]}}`}</InlineMath>, etc.
 
@@ -154,7 +154,7 @@ To compute <InlineMath>{`{dz^{[2]}}`}</InlineMath>, we need to do the derivative
 
 For the weight in the second layer, we compute this derivative: <InlineMath>{`\\frac{dL}{dw^{[2]}} = {dw^{[2]}} = \\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{dw^{[2]}} = {({a}^{[2]} - y)} \\cdot {a^{[1]}}^T`}</InlineMath>.
 
-The computation for the bias is similar to the weight but we compute the derivative of the loss function with respect to the weight in the second layer: <InlineMath>{`\\frac{dL}{db^{[2]}} = {db^{[2]}} = \\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{db^{[2]}} = {dz^{[2]}}`}</InlineMath>.
+The computation for the bias is similar to the weight but we compute the derivative of the loss function with respect to the bias in the second layer: <InlineMath>{`\\frac{dL}{db^{[2]}} = {db^{[2]}} = \\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{db^{[2]}} = {dz^{[2]}}`}</InlineMath>.
 
 <InlineMath>{`\\frac{dL}{dz^{[1]}} = {dz^{[1]}}`}</InlineMath>: the derivative
 of the loss function with respect to <InlineMath>{`z^{[1]}`}</InlineMath> is a bigger
