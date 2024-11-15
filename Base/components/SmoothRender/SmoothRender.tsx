@@ -72,7 +72,9 @@ const SmoothRenderElement = ({ children }: SmoothRenderElementPropTypes) => {
     <>
       <div ref={ref} style={{ minHeight: '0px', visibility: 'hidden' }} />
       {cloneElement(children, {
-        className,
+        className: children.props.class
+          ? `${children.props.class} ${className}`
+          : className,
         id,
       })}
     </>

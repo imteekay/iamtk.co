@@ -1,0 +1,27 @@
+{
+  "title": "Building A Neural Network from Scratch with Mathematics and Python",
+  "description": "A 2-layer neural network implemented with math and Python",
+  "date": "2024-11-13",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/building-a-neural-network-from-scratch-with-mathematics-and-python/cover.jpg",
+    "width": "640",
+    "height": "400",
+    "alt": "lighted city at night aerial photo",
+    "authorHref": "https://unsplash.com/@dulhiier",
+    "authorName": "Nastya Dulhiier"
+  }
+}
