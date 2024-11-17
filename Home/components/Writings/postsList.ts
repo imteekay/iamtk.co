@@ -7,7 +7,7 @@ type Post = {
 
 export const postsList: Post[] = [
   {
-    datetime: '2024-11-18',
+    datetime: '2024-11-17',
     link: '/building-a-neural-network-from-scratch-with-mathematics-and-python',
     title: 'Building A Neural Network from Scratch with Mathematics and Python',
   },
