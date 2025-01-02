@@ -17,9 +17,9 @@
     }
   ],
   "coverImage": {
-    "src": "/building-a-neural-network-from-scratch-with-mathematics-and-python/cover.jpg",
+    "src": "/building-a-deep-neural-network-from-scratch/cover.jpg",
     "width": "640",
-    "height": "400",
+    "height": "426",
     "alt": "lighted city at night aerial photo",
     "authorHref": "https://unsplash.com/@dulhiier",
     "authorName": "Nastya Dulhiier"
