@@ -1,0 +1,19 @@
+{
+  "title": "Building a Linear Regression from Scratch with Python & Mathematics",
+  "description": "",
+  "date": "2025-01-13",
+  "tags": [
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/designing-my-lifes-system/cover.jpeg",
+    "width": "592",
+    "height": "394",
+    "alt": "A photo of the universe",
+    "authorHref": "https://unsplash.com/@phaelnogueira",
+    "authorName": "Raphael Nogueira"
+  }
+}
