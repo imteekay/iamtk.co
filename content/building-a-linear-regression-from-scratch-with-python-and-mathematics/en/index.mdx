@@ -21,6 +21,131 @@ The motivating example we'll use is a house price prediction problem. To make it
 | 1.0              | 300                      |
 | 2.0              | 500                      |
 
+As said above, we have the size as the only one feature (X) for this problem, and house prices as the target (Y), or the value we're trying to predict.
+
+Here's how we can represent the data
+
+```python
+x_train = np.array([1.0, 2.0])
+y_train = np.array([300.0, 500.0])
+
+print(f"x_train = {x_train}") # x_train = [1. 2.]
+print(f"y_train = {y_train}") # y_train = [300. 500.]
+```
+
+Using the `scatter` function from the `matplotlib`, we can plot the data into a graph:
+
+```python
+plt.scatter(x_train, y_train, marker='x', c='r')
+plt.title("Housing Prices")
+plt.ylabel('Price (in 1000s of dollars)')
+plt.xlabel('Size (1000 sqft)')
+plt.show()
+```
+
+Here's how it looks like:
+
+[](/building-a-linear-regression-from-scratch-with-python-and-mathematics/001.house-price-data-plot.png)
+
+For a simple model like a linear regression, the model function is represented as
+
+$$ f(x) = wx + b $$
+
+where, `w` is the model weight and `b` is the bias.
+
+A linear function with random Ws and Bs produces the model function. For a linear regression, the function is a line. The line is a function built by the learning algorithm (model). The function receives an input (features) and outputs a prediction (y-hat), the estimated value of y.
+
+The idea of the model is to ask what the math formula for `f` is.
+
+Let's play around with `w` and `b`. To compute the model function for each training example, we have a function called `compute_model`. It receives the training data, a `w`, and a `b` of choice.
+
+```python
+def compute_model(x, w, b):
+    """
+    Computes the prediction of a linear model
+    Args:
+      x (ndarray (m,)): Data, m examples
+      w,b (scalar)    : model parameters
+    Returns
+      y (ndarray (m,)): target values
+    """
+    m = x.shape[0]
+    f_wb = np.zeros(m)
+
+    for i in range(m):
+        f_wb[i] = w * x[i] + b
+
+    return f_wb
+```
+
+`m` is the number of training examples in the dataset. For each training example, we compute the model function based on the representation illustrated before.
+
+The returning value is all the predictions using the chosen `w` and `b`.
+
+Let's say we have these parameters:
+
+```python
+w = 100
+b = 100
+```
+
+And we pass them to the `compute_model` function
+
+```python
+output = compute_model(x_train, w, b)
+```
+
+The output is all the predictions based on those chosen parameters.
+
+For `w = 100` and `b = 100`, we can plot the results:
+
+```python
+plt.plot(x_train, output, c='b', label='Prediction')
+plt.scatter(x_train, y_train, marker='x', c='r', label='Actual Values')
+plt.title('Housing Prices')
+plt.ylabel('Price (in 1000s of dollars)')
+plt.xlabel('Size (1000 sqft)')
+plt.legend()
+plt.show()
+```
+
+We have this plot:
+
+[002.random-parameters-prediction.png]
+
+We can see that the chosen parameters don't result in a line that fits the data.
+
+We can try different parameters until we find the perfect ones. Specifically for this dataset, we know that `w = 200` and `b = 100` are the parameters that fit the data perfectly.
+
+```python
+w = 200
+b = 100
+output = compute_model(x_train, w, b)
+
+plt.plot(x_train, output, c='b', label='Our Prediction')
+plt.scatter(x_train, y_train, marker='x', c='r', label='Actual Values')
+plt.title('Housing Prices')
+plt.ylabel('Price (in 1000s of dollars)')
+plt.xlabel('Size (1000 sqft)')
+plt.legend()
+plt.show()
+```
+
+This code plots this graph, and we can see how the model fits the data perfectly
+
+[003.perfect-parameters.png]
+
+With the perfect parameters, we can predict the price of a house based on its size. Let's say it has 1.2 in size (1000 sqft).
+
+```python
+x_i = 1.2
+cost_1200sqft = w * x_i + b
+
+print(f"${cost_1200sqft:.0f} thousand dollars") # $340 thousand dollars
+```
+
+And this is our first prediction for a very simple linear regression.
+
 ## Resources
 
 - [Machine Learning Research](https://github.com/imteekay/machine-learning-research)
