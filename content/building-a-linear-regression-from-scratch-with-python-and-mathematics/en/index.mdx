@@ -545,9 +545,7 @@ A previous model had only one feature so it needed only one weight. Now that we 
 
 It's also possible to use the vector notion:
 
-```markdown
-$$ f\_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w} \cdot \mathbf{x} + b$$
-```
+<BlockMath>{`f_{w,b}(X) = W \\cdot X`}</BlockMath>
 
 Let's go to our implementation. First, we'll compute the house price prediction for a single example using the initial parameters.
 
@@ -617,9 +615,7 @@ So the next step is to compute the cost function for multiple variables.
 
 Just to recap, the cost equation is the following
 
-```markdown
-$$J(\mathbf{w},b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{\mathbf{w},b}(\mathbf{x}^{(i)}) - y^{(i)})^2$$
-```
+<BlockMath>{`J(w,b) = \\frac{1}{2m} \\sum\\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2`}</BlockMath>
 
 Before, we only had one feature. Now, we have multiple features in the dataset. Similar to what we did above using the dot product, we can use the same approach to compute the cost function.
 
