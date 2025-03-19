@@ -52,9 +52,7 @@ Here's what it looks like:
 
 For a simple model like a linear regression, the model function is represented as
 
-```markdown
-$$ f(x) = wx + b $$
-```
+<BlockMath>{`f(x) = wx + b`}</BlockMath>
 
 where `w` is the model weight and `b` is the bias.
 
@@ -163,15 +161,11 @@ To train the model to find the best parameters, we need to improve a certain met
 
 In our implementation, we'll be using the mean squared error cost function, which sums the square difference between the prediction and the real target over `m` training examples.
 
-```markdown
-$$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$
-```
+<BlockMath>{`J(w,b) = \\frac{1}{2m} \\sum\\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2`}</BlockMath>
 
 where
 
-```markdown
-$$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
-```
+<BlockMath>{`f_{w,b}(x^{(i)}) = wx^{(i)} + b`}</BlockMath>
 
 For a given <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, we measure the cost for all the training examples. The idea is to give this metric to the model and it will auto-adjust to find better parameters, which means choosing new parameters that minimize the cost. So the cost function is an important metric to measure how well the model is performing.
 
@@ -264,39 +258,27 @@ The algorithm we will use for this work is called gradient descent. The idea is 
 
 Have the linear function:
 
-```markdown
-$$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
-```
+<BlockMath>{`f_{w,b}(x^{(i)}) = wx^{(i)} + b`}</BlockMath>
 
 Compute the cost:
 
-```markdown
-$$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$
-```
+<BlockMath>{`J(w,b) = \\frac{1}{2m} \\sum\\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2`}</BlockMath>
 
 And here is the new part. We need to iterate a number of times (a hyperparameter we can pass to the model) until it converges. In each iteration, the model will update the parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>.
 
 This is how we update the parameters:
 
-```markdown
-w &= w - \alpha \frac{\partial J(w,b)}{\partial w}
-```
+<BlockMath>{`w = w - \\alpha \\frac{\\partial J(w,b)}{\\partial w}`}</BlockMath>
 
-```markdown
-b &= b - \alpha \*frac\*{\partial J(w,b)}{\partial b}
-```
+<BlockMath>{`b = b - \\alpha \\frac{\\partial J(w,b)}{\\partial b}`}</BlockMath>
 
 Let's break it down. `alpha` is the learning rate. It's a hyperparameter we use to control the step size to balance speed and stability when updating the parameters. Then we have the partial derivatives.
 
 We need to compute the derivative of the cost function with respect to <InlineMath>{`W`}</InlineMath> and then again with respect to <InlineMath>{`B`}</InlineMath>. Here's the definition:
 
-```markdown
-\*frac*{\partial J(w,b)}{\partial w} &= \*frac*{1}{m} \sum\*limits*\*{i = 0}^{m-1} (f*{w,b}(x^{(i)}) - y^{(i)})x^{(i)}\\
-```
+<BlockMath>{`\\frac{\\partial J(w,b)}{\\partial w} = \\frac{1}{m} \\sum_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})x^{(i)}`}</BlockMath>
 
-```markdown
-\*frac*{\partial J(w,b)}{\partial b} &= \*frac*{1}{m} \sum\*limits*\*{i = 0}^{m-1} (f*{w,b}(x^{(i)}) - y^{(i)})\\
-```
+<BlockMath>{`\\frac{\\partial J(w,b)}{\\partial b} = \\frac{1}{m} \\sum_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})`}</BlockMath>
 
 This measures how much the cost changes when <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> change by a small amount. This computation is also called gradient. Let's code that.
 
@@ -521,7 +503,7 @@ X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
 y_train = np.array([460, 232, 178])
 ```
 
-For the training features X, we have m training examples and n features. `$\mathbf{X}$` is a matrix with dimensions ($m$, $n$) (m rows, n columns). Here's the matrix representation:
+For the training features X, we have m training examples and n features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (m rows, n columns). Here's the matrix representation:
 
 ```markdown
 $$
