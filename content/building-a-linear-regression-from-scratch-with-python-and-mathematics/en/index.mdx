@@ -503,32 +503,17 @@ X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
 y_train = np.array([460, 232, 178])
 ```
 
-For the training features <InlineMath>{`X`}</InlineMath>, we have m training examples and n features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (m rows, n columns). Here's the matrix representation:
+For the training features <InlineMath>{`X`}</InlineMath>, we have <InlineMath>{`m`}</InlineMath> training examples and <InlineMath>{`n`}</InlineMath> features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (m rows, n columns). Here's the matrix representation:
 
-```markdown
-$$
-\mathbf{X} =
-\begin{pmatrix}
- x^{(0)}_0 & x^{(0)}_1 & \cdots & x^{(0)}_{n-1} \\
- x^{(1)}_0 & x^{(1)}_1 & \cdots & x^{(1)}_{n-1} \\
- \cdots \\
- x^{(m-1)}_0 & x^{(m-1)}_1 & \cdots & x^{(m-1)}_{n-1}
-\end{pmatrix}
-$$
-```
+<BlockMath>
+  {`\\begin{equation}\\begin{pmatrix} x^{(0)}_0 & x^{(0)}_1 & \\cdots & x^{(0)}_{n-1} \\\\ x^{(1)}_0 & x^{(1)}_1 & \\cdots & x^{(1)}_{n-1} \\\\ \\cdots \\\\ x^{(m-1)}_0 & x^{(m-1)}_1 & \\cdots & x^{(m-1)}_{n-1} \\end{pmatrix}\\end{equation}`}
+</BlockMath>
 
 In terms of parameters, they will be a bit different. <InlineMath>{`B`}</InlineMath> will still be a scalar value. But the <InlineMath>{`W`}</InlineMath> will be a vector of n values where each weight is there for each feature in the data set. (n features, n is 4 for this dataset).
 
-```markdown
-$$
-\mathbf{w} = \begin{pmatrix}
-w_0 \\
-w_1 \\
-\cdots\\
-w_{n-1}
-\end{pmatrix}
-$$
-```
+<BlockMath>
+  {`\\begin{equation} W = \\begin{pmatrix} w_0 \\\\ w_1 \\\\ \\cdots \\\\ w_{n-1} \\end{pmatrix}\\end{equation}`}
+</BlockMath>
 
 This is how we represent the initial values for weight and bias
 
