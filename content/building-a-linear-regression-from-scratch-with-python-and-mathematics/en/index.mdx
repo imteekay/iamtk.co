@@ -45,7 +45,10 @@ plt.show()
 
 Here's what it looks like:
 
-[](/building-a-linear-regression-from-scratch-with-python-and-mathematics/001.house-price-data-plot.png)
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/001.png"
+  loading="lazy"
+/>
 
 For a simple model like a linear regression, the model function is represented as
 
@@ -113,7 +116,10 @@ plt.show()
 
 We have this plot:
 
-[002.random-parameters-prediction.png]
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/002.png"
+  loading="lazy"
+/>
 
 We can see that the chosen parameters don't result in a line that fits the data.
 
@@ -135,7 +141,10 @@ plt.show()
 
 This code plots this graph, and we can see how the model fits the data perfectly
 
-[003.perfect-parameters.png]
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/003.png"
+  loading="lazy"
+/>
 
 With the perfect parameters, we can predict the price of a house based on its size. Let's say it is 1.2 in size (1000 sqft).
 
@@ -164,7 +173,7 @@ where
 $$f_{w,b}(x^{(i)}) = wx^{(i)} + b$$
 ```
 
-For a given `W` and `B`, we measure the cost for all the training examples. The idea is to give this metric to the model and it will auto-adjust to find better parameters, which means choosing new parameters that minimize the cost. So the cost function is an important metric to measure how well the model is performing.
+For a given <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, we measure the cost for all the training examples. The idea is to give this metric to the model and it will auto-adjust to find better parameters, which means choosing new parameters that minimize the cost. So the cost function is an important metric to measure how well the model is performing.
 
 The implementation is quite simple:
 
@@ -196,7 +205,7 @@ def compute_cost(x, y, w, b):
     return total_cost
 ```
 
-We need to sum the cost for each training example using the chosen parameters `W` and `B`, so we iterate through the `m` training examples, and for each, we need to compute the function `f` and the cost, squaring the difference between `f` and the actual target value.
+We need to sum the cost for each training example using the chosen parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, so we iterate through the `m` training examples, and for each, we need to compute the function `f` and the cost, squaring the difference between `f` and the actual target value.
 
 After that, we just add it to the `cost_sum`. Compute all costs and sum. Then we just need to compute the total cost and return it from the function.
 
@@ -240,13 +249,16 @@ y_train = np.array([250, 300, 480, 430, 630, 730])
 
 We know the actual value and we can compute the prediction.
 
-[004.png]
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/004.png"
+  loading="lazy"
+/>
 
 We calculate the difference between the actual value and the prediction, and we have the cost. The idea of the model is to find a line that fits the data better. So we optimize the parameters to form the line that will minimize the cost across all training examples.
 
 ## Gradient Descent
 
-The cost function was implemented before, and now we need to implement the algorithm that minimizes the cost so we can find the most optimized parameters `W` and `B`.
+The cost function was implemented before, and now we need to implement the algorithm that minimizes the cost so we can find the most optimized parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>.
 
 The algorithm we will use for this work is called gradient descent. The idea is pretty simple:
 
@@ -262,7 +274,7 @@ Compute the cost:
 $$J(w,b) = \frac{1}{2m} \sum\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2$$
 ```
 
-And here is the new part. We need to iterate a number of times (a hyperparameter we can pass to the model) until it converges. In each iteration, the model will update the parameters `W` and `B`.
+And here is the new part. We need to iterate a number of times (a hyperparameter we can pass to the model) until it converges. In each iteration, the model will update the parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>.
 
 This is how we update the parameters:
 
@@ -276,7 +288,7 @@ b &= b - \alpha \*frac\*{\partial J(w,b)}{\partial b}
 
 Let's break it down. `alpha` is the learning rate. It's a hyperparameter we use to control the step size to balance speed and stability when updating the parameters. Then we have the partial derivatives.
 
-We need to compute the derivative of the cost function with respect to `W` and then again with respect to `B`. Here's the definition:
+We need to compute the derivative of the cost function with respect to <InlineMath>{`W`}</InlineMath> and then again with respect to <InlineMath>{`B`}</InlineMath>. Here's the definition:
 
 ```markdown
 \*frac*{\partial J(w,b)}{\partial w} &= \*frac*{1}{m} \sum\*limits*\*{i = 0}^{m-1} (f*{w,b}(x^{(i)}) - y^{(i)})x^{(i)}\\
@@ -286,7 +298,7 @@ We need to compute the derivative of the cost function with respect to `W` and t
 \*frac*{\partial J(w,b)}{\partial b} &= \*frac*{1}{m} \sum\*limits*\*{i = 0}^{m-1} (f*{w,b}(x^{(i)}) - y^{(i)})\\
 ```
 
-This measures how much the cost changes when `W` and `B` change by a small amount. This computation is also called gradient. Let's code that.
+This measures how much the cost changes when <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> change by a small amount. This computation is also called gradient. Let's code that.
 
 ```python
 def compute_gradient(x, y, w, b):
@@ -322,17 +334,20 @@ The implementation is pretty simple and less scary than the math equations, espe
 
 The Cost X W graph looks like a curve and computing the gradients is computing the slope of the curve for a given cost and weight.
 
-[005.png]
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/005.png"
+  loading="lazy"
+/>
 
 In this graph, we can see three gradients computed. The middle one is when the model converged and found the most optimized parameters for the given training dataset.
 
 To put everything together, we will implement the gradient descent:
 
 - Loop through the number of iterations
-- Compute the gradients for `W` and `B`
-- Update `W` and `B`
+- Compute the gradients for <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>
+- Update <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>
 - Compute the cost using the cost function and store it in a history vector
-- With the end of the iterations, we have the final `W` and `B`, and then we can just return them
+- With the end of the iterations, we have the final <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, and then we can just return them
 
 Here's the implementation
 
@@ -412,7 +427,10 @@ In the end, we have the most optimized parameters that minimize the cost functio
 
 With more iterations, the cost decreases over time. We can see in the following illustration
 
-[006.png]
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/006.png"
+  loading="lazy"
+/>
 
 It's important to note that
 
@@ -420,7 +438,7 @@ It's important to note that
 - The partial derivatives, `dj_dw`, and `dj_db` also get smaller, rapidly at first and then more slowly
 - Progress slows down, though the learning rate, alpha, remains fixed
 
-With the optimal parameters `W` and `B`, we can predict the house prices for a new dataset.
+With the optimal parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, we can predict the house prices for a new dataset.
 
 ```python
 print(f"1000 sqft house prediction {w_final*1.0 + b_final:0.1f} Thousand dollars")
@@ -463,9 +481,14 @@ Iteration    8: Cost 1.85e+09  dj_dw: -5.496e+04, dj_db: -3.397e+04   w:  2.813e
 Iteration    9: Cost 5.60e+09  dj_dw:  9.572e+04, dj_db:  5.916e+04   w: -4.845e+04, b:-2.99567e+04
 ```
 
-`W` and `B` are bouncing back and forth between positive and negative with the absolute value increasing with each iteration.
+<InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> are bouncing back
+and forth between positive and negative with the absolute value increasing with each
+iteration.
 
-[007.png]
+<img
+  src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/007.png"
+  loading="lazy"
+/>
 
 The learning rate is a hyperparameter that we need to find the optimal value for the dataset so the model can learn properly without diverging.
 
@@ -512,7 +535,7 @@ $$
 $$
 ```
 
-In terms of parameters, they will be a bit different. `B` will still be a scalar value. But the `W` will be a vector of n values where each weight is there for each feature in the data set. (n features, n is 4 for this dataset).
+In terms of parameters, they will be a bit different. <InlineMath>{`B`}</InlineMath> will still be a scalar value. But the <InlineMath>{`W`}</InlineMath> will be a vector of n values where each weight is there for each feature in the data set. (n features, n is 4 for this dataset).
 
 ```markdown
 $$
