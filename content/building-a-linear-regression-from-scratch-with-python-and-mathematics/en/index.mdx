@@ -54,13 +54,13 @@ For a simple model like a linear regression, the model function is represented a
 
 <BlockMath>{`f(x) = wx + b`}</BlockMath>
 
-where `w` is the model weight and `b` is the bias.
+where <InlineMath>{`w`}</InlineMath> is the model weight and <InlineMath>{`b`}</InlineMath> is the bias.
 
 A linear function with random Ws and Bs produces the model function. For a linear regression, the function is a line. The line is a function built by the learning algorithm (model). The function receives an input (features) and outputs a prediction (y-hat), the estimated value of y.
 
-The idea of the model is to ask what the math formula for `f` is.
+The idea of the model is to ask what the math formula for <InlineMath>{`f`}</InlineMath> is.
 
-Let's play around with `w` and `b`. To compute the model function for each training example, we have a function called `compute_model`. It receives the training data, a `w`, and a `b` of choice.
+Let's play around with <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</InlineMath>. To compute the model function for each training example, we have a function called `compute_model`. It receives the training data, a <InlineMath>{`w`}</InlineMath>, and a <InlineMath>{`b`}</InlineMath> of choice.
 
 ```python
 def compute_model(x, w, b):
@@ -83,7 +83,7 @@ def compute_model(x, w, b):
 
 `m` is the number of training examples in the dataset. For each training example, we compute the model function based on the representation illustrated before.
 
-The returning value is all the predictions using the chosen `w` and `b`.
+The returning value is all the predictions using the chosen <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</InlineMath>.
 
 Let's say we have these parameters:
 
@@ -159,7 +159,7 @@ And this is our first prediction for a very simple linear regression.
 
 To train the model to find the best parameters, we need to improve a certain metric. That way, the model knows it's learning. To measure this, we use the _cost function_. With this equation, we know how well the model's predictions match the dataset.
 
-In our implementation, we'll be using the mean squared error cost function, which sums the square difference between the prediction and the real target over `m` training examples.
+In our implementation, we'll be using the mean squared error cost function, which sums the square difference between the prediction and the real target over <InlineMath>{`m`}</InlineMath> training examples.
 
 <BlockMath>{`J(w,b) = \\frac{1}{2m} \\sum\\limits_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})^2`}</BlockMath>
 
@@ -199,7 +199,7 @@ def compute_cost(x, y, w, b):
     return total_cost
 ```
 
-We need to sum the cost for each training example using the chosen parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, so we iterate through the `m` training examples, and for each, we need to compute the function `f` and the cost, squaring the difference between `f` and the actual target value.
+We need to sum the cost for each training example using the chosen parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, so we iterate through the <InlineMath>{`m`}</InlineMath> training examples, and for each, we need to compute the function <InlineMath>{`f`}</InlineMath> and the cost, squaring the difference between <InlineMath>{`f`}</InlineMath> and the actual target value.
 
 After that, we just add it to the `cost_sum`. Compute all costs and sum. Then we just need to compute the total cost and return it from the function.
 
@@ -272,9 +272,9 @@ This is how we update the parameters:
 
 <BlockMath>{`b = b - \\alpha \\frac{\\partial J(w,b)}{\\partial b}`}</BlockMath>
 
-Let's break it down. `alpha` is the learning rate. It's a hyperparameter we use to control the step size to balance speed and stability when updating the parameters. Then we have the partial derivatives.
+Let's break it down. <InlineMath>{`\\alpha`}</InlineMath> is the learning rate. It's a hyperparameter we use to control the step size to balance speed and stability when updating the parameters. Then we have the partial derivatives.
 
-We need to compute the derivative of the cost function with respect to <InlineMath>{`W`}</InlineMath> and then again with respect to <InlineMath>{`B`}</InlineMath>. Here's the definition:
+We need to compute the derivative of the cost function with respect to <InlineMath>{`W`}</InlineMath> and then again with respect to <InlineMath>{`B`}</InlineMath>. Here are the definitions:
 
 <BlockMath>{`\\frac{\\partial J(w,b)}{\\partial w} = \\frac{1}{m} \\sum_{i = 0}^{m-1} (f_{w,b}(x^{(i)}) - y^{(i)})x^{(i)}`}</BlockMath>
 
@@ -314,7 +314,7 @@ def compute_gradient(x, y, w, b):
 
 The implementation is pretty simple and less scary than the math equations, especially if you don't have a good foundation in calculus. But it's basically partial derivatives in a loop.
 
-The Cost X W graph looks like a curve and computing the gradients is computing the slope of the curve for a given cost and weight.
+The Cost x W graph looks like a curve and computing the gradients is computing the slope of the curve for a given cost and weight.
 
 <img
   src="/building-a-linear-regression-from-scratch-with-python-and-mathematics/005.png"
@@ -418,7 +418,7 @@ It's important to note that
 
 - The cost starts large and rapidly declines
 - The partial derivatives, `dj_dw`, and `dj_db` also get smaller, rapidly at first and then more slowly
-- Progress slows down, though the learning rate, alpha, remains fixed
+- Progress slows down, though the learning rate <InlineMath>{`\\alpha`}</InlineMath> remains fixed
 
 With the optimal parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath>, we can predict the house prices for a new dataset.
 
@@ -436,7 +436,7 @@ This is the prediction output
 2000 sqft house prediction 500.0 Thousand dollars
 ```
 
-Before moving on to the next part of the implementation, we need to talk about the learning rate. The larger the alpha is, the faster gradient descent will converge to a solution. But, if it is too large, gradient descent will diverge.
+Before moving on to the next part of the implementation, we need to talk about the learning rate. The larger the <InlineMath>{`\\alpha`}</InlineMath> is, the faster gradient descent will converge to a solution. But, if it is too large, gradient descent will diverge.
 
 ```python
 w_init = 0
@@ -559,7 +559,7 @@ def predict_single_loop(x, w, b):
     return p
 ```
 
-For fixed parameters `w` and `b`, we loop through all the features for a single example and compute the prediction following the linear model definition. Because `b` is a scalar value, we can add it later to the prediction and return it.
+For fixed parameters <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</InlineMath>, we loop through all the features for a single example and compute the prediction following the linear model definition. Because <InlineMath>{`b`}</InlineMath> is a scalar value, we can add it later to the prediction and return it.
 
 ```python
 x_vec = X_train[0,:]
@@ -671,7 +671,7 @@ print(f'Cost at optimal w : {cost}')
 
 The next two remaining parts are the computation of gradients and the full gradient descent algorithm.
 
-We need to compute the gradient for both `w` and `b`. The implementation looks similar to the one implemented before for a single feature linear regression. The difference is that, instead of having only one feature, we need to loop through all features to compute the gradient for `w`.
+We need to compute the gradient for both <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</InlineMath>. The implementation looks similar to the one implemented before for a single feature linear regression. The difference is that, instead of having only one feature, we need to loop through all features to compute the gradient for <InlineMath>{`w`}</InlineMath>.
 
 ```python
 def compute_gradient(X, y, w, b):
@@ -705,7 +705,7 @@ def compute_gradient(X, y, w, b):
     return dj_db, dj_dw
 ```
 
-The gradient for `w` is a vector because we are dealing with multiple variables, so each feature needs its own weight parameter. Bias is still a scalar value.
+The gradient for <InlineMath>{`w`}</InlineMath> is a vector because we are dealing with multiple variables, so each feature needs its own weight parameter. Bias is still a scalar value.
 
 ```python
 dj_db, dj_dw = compute_gradient(X_train, y_train, w_init, b_init)
@@ -742,8 +742,8 @@ def compute_gradient(X, y, w, b):
 Here's the vectorization implementation:
 
 - Instead of computing the error for each training example, we compute all the errors in one batch
-- Instead of computing the gradient for `b` for each training example, compute the value in one batch
-- Instead of computing the gradient for `w` for each training example and each feature, compute it in one batch
+- Instead of computing the gradient for <InlineMath>{`b`}</InlineMath> for each training example, compute the value in one batch
+- Instead of computing the gradient for <InlineMath>{`w`}</InlineMath> for each training example and each feature, compute it in one batch
 
 Testing it again, we have the same values, as expected:
 
