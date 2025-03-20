@@ -756,7 +756,7 @@ print(f'dj_dw: \n {dj_dw}')
 # dj_dw: [-2.73e-03 -6.27e-06 -2.22e-06 -6.92e-05]
 ```
 
-The last part is to put everything together and implement the gradient descent algorithm. We did that already before and the implementation is quite similar. The only real difference is the fact that `X` is a dataset of `m` training examples and `n` features.
+The last part is to put everything together and implement the gradient descent algorithm. We did that already before and the implementation is quite similar. The only real difference is the fact that <InlineMath>{`X`}</InlineMath> is a dataset of <InlineMath>{`m`}</InlineMath> training examples and <InlineMath>{`n`}</InlineMath> features.
 
 ```python
 def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, num_iters):
