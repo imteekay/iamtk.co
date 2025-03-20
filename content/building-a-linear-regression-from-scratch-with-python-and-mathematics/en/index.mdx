@@ -503,7 +503,7 @@ X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
 y_train = np.array([460, 232, 178])
 ```
 
-For the training features <InlineMath>{`X`}</InlineMath>, we have <InlineMath>{`m`}</InlineMath> training examples and <InlineMath>{`n`}</InlineMath> features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (InlineMath>{`m`}</InlineMath> rows, InlineMath>{`n`}</InlineMath> columns). Here's the matrix representation:
+For the training features <InlineMath>{`X`}</InlineMath>, we have <InlineMath>{`m`}</InlineMath> training examples and <InlineMath>{`n`}</InlineMath> features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (<InlineMath>{`m`}</InlineMath> rows, <InlineMath>{`n`}</InlineMath> columns). Here's the matrix representation:
 
 <BlockMath>
   {`\\begin{equation}\\begin{pmatrix} x^{(0)}_0 & x^{(0)}_1 & \\cdots & x^{(0)}_{n-1} \\\\ x^{(1)}_0 & x^{(1)}_1 & \\cdots & x^{(1)}_{n-1} \\\\ \\cdots \\\\ x^{(m-1)}_0 & x^{(m-1)}_1 & \\cdots & x^{(m-1)}_{n-1} \\end{pmatrix}\\end{equation}`}
@@ -629,7 +629,7 @@ def compute_cost(X, y, w, b):
     return cost
 ```
 
-We need to compute the `y` so we can calculate the cost value. We use the dot product to compute the prediction with the multiple variables and loop through all the training examples.
+We need to compute the <InlineMath>{`y`}</InlineMath> so we can calculate the cost value. We use the dot product to compute the prediction with the multiple variables and loop through all the training examples.
 
 Let's test it:
 
