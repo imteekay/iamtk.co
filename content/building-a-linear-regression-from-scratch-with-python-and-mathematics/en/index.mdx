@@ -482,7 +482,7 @@ It's important to check gradient descent's convergence
 
 - Make sure gradient descent is working by seeing the cost getting minimized with more iterations (learning curve)
 - When the curve gets flattened, gradient descent converges and stops learning
-- If the cost J increases with more iterations, it usually means the learning rate alpha was chosen poorly, it can be too large, or a bug in the code
+- If the cost <InlineMath>{`J`}</InlineMath> increases with more iterations, it usually means the learning rate <InlineMath>{`\\alpha`}</InlineMath> was chosen poorly, it can be too large, or a bug in the code
 
 ## Multiple Variable Linear Regression
 
@@ -503,13 +503,13 @@ X_train = np.array([[2104, 5, 1, 45], [1416, 3, 2, 40], [852, 2, 1, 35]])
 y_train = np.array([460, 232, 178])
 ```
 
-For the training features <InlineMath>{`X`}</InlineMath>, we have <InlineMath>{`m`}</InlineMath> training examples and <InlineMath>{`n`}</InlineMath> features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (m rows, n columns). Here's the matrix representation:
+For the training features <InlineMath>{`X`}</InlineMath>, we have <InlineMath>{`m`}</InlineMath> training examples and <InlineMath>{`n`}</InlineMath> features. <InlineMath>{`X`}</InlineMath> is a matrix with dimensions (<InlineMath>{`m`}</InlineMath>, <InlineMath>{`n`}</InlineMath>) (InlineMath>{`m`}</InlineMath> rows, InlineMath>{`n`}</InlineMath> columns). Here's the matrix representation:
 
 <BlockMath>
   {`\\begin{equation}\\begin{pmatrix} x^{(0)}_0 & x^{(0)}_1 & \\cdots & x^{(0)}_{n-1} \\\\ x^{(1)}_0 & x^{(1)}_1 & \\cdots & x^{(1)}_{n-1} \\\\ \\cdots \\\\ x^{(m-1)}_0 & x^{(m-1)}_1 & \\cdots & x^{(m-1)}_{n-1} \\end{pmatrix}\\end{equation}`}
 </BlockMath>
 
-In terms of parameters, they will be a bit different. <InlineMath>{`B`}</InlineMath> will still be a scalar value. But the <InlineMath>{`W`}</InlineMath> will be a vector of n values where each weight is there for each feature in the data set. (n features, n is 4 for this dataset).
+In terms of parameters, they will be a bit different. <InlineMath>{`B`}</InlineMath> will still be a scalar value. But the <InlineMath>{`W`}</InlineMath> will be a vector of <InlineMath>{`n`}</InlineMath> values where each weight is there for each feature in the data set. (<InlineMath>{`n`}</InlineMath> features, <InlineMath>{`n`}</InlineMath> is 4 for this dataset).
 
 <BlockMath>
   {`\\begin{equation} W = \\begin{pmatrix} w_0 \\\\ w_1 \\\\ \\cdots \\\\ w_{n-1} \\end{pmatrix}\\end{equation}`}
