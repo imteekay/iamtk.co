@@ -4,8 +4,16 @@
   "date": "2025-01-13",
   "tags": [
     {
-      "href": "/tags/learning",
-      "name": "learning"
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
     }
   ],
   "coverImage": {
