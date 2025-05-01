@@ -1,0 +1,27 @@
+{
+  "title": "Optimizing Next.js Performance: LCP, Render Delay & Hydration",
+  "description": "Web Performance improvement for QuintoAndar webapp: LCP, Element Render Delay & Hydration",
+  "date": "2025-05-01",
+  "tags": [
+    {
+      "href": "/tags/javascript",
+      "name": "javascript"
+    },
+    {
+      "href": "/tags/web-development",
+      "name": "web_development"
+    },
+    {
+      "href": "/tags/web-performance",
+      "name": "webperf"
+    }
+  ],
+  "coverImage": {
+    "src": "/optimizing-nextjs-performance-lcp-render-delay-hydration/cover.jpg",
+    "width": "640",
+    "height": "801",
+    "alt": "time lapse photography of sea wave",
+    "authorHref": "https://unsplash.com/@oscartothekeys",
+    "authorName": "Oscar Keys"
+  }
+}

@@ -195,7 +195,7 @@
     <title>The Evolution of React Rendering Architectures &amp; Web Performance</title>
     <link>https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</link>
     <guid isPermaLink="true">https://www.iamtk.co/the-evolution-of-react-rendering-architectures-and-web-performance</guid>
-    <description>Understanding diffeerent rendering architectures in react.js and how they impact performance on the web: Client-Side Rendering, Server-Side Rendering, and Streaming SSR</description>
+    <description>Understanding different rendering architectures in react.js and how they impact performance on the web: Client-Side Rendering, Server-Side Rendering, and Streaming SSR</description>
   </item>
   <item>
     <title>A High Level Architecture of the TypeScript compiler</title>
