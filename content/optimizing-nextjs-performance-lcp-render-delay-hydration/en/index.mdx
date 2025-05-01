@@ -18,6 +18,7 @@ We have alarms that alert us when something is causing degradation for web vital
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/001.png"
   loading="lazy"
+  class="full"
 />
 
 The problem seemed to be related to the “Element Render Delay” phase of the LCP metric, both for desktop and mobile:
@@ -25,11 +26,13 @@ The problem seemed to be related to the “Element Render Delay” phase of the 
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/002.png"
   loading="lazy"
+  class="full"
 />
 
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/003.png"
   loading="lazy"
+  class="full"
 />
 
 The other phases were stable at the time.
@@ -39,6 +42,7 @@ To complement this first investigation, we also saw this increase of LCP again o
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/004.png"
   loading="lazy"
+  class="full"
 />
 
 It was smaller than the first one, but it made our work even more challenging than it was before.
@@ -52,6 +56,7 @@ Here is the full picture of what is happening before reporting the LCP element:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/005.png"
   loading="lazy"
+  class="full"
 />
 
 Operations and scripts running before the LCP image is rendered and reported:
@@ -71,6 +76,7 @@ The first opportunity came from removing unused CSS files from the old design sy
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/006.png"
   loading="lazy"
+  class="full"
 />
 
 The second opportunity was related to CSS animations. We use Material UI (MUI) and saw some animation frames while debugging LCP issues with devtools.
@@ -80,6 +86,7 @@ Every time we recorded performance traces, we saw these MUI animations for input
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/007.png"
   loading="lazy"
+  class="full"
 />
 
 MUI injects it, and they recommend disabling it to get some performance improvements ([here](https://mui.com/material-ui/react-text-field/?srsltid=AfmBOoohDpFPgiBsWaQHa45fDdy4OG_dHFHF-HtMVVb5b5UlnBC2e42f#performance)) by passing the **disableInjectingGlobalStyles** prop to the input component. It runs because we keep a Drawer mounted for SEO purposes.
@@ -89,6 +96,7 @@ Still related to CSS, we noticed that some CSS files were blocking the page rend
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/008.png"
   loading="lazy"
+  class="full"
 />
 
 We can see the LCP image request has completed long before any content has rendered on the page. The reason why the LCP image doesn't appear immediately after the request finishes is due to two CSS stylesheets that are blocking the page from rendering ([trace](https://trace.cafe/t/2DkBQlK1xR)).
@@ -125,11 +133,13 @@ In our CloudFront dashboard, there was no degradation in cache ratio or origin l
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/009.png"
   loading="lazy"
+  class="full"
 />
 
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/010.png"
   loading="lazy"
+  class="full"
 />
 
 Grafana didn't show any problem with the cache ratio for CSS files, too:
@@ -137,6 +147,7 @@ Grafana didn't show any problem with the cache ratio for CSS files, too:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/011.png"
   loading="lazy"
+  class="full"
 />
 
 In terms of infrastructure and caching, it looked reliable and stable.
@@ -150,6 +161,7 @@ It fixed the cache ratio:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/012.png"
   loading="lazy"
+  class="full"
 />
 
 And it dropped the latency:
@@ -157,6 +169,7 @@ And it dropped the latency:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/013.png"
   loading="lazy"
+  class="full"
 />
 
 The last part of this second analysis was related to the LCP image.
@@ -317,6 +330,7 @@ Huge reduction in hydration problems:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/014.png"
   loading="lazy"
+  class="full"
 />
 
 Hydration for mobile decreased:
@@ -324,6 +338,7 @@ Hydration for mobile decreased:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/015.png"
   loading="lazy"
+  class="full"
 />
 
 Element render delay drastically improved with all the hydration fixes:
@@ -331,6 +346,7 @@ Element render delay drastically improved with all the hydration fixes:
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/016.png"
   loading="lazy"
+  class="full"
 />
 
 The LCP metric went back to the previous state and even improved a bit. We reached LCP below 2s for the search page.
@@ -338,6 +354,7 @@ The LCP metric went back to the previous state and even improved a bit. We reach
 <img
   src="/optimizing-nextjs-performance-lcp-render-delay-hydration/017.png"
   loading="lazy"
+  class="full"
 />
 
 ## Final words
