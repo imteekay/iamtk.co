@@ -17,11 +17,11 @@
     }
   ],
   "coverImage": {
-    "src": "/building-a-linear-regression-from-scratch-with-python-and-mathematics/cover.jpg",
+    "src": "/building-a-logistic-regression-from-scratch-with-python-and-mathematics/cover.jpg",
     "width": "640",
-    "height": "359",
-    "alt": "time lapse and light streaks of vehicle on road",
-    "authorHref": "https://unsplash.com/@mattseymour",
-    "authorName": "Matt Seymour"
+    "height": "818",
+    "alt": "blue and white ceramic tiles",
+    "authorHref": "https://unsplash.com/@martzzl",
+    "authorName": "Marcel Strauß"
   }
 }
