@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2025-05-03',
+    link: '/building-a-logistic-regression-from-scratch-with-python-and-mathematics',
+    title:
+      'Building a Logistic Regression from Scratch with Python & Mathematics',
+  },
+  {
     datetime: '2025-05-01',
     link: '/optimizing-nextjs-performance-lcp-render-delay-hydration',
     title: 'Optimizing Next.js Performance: LCP, Render Delay & Hydration',

@@ -1,7 +1,7 @@
 {
-  "title": "Building a Linear Regression from Scratch with Python & Mathematics",
-  "description": "Learning theory and implementation of a linear regression for single and multiple variables using Python and Mathematics",
-  "date": "2025-05-05",
+  "title": "Building a Logistic Regression from Scratch with Python & Mathematics",
+  "description": "Learning theory and implementation of a logistic regression for single and multiple variables using Python and Mathematics",
+  "date": "2025-05-03",
   "tags": [
     {
       "href": "/tags/python",
