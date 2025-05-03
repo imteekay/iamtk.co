@@ -35,7 +35,11 @@ A binary classification prediction outputs 0 or 1, so we need a function that ma
 
 The logistic function fits the data, and the algorithm outputs the threshold to separate the labels. The function is an S-shaped curve, as we can see below:
 
-[TODO: create a draw for sigmoid function]
+<img
+  src="/building-a-logistic-regression-from-scratch-with-python-and-mathematics/001.png"
+  loading="lazy"
+  class="full"
+/>
 
 The sigmoid function follows this math equation:
 
@@ -66,15 +70,27 @@ The logistic regression model will learn the decision boundary that will divide 
 
 A simple example is when the threshold is 0.5, so when <InlineMath>{`g(z) ≥ 0.5`}</InlineMath>, <InlineMath>{`Y = 1`}</InlineMath>, and <InlineMath>{`g(z) < 0.5`}</InlineMath>, <InlineMath>{`Y = 0`}</InlineMath>.
 
-[TODO: add sigmoid function with 0.5 threshold to illustrate this idea].
+<img
+  src="/building-a-logistic-regression-from-scratch-with-python-and-mathematics/002.png"
+  loading="lazy"
+  class="full"
+/>
 
 For a linear decision boundary, the function is a line that divides the feature space.
 
-[TODO: add drawing of linear decision boundary, splitting the feature space into two possible labels]
+<img
+  src="/building-a-logistic-regression-from-scratch-with-python-and-mathematics/003.png"
+  loading="lazy"
+  class="full"
+/>
 
-For complex problems where you can't split the labels with a line (linear decision boundary), we can come up with a more complex non-linear decision boundary to handle that. Instead of using linear functions, we can use polynomial terms (circumference, ellipse, cluster/shape) so the decision boundary fits the data better.
+For complex problems where you can't split the labels with a line (linear decision boundary), we can come up with a more complex non-linear decision boundary to handle that.
 
-Another important part of logistic regression is the output. For a binary classification, a logistic regression will output the probability of “label 1” and “label 2”. For example, we have a dataset where we expect to predict if a cancer tumor is malignant (1) or benign (0). If the output for <InlineMath>{`Y = 1`}</InlineMath> is 0.7, it means the model is predicting that there's a 70% chance of the tumor being malignant (1) and 30% benign.
+Instead of using linear functions, we can use polynomial terms (circumference, ellipse, cluster/shape) so the decision boundary fits the data better.
+
+Another important part of logistic regression is the output. For a binary classification, a logistic regression will output the probability of “label 1” and “label 2”.
+
+For example, we have a dataset where we expect to predict if a cancer tumor is malignant (1) or benign (0). If the output for <InlineMath>{`Y = 1`}</InlineMath> is 0.7, it means the model is predicting that there's a 70% chance of the tumor being malignant (1) and 30% benign.
 
 Notice that summing up both probabilities, we have 1, or 100%.
 
@@ -96,7 +112,11 @@ The loss function is a measure of the difference between a single example output
 
 For linear regression, we used the squared error cost function, but it doesn't work well for logistic regression. It isn't as smooth as it is for linear regression. The non-linear nature of the model results in a non-convex cost function with many potential local minima.
 
-[TODO: graph with many local minima, 006.png]
+<img
+  src="/building-a-logistic-regression-from-scratch-with-python-and-mathematics/004.png"
+  loading="lazy"
+  class="full"
+/>
 
 For binary classification problems, we use a Log Loss, also called Binary Cross-Entropy. It fits better binary classification problems compared to the squared error function.
 
@@ -105,13 +125,15 @@ The equation for this loss function is defined:
 <InlineMath>{`loss(f_{\\mathbf{w},b}(\\mathbf{x}^{(i)}), y^{(i)})`}</InlineMath> is
 the cost for a single data point, which is:
 
-The idea of this loss function is to use two separate curves. One for the case when Y = 1, and the other when Y = 0.
+The idea of this loss function is to use two separate curves. One for the case when <InlineMath>{`Y = 1`}</InlineMath>, and the other when <InlineMath>{`Y = 0`}</InlineMath>.
 
-The loss increases as the prediction differs from the target. Here is an illustration of the curves for when Y = 1 and Y = 0:
+The loss increases as the prediction differs from the target. Here is an illustration of the curves for when <InlineMath>{`Y = 1`}</InlineMath> and <InlineMath>{`Y = 0`}</InlineMath>:
 
-[TODO: re-draw this image]
-
-![Screenshot 2025-04-27 at 14.20.22.png](attachment:28eb723f-4f6d-49d1-9567-db409d994dd2:Screenshot_2025-04-27_at_14.20.22.png)
+<img
+  src="/building-a-logistic-regression-from-scratch-with-python-and-mathematics/005.png"
+  loading="lazy"
+  class="full"
+/>
 
 The actual full equation for the loss function is defined:
 
