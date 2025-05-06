@@ -64,14 +64,6 @@ Let's play around with <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</Inl
 
 ```python
 def compute_model(x, w, b):
-    """
-    Computes the prediction of a linear model
-    Args:
-      x (ndarray (m,)): Data, m examples
-      w,b (scalar)    : model parameters
-    Returns
-      y (ndarray (m,)): target values
-    """
     m = x.shape[0]
     f_wb = np.zeros(m)
 
@@ -173,19 +165,6 @@ The implementation is quite simple:
 
 ```python
 def compute_cost(x, y, w, b):
-    """
-    Computes the cost function for linear regression.
-
-    Args:
-      x (ndarray (m,)): Data, m examples
-      y (ndarray (m,)): target values
-      w,b (scalar)    : model parameters
-
-    Returns
-        total_cost (float): The cost of using w,b as the parameters for linear regression
-               to fit the data points in x and y
-    """
-
     m = x.shape[0]
     cost_sum = 0
 
@@ -207,19 +186,6 @@ There's a faster approach for this function. The vectorization optimization.
 
 ```python
 def compute_cost(x, y, w, b):
-    """
-    Computes the cost function for linear regression.
-
-    Args:
-      x (ndarray (m,)): Data, m examples
-      y (ndarray (m,)): target values
-      w,b (scalar)    : model parameters
-
-    Returns
-        total_cost (float): The cost of using w,b as the parameters for linear regression
-               to fit the data points in x and y
-    """
-
     m = x.shape[0]
     cost_sum = 0
     f = w * x + b
@@ -284,17 +250,6 @@ This measures how much the cost changes when <InlineMath>{`W`}</InlineMath> and 
 
 ```python
 def compute_gradient(x, y, w, b):
-    """
-    Computes the gradient for linear regression
-    Args:
-      x (ndarray (m,)): Data, m examples
-      y (ndarray (m,)): target values
-      w,b (scalar)    : model parameters
-    Returns
-      dj_dw (scalar): The gradient of the cost w.r.t. the parameters w
-      dj_db (scalar): The gradient of the cost w.r.t. the parameter b
-     """
-
     m = x.shape[0]
     dj_dw = 0
     dj_db = 0
@@ -335,26 +290,6 @@ Here's the implementation
 
 ```python
 def gradient_descent(x, y, w_in, b_in, alpha, num_iters, cost_function, gradient_function):
-    """
-    Performs gradient descent to fit w,b. Updates w,b by taking
-    num_iters gradient steps with learning rate alpha
-
-    Args:
-      x (ndarray (m,))  : Data, m examples
-      y (ndarray (m,))  : target values
-      w_in,b_in (scalar): initial values of model parameters
-      alpha (float):     Learning rate
-      num_iters (int):   number of iterations to run gradient descent
-      cost_function:     function to call to produce cost
-      gradient_function: function to call to produce gradient
-
-    Returns:
-      w (scalar): Updated value of parameter after running gradient descent
-      b (scalar): Updated value of parameter after running gradient descent
-      J_history (List): History of cost values
-      p_history (list): History of parameters [w,b]
-      """
-
     w = copy.deepcopy(w_in)
     J_history = []
     p_history = []
@@ -536,17 +471,6 @@ Let's go to our implementation. First, we'll compute the house price prediction 
 
 ```python
 def predict_single_loop(x, w, b):
-    """
-    single predict using linear regression
-
-    Args:
-      x (ndarray): Shape (n,) example with multiple features
-      w (ndarray): Shape (n,) model parameters
-      b (scalar):  model parameter
-
-    Returns:
-      p (scalar):  prediction
-    """
     n = x.shape[0]
     p = 0
 
@@ -572,16 +496,6 @@ As we did before, there's a much faster way to compute the linear model compared
 
 ```python
 def predict(x, w, b):
-    """
-    single predict using linear regression
-    Args:
-      x (ndarray): Shape (n,) example with multiple features
-      w (ndarray): Shape (n,) model parameters
-      b (scalar):             model parameter
-
-    Returns:
-      p (scalar):  prediction
-    """
     return np.dot(x, w) + b
 ```
 
@@ -606,17 +520,6 @@ Before, we only had one feature. Now, we have multiple features in the dataset. 
 
 ```python
 def compute_cost(X, y, w, b):
-    """
-    compute cost
-    Args:
-      X (ndarray (m,n)): Data, m examples with n features
-      y (ndarray (m,)) : target values
-      w (ndarray (n,)) : model parameters
-      b (scalar)       : model parameter
-
-    Returns:
-      cost (scalar): cost
-    """
     m = X.shape[0]
     cost = 0.0
 
@@ -643,17 +546,6 @@ Cool! We now have the cost function implemented. But before moving on to the nex
 
 ```python
 def compute_cost(X, y, w, b):
-    """
-    compute cost
-    Args:
-      X (ndarray (m,n)): Data, m examples with n features
-      y (ndarray (m,)) : target values
-      w (ndarray (n,)) : model parameters
-      b (scalar)       : model parameter
-
-    Returns:
-      cost (scalar): cost
-    """
     m, _ = X.shape
     f_wb = np.dot(X, w) + b
     cost = np.sum((f_wb - y)**2) / (2 * m)
@@ -675,18 +567,6 @@ We need to compute the gradient for both <InlineMath>{`w`}</InlineMath> and <Inl
 
 ```python
 def compute_gradient(X, y, w, b):
-    """
-    Computes the gradient for linear regression
-    Args:
-      X (ndarray (m,n)): Data, m examples with n features
-      y (ndarray (m,)) : target values
-      w (ndarray (n,)) : model parameters
-      b (scalar)       : model parameter
-
-    Returns:
-      dj_dw (ndarray (n,)): The gradient of the cost w.r.t. the parameters w.
-      dj_db (scalar):       The gradient of the cost w.r.t. the parameter b.
-    """
     m, n = X.shape
     dj_dw = np.zeros((n,))
     dj_db = 0.
@@ -720,18 +600,6 @@ We can vectorize this implementation too.
 
 ```python
 def compute_gradient(X, y, w, b):
-    """
-    Computes the gradient for linear regression
-    Args:
-      X (ndarray (m,n)): Data, m examples with n features
-      y (ndarray (m,)) : target values
-      w (ndarray (n,)) : model parameters
-      b (scalar)       : model parameter
-
-    Returns:
-      dj_dw (ndarray (n,)): The gradient of the cost w.r.t. the parameters w.
-      dj_db (scalar):       The gradient of the cost w.r.t. the parameter b.
-    """
     m, n = X.shape
     error = ((np.dot(X, w) + b) - y)
     dj_db = np.sum(error) / m
@@ -760,25 +628,6 @@ The last part is to put everything together and implement the gradient descent a
 
 ```python
 def gradient_descent(X, y, w_in, b_in, cost_function, gradient_function, alpha, num_iters):
-    """
-    Performs batch gradient descent to learn theta. Updates theta by taking
-    num_iters gradient steps with learning rate alpha
-
-    Args:
-      X (ndarray (m,n))   : Data, m examples with n features
-      y (ndarray (m,))    : target values
-      w_in (ndarray (n,)) : initial model parameters
-      b_in (scalar)       : initial model parameter
-      cost_function       : function to compute cost
-      gradient_function   : function to compute the gradient
-      alpha (float)       : Learning rate
-      num_iters (int)     : number of iterations to run gradient descent
-
-    Returns:
-      w (ndarray (n,)) : Updated values of parameters
-      b (scalar)       : Updated value of parameter
-      """
-
     J_history = []
     w = copy.deepcopy(w_in)
     b = b_in
