@@ -483,7 +483,7 @@ Then, we need to create the `forward` method, where it should receive the input 
 
 ```python
 def forward(self, X):
-		self.input_layer.set_input(X)
+    self.input_layer.set_input(X)
 
     for time_step in range(len(X)):
         weighted_input = self.input_layer.weighted_sum(time_step)
@@ -547,7 +547,7 @@ Notice that we also need to compute the gradient for the output. We'll see later
 
 To compute the gradients for <InlineMath>{`V`}</InlineMath> and `bias` (<InlineMath>{`c`}</InlineMath>), we should start with the prediction gradient:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial o_t} = y_t - \\hat{y}_t`}</BlockMath>
+<BlockMath>{`\\frac{\\partial L_t}{\\partial o_t} = \\hat{y}_t - y_t`}</BlockMath>
 
 For the prediction gradient, we have access to the target `y` and the prediction for a given time step. The implementation is straightforward:
 
@@ -735,7 +735,7 @@ With all that, this is the complete forward propagation:
 ```python
 class RecurrentNeuralNetwork:
     def forward(self, X):
-				self.input_layer.set_input(X)
+        self.input_layer.set_input(X)
         self.input_layer.zero_grad()
         self.hidden_layer.zero_grad()
         self.output_layer.zero_grad()
@@ -848,5 +848,14 @@ With the increase in epochs, the loss gets smaller and smaller as the model lear
   src="/building-a-recurrent-neural-network-from-scratch-with-python-and-mathematics/rnn-epoch-loss.png"
   loading="lazy"
 />
+
+## Resources
+
+- [Machine Learning Research](https://github.com/imteekay/machine-learning-research)
+- [Recurrent Neural Networks cheatsheet](https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks)
+- [NLP From Scratch: Translation with a Sequence to Sequence Network and Attention](https://docs.pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html)
+- [Deep Dive: Recurrent Neural Networks](https://d2l.ai/chapter_recurrent-neural-networks/index.html)
+- [Building a Recurrent Neural Network From Scratch](https://medium.com/@thisislong/building-a-recurrent-neural-network-from-scratch-ba9b27a42856)
+- [ML Learning Path](https://www.iamtk.co/ml-ai-learning-path)
 
 </SmoothRender>
