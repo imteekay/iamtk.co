@@ -95,9 +95,9 @@ The equation for this loss function is the following:
 
 <BlockMath>{`L_t = (\\hat{y}_t - y_t)^2`}</BlockMath>
 
-We first compute the derivative of the loss function with respect to the output: <InlineMath>{`{\\frac{\\partial L_t}{\\partial o_i}}`}</InlineMath>.
+We first compute the derivative of the loss function with respect to the output: <InlineMath>{`{\\frac{\\partial L_t}{\\partial o_t}}`}</InlineMath>.
 
-We want to find how the loss changes with respect to a change in a single element <InlineMath>{`{o_i}`}</InlineMath> of the output <InlineMath>{`{o}`}</InlineMath>. We can use the chain rule:
+We want to find how the loss changes with respect to a change in a single element <InlineMath>{`{o_t}`}</InlineMath> of the output <InlineMath>{`{o}`}</InlineMath>. We can use the chain rule:
 
 <BlockMath>{`\\frac{\\partial L_t}{\\partial o_t} = \\hat{y}_t - y_t`}</BlockMath>
 
