@@ -67,25 +67,42 @@ This is the same idea behind RNNs. The new concept here is the recurrent mechani
 
 The architecture of RNNs has a sequence of layers:
 
-[Image: sequence of layers, one after the other]
+<img
+  src="/building-a-recurrent-neural-network-from-scratch-with-python-and-mathematics/001.png"
+  loading="lazy"
+  class="full"
+/>
 
 For each sequence item, it will run the standard neural network with the ”memory”. Each item in the sequence is called a time step.
 
 The recurrent mechanism handles the “memory” by storing hidden states and passing them through each time step. Each time step receives the hidden state of the previous time step, so it can use the learned parameters from previous steps.
 
-[Image: Complete RNN with parameter names]
+<img
+  src="/building-a-recurrent-neural-network-from-scratch-with-python-and-mathematics/003.png"
+  loading="lazy"
+  class="full"
+/>
 
 In summary, it receives an input, the previous hidden state, computes a linear combination, and applies an activation function to produce a new hidden state that will be passed to the next time step.
 
 These hidden states are parameters that are shared across time. Each time step can output a probability (classification) or a scalar value (regression).
 
-[TODO: describe each parameter in the image]
+Here are all the parameters and variables used in this RNN:
+
+- <InlineMath>{`U`}</InlineMath>: input weight
+- <InlineMath>{`W`}</InlineMath>: activation weight
+- <InlineMath>{`b`}</InlineMath>: bias for the weighted sum
+- <InlineMath>{`a_{t-1}`}</InlineMath>: activation from previous time step
+  (hidden state)
+- <InlineMath>{`s_t`}</InlineMath>: hidden layer weighted sum
+- <InlineMath>{`a_t`}</InlineMath>: activation from the current time step
+- <InlineMath>{`V`}</InlineMath>: output weight
+- <InlineMath>{`c`}</InlineMath>: bias for output weighted sum
+- <InlineMath>{`o_t`}</InlineMath>: prediction output
 
 Similar to how the predictions are calculated layer by layer through time steps in the forward pass, we compute the gradients in reverse order, backwards through time.
 
 In backpropagation through time, we need to calculate the gradients all the way from the loss function to the parameters used in each layer and then pass “shared” gradients to the previous steps.
-
-[Image: RNN backpropagation with gradients]
 
 The idea of backpropagation is to make the model learn, meaning it should update the parameters based on the loss function. To update the parameters, we need the gradients for each parameter. As we will see, to compute the gradients for the parameters, we need to compute everything from the ground up.
 
@@ -291,7 +308,11 @@ After generating this sequence, we select the first `n - 1` numbers as the <Inli
 
 Moving on, let's talk briefly about the architecture of this implementation.
 
-[Image: RNN with the layers]
+<img
+  src="/building-a-recurrent-neural-network-from-scratch-with-python-and-mathematics/002.png"
+  loading="lazy"
+  class="full"
+/>
 
 We'll have 4 parts:
 
@@ -306,7 +327,7 @@ How is it going to work? First, we will do the forward pass, from the input laye
 
 Then, put everything together on the RNN abstraction class. And finally, use it to train the arithmetic data we generated previously and make predictions.
 
-### Forward Propagation
+## Forward Propagation
 
 Everything starts in the input layer. For the forward propagation, we need two things: to initialize the parameters and compute the weighted sum.
 
@@ -507,7 +528,7 @@ def __mse(self, y, y_hat):
     return total_sum_squared_errors / y_hat.size
 ```
 
-### Backward Propagation
+## Backward Propagation
 
 With the forward pass done, we can focus on the backpropagation. But now we start from the output layer and go all the way back to the input layer.
 
@@ -527,7 +548,7 @@ Notice that we also need to compute the gradient for the output. We'll see later
 
 To compute the gradients for <InlineMath>{`V`}</InlineMath> and `bias` (<InlineMath>{`c`}</InlineMath>), we should start with the prediction gradient:
 
-### Backward Propagation
+## Backward Propagation
 
 With the forward pass done, we can focus on the backpropagation. But now we start from the output layer and go all the way back to the input layer.
 
@@ -823,7 +844,7 @@ It should receive the number of epochs, and then, it will iterate through it.
 - Make the model learn through backpropagation
 - Compute the loss, add it to the total loss, and compute the average loss for the epoch
 
-### Training
+## Training
 
 Let's train a model with a dataset.
 
@@ -849,7 +870,11 @@ With the increase in epochs, the loss gets smaller and smaller as the model lear
   loading="lazy"
 />
 
-## Resources
+## Final Words & Resources
+
+This was one of the most interesting concepts I have learned about ML and Deep Learning so far. So much complexity and things going on in a RNN model internally.
+
+For more content on ML and my learning journey, take a look at the following resources:
 
 - [Machine Learning Research](https://github.com/imteekay/machine-learning-research)
 - [Recurrent Neural Networks cheatsheet](https://stanford.edu/~shervine/teaching/cs-230/cheatsheet-recurrent-neural-networks)
