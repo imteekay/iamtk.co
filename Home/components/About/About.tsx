@@ -7,7 +7,7 @@ import {
   faGoodreads,
   faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
-import { faStickyNote, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Divider } from 'Base/components/Divider';
@@ -63,16 +63,6 @@ const Socials = () => (
       title="linkedin"
     >
       <FontAwesomeIcon icon={faLinkedin} size="lg" />
-    </Link>
-
-    <Link
-      className="icon"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="./cv.pdf"
-      title="cv"
-    >
-      <FontAwesomeIcon icon={faStickyNote} size="lg" />
     </Link>
 
     <Link
