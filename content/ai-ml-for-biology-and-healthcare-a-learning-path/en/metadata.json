@@ -1,0 +1,27 @@
+{
+  "title": "AI/ML for Biology & Healthcare: A Learning Path",
+  "description": "Sharing my ML/AI & Biomedicine learning path",
+  "date": "2025-10-11",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/building-a-linear-regression-from-scratch-with-python-and-mathematics/cover.jpg",
+    "width": "640",
+    "height": "359",
+    "alt": "time lapse and light streaks of vehicle on road",
+    "authorHref": "https://unsplash.com/@mattseymour",
+    "authorName": "Matt Seymour"
+  }
+}

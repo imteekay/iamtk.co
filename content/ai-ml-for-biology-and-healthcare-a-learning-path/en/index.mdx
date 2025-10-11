@@ -1,0 +1,311 @@
+Because my goal with this newsletter is to build the foundation for the current and future generations of researchers and engineers who are or will work on these problems, in this first post, I wanted to share the learning path I've been using to upskill myself and be ready to work on biology and healthcare problems with Machine Learning.
+
+This will be an extensive guideline and knowledge graph, so we can always come back here and work and fill the gaps that are missing in our knowledge. It is also a living document, so the more I learn, the richer this post will be over time.
+
+How is it going to work? I plan to share the foundational knowledge, advanced topics, the heuristics and intuition we should understand, and every topic should have at least one attached resource, so you can go through the learning process and master it.
+
+These are the main topics I will cover:
+
+- Programming & Engineering
+- AI & Machine Learning
+- Mathematics for ML
+- Healthcare
+- Biology & Biolomedicine
+
+---
+
+## Programming & Engineering
+
+It's pretty obvious, but in this section, we should start with programming, be able to code and solve ML problems. It's been more than 12 years since I started learning to code, so I'm not sure what the current courses and books you should pick up to learn it are, but you need to master at least the basic stuff to be able to solve ML problems and move forward.
+
+The more you make progress in your learning journey, the more you learn about advanced stuff in programming. But the basics, the foundation, are what really matter at the starting point.
+
+I recommend picking one course or book, doing a bunch of practice and exercises, and pairing it with coding challenges like [leetcode](http://leetcode.com/) or [codeforces](https://codeforces.com/), so you get as much practice as possible.
+
+But the goal here is to master the basic stuff: variables, datatypes, simple data structures, conditional (if-else), repetition (while, for loops), logic, algorithms, and object-oriented programming (OOP).
+
+In my opinion, these are enough to solve some problems, and then you can keep learning more advanced stuff, like generators, along the way.
+
+To be able to work on more complex ML systems, we need to master other engineering topics:
+
+**Algorithms & Data Structures**: understand the most common algorithms and data structures and learn Big O notation to understand space and runtime complexity. There are many books and courses about this topic. I will recommend one course called [**The Last Algorithms Course You'll Need**](https://frontendmasters.com/courses/algorithms/) because it's well-explained, very practical, and a good starting point.
+
+But again, the idea here is to learn theory and get into practice as much as possible: build the algorithms and data structures from scratch and work on problems.
+
+**Software engineering practices**: This stop is also very helpful, especially if you come from a different field other than computer science or don't work in software engineering today. Every serious project comes with code versioning using git, so it's important to understand basic stuff like branches, the main branch, pull requests, and the whole git cycle (git add, git commit, git push).
+
+The more the project gets complex, the more engineering practices come into play. CI/CD and design patterns are not thought of when working on pet or personal projects, but when the project starts growing, those topics become more and more important.
+
+**ML Frameworks**: PyTorch and TensorFlow are converging in ideas, so I would just pick one and start learning the ideas behind it and how to use it to build deep learning models. That said, what I did was to pick PyTorch and build a conceptual understanding behind it.
+
+The best resource I used so far was the [learnpytorch.io](http://learnpytorch.io/) course book. It's a very hands-on course, so in every chapter, you build a notebook, learn everything about PyTorch, from the building blocks (tensors) to implementing a real paper, passing through a deep neural network and CNN.
+
+As of today, I've been working on the problems from the Deep Learning for Biology book, and the notebooks are written in Jax and TensorFlow. Having a strong conceptual understanding of these frameworks is what makes you navigate through all of them without much trouble.
+
+**ML Engineering & MLOps**: I will finish this section with one of the most important building blocks of today's ML systems — ML engineering and MLOps. It's a whole separate career you can follow, but having a good foundation in those topics will make you a stronger ML researcher and engineer.
+
+Designing ML systems is all about thinking from the first steps, like requirements and framing the problem into a data problem, to working with and processing the data, building and training the model, and deploying and monitoring the system.
+
+It's a whole separate topic in itself. The best resources I recommend are the [ML in Production](https://www.coursera.org/learn/introduction-to-machine-learning-in-production) course by Coursera, paired with the [Designing Machine Learning Systems](https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/) book. Those resources will help you build a foundational understanding of how ML systems work and are built.
+
+Other topics that can be covered on the engineering side, that could be helpful, but to be honest, I haven't gotten too much into them yet, are distributed computing and database systems. I have a basic understanding because I come from a computer science background, and this is helpful, especially in this field of ML optimization.
+
+## AI/ML: Data Engineering
+
+Coming from a software engineering background, this was the most important part I needed to master, as I didn't have a background in data or experience working on data problems.
+
+This section helps build the foundation for us to be capable of tackling data challenges from the ground up: handling and processing data (data engineering), reframing biology and healthcare challenges as data problems (understanding and translating domain expertise into data), training models (testing different models and architectures), and evaluating models (understanding metrics and the ones the fit better for each problem).
+
+If I could categorize the topics I should master, I would put them into three categories: Data Engineering, Foundational/Traditional ML, and Deep Learning.
+
+In Data Engineering, there's a whole world (and career) of topics to be learned. The foundational idea here is to fully understand how to _optimize data for model training_.
+
+It means that we need to understand how to learn and explore (EDA) the data we are working with (we'll talk more about domain expertise in an upcoming section), to do data processing (Handling Missing Data, Data Cleaning, Scaling/Normalization, Data Leakage, Encoding Categorical Variables, Handling Outliers, Splitting Data & Cross Validation, Handling imbalanced datasets), and to do feature engineering.
+
+To learn these topics in a more productive way, I would start with the tools that are used. More specifically, Pandas and NumPy.
+
+For Pandas, there is the [Kaggle course](https://www.kaggle.com/learn/pandas), but personally, I didn't find it sufficient. I would pair with [other resources](https://pandas.pydata.org/docs/getting_started/intro_tutorials/) that would push us to practice as much as possible.
+
+I recommend the same idea for NumPy: get a resource, like the [official guide](https://numpy.org/doc/stable/user/absolute_beginners.html), that teaches basic concepts, and then get a lot of practice, for example, using resources like the [From Python to NumPy](https://www.notion.so/Food-a52421c06bac44a99d3f76f0330ad899?pvs=21) book and the [100-numpy-exercises](https://www.kaggle.com/code/utsav15/100-numpy-exercises) interactive course.
+
+For Exploratory Data Analysis (EDA), there are a [bunch](https://www.codecademy.com/learn/eda-exploratory-data-analysis-python) [of](https://www.coursera.org/learn/exploratory-data-analysis) [courses](https://www.datacamp.com/courses/exploratory-data-analysis-in-python) out there. With a good programming foundation and basic understanding of statistics, this topic can be learned very quickly, but I suggest getting practice through personal projects, like datasets from Kaggle. This would expand your experience to different datasets and consolidate the knowledge.
+
+[Kaggle also has an interesting course](https://www.kaggle.com/learn/feature-engineering) on feature engineering. This helps learning the basic concepts to apply in a data science project.
+
+For the data processing topic, I would take books like [Hands-On ML with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/), and Designing Machine Learning Systems and read the chapters on data processing and data cleaning, so you can get a sense of the conceptual ideas and hands-on practice. Pairing that with projects (e.g., with Kaggle datasets) is another way to consolidate the theory learned.
+
+Today, data engineering is much more than that, but as I am focusing on applying ML for biology and healthcare, learning how to optimize the data for ML models is the most essential part to be learned.
+
+## AI/ML: Foundational, Traditional ML
+
+The two major parts of traditional machine learning are Supervised and Unsupervised Learning.
+
+Supervised learning involves learning patterns in data to make label or target predictions. In other words, it needs a label or target in the dataset.
+
+There are many different models we should learn about and gain experience with: Linear regression, Logistic Regression, SVM, Decision Trees, Random Forests, and then advanced algorithms like ensemble methods (bagging, boosting).
+
+Through the courses and books, you'll see two big categories: regression and classification problems. In regression problems, the models predict a continuous numerical value, and in classification problems, the models predict or classify the label based on patterns in the data.
+
+For supervised learning, I recommend taking theory classes from the [Supervised Learning course](https://www.coursera.org/learn/machine-learning) on Coursera and gaining hands-on experience through the [Hands-On ML with Scikit-Learn, Keras & TensorFlow](https://www.oreilly.com/library/view/hands-on-machine-learning/9781492032632/) book.
+
+So the learning concept still holds: learn the theory, open a notebook, work through the exercises, and try to implement each algorithm, applying it to different data problems to get a lot of practice.
+
+The other category is Unsupervised Learning. It is about learning patterns with unlabeled data, meaning without any predefined target variable.
+
+As part of the ML Specialization by Coursera, I also recommend their [Unsupervised Learning](https://www.coursera.org/learn/unsupervised-learning-recommenders-reinforcement-learning) course, where you'll learn more about clustering (K-means, DBScan) and dimensionality reduction (PCA, t-SNE).
+
+## AI/ML: Deep Learning & Advanced ML
+
+Deep learning is a growing field, and it keeps evolving with new algorithms, new models, and new architectures, but its foundation remains the same: a neural network.
+
+I recommend pairing the [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) with the [Understanding Deep Learning book](https://udlbook.github.io/udlbook/) so that you can get the most out of it. The specialization will help build intuition behind the concepts, and the book is a great resource to learn theory and have better visualization.
+
+In these resources, you'll learn a basic neural network with one layer, understand the learning process behind using gradient descent, understand the math behind it, and gain practical experience by implementing it from scratch.
+
+This first step will serve as the building block to move forward and make progress on the other topics.
+
+Convolutional Neural Networks (CNN) and Recurrent Neural Networks (RNN) are architectures on top of this basic neural network. Through the courses and the book, you'll learn those architectures and get an intuition of why they work so well: CNN, especially for understanding features and working on image data, and RNN for sequence problems.
+
+On top of RNN, you'll learn more about Long Short-Term Memory (LSTM), where the model retains long-term dependencies through sequences.
+
+After that, you'll learn how to scale sequence models with transformers: learn about embeddings, attention, multi-head attention, and get a sense of how this architecture scales so well and is currently the foundation of the biggest models in the market.
+
+The book and the course will give you a sense of how everything works, but there are a whole lot of [other interesting resources](https://github.com/imteekay/machine-learning-research#deep-learning) out there that can help you better understand and apply those topics.
+
+Moving forward, there are still other important topics coming out that will be great tools to work on the most challenging problems in biology and healthcare.
+
+Topics like [Large Language Models](https://www.youtube.com/playlist?list=PLoROMvodv4rOY23Y0BoGoBGgQ1zmU_MT_) for learning from sequence data, [Graph Neural Networks](https://distill.pub/2021/gnn-intro/) for learning from network data (e.g., 3D structures and relationships), Variational Autoencoders (VAEs), Generative Adversarial Networks (GANs), and [Diffusion models](https://learn.deeplearning.ai/courses/diffusion-models) for learning from structure data.
+
+Other advanced topics we should cover are Reinforcement Learning and Causal Inference. For Reinforcement Learning, there is an [interesting course taught by DeepMind](https://www.youtube.com/playlist?list=PLqYmG7hTraZBKeNJ-JE_eyJHZ7XgBoAyb) and [other helpful resources](https://github.com/imteekay/machine-learning-research#deep-reinforcement-learning) that will help learn the basics of RL. For Causal Inference, there are [many books](https://yanirseroussi.com/causal-inference-resources) out there, from theory to practice. This topic can be very helpful, especially in domains like biology and healthcare, where we should understand the why, the reason, and how things work the way they work.
+
+With a good foundation, we can start reading papers that show work on the intersection of Deep Learning and Biology and Healthcare.
+
+**Biology**:
+
+- LLMs for Biology: [Large Language Models](http://rivaslab.org/teaching/MCB128_AIMB/downloads/BeplerBerger21.pdf), LLMs for [DNA/RNA](http://rivaslab.org/teaching/MCB128_AIMB/downloads/Ji21.pdf), LLMs for Proteins ([paper #1](http://rivaslab.org/teaching/MCB128_AIMB/downloads/Nijkamp23.pdf), [paper #2](http://rivaslab.org/teaching/MCB128_AIMB/downloads/Lin23.pdf)), LLMs for [Genomes](http://rivaslab.org/teaching/MCB128_AIMB/downloads/Nguyen24.pdf)
+- Sequence to Structure: [Alphafold2](https://www.nature.com/articles/s41586-021-03819-2) ([code](https://github.com/google-deepmind/alphafold)), [Alphafold3](https://www.nature.com/articles/s41586-024-07487-w) ([code](https://github.com/google-deepmind/alphafold3)), [Boltz-1](https://www.biorxiv.org/lookup/doi/10.1101/2024.11.19.624167), [Boltz-2](https://www.biorxiv.org/content/10.1101/2025.06.14.659707v1) ([code](https://github.com/jwohlwend/boltz?tab=readme-ov-file)), [Chai-1](https://www.biorxiv.org/content/10.1101/2024.10.10.615955v2) ([code](https://github.com/chaidiscovery/chai-lab)), [Chai-2](https://www.biorxiv.org/content/10.1101/2025.07.05.663018v1.full.pdf), [Protenix](https://arxiv.org/abs/2507.11839) ([code](https://github.com/bytedance/Protenix)), [ESM](https://www.pnas.org/doi/full/10.1073/pnas.2016239118) ([code](https://github.com/facebookresearch/esm))
+- Inverse Folding (Structure to Sequence): [ProteinMPNN](https://www.biorxiv.org/content/10.1101/2022.06.03.494563v1) ([code](https://github.com/dauparas/ProteinMPNN))
+- De Novo Generation (diffusion, generative models): [EvoDiff](https://www.biorxiv.org/content/10.1101/2023.09.11.556673v1) ([code](https://github.com/microsoft/evodiff)), [Chroma](https://www.nature.com/articles/s41586-023-06728-8) ([code](https://github.com/generatebio/chroma)), [RFDiffusion](https://www.nature.com/articles/s41586-023-06415-8) ([code](https://github.com/RosettaCommons/RFdiffusion)), [RFDiffusion All-Atom](https://www.science.org/doi/10.1126/science.adl2528) ([code](https://github.com/baker-laboratory/rf_diffusion_all_atom)), [RFAntibody](https://www.biorxiv.org/content/10.1101/2024.03.14.585103v1) ([code](https://github.com/RosettaCommons/RFantibody))
+
+**Healthcare**:
+
+- [Opportunities and obstacles for deep learning in biology and medicine](https://royalsocietypublishing.org/doi/10.1098/rsif.2017.0387)
+- [Deep Learning in Medical Image Analysis](https://pmc.ncbi.nlm.nih.gov/articles/PMC7442218/pdf/nihms-1617552.pdf)
+- [Medical multimodal foundation models in clinical diagnosis and treatment: Applications, challenges, and future directions](https://www.sciencedirect.com/science/article/abs/pii/S0933365725002003)
+
+There are many other interesting papers to be mentioned. I compiled some of them in this [research repo](https://github.com/imteekay/machine-learning-research), so you can have access whenever you want.
+
+## Mathematics for ML
+
+If you take a look at how you go from [basic math to cutting-edge ML](https://www.justinmath.com/how-to-get-from-high-school-math-to-cutting-edge-ml-ai), there's a long, long run. So many theories and concepts to learn, so much practice to be done, but this can be organized into a knowledge graph to help us learn and understand the fundamental math for ML.
+
+In general, the foundational concepts we need to learn to develop better intuition for building ML systems are: Linear Algebra, Calculus, and Statistics & Probability.
+
+In Linear Algebra, we should learn about vectors, matrices, matrix operations like addition, subtraction, multiplication, inverse, and transpose, matrix rank, and linear independence.
+
+The building block for Calculus is to understand derivatives, the intuition behind them, and their application using the chain rule.
+
+For statistics, we need to have a strong foundation in concepts like core measures (mean, median, variance, covariance, correlation, standard deviation), use populations and samples, random variables, and probability distributions to understand data characteristics, understand distributions and Inference through the central limit theorem and the normal distribution, statistical significance, z scores and hypothesis testing, conditional probability and Bayes theorem.
+
+Having a strong foundation in these mathematical topics will help develop intuition for important ML concepts like loss functions, gradient descent, regularization, labels, weights, parameters, and hyperparameters, validation and cross-validation, and overfitting and underfitting.
+
+These help us in model selection, model quality, fine-tuning and optimization, and better model evaluation.
+
+This is how I'm doing it:
+
+- Get the basics through Khan Academy: [linear algebra](https://www.khanacademy.org/math/linear-algebra), [calculus](https://www.khanacademy.org/math/multivariable-calculus), [statistics and probability](https://www.khanacademy.org/math/statistics-probability)
+- Get more practice through [MathAcademy](https://www.mathacademy.com/courses/mathematics-for-machine-learning) with their [Math for ML course](https://www.mathacademy.com/courses/mathematics-for-machine-learning)
+
+MathAcademy is an interesting resource because it has the whole knowledge graph built from scratch, the lessons come with theory, a concrete example, and many exercises to practice, and there are recurrent lessons to have retrieval practice.
+
+Another thing that I find really useful is to transform these mathematical concepts into practice through code, so you can see what's happening when you are handling data and training models.
+
+One example is to go through the [Practical linear algebra course](https://pabloinsente.github.io/intro-linear-algebra) using Python, so you can get hands-on experience with handling data with Python and get an intuition of how linear algebra is used.
+
+Another interesting idea I did was to [build a neural network from scratch](https://www.iamtk.co/building-a-neural-network-from-scratch-with-mathematics-and-python), and calculate all derivatives by hand in the backpropagation step.
+
+I've been reading and re-reading the book Understanding Deep Learning, which is a nice book to learn Deep Learning theory, but also great to revisit math concepts and understand how they are applied to neural networks.
+
+For more resources, take a look at the [research repo](https://github.com/imteekay/machine-learning-research#mathematics).
+
+---
+
+Because I have a computer science background (and not biology and medicine), I'm still at the beginning of my learning journey when it comes to biology and healthcare. This is highly based on my experience, and I recommend taking some advice and testing yourself, rather than taking it as a fact.
+
+For the Healthcare and Biology topics, my strategy is simple. I should learn the 20% that will help me understand and solve problems, and they are:
+
+- Understanding types of data
+- Understanding evaluation metrics
+- Understanding how to frame biology and healthcare problems into data problems
+- Understanding biological and medical concepts
+
+## Healthcare
+
+The data in healthcare comes in various formats, and understanding it helps determine which algorithms to choose and consequently improve model training and evaluation.
+
+This is not an exhaustive list, but we can get a sense of the types of data we will probably work on.
+
+- **X-ray** (2D): Used for a quick, low-cost examination of dense structures like bones to check for fractures or lung conditions.
+- **Computed Tomography (CT) Scan** (3D): Creates detailed cross-sectional images of the body to visualize bones, soft tissues, and blood vessels for diagnosing a wide range of conditions.
+- **Magnetic Resonance Imaging (MRI)** (3D): Uses a magnetic field and radio waves to generate high-resolution images of organs and soft tissues, particularly for the brain, spine, and joints.
+- **Ultrasound/Sonography** (2D, 3D, 4D): Uses sound waves to produce real-time images of internal organs, blood vessels, and a developing fetus without using radiation.
+- **Positron Emission Tomography (PET) Scan** (3D, 4D): Uses a radioactive tracer to show metabolic activity, primarily to detect cancer, heart disease, and neurological disorders.
+- **Functional MRI (fMRI)** (4D): Measures brain activity by detecting changes associated with blood flow, used in neuroscience research and for presurgical planning.
+- **Endoscopy** (2D, Video): A camera on a flexible tube is used to visualize the inside of organs like the stomach or colon for diagnostic purposes.
+- **Nuclear Medicine Imaging** (SPECT, etc.) (3D): A camera detects radiation from a tracer to show organ function and blood flow, often used for cardiac imaging and bone scans.
+
+For image data, we look at pixels and extract features. For video data, there are also pixels, but a third dimension for the volume (a ‘stack’ of temporal images).
+
+Some datasets come with the features figured out, so it's a tabular dataset with the image, the features, and possible diagnoses.
+
+Another source of data is Electronic Health Records (EHRs), which are a common document doctors fill in with patient medical history, clinical notes, medications, lab results, vital signs, and other patient information.
+
+EHR can come in different formats, but one example is a list of JSON documents, from which you can extract all patient information. Each JSON node represents a portion of patient info.
+
+Take [this dataset](https://www.kaggle.com/code/gpreda/electronic-health-records-ehrs-data-exploration/notebook) as an example. It comes with a list of JSON documents, and you extract patients’ demographics, their care plan, conditions, diagnostics reports, immunizations, clinical notes, etc, into separate dataframes, and then use them to train models.
+
+Another important topic in ML systems is to understand model evaluation metrics, especially the ones that are commonly used and impactful for healthcare problems.
+
+For example, accuracy is a useful metric for ML projects, but we need other metrics to fully evaluate the models: precision, recall, sensitivity, specificity, F1-score, ROC Curve & AUC, and Precision–Recall Curve & AUC, to name a few.
+
+Another important topic we should talk about is the idea of understanding how to frame healthcare problems as data problems in ML.
+
+One example is how to think about medical evaluations like diagnoses, prognoses, and treatments, and how to frame them as data problems.
+
+Let's take them and see some examples.
+
+**Diagnosis as a Data Problem**: Diagnosis can be framed as a **classification** or **object detection** problem. This is a supervised learning task where the model learns from a labeled dataset.
+
+- **Inputs:** This includes diverse types of patient data, such as:
+  - **Medical imaging:** X-rays, CT scans, MRIs, and mammograms.
+  - **Electronic Health Records (EHRs):** Patient history, lab results, and vital signs.
+  - **Physiological signals:** ECGs, EEGs, and other sensor data.
+- **Outputs:** The model's output is a prediction of a specific category.
+  - **Binary classification:** Is the patient's X-ray positive or negative for a condition (e.g., a tumor, edema, etc)?
+  - **Multi-class classification:** Classifying a patient's condition into one of several distinct diseases (e.g., different types of cancer or neurological disorders). Another interesting example is predicting the probability of a 1-6 year risk of developing cancer based on low-dose chest computed tomography, as the [Sybil model](https://github.com/imteekay/machine-learning-research/blob/master/papers/sybil-a-validated-deep-learning-model-to-predict-future-lung-cancer-risk-from-a-single-low-dose/index.md) did.
+  - **Object detection:** Identifying and localizing specific anomalies, such as a lesion on an image.
+
+**Prognosis as a Data Problem**: Prognosis involves predicting the future course of a disease, and it is often framed as a **regression** or risk/**survival analysis** problem. It focuses on predicting numerical values or the time until a specific event.
+
+- **Inputs:** The inputs are similar to those used for diagnosis, including patient demographics, disease-specific lab results, and treatment history. The key is to include features that can predict the progression of the disease over time.
+- **Outputs:** The outputs are predictions about future patient outcomes.
+  - **Regression:** Predicting a continuous value, such as a patient's expected survival time (months, years) or the level of a specific biomarker in the future.
+  - **Survival analysis:** Predicting the probability of an event (e.g., disease relapse, death, or hospital readmission) occurring at a specific time.
+
+Treatment as a Data Problem: AI/ML for treatment involves personalizing care plans and predicting treatment effectiveness: risk reduction, average treatment effect, and individualized treatment effect. This can be framed as a **recommendation system** or a more complex **decision-making** problem.
+
+- **Inputs:** This requires a comprehensive dataset that links patient characteristics to treatment outcomes. Inputs can include:
+  - **Patient data:** Genetic information, comorbidities, and lifestyle factors.
+  - **Treatment variables:** Type of medication, dosage, and duration of therapy.
+  - **Historical outcomes:** Data on how similar patients responded to different treatments.
+- **Outputs:** The model's output provides actionable insights for clinicians. For example:
+  - **Recommendation systems:** Recommending the most effective treatment plan or dosage for a specific patient.
+  - **Reinforcement learning:** An agent learns the optimal sequence of actions (e.g., treatment adjustments) over time to maximize a desired outcome (e.g., patient health).
+
+There are also other important problems in healthcare that can be framed as data problems, like operational challenges in healthcare: patient no-show prediction, patient scheduling optimization, demand forecasting, triage and prioritization, and many other problems.
+
+To end this section, I wanted to add the importance of ML models and feature interpretation. There are interesting tools that can be used as ‘explainable’ AI tools, like [SHAP and LIME](https://www.markovml.com/blog/lime-vs-shap), as this is important for healthcare problems and agents (doctors, patients, nurses).
+
+## Biology & Biomedicine
+
+In biology, there is a whole new world of knowledge to learn. People dedicate their lives to studying one major topic in this knowledge graph, so this won't be an exhaustive list of topics, but initial ideas and concepts we should learn over time, so we can get a sense of the current problems and challenges in the field, and also reframe them as data problems.
+
+We start with data types.
+
+The study of omics (Metabolomics, proteomics, genomics, transcriptomics, epigenomics: multiomics) comes in different data types and formats. It's common to see them represented in formats like FASTA, FASTQ, VCF, MOL, and many others.
+
+In terms of theory, we should understand molecular biology, which is a huge field. There's genetics (genes, DNA, RNA), which we should understand the relationship among DNA, RNA, and proteins. We have proteins, which we should understand the sequence → structure → function paradigm, understand the progression in protein structure, i.e., primary, secondary, tertiary, quaternary, understand protein functions (activity, expression, stability, affinity, etc), and the main categories like antibodies, peptides, enzymes, transcription factors, and membrane proteins.
+
+There are other important venues like docking, de novo design, drug discovery and its development pipeline (lead identification → lead optimization → clinical trials), Multiple Sequence Alignment (MSA), and molecular dynamics.
+
+For data types and building the foundation, I recommend the [Genomic Data Science Specialization](https://www.coursera.org/specializations/genomic-data-science) from Johns Hopkins University on Coursera. You'll learn basic theory on genomics, and then move to computational biology.
+
+Other strong recommendations are the following books:
+
+- [A Computer Scientist's Guide to Cell Biology](https://link.springer.com/book/10.1007/978-3-031-55907-5)
+- [Molecular Biology for Computer Scientists](https://tandy.cs.illinois.edu/Hunter_MolecularBiology.pdf)
+- [A Biology Primer for Computer Scientists](https://web.stanford.edu/class/cs173/papers/bioprimer.pdf)
+- [Molecular Biology of the Cell](https://www.ncbi.nlm.nih.gov/books/NBK21054/)
+- [Molecular Cell Biology](https://www.goodreads.com/book/show/345300.Molecular_Cell_Biology)
+- [The Cell: A Molecular Approach](https://www.goodreads.com/book/show/17219492-the-cell)
+
+---
+
+This article will be a living document, which I will update from time to time as I make progress in my studies and work on interesting projects. For now, it's enough to get started.
+
+## Resources
+
+**AI/ML**
+
+- [Machine Learning Research](https://github.com/imteekay/machine-learning-research)
+- [ML: just know stuff](https://kidger.site/thoughts/just-know-stuff/)
+- [How I'd learn ML in 2025](https://www.youtube.com/watch?v=_xIwjmCH6D4)
+
+**Math for ML**
+
+- [How Math makes Machine Learning easy](https://www.youtube.com/watch?v=wOTFGRSUQ6Q)
+- [MathAcademy](https://www.mathacademy.com/)
+- [Math on Khan Academy](https://www.khanacademy.org/math)
+
+**Biology ML**
+
+- [Deep Learning for Biology](https://github.com/hussius/deeplearning-biology)
+- [Awesome Deep Biology](https://github.com/gokceneraslan/awesome-deepbio)
+- [Biology for AI](https://github.com/AstraZeneca/biology-for-ai)
+- [A Comprehensive Introduction to AI for Proteins](https://www.tamarind.bio/blog/a-comprehensive-introduction-to-ai-for-proteins)
+- [Georgia Tech: Machine Learning in Computational Biology](https://bioinformatics.gatech.edu/sites/default/files/CX.4803.MLB_Syllabus.S24.pdf)
+- [ProteinML](https://kidger.site/thoughts/just-know-stuff-protein-ml/)
+- [Machine Learning for Computational Biology](https://www.youtube.com/playlist?list=PLypiXJdtIca4gtioEPLIExlAKvu64z7rc)
+- [Harvard: AI in Molecular Biology](http://rivaslab.org/teaching/MCB128_AIMB/)
+- [Harvard: Mathematics in Biology](http://mcb111.org/)
+
+**Biology**
+
+- [A Computer Scientist's Guide to Cell Biology](https://link.springer.com/book/10.1007/978-3-031-55907-5)
+- [Molecular Biology for Computer Scientists](https://tandy.cs.illinois.edu/Hunter_MolecularBiology.pdf)
+- [A Biology Primer for Computer Scientists](https://web.stanford.edu/class/cs173/papers/bioprimer.pdf)
+
+**Healthcare ML**
+
+- [Deep Learning Healthcare](https://www.coursera.org/specializations/deep-learning-healthcare)
+- [AI for Medicine](https://www.coursera.org/specializations/ai-for-medicine)
