@@ -1,0 +1,27 @@
+{
+  "title": "Deep Learning for Biology: Predicting Protein Functions from Sequences",
+  "description": "Learning biology, proteins, deep learning for biology, and predicting protein functions from sequences",
+  "date": "2025-10-24",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/deep-learning-for-biology-predicting-protein-functions-from-sequences/cover.jpg",
+    "width": "640",
+    "height": "959",
+    "alt": "blue and white flower petals",
+    "authorHref": "https://unsplash.com/@adriansiaril",
+    "authorName": "Adrian Siaril"
+  }
+}
