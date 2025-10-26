@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2025-10-24',
+    link: '/deep-learning-for-biology-predicting-protein-functions-from-sequences',
+    title:
+      'Deep Learning for Biology: Predicting Protein Functions from Sequences',
+  },
+  {
     datetime: '2025-07-05',
     link: '/building-a-recurrent-neural-network-from-scratch-with-python-and-mathematics',
     title:
