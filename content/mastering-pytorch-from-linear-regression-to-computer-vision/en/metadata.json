@@ -1,0 +1,27 @@
+{
+  "title": "Mastering PyTorch: From Linear Regression to Computer Vision",
+  "description": "Learning PyTorch: tensors, operations, linear regression, datasets, dataloaders, and computer vision",
+  "date": "2025-11-26",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/building-a-deep-neural-network-from-scratch/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "A black and white photo of a large body of water",
+    "authorHref": "https://unsplash.com/@zachlez",
+    "authorName": "Zach Lezniewicz"
+  }
+}
