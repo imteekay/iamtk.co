@@ -96,7 +96,7 @@ export const About: FC = () => (
       <Topics className="no-margin">
         mathematics . machine learning . science
         <br />
-        software engineering . web performance
+        software & performance engineering
       </Topics>
     </div>
     <Socials />
