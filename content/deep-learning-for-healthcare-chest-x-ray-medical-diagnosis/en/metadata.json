@@ -1,0 +1,27 @@
+{
+  "title": "Deep Learning for Healthcare: Chest X-Ray Medical Diagnosis",
+  "description": "Working on Computer Vision Multiple Classification Problems for Medical Diagnosis",
+  "date": "2025-12-10",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/deep-learning-for-healthcare-chest-x-ray-medical-diagnosis/cover.jpg",
+    "width": "640",
+    "height": "426",
+    "alt": "light smoke in the dark background",
+    "authorHref": "https://unsplash.com/@pawel_czerwinski",
+    "authorName": "Pawel Czerwinski"
+  }
+}
