@@ -1101,6 +1101,14 @@ train(15, train_dataloader, validation_dataloader, model, loss_function, optimiz
 
 With that, we finish the whole training for the CNN model: transforms, dataset, dataloader, training, and evaluation.
 
+One small note: if you have access to GPU, you can try using cuda device to run your training pipeline. It requires you to run something like this to get the device:
+
+```python
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+```
+
+With that, you can transform your tensors and run the training process on the GPU.
+
 ---
 
 That was a journey! We first learned about tensors, the building blocks of PyTorch, and started working on simple models like linear regression to understand how to build datasets/dataloaders and ML models in PyTorch. And finally, we reached a more complex model, a CNN model to train on image data.
