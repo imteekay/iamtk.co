@@ -7,6 +7,11 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2026-01-05',
+    link: '/2025-in-review-ml-books-career-writing',
+    title: '2025 in Review: ML, Books, Career, Writing',
+  },
+  {
     datetime: '2025-12-10',
     link: '/deep-learning-for-healthcare-chest-x-ray-medical-diagnosis',
     title: 'Deep Learning for Healthcare: Chest X-Ray Medical Diagnosis',
