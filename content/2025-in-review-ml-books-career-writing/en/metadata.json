@@ -1,0 +1,27 @@
+{
+  "title": "2025 in Review: ML, Books, Career, Writing",
+  "description": "A reflection of my ML learning journey & plans for 2026",
+  "date": "2026-01-05",
+  "tags": [
+    {
+      "href": "/tags/lifestyle-design ",
+      "name": "lifestyle_design"
+    },
+    {
+      "href": "/tags/career",
+      "name": "career"
+    },
+    {
+      "href": "/tags/learning",
+      "name": "learning"
+    }
+  ],
+  "coverImage": {
+    "src": "/2025-in-review-ml-books-career-writing/cover.jpg",
+    "width": "640",
+    "height": "425",
+    "alt": "fireworks in the night sky",
+    "authorHref": "",
+    "authorName": ""
+  }
+}
