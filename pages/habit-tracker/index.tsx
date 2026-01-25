@@ -18,7 +18,7 @@ const data = {
     { date: '2026-01-22', count: 1, level: 4 },
     { date: '2026-01-23', count: 1, level: 4 },
     { date: '2026-01-24', count: 1, level: 4 },
-    { date: '2026-02-11', count: 0, level: 0 },
+    { date: '2026-01-25', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'study-ml': [
@@ -120,6 +120,7 @@ const data = {
     { date: '2026-01-21', count: 1, level: 4 },
     { date: '2026-01-22', count: 1, level: 4 },
     { date: '2026-01-23', count: 1, level: 4 },
+    { date: '2026-01-24', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'drink-water': [
@@ -140,6 +141,7 @@ const data = {
     { date: '2026-01-21', count: 1, level: 4 },
     { date: '2026-01-22', count: 1, level: 4 },
     { date: '2026-01-23', count: 1, level: 4 },
+    { date: '2026-01-24', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'intermittent-fasting': [
