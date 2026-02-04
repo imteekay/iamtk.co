@@ -127,6 +127,7 @@ const data = {
     { date: '2026-01-09', count: 1, level: 4 },
     { date: '2026-01-13', count: 1, level: 4 },
     { date: '2026-02-02', count: 1, level: 4 },
+    { date: '2026-02-03', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'read-book': [
