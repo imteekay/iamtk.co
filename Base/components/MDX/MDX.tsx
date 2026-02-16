@@ -13,7 +13,7 @@ import { Venn } from 'Base/components/Venn';
 
 export type Content = MDXRemoteSerializeResult<
   Record<string, unknown>,
-  Record<string, string>
+  Record<string, unknown>
 >;
 
 interface MDXPropTypes {
