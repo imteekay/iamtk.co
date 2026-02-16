@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 
 import type { NextPage } from 'next';
 import { GetStaticProps } from 'next';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { getPlaiceholder } from 'plaiceholder';
 import { ParsedUrlQuery } from 'querystring';
 
 import { Layout } from 'Base/Article/Layout';
 import { Head } from 'Base/components/Head';
-import { MDX, serializeMDX } from 'Base/components/MDX';
+import { Content, MDX, serializeMDX } from 'Base/components/MDX';
 import { getPaths } from 'src/lib';
 import { getPostContent } from 'src/lib/getPostContent';
 import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
@@ -16,11 +15,6 @@ import { getPostMetadata, PostMetadata } from 'src/lib/getPostMetadata';
 interface Params extends ParsedUrlQuery {
   slug: string;
 }
-
-type Content = MDXRemoteSerializeResult<
-  Record<string, unknown>,
-  Record<string, string>
->;
 
 type PageProps = {
   content: Content;
