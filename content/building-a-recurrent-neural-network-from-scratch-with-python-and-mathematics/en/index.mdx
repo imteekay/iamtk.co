@@ -89,16 +89,16 @@ These hidden states are parameters that are shared across time. Each time step c
 
 Here are all the parameters and variables used in this RNN:
 
-- <InlineMath>{`U`}</InlineMath>: input weight
-- <InlineMath>{`W`}</InlineMath>: activation weight
-- <InlineMath>{`b`}</InlineMath>: bias for the weighted sum
-- <InlineMath>{`a_{t-1}`}</InlineMath>: activation from previous time step
+- <InlineMath>`U`</InlineMath>: input weight
+- <InlineMath>`W`</InlineMath>: activation weight
+- <InlineMath>`b`</InlineMath>: bias for the weighted sum
+- <InlineMath>`a_{t - 1}`</InlineMath>: activation from previous time step
   (hidden state)
-- <InlineMath>{`s_t`}</InlineMath>: hidden layer weighted sum
-- <InlineMath>{`a_t`}</InlineMath>: activation from the current time step
-- <InlineMath>{`V`}</InlineMath>: output weight
-- <InlineMath>{`c`}</InlineMath>: bias for output weighted sum
-- <InlineMath>{`o_t`}</InlineMath>: prediction output
+- <InlineMath>`s_t`</InlineMath>: hidden layer weighted sum
+- <InlineMath>`a_t`</InlineMath>: activation from the current time step
+- <InlineMath>`V`</InlineMath>: output weight
+- <InlineMath>`c`</InlineMath>: bias for output weighted sum
+- <InlineMath>`o_t`</InlineMath>: prediction output
 
 Similar to how the predictions are calculated layer by layer through time steps in the forward pass, we compute the gradients in reverse order, backwards through time.
 
@@ -110,140 +110,140 @@ We start from the loss function of the last time step and compute its gradient. 
 
 The equation for this loss function is the following:
 
-<BlockMath>{`L_t = (\\hat{y}_t - y_t)^2`}</BlockMath>
+<BlockMath>`L_t = (\hat{y}_t - y_t)^2`</BlockMath>
 
-We first compute the derivative of the loss function with respect to the output: <InlineMath>{`{\\frac{\\partial L_t}{\\partial o_t}}`}</InlineMath>.
+We first compute the derivative of the loss function with respect to the output: <InlineMath>`{\frac{\partial L_t}{\partial o_t}}`</InlineMath>.
 
-We want to find how the loss changes with respect to a change in a single element <InlineMath>{`{o_t}`}</InlineMath> of the output <InlineMath>{`{o}`}</InlineMath>. We can use the chain rule:
+We want to find how the loss changes with respect to a change in a single element <InlineMath>`{o_t}`</InlineMath> of the output <InlineMath>`{o}`</InlineMath>. We can use the chain rule:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial o_t} = \\hat{y}_t - y_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial o_t} = \hat{y}_t - y_t`</BlockMath>
 
-In the output layer, we can now compute the gradients for the <InlineMath>{`V`}</InlineMath> (output weight parameter) and <InlineMath>{`c`}</InlineMath> (bias) parameters using the chain rule.
+In the output layer, we can now compute the gradients for the <InlineMath>`V`</InlineMath> (output weight parameter) and <InlineMath>`c`</InlineMath> (bias) parameters using the chain rule.
 
-For the <InlineMath>{`c`}</InlineMath> gradient, we have:
+For the <InlineMath>`c`</InlineMath> gradient, we have:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial c}=\\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial c}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial c}=\frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial c}`</BlockMath>
 
-We know that <InlineMath>{`\\frac{\\partial L}{\\partial o_t} = \\hat{y}_t - y_t`}</InlineMath>, so we just need to compute <InlineMath>{`\\frac{\\partial o_t}{\\partial c}`}</InlineMath>.
+We know that <InlineMath>`\frac{\partial L}{\partial o_t} = \hat{y}_t - y_t`</InlineMath>, so we just need to compute <InlineMath>`\frac{\partial o_t}{\partial c}`</InlineMath>.
 
-<BlockMath>{`\\frac{\\partial o_t}{\\partial c} = \\frac{\\partial (V \\cdot a_t + c)}{\\partial c} = 1`}</BlockMath>
-
-Putting everything together, we have:
-
-<BlockMath>{`\\frac{\\partial L_t}{\\partial c}=\\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial c} = (\\hat{y}_t - y_t) \\cdot 1 = \\hat{y}_t - y_t`}</BlockMath>
-
-<InlineMath>{`V`}</InlineMath> gradient follows the same idea.
-
-<BlockMath>{`\\frac{\\partial L_t}{\\partial V}=\\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial V}`}</BlockMath>
-
-Again, <InlineMath>{`\\frac{\\partial L_t}{\\partial o_t} = y_t - \\hat{y}_t`}</InlineMath>, so we just miss the calculation of <InlineMath>{`\\frac{\\partial o_t}{\\partial V}`}</InlineMath>
-
-<BlockMath>{`\\frac{\\partial o_t}{\\partial V} = \\frac{\\partial (V \\cdot a_t + c)}{\\partial V} = a_t`}</BlockMath>
+<BlockMath>`\frac{\partial o_t}{\partial c} = \frac{\partial (V \cdot a_t + c)}{\partial c} = 1`</BlockMath>
 
 Putting everything together, we have:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial V}=\\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial V} = (\\hat{y}_t - y_t) \\cdot a_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial c}=\frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial c} = (\hat{y}_t - y_t) \cdot 1 = \hat{y}_t - y_t`</BlockMath>
+
+<InlineMath>`V`</InlineMath> gradient follows the same idea.
+
+<BlockMath>`\frac{\partial L_t}{\partial V}=\frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial V}`</BlockMath>
+
+Again, <InlineMath>`\frac{\partial L_t}{\partial o_t} = y_t - \hat{y}_t`</InlineMath>, so we just miss the calculation of <InlineMath>`\frac{\partial o_t}{\partial V}`</InlineMath>
+
+<BlockMath>`\frac{\partial o_t}{\partial V} = \frac{\partial (V \cdot a_t + c)}{\partial V} = a_t`</BlockMath>
+
+Putting everything together, we have:
+
+<BlockMath>`\frac{\partial L_t}{\partial V}=\frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial V} = (\hat{y}_t - y_t) \cdot a_t`</BlockMath>
 
 With that, we finish the computation of gradients for the output layer. With those gradients, we can reuse them in the computation of gradients in the hidden layer.
 
-In the hidden layer, the idea is to compute the gradients for <InlineMath>{`W`}</InlineMath> and <InlineMath>{`b`}</InlineMath>. That way, we can update these parameters in the backpropagation and make the model learn.
+In the hidden layer, the idea is to compute the gradients for <InlineMath>`W`</InlineMath> and <InlineMath>`b`</InlineMath>. That way, we can update these parameters in the backpropagation and make the model learn.
 
-To reach these gradients, we first need to compute the derivative of the loss with respect to the current activation, then reuse this value to compute the gradient for the weighted sum of the current time step. With those values, we can compute the gradients for <InlineMath>{`W`}</InlineMath> and <InlineMath>{`b`}</InlineMath>.
+To reach these gradients, we first need to compute the derivative of the loss with respect to the current activation, then reuse this value to compute the gradient for the weighted sum of the current time step. With those values, we can compute the gradients for <InlineMath>`W`</InlineMath> and <InlineMath>`b`</InlineMath>.
 
 Let's start with the current activation. This is an important step as it requires two steps.
 
 1. Computing the gradient of the current step activation with respect to the current output
 2. Computing the gradient of the current step activation with respect to the next step's loss
 
-To calculate the whole <InlineMath>{`\\frac{\\partial L_t}{\\partial a_t}`}</InlineMath>, we need to compute these two steps and then sum them.
+To calculate the whole <InlineMath>`\frac{\partial L_t}{\partial a_t}`</InlineMath>, we need to compute these two steps and then sum them.
 
 Starting with the gradient of the current activation with respect to the current output, we have:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial a_t} = \\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial a_t}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial a_t} = \frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial a_t}`</BlockMath>
 
 From the previous computations, we know that
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial o_t} = \\hat{y}_t - y_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial o_t} = \hat{y}_t - y_t`</BlockMath>
 
-So we only miss the calculation of <InlineMath>{`\\frac{\\partial L_t}{\\partial a_t}`}</InlineMath> :
+So we only miss the calculation of <InlineMath>`\frac{\partial L_t}{\partial a_t}`</InlineMath> :
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial a_t}  = \\frac{\\partial(V \\cdot a_t + c)}{\\partial a_t} = V`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial a_t}  = \frac{\partial(V \cdot a_t + c)}{\partial a_t} = V`</BlockMath>
 
 Putting everything together, we have:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial a_t} = (\\hat{y}_t - y_t) \\cdot V`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial a_t} = (\hat{y}_t - y_t) \cdot V`</BlockMath>
 
-For <InlineMath>{`\\frac{\\partial L_{t+1}}{\\partial a_t}`}</InlineMath>, we have:
+For <InlineMath>`\frac{\partial L_{t+1}}{\partial a_t}`</InlineMath>, we have:
 
-<BlockMath>{`\\frac{\\partial L_{t+1}}{\\partial a_t} = \\frac{\\partial L_{t+1}}{\\partial s_{t+1}} \\cdot \\frac{\\partial s_{t+1}}{a_t}`}</BlockMath>
+<BlockMath>`\frac{\partial L_{t+1}}{\partial a_t} = \frac{\partial L_{t+1}}{\partial s_{t+1}} \cdot \frac{\partial s_{t+1}}{a_t}`</BlockMath>
 
-For <InlineMath>{`\\frac{\\partial s_{t+1}}{a_t}`}</InlineMath>, we have:
+For <InlineMath>`\frac{\partial s_{t+1}}{a_t}`</InlineMath>, we have:
 
-<BlockMath>{`\\frac{\\partial s_{t+1}}{a_t} = \\frac{\\partial (W \\cdot a_t + U \\cdot X_{t+1} + b)}{\\partial a_t} = W`}</BlockMath>
+<BlockMath>`\frac{\partial s_{t+1}}{a_t} = \frac{\partial (W \cdot a_t + U \cdot X_{t+1} + b)}{\partial a_t} = W`</BlockMath>
 
 Putting everything together to compute the gradient of the loss with respect to the current activation, we have:
 
-<BlockMath>{`\\frac{\\partial L_{t}}{a_t} = (\\hat{y}_t - y_t) \\cdot V + \\frac{\\partial L_{t+1}}{\\partial s_{t+1}} \\cdot W`}</BlockMath>
+<BlockMath>`\frac{\partial L_{t}}{a_t} = (\hat{y}_t - y_t) \cdot V + \frac{\partial L_{t+1}}{\partial s_{t+1}} \cdot W`</BlockMath>
 
 We can now proceed with the gradient for the weighted sum of the current time step.
 
-Here, we need to compute the derivative of the loss with respect to the weighted sum <InlineMath>{`\\frac{\\partial L_t}{\\partial s_t}`}</InlineMath>.
+Here, we need to compute the derivative of the loss with respect to the weighted sum <InlineMath>`\frac{\partial L_t}{\partial s_t}`</InlineMath>.
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial s_t} = \\frac{\\partial L_t}{\\partial a_t} \\cdot \\frac{\\partial a_t}{\\partial s_t}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial s_t} = \frac{\partial L_t}{\partial a_t} \cdot \frac{\partial a_t}{\partial s_t}`</BlockMath>
 
-<InlineMath>{`\\frac{\\partial L_t}{\\partial a_t}`}</InlineMath> is what we
-computed previously. <InlineMath>{`\\frac{\\partial a_t}{\\partial s_t}`}</InlineMath> is
+<InlineMath>`\frac{\partial L_t}{\partial a_t}`</InlineMath> is what we
+computed previously. <InlineMath>`\frac{\partial a_t}{\partial s_t}`</InlineMath> is
 what is missing.
 
-<BlockMath>{`\\frac{\\partial a_t}{\\partial s_t} = \\frac{\\partial tanh(s_t)}{\\partial s_t} = 1 - tanh(s_t)^2`}</BlockMath>
+<BlockMath>`\frac{\partial a_t}{\partial s_t} = \frac{\partial tanh(s_t)}{\partial s_t} = 1 - tanh(s_t)^2`</BlockMath>
 
 Putting everything together, we have:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial s_t} = \\frac{\\partial L_t}{\\partial a_t} \\cdot [1 - tanh(s_t)^2]`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial s_t} = \frac{\partial L_t}{\partial a_t} \cdot [1 - tanh(s_t)^2]`</BlockMath>
 
-With both <InlineMath>{`\\frac{\\partial L_{t}}{a_t}`}</InlineMath> and <InlineMath>{`\\frac{\\partial L_t}{\\partial s_t}`}</InlineMath>, we can now compute the gradients of <InlineMath>{`W`}</InlineMath> and <InlineMath>{`b`}</InlineMath>.
+With both <InlineMath>`\frac{\partial L_{t}}{a_t}`</InlineMath> and <InlineMath>`\frac{\partial L_t}{\partial s_t}`</InlineMath>, we can now compute the gradients of <InlineMath>`W`</InlineMath> and <InlineMath>`b`</InlineMath>.
 
-For <InlineMath>{`W`}</InlineMath>, we can simplify it:
+For <InlineMath>`W`</InlineMath>, we can simplify it:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial W} = \\frac{\\partial L_t}{\\partial a_t} \\cdot \\frac{\\partial a_t}{\\partial s_t} \\cdot \\frac{\\partial s_t}{\\partial W}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial W} = \frac{\partial L_t}{\partial a_t} \cdot \frac{\partial a_t}{\partial s_t} \cdot \frac{\partial s_t}{\partial W}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial W} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial s_t}{\\partial W}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial W} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial s_t}{\partial W}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial W} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial W} = \\frac{\\partial L_t}{\\partial s_t} \\cdot a_{t-1}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial W} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial W} = \frac{\partial L_t}{\partial s_t} \cdot a_{t-1}`</BlockMath>
 
-We do a similar calculation for <InlineMath>{`b`}</InlineMath>. Given that:
+We do a similar calculation for <InlineMath>`b`</InlineMath>. Given that:
 
-<BlockMath>{`\\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial b} = 1`}</BlockMath>
+<BlockMath>`\frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial b} = 1`</BlockMath>
 
 We have:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial b} = \\frac{\\partial L_t}{\\partial a_t} \\cdot \\frac{\\partial a_t}{\\partial s_t} \\cdot \\frac{\\partial s_t}{\\partial b}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial b} = \frac{\partial L_t}{\partial a_t} \cdot \frac{\partial a_t}{\partial s_t} \cdot \frac{\partial s_t}{\partial b}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial b} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial s_t}{\\partial b}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial b} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial s_t}{\partial b}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial b} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial b} = \\frac{\\partial L_t}{\\partial s_t} \\cdot 1 = \\frac{\\partial L_t}{\\partial s_t}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial b} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial b} = \frac{\partial L_t}{\partial s_t} \cdot 1 = \frac{\partial L_t}{\partial s_t}`</BlockMath>
 
-In the input layer, we also need to compute the gradient of <InlineMath>{`U`}</InlineMath>.
+In the input layer, we also need to compute the gradient of <InlineMath>`U`</InlineMath>.
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial U} = \\frac{\\partial L_t}{\\partial a_t} \\cdot \\frac{\\partial a_t}{\\partial s_t} \\cdot \\frac{\\partial s_t}{\\partial U}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial U} = \frac{\partial L_t}{\partial a_t} \cdot \frac{\partial a_t}{\partial s_t} \cdot \frac{\partial s_t}{\partial U}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial U} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial s_t}{\\partial U}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial U} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial s_t}{\partial U}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial U} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial U} = \\frac{\\partial L_t}{\\partial s_t} \\cdot X_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial U} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial U} = \frac{\partial L_t}{\partial s_t} \cdot X_t`</BlockMath>
 
 To complete the computation of gradients, we need to do the full backpropagation. Basically, we compute the gradients for all time steps. And only after that, we can use their value to update the parameters.
 
 These are the parameters we need to update to make the RNN model learn:
 
-<BlockMath>{`V = V - \\alpha \\cdot \\frac{\\partial L_t}{\\partial V}`}</BlockMath>
+<BlockMath>`V = V - \alpha \cdot \frac{\partial L_t}{\partial V}`</BlockMath>
 
-<BlockMath>{`c = c - \\alpha \\cdot \\frac{\\partial L_t}{\\partial c}`}</BlockMath>
+<BlockMath>`c = c - \alpha \cdot \frac{\partial L_t}{\partial c}`</BlockMath>
 
-<BlockMath>{`W = W - \\alpha \\cdot \\frac{\\partial L_t}{\\partial W}`}</BlockMath>
+<BlockMath>`W = W - \alpha \cdot \frac{\partial L_t}{\partial W}`</BlockMath>
 
-<BlockMath>{`b = b - \\alpha \\cdot \\frac{\\partial L_t}{\\partial b}`}</BlockMath>
+<BlockMath>`b = b - \alpha \cdot \frac{\partial L_t}{\partial b}`</BlockMath>
 
-<BlockMath>{`U = U - \\alpha \\cdot \\frac{\\partial L_t}{\\partial U}`}</BlockMath>
+<BlockMath>`U = U - \alpha \cdot \frac{\partial L_t}{\partial U}`</BlockMath>
 
 This is the full backpropagation.
 
@@ -300,7 +300,7 @@ The starting number and the common difference are generated randomly using `np.r
 
 Notice that we can also pass `max_start` and `max_diff` to the function. That will help control the generated input data. For our first experiments, we don't want a huge common difference.
 
-After generating this sequence, we select the first `n - 1` numbers as the <InlineMath>{`X`}</InlineMath> input, `n` being the sequence length. The `Y` target is basically the sequence from 1 to `n`.
+After generating this sequence, we select the first `n - 1` numbers as the <InlineMath>`X`</InlineMath> input, `n` being the sequence length. The `Y` target is basically the sequence from 1 to `n`.
 
 `X_data` and `Y_data` are the vectors of sequences and targets.
 
@@ -316,9 +316,9 @@ Moving on, let's talk briefly about the architecture of this implementation.
 
 We'll have 4 parts:
 
-- `Input Layer`: It will receive the input sequence, compute the input weighted sum in the forward pass, and compute the gradients in the backpropagation to update the input weight parameter <InlineMath>{`U`}</InlineMath>.
-- `Hidden Layer`: It computes the activation and stores it in the hidden state, which will be carried on through the RNN. It computes the gradients for <InlineMath>{`W`}</InlineMath> and bias <InlineMath>{`b`}</InlineMath>, and updates these parameters and propagates the gradients to the previous time step.
-- `Output Layer`: It computes the prediction and the gradients for output parameters <InlineMath>{`V`}</InlineMath> and bias <InlineMath>{`c`}</InlineMath>, and the output gradient to pass back to the hidden layer, and updates the parameters.
+- `Input Layer`: It will receive the input sequence, compute the input weighted sum in the forward pass, and compute the gradients in the backpropagation to update the input weight parameter <InlineMath>`U`</InlineMath>.
+- `Hidden Layer`: It computes the activation and stores it in the hidden state, which will be carried on through the RNN. It computes the gradients for <InlineMath>`W`</InlineMath> and bias <InlineMath>`b`</InlineMath>, and updates these parameters and propagates the gradients to the previous time step.
+- `Output Layer`: It computes the prediction and the gradients for output parameters <InlineMath>`V`</InlineMath> and bias <InlineMath>`c`</InlineMath>, and the output gradient to pass back to the hidden layer, and updates the parameters.
 - `RNN`: It puts everything together — forward propagation, backward propagation, training with epochs, and loss function with MSE.
 
 Let's go to the implementation, finally.
@@ -331,7 +331,7 @@ Then, put everything together on the RNN abstraction class. And finally, use it 
 
 Everything starts in the input layer. For the forward propagation, we need two things: to initialize the parameters and compute the weighted sum.
 
-In the `__init__` method, we start with the <InlineMath>{`U`}</InlineMath> weight parameter and the `input_sequence`.
+In the `__init__` method, we start with the <InlineMath>`U`</InlineMath> weight parameter and the `input_sequence`.
 
 ```python
 class InputLayer:
@@ -342,7 +342,7 @@ class InputLayer:
 
 Let's unwrap this implementation. `input_sequence` starts with a nullable value. For each time step, we will set the item of the sequence and then compute the weighted sum.
 
-For the <InlineMath>{`U`}</InlineMath> weight parameter, we can initialize it with random numbers or even with zeros. Vanishing/exploding gradients are a big problem in neural networks. Especially in RNN, this is an even bigger problem. We will use the Xavier initialization to mitigate this problem with the aim of preventing activations from becoming too small or too large.
+For the <InlineMath>`U`</InlineMath> weight parameter, we can initialize it with random numbers or even with zeros. Vanishing/exploding gradients are a big problem in neural networks. Especially in RNN, this is an even bigger problem. We will use the Xavier initialization to mitigate this problem with the aim of preventing activations from becoming too small or too large.
 
 ```python
 def xavier_uniform(fan_in, fan_out):
@@ -366,15 +366,15 @@ For the getter method, we need to perform a simple transformation on the sequenc
 
 The shape of `self.input_sequence` is `(5, 1)`. If we get the input of the current time step, the shape will be `(1,)`. We use `reshape(-1, 1)` to reshape the data into `(1, 1)`.
 
-The next step is to compute the weighted sum. It's basically a matrix multiplication of parameter <InlineMath>{`U`}</InlineMath> and the input for the current time step.
+The next step is to compute the weighted sum. It's basically a matrix multiplication of parameter <InlineMath>`U`</InlineMath> and the input for the current time step.
 
 ```python
 def weighted_sum(self, time_step):
     return self.U @ self.get_input(time_step)
 ```
 
-<InlineMath>{`U`}</InlineMath> shape is `(32, 1)`. Input shape is `(1, 1)`. The
-resulting shape is `(32, 1)`.
+<InlineMath>`U`</InlineMath> shape is `(32, 1)`. Input shape is `(1, 1)`. The resulting
+shape is `(32, 1)`.
 
 We can use this result for the next step in the process: the hidden layer.
 
@@ -395,7 +395,7 @@ class HiddenLayer:
         self.hidden_states = np.zeros(shape=(sequence_length, hidden_size, 1))
 ```
 
-The weight parameter <InlineMath>{`W`}</InlineMath> also uses the Xavier initialization. `bias` is a scalar value for each neuron in the layer. And the `hidden_states` will hold the activations throughout all the steps.
+The weight parameter <InlineMath>`W`</InlineMath> also uses the Xavier initialization. `bias` is a scalar value for each neuron in the layer. And the `hidden_states` will hold the activations throughout all the steps.
 
 In the activation process, we have this implementation:
 
@@ -429,7 +429,7 @@ def get_hidden_state(self, time_step):
     return self.hidden_states[time_step] if time_step >= 0 else np.zeros_like(self.hidden_states[0])
 ```
 
-This weighted sum is the multiplication of parameter <InlineMath>{`W`}</InlineMath> and the hidden state of the previous time step. When getting the hidden state from the previous time step, we need to handle a corner case. This is when the time step is `0`. In other words, when we are working on the first time step. If it's the first time step, we should return the hidden state in zero form.
+This weighted sum is the multiplication of parameter <InlineMath>`W`</InlineMath> and the hidden state of the previous time step. When getting the hidden state from the previous time step, we need to handle a corner case. This is when the time step is `0`. In other words, when we are working on the first time step. If it's the first time step, we should return the hidden state in zero form.
 
 Our activation function in this layer is the application of the tanh function:
 
@@ -445,9 +445,9 @@ def __set_hidden_state(self, time_step, hidden_state):
     self.hidden_states[time_step] = hidden_state
 ```
 
-Now we move to the output layer, where we need to compute the prediction. We'll use the computed activation to compute the output weighted sum (with parameters <InlineMath>{`V`}</InlineMath> and `bias`) and then store this prediction.
+Now we move to the output layer, where we need to compute the prediction. We'll use the computed activation to compute the output weighted sum (with parameters <InlineMath>`V`</InlineMath> and `bias`) and then store this prediction.
 
-We start with the initialization of the parameters <InlineMath>{`V`}</InlineMath> and `bias` and the `predictions` vector.
+We start with the initialization of the parameters <InlineMath>`V`</InlineMath> and `bias` and the `predictions` vector.
 
 ```python
 class OutputLayer:
@@ -457,7 +457,7 @@ class OutputLayer:
         self.predictions = np.zeros(shape=(sequence_length, 1))
 ```
 
-The parameter <InlineMath>{`V`}</InlineMath> follows the same idea as the previous weight parameters from the other layers. It uses the Xavier initialization. The `bias` is the <InlineMath>{`c`}</InlineMath> variable in our math equations, and it's just a scalar value.
+The parameter <InlineMath>`V`</InlineMath> follows the same idea as the previous weight parameters from the other layers. It uses the Xavier initialization. The `bias` is the <InlineMath>`c`</InlineMath> variable in our math equations, and it's just a scalar value.
 
 `predictions` will be the variable that holds all predictions across the time steps.
 
@@ -500,7 +500,7 @@ class RecurrentNeuralNetwork:
 
 All the layers are created and can be used in the forward pass.
 
-Then, we need to create the `forward` method, where it should receive the input <InlineMath>{`X`}</InlineMath> and make the prediction.
+Then, we need to create the `forward` method, where it should receive the input <InlineMath>`X`</InlineMath> and make the prediction.
 
 ```python
 def forward(self, X):
@@ -542,11 +542,11 @@ class OutputLayer:
         self.output_gradient = None
 ```
 
-For all the parameters we have on the output layer, we will need to compute the gradients. The gradients for <InlineMath>{`V`}</InlineMath> and `bias` (<InlineMath>{`c`}</InlineMath>) should be initialized with the same dimensions as their parameters.
+For all the parameters we have on the output layer, we will need to compute the gradients. The gradients for <InlineMath>`V`</InlineMath> and `bias` (<InlineMath>`c`</InlineMath>) should be initialized with the same dimensions as their parameters.
 
 Notice that we also need to compute the gradient for the output. We'll see later how it will be used, but the reason is that it should be used in the hidden layer to compute other gradients.
 
-To compute the gradients for <InlineMath>{`V`}</InlineMath> and `bias` (<InlineMath>{`c`}</InlineMath>), we should start with the prediction gradient:
+To compute the gradients for <InlineMath>`V`</InlineMath> and `bias` (<InlineMath>`c`</InlineMath>), we should start with the prediction gradient:
 
 ## Backward Propagation
 
@@ -562,13 +562,13 @@ class OutputLayer:
         self.output_gradient = None
 ```
 
-For all the parameters we have on the output layer, we will need to compute the gradients. The gradients for <InlineMath>{`V`}</InlineMath> and `bias` (<InlineMath>{`c`}</InlineMath>) should be initialized with the same dimensions as their parameters.
+For all the parameters we have on the output layer, we will need to compute the gradients. The gradients for <InlineMath>`V`</InlineMath> and `bias` (<InlineMath>`c`</InlineMath>) should be initialized with the same dimensions as their parameters.
 
 Notice that we also need to compute the gradient for the output. We'll see later how it will be used, but the reason is that it should be used in the hidden layer to compute other gradients.
 
-To compute the gradients for <InlineMath>{`V`}</InlineMath> and `bias` (<InlineMath>{`c`}</InlineMath>), we should start with the prediction gradient:
+To compute the gradients for <InlineMath>`V`</InlineMath> and `bias` (<InlineMath>`c`</InlineMath>), we should start with the prediction gradient:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial o_t} = \\hat{y}_t - y_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial o_t} = \hat{y}_t - y_t`</BlockMath>
 
 For the prediction gradient, we have access to the target `y` and the prediction for a given time step. The implementation is straightforward:
 
@@ -578,7 +578,7 @@ prediction_gradient = self.predictions[time_step].reshape(-1, 1) - y.reshape(-1,
 
 With the prediction gradient, we can compute the `bias` gradient. Let's review the math behind it:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial c}=\\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial c} = (\\hat{y}_t - y_t) \\cdot 1 = \\hat{y}_t - y_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial c}=\frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial c} = (\hat{y}_t - y_t) \cdot 1 = \hat{y}_t - y_t`</BlockMath>
 
 We sum the prediction gradient to the `bias` gradient.
 
@@ -586,12 +586,12 @@ We sum the prediction gradient to the `bias` gradient.
 self.bias_gradient += prediction_gradient
 ```
 
-The <InlineMath>{`V`}</InlineMath> gradient has a similar implementation. Let's recap the math:
+The <InlineMath>`V`</InlineMath> gradient has a similar implementation. Let's recap the math:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial V}=\\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial V} = (\\hat{y}_t - y_t) \\cdot a_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial V}=\frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial V} = (\hat{y}_t - y_t) \cdot a_t`</BlockMath>
 
-<InlineMath>{`a_t`}</InlineMath> should be passed the `compute_gradients`
-method, and then we can compute the gradient for <InlineMath>{`V`}</InlineMath>:
+<InlineMath>`a_t`</InlineMath> should be passed the `compute_gradients` method, and
+then we can compute the gradient for <InlineMath>`V`</InlineMath>:
 
 ```python
 self.V_gradient += prediction_gradient @ activation.T
@@ -599,7 +599,7 @@ self.V_gradient += prediction_gradient @ activation.T
 
 The last piece of these gradient computations is the calculation of the output gradient, which follows this equation:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial a_t} = \\frac{\\partial L_t}{\\partial o_t} \\cdot \\frac{\\partial o_t}{\\partial a_t} = (\\hat{y}_t - y_t) \\cdot V`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial a_t} = \frac{\partial L_t}{\partial o_t} \cdot \frac{\partial o_t}{\partial a_t} = (\hat{y}_t - y_t) \cdot V`</BlockMath>
 
 The implementation is simple:
 
@@ -627,9 +627,9 @@ def compute_gradients(self, time_step, y, activation):
     self.output_gradient = self.V.T @ prediction_gradient
 ```
 
-Moving on to the hidden layer, we will build the same `compute_gradients` method with the intention of computing the gradients for <InlineMath>{`W`}</InlineMath> and hidden layer's `bias` (<InlineMath>{`b`}</InlineMath>).
+Moving on to the hidden layer, we will build the same `compute_gradients` method with the intention of computing the gradients for <InlineMath>`W`</InlineMath> and hidden layer's `bias` (<InlineMath>`b`</InlineMath>).
 
-In the initialization, we need to create gradients for <InlineMath>{`W`}</InlineMath>, `bias` (<InlineMath>{`b`}</InlineMath>), and the next activation.
+In the initialization, we need to create gradients for <InlineMath>`W`</InlineMath>, `bias` (<InlineMath>`b`</InlineMath>), and the next activation.
 
 ```python
 class HiddenLayer:
@@ -641,7 +641,7 @@ class HiddenLayer:
 
 In the `compute_gradients` method, we start with the activation gradient. The following is the math behind it:
 
-<BlockMath>{`\\frac{\\partial L_{t}}{a_t} = (\\hat{y}_t - y_t) \\cdot V + \\frac{\\partial L_{t+1}}{\\partial s_{t+1}} \\cdot W`}</BlockMath>
+<BlockMath>`\frac{\partial L_{t}}{a_t} = (\hat{y}_t - y_t) \cdot V + \frac{\partial L_{t+1}}{\partial s_{t+1}} \cdot W`</BlockMath>
 
 The implementation reuses the `output_gradient` we computed in the output layer and the `next_activation_gradient` that was initialized (the last time step should use a zero vector for this gradient) and will be calculated later on.
 
@@ -651,11 +651,11 @@ activation_gradient = output_gradient + self.next_activation_gradient
 
 With the activation gradient, we can compute the gradient for the hidden layer weighted sum. Let's recap its definition:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial s_t} = \\frac{\\partial L_t}{\\partial a_t} \\cdot [1 - tanh(s_t)^2]`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial s_t} = \frac{\partial L_t}{\partial a_t} \cdot [1 - tanh(s_t)^2]`</BlockMath>
 
-<InlineMath>{`tanh(s_t)`}</InlineMath> in this equation is basically the
-activation function. In the context of the implementation, we can get this value
-from the hidden state for a given time step. And this is exactly what we do:
+<InlineMath>`tanh(s_t)`</InlineMath> in this equation is basically the activation
+function. In the context of the implementation, we can get this value from the hidden
+state for a given time step. And this is exactly what we do:
 
 ```python
 self.weighted_sum_gradient = activation_gradient * (1 - self.get_hidden_state(time_step) ** 2)
@@ -663,7 +663,7 @@ self.weighted_sum_gradient = activation_gradient * (1 - self.get_hidden_state(ti
 
 We now have the weighted sum gradient for this current time step. To compute the activation gradient for the previous time step, it will reuse this value, so we should store it. The math is the following:
 
-<BlockMath>{`\\frac{\\partial L_{t+1}}{\\partial a_t} = \\frac{\\partial L_{t+1}}{\\partial s_{t+1}} \\cdot \\frac{\\partial s_{t+1}}{a_t}`}</BlockMath>
+<BlockMath>`\frac{\partial L_{t+1}}{\partial a_t} = \frac{\partial L_{t+1}}{\partial s_{t+1}} \cdot \frac{\partial s_{t+1}}{a_t}`</BlockMath>
 
 We will store it on the `next_activation_gradient` and it will be used in the previous time step:
 
@@ -671,11 +671,11 @@ We will store it on the `next_activation_gradient` and it will be used in the pr
 self.next_activation_gradient = self.W.T @ self.weighted_sum_gradient
 ```
 
-Now we have everything to compute the gradients for <InlineMath>{`W`}</InlineMath> and `bias` (<InlineMath>{`b`}</InlineMath>). To recap their math equations:
+Now we have everything to compute the gradients for <InlineMath>`W`</InlineMath> and `bias` (<InlineMath>`b`</InlineMath>). To recap their math equations:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial W} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial W} = \\frac{\\partial L_t}{\\partial s_t} \\cdot a_{t-1}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial W} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial W} = \frac{\partial L_t}{\partial s_t} \cdot a_{t-1}`</BlockMath>
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial b} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial b} = \\frac{\\partial L_t}{\\partial s_t} \\cdot 1 = \\frac{\\partial L_t}{\\partial s_t}`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial b} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial b} = \frac{\partial L_t}{\partial s_t} \cdot 1 = \frac{\partial L_t}{\partial s_t}`</BlockMath>
 
 This is the implementation of both gradients:
 
@@ -702,7 +702,7 @@ def compute_gradients(self, time_step, output_gradient):
     self.bias_gradient += self.weighted_sum_gradient
 ```
 
-The final step is the computation of the gradient for the parameter <InlineMath>{`U`}</InlineMath> in the input layer.
+The final step is the computation of the gradient for the parameter <InlineMath>`U`</InlineMath> in the input layer.
 
 First, the initialization of this variable:
 
@@ -714,7 +714,7 @@ class InputLayer:
 
 And then, the computation following the math equation:
 
-<BlockMath>{`\\frac{\\partial L_t}{\\partial U} = \\frac{\\partial L_t}{\\partial s_t} \\cdot \\frac{\\partial (W \\cdot a_{t-1} + U \\cdot X_t + b)}{\\partial U} = \\frac{\\partial L_t}{\\partial s_t} \\cdot X_t`}</BlockMath>
+<BlockMath>`\frac{\partial L_t}{\partial U} = \frac{\partial L_t}{\partial s_t} \cdot \frac{\partial (W \cdot a_{t-1} + U \cdot X_t + b)}{\partial U} = \frac{\partial L_t}{\partial s_t} \cdot X_t`</BlockMath>
 
 The weighted sum gradient was computed in the hidden layer and reused in the input layer. We should just multiply it by the input from the current time step.
 

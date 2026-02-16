@@ -47,15 +47,13 @@ Let's start with this example of comparative salaries of people:
 Mean is also called "average". This is calculated as the sum of the values in the dataset, divided by the number of observations in the dataset.
 
 <BlockMath>
-  {`\\begin{equation}\\mu = \\frac{\\displaystyle\\sum_{i=1}^{N}X_{i}}{N}\\end{equation}`}
+  `\begin{equation}\mu = \frac{\displaystyle\sum_{i=1}^{N}X_{i}}{N}\end{equation}`
 </BlockMath>
 
 For the list of salaries, we can calculate it as:
 
 <BlockMath>
-  {`\\begin{equation}\\bar{x} = \\frac
-  {50000 + 54000 + 50000 + 189000 + 55000 + 40000 + 59000}
-  {7} = 71000\\end{equation}`}
+  `\begin{equation}\bar{x} = \frac{50000 + 54000 + 50000 + 189000 + 55000 + 40000 + 59000}{7} = 71000\end{equation}`
 </BlockMath>
 
 We can use the `mean` method from Pandas in Python:
@@ -78,16 +76,16 @@ To calculate the median, we:
 - if there are an odd number of observations, you find the middle value using this formula
 
 <BlockMath>
-  {`\\begin{equation}\\frac{n + 1}
-  {2}\\end{equation}`}
+  `\begin{equation}\frac{n + 1}
+  {2}\end{equation}`
 </BlockMath>
 
 - if the number of observations is even, we calculate the median as the average of the two middle-most values:
 
 <BlockMath>
-  {`\\begin{equation}\\frac{n}
-  {2} \\;\\;\\;\\;and \\;\\;\\;\\; \\frac{n}
-  {2} + 1\\end{equation}`}
+  `\begin{equation}\frac{n}
+  {2} \;\;\;\;and \;\;\;\; \frac{n}
+  {2} + 1\end{equation}`
 </BlockMath>
 
 For the list of salaries, we have an odd number of observations (7), so to get the position of the median value, we just need to calculate like this: `(7 + 1) / 2 = 4`, which's the salary `54,000`.
@@ -240,13 +238,13 @@ Variance is measured as the average of the squared difference from the mean.
 For full population, we calculate with this formula:
 
 <BlockMath>
-  {`\\begin{equation}\\sigma^{2} = \\frac{\\displaystyle\\sum_{i=1}^{N} (X_{i} -\\mu)^{2}}{N}\\end{equation}`}
+  `\begin{equation}\sigma^{2} = \frac{\displaystyle\sum_{i=1}^{N} (X_{i} -\mu)^{2}}{N}\end{equation}`
 </BlockMath>
 
 For a sample:
 
 <BlockMath>
-  {`\\begin{equation}s^{2} = \\frac{\\displaystyle\\sum_{i=1}^{n} (x_{i} -\\bar{x})^{2}}{n-1}\\end{equation}`}
+  `\begin{equation}s^{2} = \frac{\displaystyle\sum_{i=1}^{n} (x_{i} -\bar{x})^{2}}{n-1}\end{equation}`
 </BlockMath>
 
 As an example, let's calculate the variance for the grades data.
@@ -254,19 +252,21 @@ As an example, let's calculate the variance for the grades data.
 First, we need to calculate the mean
 
 <BlockMath>
-  {`\\begin{equation}\\bar{x} = \\frac{50 + 50 + 46 + 95 + 50 + 5 + 57}
-  {7}\\approx 50.43\\end{equation}`}
+  `\begin{equation}\bar{x} = \frac{50 + 50 + 46 + 95 + 50 + 5 + 57}
+  {7}\approx 50.43\end{equation}`
 </BlockMath>
 
 Then apply it to the variance formula:
 
 <BlockMath>
-  {`\\begin{equation}s^{2} = \\frac{(50-50.43)^{2}+(50-50.43)^{2}+(46-50.43)^{2}+(95-50.43)^{2}+(50-50.43)^{2}+(5-50.43)^{2}+(57-50.43)^{2}}{7-1}\\end{equation}`}
+  `\begin{equation}s^{2} = \frac{(50-50.43)^{2}+(50-50.43)^{2}+(46-50.43)^{2}+(95-50.43)^{2}+(50-50.43)^{2}+(5-50.43)^{2}+(57-50.43)^{2}}{7-1}\end{equation}`
 </BlockMath>
 
 Resulting in:
 
-<BlockMath>{`\\begin{equation}s^{2} \\approx 685.619\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}s^{2} \approx 685.619\end{equation}`
+</BlockMath>
 
 In Python, we can use the method `var`:
 
@@ -288,13 +288,13 @@ In the variance calculation, we square the difference from the mean. That way, w
 To get the measure of variance back into the same unit of measurement, we need to find its square root:
 
 <BlockMath>
-  {`\\begin{equation}s = \\sqrt{685.619} \\approx 26.184\\end{equation}`}
+  `\begin{equation}s = \sqrt{685.619} \approx 26.184\end{equation}`
 </BlockMath>
 
 This represents the standard deviation.
 
 <BlockMath>
-  {`\\begin{equation}s = \\sqrt{\\frac{\\displaystyle\\sum_{i=1}^{n} (x_{i} -\\bar{x})^{2}}{n-1}}\\end{equation}`}
+  `\begin{equation}s = \sqrt{\frac{\displaystyle\sum_{i=1}^{n} (x_{i} -\bar{x})^{2}}{n-1}}\end{equation}`
 </BlockMath>
 
 In Python, we have the `std` method to calculate the standard deviation:
@@ -525,7 +525,7 @@ The _correlation_ value is always a number between -1 and 1. This is how we inte
 The formula to calculate correlation is:
 
 <BlockMath>
-  {`\\begin{equation}r_{x,y} = \\frac{\\displaystyle\\sum_{i=1}^{n} (x_{i} -\\bar{x})(y_{i} -\\bar{y})}{\\sqrt{\\displaystyle\\sum_{i=1}^{n} (x_{i} -\\bar{x})^{2}(y_{i} -\\bar{y})^{2}}}\\end{equation}`}
+  `\begin{equation}r_{x,y} = \frac{\displaystyle\sum_{i=1}^{n} (x_{i} -\bar{x})(y_{i} -\bar{y})}{\sqrt{\displaystyle\sum_{i=1}^{n} (x_{i} -\bar{x})^{2}(y_{i} -\bar{y})^{2}}}\end{equation}`
 </BlockMath>
 
 The r𝓍,𝔂 is the notion for the correlation between variables x and y.
@@ -545,7 +545,9 @@ df['Grade'].corr(df['Salary']) # 0.8149286388911882
 
 Linear equations look like this:
 
-<BlockMath>{`\\begin{equation}y = mx + b\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}y = mx + b\end{equation}`
+</BlockMath>
 
 _y_ and _x_ are the coordinate variables, _m_ is the slope of the line, and _b_ is the y-intercept of the line.
 
@@ -558,13 +560,13 @@ Then we define the overall error by taking the error for each point, squaring it
 Here's how we calculate the slope (_m_), which we do using this formula (in which _n_ is the number of observations in our data sample):
 
 <BlockMath>
-  {`\\begin{equation}m = \\frac{n(\\sum{xy}) - (\\sum{x})(\\sum{y})}{n(\\sum{x^{2}})-(\\sum{x})^{2}}\\end{equation}`}
+  `\begin{equation}m = \frac{n(\sum{xy}) - (\sum{x})(\sum{y})}{n(\sum{x^{2}})-(\sum{x})^{2}}\end{equation}`
 </BlockMath>
 
 After we've calculated the slope (_m_), we can use it to calculate the intercept (_b_) like this:
 
 <BlockMath>
-  {`\\begin{equation}b = \\frac{\\sum{y} - m(\\sum{x})}{n}\\end{equation}`}
+  `\begin{equation}b = \frac{\sum{y} - m(\sum{x})}{n}\end{equation}`
 </BlockMath>
 
 If we take this dataset as an example:
@@ -595,21 +597,21 @@ First, let's take each _x_ (Study) and _y_ (Grade) pair and calculate _x<sup>2</
 Here's how we calculate the slope
 
 <BlockMath>
-  {`\\begin{equation}m = \\frac{588.75}
-  {13.255} \\approx 44.4172\\end{equation}`}
+  `\begin{equation}m = \frac{588.75}
+  {13.255} \approx 44.4172\end{equation}`
 </BlockMath>
 
 And here's how we calculate the intercept
 
 <BlockMath>
-  {`\\begin{equation}b = \\frac{53.18389}
-  {7} = 7.597699\\end{equation}`}
+  `\begin{equation}b = \frac{53.18389}
+  {7} = 7.597699\end{equation}`
 </BlockMath>
 
 Now we have our linear function:
 
 <BlockMath>
-  {`\\begin{equation}f(x) = mx + b = 44.4172x + 7.597699\\end{equation}`}
+  `\begin{equation}f(x) = mx + b = 44.4172x + 7.597699\end{equation}`
 </BlockMath>
 
 We can use this for each _x_ (Study) value to calculate the _y_ values for the regression line (_f(x)_), and we can subtract the original _y_ (Grade) from these to calculate the error for each point:
@@ -664,18 +666,22 @@ Some basic definitions and principles:
 - **_Probability_** is a value between 0 and 1 that indicates the likelihood of a particular event, with 0 meaning that the event is impossible, and 1 meaning that the event is inevitable.
 
 <BlockMath>
-  {`\\begin{equation}\\text{probability of an event} = \\frac{\\text{Number of sample points that produce the event}}{\\text{Total number of sample points in the sample space}} \\end{equation}`}
+  `\begin{equation}\text{probability of an event} = \frac{\text{Number of sample points that produce the event}}{\text{Total number of sample points in the sample space}} \end{equation}`
 </BlockMath>
 
 We use the `P(A)` notation to express the probability of an event occurring. `P` is the probability and `A` is the event. Here's the probability of event `A` occurring (in this case, 1/6 or 0.167):
 
-<BlockMath>{`\\begin{equation}P(A) = 0.167 \\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}P(A) = 0.167 \end{equation}`
+</BlockMath>
 
 The _complement_ of an event is the set of _sample points_ that do **_not_** result in the event.
 
 Here's how we indicate this:
 
-<BlockMath>{`\\begin{equation}P(A) = 1 - P(A') \\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}P(A) = 1 - P(A') \end{equation}`
+</BlockMath>
 
 - `P(A)` is the probability of `A` occurring
 - `P(A')` is the complement
@@ -687,7 +693,8 @@ The weather forecast is an example of that. Sunny vs Rainy vs Cloudy days. All o
 If we assign the letter **A** to a sunny day event, **B** to a cloudy day event, and **C** to a rainy day event then we can write these probabilities like this:
 
 <BlockMath>
-  {`\\begin{equation}P(A)=0.6\\;\\;\\;\\; P(B)=0.3\\;\\;\\;\\; P(C)=0.1 \\end{equation}`}
+  `\begin{equation}P(A)=0.6\;\;\;\; P(B)=0.3\;\;\;\; P(C)=0.1 \end
+  {equation}`
 </BlockMath>
 
 ### Conditional Probability and Dependence
@@ -770,8 +777,8 @@ In intersections, we can think of Event A **and** Event B occurring.
 Here's the notation for the combined event probability:
 
 <BlockMath>
-  {`\\begin{equation}P(A \\cap B \\cap C) = P(A) \\times P(B) \\times P(C) \\end
-  {equation}`}
+  `\begin{equation}P(A \cap B \cap C) = P(A) \times P(B) \times P(C) \end
+  {equation}`
 </BlockMath>
 
 The probability of events A, B, and C occurring. This symbol represents "and".
@@ -781,7 +788,7 @@ The probability of events A, B, and C occurring. This symbol represents "and".
 The union's symbol represents "or". Looking at the venn diagram, we can see the sample points in the event A and B but we need to subtract the intersection of A and B (A ⋂ B) to avoid double-counting.
 
 <BlockMath>
-  {`\\begin{equation}P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\\end{equation}`}
+  `\begin{equation}P(A \cup B) = P(A) + P(B) - P(A \cap B)\end{equation}`
 </BlockMath>
 
 ### Dependent Events
@@ -817,27 +824,29 @@ One event is affecting another. This is called dependent events.
 
 The notation for dependent events:
 
-<BlockMath>{`\\begin{equation}P(B|A)\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}P(B|A)\end{equation}`
+</BlockMath>
 
 We can interpret this as _the probability of B, given A_. Given that event A happened, what's the probability of event B.
 
 <BlockMath>
-  {`\\begin{equation}P(B|A) = \\frac{P(A \\cap B)}{P(A)}\\end{equation}`}
+  `\begin{equation}P(B|A) = \frac{P(A \cap B)}{P(A)}\end{equation}`
 </BlockMath>
 
 Suppose the first card drawn is a _spade_, which is black. What is the probability of the next card being red?
 
 <BlockMath>
-  {`\\begin{equation}P(B|A) = \\frac{\\frac{26}{52} \\times \\frac{26}{51}}{\\frac{26}{52}}\\end{equation}`}
+  `\begin{equation}P(B|A) = \frac{\frac{26}{52} \times \frac{26}{51}}{\frac{26}{52}}\end{equation}`
 </BlockMath>
 
 <BlockMath>
-  {`\\begin{equation}P(B|A) = \\frac{0.5 \\times 0.51}{0.5}\\end{equation}`}
+  `\begin{equation}P(B|A) = \frac{0.5 \times 0.51}{0.5}\end{equation}`
 </BlockMath>
 
 <BlockMath>
-  {`\\begin{equation}P(B|A) = \\frac{0.255}
-  {0.5} = 0.51\\end{equation}`}
+  `\begin{equation}P(B|A) = \frac{0.255}
+  {0.5} = 0.51\end{equation}`
 </BlockMath>
 
 ### Mutually Exclusive Events
@@ -858,19 +867,19 @@ The event in question must have the same probability of occurring in each experi
 In `n` experiments, we want to choose `k` successful results. This is known as _n choose k_. This is the notation:
 
 <BlockMath>
-  {`\\begin{equation}\\begin{pmatrix} n \\\\ k\\end{pmatrix}\\end{equation}`}
+  `\begin{equation}\begin{pmatrix} n \\ k\end{pmatrix}\end{equation}`
 </BlockMath>
 
 And here's the formula
 
 <BlockMath>
-  {`\\begin{equation}\\begin{pmatrix} n \\\\ k\\end{pmatrix} = \\frac{n!}{k!(n-k)!}\\end{equation}`}
+  `\begin{equation}\begin{pmatrix} n \\ k\end{pmatrix} = \frac{n!}{k!(n-k)!}\end{equation}`
 </BlockMath>
 
 In the case of <sub>3</sub>C<sub>1</sub> calculation, this means:
 
 <BlockMath>
-  {`\\begin{equation}\\begin{pmatrix} 3 \\\\ 1\\end{pmatrix} = \\frac{3!}{1!(3 - 1)!} = \\frac{3!}{1!\\times2!} =\\frac{3 \\times 2 \\times 1}{1 \\times(2 \\times 1)} = \\frac{6}{2} = 3 \\end{equation}`}
+  `\begin{equation}\begin{pmatrix} 3 \\ 1\end{pmatrix} = \frac{3!}{1!(3 - 1)!} = \frac{3!}{1!\times2!} =\frac{3 \times 2 \times 1}{1 \times(2 \times 1)} = \frac{6}{2} = 3 \end{equation}`
 </BlockMath>
 
 ## Resources

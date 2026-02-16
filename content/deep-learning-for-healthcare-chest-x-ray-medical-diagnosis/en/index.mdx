@@ -441,35 +441,35 @@ Let's unwrap how it is implemented.
 
 We need to recap the equations of convolution and max pooling.
 
-Convolution: <InlineMath>{`Hout=[(Hin−K+2P)/S]+1`}</InlineMath>
+Convolution: <InlineMath>`Hout=[(Hin−K+2P)/S]+1`</InlineMath>
 
-MaxPooling: <InlineMath>{`Hout=[(Hin−K)/S]+1`}</InlineMath>
+MaxPooling: <InlineMath>`Hout=[(Hin−K)/S]+1`</InlineMath>
 
-- <InlineMath>{`Hin`}</InlineMath> = Input Height/Width
-- <InlineMath>{`K`}</InlineMath> = kernel_size (3 for all conv layers)
-- <InlineMath>{`P`}</InlineMath> = padding (1 for all conv layers)
-- <InlineMath>{`S`}</InlineMath> = stride (defaults to 1 for all conv layers)
+- <InlineMath>`Hin`</InlineMath> = Input Height/Width
+- <InlineMath>`K`</InlineMath> = kernel_size (3 for all conv layers)
+- <InlineMath>`P`</InlineMath> = padding (1 for all conv layers)
+- <InlineMath>`S`</InlineMath> = stride (defaults to 1 for all conv layers)
 
 Applying these equations for all the layers, we get:
 
 Shape: `(3, 320, 320)`
 
-- Conv1: <InlineMath>{`320=[(320−3+2∗1)/1]+1`}</InlineMath>
-- Pool1: <InlineMath>{`160=[(320−2)/2]+1`}</InlineMath>
-- Conv2: <InlineMath>{`160=[(160−3+2∗1)/1]+1`}</InlineMath>
-- Pool2: <InlineMath>{`80=[(160−2)/2]+1`}</InlineMath>
-- Conv3: <InlineMath>{`80=[(80−3+2∗1)/1]+1`}</InlineMath>
-- Pool3: <InlineMath>{`40=[(80−2)/2]+1`}</InlineMath>
-- Conv4: <InlineMath>{`40=[(40−3+2∗1)/1]+1`}</InlineMath>
-- Pool4: <InlineMath>{`20=[(40−2)/2]+1`}</InlineMath>
+- Conv1: <InlineMath>`320=[(320−3+2∗1)/1]+1`</InlineMath>
+- Pool1: <InlineMath>`160=[(320−2)/2]+1`</InlineMath>
+- Conv2: <InlineMath>`160=[(160−3+2∗1)/1]+1`</InlineMath>
+- Pool2: <InlineMath>`80=[(160−2)/2]+1`</InlineMath>
+- Conv3: <InlineMath>`80=[(80−3+2∗1)/1]+1`</InlineMath>
+- Pool3: <InlineMath>`40=[(80−2)/2]+1`</InlineMath>
+- Conv4: <InlineMath>`40=[(40−3+2∗1)/1]+1`</InlineMath>
+- Pool4: <InlineMath>`20=[(40−2)/2]+1`</InlineMath>
 
 The final output of the convolution layer is `(B, 128, 20, 20)`
 
-- <InlineMath>{`C=128`}</InlineMath>
-- <InlineMath>{`H=20`}</InlineMath>
-- <InlineMath>{`W=20`}</InlineMath>
+- <InlineMath>`C=128`</InlineMath>
+- <InlineMath>`H=20`</InlineMath>
+- <InlineMath>`W=20`</InlineMath>
 
-In the fully connected layers, we need a 1-dimensional input. This is why we flatten it. To flatten it, we need to multiply all the dimensions: <InlineMath>{`128 \\cdot 20 \\cdot 20`}</InlineMath>.
+In the fully connected layers, we need a 1-dimensional input. This is why we flatten it. To flatten it, we need to multiply all the dimensions: <InlineMath>`128 \cdot 20 \cdot 20`</InlineMath>.
 
 With that model, we can start training it and see how it performs.
 
