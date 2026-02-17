@@ -12,10 +12,10 @@ To revisit the previous implementation of the shallow neural network, take a loo
 
 To add a new hidden layer, we need a few changes in the code:
 
-- Add parameters <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> for the new layer
-- Compute <InlineMath>{`Z^{[1]}`}</InlineMath> and <InlineMath>{`A^{[2]}`}</InlineMath> in the forward propagation (<InlineMath>{`Z^{[3]}`}</InlineMath> and <InlineMath>{`A^{[3]}`}</InlineMath> will be computed for the output layer with the softmax)
-- Compute <InlineMath>{`dZ^{[2]}`}</InlineMath>, <InlineMath>{`dW^{[2]}`}</InlineMath>, and <InlineMath>{`dB^{[2]}`}</InlineMath> in the back prop
-- Update the <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> parameters for the new layer in each iteration
+- Add parameters <InlineMath>`W`</InlineMath> and <InlineMath>`B`</InlineMath> for the new layer
+- Compute <InlineMath>`Z^{[1]}`</InlineMath> and <InlineMath>`A^{[2]}`</InlineMath> in the forward propagation (<InlineMath>`Z^{[3]}`</InlineMath> and <InlineMath>`A^{[3]}`</InlineMath> will be computed for the output layer with the softmax)
+- Compute <InlineMath>`dZ^{[2]}`</InlineMath>, <InlineMath>`dW^{[2]}`</InlineMath>, and <InlineMath>`dB^{[2]}`</InlineMath> in the back prop
+- Update the <InlineMath>`W`</InlineMath> and <InlineMath>`B`</InlineMath> parameters for the new layer in each iteration
 
 Here's what it looks like:
 
@@ -25,7 +25,7 @@ Here's what it looks like:
   class="full"
 />
 
-The first part initializes the <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> parameters for this new layer. Before we had <InlineMath>{`B^{[1]}`}</InlineMath>, <InlineMath>{`W^{[1]}`}</InlineMath>, <InlineMath>{`B^{[2]}`}</InlineMath>, and <InlineMath>{`W^{[2]}`}</InlineMath>. Now we need <InlineMath>{`B^{[3]}`}</InlineMath> and <InlineMath>{`W^{[3]}`}</InlineMath> but with a few adjustments because <InlineMath>{`B^{[3]}`}</InlineMath> and <InlineMath>{`W^{[3]}`}</InlineMath> will be the parameters for the output layer and <InlineMath>{`B^{[2]}`}</InlineMath> and <InlineMath>{`W^{[2]}`}</InlineMath> will be the new parameters.
+The first part initializes the <InlineMath>`W`</InlineMath> and <InlineMath>`B`</InlineMath> parameters for this new layer. Before we had <InlineMath>`B^{[1]}`</InlineMath>, <InlineMath>`W^{[1]}`</InlineMath>, <InlineMath>`B^{[2]}`</InlineMath>, and <InlineMath>`W^{[2]}`</InlineMath>. Now we need <InlineMath>`B^{[3]}`</InlineMath> and <InlineMath>`W^{[3]}`</InlineMath> but with a few adjustments because <InlineMath>`B^{[3]}`</InlineMath> and <InlineMath>`W^{[3]}`</InlineMath> will be the parameters for the output layer and <InlineMath>`B^{[2]}`</InlineMath> and <InlineMath>`W^{[2]}`</InlineMath> will be the new parameters.
 
 ```python
 def init_params():
@@ -64,7 +64,7 @@ def forward_propagation(W1, B1, W2, B2, W3, B3, X):
   return Z1, A1, Z2, A2, Z3, A3
 ```
 
-Now that we have the linear combinations and outputs generated from the forward propagation process, we can modify the backward propagation to compute the derivatives (<InlineMath>{`dW`}</InlineMath>s, <InlineMath>{`dB`}</InlineMath>s) and then use them to update the parameters.
+Now that we have the linear combinations and outputs generated from the forward propagation process, we can modify the backward propagation to compute the derivatives (<InlineMath>`dW`</InlineMath>s, <InlineMath>`dB`</InlineMath>s) and then use them to update the parameters.
 
 Just to recap, the back prop implementation from the shallow neural net looks like this:
 
@@ -104,9 +104,9 @@ def backward_propagation(Z1, A1, Z2, A2, Z3, A3, W1, W2, W3, X, Y):
   return dW1, dB1, dW2, dB2, dW3, dB3
 ```
 
-Because we apply a ReLU function to the first layers, their computations look similar in the back prop. We need to derive the ReLU function and generate the <InlineMath>{`dW`}</InlineMath>s and <InlineMath>{`dB`}</InlineMath>s for both of them.
+Because we apply a ReLU function to the first layers, their computations look similar in the back prop. We need to derive the ReLU function and generate the <InlineMath>`dW`</InlineMath>s and <InlineMath>`dB`</InlineMath>s for both of them.
 
-With all the <InlineMath>{`dW`}</InlineMath>s and <InlineMath>{`dB`}</InlineMath>s, we now can update the <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> parameters.
+With all the <InlineMath>`dW`</InlineMath>s and <InlineMath>`dB`</InlineMath>s, we now can update the <InlineMath>`W`</InlineMath> and <InlineMath>`B`</InlineMath> parameters.
 
 ```python
 def update_params(W1, B1, W2, B2, W3, B3, dW1, dB1, dW2, dB2, dW3, dB3, LR):
@@ -174,7 +174,7 @@ class NeuralNetwork:
     self.init_params()
 ```
 
-The idea here is to receive the data and the hyperparameters (`LR` and `iterations`) and store them in reusable variables. Then, we initialize the parameters <InlineMath>{`B`}</InlineMath>s and <InlineMath>{`W`}</InlineMath>s using the `initi_params` method:
+The idea here is to receive the data and the hyperparameters (`LR` and `iterations`) and store them in reusable variables. Then, we initialize the parameters <InlineMath>`B`</InlineMath>s and <InlineMath>`W`</InlineMath>s using the `initi_params` method:
 
 ```python
 def init_params(self):
@@ -200,7 +200,7 @@ def init_params(self):
   self.dB3 = None
 ```
 
-We also need to initialize the linear combinations (<InlineMath>{`Z`}</InlineMath>s), outputs from activation functions (<InlineMath>{`A`}</InlineMath>s), and the derivatives of <InlineMath>{`W`}</InlineMath> and <InlineMath>{`B`}</InlineMath> (<InlineMath>{`dW`}</InlineMath> and <InlineMath>{`dB`}</InlineMath>). We need that to hold the values in each iteration so we can reuse them in any place in the class.
+We also need to initialize the linear combinations (<InlineMath>`Z`</InlineMath>s), outputs from activation functions (<InlineMath>`A`</InlineMath>s), and the derivatives of <InlineMath>`W`</InlineMath> and <InlineMath>`B`</InlineMath> (<InlineMath>`dW`</InlineMath> and <InlineMath>`dB`</InlineMath>). We need that to hold the values in each iteration so we can reuse them in any place in the class.
 
 One missing part of the initialization is the `one_hot` method:
 
@@ -239,7 +239,7 @@ def predict(self, X):
 
 It follows the same idea of the `one_hot` method: pretty much the same implementation as before but now wrapped into class methods.
 
-To do the forward propagation, we should store the linear combinations <InlineMath>{`Z`}</InlineMath>s and outputs <InlineMath>{`A`}</InlineMath>s into the class variables using `self`. Besides that, the implementation looks the same:
+To do the forward propagation, we should store the linear combinations <InlineMath>`Z`</InlineMath>s and outputs <InlineMath>`A`</InlineMath>s into the class variables using `self`. Besides that, the implementation looks the same:
 
 ```python
 def forward_propagation(self, X):
@@ -253,7 +253,7 @@ def forward_propagation(self, X):
   self.A3 = self.softmax(self.Z3)
 ```
 
-Before, we needed to always pass the <InlineMath>{`W`}</InlineMath>s and <InlineMath>{`B`}</InlineMath>s for the function, but now we can access them using the variables defined in the `self`.
+Before, we needed to always pass the <InlineMath>`W`</InlineMath>s and <InlineMath>`B`</InlineMath>s for the function, but now we can access them using the variables defined in the `self`.
 
 The backward propagation follows the same idea: we don't need to pass any parameter to the method, it directly accesses the variables inside the method:
 
@@ -342,7 +342,7 @@ To build the neural network in this way, we need to think about dynamic layers. 
 
 Let's see an example. For a 3-layer neural net, we have the input layer, two hidden layers, and one output layer, so the `layer_dimensions` should be something like `[784, 100, 100, 10]`.
 
-For the <InlineMath>{`W`}</InlineMath> parameter, we have:
+For the <InlineMath>`W`</InlineMath> parameter, we have:
 
 ```python
 len(W) # 4
@@ -355,7 +355,7 @@ W[3] # weight vector for the output layer
 
 Based on the `layer_dimensions`, we should initialize this parameter in an array format, so we hold the value for each layer.
 
-We should have the same implementation for the bias (<InlineMath>{`B`}</InlineMath>s), the linear combinations (<InlineMath>{`Z`}</InlineMath>s), and the output generated by the activation function (<InlineMath>{`A`}</InlineMath>s).
+We should have the same implementation for the bias (<InlineMath>`B`</InlineMath>s), the linear combinations (<InlineMath>`Z`</InlineMath>s), and the output generated by the activation function (<InlineMath>`A`</InlineMath>s).
 
 Let's focus on the weight and bias first and then we can implement the same idea for the rest too.
 
@@ -378,7 +378,7 @@ This is how the weights and biases are created:
 - `W1` should have the number of hidden units (100) per value of the input (784)
 - `W2` should have the number of hidden units (100) per size of the previous layer (100)
 - `W3` should have the number of hidden units (10) per size of the previous layer (100)
-- <InlineMath>{`Z^{[1]}`}</InlineMath>, `B2`, and `B3` should have the number of
+- <InlineMath>`Z^{[1]}`</InlineMath>, `B2`, and `B3` should have the number of
   hidden units per 1
 
 If these rules, we have the logic:
@@ -415,7 +415,7 @@ self.dB = [None for i in range(len(layer_dimensions))]
 
 The idea here is simpler because we don't need to calculate anything. For linear combinations and derivatives, we only need to initialize them with null values (or `None` in Python).
 
-Layer outputs are almost the same, but the first value is actually the dataset. We have <InlineMath>{`A`}</InlineMath> for the training data and `A_test` for the test data. The following values in these arrays will be the output of each layer until the end of the neural net.
+Layer outputs are almost the same, but the first value is actually the dataset. We have <InlineMath>`A`</InlineMath> for the training data and `A_test` for the test data. The following values in these arrays will be the output of each layer until the end of the neural net.
 
 After have the parameters initialization in place, we need to adjust the implementation of the forward and backward propagations again. Let's recap what the implementation looked like:
 
@@ -465,7 +465,7 @@ def forward_propagation(self):
 Here's the algorithm:
 
 - Iterate through the `layer_dimensions`, starting from 1 because we don't need to compute linear combinations nor layer outputs for the input layer
-- In each layer, we should update the linear combination (<InlineMath>{`Z`}</InlineMath>) and the layer output (<InlineMath>{`A`}</InlineMath>)
+- In each layer, we should update the linear combination (<InlineMath>`Z`</InlineMath>) and the layer output (<InlineMath>`A`</InlineMath>)
 - For the linear combination, notice that we need to access the output from the previous layer
   - For the first hidden layer, the output of the previous layer is the input data
   - For the following layers, the data is the output generated by the previous layer
@@ -559,63 +559,94 @@ Let's recap how the math of neural nets works before giving the intuition on why
 
 As an example, we have a neural network with 3 layers, and these are the linear combinations of each layer:
 
-<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}Z^{[2]} = W^{[2]} X + B^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[2]} = W^{[2]} X + B^{[2]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}Z^{[3]} = W^{[3]} X + B^{[3]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[3]} = W^{[3]} X + B^{[3]}\end{equation}`
+</BlockMath>
 
-The <InlineMath>{`X`}</InlineMath> for the first layer is the input data. The <InlineMath>{`X`}</InlineMath> for the second and third layers are the output from the previous layer (linear combination with applied activation function).
+The <InlineMath>`X`</InlineMath> for the first layer is the input data. The <InlineMath>`X`</InlineMath> for the second and third layers are the output from the previous layer (linear combination with applied activation function).
 
-With the activation function, we get <InlineMath>{`A`}</InlineMath>, so it looks like this:
+With the activation function, we get <InlineMath>`A`</InlineMath>, so it looks like this:
 
-<BlockMath>{`\\begin{equation}A^{[1]} = g(Z^{[1]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[1]} = g(Z^{[1]})\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}A^{[2]} = g(Z^{[2]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[2]} = g(Z^{[2]})\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}A^{[3]} = g(Z^{[3]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[3]} = g(Z^{[3]})\end{equation}`
+</BlockMath>
 
 And then we can replace the X for the second and third layers like this:
 
-<BlockMath>{`\\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}Z^{[3]} = W^{[3]} A^{[2]} + B^{[3]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[3]} = W^{[3]} A^{[2]} + B^{[3]}\end{equation}`
+</BlockMath>
 
 To sum up, we can say that the output is:
 
-<BlockMath>{`\\begin{equation}Y = g(W^{[3]} g(W^{[2]} g(W^{[1]} X + B^{[1]}) + B^{[2]}) + B^{[3]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Y = g(W^{[3]} g(W^{[2]} g(W^{[1]} X + B^{[1]}) + B^{[2]}) +
+  B^{[3]})\end{equation}`
+</BlockMath>
 
 Now let's understand the intuition behind why gradients explode or vanish with the increase of layers in deep neural networks.
 
-For the sake of simplicity, let's say that <InlineMath>{`B = 0`}</InlineMath> and <InlineMath>{`g(Z) = Z`}</InlineMath>.
+For the sake of simplicity, let's say that <InlineMath>`B = 0`</InlineMath> and <InlineMath>`g(Z) = Z`</InlineMath>.
 
 This:
 
-<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\end{equation}`
+</BlockMath>
 
 will become this:
 
-<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[1]} = W^{[1]} X\end{equation}`
+</BlockMath>
 
 The output of the activation function will also be only Z for simplicity. So:
 
-<BlockMath>{`\\begin{equation}A^{[1]} = g(Z^{[1]}) = Z^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[1]} = g(Z^{[1]}) = Z^{[1]}\end{equation}`
+</BlockMath>
 
 Because we simplified the math, we get the output as
 
-<BlockMath>{`\\begin{equation}Y = W^{[3]} W^{[2]} W^{[1]} X\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Y = W^{[3]} W^{[2]} W^{[1]} X\end{equation}`
+</BlockMath>
 
 Suppose W is a simple vector like
 
-<BlockMath>{`\\begin{pmatrix} 1.5 & 0 \\\\ 0 & 1.5 \\end{pmatrix}`}</BlockMath>
+<BlockMath>
+  `\begin{pmatrix} 1.5 & 0 \\ 0 & 1.5 \end{pmatrix}`
+</BlockMath>
 
 The output will be 1.5^[l-1]. The deeper the neural net, the larger the output will be. In other words, with the increase in the number of layers in the model, the output will increase exponentially and explode.
 
-If <InlineMath>{`W`}</InlineMath> is
+If <InlineMath>`W`</InlineMath> is
 
-<BlockMath>{`\\begin{pmatrix} 0.5 & 0 \\\\ 0 & 0.5 \\end{pmatrix}`}</BlockMath>
+<BlockMath>
+  `\begin{pmatrix} 0.5 & 0 \\ 0 & 0.5 \end{pmatrix}`
+</BlockMath>
 
-Then, the output is <InlineMath>{`0.5^{[l-1]}`}</InlineMath> and will vanish with the increase of layers.
+Then, the output is <InlineMath>`0.5^{[l-1]}`</InlineMath> and will vanish with the increase of layers.
 
 One of the ways to minimize this problem is choosing a better weight initialization value. This is how a good weight initialization helps: Well-chosen initialization techniques, such as Xavier/Glorot initialization or He initialization, aim to keep the signal flowing smoothly through the network's layers, preventing gradients from vanishing or exploding.
 
@@ -626,7 +657,7 @@ Besides that, it also helps with:
 
 In our model, we use the He initialization, a weight initialization technique specifically designed for neural networks that use the ReLU activation function. it helps with the vanishing/exploding gradients problem by making the weights not much bigger than 1 and not much smaller than 1.
 
-In practice, we just need to add this term <InlineMath>{`\\sqrt{\\frac{2}{n^{[l-1]}}}`}</InlineMath> to the weight initialization, where <InlineMath>{`n^{[l-1]}`}</InlineMath> is the number of units in the previous layer.
+In practice, we just need to add this term <InlineMath>`\sqrt{\frac{2}{n^{[l-1]}}}`</InlineMath> to the weight initialization, where <InlineMath>`n^{[l-1]}`</InlineMath> is the number of units in the previous layer.
 
 In the Python implementation, it works pretty simple:
 

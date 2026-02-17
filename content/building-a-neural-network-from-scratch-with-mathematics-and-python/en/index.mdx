@@ -18,7 +18,7 @@ A simple neural network will receive data as input, process the data in the hidd
 
 For a simple neural network, let's say a 2-layer neural network, it has an input layer, a hidden layer where we do our first linear combination together with the application of an activation function, and then we have our second layer, also called, in this case, the output layer, where we also have a linear combination and then apply a different activation function to classify or predict an estimate, depending on the problem.
 
-For the input layer, we use the symbol <InlineMath>{`X`}</InlineMath> and this is a matrix of all features and training examples. The features are usually the columns and the rows are all training examples. It's commonly used `m` as the number of rows (training examples) and `n` as the number of columns (features).
+For the input layer, we use the symbol <InlineMath>`X`</InlineMath> and this is a matrix of all features and training examples. The features are usually the columns and the rows are all training examples. It's commonly used `m` as the number of rows (training examples) and `n` as the number of columns (features).
 
 And then we have the hidden layer. The neural network makes a bunch of connections between the input and the hidden layers.
 
@@ -32,11 +32,13 @@ Each neuron, also called a hidden unit, will do two main things:
 - Compute a linear combination (input, weight, and bias)
 - Compute the activation function for this linear combination
 
-The linear combination is basically the input data times a weight <InlineMath>{`w`}</InlineMath> plus a bias term <InlineMath>{`b`}</InlineMath>. Both <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</InlineMath> are parameters that the neural network will use in the learning process.
+The linear combination is basically the input data times a weight <InlineMath>`w`</InlineMath> plus a bias term <InlineMath>`b`</InlineMath>. Both <InlineMath>`w`</InlineMath> and <InlineMath>`b`</InlineMath> are parameters that the neural network will use in the learning process.
 
-<BlockMath>{`\\begin{equation}z = w x + b\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}z = w x + b\end{equation}`
+</BlockMath>
 
-In linear algebra, linear combinations are usually symbolized with a <InlineMath>{`z`}</InlineMath>.
+In linear algebra, linear combinations are usually symbolized with a <InlineMath>`z`</InlineMath>.
 
 After the linear combination, we need to apply an activation function. It's a non-linear function to add complexity to the model. Different types of functions can be applied here: sigmoid, tanh, ReLU, etc.
 
@@ -47,9 +49,9 @@ After the linear combination, we need to apply an activation function. It's a no
 
 Activation functions allow the network to learn and represent complex patterns by introducing non-linearities, enabling it to approximate complex functions. It also helps the neural network to generalize and learn abstract features. It also allows gradients to be meaningful, enabling efficient learning.
 
-The output of this first hidden layer is represented by the symbol <InlineMath>{`A`}</InlineMath>. With many layers in the neural network, we need to name them with the layer number, like <InlineMath>{`{A^{[1]}}`}</InlineMath>, <InlineMath>{`{A^{[2]}}`}</InlineMath>, <InlineMath>{`{A^{[3]}}`}</InlineMath>, etc.
+The output of this first hidden layer is represented by the symbol <InlineMath>`A`</InlineMath>. With many layers in the neural network, we need to name them with the layer number, like <InlineMath>`{A^{[1]}}`</InlineMath>, <InlineMath>`{A^{[2]}}`</InlineMath>, <InlineMath>`{A^{[3]}}`</InlineMath>, etc.
 
-The output layer has a similar structure to the hidden layer. It computes the linear combination and the activation function. The difference is that the input for this layer is <InlineMath>{`{A^{[1]}}`}</InlineMath>, the output of the first layer and we use a different activation function to compute the prediction. For example, It can be a linear function for a regression problem, a sigmoid function for a binary classification, or softmax for a multiclass classification problem.
+The output layer has a similar structure to the hidden layer. It computes the linear combination and the activation function. The difference is that the input for this layer is <InlineMath>`{A^{[1]}}`</InlineMath>, the output of the first layer and we use a different activation function to compute the prediction. For example, It can be a linear function for a regression problem, a sigmoid function for a binary classification, or softmax for a multiclass classification problem.
 
 With the prediction, we can now measure how well our neural network model’s predictions align with the actual target values. In other words, we compute a loss function.
 
@@ -77,21 +79,27 @@ Let's now build up the maths for the neural network. We'll start with the forwar
   class="full"
 />
 
-We have a matrix as the input layer and we'll use it as the input for the first hidden layer. The symbol we use here is <InlineMath>{`X`}</InlineMath>.
+We have a matrix as the input layer and we'll use it as the input for the first hidden layer. The symbol we use here is <InlineMath>`X`</InlineMath>.
 
 To compute the hidden layer, we first need to compute the linear combination:
 
-<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\end{equation}`
+</BlockMath>
 
-We call a linear combination as <InlineMath>{`Z`}</InlineMath>, or in this case <InlineMath>{`{Z^{[1]}}`}</InlineMath> because it's the linear combination of the first layer.
+We call a linear combination as <InlineMath>`Z`</InlineMath>, or in this case <InlineMath>`{Z^{[1]}}`</InlineMath> because it's the linear combination of the first layer.
 
-Then we need to apply the activation function, symbolized by <InlineMath>{`{g^{[1]}}`}</InlineMath>, resulting in the output of the first layer: <InlineMath>{`{A^{[1]}}`}</InlineMath>.
+Then we need to apply the activation function, symbolized by <InlineMath>`{g^{[1]}}`</InlineMath>, resulting in the output of the first layer: <InlineMath>`{A^{[1]}}`</InlineMath>.
 
-<BlockMath>{`\\begin{equation}A^{[1]} = g^{[1]}(Z^{[1]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[1]} = g^{[1]}(Z^{[1]})\end{equation}`
+</BlockMath>
 
 In the following section, we'll talk about the classification problem we'll apply all this theory and the activation function we'll use is one called Rectified Linear Unit (ReLU) which is a very simple function and easy to implement and derive.
 
-<BlockMath>{`\\begin{equation}f(Z) = max(Z, 0)\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}f(Z) = max(Z, 0)\end{equation}`
+</BlockMath>
 
 In words, the ReLU function outputs:
 
@@ -100,13 +108,17 @@ In words, the ReLU function outputs:
 
 All of this is for the first layer. The second layer is pretty much the same idea but we annotate the symbols with `2` to specify we are talking about the second one.
 
-<BlockMath>{`\\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}A^{[2]} = g(Z^{[2]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[2]} = g(Z^{[2]})\end{equation}`
+</BlockMath>
 
 For the second activation function, we'll be using a different one than ReLU because we want to compute the probability of multi-label classification. The function is called softmax.
 
-<BlockMath>{`\\begin{equation}softmax(x_i) = \\frac{e^{x_i}}{\sum_{j=1}^{k} e^{x_j}}\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}softmax(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{k} e^{x_j}}\end{equation}`</BlockMath>
 
 The output of this function is the probability of all input values. The predicted label will be the class with a higher probability score. All the possible labels have a probability and if sum all of them, we get 1 (or 100%).
 
@@ -116,9 +128,9 @@ But why derivatives? Because we want to compute something called gradients, and 
 
 Until now, what we did was to compute an output, a prediction. In this case, the probability of different classes or labels. But if we do it just one time, the neural network is not learning.
 
-The learning process is about “how much the loss function minimizes if we change the model parameters?” and keep changing them until it's “enough”. In other words, we want to understand how much the loss function will change if we change the <InlineMath>{`w`}</InlineMath> and <InlineMath>{`b`}</InlineMath> parameters. We update them and repeat the process so for each iteration, the neural network is learning more and more patterns and performing better over time.
+The learning process is about “how much the loss function minimizes if we change the model parameters?” and keep changing them until it's “enough”. In other words, we want to understand how much the loss function will change if we change the <InlineMath>`w`</InlineMath> and <InlineMath>`b`</InlineMath> parameters. We update them and repeat the process so for each iteration, the neural network is learning more and more patterns and performing better over time.
 
-This concept of “rate of change” of the loss function with respect to parameter <InlineMath>{`w`}</InlineMath> or parameter <InlineMath>{`b`}</InlineMath> is basically a derivative.
+This concept of “rate of change” of the loss function with respect to parameter <InlineMath>`w`</InlineMath> or parameter <InlineMath>`b`</InlineMath> is basically a derivative.
 
 <img
   src="/building-a-neural-network-from-scratch-with-mathematics-and-python/004.png"
@@ -128,83 +140,93 @@ This concept of “rate of change” of the loss function with respect to parame
 
 We compute the gradients from the end of the neural network all the way to the beginning of it. Here are all the steps we need to do then:
 
-<InlineMath>{`\\frac{dL}{dz^{[2]}} =
-dz^{[2]} =`}</InlineMath> derivative of the loss function with respect to <InlineMath>{`z^{[2]}`}</InlineMath>
+<InlineMath>`\frac{dL}{dz^{[2]}} =
+dz^{[2]} =`</InlineMath> derivative of the loss function with respect to <InlineMath>`z^{[2]}`</InlineMath>
 
-<InlineMath>{`\\frac{dL}{dw^{[2]}} =
-dw^{[2]} =`}</InlineMath> derivative of the loss function with respect to <InlineMath>{`w^{[2]}`}</InlineMath>
+<InlineMath>`\frac{dL}{dw^{[2]}} =
+dw^{[2]} =`</InlineMath> derivative of the loss function with respect to <InlineMath>`w^{[2]}`</InlineMath>
 
-<InlineMath>{`\\frac{dL}{db^{[2]}} =
-db^{[2]} =`}</InlineMath> derivative of the loss function with respect to <InlineMath>{`b^{[2]}`}</InlineMath>
+<InlineMath>`\frac{dL}{db^{[2]}} =
+db^{[2]} =`</InlineMath> derivative of the loss function with respect to <InlineMath>`b^{[2]}`</InlineMath>
 
-<InlineMath>{`\\frac{dL}{dz^{[1]}} =
-dz^{[1]} =`}</InlineMath> derivative of the loss function with respect to <InlineMath>{`z^{[1]}`}</InlineMath>
+<InlineMath>`\frac{dL}{dz^{[1]}} =
+dz^{[1]} =`</InlineMath> derivative of the loss function with respect to <InlineMath>`z^{[1]}`</InlineMath>
 
-<InlineMath>{`\\frac{dL}{dw^{[1]}} =
-dw^{[1]} =`}</InlineMath> derivative of the loss function with respect to <InlineMath>{`w^{[1]}`}</InlineMath>
+<InlineMath>`\frac{dL}{dw^{[1]}} =
+dw^{[1]} =`</InlineMath> derivative of the loss function with respect to <InlineMath>`w^{[1]}`</InlineMath>
 
-<InlineMath>{`\\frac{dL}{db^{[1]}} =
-db^{[1]} =`}</InlineMath> derivative of the loss function with respect to <InlineMath>{`b^{[1]}`}</InlineMath>
+<InlineMath>`\frac{dL}{db^{[1]}} =
+db^{[1]} =`</InlineMath> derivative of the loss function with respect to <InlineMath>`b^{[1]}`</InlineMath>
 
 Let's compute that.
 
-To compute <InlineMath>{`{dz^{[2]}}`}</InlineMath>, we need to do the derivative of the loss function and <InlineMath>{`{dz^{[2]}}`}</InlineMath>. This is basically the chain rule: To compute <InlineMath>{`\\frac{dL}{dz^{[2]}} = \\frac{dL}{da} \\cdot \\frac{da}{dz^{[2]}}`}</InlineMath>, which is calculated as <InlineMath>{`{a}^{[2]} - y`}</InlineMath>, where <InlineMath>{`{a}^{[2]}`}</InlineMath> is the predicted value and <InlineMath>{`y`}</InlineMath> is the real label.
+To compute <InlineMath>`{dz^{[2]}}`</InlineMath>, we need to do the derivative of the loss function and <InlineMath>`{dz^{[2]}}`</InlineMath>. This is basically the chain rule: To compute <InlineMath>`\frac{dL}{dz^{[2]}} = \frac{dL}{da} \cdot \frac{da}{dz^{[2]}}`</InlineMath>, which is calculated as <InlineMath>`{a}^{[2]} - y`</InlineMath>, where <InlineMath>`{a}^{[2]}`</InlineMath> is the predicted value and <InlineMath>`y`</InlineMath> is the real label.
 
-For the weight in the second layer, we compute this derivative: <InlineMath>{`\\frac{dL}{dw^{[2]}} = {dw^{[2]}} = \\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{dw^{[2]}} = {({a}^{[2]} - y)} \\cdot {a^{[1]}}^T`}</InlineMath>.
+For the weight in the second layer, we compute this derivative: <InlineMath>`\frac{dL}{dw^{[2]}} = {dw^{[2]}} = \frac{dL}{dz^{[2]}} \cdot \frac{dz^{[2]}}{dw^{[2]}} = {({a}^{[2]} - y)} \cdot {a^{[1]}}^T`</InlineMath>.
 
-The computation for the bias is similar to the weight but we compute the derivative of the loss function with respect to the bias in the second layer: <InlineMath>{`\\frac{dL}{db^{[2]}} = {db^{[2]}} = \\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{db^{[2]}} = {dz^{[2]}}`}</InlineMath>.
+The computation for the bias is similar to the weight but we compute the derivative of the loss function with respect to the bias in the second layer: <InlineMath>`\frac{dL}{db^{[2]}} = {db^{[2]}} = \frac{dL}{dz^{[2]}} \cdot \frac{dz^{[2]}}{db^{[2]}} = {dz^{[2]}}`</InlineMath>.
 
-<InlineMath>{`\\frac{dL}{dz^{[1]}} = {dz^{[1]}}`}</InlineMath>: the derivative
-of the loss function with respect to <InlineMath>{`z^{[1]}`}</InlineMath> is a bigger
-chain rule: <InlineMath>{`\\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{da^{[1]}} \\cdot \\frac{da^{[1]}}{dz^{[1]}}`}</InlineMath>
-, producing <InlineMath>{`{w^{[2]}}^T \\cdot {dz^{[2]}} \\cdot g\\'(z^{[1]})`}</InlineMath>
+<InlineMath>`\frac{dL}{dz^{[1]}} = {dz^{[1]}}`</InlineMath>: the derivative
+of the loss function with respect to <InlineMath>`z^{[1]}`</InlineMath> is a bigger
+chain rule: <InlineMath>`\frac{dL}{dz^{[2]}} \cdot \frac{dz^{[2]}}{da^{[1]}} \cdot \frac{da^{[1]}}{dz^{[1]}}`</InlineMath>
+, producing <InlineMath>`{w^{[2]}}^T \cdot {dz^{[2]}} \cdot g\'(z^{[1]})`</InlineMath>
 
-<InlineMath>{`g\\'(z^{[1]})`}</InlineMath> is the derivative of the loss
-function with respect to the activation function <InlineMath>{`g`}</InlineMath>.
-In the example of this post, we need to do the derivative of the ReLU activation
-function.
+<InlineMath>`g\'(z^{[1]})`</InlineMath> is the derivative of the loss function with
+respect to the activation function <InlineMath>`g`</InlineMath>. In the example
+of this post, we need to do the derivative of the ReLU activation function.
 
-Because a ReLU function is <InlineMath>{`z`}</InlineMath> if <InlineMath>{`z > 0`}</InlineMath> and 0 if <InlineMath>{`z \\le 0`}</InlineMath>, the derivative of it is 1 if <InlineMath>{`z > 0`}</InlineMath> and 0 if <InlineMath>{`z \\le 0`}</InlineMath>. In the practice example, we'll see how this is very simple to implement in Python and Numpy.
+Because a ReLU function is <InlineMath>`z`</InlineMath> if <InlineMath>`z > 0`</InlineMath> and 0 if <InlineMath>`z \le 0`</InlineMath>, the derivative of it is 1 if <InlineMath>`z > 0`</InlineMath> and 0 if <InlineMath>`z \le 0`</InlineMath>. In the practice example, we'll see how this is very simple to implement in Python and Numpy.
 
-The derivative of <InlineMath>{`\\frac{dL}{dw^{[1]}} = {dw^{[1]}}`}</InlineMath> is <InlineMath>{`\\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{da^{[1]}} \\cdot \\frac{da^{[1]}}{dz^{[1]}} \\cdot \\frac{dz^{[1]}}{dw^{[1]}}`}</InlineMath>, producing <InlineMath>{`dz^{[1]} \\cdot x^T`}</InlineMath>
+The derivative of <InlineMath>`\frac{dL}{dw^{[1]}} = {dw^{[1]}}`</InlineMath> is <InlineMath>`\frac{dL}{dz^{[2]}} \cdot \frac{dz^{[2]}}{da^{[1]}} \cdot \frac{da^{[1]}}{dz^{[1]}} \cdot \frac{dz^{[1]}}{dw^{[1]}}`</InlineMath>, producing <InlineMath>`dz^{[1]} \cdot x^T`</InlineMath>
 
-The derivative of <InlineMath>{`\\frac{dL}{db^{[1]}} = {db^{[1]}}`}</InlineMath> is <InlineMath>{`\\frac{dL}{dz^{[2]}} \\cdot \\frac{dz^{[2]}}{da^{[1]}} \\cdot \\frac{da^{[1]}}{dz^{[1]}} \\cdot \\frac{dz^{[1]}}{db^{[1]}}`}</InlineMath>, producing <InlineMath>{`dz^{[1]}`}</InlineMath>
+The derivative of <InlineMath>`\frac{dL}{db^{[1]}} = {db^{[1]}}`</InlineMath> is <InlineMath>`\frac{dL}{dz^{[2]}} \cdot \frac{dz^{[2]}}{da^{[1]}} \cdot \frac{da^{[1]}}{dz^{[1]}} \cdot \frac{dz^{[1]}}{db^{[1]}}`</InlineMath>, producing <InlineMath>`dz^{[1]}`</InlineMath>
 
-That's so interestingly intuitive because if we see the chain rule, we can see the backpropagation in this computation from <InlineMath>{`z^{[2]}`}</InlineMath> to the first parameters <InlineMath>{`w^{[1]}`}</InlineMath> and <InlineMath>{`b^{[1]}`}</InlineMath>.
+That's so interestingly intuitive because if we see the chain rule, we can see the backpropagation in this computation from <InlineMath>`z^{[2]}`</InlineMath> to the first parameters <InlineMath>`w^{[1]}`</InlineMath> and <InlineMath>`b^{[1]}`</InlineMath>.
 
 So here are all the derivatives together:
 
-<BlockMath>{`\\begin{equation}\\frac{dL}{dz^{[2]}} = dz^{[2]} = {a}^{[2]} - y\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}\frac{dL}{dz^{[2]}} = dz^{[2]} = {a}^{[2]} - y\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}\\frac{dL}{dw^{[2]}} = dw^{[2]} = {({a}^{[2]} - y)} \\cdot {a^{[1]}}^T\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}\frac{dL}{dw^{[2]}} = dw^{[2]} = {({a}^{[2]} - y)} \cdot {a^{[1]}}^T\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}\\frac{dL}{db^{[2]}} = db^{[2]} = dz^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}\frac{dL}{db^{[2]}} = db^{[2]} = dz^{[2]}\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}\\frac{dL}{dz^{[1]}} = dz^{[1]} = {w^{[2]}}^T \\cdot {dz^{[2]}} \\cdot g\\'(z^{[1]})\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}\frac{dL}{dz^{[1]}} = dz^{[1]} = {w^{[2]}}^T \cdot {dz^{[2]}} \cdot g\'(z^{[1]})\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}\\frac{dL}{dw^{[1]}} = dw^{[1]} = dz^{[1]} \\cdot x^T\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}\frac{dL}{dw^{[1]}} = dw^{[1]} = dz^{[1]} \cdot x^T\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}\\frac{dL}{db^{[1]}} = db^{[1]} = dz^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}\frac{dL}{db^{[1]}} = db^{[1]} = dz^{[1]}\end{equation}`</BlockMath>
 
 But this is a computation for only one training example. We need to do this for all the training examples in the dataset. Rather than implementing a loop, we can use a much faster operation called vectorization. In this process, we compute operations between matrices.
 
-So, instead of computing for just one value <InlineMath>{`z`}</InlineMath>, we do it for all the training examples. We symbolize it with <InlineMath>{`Z`}</InlineMath> (capital Z). Here are all the derivatives using vectorization:
+So, instead of computing for just one value <InlineMath>`z`</InlineMath>, we do it for all the training examples. We symbolize it with <InlineMath>`Z`</InlineMath> (capital Z). Here are all the derivatives using vectorization:
 
-<BlockMath>{`\\begin{equation}dZ^{[2]} = {A}^{[2]} - Y\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dZ^{[2]} = {A}^{[2]} - Y\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}dW^{[2]} = \\frac{1}{m} \\cdot {dZ}^{[2]} \\cdot {A^{[1]}}^T\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}dW^{[2]} = \frac{1}{m} \cdot {dZ}^{[2]} \cdot {A^{[1]}}^T\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}dB^{[2]} = \\frac{1}{m} \\cdot \\sum_{i=1}^m dZ^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dB^{[2]} = \frac{1}
+  {m} \cdot \sum_{(i = 1)}^m dZ^{[2]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}dZ^{[1]} = {W^{[2]}}^T \\cdot {dZ^{[2]}} \\cdot g\\'(Z^{[1]})\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}dZ^{[1]} = {W^{[2]}}^T \cdot {dZ^{[2]}} \cdot g\'(Z^{[1]})\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}dW^{[1]} = \\frac{1}{m} \\cdot dZ^{[1]} \\cdot X^T\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dW^{[1]} = \frac{1}
+  {m} \cdot dZ^{[1]} \cdot X^T\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}dB^{[1]} = \\frac{1}{m} \\cdot \\sum_{i=1}^m dZ^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dB^{[1]} = \frac{1}
+  {m} \cdot \sum_{(i = 1)}^m dZ^{[1]}\end{equation}`
+</BlockMath>
 
-When computing the derivatives for the weights and biases (<InlineMath>{`dW^{[1]}`}</InlineMath>, <InlineMath>{`dW^{[2]}`}</InlineMath>, <InlineMath>{`dB^{[1]}`}</InlineMath>, <InlineMath>{`dB^{[2]}`}</InlineMath>), we need to add a <InlineMath>{`\\frac{1}{m}`}</InlineMath> term because we are not calculating for a single loss function anymore, we compute the derivative of the cost function (the mean of the total sum of the individual losses across all examples in the dataset).
+When computing the derivatives for the weights and biases (<InlineMath>`dW^{[1]}`</InlineMath>, <InlineMath>`dW^{[2]}`</InlineMath>, <InlineMath>`dB^{[1]}`</InlineMath>, <InlineMath>`dB^{[2]}`</InlineMath>), we need to add a <InlineMath>`\frac{1}{m}`</InlineMath> term because we are not calculating for a single loss function anymore, we compute the derivative of the cost function (the mean of the total sum of the individual losses across all examples in the dataset).
 
-This is used to normalize and take a consistent step size in the gradient descent updates. This is why it's used only for updates on weights and biases. The other parts (<InlineMath>{`dZ^{[2]}`}</InlineMath>, <InlineMath>{`dZ^{[1]}`}</InlineMath>) don't need this normalization.
+This is used to normalize and take a consistent step size in the gradient descent updates. This is why it's used only for updates on weights and biases. The other parts (<InlineMath>`dZ^{[2]}`</InlineMath>, <InlineMath>`dZ^{[1]}`</InlineMath>) don't need this normalization.
 
 We need to sum biases and then calculate their mean because we want to compute the same bias for all the layers in the neural net. Weights are treated differently because each weight in a layer connects a specific input to a specific neuron in the current layer.
 
@@ -272,7 +294,7 @@ Before splitting the data between training and test data, we shuffle it and use 
 
 Two other important parts of this process are the division by 255 and the transpose of the data. With the division by 255, we want to normalize the pixels so it will be 0 or 1. For the transpose, this is an important step because to do matrix multiplication, the rows and columns should match perfectly.
 
-To start the neural network implementation, we first need to run the forward pass, but with initialized weights and biases, in this case, <InlineMath>{`{W^{[1]}}`}</InlineMath>, <InlineMath>{`{W^{[2]}}`}</InlineMath>, <InlineMath>{`{B^{[1]}}`}</InlineMath>, and <InlineMath>{`{B^{[2]}}`}</InlineMath>.
+To start the neural network implementation, we first need to run the forward pass, but with initialized weights and biases, in this case, <InlineMath>`{W^{[1]}}`</InlineMath>, <InlineMath>`{W^{[2]}}`</InlineMath>, <InlineMath>`{B^{[1]}}`</InlineMath>, and <InlineMath>`{B^{[2]}}`</InlineMath>.
 
 Biases can be initialized with zeros but If initializing with weights all zeros, we compute similar functions in backpropagation, in other words, it computes only one hidden unit (all the hidden units are symmetric).
 
@@ -313,17 +335,25 @@ With everything in place, we can start implementing the first part of the neural
 
 Here's what we need to implement for the forward propagation:
 
-<BlockMath>{`\\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[1]} = W^{[1]} X + B^{[1]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}A^{[1]} = ReLU(Z^{[1]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[1]} = ReLU(Z^{[1]})\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}Z^{[2]} = W^{[2]} A^{[1]} + B^{[2]}\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}A^{[2]} = softmax(Z^{[2]})\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}A^{[2]} = softmax(Z^{[2]})\end{equation}`
+</BlockMath>
 
 We divide this into two parts, the first layer (hidden layer) and the second layer (output layer).
 
-The first layer will handle the linear combination with the input <InlineMath>{`X`}</InlineMath> and then apply the ReLU activation function.
+The first layer will handle the linear combination with the input <InlineMath>`X`</InlineMath> and then apply the ReLU activation function.
 
 ```python
 Z1 = W1.dot(X) + B1
@@ -332,7 +362,9 @@ A1 = ReLU(Z1)
 
 The ReLU function is defined by this equation
 
-<BlockMath>{`\\begin{equation}f(Z) = max(Z, 0)\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}f(Z) = max(Z, 0)\end{equation}`
+</BlockMath>
 
 It's very simple to implement it:
 
@@ -341,7 +373,7 @@ def ReLU(Z):
     return np.maximum(Z, 0)
 ```
 
-The second layer will receive the <InlineMath>{`{A^{[1]}}`}</InlineMath> (the output of the first layer) as an input and apply the softmax activation function to build a probability distribution over the 10 labels (digits).
+The second layer will receive the <InlineMath>`{A^{[1]}}`</InlineMath> (the output of the first layer) as an input and apply the softmax activation function to build a probability distribution over the 10 labels (digits).
 
 ```python
 Z2 = W2.dot(A1) + B2
@@ -350,7 +382,7 @@ A2 = softmax(Z2)
 
 The softmax equation is defined like this:
 
-<BlockMath>{`\\begin{equation}softmax(x_i) = \\frac{e^{x_i}}{\sum_{j=1}^{k} e^{x_j}}\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}softmax(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{k} e^{x_j}}\end{equation}`</BlockMath>
 
 Also easy to implement:
 
@@ -359,7 +391,7 @@ def softmax(Z):
     return np.exp(Z) / sum(np.exp(Z))
 ```
 
-And we finish the forward propagation. We generate <InlineMath>{`{Z^{[1]}}`}</InlineMath>, <InlineMath>{`{A^{[1]}}`}</InlineMath>, <InlineMath>{`{Z^{[2]}}`}</InlineMath>, and <InlineMath>{`{A^{[2]}}`}</InlineMath>.
+And we finish the forward propagation. We generate <InlineMath>`{Z^{[1]}}`</InlineMath>, <InlineMath>`{A^{[1]}}`</InlineMath>, <InlineMath>`{Z^{[2]}}`</InlineMath>, and <InlineMath>`{A^{[2]}}`</InlineMath>.
 
 ```python
 def forward_propagation(W1, B1, W2, B2, X):
@@ -374,11 +406,13 @@ A bunch of linear combinations and application of activation functions.
 
 Let's go for the second part now: backward propagation.
 
-The backpropagation needs to calculate the gradients so we can update the weights and biases in each iteration of the algorithm. It will, then, compute <InlineMath>{`{dW^{[1]}}`}</InlineMath>, <InlineMath>{`{dW^{[2]}}`}</InlineMath>, <InlineMath>{`{dB^{[1]}}`}</InlineMath>, and <InlineMath>{`{dB^{[2]}}`}</InlineMath>.
+The backpropagation needs to calculate the gradients so we can update the weights and biases in each iteration of the algorithm. It will, then, compute <InlineMath>`{dW^{[1]}}`</InlineMath>, <InlineMath>`{dW^{[2]}}`</InlineMath>, <InlineMath>`{dB^{[1]}}`</InlineMath>, and <InlineMath>`{dB^{[2]}}`</InlineMath>.
 
-We start from the back. To compute <InlineMath>{`{dW^{[2]}}`}</InlineMath> and <InlineMath>{`{dB^{[2]}}`}</InlineMath>, we need to calculate <InlineMath>{`{dZ^{[2]}}`}</InlineMath>. As we saw earlier, this is how it's calculated:
+We start from the back. To compute <InlineMath>`{dW^{[2]}}`</InlineMath> and <InlineMath>`{dB^{[2]}}`</InlineMath>, we need to calculate <InlineMath>`{dZ^{[2]}}`</InlineMath>. As we saw earlier, this is how it's calculated:
 
-<BlockMath>{`\\begin{equation}dZ^{[2]} = {A}^{[2]} - Y\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dZ^{[2]} = {A}^{[2]} - Y\end{equation}`
+</BlockMath>
 
 And it's implemented like this:
 
@@ -386,15 +420,19 @@ And it's implemented like this:
 dZ2 = A2 - Y
 ```
 
-<InlineMath>{`Y`}</InlineMath> is the one hot encoding of <InlineMath>{`Y`}</InlineMath> in
-this context.
+<InlineMath>`Y`</InlineMath> is the one hot encoding of <InlineMath>
+  `Y`
+</InlineMath> in this context.
 
-<InlineMath>{`{dW^{[2]}}`}</InlineMath> and <InlineMath>{`{dB^{[2]}}`}</InlineMath> will
+<InlineMath>`{dW^{[2]}}`</InlineMath> and <InlineMath>`{dB^{[2]}}`</InlineMath> will
 follow the equations:
 
-<BlockMath>{`\\begin{equation}dW^{[2]} = \\frac{1}{m} \\cdot {dZ}^{[2]} \\cdot {A^{[1]}}^T\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}dW^{[2]} = \frac{1}{m} \cdot {dZ}^{[2]} \cdot {A^{[1]}}^T\end{equation}`</BlockMath>
 
-<BlockMath>{`\\begin{equation}dB^{[2]} = \\frac{1}{m} \\cdot \\sum_{i=1}^m dZ^{[2]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dB^{[2]} = \frac{1}
+  {m} \cdot \sum_{(i = 1)}^m dZ^{[2]}\end{equation}`
+</BlockMath>
 
 Here's the implementation:
 
@@ -403,11 +441,11 @@ dW2 = 1 / m * dZ2.dot(A1.T)
 dB2 = 1 / m * np.sum(dZ2)
 ```
 
-Now that we have <InlineMath>{`{dZ^{[2]}}`}</InlineMath>, <InlineMath>{`{dW^{[2]}}`}</InlineMath>, and <InlineMath>{`{dB^{[2]}}`}</InlineMath>, we can compute the gradients for the rest of the neural network.
+Now that we have <InlineMath>`{dZ^{[2]}}`</InlineMath>, <InlineMath>`{dW^{[2]}}`</InlineMath>, and <InlineMath>`{dB^{[2]}}`</InlineMath>, we can compute the gradients for the rest of the neural network.
 
-<InlineMath>{`{dZ^{[1]}}`}</InlineMath> is calculated like this:
+<InlineMath>`{dZ^{[1]}}`</InlineMath> is calculated like this:
 
-<BlockMath>{`\\begin{equation}dZ^{[1]} = {W^{[2]}}^T \\cdot {dZ^{[2]}} \\cdot g\\'(Z^{[1]})\\end{equation}`}</BlockMath>
+<BlockMath>`\begin{equation}dZ^{[1]} = {W^{[2]}}^T \cdot {dZ^{[2]}} \cdot g\'(Z^{[1]})\end{equation}`</BlockMath>
 
 The implementation:
 
@@ -415,7 +453,7 @@ The implementation:
 dZ1 = W2.T.dot(dZ2) * derivative_of_ReLU(Z1)
 ```
 
-Here we need to compute the derivative of ReLU. As we saw before, the derivative of the ReLU function if <InlineMath>{`{Z^{[1]}}`}</InlineMath> is greater than 0 is 1, otherwise, it will be 0.
+Here we need to compute the derivative of ReLU. As we saw before, the derivative of the ReLU function if <InlineMath>`{Z^{[1]}}`</InlineMath> is greater than 0 is 1, otherwise, it will be 0.
 
 ```python
 def derivative_of_ReLU(Z):
@@ -424,11 +462,17 @@ def derivative_of_ReLU(Z):
 
 This function returns booleans but it will be used to calculate like we do when we multiply any number with `0`s and `1`s.
 
-Then we have the <InlineMath>{`{dW^{[1]}}`}</InlineMath> and <InlineMath>{`{dB^{[1]}}`}</InlineMath>:
+Then we have the <InlineMath>`{dW^{[1]}}`</InlineMath> and <InlineMath>`{dB^{[1]}}`</InlineMath>:
 
-<BlockMath>{`\\begin{equation}dW^{[1]} = \\frac{1}{m} \\cdot dZ^{[1]} \\cdot X^T\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dW^{[1]} = \frac{1}
+  {m} \cdot dZ^{[1]} \cdot X^T\end{equation}`
+</BlockMath>
 
-<BlockMath>{`\\begin{equation}dB^{[1]} = \\frac{1}{m} \\cdot \\sum_{i=1}^m dZ^{[1]}\\end{equation}`}</BlockMath>
+<BlockMath>
+  `\begin{equation}dB^{[1]} = \frac{1}
+  {m} \cdot \sum_{(i = 1)}^m dZ^{[1]}\end{equation}`
+</BlockMath>
 
 The implementation is similar to the second layer:
 
@@ -485,11 +529,11 @@ def gradient_descent(X, Y, LR, iterations):
     return W1, B1, W2, B2
 ```
 
-This function will receive the features (pixels) <InlineMath>{`X`}</InlineMath>, the label <InlineMath>{`Y`}</InlineMath>, a learning rate `LR`, and the number of iterations we want to do.
+This function will receive the features (pixels) <InlineMath>`X`</InlineMath>, the label <InlineMath>`Y`</InlineMath>, a learning rate `LR`, and the number of iterations we want to do.
 
 It initializes the parameters and repeats the algorithm `iterations` times. First computing the forward propagation, then the backward propagation, and updates the parameters (weights and biases).
 
-<InlineMath>{`{A^{[2]}}`}</InlineMath> is the result (the class probabilities)
+<InlineMath>`{A^{[2]}}`</InlineMath> is the result (the class probabilities)
 in each iteration. We store it in a variable `result` to see how well it's
 performing.
 
