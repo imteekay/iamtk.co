@@ -329,9 +329,9 @@ A = np.array([[1,2,3],
 To add two matrices of the same size together, just add the corresponding elements in each matrix:
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\end{bmatrix}+ \begin
-  {bmatrix}6 & 5 & 4 \3 & 2 & 1\end{bmatrix} = \begin{bmatrix}7 & 7 & 7 \7 & 7 &
-  7\end{bmatrix}\end{equation}`
+  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end{bmatrix}+ \begin
+  {bmatrix}6 & 5 & 4 \\3 & 2 & 1\end{bmatrix} = \begin{bmatrix}7 & 7 & 7 \\7 & 7
+  & 7\end{bmatrix}\end{equation}`
 </BlockMath>
 
 Here's how we calculate it:
@@ -362,20 +362,20 @@ Subtraction of two matrices works the same way:
 
 {/* prettier-ignore */}
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\end{bmatrix}- \begin
-  {bmatrix}6 & 5 & 4 \3 & 2 & 1\end{bmatrix} = \begin{bmatrix}-5 & -3 & -1 \1 &
+  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end{bmatrix}- \begin
+  {bmatrix}6 & 5 & 4 \\3 & 2 & 1\end{bmatrix} = \begin{bmatrix}-5 & -3 & -1 \\1 &
   3 & 5\end{bmatrix}\end{equation}`
 </BlockMath>
 
 The negative of a matrix is just a matrix with the sign of each element reversed.
 
 <BlockMath>
-  `\begin{equation}C = \begin{bmatrix}-5 & -3 & -1 \1 & 3 & 5\end{bmatrix}
+  `\begin{equation}C = \begin{bmatrix}-5 & -3 & -1 \\1 & 3 & 5\end{bmatrix}
   \end{equation}`
 </BlockMath>
 
 <BlockMath>
-  `\begin{equation}-C = \begin{bmatrix}5 & 3 & 1 \-1 & -3 & -5\end
+  `\begin{equation}-C = \begin{bmatrix}5 & 3 & 1 \\-1 & -3 & -5\end
   {bmatrix}\end{equation}`
 </BlockMath>
 
@@ -396,8 +396,9 @@ C
 Matrix Transposition is when we switch the orientation of its rows and columns:
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\end{bmatrix}^{T} = \begin
-  {bmatrix}1 & 4\2 & 5\3 & 6 \end{bmatrix}\end{equation}`
+  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end{bmatrix}^{T} =
+  \begin
+  {bmatrix}1 & 4\\2 & 5\\3 & 6 \end{bmatrix}\end{equation}`
 </BlockMath>
 
 In Python, we have the `T` method:
@@ -416,8 +417,8 @@ A.T
 Scalar multiplication in matrices looks similar to scalar multiplication in vectors. To multiply a matrix by a scalar value, you just multiply each element by the scalar to produce a new matrix:
 
 <BlockMath>
-  `\begin{equation}2 \times \begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\end
-  {bmatrix} = \begin{bmatrix}2 & 4 & 6 \8 & 10 & 12\end{bmatrix}\end
+  `\begin{equation}2 \times \begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end
+  {bmatrix} = \begin{bmatrix}2 & 4 & 6 \\8 & 10 & 12\end{bmatrix}\end
   {equation}`
 </BlockMath>
 
@@ -435,7 +436,8 @@ A = np.array([[1,2,3],
 To multiply two matrices, we need to calculate the dot product of rows and columns.
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\end{bmatrix} \cdot \begin
+  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\end{bmatrix} \cdot
+  \begin
   {bmatrix}9 & 8 \\ 7 & 6 \\ 5 & 4\end{bmatrix}\end{equation}`
 </BlockMath>
 
@@ -458,7 +460,7 @@ Resulting in these calculations:
 Resulting in this matrix:
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}38 & 32\101 & 86\end{bmatrix} \end
+  `\begin{equation}\begin{bmatrix}38 & 32\\101 & 86\end{bmatrix} \end
   {equation}`
 </BlockMath>
 
@@ -503,16 +505,16 @@ Identity matrices are matrices that have the value 1 in the diagonal positions a
 An example:
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 0 & 0\0 & 1 & 0\0 & 0 & 1\end
+  `\begin{equation}\begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end
   {bmatrix} \end{equation}`
 </BlockMath>
 
 Multiplying a matrix by an identity matrix results in the same matrix. It's like multiplying by 1.
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\7 & 8 & 9\end
-  {bmatrix} \cdot \begin{bmatrix}1 & 0 & 0\0 & 1 & 0\0 & 0 & 1\end
-  {bmatrix} = \begin{bmatrix}1 & 2 & 3 \4 & 5 & 6\7 & 8 & 9\end{bmatrix} \end
+  `\begin{equation}\begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\\7 & 8 & 9\end
+  {bmatrix} \cdot \begin{bmatrix}1 & 0 & 0\\0 & 1 & 0\\0 & 0 & 1\end
+  {bmatrix} = \begin{bmatrix}1 & 2 & 3 \\4 & 5 & 6\\7 & 8 & 9\end{bmatrix} \end
   {equation}`
 </BlockMath>
 
@@ -524,17 +526,14 @@ Matrix division is basically multiplying it by the inverse of the matrix
 
 How the inverse of a matrix is calculated? Using this equation:
 
-<BlockMath>
-  `\begin{equation}\begin{bmatrix}a & b\c & d\end{bmatrix}^{-1} = \frac
-  {1}
-  {ad - bc} \begin{bmatrix}d & -b\-c & a\end{bmatrix}\end{equation}`
-</BlockMath>
+{/* prettier-ignore */}
+<BlockMath>`\begin{equation}\begin{bmatrix}a & b \\ c & d\end{bmatrix}^{-1} = \frac{1}{ad - bc} \begin{bmatrix}d & -b \\ -c & a\end{bmatrix}\end{equation}`</BlockMath>
 
 Let's see it in action:
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}6 & 2\1 & 2\end{bmatrix}^{-1} = \begin
-  {bmatrix}0.2 & -0.2\-0.1 & 0.6\end{bmatrix}\end{equation}`
+  `\begin{equation}\begin{bmatrix}6 & 2\\1 & 2\end{bmatrix}^{-1} = \begin
+  {bmatrix}0.2 & -0.2\\-0.1 & 0.6\end{bmatrix}\end{equation}`
 </BlockMath>
 
 In Python, we can use the `linalg.inv` method:
@@ -566,23 +565,23 @@ np.linalg.inv(B)
 With the calculation of the inverse, we can now calculate the multiplication of a matrix with an inverse of another matrix.
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}1 & 2\3 & 4\end{bmatrix} \cdot \begin
-  {bmatrix}6 & 2\1 & 2\end{bmatrix}^{-1} \end{equation}`
+  `\begin{equation}\begin{bmatrix}1 & 2\\3 & 4\end{bmatrix} \cdot \begin
+  {bmatrix}6 & 2\\1 & 2\end{bmatrix}^{-1} \end{equation}`
 </BlockMath>
 
 <BlockMath>
-  `\begin{equation}=\begin{bmatrix}1 & 2\3 & 4\end{bmatrix} \cdot \begin
-  {bmatrix}0.2 & -0.2\-0.1 & 0.6\end{bmatrix} \end{equation}`
+  `\begin{equation}=\begin{bmatrix}1 & 2\\3 & 4\end{bmatrix} \cdot \begin
+  {bmatrix}0.2 & -0.2\\-0.1 & 0.6\end{bmatrix} \end{equation}`
 </BlockMath>
 
 <BlockMath>
   `\begin{equation}=\begin{bmatrix}(1\times0.2)+(2\times-0.1) &
-  (1\times-0.2)+(2\times0.6)\(3\times0.2)+(4\times-0.1) &
+  (1\times-0.2)+(2\times0.6) \\\\ (3\times0.2)+(4\times-0.1) &
   (3\times-0.2)+(4\times0.6)\end{bmatrix}\end{equation}`
 </BlockMath>
 
 <BlockMath>
-  `\begin{equation}=\begin{bmatrix}0 & 1\0.2 & 1.8\end{bmatrix}\end
+  `\begin{equation}=\begin{bmatrix}0 & 1\\0.2 & 1.8\end{bmatrix}\end
   {equation}`
 </BlockMath>
 
@@ -615,17 +614,17 @@ We can write a system of equations in matrix form. Take a look a these equations
 We can write this in matrix form:
 
 <BlockMath>
-  `\begin{equation}\begin{bmatrix}2 & 4\6 & 2\end{bmatrix} \cdot \begin
-  {bmatrix}x\y\end{bmatrix}=\begin{bmatrix}18\34\end{bmatrix}\end
+  `\begin{equation}\begin{bmatrix}2 & 4\\6 & 2\end{bmatrix} \cdot \begin
+  {bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}18\\34\end{bmatrix}\end
   {equation}`
 </BlockMath>
 
 And we can write this in another way:
 
 <BlockMath>
-  `\begin{equation}A=\begin{bmatrix}2 & 4\6 & 2\end{bmatrix}
-  \;\;\;\;X=\begin{bmatrix}x\y\end{bmatrix}\;\;\;\;B=\begin
-  {bmatrix}18\34\end{bmatrix}\end{equation}`
+  `\begin{equation}A=\begin{bmatrix}2 & 4\\6 & 2\end{bmatrix}
+  \;\;\;\;X=\begin{bmatrix}x\\y\end{bmatrix}\;\;\;\;B=\begin
+  {bmatrix}18\\34\end{bmatrix}\end{equation}`
 </BlockMath>
 
 We know that `A · X = B`, which is the same as `B ÷ A = X`, which is the same as `B · A⁻¹ = X`.
@@ -633,21 +632,21 @@ We know that `A · X = B`, which is the same as `B ÷ A = X`, which is the same 
 The inverse of `A` is:
 
 <BlockMath>
-  `\begin{equation}A^{-1} = \begin{bmatrix}-0.1 & 0.2\0.3 & -0.1\end
+  `\begin{equation}A^{-1} = \begin{bmatrix}-0.1 & 0.2\\0.3 & -0.1\end
   {bmatrix}\end{equation}`
 </BlockMath>
 
 So:
 
 <BlockMath>
-  `\begin{equation}X = \begin{bmatrix}-0.1 & 0.2\0.3 & -0.1\end{bmatrix} \cdot
-  \begin{bmatrix}18\34\end{bmatrix}\end{equation}`
+  `\begin{equation}X = \begin{bmatrix}-0.1 & 0.2\\0.3 & -0.1\end{bmatrix} \cdot
+  \begin{bmatrix}18\\34\end{bmatrix}\end{equation}`
 </BlockMath>
 
 The result of the matrix `X` is
 
 <BlockMath>
-  `\begin{equation}X = \begin{bmatrix}5\2\end{bmatrix}\end{equation}`
+  `\begin{equation}X = \begin{bmatrix}5\\2\end{bmatrix}\end{equation}`
 </BlockMath>
 
 In Python, we can confirm that:
