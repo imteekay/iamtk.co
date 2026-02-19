@@ -69,6 +69,7 @@ const data = {
     { date: '2026-02-16', count: 1, level: 4 },
     { date: '2026-02-17', count: 1, level: 4 },
     { date: '2026-02-18', count: 1, level: 4 },
+    { date: '2026-02-19', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'back-workout': [
@@ -92,6 +93,7 @@ const data = {
     { date: '2026-02-04', count: 1, level: 4 },
     { date: '2026-02-10', count: 1, level: 4 },
     { date: '2026-02-15', count: 1, level: 4 },
+    { date: '2026-02-19', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'abs-workout': [
@@ -116,6 +118,7 @@ const data = {
     { date: '2026-02-04', count: 1, level: 4 },
     { date: '2026-02-10', count: 1, level: 4 },
     { date: '2026-02-15', count: 1, level: 4 },
+    { date: '2026-02-19', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   running: [
@@ -139,6 +142,7 @@ const data = {
     { date: '2026-02-04', count: 1, level: 4 },
     { date: '2026-02-10', count: 1, level: 4 },
     { date: '2026-02-15', count: 1, level: 4 },
+    { date: '2026-02-19', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'practice-guitar': [
@@ -187,6 +191,7 @@ const data = {
     { date: '2026-02-16', count: 1, level: 4 },
     { date: '2026-02-17', count: 1, level: 4 },
     { date: '2026-02-18', count: 1, level: 4 },
+    { date: '2026-02-19', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'drink-water': [
