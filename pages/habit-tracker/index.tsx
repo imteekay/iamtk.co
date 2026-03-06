@@ -40,6 +40,7 @@ const data = {
     { date: '2026-02-25', count: 1, level: 4 },
     { date: '2026-02-27', count: 1, level: 4 },
     { date: '2026-02-28', count: 1, level: 4 },
+    { date: '2026-03-06', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'study-ml': [
