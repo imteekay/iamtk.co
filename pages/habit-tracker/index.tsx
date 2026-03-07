@@ -94,6 +94,7 @@ const data = {
     { date: '2026-03-04', count: 1, level: 4 },
     { date: '2026-03-05', count: 1, level: 4 },
     { date: '2026-03-06', count: 1, level: 4 },
+    { date: '2026-03-07', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'back-workout': [
