@@ -45,6 +45,7 @@ const data = {
     { date: '2026-03-09', count: 1, level: 4 },
     { date: '2026-03-10', count: 1, level: 4 },
     { date: '2026-03-11', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'study-ml': [
@@ -104,6 +105,7 @@ const data = {
     { date: '2026-03-10', count: 1, level: 4 },
     { date: '2026-03-11', count: 1, level: 4 },
     { date: '2026-03-13', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'back-workout': [
@@ -132,6 +134,7 @@ const data = {
     { date: '2026-02-25', count: 1, level: 4 },
     { date: '2026-02-28', count: 1, level: 4 },
     { date: '2026-03-04', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'abs-workout': [
@@ -163,6 +166,7 @@ const data = {
     { date: '2026-02-28', count: 1, level: 4 },
     { date: '2026-03-04', count: 1, level: 4 },
     { date: '2026-03-09', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   running: [
@@ -195,6 +199,9 @@ const data = {
     { date: '2026-03-06', count: 1, level: 4 },
     { date: '2026-03-09', count: 1, level: 4 },
     { date: '2026-03-10', count: 1, level: 4 },
+    { date: '2026-03-11', count: 1, level: 4 },
+    { date: '2026-03-12', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'practice-guitar': [
@@ -263,6 +270,12 @@ const data = {
     { date: '2026-03-08', count: 1, level: 4 },
     { date: '2026-03-09', count: 1, level: 4 },
     { date: '2026-03-10', count: 1, level: 4 },
+    { date: '2026-03-11', count: 1, level: 4 },
+    { date: '2026-03-12', count: 1, level: 4 },
+    { date: '2026-03-13', count: 1, level: 4 },
+    { date: '2026-03-14', count: 1, level: 4 },
+    { date: '2026-03-15', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'drink-water': [
@@ -324,6 +337,10 @@ const data = {
     { date: '2026-03-09', count: 1, level: 4 },
     { date: '2026-03-10', count: 1, level: 4 },
     { date: '2026-03-11', count: 1, level: 4 },
+    { date: '2026-03-12', count: 1, level: 4 },
+    { date: '2026-03-13', count: 1, level: 4 },
+    { date: '2026-03-14', count: 1, level: 4 },
+    { date: '2026-03-15', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'intermittent-fasting': [
@@ -394,6 +411,7 @@ const data = {
     { date: '2026-03-09', count: 1, level: 4 },
     { date: '2026-03-10', count: 1, level: 4 },
     { date: '2026-03-11', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
 };
