@@ -342,6 +342,7 @@ const data = {
     { date: '2026-03-13', count: 1, level: 4 },
     { date: '2026-03-14', count: 1, level: 4 },
     { date: '2026-03-15', count: 1, level: 4 },
+    { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'intermittent-fasting': [
