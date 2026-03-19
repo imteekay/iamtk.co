@@ -352,6 +352,8 @@ const data = {
     { date: '2026-03-14', count: 1, level: 4 },
     { date: '2026-03-15', count: 1, level: 4 },
     { date: '2026-03-16', count: 1, level: 4 },
+    { date: '2026-03-17', count: 1, level: 4 },
+    { date: '2026-03-18', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'intermittent-fasting': [
@@ -377,6 +379,7 @@ const data = {
     { date: '2026-02-25', count: 1, level: 4 },
     { date: '2026-03-04', count: 1, level: 4 },
     { date: '2026-03-07', count: 1, level: 4 },
+    { date: '2026-03-18', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   moisturizer: [
@@ -423,6 +426,7 @@ const data = {
     { date: '2026-03-10', count: 1, level: 4 },
     { date: '2026-03-11', count: 1, level: 4 },
     { date: '2026-03-16', count: 1, level: 4 },
+    { date: '2026-03-18', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
 };
