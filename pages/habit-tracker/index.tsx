@@ -433,6 +433,7 @@ const data = {
     { date: '2026-03-11', count: 1, level: 4 },
     { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-03-18', count: 1, level: 4 },
+    { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
 };
