@@ -51,6 +51,7 @@ const data = {
     { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
     { date: '2026-03-21', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'study-ml': [
@@ -116,6 +117,7 @@ const data = {
     { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'back-workout': [
@@ -148,6 +150,7 @@ const data = {
     { date: '2026-03-17', count: 1, level: 4 },
     { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'abs-workout': [
@@ -183,6 +186,7 @@ const data = {
     { date: '2026-03-17', count: 1, level: 4 },
     { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   running: [
@@ -220,6 +224,7 @@ const data = {
     { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-03-17', count: 1, level: 4 },
     { date: '2026-03-19', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'practice-guitar': [
@@ -300,6 +305,8 @@ const data = {
     { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
+    { date: '2026-03-22', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'drink-water': [
@@ -370,6 +377,7 @@ const data = {
     { date: '2026-03-18', count: 1, level: 4 },
     { date: '2026-03-19', count: 1, level: 4 },
     { date: '2026-03-20', count: 1, level: 4 },
+    { date: '2026-03-23', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
   'intermittent-fasting': [
@@ -444,6 +452,7 @@ const data = {
     { date: '2026-03-16', count: 1, level: 4 },
     { date: '2026-03-18', count: 1, level: 4 },
     { date: '2026-03-19', count: 1, level: 4 },
+    { date: '2026-03-22', count: 1, level: 4 },
     { date: '2026-12-31', count: 0, level: 0 },
   ],
 };
