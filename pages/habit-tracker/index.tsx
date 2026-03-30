@@ -1,16 +1,16 @@
 import { GetStaticProps } from 'next';
 import { ActivityCalendar } from 'react-activity-calendar';
 
-import absWorkout from './data/abs-workout';
-import backWorkout from './data/back-workout';
-import drinkWater from './data/drink-water';
-import intermittentFasting from './data/intermittent-fasting';
-import moisturizer from './data/moisturizer';
-import practiceGuitar from './data/practice-guitar';
-import readBook from './data/read-book';
-import running from './data/running';
-import studyMl from './data/study-ml';
-import sunscreen from './data/sunscreen';
+import absWorkout from 'data/habit-tracker/abs-workout';
+import backWorkout from 'data/habit-tracker/back-workout';
+import drinkWater from 'data/habit-tracker/drink-water';
+import intermittentFasting from 'data/habit-tracker/intermittent-fasting';
+import moisturizer from 'data/habit-tracker/moisturizer';
+import practiceGuitar from 'data/habit-tracker/practice-guitar';
+import readBook from 'data/habit-tracker/read-book';
+import running from 'data/habit-tracker/running';
+import studyMl from 'data/habit-tracker/study-ml';
+import sunscreen from 'data/habit-tracker/sunscreen';
 
 type Activity = { date: string; count: number; level: number };
 
