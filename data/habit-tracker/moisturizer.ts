@@ -53,6 +53,9 @@ const moisturizer = [
   { date: '2026-03-31', count: 1, level: 4 },
   { date: '2026-04-01', count: 1, level: 4 },
   { date: '2026-04-04', count: 1, level: 4 },
+  { date: '2026-04-05', count: 1, level: 4 },
+  { date: '2026-04-06', count: 1, level: 4 },
+  { date: '2026-04-07', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
