@@ -32,8 +32,6 @@ Insert **one new line** after the last real entry and **before** the sentinel:
 
 Preserve existing formatting: two spaces before `{`, trailing comma on the new line, comma kept on the previous last-real line.
 
-It should ask if I want that inserted before inserting the entry to the habit file.
-
 ## Validation
 
 - If the last real entry’s `date` **equals** the new date, **do not** add a duplicate; tell the user it’s already logged and ask whether to change `count`/`level` instead.
