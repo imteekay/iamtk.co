@@ -20,7 +20,6 @@ description: >-
 
 1. **Today’s date**: Use the date from user/chat context when provided (e.g. “Today’s date” in user_info). If missing, ask the user for `YYYY-MM-DD` or confirm you should use the system date.
 2. **Which habit(s)**: If the user names one file (e.g. `sunscreen.ts`), only edit that file. If they say “all habits” or “every habit”, apply the same insertion to each `data/habit-tracker/*.ts` file.
-3. **Confirm with the user** before writing: target date (default: today). **Defaults for new rows: `count: 1`, `level: 4`** (always use these unless the user explicitly asks for different values).
 
 ## Insertion rule
 
