@@ -24,6 +24,8 @@ const intermittentFasting = [
   { date: '2026-03-18', count: 1, level: 4 },
   { date: '2026-03-25', count: 1, level: 4 },
   { date: '2026-04-01', count: 1, level: 4 },
+  { date: '2026-04-15', count: 1, level: 4 },
+  { date: '2026-04-22', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
