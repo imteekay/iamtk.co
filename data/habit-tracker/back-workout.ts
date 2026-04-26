@@ -46,6 +46,7 @@ const backWorkout = [
   { date: '2026-04-20', count: 1, level: 4 },
   { date: '2026-04-21', count: 1, level: 4 },
   { date: '2026-04-22', count: 1, level: 4 },
+  { date: '2026-04-25', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
