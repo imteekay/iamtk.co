@@ -1,0 +1,436 @@
+<SmoothRender>
+
+Large language models like GPT, BERT, and Llama are built on a surprisingly elegant idea: the Transformer architecture. At its core is a mechanism called **self-attention**, which lets a model learn relationships between any two tokens in a sequence regardless of their distance. In this post, I want to break down how this all works — from raw text to a working GPT-like model — building everything from scratch in Python and PyTorch.
+
+Here are the topics I'll cover:
+
+- Tokenization and Embeddings
+- Simple Self-Attention
+- Scaled Dot-Product Self-Attention with Trainable Weights
+- Causal (Masked) Self-Attention
+- Multi-Head Attention
+- The Transformer Block
+- The GPT Model Architecture
+- Generating Text
+
+## Tokenization and Embeddings
+
+Before a language model can process text, we need to convert raw strings into numerical representations. The pipeline looks like this:
+
+**Input text → Tokens → Token IDs → Token Embeddings + Positional Embeddings → Input Embeddings**
+
+The first step is tokenization. A simple tokenizer splits text on punctuation and whitespace and maps each token to an integer ID:
+
+```python
+import re
+
+class SimpleTokenizer:
+    def __init__(self, vocab):
+        self.string_to_int = vocab
+        self.int_to_string = {v: k for k, v in vocab.items()}
+
+    def encode(self, text):
+        tokens = re.split(r'([,.:;?_!"()\']|--|\s)', text)
+        tokens = [token for token in tokens if token.strip()]
+        token_ids = [
+            self.string_to_int[token] if token in self.string_to_int
+            else self.string_to_int["<|unk|>"] for token in tokens
+        ]
+        return token_ids
+
+    def decode(self, token_ids):
+        tokens = [
+            self.int_to_string[token_id] if token_id in self.int_to_string
+            else "<|unk|>" for token_id in token_ids
+        ]
+        text = " ".join(tokens)
+        text = re.sub(r'\s+([,.:;?!"()\'])', r'\1', text)
+        return text
+```
+
+In practice, GPT-2 uses Byte-Pair Encoding (BPE) via `tiktoken`, which breaks unknown words into subword units instead of replacing them with `<|unk|>`.
+
+### Token Embeddings
+
+Once we have token IDs, we transform them into dense vectors through an embedding lookup table. The table has shape `(vocab_size, embedding_dim)` — one row per token in the vocabulary — and is learned during training.
+
+```python
+import torch
+import torch.nn as nn
+
+input_ids = torch.tensor([2, 3, 5, 1])
+vocab_size = 6
+output_dim = 3
+
+torch.manual_seed(999)
+embedding_layer = nn.Embedding(vocab_size, output_dim)
+embedding = embedding_layer(input_ids)
+```
+
+The key insight: a lookup is just a matrix row selection — `embedding_layer(input_ids)` returns the rows at the given indices from the weight matrix.
+
+### Positional Embeddings
+
+The same token ID always maps to the same embedding vector, regardless of its position in the sequence. That means a pure token embedding has no concept of order. To fix this, we add a learned positional embedding to each token embedding:
+
+```python
+tok_embeds = self.tok_emb(in_idx)
+pos_embeds = self.pos_emb(torch.arange(seq_len, device=in_idx.device))
+x = tok_embeds + pos_embeds
+```
+
+The positional embedding table has shape `(context_length, embedding_dim)` and is also trained end-to-end.
+
+## Simple Self-Attention
+
+Self-attention lets every token in a sequence "look at" every other token and decide how much to weight each one when building its own representation. The simplest version uses only dot products — no trainable weights.
+
+Take the sentence "Your journey starts with one step", represented as 6 input vectors:
+
+```python
+import torch
+
+inputs = torch.tensor(
+  [[0.43, 0.15, 0.89], # Your     (x^1)
+   [0.55, 0.87, 0.66], # journey  (x^2)
+   [0.57, 0.85, 0.64], # starts   (x^3)
+   [0.22, 0.58, 0.33], # with     (x^4)
+   [0.77, 0.25, 0.10], # one      (x^5)
+   [0.05, 0.80, 0.55]] # step     (x^6)
+)
+```
+
+**Step 1 — Attention scores.** The dot product between two vectors measures their similarity. We compute it for every pair of tokens:
+
+```python
+attn_scores = inputs @ inputs.T
+```
+
+This produces a 6×6 matrix where entry `(i, j)` is how much token `i` attends to token `j`.
+
+**Step 2 — Attention weights.** Normalize each row with softmax so the weights sum to 1:
+
+```python
+attn_weights = torch.softmax(attn_scores, dim=-1)
+```
+
+**Step 3 — Context vectors.** Compute the weighted sum of input vectors:
+
+```python
+context_vectors = attn_weights @ inputs
+```
+
+Each context vector is a weighted combination of all input vectors, where the weights reflect how relevant each token is to the current one. This is self-attention in its most basic form.
+
+## Scaled Dot-Product Self-Attention
+
+The simple version has no learnable parameters. In practice, we introduce three weight matrices — <InlineMath>`W_Q`</InlineMath>, <InlineMath>`W_K`</InlineMath>, and <InlineMath>`W_V`</InlineMath> — that project each input into query, key, and value vectors respectively:
+
+<BlockMath>`\begin{equation}Q = X W_Q, \quad K = X W_K, \quad V = X W_V\end{equation}`</BlockMath>
+
+<BlockMath>`\begin{equation}\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{Q K^T}{\sqrt{d_k}}\right) V\end{equation}`</BlockMath>
+
+The division by <InlineMath>`\sqrt{d_k}`</InlineMath> (where <InlineMath>`d_k`</InlineMath> is the key dimension) prevents the dot products from growing too large as the embedding dimension increases, which would push softmax into regions with very small gradients.
+
+```python
+torch.manual_seed(999)
+
+x_2 = inputs[1]  # "journey" token
+d_in = inputs.shape[1]
+d_out = 2
+
+W_query = torch.nn.Parameter(torch.rand(d_in, d_out, requires_grad=False))
+W_key   = torch.nn.Parameter(torch.rand(d_in, d_out, requires_grad=False))
+W_value = torch.nn.Parameter(torch.rand(d_in, d_out, requires_grad=False))
+
+# for all tokens at once
+q = inputs @ W_query
+k = inputs @ W_key
+v = inputs @ W_value
+
+attention_scores = q @ k.T
+attention_weights = torch.softmax(attention_scores / k.shape[1] ** 0.5, dim=-1)
+context_vectors = attention_weights @ v
+```
+
+The difference from the simple version: `q`, `k`, and `v` now live in a learned subspace, so the model can express richer similarity patterns than raw dot products over input embeddings.
+
+## Causal (Masked) Self-Attention
+
+Language models generate text left-to-right. When predicting token `t`, the model should not be able to see tokens at positions `t+1`, `t+2`, etc. — that would be leaking future information.
+
+We enforce this by masking the upper triangle of the attention score matrix with <InlineMath>`-\infty`</InlineMath> before the softmax. After softmax, those entries become 0, so future tokens receive zero attention weight:
+
+```python
+context_length = attention_scores.shape[0]
+mask = torch.triu(torch.ones(context_length, context_length), diagonal=1)
+masked_attention_scores = attention_scores.masked_fill(mask.bool(), -torch.inf)
+attention_weights = torch.softmax(masked_attention_scores / k.shape[1] ** 0.5, dim=-1)
+```
+
+### Dropout
+
+We also apply dropout to the attention weights after the softmax. This randomly zeros some entries during training, acting as regularization and preventing the model from over-relying on specific tokens:
+
+```python
+attention_weights = self.dropout(attention_weights)
+context_vectors = attention_weights @ v
+```
+
+Here's the full `SelfAttention` module:
+
+```python
+import torch
+import torch.nn as nn
+
+class SelfAttention(nn.Module):
+    def __init__(self, d_in, d_out, dropout, qkv_bias=False):
+        super().__init__()
+        self.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_key   = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.dropout = nn.Dropout(dropout)
+
+    def forward(self, x):
+        q = self.W_query(x)
+        k = self.W_key(x)
+        v = self.W_value(x)
+
+        attention_scores = q @ k.T
+        context_length = attention_scores.shape[0]
+        mask = torch.triu(torch.ones(context_length, context_length), diagonal=1)
+        masked_attention_scores = attention_scores.masked_fill(mask.bool(), -torch.inf)
+        attention_weights = torch.softmax(masked_attention_scores / k.shape[1] ** 0.5, dim=-1)
+        attention_weights = self.dropout(attention_weights)
+        return attention_weights @ v
+```
+
+## Multi-Head Attention
+
+A single attention head looks at the sequence through one "lens". Multi-head attention runs several attention heads in parallel, each with its own <InlineMath>`W_Q`</InlineMath>, <InlineMath>`W_K`</InlineMath>, <InlineMath>`W_V`</InlineMath>, and then concatenates the results. This allows the model to jointly attend to information from different representation subspaces.
+
+The efficient implementation avoids running separate linear projections per head. Instead, a single large projection is reshaped and transposed so that all heads are processed in parallel as a batched matrix multiplication:
+
+```python
+class MultiHeadAttention(nn.Module):
+    def __init__(self, d_in, d_out, context_length, dropout, num_heads, qkv_bias=False):
+        super().__init__()
+        assert (d_out % num_heads == 0), "d_out must be divisible by num_heads"
+
+        self.d_out = d_out
+        self.num_heads = num_heads
+        self.head_dim = d_out // num_heads
+        self.W_query = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_key   = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.W_value = nn.Linear(d_in, d_out, bias=qkv_bias)
+        self.out_proj = nn.Linear(d_out, d_out)
+        self.dropout = nn.Dropout(dropout)
+        self.register_buffer(
+            "mask",
+            torch.triu(torch.ones(context_length, context_length), diagonal=1)
+        )
+
+    def forward(self, x):
+        b, num_tokens, d_in = x.shape
+        keys    = self.W_key(x)
+        queries = self.W_query(x)
+        values  = self.W_value(x)
+
+        # Reshape to (b, num_tokens, num_heads, head_dim) then transpose to (b, num_heads, num_tokens, head_dim)
+        keys    = keys.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
+        queries = queries.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
+        values  = values.view(b, num_tokens, self.num_heads, self.head_dim).transpose(1, 2)
+
+        attn_scores = queries @ keys.transpose(2, 3)
+        mask_bool = self.mask.bool()[:num_tokens, :num_tokens]
+        attn_scores.masked_fill_(mask_bool, -torch.inf)
+
+        attn_weights = torch.softmax(attn_scores / keys.shape[-1] ** 0.5, dim=-1)
+        attn_weights = self.dropout(attn_weights)
+
+        context_vec = (attn_weights @ values).transpose(1, 2)
+        context_vec = context_vec.contiguous().view(b, num_tokens, self.d_out)
+        return self.out_proj(context_vec)
+```
+
+The shape transformations are the key insight here:
+
+- A single linear layer produces keys of shape `(b, num_tokens, d_out)`
+- `.view(b, num_tokens, num_heads, head_dim)` splits `d_out` into head slices — no data movement
+- `.transpose(1, 2)` puts heads into a batch dimension: `(b, num_heads, num_tokens, head_dim)`
+- `queries @ keys.transpose(2, 3)` computes all head attention scores in a single batched matmul
+
+## The Transformer Block
+
+The Transformer block wraps multi-head attention with two additional components: a feed-forward network (FFN) and residual connections with layer normalization. Both are essential for training deep networks.
+
+**Layer Normalization** normalizes each token's embedding vector to have zero mean and unit variance, then applies learned scale and shift parameters:
+
+```python
+class LayerNorm(nn.Module):
+    def __init__(self, embedding_dim, eps=1e-5):
+        super().__init__()
+        self.eps = eps
+        self.scale = nn.Parameter(torch.ones(embedding_dim))
+        self.shift = nn.Parameter(torch.zeros(embedding_dim))
+
+    def forward(self, x):
+        mean = x.mean(dim=-1, keepdim=True)
+        var = x.var(dim=-1, keepdim=True, unbiased=False)
+        normalized_x = (x - mean) / torch.sqrt(var + self.eps)
+        return self.scale * normalized_x + self.shift
+```
+
+**Feed-Forward Network** expands the embedding dimension by 4× with a GELU activation, then projects back:
+
+```python
+class FeedForward(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.layers = nn.Sequential(
+            nn.Linear(cfg["emb_dim"], 4 * cfg["emb_dim"]),
+            nn.GELU(),
+            nn.Linear(4 * cfg["emb_dim"], cfg["emb_dim"]),
+        )
+
+    def forward(self, x):
+        return self.layers(x)
+```
+
+**Residual connections** add the block's input back to its output (`x = x + f(x)`). This preserves gradient flow through very deep networks and lets each block learn an incremental refinement rather than a full transformation.
+
+The full Transformer block applies layer norm before each sub-layer (pre-norm), which is the convention used by GPT-2:
+
+```python
+class TransformerBlock(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.attention = MultiHeadAttention(
+            d_in=cfg["emb_dim"],
+            d_out=cfg["emb_dim"],
+            context_length=cfg["context_length"],
+            num_heads=cfg["n_heads"],
+            dropout=cfg["drop_rate"],
+            qkv_bias=cfg["qkv_bias"]
+        )
+        self.ff = FeedForward(cfg)
+        self.layer_norm1 = LayerNorm(cfg["emb_dim"])
+        self.layer_norm2 = LayerNorm(cfg["emb_dim"])
+        self.dropout = nn.Dropout(cfg["drop_rate"])
+
+    def forward(self, x):
+        shortcut = x
+        x = self.layer_norm1(x)
+        x = self.attention(x)
+        x = self.dropout(x)
+        x = x + shortcut
+
+        shortcut = x
+        x = self.layer_norm2(x)
+        x = self.ff(x)
+        x = self.dropout(x)
+        x = x + shortcut
+        return x
+```
+
+## The GPT Model Architecture
+
+Stacking multiple Transformer blocks on top of token and positional embeddings gives us a GPT-like decoder model:
+
+```python
+class GPTModel(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.tok_emb = nn.Embedding(cfg["vocab_size"], cfg["emb_dim"])
+        self.pos_emb = nn.Embedding(cfg["context_length"], cfg["emb_dim"])
+        self.drop_emb = nn.Dropout(cfg["drop_rate"])
+        self.trf_blocks = nn.Sequential(
+            *[TransformerBlock(cfg) for _ in range(cfg["n_layers"])]
+        )
+        self.final_norm = LayerNorm(cfg["emb_dim"])
+        self.out_head = nn.Linear(cfg["emb_dim"], cfg["vocab_size"], bias=False)
+
+    def forward(self, in_idx):
+        batch_size, seq_len = in_idx.shape
+        tok_embeds = self.tok_emb(in_idx)
+        pos_embeds = self.pos_emb(torch.arange(seq_len, device=in_idx.device))
+        x = tok_embeds + pos_embeds
+        x = self.drop_emb(x)
+        x = self.trf_blocks(x)
+        x = self.final_norm(x)
+        logits = self.out_head(x)
+        return logits
+```
+
+The output is a tensor of **logits** with shape `(batch_size, seq_len, vocab_size)` — one score per vocabulary token, for each position. No softmax is applied inside the model; that happens in the loss function during training or in the sampling step during inference.
+
+The GPT-2 124M configuration looks like this:
+
+```python
+GPT_CONFIG_124M = {
+    "vocab_size": 50257,
+    "context_length": 256,
+    "emb_dim": 768,
+    "n_heads": 12,
+    "n_layers": 12,
+    "drop_rate": 0.1,
+    "qkv_bias": False
+}
+```
+
+With 12 transformer blocks, 12 attention heads, and 768-dimensional embeddings, this model has approximately 124 million parameters.
+
+## Generating Text
+
+At inference time, we feed the model a sequence of token IDs and iteratively sample the next token. The key choices are **temperature** (which controls randomness) and **top-k** (which restricts sampling to the most likely tokens):
+
+```python
+def generate_text(model, idx, max_new_tokens, context_size, temperature=1.0, top_k=None):
+    for _ in range(max_new_tokens):
+        idx_cond = idx[:, -context_size:]
+        with torch.no_grad():
+            logits = model(idx_cond)
+
+        logits = logits[:, -1, :]  # take only the last token's logits
+
+        if top_k is not None:
+            top_k_logits, _ = torch.topk(logits, top_k)
+            logits = torch.where(
+                logits < top_k_logits[:, -1],
+                -float('inf'),
+                logits
+            )
+
+        if temperature > 0.0:
+            logits = logits / temperature
+            probas = torch.softmax(logits, dim=-1)
+            idx_next = torch.multinomial(probas, num_samples=1)
+        else:
+            probas = torch.softmax(logits, dim=-1)
+            idx_next = torch.argmax(probas, dim=-1, keepdim=True)
+
+        idx = torch.cat((idx, idx_next), dim=1)
+
+    return idx
+```
+
+**Temperature** divides the logits before softmax:
+
+- `T < 1` — amplifies the gap between logits, making the model more deterministic and repetitive
+- `T = 1` — no change from the model's natural distribution
+- `T > 1` — flattens the distribution, producing more varied (and potentially incoherent) output
+
+**Top-k sampling** zeroes out all but the top-k logits (by setting them to <InlineMath>`-\infty`</InlineMath>) before applying softmax, preventing the model from sampling very unlikely tokens.
+
+Running this on an untrained model with `top_k=25` and `temperature=1.4` will produce random tokens — training is the step that teaches the model to generate coherent text. That's a topic for a follow-up post on pretraining and fine-tuning.
+
+## Resources
+
+- [LLM from Scratch — code repository](https://github.com/imteekay/llm)
+- [Building a Neural Network from Scratch](/building-a-neural-network-from-scratch-with-mathematics-and-python)
+- [Build a Large Language Model (from Scratch)](https://www.manning.com/books/build-a-large-language-model-from-scratch)
+- [Attention Is All You Need](https://arxiv.org/abs/1706.03762)
+- [Language Models are Few-Shot Learners (GPT-3)](https://arxiv.org/abs/2005.14165)
+- [ML/AI Learning Path](/ml-ai-learning-path)
+
+</SmoothRender>

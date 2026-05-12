@@ -1,0 +1,31 @@
+{
+  "title": "Self-Attention, Transformers, and Foundation Models from Scratch",
+  "description": "A deep dive into self-attention mechanisms, the Transformer architecture, and GPT-like foundation models built from scratch in Python and PyTorch",
+  "date": "2026-05-12",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    },
+    {
+      "href": "/tags/deep-learning",
+      "name": "deep_learning"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    }
+  ],
+  "coverImage": {
+    "src": "/self-attention-transformers-and-foundation-models-from-scratch/cover.jpg",
+    "width": "640",
+    "height": "400",
+    "alt": "",
+    "authorHref": "",
+    "authorName": ""
+  }
+}
