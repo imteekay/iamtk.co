@@ -11,29 +11,29 @@ type DialogPropsType = {
   content: string;
 };
 
-const DarkDialog = styled(MuiDialog)<{ prefersDarkMode: boolean }>(
-  ({ theme, prefersDarkMode }) => ({
+const DarkDialog = styled(MuiDialog, {
+  shouldForwardProp: (prop) => prop !== 'prefersDarkMode',
+})<{ prefersDarkMode: boolean }>(({ theme, prefersDarkMode }) => ({
     '& .MuiPaper-root': {
-      'background-color': prefersDarkMode ? '#222222' : 'white',
-      'max-width': '700px',
+      backgroundColor: prefersDarkMode ? '#222222' : 'white',
+      maxWidth: '700px',
       color: prefersDarkMode ? 'white' : 'black',
       '& .content': {
         margin: 0,
         padding: '40px 20px',
-        'max-width': 'none',
+        maxWidth: 'none',
         [theme.breakpoints.up('md')]: {
           padding: '40px',
         },
         '& ul': {
-          'padding-left': '4px',
+          paddingLeft: '4px',
         },
         '& li': {
           display: 'block',
         },
       },
     },
-  }),
-);
+  }));
 
 export const Dialog = ({ onClose, open, title, content }: DialogPropsType) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

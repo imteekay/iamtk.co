@@ -1,13 +1,12 @@
 import { Dispatch, FC, SetStateAction, useMemo, useState } from 'react';
 
 import type { NextPage } from 'next';
-import ReactFlow from 'reactflow';
-import 'reactflow/dist/style.css';
+import { ReactFlow } from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
 
 import { Dialog } from 'Base/LinksGraph/Dialog';
 import { Head } from 'Base/components/Head';
 import { Navbar } from 'Base/components/Navbar';
-import { useReactFlowAttributionRemoval } from 'Base/hooks/useReactFlowAttributionRemoval';
 import { topics } from 'data/web-performance-topics-content';
 
 type SlugifiedTopics =
@@ -203,19 +202,6 @@ const edges = [
   },
 
   {
-    source: SlugifiedTopics.MetricsAndMeasurements,
-    target: SlugifiedTopics.CoreWebVitals,
-  },
-
-  {
-    source: SlugifiedTopics.Web,
-    target: SlugifiedTopics.CaseStudies,
-  },
-  {
-    source: SlugifiedTopics.Web,
-    target: SlugifiedTopics.CaseStudies,
-  },
-  {
     source: SlugifiedTopics.Web,
     target: SlugifiedTopics.CaseStudies,
   },
@@ -326,6 +312,7 @@ type NodePropTypes = {
 
 const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   <div
+    style={{ color: '#333', fontSize: '12px', cursor: 'pointer' }}
     onClick={() => {
       if (!(EmptyNodes as string[]).includes(text)) {
         setId(id);
@@ -371,8 +358,6 @@ const Page: NextPage = () => {
 
   const onClose = () => setOpen(false);
 
-  useReactFlowAttributionRemoval();
-
   return (
     <>
       <Head
@@ -386,6 +371,7 @@ const Page: NextPage = () => {
         edges={edges}
         defaultViewport={{ x: 0, y: 0, zoom: 0.7 }}
         fitView
+        proOptions={{ hideAttribution: true }}
       />
       <Dialog open={open} onClose={onClose} content={content} />
     </>

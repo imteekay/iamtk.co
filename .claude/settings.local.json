@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la /home/john/Code/johnenderson.dev/.claude/worktrees/ 2>&1 | head -20)",
+      "Read(///wsl.localhost/Ubuntu/home/john/Code/**)",
+      "Bash(nvm use *)",
+      "Bash(yarn --version)"
+    ]
+  }
+}

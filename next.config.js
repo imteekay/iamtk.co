@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  experimental: {
-    esmExternals: false,
+  turbopack: {
+    root: __dirname,
   },
   i18n: {
     locales: ['en'],

@@ -39,6 +39,7 @@ export const CoverImage: FC<CoverImagePropTypes> = ({
       alt={alt}
       blurDataURL={blurDataURL}
       placeholder="blur"
+      style={{ height: 'auto' }}
     />
     {authorName ? (
       <span style={figcaptionStyle}>

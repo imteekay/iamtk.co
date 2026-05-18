@@ -1,4 +1,4 @@
-import { cloneElement, useEffect, useState } from 'react';
+import { Children, ReactNode, createElement, isValidElement, useEffect, useState } from 'react';
 
 import { css } from '@emotion/css';
 import { useInView } from 'react-intersection-observer';
@@ -38,15 +38,61 @@ function slugify(children: Children): string {
   }
 
   return children
-    .normalize('NFKD') // Return the Unicode Normalization Form of a given string
-    .toLowerCase() // Convert the string to lowercase letters
-    .trim() // Remove whitespace from both sides of a string
-    .replace(/\s+/g, '-') // Replace spaces with -
-    .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-    .replace(/\_/g, '-') // Replace _ with -
-    .replace(/\-\-+/g, '-') // Replace multiple - with single -
-    .replace(/^-/, '') // Remove starting -
-    .replace(/\-$/g, ''); // Remove trailing -
+    .normalize('NFKD')
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '')
+    .replace(/\_/g, '-')
+    .replace(/\-\-+/g, '-')
+    .replace(/^-/, '')
+    .replace(/\-$/g, '');
+}
+
+const HTML_ATTR_MAP: Record<string, string> = {
+  class: 'className',
+  allowfullscreen: 'allowFullScreen',
+  crossorigin: 'crossOrigin',
+  tabindex: 'tabIndex',
+  readonly: 'readOnly',
+  maxlength: 'maxLength',
+  minlength: 'minLength',
+  autocomplete: 'autoComplete',
+  autofocus: 'autoFocus',
+  autoplay: 'autoPlay',
+  enctype: 'encType',
+  usemap: 'useMap',
+};
+
+const BOOLEAN_STRING_ATTRS = new Set([
+  'controls', 'autoplay', 'muted', 'loop', 'allowfullscreen',
+  'allowFullScreen', 'disabled', 'checked', 'selected', 'multiple',
+]);
+
+function normalizeProps(props: Record<string, unknown>): Record<string, unknown> {
+  const normalized: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(props)) {
+    const newKey = HTML_ATTR_MAP[key] ?? key;
+    const newValue = BOOLEAN_STRING_ATTRS.has(key) && value === 'true' ? true : value;
+    normalized[newKey] = newValue;
+  }
+  return normalized;
+}
+
+function normalizeElement(node: ReactNode): ReactNode {
+  if (!isValidElement(node)) return node;
+
+  const props = node.props as Record<string, unknown>;
+  const normalizedProps = normalizeProps(props);
+
+  if (props.children != null) {
+    normalizedProps.children = Children.map(
+      props.children as ReactNode,
+      normalizeElement,
+    );
+  }
+
+  return createElement(node.type as string, normalizedProps);
 }
 
 const SmoothRenderElement = ({ children }: SmoothRenderElementPropTypes) => {
@@ -68,15 +114,22 @@ const SmoothRenderElement = ({ children }: SmoothRenderElementPropTypes) => {
     }
   }, [inView]);
 
+  const props = children.props as Record<string, unknown>;
+  const normalizedChildren = normalizeElement(
+    createElement(children.type, {
+      ...normalizeProps(props),
+      className: [props.class, props.className, className]
+        .filter(Boolean)
+        .join(' '),
+      id,
+      children: props.children,
+    }),
+  );
+
   return (
     <>
       <div ref={ref} style={{ minHeight: '0px', visibility: 'hidden' }} />
-      {cloneElement(children, {
-        className: children.props.class
-          ? `${children.props.class} ${className}`
-          : className,
-        id,
-      })}
+      {normalizedChildren}
     </>
   );
 };

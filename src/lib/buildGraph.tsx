@@ -16,6 +16,7 @@ type NodePropTypes = {
 
 const Node: FC<NodePropTypes> = ({ setId, setOpen, text, id }) => (
   <div
+    style={{ color: '#333', fontSize: '12px', cursor: 'pointer' }}
     onClick={() => {
       setId(id);
       setOpen(true);
