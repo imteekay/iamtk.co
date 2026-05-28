@@ -1,0 +1,19 @@
+{
+  "title": "Predicting Rental Liquidity: A Classification Model for Fast-Renting Properties",
+  "description": "From raw rental data to a production-ready CatBoost classifier: EDA, feature selection, threshold tuning, and model selection reasoning for a real-world imbalanced classification problem.",
+  "date": "2026-05-28",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    }
+  ]
+}
