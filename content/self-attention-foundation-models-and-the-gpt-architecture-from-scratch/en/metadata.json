@@ -1,0 +1,27 @@
+{
+  "title": "Self-Attention, Foundation Models, and the GPT Architecture from Scratch",
+  "description": "A deep dive into self-attention mechanisms, the Transformer architecture, and GPT-like foundation models built from scratch in Python and PyTorch",
+  "date": "2026-05-31",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    }
+  ],
+  "coverImage": {
+    "src": "/self-attention-foundation-models-and-the-gpt-architecture-from-scratch/cover.jpg",
+    "width": "750",
+    "height": "500",
+    "alt": "a dark blue background with lots of lines",
+    "authorHref": "https://unsplash.com/@atomsmasher",
+    "authorName": "Sandip Kalal"
+  }
+}
