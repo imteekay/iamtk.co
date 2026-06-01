@@ -7,6 +7,12 @@ type Post = {
 
 export const postsList: Post[] = [
   {
+    datetime: '2026-05-31',
+    link: '/self-attention-foundation-models-and-the-gpt-architecture-from-scratch',
+    title:
+      'Self-Attention, Foundation Models, and the GPT Architecture from Scratch',
+  },
+  {
     datetime: '2026-01-05',
     link: '/2025-in-review-ml-books-career-writing',
     title: '2025 in Review: ML, Books, Career, Writing',
