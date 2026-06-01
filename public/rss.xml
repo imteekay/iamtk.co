@@ -12,6 +12,12 @@
     <link>https://iamtk.co</link>
   </image>
   <item>
+    <title>Self-Attention, Foundation Models, and the GPT Architecture from Scratch</title>
+    <link>https://www.iamtk.co/self-attention-foundation-models-and-the-gpt-architecture-from-scratch</link>
+    <guid isPermaLink="true">https://www.iamtk.co/self-attention-foundation-models-and-the-gpt-architecture-from-scratch</guid>
+    <description>A deep dive into self-attention mechanisms, the Transformer architecture, and GPT-like foundation models built from scratch in Python and PyTorch</description>
+  </item>
+  <item>
     <title>2025 in Review: ML, Books, Career, Writing</title>
     <link>https://www.iamtk.co/2025-in-review-ml-books-career-writing</link>
     <guid isPermaLink="true">https://www.iamtk.co/2025-in-review-ml-books-career-writing</guid>
