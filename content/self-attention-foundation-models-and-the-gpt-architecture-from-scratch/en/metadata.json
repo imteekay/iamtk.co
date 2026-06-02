@@ -15,13 +15,5 @@
       "href": "/tags/data-science",
       "name": "data_science"
     }
-  ],
-  "coverImage": {
-    "src": "/self-attention-foundation-models-and-the-gpt-architecture-from-scratch/cover.jpg",
-    "width": "750",
-    "height": "500",
-    "alt": "a dark blue background with lots of lines",
-    "authorHref": "https://unsplash.com/@atomsmasher",
-    "authorName": "Sandip Kalal"
-  }
+  ]
 }

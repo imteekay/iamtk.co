@@ -31,7 +31,7 @@ export type PostMetadata = {
   description: string;
   date: string;
   tags: Tag[];
-  coverImage: CoverImage;
+  coverImage?: CoverImage;
   alternativeArticle: AlternativeArticle;
 };
 

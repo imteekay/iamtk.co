@@ -22,7 +22,7 @@ type LayoutPropTypes = {
   date: string;
   showSocialLinks?: boolean;
   alternativeArticle: AlternativeArticleType;
-  coverImage: CoverImageType;
+  coverImage?: CoverImageType;
   minutes: number;
 };
 

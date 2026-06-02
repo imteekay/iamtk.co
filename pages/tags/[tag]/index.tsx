@@ -27,7 +27,7 @@ const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
     <Head
       title={postMetadata.title}
       description={postMetadata.description}
-      imageUrl={postMetadata.coverImage.src}
+      imageUrl={postMetadata.coverImage?.src}
     />
     <Layout
       tags={postMetadata.tags}

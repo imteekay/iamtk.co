@@ -49,7 +49,7 @@ const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => {
       <Head
         title={postMetadata.title}
         description={postMetadata.description}
-        imageUrl={postMetadata.coverImage.src}
+        imageUrl={postMetadata.coverImage?.src}
       />
       <Layout
         tags={postMetadata.tags}
@@ -80,18 +80,22 @@ export const getStaticProps: GetStaticProps<PageProps, Params> = async (
   const { postContent, minutes } = getPostContent(slug);
   const postMetadata = getPostMetadata(slug);
   const content = await serializeMDX(postContent);
-  const { base64, img } = await getPlaiceholder(postMetadata.coverImage.src);
+  const plaiceholder = postMetadata.coverImage?.src
+    ? await getPlaiceholder(postMetadata.coverImage.src)
+    : undefined;
 
   return {
     props: {
       content,
       postMetadata: {
         ...postMetadata,
-        coverImage: {
-          ...postMetadata.coverImage,
-          src: img.src,
-          blurDataURL: base64,
-        },
+        ...(plaiceholder && {
+          coverImage: {
+            ...postMetadata.coverImage!,
+            src: plaiceholder.img.src,
+            blurDataURL: plaiceholder.base64,
+          },
+        }),
       },
       minutes,
     },
