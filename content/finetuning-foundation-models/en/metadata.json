@@ -1,0 +1,25 @@
+{
+  "title": "Finetuning Foundation Models",
+  "description": "A practical deep dive into finetuning LLMs — from instruction tuning and classification heads",
+  "date": "2026-06-15",
+  "tags": [
+    {
+      "href": "/tags/python",
+      "name": "python"
+    },
+    {
+      "href": "/tags/machine-learning",
+      "name": "machine_learning"
+    },
+    {
+      "href": "/tags/data-science",
+      "name": "data_science"
+    }
+  ],
+  "coverImage": {
+    "src": "/finetuning-foundation-models/cover.jpg",
+    "width": "610",
+    "height": "653",
+    "alt": "fire in the sky during night time"
+  }
+}
