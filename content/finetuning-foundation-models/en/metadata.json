@@ -1,6 +1,6 @@
 {
   "title": "Finetuning Foundation Models",
-  "description": "A practical deep dive into finetuning LLMs — from instruction tuning and classification heads",
+  "description": "A practical deep dive into finetuning LLMs — classification heads and spam dataset",
   "date": "2026-06-15",
   "tags": [
     {
