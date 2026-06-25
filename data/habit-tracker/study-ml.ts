@@ -143,6 +143,7 @@ const studyMl = [
   { date: '2026-06-21', count: 1, level: 4 },
   { date: '2026-06-22', count: 1, level: 4 },
   { date: '2026-06-23', count: 1, level: 4 },
+  { date: '2026-06-24', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
