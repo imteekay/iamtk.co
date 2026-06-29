@@ -1,0 +1,687 @@
+<SmoothRender>
+
+When you build a model that predicts whether a rental property will be contracted within 30 days of publication, you quickly realize that the standard machine learning playbook — fit a classifier, evaluate at threshold 0.5, ship — falls apart entirely. This post is about that journey: what the data looks like, how to select the right features, why the default threshold is operationally broken, and how to reason about model selection when precision and recall pull in opposite directions.
+
+Here is the covered content:
+
+- Problem Definition
+- The Dataset
+- Exploratory Data Analysis
+- Feature Engineering
+- Feature Selection
+- Training Strategy
+- The Threshold Problem
+- Experiments
+- Model Selection
+- Model Card
+
+---
+
+## The Problem
+
+A rental marketplace has a fundamental tension: landlords want their properties rented quickly, and the platform wants to match them with tenants efficiently. Not every listing rents at the same pace. Some close in under a week; others sit for months. The ones that close fast — the "liquid" listings — tell you something important about the market.
+
+The question I wanted to answer: **can we predict, at the moment a listing is published, whether it will be contracted within 30 days?**
+
+This is a binary classification problem with a twist. The output serves two purposes simultaneously:
+
+1. A **continuous probability score** — a liquidity signal for ranking and prioritizing listings
+2. A **binary label** — "liquid" or "not liquid" for hard operational decisions
+
+Both uses matter, and they require different metrics. I'll come back to that.
+
+The target variable is:
+
+```
+y_fast_rent = 1  if (contract_date - publication_date) ≤ 30 days
+y_fast_rent = 0  otherwise
+```
+
+---
+
+## The Dataset
+
+The dataset contains **871,462 rental listings** published since early 2024. Each row represents a single listing with attributes captured at publication time — price, size, location, property type, and so on.
+
+```python
+df = pd.read_csv("base.csv")
+df.shape  # (871462, 28)
+```
+
+The columns broadly fall into three categories:
+
+- **Listing metadata:** `listing_category_start`, `is_exclusive`, `house_type`, `house_first_key_location`
+- **Property attributes:** `total_area`, `bedroom_count`, `bathroom_count`, `has_elevator`, `is_furnished`, `state_abb_name`
+- **Financial signals:** `house_rent`, `condominium_per_month`, `predicted_price`
+
+The first thing to check is missing data. Not all attributes are available for all listings:
+
+```python
+missing = df.isnull().mean().sort_values(ascending=False)
+missing[missing > 0]
+
+# has_pool                 0.841
+# is_penthouse             0.786
+# dt_first_publication     0.710
+# allows_pet               0.704
+# predicted_price          0.695
+# is_furnished             0.390
+# has_elevator             0.390
+# bedroom_count            0.390
+# bathroom_count           0.390
+# total_area               0.390
+# condominium_per_month    0.391
+# house_first_key_location 0.011
+```
+
+There are three tiers of missingness: near-complete features (<1% missing), property attributes (~39% missing because they come from a separate data source populated only for active properties), and high-missing features (>70%). This is important for algorithm selection — CatBoost handles NaN values natively via NaN-splits in the tree-building process, which means we don't need to impute anything.
+
+---
+
+## Exploratory Data Analysis
+
+### Rental Speed Distribution
+
+Before defining the target, I looked at the raw distribution of `days_to_rent` — the number of days between listing publication and contract signing, for all listings that eventually got rented.
+
+```python
+df["days_to_rent"] = (
+    pd.to_datetime(df["ts_contract_signed"]) - pd.to_datetime(df["dt_publication"])
+).dt.total_seconds() / 86_400
+
+dtr = df["days_to_rent"].dropna()
+dtr = dtr[dtr >= 0]
+
+print(f"Count : {len(dtr):,}")
+print(f"Median: {dtr.median():.1f} days")
+print(f"Mean  : {dtr.mean():.1f} days")
+print(f"p75   : {dtr.quantile(0.75):.1f} days")
+print(f"p90   : {dtr.quantile(0.90):.1f} days")
+
+# Count : 398,595
+# Median: 26.4 days
+# Mean  : 44.3 days
+# p75   : 54.7 days
+# p90   : 102.0 days
+```
+
+The distribution is right-skewed — the median is 26 days but the mean is 44, pulled up by long-tail listings that take months to rent. 30 days sits near the median, making it a natural threshold: it separates the genuinely fast-renting half from the rest.
+
+### Target Balance
+
+```python
+FAST_RENT_THRESHOLD = 30
+
+df["y_fast_rent"] = (
+    df["days_to_rent"].notna() & (df["days_to_rent"] <= FAST_RENT_THRESHOLD)
+).astype(int)
+
+vc = df["y_fast_rent"].value_counts()
+print(vc)
+print(f"\nPositive rate: {vc[1] / vc.sum():.3f}")
+
+# 0    655659  (75.2%)
+# 1    215803  (24.8%)
+#
+# Positive rate: 0.248
+```
+
+The target is moderately imbalanced: only about 1 in 4 listings rents within 30 days. This has significant implications for threshold selection, which I'll address in detail later.
+
+For context, the overall rental rate (`y_rented = 1` for any contract, regardless of timing) is 45.7% — much more balanced. This distinction matters for feature selection: features that separate "ever rented" from "never rented" are not necessarily the same features that separate "rented in 30 days" from "rented in 60+ days."
+
+### Price Distribution
+
+`house_rent` is the primary price signal. Its distribution is heavily right-skewed:
+
+```python
+print(df["house_rent"].describe())
+
+# count    871,462
+# mean       2,923
+# std        3,102
+# min            0
+# 25%        1,500
+# 50%        2,220
+# 75%        3,500
+# 99%       14,060
+# max      100,000
+```
+
+The 99th percentile is R$14,060, but the maximum is R$100,000. Extreme outliers like these would distort tree splits. For `total_area` and `condominium_per_month`, similar outlier patterns appear and are handled with clipping before training.
+
+### Rental Seasonality
+
+Rental demand follows a seasonal cycle tied to the academic calendar and holiday patterns. Looking at the average fast-rental rate by month of publication:
+
+| Month | Fast-Rent Rate |
+|---|---|
+| January | 27.3% |
+| February | 28.1% |
+| June | 27.4% |
+| July | 28.2% |
+| August | 24.0% |
+| September | 23.5% |
+| October | 23.1% |
+
+The pattern is clear: January–February and June–July are high-demand periods (university semester transitions). August–November is the slow season. This informs an engineered feature I'll build later.
+
+---
+
+## Feature Engineering
+
+Before running any statistical tests, I built four engineered features:
+
+**`publication_month`** — the month (1–12) the listing was published. Captures the seasonality signal from the EDA above.
+
+**`publication_dow`** — the day of week (0=Monday, 6=Sunday). Listings published early in the week get more initial visibility: tenants browsing on Monday and Tuesday are still earlier in their search cycle and more likely to schedule viewings. Listings published on Friday compete with weekend leisure and often lose two days of prime exposure.
+
+**`total_monthly_cost`** — `house_rent + condominium_per_month`. Tenants care about the all-in monthly commitment, not just the headline rent. A R$2,500 apartment with a R$800 condo fee costs R$3,300/month — the same as a R$3,300 apartment with no condo. Separating these in the model loses this signal.
+
+**`price_to_market_ratio`** — `house_rent / predicted_price`. This measures whether a listing is priced above or below the estimated fair market value. A ratio of 0.85 means the listing is 15% cheaper than the model's fair-value estimate — likely to rent fast. A ratio of 1.2 means it's 20% overpriced — likely to sit. This is potentially the most predictive single feature, but `predicted_price` is only available for ~30% of listings, so the feature inherits that coverage limitation.
+
+**`peak_season`** — a 4-level categorical derived from `publication_month`:
+
+```python
+SEASON_MAP = {
+    1: "peak",      # January
+    2: "peak",      # February
+    3: "high",      # March
+    6: "shoulder",  # June
+    7: "shoulder",  # July
+    12: "high",     # December
+}
+# Everything else → "low"
+
+df["peak_season"] = df["publication_month"].map(SEASON_MAP).fillna("low")
+```
+
+This transforms a continuous month signal into an interpretable market-state variable, capturing the four-regime structure visible in the seasonality data.
+
+---
+
+## Feature Selection
+
+With ~28 candidate features, I used five complementary methods, each sensitive to different types of relationships.
+
+### 1. Variance and Missing Rate Filter
+
+First pass: drop features with near-zero variance or >75% missing. `is_classified` and `is_currently_available` both have variance close to zero (they're nearly constant across the dataset). `has_pool` (84% missing) and `is_penthouse` (79% missing) are too sparse for reliable signal — or so I thought initially. I'll revisit this in the experiments section.
+
+### 2. Pearson Correlation (Collinearity Check)
+
+For numerical features, I checked pairwise correlations to identify redundancies:
+
+```python
+corr_matrix = df[numerical_candidates].corr().abs()
+high_corr = (corr_matrix > 0.80) & (corr_matrix < 1.0)
+```
+
+`rent_per_month` and `house_rent` have correlation > 0.95 — they're near-duplicates. `rent_per_month` was dropped. `type` is redundant with `house_type` but has 39% missing vs. <1% for `house_type` — `type` was dropped.
+
+### 3. Cramér's V (Categorical Features vs. Target)
+
+For categorical features, Pearson correlation doesn't apply. Cramér's V measures the association between a categorical variable and a binary target:
+
+```python
+def cramers_v(x, y):
+    ct = pd.crosstab(x.astype(str), y)
+    chi2, _, _, _ = stats.chi2_contingency(ct)
+    n = ct.values.sum()
+    k = min(ct.shape) - 1
+    return float(np.sqrt(chi2 / (n * k))) if k > 0 else 0.0
+```
+
+Results against `y_fast_rent`:
+
+| Feature | Cramér's V |
+|---|---|
+| `listing_category_start` | 0.042 |
+| `house_type` | 0.024 |
+| `state_abb_name` | 0.018 |
+| `house_first_key_location` | 0.016 |
+| `peak_season` | 0.014 |
+
+Values look small, but in a dataset with 800k+ rows, even small associations are statistically robust. The signal is real; it's distributed across many listing attributes rather than concentrated in a single predictor.
+
+### 4. Point-Biserial Correlation (Numerical Features vs. Target)
+
+For numerical features against the binary target:
+
+```python
+from scipy import stats
+
+for feat in numerical_candidates:
+    valid = df[[feat, "y_fast_rent"]].dropna()
+    r, pval = stats.pointbiserialr(valid["y_fast_rent"], valid[feat])
+    print(f"{feat:<30}  r={r:+.4f}  p={pval:.2e}")
+
+# house_rent                      r=-0.0712  p=2.1e-78
+# is_exclusive                    r=+0.0681  p=4.5e-71
+# total_area                      r=-0.0624  p=8.3e-57
+# bedroom_count                   r=-0.0551  p=1.2e-44
+# price_to_market_ratio           r=-0.1148  p=2.3e-88
+# total_monthly_cost              r=-0.0834  p=6.7e-80
+# publication_month               r=+0.0312  p=4.1e-15
+# publication_dow                 r=+0.0189  p=2.2e-07
+```
+
+`price_to_market_ratio` has the strongest signal (r = -0.115): overpriced listings are significantly less likely to rent fast. `is_exclusive` is positively correlated with speed — platform exclusivity increases visibility. `house_rent` has a negative correlation — more expensive listings take longer to find a match, given smaller renter pools at higher price points.
+
+### 5. Mutual Information
+
+Pearson and point-biserial capture linear associations. Mutual information (MI) is non-parametric and captures any statistical dependence:
+
+```python
+from sklearn.feature_selection import mutual_info_classif
+
+X_mi = df[candidates].fillna(-1)
+mi_scores = mutual_info_classif(X_mi, df["y_fast_rent"], random_state=42)
+```
+
+Top MI scorers largely align with the correlation results, but MI surfaces a few features that linear measures undersell: `listing_category_start` and `bedroom_count` have higher MI scores than their correlation values suggest, pointing to non-linear interaction effects that gradient-boosted trees will capture naturally.
+
+### The Feature Selection Misalignment Problem
+
+One important finding: the original feature selection was run against `y_rented` (overall rental — 45.7% positive) rather than `y_fast_rent` (fast rental — 24.8% positive). These are different targets. I re-ran all tests against both targets and compared:
+
+| Feature | ΔCramér's V (fast - all) | Interpretation |
+|---|---|---|
+| `listing_category_start` | +0.008 | Stronger signal for speed than for any rental |
+| `is_penthouse` | +0.012 | Niche listings rent faster when they eventually rent |
+| `has_pool` | +0.009 | Similar pattern |
+| `total_area` | -0.003 | Slightly weaker signal for speed |
+
+Features like `is_penthouse` and `has_pool` — dropped initially due to high missingness — showed stronger associations with *fast* rental than with *any* rental. This misalignment motivated running experiments with a broader 27-feature set.
+
+### Final Feature Sets
+
+**19-feature set** (original selection, corrected for fast-rent target):
+
+| Category | Features |
+|---|---|
+| Categorical (5) | `listing_category_start`, `house_type`, `house_first_key_location`, `state_abb_name`, `peak_season` |
+| Numerical — listing (4) | `house_rent`, `is_exclusive`, `predicted_price`, `allows_pet` |
+| Numerical — property (6) | `total_area`, `bedroom_count`, `bathroom_count`, `condominium_per_month`, `has_elevator`, `is_furnished` |
+| Engineered (4) | `total_monthly_cost`, `price_to_market_ratio`, `publication_month`, `publication_dow` |
+
+**27-feature set** (adds 8 features previously excluded): `type`, `rent_per_month`, `sale_price`, `status`, `is_classified`, `is_currently_available`, `is_penthouse`, `has_pool`. Many were excluded from the 19-feature set based on collinearity or high missingness, but they may carry residual signal for the specific fast-rent target.
+
+---
+
+## Training Strategy
+
+### Time-Window Filter
+
+A subtle label-leakage risk: listings published fewer than 30 days before the data extraction date have not had enough time to sign a contract within the observation window. Their `y_fast_rent = 0` label is not an observed outcome — it's an incomplete observation. Including them would introduce noise into the negative class.
+
+```python
+TODAY = pd.Timestamp("2026-05-13")
+cutoff = TODAY - pd.Timedelta(days=30)  # 2026-04-13
+
+df_windowed = df[df["dt_publication"] <= cutoff].copy()
+print(f"Before: {len(df):,}  After: {len(df_windowed):,}  Removed: {len(df) - len(df_windowed):,}")
+# Before: 871,462  After: 818,203  Removed: 53,259
+```
+
+### Temporal Train / Val / Test Split
+
+Random shuffling is not appropriate here. A listing published in January should not appear in training if a listing from October is in the test set — that would mean the model sees future patterns during training. I used a temporal split:
+
+```python
+cutoff_train = TODAY - pd.Timedelta(days=90)  # 2026-02-12
+cutoff_val   = TODAY - pd.Timedelta(days=60)  # 2026-03-14
+cutoff_test  = TODAY - pd.Timedelta(days=30)  # 2026-04-13
+
+train_mask = df_windowed["dt_publication"] < cutoff_train
+val_mask   = (df_windowed["dt_publication"] >= cutoff_train) & \
+             (df_windowed["dt_publication"] < cutoff_val)
+test_mask  = (df_windowed["dt_publication"] >= cutoff_val) & \
+             (df_windowed["dt_publication"] < cutoff_test)
+```
+
+| Split | Date range | Rows | Positive rate |
+|---|---|---|---|
+| Train | before 2026-02-12 | 746,990 | 24.7% |
+| Val | 2026-02-12 – 2026-03-14 | 36,200 | 29.8% |
+| Test | 2026-03-14 – 2026-04-13 | 35,013 | 28.5% |
+
+Note the positive rate shift: 24.7% in train, 28.5% in test. This is temporal distribution drift — the base rate of fast rentals changed over time. It's worth tracking because it affects the implicit prior the model learns and means the model's calibration will degrade without periodic retraining.
+
+### Algorithm: CatBoost
+
+CatBoost was the natural choice for three reasons:
+
+1. **Native NaN handling.** With ~39% missing on property attributes and ~70% missing on some financial features, imputation would either discard too much data or introduce assumptions. CatBoost builds NaN-aware splits that treat missing values as a separate branch — no preprocessing required.
+
+2. **Native categorical encoding.** Features like `listing_category_start`, `house_type`, and `state_abb_name` are passed directly as strings. CatBoost uses ordered target statistics to encode them during training, which is more robust than one-hot encoding for high-cardinality categoricals.
+
+3. **Strong baseline performance on tabular data.** For structured datasets with mixed types, gradient-boosted trees consistently outperform deep learning approaches. CatBoost specifically handles the above two issues better than XGBoost or LightGBM out of the box.
+
+### Hyperparameter Optimization with Optuna
+
+Rather than manual tuning, I used Optuna with 20 trials, TPE sampler, and ROC-AUC on the validation set as the objective:
+
+```python
+import optuna
+from sklearn.metrics import roc_auc_score
+
+def objective(trial):
+    params = dict(
+        iterations=trial.suggest_int("iterations", 200, 800, step=100),
+        learning_rate=trial.suggest_float("learning_rate", 0.01, 0.3, log=True),
+        depth=trial.suggest_int("depth", 4, 8),
+        l2_leaf_reg=trial.suggest_float("l2_leaf_reg", 1.0, 10.0),
+        subsample=trial.suggest_float("subsample", 0.6, 1.0),
+        colsample_bylevel=trial.suggest_float("colsample_bylevel", 0.5, 1.0),
+        verbose=0, random_seed=42, allow_writing_files=False,
+    )
+    pipe = Pipeline([
+        ("selector", ColumnSelector(features)),
+        ("classifier", CatBoost(**params)),
+    ], catalog=catalog)
+    pipe.fit(X_train, y_train, classifier__cat_features=cat_feats)
+    probs = np.asarray(pipe.transform(X_val), dtype=float).ravel()
+    return roc_auc_score(y_val, probs)
+
+study = optuna.create_study(direction="maximize", sampler=optuna.samplers.TPESampler(seed=42))
+study.optimize(objective, n_trials=20)
+```
+
+Why ROC-AUC as the Optuna objective, and not F1 or recall? ROC-AUC is **threshold-agnostic** — it measures the model's ability to rank fast-rent listings above slow-rent ones across all possible thresholds. It's the correct signal for model selection because it's not confounded by the choice of decision boundary. F1 at a fixed threshold (like 0.5) would optimize for the wrong operating point given the 25% positive rate. Threshold tuning is a separate step, done after model selection.
+
+Best trial (Trial 17, val ROC-AUC = 0.6718):
+
+| Hyperparameter | Value |
+|---|---|
+| `iterations` | 800 |
+| `learning_rate` | 0.0629 |
+| `depth` | 6 |
+| `l2_leaf_reg` | 4.46 |
+| `subsample` | 0.825 |
+| `colsample_bylevel` | 0.813 |
+
+---
+
+## The Threshold Problem
+
+The first evaluation at threshold=0.5 looked alarming:
+
+```python
+evaluate_clf("Optimized (19 feat, thr=0.50)", pipeline, X_test, y_test, threshold=0.5)
+
+# Precision    0.5402
+# Recall       0.0430
+# F1-Score     0.0797
+# PR-AUC       0.4178
+# ROC-AUC      0.6698
+```
+
+Recall of **4.3%**. The model is ignoring 96% of genuinely fast-renting properties.
+
+This is not a model failure — it's a threshold failure. Here is why.
+
+At a 25% positive rate, the model assigns relatively low probabilities to most listings. For a listing to get probability > 0.5, the model needs to be very confident it will rent fast. That confidence is rarely justified when only 1 in 4 listings is positive. The model's implicit prior pulls all probabilities toward 0.25, and threshold 0.5 sits far above that prior.
+
+The mass of the predicted probability distribution sits between 0.1 and 0.4. Only a tiny fraction of listings gets probabilities above 0.5. The fix is not to change the model — it's to change the threshold.
+
+The ROC-AUC of 0.67 tells us the model can rank fast-rent listings above slow-rent listings significantly better than random. The model has real discriminative ability. It just needs the decision boundary moved to match the actual probability distribution.
+
+---
+
+## Experiment 1: Threshold Tuning via the Precision-Recall Curve
+
+The precision-recall curve shows every possible operating point. Rather than picking 0.5 arbitrarily, I swept all thresholds on the validation set and selected the one that maximizes F1:
+
+```python
+from sklearn.metrics import precision_recall_curve
+
+y_prob_val = np.asarray(pipeline.transform(X_val), dtype=float).ravel()
+
+precs, recs, thrs = precision_recall_curve(y_val, y_prob_val)
+f1s = 2 * precs[:-1] * recs[:-1] / (precs[:-1] + recs[:-1] + 1e-9)
+
+best_idx = int(np.argmax(f1s))
+best_thr = float(thrs[best_idx])
+
+print(f"Optimal threshold (val): {best_thr:.4f}")
+print(f"Val F1 at that point   : {f1s[best_idx]:.4f}  "
+      f"(P={precs[best_idx]:.4f}, R={recs[best_idx]:.4f})")
+
+# Optimal threshold (val): 0.2293
+# Val F1 at that point   : 0.5134  (P=0.3777, R=0.8012)
+```
+
+The optimal threshold is **0.229**, far below 0.5. Applying it to the test set:
+
+```python
+evaluate_clf("Optimized (19 feat, thr=0.229)", pipeline, X_test, y_test, threshold=0.229)
+
+# Precision    0.3667   (was 0.5402)
+# Recall       0.7826   (was 0.0430)
+# F1-Score     0.4994   (was 0.0797)
+# PR-AUC       0.4178   (unchanged — model property, not threshold)
+# ROC-AUC      0.6698   (unchanged — model property, not threshold)
+```
+
+Recall jumped from 4.3% to 78.3%. This is the same model, same weights, same training — only the decision boundary changed. ROC-AUC is unchanged because it's threshold-agnostic; moving the cut-point doesn't change how well the model ranks examples.
+
+---
+
+## Experiment 2: CatBoost Class Weights
+
+An alternative approach to the imbalance problem: modify the loss function during training to penalize false negatives more. The positive class represents ~24.7% of the training data, so the natural weight ratio is approximately 3:1.
+
+```python
+pos_rate = float(y_train.mean())
+w_pos = round((1.0 - pos_rate) / pos_rate, 2)
+print(f"Train positive rate: {pos_rate:.3f}  → class_weights=[1, {w_pos}]")
+# Train positive rate: 0.247  → class_weights=[1, 3.04]
+
+pipeline_weighted = Pipeline([
+    ("selector", ColumnSelector(features)),
+    ("classifier", CatBoost(**best_params, class_weights=[1, w_pos], ...)),
+], catalog=catalog)
+pipeline_weighted.fit(X_train, y_train, classifier__cat_features=cat_feats)
+```
+
+The weighted model gets its own threshold tuned on the val set (the class weights shift the probability distribution, so the optimal cut-point also shifts):
+
+```
+Weighted (19 feat, thr=0.472)
+  Precision    0.3661
+  Recall       0.7855
+  F1-Score     0.4994
+  ROC-AUC      0.6698
+```
+
+The result is nearly identical to threshold tuning alone: same F1 (0.4994), same ROC-AUC (0.6698). Class weights add training cost without improving the underlying ranking quality. For the 19-feature model, threshold tuning is strictly more efficient.
+
+---
+
+## Experiment 3: Optimal Threshold for the 27-Feature Model
+
+The 27-feature set includes features that were excluded from the 19-feature selection because the original analysis was run against `y_rented` instead of `y_fast_rent`. Re-running feature selection against the correct target reveals residual signal in `is_penthouse`, `has_pool`, and `rent_per_month` that the original selection missed.
+
+Training the same Optuna-tuned CatBoost on all 27 features:
+
+```
+Optimized (27 feat, thr=0.50)
+  PR-AUC       0.4514   ← from 0.4178 — materially better
+  ROC-AUC      0.6916   ← from 0.6698 — materially better
+  Recall       0.0937   (still broken at thr=0.50)
+```
+
+The improvement in PR-AUC (+0.034) and ROC-AUC (+0.022) holds on both val (0.6968 vs 0.6718) and test sets — confirming it's not overfitting to the test set.
+
+Now I compute the 27-feat model's **own** optimal threshold from its own val PR curve. The 19-feat model's threshold of 0.229 doesn't apply here — the probability distributions are different because the model is stronger and assigns higher confidence scores:
+
+```python
+y_prob_all_val = np.asarray(pipeline_all.transform(X_val_all), dtype=float).ravel()
+
+precs_ao, recs_ao, thrs_ao = precision_recall_curve(y_val, y_prob_all_val)
+f1s_ao = 2 * precs_ao[:-1] * recs_ao[:-1] / (precs_ao[:-1] + recs_ao[:-1] + 1e-9)
+best_thr_ao = float(thrs_ao[int(np.argmax(f1s_ao))])
+
+print(f"Optimal threshold (val): {best_thr_ao:.4f}")
+# Optimal threshold (val): 0.2204
+```
+
+Applied to the test set:
+
+```
+Optimized (27 feat, thr=0.220)
+  Precision    0.3743
+  Recall       0.8057
+  F1-Score     0.5111
+  PR-AUC       0.4514
+  ROC-AUC      0.6916
+```
+
+---
+
+## Experiment 4: Class Weights on the 27-Feature Model
+
+For completeness, I trained the 27-feature model with class weights and its own tuned threshold:
+
+```
+Weighted (27 feat, thr=0.492)
+  Precision    0.3870
+  Recall       0.7455
+  F1-Score     0.5095
+  PR-AUC       0.4514
+  ROC-AUC      0.6923
+```
+
+The weighted version gains +0.0007 ROC-AUC (0.6923 vs 0.6916) but loses on F1 (0.5095 vs 0.5111) and recall (0.7455 vs 0.8057).
+
+---
+
+## Model Selection
+
+Here are all nine configurations side by side:
+
+| Model | Precision | Recall | F1 | PR-AUC | ROC-AUC |
+|---|---|---|---|---|---|
+| Baseline (19 feat, thr=0.50) | 0.5694 | 0.0324 | 0.0613 | 0.4170 | 0.6687 |
+| Optimized (19 feat, thr=0.50) | 0.5402 | 0.0430 | 0.0797 | 0.4178 | 0.6698 |
+| Optimized (19 feat, thr=0.229) | 0.3667 | 0.7826 | 0.4994 | 0.4178 | 0.6698 |
+| Weighted (19 feat, thr=0.50) | 0.3774 | 0.7273 | 0.4970 | 0.4169 | 0.6698 |
+| Weighted (19 feat, thr=0.472) | 0.3661 | 0.7855 | 0.4994 | 0.4169 | 0.6698 |
+| Optimized (27 feat, thr=0.50) | 0.5825 | 0.0937 | 0.1614 | 0.4514 | 0.6916 |
+| **Optimized (27 feat, thr=0.220)** | **0.3743** | **0.8057** | **0.5111** | **0.4514** | **0.6916** |
+| Weighted (27 feat, thr=0.50) | 0.3904 | 0.7295 | 0.5086 | 0.4514 | 0.6923 |
+| Weighted (27 feat, thr=0.492) | 0.3870 | 0.7455 | 0.5095 | 0.4514 | 0.6923 |
+
+The reasoning unfolds in five steps:
+
+**Step 1 — Any model at thr=0.50 is operationally useless.** Recall of 3–9% means the model ignores 91–97% of fast-renting listings. F1 of 0.06–0.16 reflects the distance between the positive base rate and the threshold, not model quality. These rows exist only to illustrate the baseline problem.
+
+**Step 2 — Feature set trumps hyperparameter tuning.** The 19-feature Optuna model improves over the baseline by +0.0011 ROC-AUC and +0.0008 PR-AUC — negligible. The 27-feature model improves by +0.022 ROC-AUC and +0.034 PR-AUC. The feature set is the binding constraint.
+
+**Step 3 — Use PR-AUC, not ROC-AUC, as the primary selection criterion.** With ~25% positive rate, ROC-AUC is optimistic because the large negative class is easy to separate. PR-AUC measures whether the model retrieves positives at high precision — the hard part when positives are the minority. The 27-feature models (0.4514 PR-AUC) unambiguously outperform the 19-feature models (0.4178).
+
+**Step 4 — Class weights add marginal ROC-AUC but cost recall.** The weighted 27-feat model gains +0.0007 ROC-AUC. But it loses 0.06 recall and 0.0016 F1. The gain is too small to justify the tradeoff.
+
+**Step 5 — The asymmetry of errors favors recall.** The two error types have different costs:
+
+| Error | What happens | Cost |
+|---|---|---|
+| False Negative | A liquid listing gets no intervention | Missed opportunity — it rents fast anyway, without any action from the platform |
+| False Positive | A slow listing is treated as liquid | Wrong signal — but the market self-corrects within 30 days |
+
+False negatives are systematic losses. False positives are self-correcting. This asymmetry favors the model with higher recall, even at lower precision.
+
+**Chosen model: Optimized (27 features, threshold=0.220)**
+
+### What You Gain and Lose
+
+On the test set (35,013 rows, 9,994 positives):
+
+| | thr=0.50 (19-feat baseline) | thr=0.220 (chosen) |
+|---|---|---|
+| Fast-rent listings correctly flagged | ≈ 430 | ≈ 8,057 |
+| Fast-rent listings missed | ≈ 9,564 | ≈ 1,937 |
+| Slow listings wrongly flagged | ≈ 365 | ≈ 13,540 |
+
+The model surfaces **19× more** genuinely liquid listings. Out of ~21,597 properties flagged at threshold 0.220, roughly 13,540 won't actually rent within 30 days — a precision of 37.4%. About 1 in 3 flagged properties is a true positive.
+
+Whether that precision is acceptable depends entirely on the downstream action. If "flagged as liquid" means applying a low-cost intervention like reordering search results, a 37% hit rate is fine. If it means an expensive commitment, the bar should be higher and the threshold should shift right.
+
+---
+
+## Model Card
+
+**Model overview**
+
+| | |
+|---|---|
+| Objective | Score each rental listing by its probability of being contracted within 30 days of publication |
+| Algorithm | CatBoost (gradient-boosted trees), hyperparameters tuned via Optuna (20 trials, TPE) |
+| Target | `y_fast_rent` — 1 if `days_to_rent ≤ 30`, else 0 |
+| Output | Class-1 probability ∈ [0, 1]; binarised at threshold **0.220** for hard decisions |
+
+**Training data**
+
+| | |
+|---|---|
+| Raw rows | 871,462 listings |
+| After time-window filter | 818,203 |
+| Split strategy | Temporal — no random shuffling |
+| Train | 746,990 rows, 24.7% positive |
+| Val | 36,200 rows, 29.8% positive |
+| Test | 35,013 rows, 28.5% positive |
+
+**Features (27 total)**
+
+- *5 categorical:* `listing_category_start`, `house_type`, `house_first_key_location`, `state_abb_name`, `peak_season`
+- *14 numerical:* `house_rent`, `is_exclusive`, `total_area`, `bedroom_count`, `bathroom_count`, `condominium_per_month`, `has_elevator`, `is_furnished`, `predicted_price`, `allows_pet`, `is_penthouse`, `has_pool`, `rent_per_month`, `sale_price`
+- *4 engineered:* `total_monthly_cost`, `price_to_market_ratio`, `publication_month`, `publication_dow`
+- *4 additional:* `type`, `status`, `is_classified`, `is_currently_available`
+
+CatBoost handles all missing values natively — no imputation applied.
+
+**Test-set performance**
+
+| Metric | Value | Interpretation |
+|---|---|---|
+| ROC-AUC | 0.6916 | Model ranks fast-rent listings above slow-rent ones better than random |
+| PR-AUC | 0.4514 | Current ceiling for this feature set |
+| F1 | 0.5111 | Best binary decision quality across all evaluated configurations |
+| Recall | 0.8057 | 4 in 5 fast-rent properties correctly identified |
+| Precision | 0.3743 | ~1 in 3 flagged properties actually rents within 30 days |
+
+**Known limitations**
+
+- PR-AUC of 0.4514 is the ceiling for the available features. Better precision and recall simultaneously require new signals: neighborhood-level supply/demand density, listing quality scores (photo count, description completeness), or full-coverage price positioning.
+- `price_to_market_ratio` — the single strongest price signal — is available for only ~30% of listings.
+- A 3.8 percentage point drift in positive rate between train (24.7%) and test (28.5%) indicates temporal distribution shift. The model's calibration will degrade over time without periodic retraining.
+- Geographic granularity is state-level (16 states). Micro-market dynamics within cities are not captured.
+
+---
+
+## Going Deeper
+
+There is a lot more to explore here. Some directions I'd want to investigate next:
+
+**Better features are the ceiling, not better algorithms.** The PR-AUC of 0.4514 is fixed by the feature set — no amount of hyperparameter tuning moves it. The model needs neighborhood-level competition density (how many similar listings are live at the same time and price point?), listing quality signals (number of photos, response rate of the landlord), and full-coverage price positioning.
+
+**Calibration check.** The probability scores feed into ranking decisions, so they should be well-calibrated — `P(y=1 | score=0.3)` should be close to 30%. A reliability diagram on the test set would reveal whether Platt scaling or isotonic regression is needed.
+
+**Time-aware retraining.** The 3.8 pp drift in positive rate between train and test is worth monitoring. A rolling training window with automated drift detection would catch distribution shifts before they degrade production performance.
+
+**Asymmetric loss with β-tuned F-score.** Rather than optimizing F1 (which treats precision and recall equally), a Fβ score with β > 1 would explicitly encode the recall-favoring asymmetry into threshold selection. With β=2, recall is weighted twice as much as precision, which better reflects the false-negative cost structure of this problem.
+
+---
+
+The most important lesson from working through this project: a model with mediocre ROC-AUC and a well-chosen threshold will outperform a model with great ROC-AUC evaluated at threshold 0.5. Metric selection and threshold selection are not afterthoughts — they are the core of the problem.
+
+## Resources
+
+- [Building a Linear Regression from Scratch with Python and Mathematics](/building-a-linear-regression-from-scratch-with-python-and-mathematics)
+- [Building a Deep Neural Network from Scratch](/building-a-deep-neural-network-from-scratch)
+- [Deep Learning for Healthcare: Chest X-Ray Medical Diagnosis](/deep-learning-for-healthcare-chest-x-ray-medical-diagnosis)
+- [Machine Learning Research](https://github.com/imteekay/machine-learning-research)
+- [AI/ML for Biology & Healthcare: A Learning Path](/ai-ml-for-biology-and-healthcare-a-learning-path)
+
+</SmoothRender>
