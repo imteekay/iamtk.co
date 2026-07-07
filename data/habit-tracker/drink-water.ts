@@ -162,6 +162,7 @@ const drinkWater = [
   { date: '2026-07-03', count: 1, level: 4 },
   { date: '2026-07-04', count: 1, level: 4 },
   { date: '2026-07-05', count: 1, level: 4 },
+  { date: '2026-07-06', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
