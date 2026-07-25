@@ -14,7 +14,7 @@ const datetimeStyle = css`
   min-width: 100px;
   margin-right: 16px;
 
-  @media (prefers-color-scheme: light) {
+  html[data-theme='light'] & {
     color: #2f2f2f;
   }
 `;

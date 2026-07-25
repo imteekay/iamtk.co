@@ -12,7 +12,7 @@ export const titleStyle = css`
   line-height: 1.25;
   display: block;
 
-  @media (prefers-color-scheme: light) {
+  html[data-theme='light'] & {
     color: #333;
   }
 `;

@@ -7,7 +7,7 @@ export const homeLinkStyle = css`
   margin-bottom: 20px;
   display: block;
 
-  @media (prefers-color-scheme: light) {
+  html[data-theme='light'] & {
     color: #333;
   }
 `;

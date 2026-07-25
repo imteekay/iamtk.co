@@ -10,7 +10,7 @@ const iconStyle = css`
   display: flex;
   color: white;
 
-  @media (prefers-color-scheme: light) {
+  html[data-theme='light'] & {
     color: #333;
     background: #333;
 

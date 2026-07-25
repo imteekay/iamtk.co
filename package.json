@@ -32,6 +32,7 @@
     "kbar": "^0.1.0-beta.23",
     "minisearch": "^3.2.0",
     "next": "13.4.12",
+    "next-themes": "^0.4.6",
     "plaiceholder": "2.2.0",
     "react": "^18.2.0",
     "react-activity-calendar": "^3.0.5",

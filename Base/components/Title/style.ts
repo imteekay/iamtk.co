@@ -10,7 +10,7 @@ export const titleStyle = css`
   margin-bottom: 0.1rem;
   display: block;
 
-  @media (prefers-color-scheme: light) {
+  html[data-theme='light'] & {
     color: #333;
   }
 `;

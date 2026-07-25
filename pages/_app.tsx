@@ -1,7 +1,7 @@
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 import { useRouter } from 'next/router';
 import Script from 'next/script';
-import { Fragment, useEffect } from 'react';
+import { Fragment, ReactNode, useEffect } from 'react';
 
 import '../styles/globals.css';
 import '../styles/night-owl.min.css';
@@ -9,12 +9,19 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { AnimatePresence } from 'framer-motion';
 import 'katex/dist/katex.min.css';
+import { ThemeProvider, ThemeProviderProps } from 'next-themes';
 
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
 
 config.autoAddCss = false;
+
+// `next-themes`' types extend `React.PropsWithChildren` without a type
+// argument, which the pinned `@types/react` version doesn't accept.
+const AppThemeProvider = ThemeProvider as (
+  props: ThemeProviderProps & { children?: ReactNode },
+) => JSX.Element;
 
 export function reportWebVitals({
   id,
@@ -51,7 +58,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
     : Layout;
 
   return (
-    <>
+    <AppThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
@@ -71,7 +78,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           </AnimatePresence>
         </LayoutComponent>
       </SearchBar>
-    </>
+    </AppThemeProvider>
   );
 };
 
