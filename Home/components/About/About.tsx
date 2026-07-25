@@ -85,6 +85,10 @@ const AboutSection = styled.section`
 
 const Topics = styled.p`
   color: #c1c1c1;
+
+  html[data-theme='light'] & {
+    color: #333;
+  }
 `;
 
 export const About: FC = () => (

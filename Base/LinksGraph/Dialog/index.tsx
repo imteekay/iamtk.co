@@ -1,6 +1,6 @@
-import { useMediaQuery } from '@mui/material';
 import MuiDialog from '@mui/material/Dialog';
 import { styled } from '@mui/material/styles';
+import { useTheme } from 'next-themes';
 
 import { Layout } from 'Base/LinksGraph/Layout';
 
@@ -36,7 +36,8 @@ const DarkDialog = styled(MuiDialog)<{ prefersDarkMode: boolean }>(
 );
 
 export const Dialog = ({ onClose, open, title, content }: DialogPropsType) => {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const { resolvedTheme } = useTheme();
+  const prefersDarkMode = resolvedTheme === 'dark';
 
   return (
     <DarkDialog

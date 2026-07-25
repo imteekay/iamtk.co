@@ -20,6 +20,10 @@ const LayoutFade = styled.div`
   height: 40px;
   background: linear-gradient(180deg, transparent, #0e0e16);
   pointer-events: none;
+
+  html[data-theme='light'] & {
+    display: none;
+  }
 `;
 
 const Page: NextPage = () => (

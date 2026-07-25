@@ -18,7 +18,7 @@ const titleStyle = css`
   text-transform: none;
   line-height: 1.25;
 
-  @media (prefers-color-scheme: light) {
+  html[data-theme='light'] & {
     color: #333;
   }
 `;
