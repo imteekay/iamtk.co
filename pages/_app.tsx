@@ -13,6 +13,7 @@ import { ThemeProvider, ThemeProviderProps } from 'next-themes';
 
 import { Layout } from 'Base/components/Layout';
 import { SearchBar } from 'Base/components/SearchBar';
+import { SettingsProvider, SettingsSidebar } from 'Base/components/Settings';
 import { pageview, GA_TRACKING_ID } from 'src/lib/tracking/gtag';
 
 config.autoAddCss = false;
@@ -59,25 +60,28 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <AppThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
-      <Script
-        strategy="lazyOnload"
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <Script id="google-analytics" strategy="lazyOnload">
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_TRACKING_ID}');
-        `}
-      </Script>
-      <SearchBar>
-        <LayoutComponent>
-          <AnimatePresence mode="wait">
-            <Component {...pageProps} />
-          </AnimatePresence>
-        </LayoutComponent>
-      </SearchBar>
+      <SettingsProvider>
+        <Script
+          strategy="lazyOnload"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+        <Script id="google-analytics" strategy="lazyOnload">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
+          `}
+        </Script>
+        <SearchBar>
+          <LayoutComponent>
+            <AnimatePresence mode="wait">
+              <Component {...pageProps} />
+            </AnimatePresence>
+          </LayoutComponent>
+        </SearchBar>
+        <SettingsSidebar />
+      </SettingsProvider>
     </AppThemeProvider>
   );
 };

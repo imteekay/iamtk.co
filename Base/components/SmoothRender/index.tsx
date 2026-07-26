@@ -1,1 +1,1 @@
-export { SmoothRender } from './SmoothRender';
+export { SmoothRender, fadeComponents } from './SmoothRender';
