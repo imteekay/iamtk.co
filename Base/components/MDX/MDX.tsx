@@ -10,7 +10,7 @@ import remarkGfm from 'remark-gfm';
 import { PostAndDate } from 'Base/components/PostAndDate';
 import { SideBySideImages } from 'Base/components/SideBySideImages';
 import { SideBySideVideos } from 'Base/components/SideBySideVideos';
-import { SmoothRender } from 'Base/components/SmoothRender';
+import { fadeComponents, SmoothRender } from 'Base/components/SmoothRender';
 import { Venn } from 'Base/components/Venn';
 
 /** Coerce MDX children to a string so KaTeX receives a string (it throws on non-string). */
@@ -57,6 +57,7 @@ export const serializeMDX = (content: string) =>
   });
 
 const components = {
+  ...fadeComponents,
   PostAndDate,
   SideBySideImages,
   TweetEmbed,
@@ -68,6 +69,5 @@ const components = {
 };
 
 export const MDX = ({ content }: MDXPropTypes) => (
-  // @ts-expect-error: components render correctly
   <MDXRemote {...content} components={components} />
 );

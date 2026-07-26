@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
 import { Footer } from './Footer';
 import { CoverImage } from 'Base/Article/CoverImage';
@@ -7,6 +7,8 @@ import { Meta } from 'Base/Article/Meta';
 import { SocialLinks } from 'Base/Article/SocialLinks';
 import { Title } from 'Base/Article/Title';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
+import { Navbar } from 'Base/components/Navbar';
+import { useSettings } from 'Base/components/Settings';
 import {
   Tag,
   AlternativeArticle as AlternativeArticleType,
@@ -32,41 +34,53 @@ export const MicroblogLayout: FC<LayoutPropTypes> = ({
   coverImage,
   alternativeArticle,
   minutes,
-}) => (
-  <AnimationLayout>
-    <div className="content">
-      <MicroblogLink />
-      <article
-        className="post"
-        itemScope
-        itemType="http://schema.org/BlogPosting"
-      >
-        <header>
-          <Title text={title} />
-          <Meta
-            date={date}
-            tags={tags}
-            alternativeArticle={alternativeArticle}
-            minutes={minutes}
-          />
-        </header>
+}) => {
+  const { settings } = useSettings();
 
-        {coverImage?.src && (
-          <CoverImage
-            src={coverImage.src}
-            width={coverImage.width}
-            height={coverImage.height}
-            alt={coverImage.alt}
-            authorHref={coverImage.authorHref}
-            authorName={coverImage.authorName}
-            blurDataURL={coverImage.blurDataURL}
-          />
-        )}
+  const contentStyle = {
+    fontSize: `${settings.fontSize}px`,
+    '--content-max-width': `${settings.contentWidth}px`,
+  } as CSSProperties;
 
-        {children}
-        {showSocialLinks && <SocialLinks />}
-      </article>
-      <Footer tags={tags} />
-    </div>
-  </AnimationLayout>
-);
+  return (
+    <>
+      <Navbar />
+      <AnimationLayout>
+        <div className="content" style={contentStyle}>
+          <MicroblogLink />
+          <article
+            className="post"
+            itemScope
+            itemType="http://schema.org/BlogPosting"
+          >
+            <header>
+              <Title text={title} />
+              <Meta
+                date={date}
+                tags={tags}
+                alternativeArticle={alternativeArticle}
+                minutes={minutes}
+              />
+            </header>
+
+            {coverImage?.src && (
+              <CoverImage
+                src={coverImage.src}
+                width={coverImage.width}
+                height={coverImage.height}
+                alt={coverImage.alt}
+                authorHref={coverImage.authorHref}
+                authorName={coverImage.authorName}
+                blurDataURL={coverImage.blurDataURL}
+              />
+            )}
+
+            {children}
+            {showSocialLinks && <SocialLinks />}
+          </article>
+          <Footer tags={tags} />
+        </div>
+      </AnimationLayout>
+    </>
+  );
+};

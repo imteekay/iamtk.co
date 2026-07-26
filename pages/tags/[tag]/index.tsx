@@ -36,6 +36,7 @@ const Page: NextPage<PageProps> = ({ content, postMetadata, minutes }) => (
       alternativeArticle={postMetadata.alternativeArticle}
       minutes={minutes}
       coverImage={postMetadata.coverImage}
+      applySettings={false}
     >
       <MDX content={content} />
     </Layout>

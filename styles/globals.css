@@ -74,7 +74,7 @@ article h1 {
 
 article h2 {
   position: relative;
-  font-size: 1.7rem;
+  font-size: 1.7em;
   font-weight: bold;
   text-transform: none;
   letter-spacing: normal;
@@ -92,7 +92,7 @@ article h2 {
 article h3 {
   margin-top: 0.9rem;
   margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   font-weight: bold;
   color: #eee;
   line-height: 30px;
@@ -337,7 +337,7 @@ p.no-margin-top {
 
 .content {
   width: 100%;
-  max-width: 680px;
+  max-width: var(--content-max-width, 680px);
   flex: 1;
   padding-left: 1rem;
   padding-right: 1rem;

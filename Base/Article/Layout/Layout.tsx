@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 
 import { NewsletterAlert } from '../Newsletter/NewsletterAlert';
 
@@ -10,6 +10,7 @@ import { SocialLinks } from 'Base/Article/SocialLinks';
 import { Title } from 'Base/Article/Title';
 import { AnimationLayout } from 'Base/components/Layout/AnimationLayout';
 import { Navbar } from 'Base/components/Navbar';
+import { useSettings } from 'Base/components/Settings';
 import {
   Tag,
   AlternativeArticle as AlternativeArticleType,
@@ -21,6 +22,7 @@ type LayoutPropTypes = {
   title: string;
   date: string;
   showSocialLinks?: boolean;
+  applySettings?: boolean;
   alternativeArticle: AlternativeArticleType;
   coverImage?: CoverImageType;
   minutes: number;
@@ -32,48 +34,60 @@ export const Layout: FC<LayoutPropTypes> = ({
   title,
   date,
   showSocialLinks = false,
+  applySettings = true,
   coverImage,
   alternativeArticle,
   minutes,
-}) => (
-  <>
-    <Navbar />
-    <AnimationLayout>
-      <div className="content">
-        <HomeLink />
-        <article
-          className="post"
-          itemScope
-          itemType="http://schema.org/BlogPosting"
-        >
-          <header>
-            <Title text={title} />
-            <Meta
-              date={date}
-              tags={tags}
-              alternativeArticle={alternativeArticle}
-              minutes={minutes}
-            />
-          </header>
+}) => {
+  const { settings } = useSettings();
 
-          {coverImage?.src && (
-            <CoverImage
-              src={coverImage.src}
-              width={coverImage.width}
-              height={coverImage.height}
-              alt={coverImage.alt}
-              authorHref={coverImage.authorHref}
-              authorName={coverImage.authorName}
-              blurDataURL={coverImage.blurDataURL}
-            />
-          )}
+  const contentStyle = applySettings
+    ? ({
+        fontSize: `${settings.fontSize}px`,
+        '--content-max-width': `${settings.contentWidth}px`,
+      } as CSSProperties)
+    : undefined;
 
-          {children}
-          <NewsletterAlert />
-          {showSocialLinks && <SocialLinks />}
-        </article>
-        <Footer tags={tags} />
-      </div>
-    </AnimationLayout>
-  </>
-);
+  return (
+    <>
+      <Navbar />
+      <AnimationLayout>
+        <div className="content" style={contentStyle}>
+          <HomeLink />
+          <article
+            className="post"
+            itemScope
+            itemType="http://schema.org/BlogPosting"
+          >
+            <header>
+              <Title text={title} />
+              <Meta
+                date={date}
+                tags={tags}
+                alternativeArticle={alternativeArticle}
+                minutes={minutes}
+              />
+            </header>
+
+            {coverImage?.src && (
+              <CoverImage
+                src={coverImage.src}
+                width={coverImage.width}
+                height={coverImage.height}
+                alt={coverImage.alt}
+                authorHref={coverImage.authorHref}
+                authorName={coverImage.authorName}
+                blurDataURL={coverImage.blurDataURL}
+              />
+            )}
+
+            {children}
+            <NewsletterAlert />
+            {showSocialLinks && <SocialLinks />}
+          </article>
+          <Footer tags={tags} />
+        </div>
+      </AnimationLayout>
+    </>
+  );
+};
