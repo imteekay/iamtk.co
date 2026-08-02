@@ -100,6 +100,7 @@ const absWorkout = [
   { date: '2026-07-27', count: 1, level: 4 },
   { date: '2026-07-28', count: 1, level: 4 },
   { date: '2026-07-30', count: 1, level: 4 },
+  { date: '2026-08-01', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
