@@ -119,6 +119,7 @@ const running = [
   { date: '2026-08-26', count: 1, level: 4 },
   { date: '2026-09-02', count: 1, level: 4 },
   { date: '2026-09-03', count: 1, level: 4 },
+  { date: '2026-09-04', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
