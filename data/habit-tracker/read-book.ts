@@ -214,6 +214,7 @@ const readBook = [
   { date: '2026-09-05', count: 1, level: 4 },
   { date: '2026-09-06', count: 1, level: 4 },
   { date: '2026-09-08', count: 1, level: 4 },
+  { date: '2026-09-09', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
