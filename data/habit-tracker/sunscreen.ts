@@ -202,6 +202,7 @@ const sunscreen = [
   { date: '2026-09-10', count: 1, level: 4 },
   { date: '2026-09-11', count: 1, level: 4 },
   { date: '2026-09-12', count: 1, level: 4 },
+  { date: '2026-09-13', count: 1, level: 4 },
   { date: '2026-12-31', count: 0, level: 0 },
 ];
 
