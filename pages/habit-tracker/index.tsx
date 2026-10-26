@@ -5,6 +5,7 @@ import absWorkout from 'data/habit-tracker/abs-workout';
 import backWorkout from 'data/habit-tracker/back-workout';
 import drinkWater from 'data/habit-tracker/drink-water';
 import intermittentFasting from 'data/habit-tracker/intermittent-fasting';
+import meditation from 'data/habit-tracker/meditation';
 import moisturizer from 'data/habit-tracker/moisturizer';
 import practiceGuitar from 'data/habit-tracker/practice-guitar';
 import readBook from 'data/habit-tracker/read-book';
@@ -34,6 +35,7 @@ export const getStaticProps: GetStaticProps<Props> = () => {
         'drink-water': drinkWater,
         'intermittent-fasting': intermittentFasting,
         moisturizer,
+        meditation,
       },
     },
   };
