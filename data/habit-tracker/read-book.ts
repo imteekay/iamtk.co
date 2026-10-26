@@ -1,4 +1,5 @@
 const readBook = [
+  { date: '2026-01-01', count: 0, level: 0 },
   { date: '2026-01-03', count: 1, level: 4 },
   { date: '2026-01-04', count: 1, level: 4 },
   { date: '2026-01-05', count: 1, level: 4 },
