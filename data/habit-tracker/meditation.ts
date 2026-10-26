@@ -1,4 +1,5 @@
 const meditation = [
+  { date: '2026-01-01', count: 0, level: 0 },
   { date: '2026-09-21', count: 1, level: 4 },
   { date: '2026-10-04', count: 1, level: 4 },
   { date: '2026-10-05', count: 1, level: 4 },
