@@ -95,12 +95,12 @@ export const About: FC = () => (
   <AboutSection id="about">
     <div>
       <p className="no-margin-top">
-        🇯🇵🇧🇷 . software engineer . writer . researcher
+        🇯🇵🇧🇷 . ML engineer . ML researcher . writer
       </p>
       <Topics className="no-margin">
-        mathematics . machine learning . science
+        machine learning . mathematics
         <br />
-        software & performance engineering
+        software engineering . science
       </Topics>
     </div>
     <Socials />

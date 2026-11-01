@@ -84,4 +84,9 @@ export const projectsList = [
     description: 'Micro posts about thoughts & reflections',
     link: '/microblog',
   },
+  {
+    title: 'Habit Tracker',
+    description: 'Daily habits visualized with activity calendars',
+    link: '/habit-tracker',
+  },
 ];
