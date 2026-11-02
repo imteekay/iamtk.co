@@ -93,15 +93,6 @@ export const SearchBar: FC = ({ children }) => {
       perform: () => window.open('https://twitter.com/wordsofteekay', '_blank'),
       icon: <Icon src="/twitter.svg" />,
     },
-    {
-      id: 'linkedin',
-      name: 'LinkedIn',
-      shortcut: ['f', 'l'],
-      keywords: 'go-linkedin',
-      section: 'Social',
-      perform: () => window.open('https://linkedin.com/in/imtk', '_blank'),
-      icon: <Icon src="/linkedin.svg" />,
-    },
   ];
 
   return (

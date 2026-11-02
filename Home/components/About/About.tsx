@@ -5,7 +5,6 @@ import {
   faTwitter,
   faGithub,
   faGoodreads,
-  faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -53,16 +52,6 @@ const Socials = () => (
       title="goodreads"
     >
       <FontAwesomeIcon icon={faGoodreads} size="lg" />
-    </Link>
-
-    <Link
-      className="icon"
-      target="_blank"
-      rel="noopener noreferrer"
-      href="https://www.linkedin.com/in/imtk"
-      title="linkedin"
-    >
-      <FontAwesomeIcon icon={faLinkedin} size="lg" />
     </Link>
 
     <Link
