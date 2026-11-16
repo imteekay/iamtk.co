@@ -89,4 +89,9 @@ export const projectsList = [
     description: 'Daily habits visualized with activity calendars',
     link: '/habit-tracker',
   },
+  {
+    title: 'Commonplace Book',
+    description: 'A growing map of everything I learn, by topic',
+    link: '/commonplace',
+  },
 ];
