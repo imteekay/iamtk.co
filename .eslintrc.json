@@ -1,6 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "plugin:cypress/recommended"],
   "plugins": ["unused-imports"],
+  "ignorePatterns": ["*.md", "content/**/*.md"],
   "rules": {
     "unused-imports/no-unused-imports": "error"
   }
